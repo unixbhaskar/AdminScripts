@@ -1,0 +1,1 @@
+rpm -qa gpg-pubkey\* --qf "%{version}-%{release} %{summary}\n"

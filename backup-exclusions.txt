@@ -1,0 +1,17 @@
+/usr/local/games
+/tmp/'*'
+/var/tmp/'*'
+/mnt
+/mnt/'*'
+/proc
+/proc/'*'
+/sys
+/usr/bin
+/bin
+/sbin
+/usr/lib
+/lib
+/usr/sbin
+/usr/share/doc
+/var/cache
+

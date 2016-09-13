@@ -1,0 +1,16 @@
+#!/bin/bash
+
+for id in `awk 'FS=":" {if(($3 == 0 && $1 != "root" )) print $1}' /etc/passwd`
+do
+cat << the_end >/dev/console
+
++----------------------------------------------------------------
+|                                                                
+|       `date "+Detacted On Date :%D Time :%r"`                  
+|       Break-in ALERT! Login ID `echo ${id}` has uid 0         
+|                                                             
++----------------------------------------------------------------
+
+the_end
+done
+

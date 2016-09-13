@@ -1,0 +1,1 @@
+echo "DISPLAY=$DISPLAY xmessage -cente 'msg'" | at "NOW + 1 min"

@@ -1,0 +1,7 @@
+[mysqld]
+log_slow_queries=/var/log/mysqld.slow.log
+long_query_time=2
+
+#Once queries get logged, you can get the top 10 queries sorted by number of occurrences in the log via:
+
+mysqldumpslow -s c -t 10 /var/log/mysqld.slow.log

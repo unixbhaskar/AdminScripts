@@ -1,0 +1,1 @@
+rpm --resign `find . -name *.rpm`

@@ -1,0 +1,30 @@
+Setup SFTP-Only Access (Redhat-based Distro)
+April 12th, 2011 · No Comments · Centos, HowTo, Installation, Tips and Tricks
+
+Setup sftp-only access on default Redhat/CentOS install. Use built-in sftp-server which is non-chrooted and easy to setup.
+
+Server: Locate sftp-server binary and add to your list of valid shells on the system.
+
+which sftp-server
+
+Note:   This will most likely give you this: /usr/libexec/openssh/sftp-server
+
+echo /usr/libexec/openssh/sftp-server >> /etc/shells
+
+Note:  You may want to backup your /etc/shells first
+
+User Accounts:  Add or modify accounts to use sftp-server.
+
+New User
+
+useradd -s /usr/libexec/openssh/sftp-server  sftponlyuser
+
+Note:  Important parameter there is the “-s /usr/libexec/openssh/sftp-server”, which sets the default shell for this account.   By default you will have “/bin/bash”.
+
+Existing User:
+
+vi /etc/passwd
+
+Find the user that you want to configure for sftp only access and edit its shell.  For exampleyou will see a line “username:x:500:500::/home/username:/bin/bash” change “/bin/bash” to “/usr/libexec/openssh/sftp-server” and save.  Note: You may want to backup your /etc/passwd file as well.
+
+

@@ -1,0 +1,1 @@
+git add `git status | grep modified | grep md | gawk '{print $2}'` && git commit -a -S -m && git-com-vrfy && git logline

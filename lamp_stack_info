@@ -1,0 +1,205 @@
+#!/bin/bash
+# This program is written for my own help.Needs lot of tweaking.
+#This script is written on Fedora and RHEL keep in mind,so other distribution
+#should cross check the binary space of the specified program to their distribution.
+#Author : Bhaskar Chowdhury
+#Date : 03-12-2010
+
+
+date=`date`
+
+echo "Today is :" $date
+echo
+echo
+host_name=`hostname`
+echo "This is for the $host_name"
+echo
+echo
+#System binary location information
+kernel=`uname -r`
+
+apache=`/usr/sbin/httpd -v`
+
+mysql=`/usr/bin/mysql --version`
+
+php=`/usr/bin/php -v`
+
+webroot='/var/www/html'
+
+mail='whoeverincahrgeofit@gmail.com' #The person in-charge of lamp stack
+
+echo "******************************* GNU/Linux ******************************"
+
+echo " We are running Linux Kernel: " $kernel
+echo
+echo
+
+
+
+
+echo
+echo
+echo "Check out kernel stuff...."
+echo
+
+
+/sbin/sysctl -p
+echo
+echo
+ 
+
+echo
+echo "********************* OS End *************************"
+echo
+echo
+
+sleep 5
+
+
+echo "************ Apache ******************"
+echo
+
+echo " We are running Apache : " $apache
+echo
+echo
+
+
+echo " How Apache has been compiled with other stuff : " 
+echo
+echo
+
+/usr/sbin/httpd -V
+
+echo
+echo
+
+echo "Check out the modules loaded with it.."
+
+/usr/sbin/httpd -M
+
+echo
+echo
+echo
+
+echo " Check out Apache process ..."
+echo
+
+ps -ef | grep httpd
+
+echo
+echo
+
+sleep 5
+
+echo
+echo "***************************** Apache End *************************"
+echo
+echo
+
+
+echo " **************** PHP **********************"
+echo
+
+
+echo "We are running Php : " $php
+echo
+echo
+
+
+echo " Let's check out php related thing ..checking ini files....."
+echo
+echo
+
+php --ini
+
+echo
+echo
+echo " Get details of php things into the system..like modules and other stuff..."
+echo
+echo
+
+php -im
+
+echo
+echo
+echo
+echo "****************************** PHP End **********************************"
+echo
+echo
+
+sleep 5
+
+
+echo "************************** MySql ***********************"
+
+
+echo "We are running MySql : " $mysql
+echo
+echo
+echo
+
+
+echo " Check out the process for it....."
+echo
+echo
+
+ps -ef | grep mysql
+
+echo
+echo
+
+
+echo "****************************** MySql End **************************"
+echo
+echo
+
+sleep 5
+
+echo " Let's check the web tree permission.."
+
+echo
+
+ls -d $webroot
+
+echo
+echo
+
+echo " Check out the SELinux thing applied on the webtree ..."
+echo
+echo
+
+ls -Z $webroot
+echo
+echo
+
+#if [[ `pidof httpd` -ne 0 ]]
+# then
+# echo "Httpd seems working fine!"
+#else
+# echo " problem with httpd daemon"
+#fi
+
+#if [[ `pidof mysql` -ne 0 ]]
+#then
+# echo " Yup,mysql working"
+#else
+#echo " Seems to check the mysql thing"
+#fi
+
+
+#if [[`pidof php` -ne 0 ]]
+#then
+# echo "Looks good"
+#else
+# echo " Problem with php"
+#fi
+
+echo " If the stack goes down ..let me know.."
+echo
+echo
+
+if [[`/sbin/pidof httpd mysqld php` -eq 0 ]]
+then
+mail -s "problem with lamp stack" $mail
+echo "Mail sent with information"
+fi

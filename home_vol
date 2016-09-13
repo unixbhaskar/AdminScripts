@@ -1,0 +1,5 @@
+#!/bin/bash                                                                                                                                                             
+df -h /home | gawk '{print $6"="$4}' 
+
+
+

@@ -1,0 +1,2 @@
+#!/bin/bash                                                                                                                                                             
+free -m | grep Mem | gawk '{ print $1"Avilable:"$4}'

@@ -1,0 +1,1 @@
+git verify-commit --verbose `git log -1 | grep commit | gawk '{ print $2}'`

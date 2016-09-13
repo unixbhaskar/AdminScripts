@@ -1,0 +1,4 @@
+# lftp ftp_host
+> user ftp_user ftp_pass
+> mirror source target (download entire directory tree)
+> mirror -R source target (reverse mirror; upload entire directory tree)

@@ -1,0 +1,4 @@
+#find . -xdev -type d -exec /bin/echo -n {} \; -exec sh -c "ls {} | wc -l" \;
+
+find . -xdev -type d -exec /bin/echo -n {} \; -exec sh -c "ls -i {}" \;
+

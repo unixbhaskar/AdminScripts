@@ -1,0 +1,2 @@
+#!/bin/bash
+ip a | grep inet | grep en | gawk '{print $2}'

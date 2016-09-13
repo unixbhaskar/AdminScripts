@@ -1,0 +1,20 @@
+#!/bin/bash
+
+sfile=/tmp/.seg_fault
+TO_MAIL=user@domain.tld
+
+if [ -f "${sfile}" ]; then
+        old_count=`cat /tmp/.seg_fault`
+	else
+	        old_count=0
+		fi
+
+		new_count=`/bin/grep -c "Segmentation fault (11)" /var/log/httpd/error_log`
+		echo $new_count > $sfile
+
+		if [ "${new_count}" -ne "0" ] && [ "${old_count}" -ne "${new_count}" ]; then
+		        /sbin/service httpd restart
+			        echo "segmentation fault detected and httpd restarted" | mail -s "httpd restarted" $TO_MAIL
+				fi
+
+				exit 0

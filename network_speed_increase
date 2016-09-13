@@ -1,0 +1,49 @@
+
+
+#Check and tune network speed
+
+
+#On the receiving end (192.168.10.1) bring up netcat listening to a port:
+
+while true; do nc -l 8001 >/dev/null ; done
+#Use the below one liner to send over some data via netcat from 192.168.10.2 which prints out the transfer speed.
+
+( dd if=/dev/zero bs=64K count=1000 | nc 192.168.10.2 8001 ) 2>&1 | awk '/MB/{print $8*8 " " tolower($9)}'
+#Increase the default maximum TCP buffer size and rerun the above test for proper tuning. Make sure to restart netstat listening socket upon sysctl changes.
+
+#The following are recommended:
+
+##
+# max TCP buffer size: 16MB (16 * 1024 * 1024). 
+# Could increase to 32MB for GigE.
+#
+# Increasing the TCP send buffers will increase the performance 
+# if you have large files to send.
+#
+net.core.wmem_max = 16777216
+
+# If you have a lot of large file uploads, 
+# increasing the receive buffers will help.
+#
+net.core.rmem_max = 16777216
+
+# increase Linux autotuning TCP buffer limits:
+# min, default, and max number of bytes to use
+# (only change the 3rd value, and make it 16 MB or more)
+#
+net.ipv4.tcp_rmem = 4096        87380   16777216
+net.ipv4.tcp_wmem = 4096        65535   16777216
+
+# Support for the above large TCP send and receive windows. 
+# Needs to be set to 1 if the Max TCP Window is over 65535 (64K).
+# 
+net.ipv4.tcp_window_scaling = 1
+
+# Increase backlog to avoid dropped packets and increase throughput.
+# Check with `netstat -st | grep packets` and check for
+# dropped and packet errors.
+#
+net.core.netdev_max_backlog = 5000
+
+        
+

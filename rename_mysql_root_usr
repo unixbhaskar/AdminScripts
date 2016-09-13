@@ -1,0 +1,15 @@
+Set a password for the "root" user and then rename the user.
+
+Here's a security tip. Much like with UNIX, the first thing you should do with a clean MySQL install is set a password for the root user:
+
+$ mysqladmin -u root password NEWPASSWORD
+
+Even better, once you've set the password, change the name of the "root" user to something else. A hacker on a MySQL server will likely target the root, both for its superuser status and because it is a known user. By changing the name of the root user, you make it all the more difficult for hackers to succeed using a brute-force attack. Use the following series of commands to rename the "root" user:
+
+$ mysql -u root -p
+mysql> use mysql;
+mysql> update user set password=PASSWORD("NEWPASSWORD") where 
+User='<userid>';
+mysql> flush privileges;
+mysql> quit
+

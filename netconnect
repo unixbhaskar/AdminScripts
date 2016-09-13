@@ -1,0 +1,64 @@
+#!/bin/bash
+
+if [[ "$UID" = "0" ]]
+
+then
+
+   echo " You have the super power to invoke this sript"
+else
+   echo "Sorry, you don't have the power to run this script" 
+fi   
+
+
+
+echo
+echo
+echo " Let's check whether the usb modem is connected to system or not"
+echo
+echo
+
+/usr/bin/lsusb | gawk -F: ' { print $2"===>"$3 }' 
+
+echo
+echo
+
+echo "probing the usb modem...loading driver too....."
+
+/sbin/modprobe usbserial idVendor=12d1, idProduct=1506
+
+echo
+echo
+
+echo "Connecting to ISP...."
+echo
+echo
+
+/usr/bin/wvdial Defaults >/var/log/wvdial&
+
+echo
+echo
+
+sleep 5
+
+echo "PID of of the WvDial..."
+
+ps -ef | grep wvdial
+
+echo
+echo
+
+sleep 3
+echo
+echo
+echo "Checking the connection...."
+
+/bin/ping -c 3 google.com
+
+echo
+echo
+
+echo " Looking for live stat....."
+echo
+echo
+
+/usr/bin/vnstat -i ppp0 -l 
