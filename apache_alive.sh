@@ -9,7 +9,7 @@
 #
 SCRIPT_DATA="/var/apache_scripts_data" # Data directory
 
-EMAIL="bhaskar.chowdhury@heymath.com" # Email address for warnings
+EMAIL="unixbhaskar@gmail.com" # Email address for warnings
 #
 ALARM_EVERY="30" # Will send an email every ALARM_EVERY minutes
 

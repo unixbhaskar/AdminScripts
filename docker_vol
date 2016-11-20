@@ -1,5 +1,0 @@
-#!/bin/bash                                                                                                                                                             
-df -h /var/lib/docker | gawk '{print $6"="$4}' 
-
-
-
