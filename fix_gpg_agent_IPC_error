@@ -1,0 +1,12 @@
+If you get this error:
+
+gpg: can't connect to the agent: IPC connect call failed
+gpg: can't connect to the agent: IPC connect call failed
+
+
+Then , please run :
+
+printf '%%Assuan%%\nsocket=/dev/shm/S.gpg-agent\n' > ~/.gnupg/S.gpg-agent
+
+
+Read the explanation here : https://michaelheap.com/gpg-cant-connect-to-the-agent-ipc-connect-call-failed/
