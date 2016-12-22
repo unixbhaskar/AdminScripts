@@ -8,5 +8,6 @@ Then , please run :
 
 printf '%%Assuan%%\nsocket=/dev/shm/S.gpg-agent\n' > ~/.gnupg/S.gpg-agent
 
+ and also do export GPG_TTY=$(tty)
 
 Read the explanation here : https://michaelheap.com/gpg-cant-connect-to-the-agent-ipc-connect-call-failed/
