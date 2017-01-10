@@ -1,0 +1,5 @@
+#!/bin/bash
+
+while IFS=: read user _; do
+    last "$user" | grep pts | head -n 1
+    done </etc/passwd 
