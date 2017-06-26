@@ -1,0 +1,1 @@
+ nmcli -f GENERAL,WIFI-PROPERTIES dev show wlan0
