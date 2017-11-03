@@ -1,33 +1,39 @@
 #!/bin/bash
 
-major_version=
-minor_version=
-patch_version=
-echo "Lets compile the new kernel ...but before that do a flight check.."
+echo "Lets compile the new kernel on `hostname` ...but before that we need get the required stuff.."
+echo
+
+echo 
+echo " Check the RC kernel version at kernel.org"
+echo 
+
+rc_kernel=`curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)'`
+
+echo $rc_kernel
 echo
 
 echo "Get the kernel from kernel.org"
 
 echo
 echo " This is for rc kernel.."
-wget -c https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/linux-$major_version.$minor_version-$patch_version.tar.gz 
+wget -c https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/linux-$rc_kernel.tar.gz 
 
 echo $?
 
 echo 
-echo "Get the sign for the kernel ..."
-echo
+#echo "Get the sign for the kernel ..."
+#echo
 
-wget -c  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/linux-$major_version.$minor_version-$patch_version.tar.sign
+#wget -c  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/linux-$kernel.tar.sign
 
-echo $?
+#echo $?
 
 echo 
 echo " Move the kernel to /usr/src dir "
 echo
 
-mv -v linux-$major_version.$minor_version-$patch_version.tar.gz /usr/src/
-mv -v linux-$major_version.$minor_version-$patch_version.tar.sign /usr/src/
+mv -v linux-$rc_kernel.tar.gz /usr/src/
+#mv -v linux-$major_version.$minor_version-$patch_version.tar.sign /usr/src/
 
 echo
 
@@ -43,7 +49,7 @@ echo
 echo " Decompress the downloaded kernel ..."
 echo
 
-tar -xvzf linux-$major_version.$minor_version-$patch_version.tar.gz
+tar -xvzf linux-$rc_kernel.tar.gz
 
 echo $?
 
@@ -52,7 +58,7 @@ echo
 echo " Lets check the kernel signing..."
 echo
 
-gpg2 --verify linux-$major_version.$minor_version-$patch_version.tar.sign
+gpg2 --verify linux-$rc_kernel.tar.sign
 
 
 
@@ -60,13 +66,13 @@ echo
 echo " Untar the kernel ..."
 echo 
 
-tar -xvf linux-$major_version.$minor_version-$patch_version.tar
+tar -xvf linux-$rc_kernel.tar
 
 echo
 echo " Get into the kernel tree and clean it .."
 echo
 
-cd linux-$major_version.$minor_version-$patch_version
+cd linux-$rc_kernel
 
 make clean && make mrproper
 echo
@@ -118,7 +124,7 @@ echo
 echo " Copying the build kernel to boot directory"
 echo
 
-cp arch/x86/boot/bzImage /boot/vmlinuz-$major_version.$minor_version-$patch_version
+cp arch/x86/boot/bzImage /boot/vmlinuz-$rc_kernel
 
 echo
 echo " Cross check the item ..."
@@ -130,7 +136,7 @@ echo
 echo " Copy the System.map file to /boot dir"
 echo
 
-cp System.map /boot/System.map-$major_version.$minor_version-$patch_version
+cp System.map /boot/System.map-$rc_kernel
 
 echo
 echo " Again checking the timestamp"
@@ -140,7 +146,7 @@ ls -al /boot/System.map-*
 echo
 echo " Copying the .config file to /boot dir "
 echo
-cp .config /boot/config-$major_version.$minor_version-$patch_version
+cp .config /boot/config-$rc_kernel
 
 echo 
 echo "Backup the old System.map file ..."
@@ -150,7 +156,7 @@ cd /boot
 pwd
 
 
-mv  Systeme.map-$major_version.$minor_version-$patch_version System.map
+mv  Systeme.map-$rc_kernel System.map
 
 echo 
 #echo " Unlink the kernel pointer and link to latest kernel "

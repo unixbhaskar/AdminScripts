@@ -1,9 +1,16 @@
 #!/bin/bash
 
-major_version=
-minor_version=
-patch_version=
-echo "Lets compile the new kernel ...but before that do a flight check.."
+echo "Lets compile the new kernel on `hostname` ...but before that we need to get the required stuff.."
+echo
+
+echo
+echo " Check the latest kernel version from kernel.org"
+echo 
+
+kernel=`curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)'`
+
+echo $kernel
+
 echo
 
 echo "Get the kernel from kernel.org"
@@ -11,22 +18,22 @@ echo "Get the kernel from kernel.org"
 echo
 echo " This is for stable kernel.."
 
-wget -c https://cdn.kernel.org/pub/linux/kernel/v$major_version.x/linux-$major_version.$minor_version.$patch_version.tar.xz
+wget -c https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$kernel.tar.xz
 echo $?
 
 echo 
 echo "Get the sign for the kernel ..."
 echo
 
-wget -c https://cdn.kernel.org/pub/linux/kernel/v$major_version.x/linux-$major_version.$minor_version.$patch_version.tar.sign
+wget -c https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$kernel.tar.sign
 echo $?
 
 echo 
 echo " Move the kernel to /usr/src dir "
 echo
 
-mv -v linux-$major_version.$minor_version.$patch_version.tar.xz /usr/src/
-mv -v linux-$major_version.$minor_version.$patch_version.tar.sign /usr/src/
+mv -v linux-$kernel.tar.xz /usr/src/
+mv -v linux-$kernel.tar.sign /usr/src/
 
 echo
 
@@ -42,7 +49,7 @@ echo
 echo " Decompress the downloaded kernel ..."
 echo
 
-unxz linux-$major_version.$minor_version.$patch_version.tar.xz
+unxz linux-$kernel.tar.xz
 echo $?
 
 
@@ -50,7 +57,7 @@ echo
 echo " Lets check the kernel signing..."
 echo
 
-gpg2 --verify linux-$major_version.$minor_version.$patch_version.tar.sign
+gpg2 --verify linux-$kernel.tar.sign
 
 
 
@@ -58,13 +65,13 @@ echo
 echo " Untar the kernel ..."
 echo 
 
-tar -xvf linux-$major_version.$minor_version.$patch_version.tar
+tar -xvf linux-$kernel.tar
 
 echo
 echo " Get into the kernel tree and clean it .."
 echo
 
-cd linux-$major_version.$minor_version.$patch_version
+cd linux-$kernel
 
 make clean && make mrproper
 echo
@@ -116,7 +123,7 @@ echo
 echo " Copying the build kernel to boot directory"
 echo
 
-cp arch/x86/boot/bzImage /boot/vmlinuz-$major_version.$minor_version.$patch_version
+cp arch/x86/boot/bzImage /boot/vmlinuz-$kernel
 
 echo
 echo " Cross check the item ..."
@@ -128,7 +135,7 @@ echo
 echo " Copy the System.map file to /boot dir"
 echo
 
-cp System.map /boot/System.map-$major_version.$minor_version.$patch_version
+cp System.map /boot/System.map-$kernel
 
 echo
 echo " Again checking the timestamp"
@@ -138,7 +145,7 @@ ls -al /boot/System.map-*
 echo
 echo " Copying the .config file to /boot dir "
 echo
-cp .config /boot/config-$major_version.$minor_version.$patch_version
+cp .config /boot/config-$kernel
 
 echo 
 echo "Backup the old System.map file ..."
@@ -148,7 +155,7 @@ cd /boot
 pwd
 
 
-mv -v Systeme.map-$major_version.$minor_version.$patch_version  System.map
+mv -v Systeme.map-$kernel  System.map
 
 echo 
 #echo " Unlink the kernel pointer and link to latest kernel "
