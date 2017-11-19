@@ -54,19 +54,19 @@ tar -xvzf linux-$rc_kernel.tar.gz
 echo $?
 
 
-echo 
-echo " Lets check the kernel signing..."
-echo
+#echo 
+#echo " Lets check the kernel signing..."
+#echo
 
-gpg2 --verify linux-$rc_kernel.tar.sign
+#gpg2 --verify linux-$rc_kernel.tar.sign
 
 
 
-echo 
-echo " Untar the kernel ..."
-echo 
+#echo 
+#echo " Untar the kernel ..."
+#echo 
 
-tar -xvf linux-$rc_kernel.tar
+#tar -xvf linux-$rc_kernel.tar
 
 echo
 echo " Get into the kernel tree and clean it .."

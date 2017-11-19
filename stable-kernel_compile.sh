@@ -13,10 +13,9 @@ echo $kernel
 
 echo
 
-echo "Get the kernel from kernel.org"
+echo "Get the kernel from kernel.org and this for the *stable* kernel"
 
 echo
-echo " This is for stable kernel.."
 
 wget -c https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$kernel.tar.xz
 echo $?
@@ -81,7 +80,7 @@ echo
 ls -al /usr/src
 
 
-echo " Now get running kernel conf and build .config "
+echo " Now get the running kernel conf and build .config "
 echo
 
 zcat /proc/config.gz > .config
