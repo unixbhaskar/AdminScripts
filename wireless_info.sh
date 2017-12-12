@@ -6,6 +6,16 @@ echo " The wireless device information of this system `hostname`..."
 echo
 echo
 
+
+echo
+echo " Let;s find out about wireless card and driver of this system ..."
+echo
+
+lshw -C network | grep -B 1 -A 12 'Wireless interface'
+
+echo 
+echo
+
 echo " Checking the quality of signal of the wireless device ....."
 echo
 
@@ -36,5 +46,11 @@ nmcli  dev wifi
 echo
 echo
 echo
+
+echo "Need to know the device info...."
+echo
+
+iw $wireless_dev info
+
 
 exit 0
