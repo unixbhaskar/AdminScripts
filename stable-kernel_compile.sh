@@ -4,7 +4,7 @@ echo "Lets compile the new kernel on `hostname` ...but before that we need to ge
 echo
 
 echo
-echo " Check the latest kernel version from kernel.org"
+echo " Check the latest stable kernel version from kernel.org"
 echo 
 
 kernel=`curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)'`
@@ -92,13 +92,16 @@ ls -al .config
 
 echo " Lets do the config ...run "make olddefconfig""
 echo
-
 make olddefconfig
 
 echo
 echo " Then make it ..."
+echo
 
-time make -j9
+time make -j `getconf _NPROCESSORS_ONLN` LOCALVERSION=-`hostname`
+
+#make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-custom
+#time make -j9
 
 echo $?
 

@@ -99,8 +99,11 @@ make olddefconfig
 
 echo
 echo " Then make it ..."
+echo
 
-time make -j9
+time make -j `getconf _NPROCESSORS_ONLN` LOCALVERSION=-`hostname`
+
+#time make -j9
 
 echo $?
 
