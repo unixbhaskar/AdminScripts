@@ -26,7 +26,9 @@ dpkg --get-selections | grep linux-image | grep 4.15 |  sed s/install//g | uniq 
 for kernels in `cat kernel_holds`
 do
    echo $kenrels
-
+   echo ""
+   echo ""
+   echo " Let's purge those......wait..."
    apt-get --purge remove $kernels -y
 done
 
