@@ -1,0 +1,20 @@
+#!/bin/bash
+
+printf " Removing the old/stale kernels from the system....\n\n\n\n"
+
+zypper se -si kernel
+
+echo ""
+echo ""
+echo -n "Provide the kernel version to remove : "
+read kernel_remove
+
+printf " Removing the version $kernel_remove ...\n\n\n\n"
+
+zypper rm kernel-default-$kernel_remove kernel-default-devel-$kernel_remove kernel-devel-$kernel_remove
+
+
+
+exit 0
+
+
