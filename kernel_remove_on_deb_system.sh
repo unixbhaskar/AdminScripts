@@ -20,15 +20,14 @@ fi
 printf "Lets remove the stale kernels..... \n\n\n"
 
 # Damn, the number greping should be done in much better way , and the reverse one too...heck..in a hurry do all sort of nonsense..
-
-dpkg --get-selections | grep linux-image | grep 4.15 |  sed s/install//g | uniq -u |  grep -v 10  | tee kernel_holds
+echo -n "Protect the patch version: "
+read patch_version
+dpkg --get-selections | grep linux-image | grep 4.15 |  sed s/install//g | uniq -u |  grep -v $patch_version  | tee kernel_holds
  
 for kernels in `cat kernel_holds`
 do
    echo $kenrels
-   echo ""
-   echo ""
-   echo " Let's purge those......wait..."
+
    apt-get --purge remove $kernels -y
 done
 
