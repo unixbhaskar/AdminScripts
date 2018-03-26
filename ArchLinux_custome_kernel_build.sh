@@ -71,11 +71,11 @@ time makepkg -s
 
 printf "Install the generated headers,kernel and doc packages with pacman ..\n\n\n"
 
-sudo pacman -U --noconfirm linux-$kernel-headers-1-x86_64.pkg.tar.xz
+sudo pacman -U --noconfirm linux-$kernel-headers-$kernel-1-x86_64.pkg.tar.xz
 
-sudo pacman -U  --noconfirm linux-$kernel-1-x86_64.pkg.tar.xz 
+sudo pacman -U  --noconfirm  linux-$kernel-$kernel-1-x86_64.pkg.tar.xz 
 
-sudo pacman -U  --noconfirm linux-$kernel-docs-1-x86_64.pkg.tar.xz 
+sudo pacman -U  --noconfirm linux-$kernel-docs-$kernel-1-x86_64.pkg.tar.xz 
 
 
 printf "Done..now copy over the image to EFI dir..\n\n\n\n"
