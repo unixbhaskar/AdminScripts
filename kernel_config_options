@@ -1,0 +1,21 @@
+Configuration targets:
+  config      - Update current config utilising a line-oriented program
+  nconfig         - Update current config utilising a ncurses menu based program
+  menuconfig      - Update current config utilising a menu based program
+  xconfig     - Update current config utilising a QT based front-end
+  gconfig     - Update current config utilising a GTK based front-end
+  oldconfig   - Update current config utilising a provided .config as base
+  localmodconfig  - Update current config disabling modules not loaded
+  localyesconfig  - Update current config converting local mods to core
+  silentoldconfig - Same as oldconfig, but quietly, additionally update deps
+  defconfig   - New config with default from ARCH supplied defconfig
+  savedefconfig   - Save current config as ./defconfig (minimal config)
+  allnoconfig     - New config where all options are answered with no
+  allyesconfig    - New config where all options are accepted with yes
+  allmodconfig    - New config selecting modules when possible
+  alldefconfig    - New config with all symbols set to default
+  randconfig      - New config with random answer to all options
+  listnewconfig   - List new options
+  olddefconfig    - Same as silentoldconfig but sets new symbols to their default value
+  kvmconfig   - Enable additional options for guest kernel support
+  tinyconfig      - Configure the tiniest possible kernel
