@@ -1,0 +1,63 @@
+#!/bin/bash
+source /home/bhaskar/colors.sh
+NOCOLOR="\033[0m"
+slice=$1
+chroot_dir=$2
+BASH="/bin/bash"
+change_root=$(which chroot)
+change_prompt="export PS1=\"(chroot) $PS1\"" 
+
+if [[ $UID != "0" ]];then
+
+  printf "${Bright}${Red} You don't have enough privilege to utilise this tool. :(  ${NOCOLOR} \n\n"
+  exit 1
+else
+  printf "${bright}${Cyan} You have sufficient privilage to use this tool.:)  ${NOCOLOR} \n\n"
+fi  
+
+printf "${Bright}${Green} Chrooting to other OS ...you are suppose to pass the partition and target mount directory name along with this script.${NOCOLOR}  \n\n\n"
+
+if [[ "$slice" == "" ]] && [[ "$chroot_dir" == "" ]];then
+  
+   printf "${Bright}${Red} You forgot to mention either the target directory name or the partiton or both ...aborting.${NOCOLOR} \
+   
+       ${Reverse}Usage : change_os_root partition_number target_dir ${NOCOLOR}
+                              (sd[abc][123]) (/mnt or /whereever you like)
+   
+    \n\n"
+    exit 1
+else    
+
+   printf "${Bright}${Cyan} Doing other related stuff...wait ${NOCOLOR} \n\n"
+
+     mount /dev/$slice $chroot_dir
+     mount --rbind /dev $chroot_dir/dev
+     mount --make-rslave $chroot_dir/dev
+     mount -t proc /proc $chroot_dir/proc
+     mount --rbind /sys $chroot_dir/sys
+     mount --make-rslave $chroot_dir/sys
+     mount --rbind /tmp $chroot_dir/tmp
+
+
+fi
+
+printf "\n\n ${Bright}${Magenta} Copy the host system DNS to chroot environment. ${NOCOLOR} \n\n"
+
+  cp  /etc/resolv.conf $chroot_dir/etc/
+
+printf "${Bright}${LimeYellow} Getting into the chroot environment and change the prompt for recognization ,please run at shell. ${NOCOLOR}  
+
+                           export PS1=\"(chroot)\$PS1\" 
+
+ \n\n"
+
+  $change_root $chroot_dir $BASH
+
+printf "${Bright}${PowderBlue} Well, leaving the chroot shell and unmounting the slice from mounted dir ... ${NOCOLOR} \n\n"
+trap EXIT 
+
+umount -l $chroot_dir
+
+exit 0
+
+
