@@ -1,0 +1,6 @@
+#!/bin/bash
+url=$1
+port="443"
+printf "Checking .....\n\n\n"
+
+openssl s_client -connect $url:$port
