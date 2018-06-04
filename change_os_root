@@ -69,7 +69,7 @@ printf "${Bright}${PowderBlue} Well, leaving the chroot shell and unmounting the
 
 trap EXIT 
 
-$MUNT -l $chroot_dir
+umount -l $chroot_dir
 
 
 exit 0
