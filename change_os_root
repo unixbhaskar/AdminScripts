@@ -19,17 +19,21 @@ if [[ $UID != "0" ]];then
   exit 1
 fi  
 
-printf "${Bright}${Green} Chrooting to other OS .... ${NOCOLOR}  \n\n\n"
 
 #Checking system INIT type and taking appropriate action to respective to that system.
 
-if [[ "$sys_init" == "SYSTEMD" ]] ;then
+if [[ "$sys_init" == "SYSTEMD" ]] && [[ $@ -ne "0" ]] ;then
+        	
+        printf "${Bright}${Green} Chrooting to other OS .... ${NOCOLOR}  \n\n\n"
 
 	printf "${Bright}${LimeYellow} This is a ${Reverse}SYSTEMD ${NOCOLOR} system, taking appropriate actions... \n\n"
+	
 	$MUNT /dev/$slice $chroot_dir
 	$change_systemd_root -bD $chroot_dir
 
-elif [[ "$sys_init" == "SYSVINIT" ]]; then
+elif [[ "$sys_init" == "SYSVINIT" ]] && [[ $@ -ne "0" ]]; then
+
+     printf "${Bright}${Green} Chrooting to other OS .... ${NOCOLOR}  \n\n\n"
 
      printf "${Bright}${PowderBlue} This is a ${Reverse}SYSVINIT ${NOCOLOR} system,taking appropriate actions... \n\n"
 
@@ -45,25 +49,27 @@ elif [[ "$sys_init" == "SYSVINIT" ]]; then
      $MUNT --rbind /tmp $chroot_dir/tmp
      $copy  /etc/resolv.conf $chroot_dir/etc/
 
+
 printf "${Bright}${LimeYellow} Getting into the chroot environment and change the prompt for recognization ,please run at shell. ${NOCOLOR}  
 
-                           export PS1=\"(chroot) \$$PS1\" 
+                           export PS1=\"(chroot) \$PS1\" 
 
  \n\n"
 
   $change_root $chroot_dir $BASH
 
-else  
-  
+
+else
    printf "${Bright}${Red} You forgot to mention either the target directory name or the partiton or both ...aborting.${NOCOLOR} \
-   
+
        ${Reverse}Usage : change_os_root partition_number target_dir ${NOCOLOR}
                               (sd[abc][123]) (/mnt or /whereever you like)
-   
+
 \n\n"
 exit 1
 
 fi
+
 
 printf "${Bright}${PowderBlue} Well, leaving the chroot shell and unmounting the slice from mounted dir ... ${NOCOLOR} \n\n"
 
