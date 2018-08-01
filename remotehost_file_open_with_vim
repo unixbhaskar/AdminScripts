@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+remote_user_hostname=$1 #usr@host
+filename=$2
+
+if  test $# -ne 2 ;then
+ printf "You need to pass usr@host and the file to edit. \n\n"
+ exit 1
+fi
+
+vim scp://$remote_user_hostname//$filename
