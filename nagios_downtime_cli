@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+hosturl=$1
+nagiosurl=$2
+
+sudo /usr/bin/curl --data "cmd_typ=56" --data "cmd_mod=2" --data "host=${hosturl}" --data-urlencode "service=check_redis_keys" --data-urlencode "testing" --data "trigger=0" --data-urlencode "start_time=09-01-2011 08:00:00"  --data-urlencode "end_time=09-01-2011 09:00:00" --data "fixed=1" --data "hours=1" --data "minutes=0" --data btnSubmit=Commit "http://${nagiosurl}/nagios/cgi-bin/cmd.cgi" -u nagios:nagios 
