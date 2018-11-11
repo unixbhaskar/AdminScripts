@@ -205,7 +205,7 @@ colors {
 }
         status_command i3blocks -c  $HOME/.config/i3/i3blocks.conf
         workspace_buttons yes	
-	tray_output primary
+	tray_output eDP1
         strip_workspace_numbers yes
 }
 
@@ -231,3 +231,8 @@ bindsym $mod+shift+x exec i3lock -i ~/Pictures/desk.png
 
 
 workspace_auto_back_and_forth yes
+
+for_window [class="^.*"] border pixel 1
+
+# Take a screenshot upon pressing $mod+x (select an area)
+#bindsym --release $mod+i exec --no-startup-id import $HOME/Pictures/latest-screenshot_$(date +%F).png
