@@ -1,0 +1,39 @@
+don't skip this `-1` option for emerge in my examples, otherwise you'll add packages to your world file.
+
+# get new portage
+emerge portage -av1
+
+# update linux-headers and glibc and co, so it's using up to date headers
+emerge linux-headers glibc -av1
+etc-update
+
+# update binutils and libtool, get rid of old
+emerge libtool binutils binutils-config -avu1
+emerge -ca binutils
+env-update && source /etc/profile && export PS1="(CHROOT) $PS1"
+
+# update gcc and co, skipping old.
+emerge gcc mpfr mpc gcc-config -avu1
+gcc-config x86_64-pc-linux-gnu-8.2.0
+emerge -ca gcc
+env-update && source /etc/profile && export PS1="(CHROOT) $PS1"
+
+# rebuild toolchain and co with all new gcc
+emerge libtool binutils glibc libnsl opensp mpc mpfr gmp libtirpc dev-libs/libffi -av1
+
+# update perl and update all it's deps to prevent build falures
+emerge perl perl-CPAN-Meta perl-cleaner -avu1
+perl-cleaner --reallyall
+
+# update all packages to unstable
+emerge -uDN --with-bdeps=y --changed-deps y --dynamic-deps y --complete-graph @world @system -av1 --keep-going
+etc-update
+
+# clean up unneeded
+emerge -ca
+
+# read the news!
+eselect news read
+
+# run this to rebuild all packages with the new flags
+emerge -e world
