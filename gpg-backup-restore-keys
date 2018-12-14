@@ -1,0 +1,12 @@
+#generate base64-encoded armored backups
+
+
+gpg2 --armor --export > pgp-public-keys.asc
+gpg2 --armor --export-secret-keys > pgp-private-keys.asc
+gpg2 --export-ownertrust > pgp-ownertrust.asc
+
+#To restore it
+
+gpg2 --import pgp-public-keys.asc
+gpg2 --import pgp-private-keys.asc
+gpg2 --import-ownertrust pgp-ownertrust.asc
