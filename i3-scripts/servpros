@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# The service we want to check (according to systemctl)
+SERVICE=$BLOCK_NAME
+
+if [[ "$(systemctl is-active $SERVICE)" != "active" ]]
+then
+  if [[ $BLOCK_BUTTON == '1' ]]
+  then
+    echo '<span foreground="#00FF00">'$SERVICE'</span>'
+          systemctl start $SERVICE
+  else
+    echo '<span foreground="#FF0000">'$SERVICE'</span>'
+  fi
+else
+  if [[ $BLOCK_BUTTON == '1' ]]
+  then
+    echo '<span foreground="#FF0000">'$SERVICE'</span>'
+          systemctl stop $SERVICE
+  else
+    echo '<span foreground="#00FF00">'$SERVICE'</span>'
+  fi
+fi 

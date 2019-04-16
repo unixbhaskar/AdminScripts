@@ -16,6 +16,6 @@
 #	      exit 33
 #	      fi
 
-proc_stat=$(top -bn1 | head -2 | grep running | gawk '{ print $2":"$3 $4":"$5 $6":"$7 }')
+proc_stat=$(top -bn1 | head -2 | grep running | gawk '{ print $2";"$5":"$4 }' | tr -d ',')
 
 echo "Process:${proc_stat}"

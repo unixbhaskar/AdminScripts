@@ -23,8 +23,8 @@ then
 
 
 
-	echo $STATUS
-	echo $STATUS
+echo $STATUS
+echo $STATUS
 
 
 

@@ -1,5 +1,5 @@
-USER="Your gmail user name here"
-PASS="you mail app related generated pass here"
+USER=unixbhaskar@gmail.com
+PASS=evkolvsfbybakbat
   
 COUNT=`curl -su $USER:$PASS https://mail.google.com/mail/feed/atom || echo "<fullcount>unknown number of</fullcount>"`
 COUNT=`echo "$COUNT" | grep -oPm1 "(?<=<fullcount>)[^<]+" `
