@@ -33,12 +33,13 @@ if [[ $state != "C" ]] && [[ $state1 != "C" ]];then
            icon=""
 fi
     
-if [[ $chg -le 10 ]] || [[ $chg2 -le 10 ]];then 
+if [[ $chg -le 10 ]] && [[ $chg2 -le 10 ]];then 
 		icon=""
 		stat=33
-fi          	
-
-
+		LEVEL="critical"
+  	
+/usr/bin/notify-send --expire-time=0 --urgency=$LEVEL "Battery critical,please connect to power socket" "Exit Code: $LEVEL"
+fi
 full="$icon $chg% $icon $chg2%"
 short="$chg% $chg2%"
 
