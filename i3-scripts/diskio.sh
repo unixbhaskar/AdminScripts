@@ -1,9 +1,9 @@
 #!/usr/bin/env bash  
 #===============================================================================
 #
-#          FILE: disk.sh
+#          FILE: diskio.sh
 # 
-#         USAGE: ./disk.sh 
+#         USAGE: ./diskio.sh 
 # 
 #   DESCRIPTION: 
 # 
@@ -19,6 +19,8 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-show=$(sar -D | grep Average | gawk '{ print "%user:"$3"-" "%system:"$5"-""%idle:"$8 }')
+#root1=$(mount|grep ' / '|cut -d' ' -f 1)
+root=$(readlink /dev/root)
+show=$(iostat -p sda | grep $root | gawk '{ print "Disk:"$1 ",Read:"$5 ",Write:" $6}')
 
 echo $show
