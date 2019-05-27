@@ -22,7 +22,7 @@ set -o nounset                              # Treat unset variables as an error
 root=$(mount|grep ' / '|cut -d' ' -f 1)
 disk=$(basename $root)
 #root=$(readlink /dev/root)
-show=$(iostat -p sda | grep $disk  | gawk '{ print "Disk:"$1 ",Read:"$5 ",Write:" $6}')
+show=$(iostat -p sda | grep $disk  | gawk '{ print "Disk:"$1 ",Read:"$6 ",Write:" $7}')
 #show1=$(iostat -p sda | grep $root1 | gawk '{ print "Disk:"$1 ",Read:"$5 ",Write:" $6}')
 
 #if [[ $root != "" ]];then
