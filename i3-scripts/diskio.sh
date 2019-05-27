@@ -19,8 +19,19 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-#root1=$(mount|grep ' / '|cut -d' ' -f 1)
-root=$(readlink /dev/root)
-show=$(iostat -p sda | grep $root | gawk '{ print "Disk:"$1 ",Read:"$5 ",Write:" $6}')
+root=$(mount|grep ' / '|cut -d' ' -f 1)
+disk=$(basename $root)
+#root=$(readlink /dev/root)
+show=$(iostat -p sda | grep $disk  | gawk '{ print "Disk:"$1 ",Read:"$5 ",Write:" $6}')
+#show1=$(iostat -p sda | grep $root1 | gawk '{ print "Disk:"$1 ",Read:"$5 ",Write:" $6}')
 
+#if [[ $root != "" ]];then
 echo $show
+#fi
+
+#if [[ $root1 != "" ]];then
+#	echo $show1
+#fi
+
+
+
