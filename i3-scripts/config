@@ -95,7 +95,7 @@ bindsym $mod+a focus parent
 #
 exec_always --no-startup-id feh --bg-scale /home/bhaskar/Pictures/LKM3_1024.png
 ##Autostart 
-exec xfce4-terminal 
+exec xfce4-terminal --hide-menubar 
 
 set $workspace1 "1   "
 set $workspace2 "2   "
@@ -107,7 +107,7 @@ set $workspace7 "7   "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1 
-bindsym $mod+2 workspace $workspace2 ; exec firefox;
+bindsym $mod+2 workspace $workspace2 ; exec "firefox -p Bhaskar";
 bindsym $mod+3 workspace $workspace3 ; exec vlc;
 bindsym $mod+4 workspace $workspace4 ; exec nautilus | thunar;
 bindsym $mod+5 workspace $workspace5 ; exec chromium;
@@ -128,7 +128,7 @@ bindsym $mod+9 workspace $workspace9 ;
 #
 assign [class="^Xfce4-terminal$"] → $workspace1
 assign [class="^Firefox$"] → $workspace2
-assign [class="^Vlc$"] → $workspace3
+assign [class="^cmus$"] → $workspace3
 assign [class="^Nautilus$"] → $workspace4
 assign [class="^Chromium$"] → $workspace5
 assign [class="^Thunderbird$"] → $workspace6
@@ -186,6 +186,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
      position top
+     output primary
 colors {
         #separator #666666 #background #222222 #statusline #dddddd
 #	focused_workspace #0088CC #0088CC #ffffff
@@ -193,9 +194,12 @@ colors {
 #	inactive_workspace #333333 #333333 #888888
 #	urgent_workspace #2f343a #900000 #ffffff
 	
-		
-	background #000000
-
+	
+#separator #268bd2
+#background #002b36
+#statusline #839496	
+	background #000000 
+	
 	statusline #dddddd 
 
 	separator #666666
@@ -205,8 +209,9 @@ colors {
         urgent_workspace   #2f343a #900000 #ffffff
 }
         status_command i3blocks -c  $HOME/.config/i3/i3blocks.conf
-        workspace_buttons yes	
-	tray_output eDP1
+        #status_command $HOME/.config/i3/polybar
+	workspace_buttons yes	
+	tray_output eDP-1
         strip_workspace_numbers yes
 }
 
@@ -259,3 +264,7 @@ bindsym $mod+x exec scrot -e 'mv $f ~/Pictures/Screenshots' --release
 
 # Show the first scratchpad window
 #bindsym $mod+minus scratchpad show
+
+# print all window titles bold
+ for_window [class=".*"] title_format "<b>%title</b>"
+ #for_window [class="(?i)firefox"] title_format "<span foreground='magenta'>%title</span>"
