@@ -1,0 +1,10 @@
+g:vifm_exec_args	vifm-plugin.txt	/*g:vifm_exec_args*
+g:vifm_term	vifm-plugin.txt	/*g:vifm_term*
+vifm-:DiffVifm	vifm-plugin.txt	/*vifm-:DiffVifm*
+vifm-:EditVifm	vifm-plugin.txt	/*vifm-:EditVifm*
+vifm-:SplitVifm	vifm-plugin.txt	/*vifm-:SplitVifm*
+vifm-:TabVifm	vifm-plugin.txt	/*vifm-:TabVifm*
+vifm-:VsplitVifm	vifm-plugin.txt	/*vifm-:VsplitVifm*
+vifm-<localleader>a	vifm-plugin.txt	/*vifm-<localleader>a*
+vifm-K	vifm-plugin.txt	/*vifm-K*
+vifm-plugin.txt	vifm-plugin.txt	/*vifm-plugin.txt*
