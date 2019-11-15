@@ -18,7 +18,7 @@
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
-source /home/bhaskar/colors.sh
+source $HOME/colors.sh
 NOCOLOR="\033[0m"
 
 printf "\n\n\n ${Reverse}${Bright}${LimeYellow} Get the latest firefox from Mozilla ${NOCOLOR} ....\n\n\n"
@@ -32,7 +32,7 @@ if [[ $? == 0 ]];then
 fi
 
 current_date=$(date '+%F')
-folder_date=$(stat firefox | grep Birth | gawk '{ print $2 }')
+folder_date=$(ls -ld --full-time $HOME/firefox | gawk '{ print $6 }')
 
 if [[ "$folder_date" -ne "$current_date" ]];then
 	mv -v $HOME/firefox $HOME/firefox.$(date +"%d-%m-%Y")
@@ -41,8 +41,8 @@ fi
 tar -xjf firefox.tar.bz2
 
 cd firefox
-#  $HOME/firefox/firefox firefox_$version
- cp -v $HOME/firefox/firefox $HOME/bin/firefox
+  $HOME/firefox/firefox firefox_$version
+ cp  $HOME/firefox/firefox $HOME/bin/firefox
 
  printf "${Bright}${Magenta} Kill the existing process.... ${NOCOLOR}...\n\n"
 
@@ -61,9 +61,9 @@ rm -f firefox.tar.bz2
 #  read old_binary
 #   rm -f $old_binary
 
- printf "\n\n Put the old directory too for removal : %s "
- read old_dir
- rm -rf $old_dir
+# printf "\n\n Put the old directory too for removal : %s "
+# read old_dir
+# rm -rf $old_dir
 
 #start up 
 
