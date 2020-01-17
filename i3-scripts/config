@@ -95,25 +95,30 @@ bindsym $mod+a focus parent
 #
 exec_always --no-startup-id feh --bg-scale /home/bhaskar/Pictures/LKM3_1024.png
 ##Autostart 
-exec xfce4-terminal --hide-menubar 
+#exec xfce4-terminal --hide-menubar --hide-scrollbar --command screen -c "$HOME/screenrc"
+exec st -e screen -c $HOME/screenrc
 
+exec $HOME/bin/firefox
+
+ 
 set $workspace1 "1   "
 set $workspace2 "2   "
-set $workspace3 "3  "
+set $workspace3 "3  "
 set $workspace4 "4   "
 set $workspace5 "5   "
 set $workspace6 "6   "
 set $workspace7 "7   "
+set $workspace8 "8 "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1 
-bindsym $mod+2 workspace $workspace2 ; exec "firefox -p Bhaskar";
+bindsym $mod+2 workspace $workspace2 ; exec "$HOME/bin/firefox -p Bhaskar";
 bindsym $mod+3 workspace $workspace3 ; exec vlc;
 bindsym $mod+4 workspace $workspace4 ; exec nautilus | thunar;
-bindsym $mod+5 workspace $workspace5 ; exec chromium;
+bindsym $mod+5 workspace $workspace5 ; exec "$HOME/bin/chromium";
 bindsym $mod+t workspace $workspace6 ; exec thunderbird;
 bindsym $mod+7 workspace $workspace7 ; exec libreoffice;
-bindsym $mod+8 workspace $workspace8 ;
+bindsym $mod+8 workspace $workspace8 ; exec "$HOME/bin/firefox --safe-mode";
 bindsym $mod+9 workspace $workspace9 ;
 
 #Workspace assignment
@@ -126,14 +131,14 @@ bindsym $mod+9 workspace $workspace9 ;
 #
 #ASSIGN PROGRAMS TO WORKSPACES
 #
-assign [class="^Xfce4-terminal$"] → $workspace1
+assign [class="^st-256color"] → $workspace1
 assign [class="^Firefox$"] → $workspace2
-assign [class="^cmus$"] → $workspace3
+assign [class="^Vlc" ] → $workspace3
 assign [class="^Nautilus$"] → $workspace4
 assign [class="^Chromium$"] → $workspace5
 assign [class="^Thunderbird$"] → $workspace6
 assign [class="^libreoffice-startcenter$"] $workspace7
-
+assign [class="^Firefox$"] $workspace8
 
 
 
@@ -154,7 +159,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -260,11 +265,23 @@ bindsym $mod+x exec scrot -e 'mv $f ~/Pictures/Screenshots' --release
 #bindsym --release button2 exec --no-startup-id import /tmp/latest-screenshot.png
 
 # Make the currently focused window a scratchpad
-#bindsym $mod+Shift+minus move scratchpad
+#floating_modifier Mod1
+bindsym $mod+Shift+minus move scratchpad
 
 # Show the first scratchpad window
-#bindsym $mod+minus scratchpad show
+bindsym $mod+minus scratchpad show
 
 # print all window titles bold
  for_window [class=".*"] title_format "<b>%title</b>"
  #for_window [class="(?i)firefox"] title_format "<span foreground='magenta'>%title</span>"
+ #
+ # Toggle between hide state and show state
+  bindsym $mod+m bar hidden_state toggle
+ 
+ # Toggle between dock mode and hide mode
+  bindsym $mod+n bar mode toggle
+  #
+  #move workspace between display
+  bindsym $mod+p move workspace to output right 
+
+  
