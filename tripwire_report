@@ -1,0 +1,7 @@
+#/usr/bin/env bash
+
+last_tw_report=$(ls -t /var/lib/tripwire/report/* | head -1)
+
+tripwire --update -r $last_tw_report
+
+
