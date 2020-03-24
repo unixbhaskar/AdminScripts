@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Getting the latest of it....hang on..."
+echo
+
+curl -L https://yt-dl.org/downloads/latest/youtube-dl -o $HOME/bin/youtube-dl
+
+chmod a+rx $HOME/bin/youtube-dl
+
+echo "Verifying the signature...."
+echo
+
+ wget https://yt-dl.org/downloads/latest/youtube-dl.sig -O youtube-dl.sig
+gpg2 --verify youtube-dl.sig $HOME/bin/youtube-dl
+rm youtube-dl.sig
