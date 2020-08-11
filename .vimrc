@@ -1,6 +1,7 @@
 scriptencoding utf-8
 set nocompatible              " be iMproved, required
 filetype off                  " required
+filetype plugin indent on     "Make indent code based on the file type
 syntax on
 "set background=light
 highlight Comment    ctermfg=119
@@ -22,6 +23,8 @@ Plugin 'dstein64/vim-startuptime'
 Plugin  'vifm/vifm.vim'
 Plugin  'jamessan/vim-gnupg'
 Plugin 'AutoComplPop'
+Plugin 'majutsushi/tagbar'
+Plugin 'gregsexton/gitv'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -38,7 +41,8 @@ Plugin  'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
-Plugin  'scrooloose/nerdtree'
+"Plugin  'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 Plugin  'Xuyuanp/nerdtree-git-plugin'
 Plugin  'bash-support.vim'
 Plugin  'sudo.vim'
@@ -64,7 +68,7 @@ set binary
 set noeol
 set ttyfast
 set wildmenu
-set noautoindent 
+"set noautoindent 
 set spell spelllang=en
 "nnoremap \\ :noh<return>
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
@@ -93,3 +97,36 @@ set pastetoggle=<F2>
 
 "Pop up commit messages of the specific line of code
 nmap <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
+
+"Make leading and trailing space visible
+
+syn match ErrorLeadSpace /^ \+/         " highlight any leading spaces
+syn match ErrorTailSpace / \+$/         " highlight any trailing spaces
+"match Error80            /\%>80v.\+/    " highlight anything past 80 in red
+
+"All about indenting
+
+set autoindent smartindent              " turn on auto/smart indenting
+set smarttab                            " make <tab> and <backspace> smarter
+set backspace=eol,start,indent          " allow backspacing over indent, eol, & start
+
+"All about Tabs and Spaces 
+
+set noexpandtab                         " use tabs, not spaces
+set tabstop=8                           " tabstops of 8
+set shiftwidth=8                        " indents of 8
+set textwidth=78                        " screen in 80 columns wide, wrap at 78
+
+"Tagbar to work
+
+nmap <F8> :TagbarToggle<CR>
+
+"NerdTree open CTRL+n
+
+map <C-n> :NERDTreeToggle<CR>
+
+ 
+"Open URI under cursor.
+nmap ob <Plug>(openbrowser-open)
+"Open selected URI.
+vmap os <Plug>(openbrowser-open) 
