@@ -1,15 +1,15 @@
 #!/bin/bash
 
-sfile=/run/httpd/httpd.pid
-TO_MAIL=bhaskar.chowdhury@heymath.com
+httpdpidfile=/run/httpd/httpd.pid
+TO_MAIL="unixbhaskar@gmail.com"
 
-if [ -f "${sfile}" ]; then
+if [ -f "${httpdpidfile}" ]; then
    old_count=`cat /run/httpd/httpd.pid`
 else
    old_count='0'
 fi
 
-new_count=`ps -ef | grep httpd | wc -l `
+new_count=$(ps -ef | grep httpd | wc -l )
 
 #echo $new_count > $sfile
 
