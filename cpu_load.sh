@@ -9,7 +9,7 @@ ALARM_EVERY="60" # Will send an email every ALARM_EVERY minutes
 
 # Convert ALARM_EVERY into seconds
 #
-ALARM_EVERY_S=`expr $ALARM_EVERY \* 60`
+ALARM_EVERY_S=$(expr $ALARM_EVERY \* 60)
 
 #echo DEBUG: ------------------------
 #echo DEBUG: CPU_load running now...
@@ -24,20 +24,20 @@ if [[ -f $DD/CPU_load_lock ]];then
 # ran last. Remember that "time" here is the
 # number of seconds since 1/1/1970
 #
-current_time=`date '+%s'`
-last_run_time=`cat $DD/CPU_load_lock`
+current_time=$(date '+%s')
+last_run_time=$(cat $DD/CPU_load_lock)
 
 # Paranoia. Make sure that $current_time
 # and $last_run_time are not empty strings (the rest
 # of the script wouldn't like it)
 #
-current_time=`expr $current_time + 0`
-last_run_time=`expr $last_run_time + 0`
+current_time=$(expr $current_time + 0)
+last_run_time=$(expr $last_run_time + 0)
 
 # "gap" is how many seconds passed since
 # the script was last executed
 #
-gap=`expr $current_time - $last_run_time`
+gap=$(expr $current_time - $last_run_time)
 
 #echo DEBUG: current_time : $current_time
 #echo DEBUG: last_run_time: $last_run_time
@@ -58,10 +58,10 @@ exit
 # to find out how to get these values
 # on your system!
 #
-loadavg=`cat /proc/loadavg`
-one=`echo $loadavg | cut -d " " -f 1`
-two=`echo $loadavg | cut -d " " -f 2`
-three=`echo $loadavg | cut -d " " -f 3`
+loadavg=$(cat /proc/loadavg)
+one=$(echo $loadavg | cut -d " " -f 1)
+two=$(echo $loadavg | cut -d " " -f 2)
+three=$(echo $loadavg | cut -d " " -f 3)
 #echo DEBUG: $loadavg -- $one -- $two -- $three
 
 # You can't use expr, because the load info is
@@ -70,9 +70,9 @@ three=`echo $loadavg | cut -d " " -f 3`
 # standard input. bc will print "0" (false) or
 # "1" (true).
 #
-one_big=`echo $one \» $MAX_LOAD | bc`
-two_big=`echo $two \» $MAX_LOAD | bc`
-three_big=`echo $three \» $MAX_LOAD | bc`
+one_big=$(echo $one \» $MAX_LOAD | bc)
+two_big=$(echo $two \» $MAX_LOAD | bc)
+three_big=$(echo $three \» $MAX_LOAD | bc)
 #echo DEBUG: $one_big -- $two_big -- $three_big
 
 # If any of the averages are too high, send a
