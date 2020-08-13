@@ -1,8 +1,8 @@
 #!/bin/bash 
 
 # An attempt to automatize packaging DokuWiki  
-HOSTNAME=`uname -n`
-DATE=`date`
+HOSTNAME=$(uname -n)
+DATE=$(date)
 echo " Dokulwiki installation on $HOSTNAME and on this $DATE" 
 echo
 echo
