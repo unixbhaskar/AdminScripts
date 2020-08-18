@@ -1,0 +1,24 @@
+
+Wireless Mac Address : D4:6E:0E:E6:8A:CE
+IP :192.168.0.1
+Subnet : 255.255.255.0
+
+Mode: 11bgn mixed
+
+WAN:
+
+MAC Address: D4:6E:0E:E6:8A:CF
+
+IP Address: 10.13.71.251(Static IP)
+
+Subnet Mask: 255.255.255.128
+
+Default Gateway:10.13.71.129
+
+DNS Server: 10.13.71.129 8.8.8.8
+
+WPS (Wifi protected setup)
+
+Current PIN: 36929818
+
+

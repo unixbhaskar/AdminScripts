@@ -1,0 +1,16 @@
+
+# moving from 5.6 to 5.7
+
+        $ cd ~/linux-5.6                # change to kernel source dir
+        $ patch -p1 < ../patch-5.7      # apply the 5.7 patch
+        $ cd ..
+        $ mv linux-5.6 linux-5.7        # rename source dir
+
+        # moving from 5.6.1 to 5.7
+
+        $ cd ~/linux-5.6.1              # change to kernel source dir
+        $ patch -p1 -R < ../patch-5.6.1 # revert the 5.6.1 patch
+                                        # source dir is now 5.6
+        $ patch -p1 < ../patch-5.7      # apply new 5.7 patch
+        $ cd ..
+        $ mv linux-5.6.1 linux-5.7      # rename source dir

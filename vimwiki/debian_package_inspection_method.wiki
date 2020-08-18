@@ -1,0 +1,17 @@
+
+A Debian package is basically an ar archive containing two compressed tarfiles, control.tar.gz and data.tar.gz (possibly using 
+a different compression method and corresponding extension). The second contains the complete filesystem tree of the package 
+and the first the packaging meta-files. That's mostly a header with a general package description (called control) and the 
+so-called package maintainer scripts which will be run at various phases of the install with certain arguments (as documented 
+in the Debian Policy Manual).
+
+Besides the option of disassembling the archive manually, the dpkg-deb command can be used to access the contents. Assuming a 
+package file named uselessd_1.52.11_amd64.deb, the command
+
+dpkg-deb --fsys-tarfile uselessd_1.52.11_amd64.deb | tar tvf -
+
+would enable examining the contents of the data archive and
+
+dpkg-deb -I uselessd_1.52.11_amd64.deb postinst
+
+would extract the postinstall configuration script to stdout. 

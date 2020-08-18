@@ -1,0 +1,6 @@
+
+ setcap -r /tmp/foobar
+ # setcap cap_net_admin=p /tmp/foobar
+ $ getfattr -d -m security.capability /tmp/foobar -e hex
+ # file : /tmp/foobar
+ security.capability=0x0000000200002000000000000000000000000000

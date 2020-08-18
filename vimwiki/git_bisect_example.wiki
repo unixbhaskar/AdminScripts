@@ -1,0 +1,99 @@
+First and foremost, you need to start it, like this :
+
+✔ ~/git-linux/Linux_Infrastructure_Management [doing ↑·2|✔]
+04:08 $ git bisect start
+
+*Now, here is a pitfall, if you misunderstood the way bisect work ...it looks like this :*
+
+✔ ~/git-linux/Linux_Infrastructure_Management [doing|BISECTING ↑·2|✔]
+04:09 $ git bisect bad b40835ea0d0d
+Some good revs are not ancestors of the bad rev.
+git bisect cannot work properly in this case.
+Maybe you mistook good and bad revs?
+
+Okay, you need to correct that by finding the good commit first and do this :
+
+✔ ~/git-linux/Linux_Infrastructure_Management [doing|BISECTING ↑·2|✔]
+04:35 $ git bisect good b40835ea0d0d
+
+Now, find the offending one, I mean the bad one you are suspecting:
+
+✔ ~/git-linux/Linux_Infrastructure_Management [doing|BISECTING ↑·2|✔]
+04:35 $ git bisect bad 4aca6fd054466d11102195611650015cfae18708
+Bisecting: 2 revisions left to test after this (roughly 1 step)
+[ea7a574af9739e88b93abac878185a4613e76822] testing
+
+You can get the entire like this :
+
+✔ ~/git-linux/Linux_Infrastructure_Management [:ea7a574af973|BISECTING|✔]
+04:58 $ git bisect log
+git bisect start
+# good: [b40835ea0d0d71a475a33ab08aef1ed8317969be] Add the Trademark stuff
+# git bisect good b40835ea0d0d71a475a33ab08aef1ed8317969be
+# # bad: [4aca6fd054466d11102195611650015cfae18708] testing request-pull
+# git bisect bad 4aca6fd054466d11102195611650015cfae18708
+OR you might want to visualize the bisection like this ...it simply is variant of git log ...
+
+✔ ~/git-linux/Linux_Infrastructure_Management [:ea7a574af973|BISECTING|✔]
+05:11 $ git bisect log
+
+commit 4aca6fd054466d11102195611650015cfae18708 (tag: v1, doing, refs/bisect/bad)
+gpg: Signature made Thu 14 Nov 2019 04:44:59 AM IST
+gpg:                using RSA key 9F017E9D66B07216543CEBB0B23A9DB7114B2915
+gpg: Good signature from "Bhaskar Chowdhury (Musing_with_GNU/Linux!!) <unixbhaskar@gmail.com>" [ultimate]
+gpg:                 aka "[jpeg image of size 2135]" [ultimate]
+gpg:                 aka "[jpeg image of size 62428]" [ultimate]
+Author: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Date:   Thu Nov 14 04:44:59 2019 +0530
+
+    testing request-pull
+    
+        Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+	
+	commit e3d3844c5dce02586d5eb6b04a7b017e2e38fa34
+	gpg: Signature made Thu 14 Nov 2019 04:29:03 AM IST
+	gpg:                using RSA key 9F017E9D66B07216543CEBB0B23A9DB7114B2915
+	gpg: Good signature from "Bhaskar Chowdhury (Musing_with_GNU/Linux!!) <unixbhaskar@gmail.com>" [ultimate]
+	gpg:                 aka "[jpeg image of size 2135]" [ultimate]
+	gpg:                 aka "[jpeg image of size 62428]" [ultimate]
+	Author: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+	Date:   Thu Nov 14 04:29:03 2019 +0530
+	
+	    testing
+	    
+	        Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+		
+		commit e60cb9eb9692453a6845f5474837a9bfd53d8f36 (origin/master, origin/doing, origin/HEAD, master)
+		gpg: Signature made Fri 27 Sep 2019 01:05:17 PM IST
+		gpg:                using RSA key 9F017E9D66B07216543CEBB0B23A9DB7114B2915
+		gpg: Good signature from "Bhaskar Chowdhury (Musing_with_GNU/Linux!!) <unixbhaskar@gmail.com>" [ultimate]
+		gpg:                 aka "[jpeg image of size 2135]" [ultimate]
+		gpg:                 aka "[jpeg image of size 62428]" [ultimate]
+		Author: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+		Date:   Fri Sep 27 13:05:04 2019 +0530
+		
+		    added some files
+		    
+		        Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+			
+			commit ea7a574af9739e88b93abac878185a4613e76822 (HEAD)
+			gpg: Signature made Thu 27 Jun 2019 06:53:08 PM IST
+			gpg:                using RSA key 9F017E9D66B07216543CEBB0B23A9DB7114B2915
+			gpg: Good signature from "Bhaskar Chowdhury (Musing_with_GNU/Linux!!) <unixbhaskar@gmail.com>" [ultimate]
+			gpg:                 aka "[jpeg image of size 2135]" [ultimate]
+			gpg:                 aka "[jpeg image of size 62428]" [ultimate]
+			Author: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+			Date:   Thu Jun 27 18:53:07 2019 +0530
+			
+			    testing
+			    
+			    commit c3fa82dd4e734de3eef958ad95830cf7da483ff1
+			    gpg: Signature made Tue 16 Apr 2019 04:14:14 PM IST
+			    gpg:                using RSA key 9F017E9D66B07216543CEBB0B23A9DB7114B2915
+			    gpg: Good signature from "Bhaskar Chowdhury (Musing_with_GNU/Linux!!) <unixbhaskar@gmail.com>" [ultimate]
+			    gpg:                 aka "[jpeg image of size 2135]" [ultimate]
+			    gpg:                 aka "[jpeg image of size 62428]" [ultimate]
+			    Author: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+			    Date:   Tue Apr 16 16:14:05 2019 +0530
+			    
+			     

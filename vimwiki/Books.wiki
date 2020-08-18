@@ -1,0 +1,65 @@
+/data/pdf_docs/
+/data/pdf_docs/1553315515192jsbWjKy1rI3O1gZP.pdf
+/data/pdf_docs/2017-02-12-11-22-45-843_1486878765843_XXXPC0011X_ITRV.pdf
+/data/pdf_docs/2017-02-12-11-25-06-136_1486878906136_XXXPC0011X_ITRV.pdf
+/data/pdf_docs/4512_2019_Order_05-Feb-2019.pdf
+/data/pdf_docs/Abusing_Privileged_and_Unprivileged_Linux_Containers.pdf
+/data/pdf_docs/Apress.Pro.OpenSSH.Oct.2005.pdf
+/data/pdf_docs/[aws-cli.pdf](/data/pdf_docs/aws_cli.pdf)
+/data/pdf_docs/BhaskarChowdhury.pdf
+/data/pdf_docs/bstj57-6-1947_text.pdf
+/data/pdf_docs/Chowdhury Bhaskar 2016-12-02-15-19 Incomplete application.pdf
+/data/pdf_docs/cpumemory.pdf
+/data/pdf_docs/CreditCardStatement.pdf
+/data/pdf_docs/Designing_Distributed_Systems.pdf
+/data/pdf_docs/DNS & BIND.pdf
+/data/pdf_docs/Docker-Jenkins-Continuous-Delivery.pdf
+/data/pdf_docs/download-1486347910292.pdf
+/data/pdf_docs/dsohowto.pdf
+/data/pdf_docs/EAadhaar_916789805355_20122016185429_133768.pdf
+/data/pdf_docs/ECLK-5.0-WithCover.pdf
+/data/pdf_docs/ethernet-controller-i350-datasheet.pdf
+/data/pdf_docs/get_started_with_devops_guide_for_it_managers.pdf
+/data/pdf_docs/GitNotesForProfessionals.pdf
+/data/pdf_docs/img444.pdf
+/data/pdf_docs/img445.pdf
+/data/pdf_docs/img446.pdf
+/data/pdf_docs/img447.pdf
+/data/pdf_docs/img448.pdf
+/data/pdf_docs/img449.pdf
+/data/pdf_docs/img506.pdf
+/data/pdf_docs/index.pdf
+/data/pdf_docs/javaExample.pdf
+/data/pdf_docs/John.Wiley.And.Sons.Mastering.Unix.Shell.Scripting.eBook-LiB.pdf
+/data/pdf_docs/Kindle_User_Guide_EN-US.pdf
+/data/pdf_docs/KQDLIA_20190730_160722.pdf
+/data/pdf_docs/Kubernetes-Cheat-Sheet_04032019.pdf
+/data/pdf_docs/ldd3.pdf
+/data/pdf_docs/LFS-BOOK-8.1.pdf
+/data/pdf_docs/license.pdf
+/data/pdf_docs/LinkedIn-Generated-Resume.pdf
+/data/pdf_docs/linkmap.pdf
+/data/pdf_docs/mcs.pdf
+/data/pdf_docs/ncc_group_understanding_hardening_linux_containers-1-1.pdf
+/data/pdf_docs/noc final.pdf
+/data/pdf_docs/O'Reilly - Perl - Perl For Sysadmins.pdf
+/data/pdf_docs/OReilly.Python.for.Unix.and.Linux.System.Administration.Sep.2008.pdf
+/data/pdf_docs/O'Reilly_TCP-IP Network Administration .pdf
+/data/pdf_docs/Program-Library-HOWTO.pdf
+/data/pdf_docs/Property_tax_KMC.pdf
+/data/pdf_docs/ps1q07-20060392-Domsch.pdf
+/data/pdf_docs/publication_Future_Proof_Your_SysAdmin_Career.pdf
+/data/pdf_docs/puppet-on-the-aws-cloud.pdf
+/data/pdf_docs/RA_CI with Docker_08.25.2015.pdf
+/data/pdf_docs/recipes.pdf
+/data/pdf_docs/releasenotes.pdf
+/data/pdf_docs/rosen-namespaces-cgroups-lxc.pdf
+/data/pdf_docs/scan0012.pdf
+/data/pdf_docs/scan0024.pdf
+/data/pdf_docs/SSRN-id2938033.pdf
+/data/pdf_docs/T54800129208902032019155045.pdf
+/data/pdf_docs/TaxInvoiceWB1192007AJ66679.pdf
+/data/pdf_docs/the-remote-workers-survival-guide.pdf
+/data/pdf_docs/TLCL-17.10.pdf
+/data/pdf_docs/ugh.pdf
+/data/pdf_docs/v3man.pdf

@@ -1,0 +1,17 @@
+
+01 - Understanding AWS Certification and How to Get the Most from this Series.mp4
+02 - AWS Design - Why use AWS and Global Best Practices.mp4
+03 - AWS Elasticity - Principles of Elasticity.mp4
+04 - AWS Elasticity - Understanding and Using Bootstrapping.mp4
+05 - AWS Elasticity - Understanding and Implementing CloudFormation.mp4
+06 - AWS Elasticity - Components of Auto Scaling.mp4
+07 - AWS Storage - Elastic Block Store (EBS).mp4
+08 - AWS Storage - S3 and CloudFront.mp4
+09 - AWS Security - Understanding Shared Security.mp4
+10 - AWS Security - Using the Virtual Private Cloud (VPC).mp4
+11 - AWS Security - Working with IAM.mp4
+12 - AWS Security - IAM Best Practices.mp4
+13 - AWS Database - Database Tips.mp4
+14 - AWS Cost - Optimizing AWS Expenses.mp4
+15 - AWS Availability - Designing High Availability in AWS.mp4
+16 - AWS Migration - Creating a Cloud Migration Strategy.mp4

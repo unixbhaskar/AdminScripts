@@ -1,0 +1,37 @@
+
+user $wpa_cli
+
+wpa_cli v2.5
+ Copyright (c) 2004-2015, Jouni Malinen <j@w1.fi> and contributors
+ 
+ This software may be distributed under the terms of the BSD license.
+ See README for more details.
+ 
+ 
+ Selected interface 'wlan0'
+ 
+ Interactive mode
+ 
+ > scan
+ OK
+ > scan_results
+ bssid / frequency / signal level / flags / ssid
+ 01:23:45:67:89:ab       2437    0       [WPA-PSK-CCMP+TKIP][WPA2-PSK-CCMP+TKIP][ESS]    hotel-free-wifi
+ > add_network
+ 0
+ > set_network 0 ssid "hotel-free-wifi"
+ OK
+ > set_network 0 psk "password"
+ OK
+ > enable_network 0
+ OK
+ <3>CTRL-EVENT-SCAN-RESULTS 
+ <3>WPS-AP-AVAILABLE 
+ <3>Trying to associate with 01:23:45:67:89:ab (SSID='hotel-free-wifi' freq=2437 MHz)
+ <3>Associated with 01:23:45:67:89:ab
+ <3>WPA: Key negotiation completed with 01:23:45:67:89:ab [PTK=CCMP GTK=TKIP]
+ <3>CTRL-EVENT-CONNECTED - Connection to 01:23:45:67:89:ab completed [id=0 id_str=]
+ > save_config 
+ OK
+ > quit
+

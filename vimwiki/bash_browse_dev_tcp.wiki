@@ -1,0 +1,5 @@
+
+exec 3<>/dev/tcp/www.google.com/80
+netstat -anpt | grep 80 | grep bash
+cat <&3
+

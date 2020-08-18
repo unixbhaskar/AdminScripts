@@ -1,0 +1,80 @@
+
+2012RHEL_KVM_Hypervisor_Performance_Brief_19_v4.pdf
+2013-01-PAMS-2-DS-II-R-Bhaskar Chowdhury-Self.doc
+2017-02-12-11-22-45-843_1486878765843_XXXPC0011X_ITRV.pdf
+2017-02-12-11-25-06-136_1486878906136_XXXPC0011X_ITRV.pdf
+26th April Journeytocal.pdf
+AETN_nagios-checks-configuration.xls
+AETV PROD push steps.docx
+Alliance_cred
+apache-perform.doc
+AWS_Security_Whitepaper.pdf
+Bajaj_foreclose_payment.pdf
+Bhaskar_Chowdhury.pdf
+BIO PROD server Architecture.docx
+Cisco_vpn_client_Linux_solaris.pdf
+cisco_vpn.pdf
+Cylon
+DEC18-FEB19-electricityBill.pdf
+Deplou_06-06_2012
+Deploy1_And_Prod_compare
+folder_review
+Forecloser_Bajaj_load_payment.pdf
+Housekeeping-info.xls
+InternetBillofJUne13.pdf
+itenary.doc
+JPL_Coding_Standard_C.pdf
+kolkata_to_siliguri_bus_ticket.aspx
+Kol_to_Siliguri_bus_tickect.pdf
+LDAP_SERVER_and_client_installation_configuration.pdf
+letter
+lifetimeamazonv2-1.pdf
+lifetimedualamazonv2-1.pdf
+lifetimev2.pdf
+LinuxAdminQuestions.doc
+mail-server-configuration.doc
+memcache_conf_details
+Memcache_conf_locations_and details.doc
+Memcache_ports_config_loation_effected_sites.xlsx
+mod_security_implementation
+Monitoring Guidelines.ppt
+Moving sweeps sites from datapipe server to new d6 servers-1.docx
+MyAprilJourneyTicket.pdf
+mysql-memcached-en.pdf
+neel
+neel_chowdhury
+neel_chowdhury (1)
+Network bonding Documents.odt
+Network Load balancing.docx
+OSS-procurement-guideline -final.pdf
+p761-thompson.pdf
+packaging-red-hot-paneer-butter-masala.pdf
+Papa_schl_fee_and_bday.pdf
+passport-detail
+passport_for_neel
+PayToCC26thjul13.pdf
+PayToDellfor4cellBattery.pdf
+PayToJhumaHDFC.pdf
+property_tax_2018_recipt.pdf
+property_tax_2018_recpt_ref
+puppet-logo-amber-white-lg.png
+Red_Hat_Enterprise_Linux-6-Resource_Management_Guide-en-US.pdf
+Reliance_datacard_pay_feb13.pdf
+RHCE-Certificate.pdf
+RHCSA_Bhaskar_Chowdhury.pdf
+RH_sVirt_WP_8499167_0112_dm_web.pdf
+secure-boot-whitepaper.pdf
+Securing_Web_Services_with_ModSecurity_2.0.pdf
+SG-KL_tour_ticket_files
+SG-KL_tour_ticket.html
+Singapore_to_KuaLumpur_Flight_Ticket.pdf
+Site_specific_Apache_conf_files.ods
+Site_specific_Apache_conf_files_with_Memcache_details.xls
+Site_specific_Apache_conf_files.xls
+TNMAS00501730000000361.PDF
+twitter_backup_code
+UFFEI_Slide_lca2012_uefi.odp
+WatchAppFeedMonitor.htm
+WatchApp Feeds.xlsx
+WatchKart-Casio-Edifice.pdf
+whowriteslinux.pdf

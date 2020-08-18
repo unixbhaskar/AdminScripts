@@ -1,0 +1,9 @@
+
+grub rescue> set prefix=(hd0,1)/boot/grub
+grub rescue> set root=(hd0,1)
+grub rescue> insmod normal
+grub rescue> normal
+grub rescue> insmod linux
+grub rescue> linux /boot/vmlinuz-3.13.0-29-generic root=/dev/sda1
+grub rescue> initrd /boot/initrd.img-3.13.0-29-generic
+grub rescue> boot

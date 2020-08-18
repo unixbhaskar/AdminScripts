@@ -1,0 +1,46 @@
+
+*Knowledge Base*
+    * [[Books]] -- Some e-books mostly technical
+    * [[AWS_Tutorial]] -- Amazon Web Service videos 
+    * [[scripts]]  -- My collection of scripts of various activities
+    * [[i3config]]  -- i3 window manager configuration scripts and files
+    * [[Videos]]  -- My touring and Linux related videos
+    * [[Music]]  -- The thing I love so much
+    * [[Pictures]] -- Captures my mood and interests
+    * [[Documents]]  -- Lots of stuff, I kept it here , so I can find them when needed
+    * [[pdf_docs]]  --Same like above , but mostly pdf , technical books
+    * [[important_files]]  -- Snapshot of my home directory, in case I lost it
+    * [[git cheatsheet]]   -- Frequently used command in Git,a SCM
+    * [[vim cheatsheet]] -- Frequently used command in Vim, a editor
+    * [[ssh cheatsheet]]  -- Frequently used command ,a network protocol tool
+    * [[firefox_key_combinations]] -- Browser key shortcut,in stead of use mouse. 
+    * [[bash cheatsheet]]  -- The shell, a command line interpreter,terminal interface
+    * [[vim_cheatsheet_2]] -- Inbuilt vim information extraction by variables
+    * [[kernel_compile_target]] -- This contain make target for kernel compile
+    * [[boot_from_grub_rescue_prompt.gpg]] -- The process/steps to boot from grub prompt
+    * [[pristime_gentoo_amd64_system_build_steps]] -- Install/build gentoo from scratch
+    * [[moving_from_one_kernel_version_to_another]] -- One kernel version to another manually by patching
+    * [[gpg-backup-restore-keys]] -- How to backup gpg keys and restore 
+    * [[make-linux-fast-boot-parameter]] -- Boot parameter to pass on kernel command line in bootloader
+    * [[debian_package_inspection_method]] -- Debian package management process
+    * [[twitter_backup_code.gpg]] -- Backup code of Twitter
+    * [[userChrome.css_firefox]] -- Firefox appearance related file
+    * [[userContent.css_firefox]] -- Firefox appearance related file two
+    * [[bash_browse_dev_tcp]] -- Open port in bash machanism
+    * [[wpa_cli_procedure]] --Fix network related stuff by wpa_cli
+    * [[Home_Router_Info.gpg]] --Present setting of Home Router
+    * [[git_bisect_example]] -- How to do git bisect properly
+    * [[gitconfigs.gpg]] -- My git configuration file
+    * [[screenrc.gpg]] -- Global screenrc file
+    * [[bashrc.gpg]] -- Global bashrc file
+    * [[home_bashrc.gpg]] -- This file resides under my home directory
+    * [[Muttrc.gpg]] -- Email client configuration 
+    * [[set_capability]] -- To set the capability of directory/files
+    * [[httpdp_status_code_explained]] -- Status codes of httpd/Apache server
+    * [[AWK_oneliner]] -- AWK tricks
+    * [[Sed_Oneliner]] -- Sed Tricks
+    * [[Grep cheatsheet]] -- Grep Tricks
+    * [[.vimrc.gpg]] -- .vimrc file 
+    * 
+      
+      
