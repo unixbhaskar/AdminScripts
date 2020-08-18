@@ -1,0 +1,122 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.194.151.167 with SMTP id ur7csp264649wjb;
+        Mon, 11 Jul 2016 23:21:52 -0700 (PDT)
+X-Received: by 10.98.196.138 with SMTP id h10mr14223667pfk.60.1468304512054;
+        Mon, 11 Jul 2016 23:21:52 -0700 (PDT)
+Return-Path: <credit_cards@icicibank.com>
+Received: from mlxtrend4.abc.com (mlxmail4.icicibank.com. [203.27.235.123])
+        by mx.google.com with ESMTPS id p189si2273639pfb.299.2016.07.11.23.21.51
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 11 Jul 2016 23:21:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of credit_cards@icicibank.com designates 203.27.235.123 as permitted sender) client-ip=203.27.235.123;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@icicibank.com;
+       spf=pass (google.com: domain of credit_cards@icicibank.com designates 203.27.235.123 as permitted sender) smtp.mailfrom=credit_cards@icicibank.com;
+       dmarc=pass (p=REJECT dis=NONE) header.from=icicibank.com
+Received: from MLXMASSSMTP01.icicibank.com ()
+	by mlxtrend4.abc.com  with ESMTP id u6C6Kvsh020639
+	for <unixbhaskar@gmail.com>; Tue, 12 Jul 2016 11:51:50 +0530 (IST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icicibank.com;
+	s=icicibank.com; t=1468304510;
+	bh=JQO6eKYPcJ3IpjJQZbcnzLbFiRhteToX4tu2RO06Rx0=;
+	h=Date:From:To:Subject;
+	b=vkk0vk8BqVburuRPvnHsHXZJ3Ki3FY7XxecLxyvHnJqxygOlqcO1TQIXfe2XfRpCl
+	 lyf06YyQ4EpA59in2JmIZqgmKapBQiUMGsO/J9YVnb8hSn39S5K2F6FnCdlRNEDmhG
+	 Q3EbgFLoSK13zF/xMBwWcUjNRMlJ1WksflYsAKJU=
+Received: from 10.16.0.39 ()
+	by MLXMASSSMTP01.icicibank.com  with SMTP id u6C65Xqb004250
+	for <unixbhaskar@gmail.com>; Tue, 12 Jul 2016 11:35:33 +0530
+Date: Tue, 12 Jul 2016 11:35:33 +0530
+Message-Id: <201607120605.u6C65Xqb004250@MLXMASSSMTP01.icicibank.com>
+From: credit_cards@icicibank.com
+To: unixbhaskar@gmail.com
+Subject: Transaction alert for your ICICI Bank credit card
+Content-Type: text/html
+X-Mailer: Mailer by CCMIS Oracle UTL_SMTP
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ICICI Bank Online</title>
+</head>
+<body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0">
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="http://www.icicibank.com/campaigns/Email_Alert_CC/Approvedmailer/top.jpg" width="700" height="94" /></td>
+  </tr>
+</table>
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#fbae74 solid 2px;">
+  <tr>
+    <td><table width="611" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="text-align:justify;"><br />
+          <font face="Arial, Helvetica, sans-serif" color="#515151" style="font-size:13px">Dear Customer,<br />
+          <br />
+          Thank you for using ICICI Bank credit card.
+ <br/> <br/>
+ Your ICICI Bank Credit Card XXXX9007 has been used for a transaction of INR         1,241.00 at SNAPDEAL                  (July      12, 2016; 11:34:48 hrs.).  Available credit balance on your card is Rs.        37,716.54 and total credit limit is Rs.        45,000.00.<br />
+ <br/>
+ If you have not authorised this transaction, please call our 24 hour Customer Care at 33667777 for the below mentioned cities, for other cities please click here <a href ="http://www.icicibank.com/customer-care.html"
+target="_blank">www.icicibank.com</a>.
+<br/><br/>
+<table width="611" border="2" align="center" cellpadding="0" cellspacing="0" style="border:#fbae74 solid 1px;">
+<tr>
+<td  style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Ahmedabad</td>
+<td  style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Chandigarh</td>
+<td  style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Ernakulam</td>
+<td  style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Kolkata</td>
+<td  style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Patna</td>
+</tr>
+<tr>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Bangalore</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Chennai</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Gurgaon</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Lucknow</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Raipur</td>
+</tr>
+
+<tr>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Bhopal</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Dehradun</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Hyderabad</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Mumbai</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Ranchi</td>
+</tr>
+<tr>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Bhubaneswar</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Delhi</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Jaipur</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Panaji</td>
+<td style="border:#fbae74 solid 1px; font-family:Arial,Helvetica, sans-serif;color:#515151;font-size:13px;">Shimla</td>
+</tr>
+</table>
+<br/><br/>
+ Sincerely,<br/><br/>
+ <strong>ICICI Bank Credit Cards</strong><br />
+ <br />
+ This is an automated e-mail from an unattended mailbox. Please do not reply to this email.</font></td>
+      </tr>
+<tr>
+ <td align="center"><a href="http://www.icicibank.com/Personal-Banking/cards/Consumer-Cards/Credit-Card/low-interest-emi-products/plcc/index.page" target="_blank"><img src="
+http://www.icicibank.com/campaigns/mailers/standalone-images/transaction-alert-banner-ver2.jpg" width="600" height="153" border="0"></a></td>
+</tr>
+    </table></td>
+  </tr>
+</table>
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="http://www.icicibank.com/megaoffer" width="700" height="24"/></td>
+  </tr>
+</table>
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td style="text-align:justify;"><font face="Arial, Helvetica, sans-serif" color="#515151" style="font-size:10px">
+The information provided herein regarding products, services/offers, benefits etc of ICICI bank are governed by their detailed terms and conditions, internal policy guidelines as specified by ICICI Bank from time to time and are subject to applicable laws and regulations. The information provided herein above does not amount to an offer or sponsor or advice as regards any products or services of ICICI bank or any of its group companies and is not intended to create any rights or obligations. Any reference to service levels in this document are indicative and should not be construed to refer to any commitment by ICICI bank and are subject to change at any time at the sole discretion of ICICI Bank or its group companies as it case maybe. The use of any information set out herein is entirely at the recipients own risk and discretion. The "ICICI Bank" and "i-man" logos are trade mark and property of ICICI Bank Ltd. Misuse of any intellectual property or any other content display!
+ ed herein is strictly prohibited. Images used herein are for the purposes of illustration only.
+</font></td>
+</tr>
+</table>
+</body>
+</html>

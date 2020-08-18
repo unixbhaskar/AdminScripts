@@ -1,0 +1,219 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:41c8:0:0:0:0:0 with SMTP id o191csp2853344lfa;
+        Mon, 9 Mar 2020 13:48:05 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vuOy31ODdm+1fr6X1U7cd1Pynbm6qPim2R9GVvL+SOyw8xeMXBAYe+3c0rWSd4rKer+qrjl
+X-Received: by 2002:a05:6808:90f:: with SMTP id w15mr60133oih.0.1583786885139;
+        Mon, 09 Mar 2020 13:48:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1583786885; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XzPJkVNBIoGzyAHEyrccfIdy7MTVhnLWmBTHqSCBXtTpqrBEJbbOfcLfTdcfL/VRZ0
+         2UV7pwgt/+HaazqqnwvGtx+oI//sHhiNYUiJ/ISATLi82jy3S30ycwRmWOw7nfToxXra
+         26tIf6gWszx7BENFnNd1kH+ymXJVcDkO96K8dv0twJAdCXhHCvJaW01PTDyTerYp/kl+
+         6wyz76n+rfxA90gy+pB4bIx1X4WkE9jMKwN8HG/2WqGeesVNwYNUcL5l8BVkr47yKSth
+         PAoHm0mShu8AsG30BW5guVswujCI6YSvjSGkVoaejPYbBZymzhY2nux4bG/Fcrnuy9pf
+         WJMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:reply-to:message-id
+         :subject:cc:to:from:date:dkim-signature;
+        bh=3oag2bi2S6/36qle3cdIGa/yBmCLoWed/J4ngfEBteg=;
+        b=GnfLyNKIEdLCs17hNgJ5uRLrIIeae5N4741KvI3S1miHH+0rjIbdYf+jB7YHeCm7Z9
+         LLkzY+/KTMbyzYb2VykHQCadY4DHVvnK8+eVYYWrhrVmYkKLu9N8KqUJHu3kMtu+oYBT
+         VdM520bhG54jpyK8P0StHbv9NsmzOhsMqtbFETq7NuLZyqrrOQOE5gFag0LiiJK6A+PF
+         TaXiXmDwd44ApxOMb7mUc4nP2Ykrr7v6A8xmZmbQBC7ncHcVNo3o2bVZBSDxPLk1c+yj
+         GC0dAqIJ4RJnnJ/OQdsMT6gm2j+cgOIsDGgk0TsnWgwm+cvOtOIRlSJDu7vZ7ssvem0b
+         9LhA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=NNgxqVc6;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id b197si3238910oii.198.2020.03.09.13.47.55;
+        Mon, 09 Mar 2020 13:48:05 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=NNgxqVc6;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726266AbgCIUrM (ORCPT <rfc822;beyondssmith@gmail.com>
+        + 68 others); Mon, 9 Mar 2020 16:47:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56334 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725992AbgCIUrL (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 9 Mar 2020 16:47:11 -0400
+Received: from paulmck-ThinkPad-P72.home (50-39-105-78.bvtn.or.frontiernet.net [50.39.105.78])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E4BE424649;
+        Mon,  9 Mar 2020 20:47:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1583786830;
+        bh=n7cCW4Y+8tXr+CFatRyuIx4cUK8SgM3pz3iHA38COOU=;
+        h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
+        b=NNgxqVc6b6c60pfDhqn/ivFBjNx5Wi7z3uoCM+fHYOcdNEp7MBD8t5oUCVnz4uwuT
+         7j0/Zv1ErZ9fkNp8wdV6Kd1elu9wbEePT2mC/HFqKAixAO5OaygxYF0t3N7ZlebsxS
+         Rp+M7vo4yFo+kJn38ekIPKXBFnZuRVy9C1E9GR3U=
+Received: by paulmck-ThinkPad-P72.home (Postfix, from userid 1000)
+        id B9B803522730; Mon,  9 Mar 2020 13:47:10 -0700 (PDT)
+Date:   Mon, 9 Mar 2020 13:47:10 -0700
+From:   "Paul E. McKenney" <paulmck@kernel.org>
+To:     Thomas Gleixner <tglx@linutronix.de>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+        Joel Fernandes <joel@joelfernandes.org>,
+        Frederic Weisbecker <frederic@kernel.org>
+Subject: Re: Instrumentation and RCU
+Message-ID: <20200309204710.GU2935@paulmck-ThinkPad-P72>
+Reply-To: paulmck@kernel.org
+References: <87mu8p797b.fsf@nanos.tec.linutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87mu8p797b.fsf@nanos.tec.linutronix.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Mar 09, 2020 at 06:02:32PM +0100, Thomas Gleixner wrote:
+> Folks,
+> 
+> I'm starting a new conversation because there are about 20 different
+> threads which look at that problem in various ways and the information
+> is so scattered that creating a coherent picture is pretty much
+> impossible.
+> 
+> There are several problems to solve:
+> 
+>    1) Fragile low level entry code
+> 
+>    2) Breakpoint utilization
+> 
+>    3) RCU idle
+> 
+>    4) Callchain protection
+> 
+> #1 Fragile low level entry code
+> 
+>    While I understand the desire of instrumentation to observe
+>    everything we really have to ask the question whether it is worth the
+>    trouble especially with entry trainwrecks like x86, PTI and other
+>    horrors in that area.
+> 
+>    I don't think so and we really should just bite the bullet and forbid
+>    any instrumentation in that code unless it is explicitly designed
+>    for that case, makes sense and has a real value from an observation
+>    perspective.
+> 
+>    This is very much related to #3..
+> 
+> #2) Breakpoint utilization
+> 
+>     As recent findings have shown, breakpoint utilization needs to be
+>     extremly careful about not creating infinite breakpoint recursions.
+> 
+>     I think that's pretty much obvious, but falls into the overall
+>     question of how to protect callchains.
+> 
+> #3) RCU idle
+> 
+>     Being able to trace code inside RCU idle sections is very similar to
+>     the question raised in #1.
+> 
+>     Assume all of the instrumentation would be doing conditional RCU
+>     schemes, i.e.:
+> 
+>     if (rcuidle)
+>     	....
+>     else
+>         rcu_read_lock_sched()
+> 
+>     before invoking the actual instrumentation functions and of course
+>     undoing that right after it, that really begs the question whether
+>     it's worth it.
+> 
+>     Especially constructs like:
+> 
+>     trace_hardirqs_off()
+>        idx = srcu_read_lock()
+>        rcu_irq_enter_irqson();
+>        ...
+>        rcu_irq_exit_irqson();
+>        srcu_read_unlock(idx);
+> 
+>     if (user_mode)
+>        user_exit_irqsoff();
+>     else
+>        rcu_irq_enter();
+> 
+>     are really more than questionable. For 99.9999% of instrumentation
+>     users it's absolutely irrelevant whether this traces the interrupt
+>     disabled time of user_exit_irqsoff() or rcu_irq_enter() or not.
+> 
+>     But what's relevant is the tracer overhead which is e.g. inflicted
+>     with todays trace_hardirqs_off/on() implementation because that
+>     unconditionally uses the rcuidle variant with the scru/rcu_irq dance
+>     around every tracepoint.
+> 
+>     Even if the tracepoint sits in the ASM code it just covers about ~20
+>     low level ASM instructions more. The tracer invocation, which is
+>     even done twice when coming from user space on x86 (the second call
+>     is optimized in the tracer C-code), costs definitely way more
+>     cycles. When you take the scru/rcu_irq dance into account it's a
+>     complete disaster performance wise.
+
+Suppose that we had a variant of RCU that had about the same read-side
+overhead as Preempt-RCU, but which could be used from idle as well as
+from CPUs in the process of coming online or going offline?  I have not
+thought through the irq/NMI/exception entry/exit cases, but I don't see
+why that would be problem.
+
+This would have explicit critical-section entry/exit code, so it would
+not be any help for trampolines.
+
+Would such a variant of RCU help?
+
+Yeah, I know.  Just what the kernel doesn't need, yet another variant
+of RCU...
+
+							Thanx, Paul
+
+> #4 Protecting call chains
+> 
+>    Our current approach of annotating functions with notrace/noprobe is
+>    pretty much broken.
+> 
+>    Functions which are marked NOPROBE or notrace call out into functions
+>    which are not marked and while this might be ok, there are enough
+>    places where it is not. But we have no way to verify that.
+> 
+>    That's just a recipe for disaster. We really cannot request from
+>    sysadmins who want to use instrumentation to stare at the code first
+>    whether they can place/enable an instrumentation point somewhere.
+>    That'd be just a bad joke.
+> 
+>    I really think we need to have proper text sections which are off
+>    limit for any form of instrumentation and have tooling to analyze the
+>    calls into other sections. These calls need to be annotated as safe
+>    and intentional.
+> 
+> Thoughts?
+> 
+> Thanks,
+> 
+>         tglx
+> 
+> 
+> 
+> 
+> 
+> 
+>    
+> 

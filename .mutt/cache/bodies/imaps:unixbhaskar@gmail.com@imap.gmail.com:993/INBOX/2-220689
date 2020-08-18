@@ -1,0 +1,167 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp868771lfc;
+        Tue, 28 Jan 2020 11:53:01 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxokP19qF/uV42Q8yBdtNu1rH9ErdJ5q5lNyG6Kq22sGZ+HAoaVt3J63OJSGxcwcrwfdIrk
+X-Received: by 2002:a9d:65cb:: with SMTP id z11mr16777748oth.348.1580241181746;
+        Tue, 28 Jan 2020 11:53:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580241181; cv=none;
+        d=google.com; s=arc-20160816;
+        b=lCbRp9ihMBJbctOXEf+vlHE84C5gdpatlAxKEcx/OnvS1vnZt8SNQZLBmVHJsF7Mwu
+         ncEXGlaF3WVqIg+YLW7vFUqdnOV3shi6C707YtmPwfhkUZAOPazN4Yyp9gekBfu/8Qrc
+         HJSZfK45gshYbHWXqxC8XqZj/biMZvleueGstV1kKGgs+3fdtnveCfmHDQo5ckuxxdeX
+         S2oXBylnjjrwzNNT4N+9EftcxvbNlUDh4BihnFqhADypPoyHF0d/hb5PpWM9V23bZnLU
+         kr2Fvg08S2h0A7+AJkyiyND6+F1b8XBuFjB3Miqe2+eyeQ2dXTFgOEIQcYvw/EHo8/dr
+         nnXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=iyik5rYQjUugRWXOhS91wMvUPz7Kgd9tYhKH8VVIVRY=;
+        b=gfdtTZKUrG0jRRmJLUpn+yUbDdA/fB23uKPbrGV2D66UTaZhL4e0FD9XO8TFp3YAOM
+         HSLNgegN7guHtR+xFjInp88QCqVCme/9lVASOrA+SRaIVJmYwJIm8TCPAAUThwwel36f
+         K18ZYTeWawH5YAS1FKyXTywZJ7NhxKxFNcfWFWy/jqmmgLFrJs7DdgoHFSPo2IV0tE6u
+         LJm4oyrq1rVQKylN5gDfyvKzRsVbKGMkJZpUJsWJjLxdmRWvewpP+Wpt0Ukojmwv0PP/
+         DX7arva/tYrkgi/BYmen0niR8dOAwXDM/81+p56nNbOgEFpS6YilmIqQX1bkrSu2GM6Q
+         Qr8A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=ExwhayKl;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f3si5531170oia.264.2020.01.28.11.52.46;
+        Tue, 28 Jan 2020 11:53:01 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=ExwhayKl;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726303AbgA1TwQ (ORCPT <rfc822;starxiexingyu@gmail.com>
+        + 99 others); Tue, 28 Jan 2020 14:52:16 -0500
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:42273 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726066AbgA1TwQ (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 28 Jan 2020 14:52:16 -0500
+Received: by mail-lj1-f194.google.com with SMTP id y4so15978055ljj.9
+        for <linux-kernel@vger.kernel.org>; Tue, 28 Jan 2020 11:52:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iyik5rYQjUugRWXOhS91wMvUPz7Kgd9tYhKH8VVIVRY=;
+        b=ExwhayKlEf7Bfgv9eqGWXilHEdU7XISxBPCehCpR45dam0NkLcmg21/yMfF+WYxJ1q
+         NH73D6YQ8j6ssVoWLhhf7598l4vaKJFGcwmXOjz8/EzAv0WZ3qLIHbZtiDiV8lct6SaL
+         DnsfmlutMeOKWC1ZGIrU+ID/EVX0teHv0zlS8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iyik5rYQjUugRWXOhS91wMvUPz7Kgd9tYhKH8VVIVRY=;
+        b=csYnE9jd2p6IgZLo55Pr6fQnCHgZXAJa6HasFbWUZdWgYARFxLAn9MgTPeKWj6/Jc/
+         CgFH0pLsPy28AP6ru9TK5FygPbimPLNTsuAM34BvF3pGqXi3xwxOS8G7GVAQ1kgvGSlI
+         tcnNczVMoMGvbj/Cu3ikZmzDwc6ce9zz2EAC5gUw1U6U/CGaqJX3jo/Ssz8TZjiLjhGe
+         A+rCEoVOZ6dG5AFi2u5QCdv1f1wMf0qaG+F4Z94NL2W42rufyC69hUWSrKBcJLsQPiOD
+         MKTfJ2wLAawf695oFLLih76P5eWLYNR50Z3NozJlK3KL1WDMOUiurPoaGI+XDAH4aPbg
+         jpKg==
+X-Gm-Message-State: APjAAAWtbIJyk5gOlqbG2MEPQI8UC1+1dsALlgKPVF8Gj3fizJCx3K1p
+        mQJlbGl/i1aiwklwd1geDJpk1hH357M=
+X-Received: by 2002:a05:651c:1049:: with SMTP id x9mr14563802ljm.233.1580241133648;
+        Tue, 28 Jan 2020 11:52:13 -0800 (PST)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
+        by smtp.gmail.com with ESMTPSA id w19sm10223670lfl.55.2020.01.28.11.52.12
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jan 2020 11:52:12 -0800 (PST)
+Received: by mail-lj1-f171.google.com with SMTP id h23so15995144ljc.8
+        for <linux-kernel@vger.kernel.org>; Tue, 28 Jan 2020 11:52:12 -0800 (PST)
+X-Received: by 2002:a2e:3a13:: with SMTP id h19mr14478575lja.16.1580241132023;
+ Tue, 28 Jan 2020 11:52:12 -0800 (PST)
+MIME-Version: 1.0
+References: <20200128165906.GA67781@gmail.com>
+In-Reply-To: <20200128165906.GA67781@gmail.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Tue, 28 Jan 2020 11:51:56 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wgm+2ac4nnprPST6CnehHXScth=A7-ayrNyhydNC+xG-g@mail.gmail.com>
+Message-ID: <CAHk-=wgm+2ac4nnprPST6CnehHXScth=A7-ayrNyhydNC+xG-g@mail.gmail.com>
+Subject: Re: [GIT PULL] x86/asm changes for v5.6
+To:     Ingo Molnar <mingo@kernel.org>, Tony Luck <tony.luck@intel.com>,
+        Borislav Petkov <bp@suse.de>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Borislav Petkov <bp@alien8.de>,
+        Peter Zijlstra <a.p.zijlstra@chello.nl>,
+        Andrew Morton <akpm@linux-foundation.org>
+Content-Type: multipart/mixed; boundary="00000000000055d6b2059d388f19"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+--00000000000055d6b2059d388f19
+Content-Type: text/plain; charset="UTF-8"
+
+On Tue, Jan 28, 2020 at 8:59 AM Ingo Molnar <mingo@kernel.org> wrote:
+>
+>  - Add support for "Fast Short Rep Mov", which is available starting with
+>    Ice Lake Intel CPUs - and make the x86 assembly version of memmove()
+>    use REP MOV for all sizes when FSRM is available.
+
+Pulled. However, this seems rather non-optimal:
+
+        ALTERNATIVE "cmp $0x20, %rdx; jb 1f", "", X86_FEATURE_FSRM
+        ALTERNATIVE "", "movq %rdx, %rcx; rep movsb; retq", X86_FEATURE_ERMS
+
+in that it leaves unnecessary NOP's there as alternatives.
+
+We have "ALTERNATIVE_2", so we can do the above in one thing, _and_
+move the rep-movsq testing code into there too:
+
+        ALTERNATIVE_2 \
+                "cmp  $680, %rdx ; jb 3f ; cmpb %dil, %sil; je 4f", \
+                "movq %rdx, %rcx ; rep movsb; retq", X86_FEATURE_FSRM, \
+                "cmp $0x20, %rdx; jb 1f; movq %rdx, %rcx; rep movsb;
+retq", X86_FEATURE_ERMS
+
+which avoids unnecessary nops.
+
+I dunno.  It doesn't much matter, but we _do_ have things to do for
+all three cases, and it actually makes sense to move all the three
+"use rep movs" cases into the ALTERNATIVE. No?
+
+UNTESTED patch attached, but visually it seems to generate better code
+and less unnecessary nops (I get just two bytes of nop with this for
+the nonFSRM/ERMS case)
+
+If somebody tests this out and commits it and writes a commit message,
+they can claim authorship. Or add my sign-off.
+
+              Linus
+
+--00000000000055d6b2059d388f19
+Content-Type: text/x-patch; charset="US-ASCII"; name="patch.diff"
+Content-Disposition: attachment; filename="patch.diff"
+Content-Transfer-Encoding: base64
+Content-ID: <f_k5yap2xj0>
+X-Attachment-Id: f_k5yap2xj0
+
+ZGlmZiAtLWdpdCBhL2FyY2gveDg2L2xpYi9tZW1tb3ZlXzY0LlMgYi9hcmNoL3g4Ni9saWIvbWVt
+bW92ZV82NC5TCmluZGV4IDdmZjAwZWE2NGU0Zi4uZTQyYmYzNWI5YjYyIDEwMDY0NAotLS0gYS9h
+cmNoL3g4Ni9saWIvbWVtbW92ZV82NC5TCisrKyBiL2FyY2gveDg2L2xpYi9tZW1tb3ZlXzY0LlMK
+QEAgLTM5LDIzICszOSwxOSBAQCBTWU1fRlVOQ19TVEFSVChfX21lbW1vdmUpCiAJY21wICVyZGks
+ICVyOAogCWpnIDJmCiAKLQkvKiBGU1JNIGltcGxpZXMgRVJNUyA9PiBubyBsZW5ndGggY2hlY2tz
+LCBkbyB0aGUgY29weSBkaXJlY3RseSAqLworCS8qCisJICogVGhyZWUgcmVwLXN0cmluZyBhbHRl
+cm5hdGl2ZXM6CisJICogIC0gZ28gdG8gIm1vdnNxIiBmb3IgbGFyZ2UgcmVnaW9ucyB3aGVyZSBz
+b3VyY2UgYW5kIGRlc3QgYXJlCisJICogICAgbXV0dWFsbHkgYWxpZ25lZCAoc2FtZSBpbiBsb3cg
+OCBiaXRzKS4gImxhYmVsIDQiCisJICogIC0gcGxhaW4gcmVwLW1vdnNiIGZvciBGU1JNCisJICog
+IC0gcmVwLW1vdnMgZm9yID4gMzIgYnl0ZSBmb3IgRVJNUy4KKwkgKi8KIC5MbWVtbW92ZV9iZWdp
+bl9mb3J3YXJkOgotCUFMVEVSTkFUSVZFICJjbXAgJDB4MjAsICVyZHg7IGpiIDFmIiwgIiIsIFg4
+Nl9GRUFUVVJFX0ZTUk0KLQlBTFRFUk5BVElWRSAiIiwgIm1vdnEgJXJkeCwgJXJjeDsgcmVwIG1v
+dnNiOyByZXRxIiwgWDg2X0ZFQVRVUkVfRVJNUworCUFMVEVSTkFUSVZFXzIgXAorCQkiY21wICAk
+NjgwLCAlcmR4IDsgamIgM2YgOyBjbXBiICVkaWwsICVzaWw7IGplIDRmIiwgXAorCQkibW92cSAl
+cmR4LCAlcmN4IDsgcmVwIG1vdnNiOyByZXRxIiwgWDg2X0ZFQVRVUkVfRlNSTSwgXAorCQkiY21w
+ICQweDIwLCAlcmR4OyBqYiAxZjsgbW92cSAlcmR4LCAlcmN4OyByZXAgbW92c2I7IHJldHEiLCBY
+ODZfRkVBVFVSRV9FUk1TCiAKLQkvKgotCSAqIG1vdnNxIGluc3RydWN0aW9uIGhhdmUgbWFueSBz
+dGFydHVwIGxhdGVuY3kKLQkgKiBzbyB3ZSBoYW5kbGUgc21hbGwgc2l6ZSBieSBnZW5lcmFsIHJl
+Z2lzdGVyLgotCSAqLwotCWNtcCAgJDY4MCwgJXJkeAotCWpiCTNmCi0JLyoKLQkgKiBtb3ZzcSBp
+bnN0cnVjdGlvbiBpcyBvbmx5IGdvb2QgZm9yIGFsaWduZWQgY2FzZS4KLQkgKi8KLQotCWNtcGIg
+JWRpbCwgJXNpbAotCWplIDRmCiAzOgogCXN1YiAkMHgyMCwgJXJkeAogCS8qCg==
+--00000000000055d6b2059d388f19--

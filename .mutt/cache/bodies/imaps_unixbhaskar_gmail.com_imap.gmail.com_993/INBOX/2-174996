@@ -1,0 +1,279 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp821491lfb;
+        Wed, 3 Apr 2019 15:20:09 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx4oHioMYjKTZ6PIwHYiuO/xqxY3g1Qsd3MXD5pgtWZshQ8FZmLkkf4Kdpem8yhoytQ0c20
+X-Received: by 2002:a25:1603:: with SMTP id 3mr2432616ybw.338.1554330009033;
+        Wed, 03 Apr 2019 15:20:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1554330009; cv=none;
+        d=google.com; s=arc-20160816;
+        b=aZhp2LTH9+lHnNBPMdT7NbfSxU5WuOvivivxzWmGiDX+uQ8vyi5SCYqRa5CrS524/9
+         5qoigh39YS7Hqzjaj2YBiSfVqb3TprzsXr4CAW9IXoAuG7vUCxERuc4T0SWWPI8+zDcB
+         sROlypYXyl5WUrRHbmXWDmuKbZgPZmSlca4Awyc58krs55Je+0bGYCt+rEE9RtNbmkr8
+         VjoawKW1UwXPzsr95N6aN+bWxV6SaCrFhPK0CqnGUey0MuLOk1FXD5QltgOcy9SNyVVW
+         uuX06uRTUx6uiGXYlwGrERQUb5h4p08Rn1BodCAog993Sehusxvq+1hIdHztJrdOlI+H
+         XGCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:date:precedence:to:job_id:list-unsubscribe:subject:from
+         :reply-to:mime-version;
+        bh=NC2RHU6x1le8F7lDjRUK9OiiXx9/0xfNWplzmRcl2ns=;
+        b=AgYQ5BJBQ9trJ6G5F0HmiWyS1JwsU2Sifn22fET1gOURRkgQhVdxPyXwQr7SIvfsFX
+         +9CZJ9jDiwVJub67NB/ycoSIqsMuGyNJTETPoYwIomru5Bw7Ne9P8FZbjzW1TAH8EIMx
+         6oER15SBTc4u1f3TQuSeXLJvp7KvhwJN+3xQfzSuYVQbMaJ5yO2RPAWdJEvrCWZy4jrE
+         hC25qits8TdpgXeIsyO6xYZZGQs0xUKs2PRJFGhHm4K1uOk9wOQlq07UDUvYiNTjYO5i
+         EtadTlakCynX2WvpZFWLLYWlhLgCuhu4KjMVXoP1tMRO4CmB9ojQ7ZgyvRlXUj7V7in4
+         mm4w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of crmmailer+b.158450.42080274.1c57357147eeccff@fsf.org designates 2001:470:142:3::10 as permitted sender) smtp.mailfrom=crmmailer+b.158450.42080274.1c57357147eeccff@fsf.org
+Return-Path: <crmmailer+b.158450.42080274.1c57357147eeccff@fsf.org>
+Received: from eggs.gnu.org (eggs.gnu.org. [2001:470:142:3::10])
+        by mx.google.com with ESMTPS id d129si10247802ybf.92.2019.04.03.15.20.08
+        for <unixbhaskar@gmail.com>
+        (version=TLS1 cipher=AES128-SHA bits=128/128);
+        Wed, 03 Apr 2019 15:20:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of crmmailer+b.158450.42080274.1c57357147eeccff@fsf.org designates 2001:470:142:3::10 as permitted sender) client-ip=2001:470:142:3::10;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of crmmailer+b.158450.42080274.1c57357147eeccff@fsf.org designates 2001:470:142:3::10 as permitted sender) smtp.mailfrom=crmmailer+b.158450.42080274.1c57357147eeccff@fsf.org
+Received: from crmserver2p.fsf.org ([209.51.188.223]:37960)
+	by eggs.gnu.org with esmtps (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.71)
+	(envelope-from <crmmailer+b.158450.42080274.1c57357147eeccff@fsf.org>)
+	id 1hBoEj-0006Ch-CF
+	for unixbhaskar@gmail.com; Wed, 03 Apr 2019 18:20:06 -0400
+Received: from localhost ([127.0.0.1] helo=my.fsf.org)
+	by crmserver2p.fsf.org with esmtp (Exim 4.86_2)
+	(envelope-from <crmmailer+b.158450.42080274.1c57357147eeccff@fsf.org>)
+	id 1hBoEi-0004AQ-Qy
+	for unixbhaskar@gmail.com; Wed, 03 Apr 2019 18:20:01 -0400
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="=_a0f4ca40924cc3a8c6ece4fbf294f12e"
+Reply-To: "Donald Robertson, III, FSF" <info@fsf.org>
+From: "Donald Robertson, III, FSF" <info@fsf.org>
+Subject: About Musix's removal from our list of endorsed distributions
+List-Unsubscribe: <mailto:crmmailer+u.158450.42080274.1c57357147eeccff@fsf.org>
+job_id: 158450
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Precedence: bulk
+X-CiviMail-Bounce: crmmailer+b.158450.42080274.1c57357147eeccff@fsf.org
+Date: Wed, 03 Apr 2019 18:20:00 -0400
+Message-Id: <E1hBoEi-0004AQ-Qy@crmserver2p.fsf.org>
+X-detected-operating-system: by eggs.gnu.org: GNU/Linux 2.2.x-3.x [generic]
+
+--=_a0f4ca40924cc3a8c6ece4fbf294f12e
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+
+*Read and share online: <https://www.fsf.org/blogs/licensing/about-musixs-removal-from-our-list-of-endorsed-distributions>*
+
+
+Dear Bhaskar Chowdhury,
+
+The maintainer of Musix requested that it be removed from our list of
+endorsed distributions, as the distribution is no longer maintained.
+
+In 2018 we updated our [list of free GNU/Linux distributions][0] to
+add a ["Historical" section][1]. We retired [BLAG Linux and GNU][2] at that
+time, as it was no longer maintained. We are sad to announce today
+that Musix will also being moving to the Historical section, as it is
+likewise no longer maintained. Founded in 2004, Musix was on the list
+of free GNU/Linux distributions for over a decade. The list helps
+users to find operating systems that come with only free software and
+documentation, and that do not promote any nonfree software. Being
+added to the list means that a distribution has gone through a
+rigorous screening process, and is dedicated to diligently fixing any
+freedom issues that may arise.
+
+[0]: https://www.gnu.org/distros/free-distros.en.html
+[1]: https://www.gnu.org/distros/free-distros.en.html#Historical
+[2]: https://www.fsf.org/blogs/licensing/about-blags-removal-from-our-list-of-endorsed-distributions
+
+Musix was maintained by a sole developer, Marcos Guglielmetti, as a
+volunteer effort, a truly impressive accomplishment. Maintaining a
+distribution is a difficult task. Dealing with technical and security
+issues across an entire system, as well as upholding the ethical
+standards required for inclusion on our list, takes a great deal of
+effort.
+
+While it is sad that Musix will now reside in our Historical section,
+we can all still be thankful for the maintainer's work over the years,
+and for the fact that there are still many endorsed distributions
+available. Users of Musix should consider switching to another distro
+on our list to ensure that the security and freedom of their system is
+up to date.
+
+Sincerely,  
+Donald Robertson, III    
+Licensing & Compliance Manager  
+-- 
+* Follow us on GNU social at <https://status.fsf.org/fsf>, on Diaspora at <https://u.fsf.org/2ly>, and on Twitter at <https://mobile.twitter.com/fsf/>.
+* Read about why we use Twitter, but only with caveats at <https://www.fsf.org/twitter>.
+* Subscribe to our RSS feeds at <https://fsf.org/blogs/RSS>.
+* Join us as an associate member at <https://www.fsf.org/jf>.
+* Read our Privacy Policy at <https://www.fsf.org/about/free-software-foundation-privacy-policy>.
+
+Sent from the Free Software Foundation,
+
+51 Franklin St, Fifth Floor
+Boston, Massachusetts 02110-1335
+United States
+
+
+You can unsubscribe from this mailing list by visiting 
+
+https://my.fsf.org/civicrm/mailing/unsubscribe?reset=1&jid=158450&qid=42080274&h=1c57357147eeccff.
+
+To stop all email from the Free Software Foundation, including Defective by Design,
+and the Free Software Supporter newsletter, visit
+
+https://my.fsf.org/civicrm/mailing/optout?reset=1&jid=158450&qid=42080274&h=1c57357147eeccff.
+--=_a0f4ca40924cc3a8c6ece4fbf294f12e
+Content-Transfer-Encoding: 8bit
+Content-Type: text/html; charset=utf-8
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<title></title>
+<style media="screen" type="text/css">.ExternalClass 
+    
+    .ExternalClass,
+    .ExternalClass p,
+    .ExternalClass span,
+    .ExternalClass font,
+    .ExternalClass td,
+    .ExternalClass div 
+    body 
+h3 
+    body,
+    p,
+    td 
+    h1 
+    body,
+    p 
+    img 
+    a img 
+    .background 
+    table.background 
+    .block-img 
+    a 
+    a,
+    a:link 
+    table td 
+    td 
+    .wrap 
+    .wrap-cell 
+    .header-cell,
+    .body-cell,
+    .footer-cell 
+    .header-cell 
+    .body-cell 
+    .footer-cell 
+    .data-heading 
+    .data-value 
+    .force-full-width </style>
+<style media="only screen and (max-width: 600px)" type="text/css">@media only screen and (max-width: 600px) 
+      td[class="data-heading"],
+      td[class="data-value"] 
+      td[class="data-heading"] 
+      table[class="wrap"] 
+      td[class="wrap-cell"]     }
+</style>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="background" height="100%" style="background-color:#FFFFFF;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;width:100% !important;" width="100%">
+	<tbody>
+		<tr>
+			<td align="center" class="background" style="font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:1em;vertical-align:top;text-align:left;border-collapse:collapse;background-color:#FFFFFF;" valign="top" width="100%">
+			<center>
+			<table cellpadding="0" cellspacing="0" class="wrap" style="width:600px;" width="600">
+				<tbody>
+					<tr>
+						<td class="wrap-cell" style="padding-top:30px;padding-bottom:30px;font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:1em;vertical-align:top;text-align:left;border-collapse:collapse;" valign="top">
+						<table cellpadding="0" cellspacing="0" class="force-full-width" style="width:100% !important;">
+							<tbody>
+								<tr>
+									<td class="header-cell" height="60" style="padding-top:15px;padding-bottom:15px;font-family:Arial, Helvetica, sans-serif;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:1em;text-align:left;border-collapse:collapse;padding-left:20px;padding-right:20px;background-color:#eeeeee;font-size:24px;vertical-align:middle;" valign="top"><img alt="Free Software Foundation" src="https://static.fsf.org/nosvn/fsf_logos/email-header-logo.png" style="outline-style:none;text-decoration:none;-ms-interpolation-mode:bicubic;" /></td>
+								</tr>
+								<tr>
+									<td class="body-cell" style="font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:1em;vertical-align:top;text-align:left;border-collapse:collapse;padding-left:20px;padding-right:20px;background-color:#ffffff;padding-top:30px;padding-bottom:34px;" valign="top">
+									<table bgcolor="#ffffff" cellpadding="0" cellspacing="0" width="100%">
+										<tbody>
+											<tr>
+												<td style="padding-bottom:20px;background-color:#ffffff;font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:1em;vertical-align:top;text-align:left;border-collapse:collapse;" valign="top"><p><em>Read and share online: <a href="https://www.fsf.org/blogs/licensing/about-musixs-removal-from-our-list-of-endorsed-distributions">https://www.fsf.org/blogs/licensing/about-musixs-removal-from-our-list-of-endorsed-distributions</a></em></p>
+
+<p></p>
+
+<p>Dear Bhaskar Chowdhury,</p>
+
+<p>The maintainer of Musix requested that it be removed from our list of
+endorsed distributions, as the distribution is no longer maintained.</p>
+
+<p>In 2018 we updated our <a href="https://www.gnu.org/distros/free-distros.en.html">list of free GNU/Linux distributions</a> to
+add a <a href="https://www.gnu.org/distros/free-distros.en.html#Historical">"Historical" section</a>. We retired <a href="https://www.fsf.org/blogs/licensing/about-blags-removal-from-our-list-of-endorsed-distributions">BLAG Linux and GNU</a> at that
+time, as it was no longer maintained. We are sad to announce today
+that Musix will also being moving to the Historical section, as it is
+likewise no longer maintained. Founded in 2004, Musix was on the list
+of free GNU/Linux distributions for over a decade. The list helps
+users to find operating systems that come with only free software and
+documentation, and that do not promote any nonfree software. Being
+added to the list means that a distribution has gone through a
+rigorous screening process, and is dedicated to diligently fixing any
+freedom issues that may arise.</p>
+
+<p>Musix was maintained by a sole developer, Marcos Guglielmetti, as a
+volunteer effort, a truly impressive accomplishment. Maintaining a
+distribution is a difficult task. Dealing with technical and security
+issues across an entire system, as well as upholding the ethical
+standards required for inclusion on our list, takes a great deal of
+effort.</p>
+
+<p>While it is sad that Musix will now reside in our Historical section,
+we can all still be thankful for the maintainer's work over the years,
+and for the fact that there are still many endorsed distributions
+available. Users of Musix should consider switching to another distro
+on our list to ensure that the security and freedom of their system is
+up to date.</p>
+
+<p>Sincerely,<br />
+Donald Robertson, III  <br />
+Licensing &amp; Compliance Manager</p>
+</td>
+											</tr>
+										</tbody>
+									</table>
+									</td>
+								</tr>
+								<tr>
+									<td class="footer-cell" style="font-family:Arial, Helvetica, sans-serif;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:1em;vertical-align:top;border-collapse:collapse;padding-left:20px;padding-right:20px;background-color:#eeeeee;text-align:center;font-size:13px;padding-top:30px;padding-bottom:30px;" valign="top">
+
+									<p style="font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;"><a href="https://status.fsf.org/fsf" style="color:#2A5DB0;text-decoration:underline;"><a href="https://status.fsf.org/fsf">Follow us on GNU social </a> | <a href="https://u.fsf.org/2ly">Follow us on Diaspora</a> |
+<a href="https://mobile.twitter.com/fsf/">Follow us on Twitter</a></p>
+
+<p style="font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;"><a href="https://www.fsf.org/twitter">Read about why we use Twitter, but only with caveats</a></p>
+
+<p style="font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;"><a href="https://fsf.org/blogs/RSS">Subscribe to our blog via RSS</a></p>
+
+<p style="font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;"><a href="https://my.fsf.org/associate/support_freedom/join_fsf">Join us as an associate member</a></p>
+
+<p style="font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;"><a href="https://www.fsf.org/about/free-software-foundation-privacy-policy">Read the Free Software Foundation Privacy Policy</a></p>
+
+<p style="font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;">Sent from the Free Software Foundation,
+<div class="location vcard"><span class="adr"><span class="street-address">51 Franklin St, Fifth Floor</span><br /><span class="locality">Boston</span>, <span class="region">Massachusetts</span> <span class="postal-code">02110-1335</span><br /><span class="country-name">United States</span></span></div></p>
+
+<p style="font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;">You can unsubscribe from this mailing list by visiting the link <br><a href="https://my.fsf.org/civicrm/mailing/unsubscribe?reset=1&amp;jid=158450&amp;qid=42080274&amp;h=1c57357147eeccff">https://my.fsf.org/civicrm/mailing/unsubscribe?reset=1&amp;jid=158450&amp;qid=42080274&amp;h=1c57357147eeccff</a>.</p>
+
+<p style="font-family:Arial, Helvetica, sans-serif;font-size:15px;color:#333333;line-height:1.5em;margin-top:1em;margin-bottom:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;">To stop all email from the Free Software Foundation, including Defective by Design,<br />
+									and the Free Software Supporter newsletter, click this link:<br>
+
+									<a href="https://my.fsf.org/civicrm/mailing/optout?reset=1&amp;jid=158450&amp;qid=42080274&amp;h=1c57357147eeccff">https://my.fsf.org/civicrm/mailing/optout?reset=1&amp;jid=158450&amp;qid=42080274&amp;h=1c57357147eeccff</a>.</p>
+</td>
+								</tr>
+							</tbody>
+						</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</center>
+			</td>
+		</tr>
+	</tbody>
+</table>
+--=_a0f4ca40924cc3a8c6ece4fbf294f12e--

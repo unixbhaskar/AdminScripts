@@ -1,0 +1,73 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp488178lfc;
+        Wed, 29 Jan 2020 04:23:22 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxCdqYtAoubTNldHg/u70FZQsSL1b0Dtc66lQqWD/13PKruWg3h8k8OG/5/Od15ql41FVq5
+X-Received: by 2002:a17:90a:bd01:: with SMTP id y1mr10741775pjr.129.1580300601818;
+        Wed, 29 Jan 2020 04:23:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580300601; cv=none;
+        d=google.com; s=arc-20160816;
+        b=C8ZZvlYXh+BppOuOLQK/hzHJQbZv3FvB2K/txdPl/cmQxMx0lkyhoweWLyRQ9u+v6Z
+         ut2W3rjjLdrqvMM4UD1QtTMXsUWandweWY3G89YF+5mAiHoN7zsIlymNjA+PSqjWYhzp
+         Yr0rc9U0lzYxzckCKMKYhNXPijh+jkN5iiqYLKInH9YAqsusoMjZIrqSRQsr+B6u8lCi
+         WFolmATkJPKizOoztSdu0k0+hl3KhUAF2RBoIYJtL6yrRBfMxML+Za49K2UTgyQB1RSx
+         DDM+IM1EPncdO1QynGAehz/AxyuRJfOAfFw0bPMlVf7KiA63X4UbP8/38OjvEfSGSbTp
+         kKwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=sender:errors-to:list-id:precedence:date:message-id:to:from:subject
+         :content-transfer-encoding:mime-version;
+        bh=AUGy9/GbH2o+5IirQwJPSnDuv8HIBPuXgxQc6D6nAQE=;
+        b=gWN3K5qIou9QlMTaOkqr9N0w2M0SYeUE4hFiXncGpUkauHriHN7Xr2BU23509D3s9g
+         9wXUK+dhjldML70Fyz37tbsjK4NOcHmkX0OYUyTUNPJyeajsGRpWespm7vGxKTeoAR/k
+         iU8XV/62ngFWAvQFJQ7Fsi98tbfc5kMfn5gdbnCMfKX93VEOFKmrQKcVg/7COGfP/UM8
+         8LlSPGCUf/+VUrHr6yWnzu4XluWMT4+KwlJCEKYas+UOsWj8BCq+210wZf1FYEZrB1du
+         2WEQArmX0Pl/MnIkuJf0HGe46tr4rGM2R2JCbtzkyhKqx6C1jyh/otHj17JrWYuonI+L
+         kdUQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of wireguard-bounces@lists.zx2c4.com designates 192.95.5.69 as permitted sender) smtp.mailfrom=wireguard-bounces@lists.zx2c4.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=zx2c4.com
+Return-Path: <wireguard-bounces@lists.zx2c4.com>
+Received: from krantz.zx2c4.com (krantz.zx2c4.com. [192.95.5.69])
+        by mx.google.com with ESMTPS id fr18si1689367pjb.47.2020.01.29.04.23.20
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 29 Jan 2020 04:23:21 -0800 (PST)
+Received-SPF: pass (google.com: domain of wireguard-bounces@lists.zx2c4.com designates 192.95.5.69 as permitted sender) client-ip=192.95.5.69;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of wireguard-bounces@lists.zx2c4.com designates 192.95.5.69 as permitted sender) smtp.mailfrom=wireguard-bounces@lists.zx2c4.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=zx2c4.com
+Received: from krantz.zx2c4.com (localhost [IPv6:::1])
+	by krantz.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 1e18a5e5
+	for <unixbhaskar@gmail.com>;
+	Wed, 29 Jan 2020 12:23:15 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Subject: Your message to WireGuard awaits moderator approval
+From: wireguard-owner@lists.zx2c4.com
+To: unixbhaskar@gmail.com
+Message-ID: <mailman.9.1580300595.2480.wireguard@lists.zx2c4.com>
+Date: Wed, 29 Jan 2020 13:23:15 +0100
+Precedence: bulk
+X-BeenThere: wireguard@lists.zx2c4.com
+X-Mailman-Version: 2.1.15
+List-Id: Development discussion of WireGuard <wireguard.lists.zx2c4.com>
+X-List-Administrivia: yes
+Errors-To: wireguard-bounces@lists.zx2c4.com
+Sender: "WireGuard" <wireguard-bounces@lists.zx2c4.com>
+
+Your mail to 'WireGuard' with the subject
+
+    Re: wireguard ci hooked up to quite a few kernel trees
+
+Is being held until the list moderator can review it for approval.
+
+The reason it is being held:
+
+    Post by non-member to a members-only list
+
+Either the message will get posted to the list, or you will receive
+notification of the moderator's decision.  If you would like to cancel
+this posting, please visit the following URL:
+
+    https://lists.zx2c4.com/mailman/confirm/wireguard/a405855b701010b7f6d53fd6ea1171625876cd0a
+

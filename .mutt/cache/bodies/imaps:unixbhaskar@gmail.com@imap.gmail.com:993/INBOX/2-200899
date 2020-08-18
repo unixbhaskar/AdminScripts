@@ -1,0 +1,146 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp800252lfj;
+        Fri, 13 Sep 2019 08:09:54 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxz4ZKHhcB+Gakrv6/TyWLx0LQa5c39hWqjEzGi1g6u3PLhQhCONAVhvaivoNN9IRq+7xYk
+X-Received: by 2002:a17:902:850c:: with SMTP id bj12mr50227570plb.68.1568387394673;
+        Fri, 13 Sep 2019 08:09:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568387394; cv=none;
+        d=google.com; s=arc-20160816;
+        b=EXNtj3Kcz30580sKak1by4cYyUI96XfBtWIfS3+gzgQyfUcEFEbeaSOpUZY5JX0mz0
+         ppcJh8DIMkbLAWg1AK4zopa0R0El+f6+RlmDQC3MkzHxUeQGX7v7lGfj1CRFTiUCQKmb
+         TDbVWzzu2QUu/wOMU1U51bViIslUuc7bcpOdANuII7CqYIhzs4PBqz4O4dj3+9kRGEQ7
+         PRotibmoUQx1zpMPJk+NY4lO3CeHyZKXnuOuTXZvvZ8dBhBAZDZ7lQIWxOplsyPzMwX/
+         cERVVyGMlP/hWZpa7dDThQjuFCHXuiApSWRIrCAx9+C5nGJtTuY/xtUI9y/yluvuhsvi
+         pIRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=errors-to:sender:content-transfer-encoding:list-subscribe:list-help
+         :list-post:list-archive:list-unsubscribe:list-id:precedence:subject
+         :cc:user-agent:in-reply-to:content-disposition:mime-version
+         :references:message-id:to:from:date:dkim-signature:dkim-signature
+         :delivered-to;
+        bh=EkEkHKtE3r2qU4aFvYsSKQxa201KCC1YhxcKGBUZ+Mw=;
+        b=W7TAYRdWfeAUgo6k+jCtA8JfraVTSJpEWh33CLFyhGfFxOJ626E5VCcFhZCzY7EFSe
+         Uak3dPjrQhfLKWAZ+X3f2LyXNSgaSAFkWv78vfOcoal9QCkw6ZNUe0Qw5LgvZ24OlzUg
+         HYpCe1WLI9lX7yptSlEUOyQdrN1EX3sg5kWQ3DCS5s3mLMgxSjThisRgmRDU+DI/M1Yh
+         kpar4XENYhoihdqqxnefmONEI9i0EtGbfr1uX4PKGF75DJF4to13DZCvYQcs9zUW4xjR
+         GxlUOjiiBZiinmqBhTR5IZX/svUrM0bBTjhrZunUSlmBiEmEc/vqGWmiI+gj7cLPiwx0
+         HabQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=neutral (body hash did not verify) header.i=@kroah.com header.s=fm1 header.b=Mwr57xLN;
+       dkim=neutral (body hash did not verify) header.i=@messagingengine.com header.s=fm3 header.b=egQWtmzB;
+       spf=pass (google.com: domain of ksummit-discuss-bounces@lists.linuxfoundation.org designates 140.211.169.12 as permitted sender) smtp.mailfrom=ksummit-discuss-bounces@lists.linuxfoundation.org
+Return-Path: <ksummit-discuss-bounces@lists.linuxfoundation.org>
+Received: from mail.linuxfoundation.org (mail.linuxfoundation.org. [140.211.169.12])
+        by mx.google.com with ESMTPS id h1si24615280pgp.250.2019.09.13.08.09.53
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 13 Sep 2019 08:09:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ksummit-discuss-bounces@lists.linuxfoundation.org designates 140.211.169.12 as permitted sender) client-ip=140.211.169.12;
+Authentication-Results: mx.google.com;
+       dkim=neutral (body hash did not verify) header.i=@kroah.com header.s=fm1 header.b=Mwr57xLN;
+       dkim=neutral (body hash did not verify) header.i=@messagingengine.com header.s=fm3 header.b=egQWtmzB;
+       spf=pass (google.com: domain of ksummit-discuss-bounces@lists.linuxfoundation.org designates 140.211.169.12 as permitted sender) smtp.mailfrom=ksummit-discuss-bounces@lists.linuxfoundation.org
+Received: from mail.linux-foundation.org (localhost [127.0.0.1])
+	by mail.linuxfoundation.org (Postfix) with ESMTP id EE42D1032;
+	Fri, 13 Sep 2019 15:09:44 +0000 (UTC)
+X-Original-To: ksummit-discuss@lists.linuxfoundation.org
+Delivered-To: ksummit-discuss@mail.linuxfoundation.org
+Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
+	[172.17.192.35])
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 29DD6C79
+	for <ksummit-discuss@lists.linuxfoundation.org>;
+	Fri, 13 Sep 2019 15:09:43 +0000 (UTC)
+X-Greylist: from auto-whitelisted by SQLgrey-1.7.6
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+	[66.111.4.230])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 1E622896
+	for <ksummit-discuss@lists.linuxfoundation.org>;
+	Fri, 13 Sep 2019 15:09:42 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+	by mailnew.nyi.internal (Postfix) with ESMTP id 5BAE420E7;
+	Fri, 13 Sep 2019 11:09:41 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+	by compute6.internal (MEProxy); Fri, 13 Sep 2019 11:09:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=fm1; bh=78Q8OlRfap8fz5xWN2Z89uJar03
+	qpqVETxGfaTCfDgc=; b=Mwr57xLNKNl5KVc9AAC4AXlZg7SFqmeWA9w5FAcuU7C
+	NO5np33AL2z8HZ+2M+ocGoN5yCEfw4ZfdeX3Wl2r5OPdouks+6s9Mzn++Gyn4T4P
+	6HdZ9vSZEaLF0ueq40ExW3oSixgOTspsk+Lebn6O57gZZJ7aoYqCq7aMSl7hYwX2
+	WPmDyFfYK4dtFMOiIM3Gy8Lk2UY4/hcCGALME2BpINbFKEpqV+NaR+X47qqYIa6x
+	YubAjnYSJY+Qi9CnW7jdEmzVN7IsKV+LxsGMCApf1XRYliesQld0fJcpOXkbmE6S
+	ZcTLrnScDlvpxGsTiYwDwS7ig9F7VwEG0U7NhkrK6Lg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=78Q8Ol
+	Rfap8fz5xWN2Z89uJar03qpqVETxGfaTCfDgc=; b=egQWtmzBrxtMs78VfqVbOf
+	Ks2/KL/qe7yk2+GFtdsZ9pjkWWDbRFFos4cvKCb6RLRN+NYC0cnqwuvdrEFvXzYY
+	GiES11wnhQ3/b/AVDEfUsfFl18KE7zSgQrZKNoyarrwQQ47P++eeMZFIsiB+9y/1
+	mDFP7d/owYmlmqhBgzhWxBorzNQ7V6Z/iWj90607rt6x184SBzyswtjvRdazDEkb
+	uC3JxMY0FbB7Tbz/Y28NMfwasjsS3sU+1lRN9gxq7CYbXAujncwX/AQjH3vqHAkU
+	rz3VRQG2+pDpaqAcF5B9kMkUGR0s87bjdwhD78p4edcNUVlp3y/eBSgZsXU4JR1g
+	==
+X-ME-Sender: <xms:NLF7XT-36XisQUcNFLz0hEhw-swy3XGEK0Eni2Hu41m2G19LOJfLmA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrtdejgdekgecutefuodetggdotefrodftvf
+	curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+	uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenog
+	fuphgrmhfkphdqohhuthculdehtddtmdenucfjughrpeffhffvuffkfhggtggujggfseht
+	tdertddtredvnecuhfhrohhmpefirhgvghcumffjuceoghhrvghgsehkrhhorghhrdgtoh
+	hmqeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedutdegrddufedvrdeg
+	hedrleelnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvgheskhhrohgrhhdrtghomh
+	enucevlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:NLF7XfSJ9Ooz9_csxLNvxttrNjFFi64zT0IPNylTo8TkzG0T-jQX3w>
+	<xmx:NLF7XaZ4S__HpxZrT9LO-Ar_UWJ86BCZhMs3l5kTf1Xp0Dx0j2XAww>
+	<xmx:NLF7XYTq9NrMOcdDErH17JIVx8CQYeIoEa7dQ1e1jwPJu7x5Yj5URg>
+	<xmx:NbF7XT3s0hH11zDnxyvyv2dNjYcIZgFhlvZ--rg3g808f2eccdLoqA>
+Received: from localhost (unknown [104.132.45.99])
+	by mail.messagingengine.com (Postfix) with ESMTPA id 8E6C78005A;
+	Fri, 13 Sep 2019 11:09:40 -0400 (EDT)
+Date: Fri, 13 Sep 2019 16:09:39 +0100
+From: Greg KH <greg@kroah.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <20190913150939.GA458191@kroah.com>
+References: <20190913073849.GA15965@mit.edu>
+	<29b46dfe-173b-7022-8676-f3c4000a8375@infradead.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <29b46dfe-173b-7022-8676-f3c4000a8375@infradead.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	smtp1.linux-foundation.org
+Cc: workflows@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ksummit-discuss@lists.linuxfoundation.org
+Subject: Re: [Ksummit-discuss] New list for people to share maintainer
+ workflows
+X-BeenThere: ksummit-discuss@lists.linuxfoundation.org
+X-Mailman-Version: 2.1.12
+Precedence: list
+List-Id: <ksummit-discuss.lists.linuxfoundation.org>
+List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/ksummit-discuss>,
+	<mailto:ksummit-discuss-request@lists.linuxfoundation.org?subject=unsubscribe>
+List-Archive: <http://lists.linuxfoundation.org/pipermail/ksummit-discuss/>
+List-Post: <mailto:ksummit-discuss@lists.linuxfoundation.org>
+List-Help: <mailto:ksummit-discuss-request@lists.linuxfoundation.org?subject=help>
+List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/ksummit-discuss>,
+	<mailto:ksummit-discuss-request@lists.linuxfoundation.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: ksummit-discuss-bounces@lists.linuxfoundation.org
+Errors-To: ksummit-discuss-bounces@lists.linuxfoundation.org
+
+On Fri, Sep 13, 2019 at 08:04:07AM -0700, Randy Dunlap wrote:
+> On 9/13/19 12:38 AM, Theodore Y. Ts'o wrote:
+> 
+> > Let's continue the discussion on workflows@vger.kernel.org.
+> 
+> Hi,
+> Will this be archived on lore.kernel.org?
+
+It is already there:
+	https://lore.kernel.org/workflows/
+_______________________________________________
+Ksummit-discuss mailing list
+Ksummit-discuss@lists.linuxfoundation.org
+https://lists.linuxfoundation.org/mailman/listinfo/ksummit-discuss

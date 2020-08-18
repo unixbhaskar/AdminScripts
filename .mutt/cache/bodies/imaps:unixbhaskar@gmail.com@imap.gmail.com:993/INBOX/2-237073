@@ -1,0 +1,141 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp4014845lfg;
+        Mon, 4 May 2020 09:16:43 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJEyJfFsTZmZQQOum8+821HTqCg6WACwbRh60+PGMQfaIPpcnSq1SCW22iG2kNaM1vhmTjl
+X-Received: by 2002:a17:907:402f:: with SMTP id nr23mr16083460ejb.240.1588609003274;
+        Mon, 04 May 2020 09:16:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1588609003; cv=none;
+        d=google.com; s=arc-20160816;
+        b=yUmg7RYXN3zXs/nAYH0uhynpuO8WnVi1vuw8VPyvsVn8CnOZfpImaocAV+qXJYmY6J
+         M2AWtW0Ao9QmEpkndXwZVQznz6MlBLhs0Z6w2OZt8hwVAglOqD9V4cXBeehvzcvFXqPj
+         kvcYKe2HqjzGNzchklR1qRTdxAwvRmWXtJSfFDoi8kCY/Ruijdlp7NLX3eUiM9bPl9bo
+         1egWkNrmgA+2iNqgjAqp09ISeVtaR/Wy5ZewWM+qs93CAWMN8KtMxd9hmf7/DiXGDr4F
+         Axlc0nhYO1ClxAIIZLr6DH1DCLfgsaA5QGwu+FFI4qm51XPefb3obGq0qPoQntN82I1+
+         rPGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:dkim-signature;
+        bh=Uuh1IJ8pB0K+VMTYDs8Zuh+vG5xj9hQbQ99FMw/17ys=;
+        b=ozmdgXeiyIWWBexx3+KgxFllmm+bOzqDQyg9bnPeHAQmIIlruoVnY+Xu9cTB2dU+tB
+         /z2/gfy+0QbAIJhpd6PEdk0MLkVRSlNxm5zBSk7sDpFWlgbfPb9ejvuFbIkoWh1G72Xx
+         wP0K/TuIAkTM51oPQyKK89nUahFERbT6OhsAAGiXtU0/IRvsWYJ52KNj7+YMCen2NAUO
+         7BQvxZ6f+2pLlq5kTLDBgk5G4fhcPjIWqBPlbxwYqQHG4fPZ+LdDJHi/7mM2oFclBz8z
+         dAFSBDpx+C0r8t24m8aA/DATK1bgOHKSq8J/0kcAsCOM398lc1yRYh/ikpSd1cy4XM/h
+         gh4Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=neQLZziZ;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id n23si7303061edt.420.2020.05.04.09.16.18;
+        Mon, 04 May 2020 09:16:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=neQLZziZ;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729517AbgEDQOO (ORCPT <rfc822;luke.ovalle@gmail.com>
+        + 99 others); Mon, 4 May 2020 12:14:14 -0400
+Received: from aserp2120.oracle.com ([141.146.126.78]:60244 "EHLO
+        aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726578AbgEDQON (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 4 May 2020 12:14:13 -0400
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+        by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 044Fta2g150099;
+        Mon, 4 May 2020 16:13:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=Uuh1IJ8pB0K+VMTYDs8Zuh+vG5xj9hQbQ99FMw/17ys=;
+ b=neQLZziZ4rQ+6tvbTUB3Kcy+OFOZKVIq+dwiEKIRJz3K+rKIA8zXYSxUdg0v2oRfx4gt
+ 5Cr6hLdH/wM/TBnXuM2j49YZQ9HJWih61J1yaU8KJTk7fbmkM5IKh0BYf0aCSph6s2nE
+ xRQxNlkY05IhAFStfOKzpMQosS3kB7QVn95DvhlaZTtFd/cgBkQyue5rzsWr1LJwS2l1
+ GPrJfR0nU5YdgiBPI0v3KdGDoeEAIiM5nvustGd6ByNcbusoLpO6ivK/qvAFqoSRgAne
+ pPVbnA9G2jhzXnKqhHtn3YeTaZuy/JF65xtNyQdr6P9ToW051/LFZtsulYW1oA2zYdLA Sg== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+        by aserp2120.oracle.com with ESMTP id 30s0tm7vq9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 04 May 2020 16:13:57 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+        by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 044G6qJR061942;
+        Mon, 4 May 2020 16:13:56 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+        by aserp3030.oracle.com with ESMTP id 30sjdquymb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 04 May 2020 16:13:56 +0000
+Received: from abhmp0020.oracle.com (abhmp0020.oracle.com [141.146.116.26])
+        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 044GDskG025963;
+        Mon, 4 May 2020 16:13:54 GMT
+Received: from localhost (/67.169.218.210)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Mon, 04 May 2020 09:13:54 -0700
+Date:   Mon, 4 May 2020 09:13:52 -0700
+From:   "Darrick J. Wong" <darrick.wong@oracle.com>
+To:     linux-kernel@vger.kernel.org, linux-xfs@vger.kernel.org,
+        linux-api@vger.kernel.org, linux-ext4@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org
+Cc:     ira.weiny@intel.com, Al Viro <viro@zeniv.linux.org.uk>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Dave Chinner <david@fromorbit.com>,
+        Christoph Hellwig <hch@lst.de>,
+        "Theodore Y. Ts'o" <tytso@mit.edu>, Jan Kara <jack@suse.cz>,
+        Jeff Moyer <jmoyer@redhat.com>
+Subject: [ANNOUNCE] xfs-linux: vfs-for-next updated to 83d9088659e8
+Message-ID: <20200504161352.GA13783@magnolia>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9610 signatures=668687
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 suspectscore=2 mlxscore=0
+ bulkscore=0 adultscore=0 phishscore=0 mlxlogscore=999 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
+ definitions=main-2005040127
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9610 signatures=668687
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 mlxscore=0
+ priorityscore=1501 lowpriorityscore=0 spamscore=0 suspectscore=2
+ phishscore=0 clxscore=1015 bulkscore=0 mlxlogscore=999 adultscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2005040127
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Hi folks,
+
+The vfs-for-next branch of the xfs-linux repository at:
+
+	git://git.kernel.org/pub/scm/fs/xfs/xfs-linux.git
+
+has just been updated.
+
+After a very, very long process of discussing how sysadmins and app
+programmers are supposed to tag files for DAX data access mode, we have
+reached an agreement about how the userspace knobs should work.  This
+first update contains the necessary documentation updates and statx mode
+flag to enable the behaviors that we have decided on.  The second part
+(hinting at inode eviction to change the DAX mode) will come later after
+everyone has had a few days to let this soak in.
+
+The new head of the vfs-for-next branch is commit:
+
+83d9088659e8 Documentation/dax: Update Usage section
+
+New Commits:
+
+Ira Weiny (3):
+      [efbe3c2493d2] fs: Remove unneeded IS_DAX() check in io_is_direct()
+      [712b2698e4c0] fs/stat: Define DAX statx attribute
+      [83d9088659e8] Documentation/dax: Update Usage section
+
+
+Code Diffstat:
+
+ Documentation/filesystems/dax.txt | 142 +++++++++++++++++++++++++++++++++++++-
+ drivers/block/loop.c              |   6 +-
+ fs/stat.c                         |   3 +
+ include/linux/fs.h                |   7 +-
+ include/uapi/linux/stat.h         |   1 +
+ 5 files changed, 147 insertions(+), 12 deletions(-)

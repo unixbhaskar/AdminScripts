@@ -1,0 +1,162 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1327685lfj;
+        Wed, 4 Sep 2019 16:34:55 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxzqVyohBOphU8syN8UhDI8Z2i/tMVAEuFAEfmE5Y6viNShzKnn/Ca8zyMrhmweXcxHFCHq
+X-Received: by 2002:a37:8f86:: with SMTP id r128mr170399qkd.392.1567640095740;
+        Wed, 04 Sep 2019 16:34:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1567640095; cv=none;
+        d=google.com; s=arc-20160816;
+        b=VumchROqcWb+h3lagsLdIXTDh0pbCiOeXOhGuz7HdU4e+C/UzZw6BSgiW06d/43FWg
+         i2Hy1PRLksGz/GyMK7Pwcz0WLk1pKZwC2WbkHbdoQKQ2hTnOsm3cO71TLi1GKKjWeZcp
+         2uj6s3JGjA6Ye4pWbIdi7H9MaQ12M/2EjLMi36SWbju0TqzI2Zuz8AaREj9DoEBLkLdL
+         5IovQJTcVL3jFyjzRYx/DnSS/zdRdVJDcDApf+JQY4ehKozj/RLGzNWn//3ySwvprEPk
+         Au3La6J5nsBNPDDbw8Xo3Y4rnNIsYG92u7/aG/a1UmP+DrKoa7NHE/yS7dYiFQmxp7E4
+         xbkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-post:list-archive:list-id:precedence
+         :content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:reply-to:from:dkim-signature:date;
+        bh=DIWM+G7d4+YOVICMaeVCj6+EnaSD/gzh6dVJlK/Q+2g=;
+        b=ZBhuGMVFaABCMShJsAMgmHhjTcbQVGWHAAy6uaCytf0F4cU+BACczGeH861aRUTUOq
+         8fKj5t0x9Tmc3zQ+9rNxXLX3YOqNGKU5Ed32KoHnVd1NUnvmFPSYCzGMT/dPmf4wGL7K
+         PZo12a8weweSf/moalru8TWaqeVN/B8mhYqOwcqbf35EmGZpirJKCu5z9w214km0T0yt
+         OTbA04ZjT8CesY1MwkGIEiTl+lkUbXyj7I8ou2YdlYojkErhCUXsienl9AAx7PfDs6Jj
+         fJG/3r0XTIjJLwqACzp70eAr7K+zKmHPP8jaNnMWTCA3s84uQP242CYZOqsNcRHeC/ew
+         V7Og==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=rxpsy5gW;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.207 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-24.smtp.github.com (out-24.smtp.github.com. [192.30.252.207])
+        by mx.google.com with ESMTPS id q57si146670qtb.328.2019.09.04.16.34.55
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 04 Sep 2019 16:34:55 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.207 as permitted sender) client-ip=192.30.252.207;
+Authentication-Results: mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=rxpsy5gW;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.207 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Date: Wed, 04 Sep 2019 16:34:55 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2014; t=1567640095;
+	bh=DIWM+G7d4+YOVICMaeVCj6+EnaSD/gzh6dVJlK/Q+2g=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:From;
+	b=rxpsy5gWDWpNs6goJSKiVkweS+djEdTxbn8rzdYh27Hky6+D6zpQcSf/kbkF0kUWI
+	 vq3DaTJgN0/xrJS3hE/JhtHbq+k/KzHSUtVDEZdavaDvMpvJiUqD6ApfJFRlM9b6mL
+	 mzSRHUdGlo2u1lrSmF+0LCu1Yd6kA5Sj60hYABtc=
+From: Joel <notifications@github.com>
+Reply-To: joelagnel/ngit <reply+AAA3X243Q42YSEPXO6WMHOV3PWFK7EVBNHHBZJ3VIM@reply.github.com>
+To: joelagnel/ngit <ngit@noreply.github.com>
+Cc: Bhaskar Chowdhury <unixbhaskar@gmail.com>, 
+ Mention <mention@noreply.github.com>
+Message-ID: <joelagnel/ngit/issues/1/528132244@github.com>
+In-Reply-To: <joelagnel/ngit/issues/1@github.com>
+References: <joelagnel/ngit/issues/1@github.com>
+Subject: Re: [joelagnel/ngit] [Support] Is that much better than tig? (#1)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5d704a1f5d082_4abc3f9327ecd96c117310";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: joelagnel
+X-GitHub-Recipient: unixbhaskar
+X-GitHub-Reason: mention
+List-ID: joelagnel/ngit <ngit.joelagnel.github.com>
+List-Archive: https://github.com/joelagnel/ngit
+List-Post: <mailto:reply+AAA3X243Q42YSEPXO6WMHOV3PWFK7EVBNHHBZJ3VIM@reply.github.com>
+List-Unsubscribe: <mailto:unsub+AAA3X243Q42YSEPXO6WMHOV3PWFK7EVBNHHBZJ3VIM@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/AAA3X24BCRUNVNRP7EXJ22TQIBAZ7ANCNFSM4ILV7Y3Q>
+X-Auto-Response-Suppress: All
+X-GitHub-Recipient-Address: unixbhaskar@gmail.com
+
+
+----==_mimepart_5d704a1f5d082_4abc3f9327ecd96c117310
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+> > That's handy dandy! But I get an annoying 'Press any key to continue'.
+> 
+> This can be avoided by pre-pending > to command. See [jonas/tig#463](https://github.com/jonas/tig/issues/463)
+> 
+> I found tig super helpful, able to accomplish most things. Here with external commands for things that I use most often, by adding following in tigrc:
+> 
+> ```
+> bind main A !>sh -c "GIT_SEQUENCE_EDITOR=\"sed -i -e '1 s/^pick /reword /'\" git rebase -i %(commit)^ --autostash"
+
+Works.
+
+> bind main E !<>sh -c "GIT_SEQUENCE_EDITOR=\"sed -i -e '1 s/^pick /edit /'\" git rebase -i %(commit)^ --autostash"
+
+Works.
+
+> bind main D !>sh -c "GIT_SEQUENCE_EDITOR=\"sed -i -e '1 s/^pick /drop /'\" git rebase -i %(commit)^ --autostash"
+
+Works.
+
+> bind main F !>sh -c "git commit --fixup=%(commit) && GIT_SEQUENCE_EDITOR=true git rebase -i %(commit)^ --autostash --autosquash"
+> ```
+This requires staging commits. Why not 'git commit -as --fixup=' ?
+
+Thanks!
+
+
+
+-- 
+You are receiving this because you were mentioned.
+Reply to this email directly or view it on GitHub:
+https://github.com/joelagnel/ngit/issues/1#issuecomment-528132244
+----==_mimepart_5d704a1f5d082_4abc3f9327ecd96c117310
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<blockquote>
+<blockquote>
+<p>That's handy dandy! But I get an annoying 'Press any key to continue'.</p>
+</blockquote>
+<p>This can be avoided by pre-pending &gt; to command. See <a href="https://github.com/jonas/tig/issues/463" data-hovercard-type="issue" data-hovercard-url="/jonas/tig/issues/463/hovercard">jonas/tig#463</a></p>
+<p>I found tig super helpful, able to accomplish most things. Here with external commands for things that I use most often, by adding following in tigrc:</p>
+<pre><code>bind main A !&gt;sh -c "GIT_SEQUENCE_EDITOR=\"sed -i -e '1 s/^pick /reword /'\" git rebase -i %(commit)^ --autostash"
+</code></pre>
+</blockquote>
+<p>Works.</p>
+<blockquote>
+<p>bind main E !&lt;&gt;sh -c "GIT_SEQUENCE_EDITOR="sed -i -e '1 s/^pick /edit /'" git rebase -i %(commit)^ --autostash"</p>
+</blockquote>
+<p>Works.</p>
+<blockquote>
+<p>bind main D !&gt;sh -c "GIT_SEQUENCE_EDITOR="sed -i -e '1 s/^pick /drop /'" git rebase -i %(commit)^ --autostash"</p>
+</blockquote>
+<p>Works.</p>
+<blockquote>
+<p>bind main F !&gt;sh -c "git commit --fixup=%(commit) &amp;&amp; GIT_SEQUENCE_EDITOR=true git rebase -i %(commit)^ --autostash --autosquash"</p>
+<pre><code></code></pre>
+</blockquote>
+<p>This requires staging commits. Why not 'git commit -as --fixup=' ?</p>
+<p>Thanks!</p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />You are receiving this because you were mentioned.<br />Reply to this email directly, <a href="https://github.com/joelagnel/ngit/issues/1?email_source=notifications&amp;email_token=AAA3X26RHPZVULNSY7ELXVLQIBAZ7A5CNFSM4ILV7Y32YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOD55KRFA#issuecomment-528132244">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/AAA3X2ZOKZK77NKVZC5XFGLQIBAZ7ANCNFSM4ILV7Y3Q">mute the thread</a>.<img src="https://github.com/notifications/beacon/AAA3X25XHMCII4S4G23FLDLQIBAZ7A5CNFSM4ILV7Y32YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOD55KRFA.gif" height="1" width="1" alt="" /></p>
+<script type="application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/joelagnel/ngit/issues/1?email_source=notifications\u0026email_token=AAA3X26RHPZVULNSY7ELXVLQIBAZ7A5CNFSM4ILV7Y32YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOD55KRFA#issuecomment-528132244",
+"url": "https://github.com/joelagnel/ngit/issues/1?email_source=notifications\u0026email_token=AAA3X26RHPZVULNSY7ELXVLQIBAZ7A5CNFSM4ILV7Y32YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOD55KRFA#issuecomment-528132244",
+"name": "View Issue"
+},
+"description": "View this Issue on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>
+----==_mimepart_5d704a1f5d082_4abc3f9327ecd96c117310--

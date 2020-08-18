@@ -1,0 +1,90 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp2310569lfg;
+        Thu, 23 Apr 2020 13:53:48 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKZTL9AjJ+J5fq01toLidLoxFrYVYk8FhA4RXc2UgPPbiYeujdv5RpCCcBmBcXxlgUygFpd
+X-Received: by 2002:a17:906:2410:: with SMTP id z16mr4414517eja.1.1587675228571;
+        Thu, 23 Apr 2020 13:53:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587675228; cv=none;
+        d=google.com; s=arc-20160816;
+        b=URAInRgtwVf7Cu8+nJtKY4NMjtyWxnLIkOF8DOf12jBtMM/9ShnJLqtwd8+a+MKNo+
+         CDfSM4uRe7dLKaND2AMxoSiPuo4QH7El+tRFkVxOkPeAIHB9Aee2I7WH5fZltntxen80
+         O5wg5nm7leSoWz3ankC1S6SzPVsPKmcsbTHRC0wS1eJMeFEElyJNae8OF8qLRgtreRZe
+         YrUEZWcUrVHEKaksJm6gP8EpJzMveZ+Rvo2Ks5PUUl9c9WQsfZfwL8sFE4F7fdxzj8Vm
+         gWnBdKwJw0VAt35A1Whu0WnfX5V8TzdRupoZXYBsbBkDcx8WZn1DcN3rFaBwJjsby9ZM
+         Unnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:date:message-id:references
+         :in-reply-to:from:dkim-signature:subject;
+        bh=pY8eF0VUnOQ9LU30r1+cU/rNvDvOxDOyMtEGj2bSW7Y=;
+        b=znyfwwcwjUQGg8olh4wlTaqBl7ygpbzNoWpSSUjwMNfyQ9oKAmQ/DSz+pdKKpeH4W0
+         eaoRiIOOxi3q0KDVT7lglx3IRtbvnODZBgMRAP0DVLqd1l0g4zqQj4Sx7aEMOhfkLHM6
+         6WVMS4eQQmC5FZXqgJkQqz3DCXOekSptZzSAmqzoPKFotFY3C4NvKPEujVEExBunUCA3
+         6kou3y0EK60z2CpTEBJt8IUwSsRhmsUQvYjiFaIS/WVxT3B91Uht9ua/yVsqHFwZAM0d
+         LGqvblNHwOESh9cht2oCssgGjlLKIkN3YuyPwQxJ7/qtvoqYgsxrtRQg4VgEzSqlBk6K
+         sgBg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=yacrZg40;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id ch12si1891129ejb.36.2020.04.23.13.53.01;
+        Thu, 23 Apr 2020 13:53:48 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=yacrZg40;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726864AbgDWUuS (ORCPT <rfc822;kunpeng0891@gmail.com>
+        + 99 others); Thu, 23 Apr 2020 16:50:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46586 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725877AbgDWUuS (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 23 Apr 2020 16:50:18 -0400
+Subject: Re: [GIT PULL] PCI fixes for v5.7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1587675018;
+        bh=AdfVc9jHOKmzcM5ts3Z7u9YEIcRlZk2jm2fkwZjfBRM=;
+        h=From:In-Reply-To:References:Date:To:Cc:From;
+        b=yacrZg405u+zMEabzpdcWAhl0TDtrwI19yCx6U7UWoSlX3rEktRYgh06HwY0MC1F5
+         Su92xqqQJ3jqe6FOnD76S2KVktWV0d7voccN1JlXWzW4B1Y4G4wnp/Ds5KoG9wG8Pw
+         pPspbjHOX3gmZlpHblPQGUoTdyCbcL3WSkV70uto=
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20200423173955.GA193359@google.com>
+References: <20200423173955.GA193359@google.com>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20200423173955.GA193359@google.com>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git
+ tags/pci-v5.7-fixes-1
+X-PR-Tracked-Commit-Id: ef46738cc47adb6f70d548c03bd44508f18e14a5
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 25b1fa8dfb3fe2578c04a077953b13c534f30902
+Message-Id: <158767501830.2530.11160481403245965059.pr-tracker-bot@kernel.org>
+Date:   Thu, 23 Apr 2020 20:50:18 +0000
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Andrew Murray <amurray@thegoodpenguin.co.uk>,
+        =?iso-8859-1?Q?Lu=EDs?= Mendes <luis.p.mendes@gmail.com>,
+        Todd Poynor <toddpoynor@google.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+The pull request you sent on Thu, 23 Apr 2020 12:39:55 -0500:
+
+> git://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git tags/pci-v5.7-fixes-1
+
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/25b1fa8dfb3fe2578c04a077953b13c534f30902
+
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/prtracker

@@ -1,0 +1,119 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp807211lfg;
+        Sat, 9 May 2020 00:18:14 -0700 (PDT)
+X-Google-Smtp-Source: APiQypLMVWUnfdYpvoZo+PZ1KSDxr6Cr6vwLZ5uDHngWDzNXuE94FNtTxwCgBytjEeYLTVi/lRID
+X-Received: by 2002:a17:906:3952:: with SMTP id g18mr5172512eje.191.1589008694033;
+        Sat, 09 May 2020 00:18:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1589008694; cv=none;
+        d=google.com; s=arc-20160816;
+        b=V5LMBh2Sg7R9nkm1X2BH8ZD1UTf9lZX6OP05Ho/BTiWG66CN5XRq07qI+ntfdmXAvE
+         KZzzNWunm0EBY8jlVrVzMz3hiqLJN+zsXFzmqYW44Y41PWFFIZJnrAxc7GStfQFwJxPk
+         LrG0OisLmbOqXhlKd1db388XXVuHPgCVrvxMrhLi3JOWdsB7zkJlAREeAkorL1Sc4f5j
+         nEKboquTEBrJBQUBkg+4rt2VyAQ+4KrDnMqX1ExJtwgpvgfs/+JG5OI3l558L8LIiU9h
+         sF7QxrjPgCdjpHKr8Z6v4OEDh2F7Q8cxpNb8guAUbiXL4zcS8PStewbIPvQw5INv9yTB
+         ejoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:to:from:subject:date
+         :message-id;
+        bh=mL5one/TG48vKbAh0IL7WmwltDkgs+t3gzvc/st0mMo=;
+        b=V24CYfuPvHvF6gpBz2U06+icG2qmOd8dxPl9YqXwNZKGEACjZG6/3knis8zbdS0PYp
+         gk9T3rGEVsNPD79s32yrv3STQDY3N5038sDwQKC443l/sf4SA0gkTAeQocOnXszGO7HU
+         8QH6qC83UYr0o6BT6keOrVVYT0SQHJHqt1G/UhdvAxKsE+wEOlaHYjZBO4LXXpltiRVG
+         SXnJwGYWLA8n2ZUy/yfrqzeuB2d4Ab5o3btdRRJSrAVVPz4OcbNU3ipmtRELfJpgyhOh
+         bl2aH6FKPRY349KwX8JVSnT+zAfWMlfyulDAtt45Kqk4/5j6/93eQmtekOPM1QIOUNGr
+         9MRw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of community@lenovo.com designates 67.219.246.2 as permitted sender) smtp.mailfrom=community@lenovo.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=lenovo.com
+Return-Path: <community@lenovo.com>
+Received: from mail1.bemta23.messagelabs.com (mail1.bemta23.messagelabs.com. [67.219.246.2])
+        by mx.google.com with ESMTPS id y1si2313957ejh.219.2020.05.09.00.18.13
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 09 May 2020 00:18:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of community@lenovo.com designates 67.219.246.2 as permitted sender) client-ip=67.219.246.2;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of community@lenovo.com designates 67.219.246.2 as permitted sender) smtp.mailfrom=community@lenovo.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=lenovo.com
+Return-Path: <community@lenovo.com>
+Received: from [100.112.1.169] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
+	by server-2.bemta.az-b.us-east-1.aws.symcld.net id 8B/EF-39899-13956BE5; Sat, 09 May 2020 07:18:09 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprBIsWRWlGSWpSXmKPExsWS8eIht65h5LY
+  4g4Ov2S3mTWhnd2D02DnrLnsAYxRrZl5SfkUCa8a764vZC2ZzVZzeMpe1gXE6ZxcjF4eQwDpG
+  iX9dR1m6GDk5eAXsJJ4+/MMIYrMIqEoce7wSLC4sECPx/fsadhCbTcBK4sr3ZrAaEQFJid6JT
+  VC9ghInZz4Bsjk4mAXUJJa1KoGEmQW0JZYtfM08gZFzFpKqWQhVs5BULWBkXsVomlSUmZ5Rkp
+  uYmaNraGCga2hopAskLfQSq3ST9EqLdVMTi0t0DfUSy4v1iitzk3NS9PJSSzYxAoMhpYBBaAf
+  jwbXv9Q4xSnIwKYny7mbbFifEl5SfUpmRWJwRX1Sak1p8iFGGg0NJgvdFOFBOsCg1PbUiLTMH
+  GJgwaQkOHiURXnmQNG9xQWJucWY6ROoUozfHzqPzFjFzHASTx8Dkx1VLgOR3MPkDRAqx5OXnp
+  UqJ8xpHAI0QABmRUZoHtwAWYZcYZaWEeRkZGBiEeApSi3IzS1DlXzGKczAqCfNeADmEJzOvBO
+  6OV0AnMgGd+PnTJpATSxIRUlINTOrz037WC287PcvY7ePUl2tnTfF7fHw6s+gd89ozv/f6r/Q
+  5fkXYZ/Lp3A/dK28vXjfHvL635vExti335ackW802qFXfGZ306vKzV9lNbkfvNa+U/bviwc04
+  XbGAH7+3fV9UtSY8NXG+xrqGwkUSWo8esJ5yepJ9JVNVsVo0XWh+4oYDgRs7PjQY+OYc90qJf
+  BodIZhcvIlB94VsEBtTJ2fd+oWiN193rZ7PckDa/sFtkXcqjyp7F0Q+W1tdz7Wy/IsyZ0Pd1k
+  nHiuwY1ZY+PKHmeLW+bDv/l0ONTltfXvn60qhkaW3eKfdN4lPij/AJVN7WO5gXlBJ6om1/feW
+  qbIW5N48vrugUnS9zZtU+6TlKLMUZiYZazEXFiQA5jeDrKwMAAA==
+X-Env-Sender: community@lenovo.com
+X-Msg-Ref: server-21.tower-395.messagelabs.com!1589008688!1717203!1
+X-Originating-IP: [104.232.225.11]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received:
+X-StarScan-Version: 9.50.1; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 19844 invoked from network); 9 May 2020 07:18:09 -0000
+Received: from unknown (HELO lenovo.com) (104.232.225.11)
+  by server-21.tower-395.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP; 9 May 2020 07:18:09 -0000
+Received: from [127.0.0.1] (unknown [10.251.65.7])
+	by Forcepoint Email with ESMTP id C72061B38763E5846A7F
+	for <unixbhaskar@gmail.com>; Sat,  9 May 2020 03:18:08 -0400 (EDT)
+Message-ID: <ebebfced1ecb48abb0d3f169e20d8f73@swift.generated>
+Date: Sat, 09 May 2020 07:18:08 +0000
+Subject: Re:Thinkpad T440, T450, T460 Bios ACPI Errors Lenovo Community
+ Subscription Update
+From: Lenovo Community Do Not Reply <community@lenovo.com>
+To: unixbhaskar@gmail.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+=09<head>
+=09=09<title>Re:Thinkpad T440, T450, T460 Bios ACPI Errors Lenovo Community=
+ Subscription Update</title>
+=09=09<style type=3D"text/css">
+=09=09=09body, td { font: 10pt Arial, Helvetica; }
+=09=09=09.post-body p { margin:0; }
+=09=09</style>
+=09</head>
+=09<body>
+=09=09<p>
+=09=09=09Hi unixbhaskar,
+=09=09</p>
+=09=09<p style=3D"font-size:18px">This is an automatically generated messag=
+e, please do not reply to it.</p>
+        <p>
+=09=09=09tuxino  posted a new Posts in <a href=3D"https://forums.lenovo.com=
+/topic/findpost/27/4239132/5048091">Other Linux Discussions</a> on 2020-05-=
+09 07:18:07:
+=09=09</p>
+=09=09<hr />
+=09=09<p>
+=09=09=09<h3>
+=09=09=09=09<a href=3D"https://forums.lenovo.com/topic/findpost/27/4239132/=
+5048091">Re:Thinkpad T440, T450, T460 Bios ACPI Errors</a>
+=09=09=09</h3>
+=09=09</p>
+=09
+=09=09<hr />
+=09=09<div class=3D"email-footer">
+=09=09<font size=3D"1">
+=09=09=09<p>
+=09=09=09=09Lenovo Community sent this message to <a href=3D"mailto:unixbha=
+skar@gmail.com">unixbhaskar@gmail.com</a>.
+=09=09=09</p>
+=09=09=09=09To control which emails we send you please go to,=20
+=09=09=09=09<a href=3D"https://forums.lenovo.com/user/myprofilepage/subscri=
+ptions?fid=3D27">manage your subscription & notification settings</a> .
+=09=09</font>
+=09=09</div>
+=09</body>
+</html>

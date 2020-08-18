@@ -1,0 +1,81 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:548e:0:0:0:0:0 with SMTP id t14csp3829749lfk;
+        Mon, 26 Aug 2019 00:56:14 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzts3tCcsUA2JJcCxhajVEZDRoxlRLQNrPMHA5YOTurw+r5rxiRtG8XTv6wT/z4jxXAVUjW
+X-Received: by 2002:aa7:8a0a:: with SMTP id m10mr2275472pfa.100.1566806174402;
+        Mon, 26 Aug 2019 00:56:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1566806174; cv=none;
+        d=google.com; s=arc-20160816;
+        b=U+xZycJ37ueyyZ0+TfwLwLoAjugiiTcbkLf7x8/r/5T8zBCDX7BZkNOxQOoblGE/0J
+         yBl/zv/qlYXM4I9/ZuIXLpOuT8Z5P3bZgNTGOOR3rszX7iR4IyxYvkPtJOQwbM0waqow
+         rHlPn44GCcKEQsyqgtvRU8hywb9I1lSAg8+0KWbGz3HzSu+6vcegnqMDDxrr91QOkQcd
+         6SW/5lCnJNaRzaLHXPcqA9t+ibv8Xvp/GZVcSIbOhHIIwg4RVDY8B1Am4cax8IdOBb4X
+         RypDMjPmLVhIDArrsxotUDYTYU33oxpH5YbbXl77u4ID7nHjKV4pZcjUXBBZjHmsQZMK
+         pOjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :user-agent:references:in-reply-to:date:cc:to:from:subject
+         :message-id;
+        bh=Ke9/KqRj4MU6UtbvM3hpD1flq8H9qMNOlOvIzMJIijk=;
+        b=fF6ETJC2F6GGCGxMv7x/d28oXnHdizZBVANXOT6oM0MtX/d2PDVoWafXriimr7Yndu
+         2XWO2ITgsHfhvEv6UeooaiG1h2YF0nlWRZJlX39moH/0RqbjPfquAlnoNpIEC5423CB7
+         LrngNveF8O0TURimiITuKc7sv36j0/JSZUr0VO3mqn/SgwVEjeZQkP6coQZHf5takQ4W
+         Jmfu/WcYuxwuhLbjK1xU3hIyEpvLWfaC9Vwb0vpGafflLf6A1quEpAU9h/zKC5AZqkuz
+         zZuRZtFD0WvBS5DHYVM7n3qjsuFq1jxEGPegPDQ8I3CGaYZvGWp0JJpTT7SQytX0n1j5
+         koXQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=tiscali.nl
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f6si8218820pgs.326.2019.08.26.00.56.00;
+        Mon, 26 Aug 2019 00:56:14 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=tiscali.nl
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1730125AbfHZHzx (ORCPT <rfc822;tputra6004@gmail.com>
+        + 99 others); Mon, 26 Aug 2019 03:55:53 -0400
+Received: from lb2-smtp-cloud8.xs4all.net ([194.109.24.25]:52005 "EHLO
+        lb2-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727674AbfHZHzx (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 26 Aug 2019 03:55:53 -0400
+Received: from xps13 ([83.160.161.190])
+        by smtp-cloud8.xs4all.net with ESMTPSA
+        id 29qni4ECMDqPe29qviAvEL; Mon, 26 Aug 2019 09:55:51 +0200
+Message-ID: <bc7a4421b8615732494e1f7253f4c4fe8843c1ca.camel@tiscali.nl>
+Subject: Re: Linux 5.2.10
+From:   Paul Bolle <pebolle@tiscali.nl>
+To:     Greg KH <greg@kroah.com>
+Cc:     Sasha Levin <sashal@kernel.org>, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org, akpm@linux-foundation.org, jslaby@suse.cz,
+        lwn@lwn.net
+Date:   Mon, 26 Aug 2019 09:55:41 +0200
+In-Reply-To: <20190826043401.GC26547@kroah.com>
+References: <20190825144703.6518-1-sashal@kernel.org>
+         <dd3a1ec7d03888dade78db1e4c45ec1347c0815b.camel@tiscali.nl>
+         <20190826043401.GC26547@kroah.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfNCRFpFNrDZDVnTeHwqGyboJIt739zLfReiIRtjrR3Sz62MVT2ledFDjxcR2tGdYtkvUgmrA7qqyC/cF/xA5SOTgoPzpS0WzFzV7h9gepJM06DW+fuBz
+ 6/qWXnmkDB+u4UJy/pycQ2LHR49BFJjqbWD1cRHqLFZCHL0KeLw+lH5E6mnHmigf2Xbzms7j7sUuw+3zN3YzZ0ZgAPytjBRW3BtXW1NzVUH8Nw5WrGcW2YZ5
+ u4TcHTly6BYPck9HvZWiR0pfEV1WXY6hUfKlnOWaPQv5A4l0novbAw8nriw8+6vnNc82d6Os5vVHrh3xJKOdsOYBodry7k4f2xUbR191m2g=
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Greg KH schreef op ma 26-08-2019 om 06:34 [+0200]:
+> It's on that key already, have you refreshed your version of it?
+
+I have now. sashal@kernel.org (and another identity) is now on that key.
+
+Thanks,
+
+
+Paul Bolle
+

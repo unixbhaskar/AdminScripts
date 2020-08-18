@@ -1,0 +1,118 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp2973411lfg;
+        Sun, 5 Apr 2020 12:06:50 -0700 (PDT)
+X-Google-Smtp-Source: APiQypIirGQ4jI8HHSw8OoqTC/tKnp5ySNucxdeoYJ9Qwd7VwsLUjwdCpfouj6m2vV84mnk/4k62
+X-Received: by 2002:aca:5712:: with SMTP id l18mr10471137oib.178.1586113610601;
+        Sun, 05 Apr 2020 12:06:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586113610; cv=none;
+        d=google.com; s=arc-20160816;
+        b=TK+WcHvpCjKTCsqjtQN0/12jo4cnhL36dzcjUb9I5I4yXM+p2HypkbQtelqT0fipHM
+         PysGv5pTOWEHJ/nNfILHaXUxjPbE5FnAp0cbr4/t1bPhHgvCrucerGFEhewbGES3dbWj
+         F79X+D8SqI8HXT6CtzTc6R4/XCp97kmVLzMml+T0Fbw8hpuKKr0Q1D5sWRzbwiSAZf4f
+         gf36DB3oFoTGTK/rtoDtmTsRW+oQdiWMgD4GvEulLtTLvLUkqdN+en2eoUTU2geT5twx
+         uDg2UUq1Uh6gq0SsJjSvmRpLaxgO5EpMOIwfgZk3XncfdpUa+qYqW4U3XIPZziHFejig
+         eZtg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=y7l5PKSkiUm5y5Anqut8GXd6/HQY32R9b8/6v8Yv3/Y=;
+        b=LtD1/V73DSmo7sF6IaYqo2BRzOR5uC7wUugIj8Yly47fwyqQXeZiKKKzK7wrRYeBAJ
+         5NJi8Bz4nPSsXoAqtEpvFYz0+iNYt1dh79yr4YvxqPlvADYRXg+f0jgRvi9XDyMma/3D
+         DB+lOn/3DqNZL89TM4M4jReBZKSL9D7OApO/Ikdjb05uIvkDqJyR6L/HKd5OXqHE8Q8E
+         pUCifzA5lqHBo4Ou8PCNgaaGjDc5Qw/7BPYzrOuiK3afFivpW9SaCC5Z6YqwhkdaVaeO
+         mFB2Gmdkw/qRGlC5LFLNdBUScvQvbs6lK4dVv9iDcd67k5ZVesDhdnH65k5veCPWwxm8
+         eF7A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=hhFjiX6e;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id w5si4264814otb.186.2020.04.05.12.06.19;
+        Sun, 05 Apr 2020 12:06:50 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=hhFjiX6e;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727509AbgDETGI (ORCPT <rfc822;franhsutw@gmail.com> + 99 others);
+        Sun, 5 Apr 2020 15:06:08 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:34645 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726771AbgDETGI (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 5 Apr 2020 15:06:08 -0400
+Received: by mail-lj1-f193.google.com with SMTP id p10so12371909ljn.1
+        for <linux-kernel@vger.kernel.org>; Sun, 05 Apr 2020 12:06:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=y7l5PKSkiUm5y5Anqut8GXd6/HQY32R9b8/6v8Yv3/Y=;
+        b=hhFjiX6eAmiLO7UvcvHDqjKYw1HL5IRSCRPu+b4BSSUKyxCf+imtjMFsnCKSqMmJqW
+         9vKgFehiVHLS6ZVYGiN4utBZNCIm+6UGEVvZApcqInJ6mEyDqPqFPLlhbxqASXf4RWoW
+         ANf4gJxtxdldfM37Qw8jIuQIuGRp7ugkJBw+Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=y7l5PKSkiUm5y5Anqut8GXd6/HQY32R9b8/6v8Yv3/Y=;
+        b=rax/CGjhHTMCI+1K7RxBlWoxLOYZczH7eebKxhxUIzyZ5sKS74zJKAAWqif+sl/VpZ
+         fiUfjvPCZsQB9C4ON7pgKcfG8cXYj0J/kuCJZM26CD9uvuoQPhxwgdJ64WjChqMIjgyS
+         GOYCwQJGxZe2SPzhdhszVFD3j+Ocl1soFUxqKEoNRRkiUMujpHo3BK+6/6Zp/F6WKEIF
+         +fwR7nllQ63xgGlZ493q62funNR81IG6v9vHdvvrW7UpnvEuR6k558U9bduCLDumWwWM
+         ws3fBPqvJykzlgvIOBeGIUo5gWzMZE2NKZNVFIEBxp0SEAxzdlPyygJkCjFEyI2UWcrf
+         7rCA==
+X-Gm-Message-State: AGi0PuaEIgGAKe8I8uY75hDhrHbJOvJ63g6OtkW1Z+ldhvfeUqH6KiNW
+        kW9/GIw30MoWEJyysiv1Ba+KFVTCZ1Y=
+X-Received: by 2002:a2e:9f13:: with SMTP id u19mr10161745ljk.14.1586113565093;
+        Sun, 05 Apr 2020 12:06:05 -0700 (PDT)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com. [209.85.208.170])
+        by smtp.gmail.com with ESMTPSA id y29sm8804011ljd.26.2020.04.05.12.06.03
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 05 Apr 2020 12:06:04 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 19so12296325ljj.7
+        for <linux-kernel@vger.kernel.org>; Sun, 05 Apr 2020 12:06:03 -0700 (PDT)
+X-Received: by 2002:a2e:b4cb:: with SMTP id r11mr10535760ljm.201.1586113563358;
+ Sun, 05 Apr 2020 12:06:03 -0700 (PDT)
+MIME-Version: 1.0
+References: <158609410988.4266.5816311298811487752.tglx@nanos.tec.linutronix.de>
+In-Reply-To: <158609410988.4266.5816311298811487752.tglx@nanos.tec.linutronix.de>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 5 Apr 2020 12:05:47 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wix=qQ79=fqgSy8Fc9jenRG8HoUp3VZs=Ek+PGz7d+13g@mail.gmail.com>
+Message-ID: <CAHk-=wix=qQ79=fqgSy8Fc9jenRG8HoUp3VZs=Ek+PGz7d+13g@mail.gmail.com>
+Subject: Re: [GIT pull] irq/urgent for 5.7-rc1
+To:     Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "the arch/x86 maintainers" <x86@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, Apr 5, 2020 at 6:43 AM Thomas Gleixner <tglx@linutronix.de> wrote:
+>
+> Two reverts addressing regressions of the Xilinx interrupt controller
+> driver which affected the PPC users.
+
+Gah.
+
+Those reverts don't actually say what was wrong with the commits.
+
+The "breaks a number of PPC platforms" is not actually saying what
+went wrong. Breaks how? Does it stop booting, does it not build, or
+what?
+
+And the link in it also is entirely useless.
+
+This link _would_ have been useful:
+
+  https://lore.kernel.org/linux-next/20200323175946.7ad497ea@canb.auug.org.au/
+
+but that's not what is in the commit messages.
+
+Please write _useful_ commit messages, not this completely worthless noise.
+
+            Linus

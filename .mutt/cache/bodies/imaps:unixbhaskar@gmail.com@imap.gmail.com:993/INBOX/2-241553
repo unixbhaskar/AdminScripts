@@ -1,0 +1,84 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp773379lfk;
+        Thu, 28 May 2020 12:21:09 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzoCzAkeh5qrMtGCsrrH3OONFfuKtAoRzBmS0lNKNeIVhXPJREK5fyXD+nJz4rnPIeKRVYg
+X-Received: by 2002:aa7:d39a:: with SMTP id x26mr4616975edq.207.1590693669566;
+        Thu, 28 May 2020 12:21:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590693669; cv=none;
+        d=google.com; s=arc-20160816;
+        b=fL6YCipJH44y1mDM+0iZxc5svxWQOyvDF+Cycb1BYIT0b2zlPnZZ29BIYlLyf6v5xc
+         oEkB2bimaYp1YWgpdOxgiO1AXgvXEzkwTGsKMZKjdK6xLBxWmftliUIapUMRiNz4MPfA
+         wx0BgXG9f7WqFTVgXDBlEv/qohVfLYGwUSFYBRPDP4WM32K6VbZoxP/PD4EwhKj2nQi4
+         oiicnOvhGR6Uo2l1NGGRw3aDVuKbQ1qxnru2YfW8myV+XCNaFu/3dkUmkSua/nFMn3Kg
+         BfIyMa/uc6kR7fEeYSX7MQEPEVxB5HAjE4AmyT5i7Jq3nIimNAymrFX7Y8tk+pghxeOD
+         YXeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=vtnSrmNYKOEh/ghJ7V7eS9UTdWuYHA+obovmtdjuWU4=;
+        b=gOsr0eOs9M6loRmnD5wKetlPtcQ33P4v1ynKCa+hwQlcHUNE2qVPO7XMZ3wlTs099+
+         24j7uz+uKbCptyt6MyPcvG5o6y61ADz9TrbMMZ1zanDwgGJh/hMt5tXioGd36QjHtG9A
+         4s7BMX7EUhkpD++9vO2ZCsITJwTNBN+WuztWOo8Cx44bU329gZiPIiwdXvDjxdIEWrbo
+         XCgDtO5Erh99B+aeUoPDjW4UCbtr4GsCk86Vfkr1J3iy8bsXGdhx5J7kBUX5znSo8K2w
+         MI6IR/XS678yLPmV2TYcnHbB9u49Pwk8+HwMo3uTE16mJj6unp1cUIZRLWC0I93U+jeT
+         oQ9Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id w4si4327675ede.150.2020.05.28.12.20.45;
+        Thu, 28 May 2020 12:21:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2406233AbgE1TRV (ORCPT <rfc822;rowanlinux@gmail.com>
+        + 99 others); Thu, 28 May 2020 15:17:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58740 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405596AbgE1TRR (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 28 May 2020 15:17:17 -0400
+Received: from ZenIV.linux.org.uk (zeniv.linux.org.uk [IPv6:2002:c35c:fd02::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9603C08C5C6
+        for <linux-kernel@vger.kernel.org>; Thu, 28 May 2020 12:17:16 -0700 (PDT)
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.93 #3 (Red Hat Linux))
+        id 1jeO1g-00H4yB-J6; Thu, 28 May 2020 19:17:12 +0000
+Date:   Thu, 28 May 2020 20:17:12 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Ingo Molnar <mingo@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        the arch/x86 maintainers <x86@kernel.org>
+Subject: Re: [git pull] coredump infoleak fix
+Message-ID: <20200528191712.GP23230@ZenIV.linux.org.uk>
+References: <20200527213447.GH23230@ZenIV.linux.org.uk>
+ <20200528070255.GA790247@gmail.com>
+ <CAHk-=wgXqVTGA-HrzJZ_yboLrtQ4rK-qoz8AfwLV=PT7ke4fbA@mail.gmail.com>
+ <20200528190555.GO23230@ZenIV.linux.org.uk>
+ <CAHk-=wi3dVgSn8xMC2Uqs8aahFfeqO0Wue2KqxnDYrbBM+6uZQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHk-=wi3dVgSn8xMC2Uqs8aahFfeqO0Wue2KqxnDYrbBM+6uZQ@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, May 28, 2020 at 12:09:48PM -0700, Linus Torvalds wrote:
+> On Thu, May 28, 2020 at 12:06 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
+> >
+> > It doesn't fix all problems, though - you don't get an infoleak, but
+> > you do get incorrect data...
+> 
+> Oh, I'm not saying it should replace any fix to regset->get(). I'm
+> just saying it is in addition to.
+> 
+> So if a regset has a reason to return less than the asked-for data, it
+> can do so and there's no leak.
+
+Might make sense to change the summary of that pull request to something
+like
+	make sure we don't forget to report the xstate components that happen
+to be in init state - both for coredump and for PTRACE_GETREGSET

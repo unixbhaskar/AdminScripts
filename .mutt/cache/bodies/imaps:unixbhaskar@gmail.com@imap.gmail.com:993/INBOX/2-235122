@@ -1,0 +1,226 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp5157902lfg;
+        Tue, 21 Apr 2020 08:26:42 -0700 (PDT)
+X-Google-Smtp-Source: APiQypIzMCqfyffLn/Mi5YxDIrFWV3rmUeKRl4LM4jKm2+IY16BBE9nbZahuFAeHJXE/I13fZUV3
+X-Received: by 2002:a50:a642:: with SMTP id d60mr19238827edc.351.1587482802317;
+        Tue, 21 Apr 2020 08:26:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587482802; cv=none;
+        d=google.com; s=arc-20160816;
+        b=VplNqEvuXzMYC0VWNjOJx4HX+RW5u0XCKNh3XEUiVLWbBAbcQjn8KzM//riGP2e9BX
+         ruA2P1v/2pV/KxmuRJehIqKd28zQCz6HvmJ7yO/ZAgPTXKdag7gdlHH22WAONKFRukYC
+         TcU8t2r7qtoGiomadrVMBciGgvK0rcKk4xIIKybffa9TJN4vseSD9UgT33uEJdYg6kW9
+         TUY1cNtpJtbEjzahF4JUcMqlYxzm+5onlQi2ZpETWajF0e9iSYuN5AFWURCGOGS32p5N
+         ao4QbCQR3S8nk2WAccGcHjXrbAeW9oat1GgMrLNjtY60qnbHOt3ncJae4yu3Dym3gNRs
+         74Cw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:list-unsubscribe:feedback-id:precedence:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=RmCsmV0P1aZJphjh2bdbhmglsCJpnpZ33J2DInSiFI0=;
+        b=aQuL6DqV8tj4ZBQ4OX36YDh80/lR3qXgt0HVV7lAxFKaDw4uQvpIwXhT6m2HKMqkmg
+         GQpcl9qGBH31qSS/w0Uv/neCXxPquu7gmbXXGCTufs0+MR4TzEOVS4+9qm0+Z1zYvACx
+         O8fn1heqHEFHXcsvSosp5FxTqKqRQYTX2eU7qmzWLE3n6ITkHYo8r6wKCu3teGGBrM0x
+         H27yA0TMqZXrT/toqE3dicw4+C8MHqliDSFs4N1FbKRe276+Fd6rSiUO84/uwWXPe8Wg
+         OQ97sRcbWTDVBq5WJp0EVtgooLGEM0npMOdAnCiJBYztDCMb1+u5JQslAm+QozQ8eAVJ
+         qgYA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=RWXxHJVW;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=DJ82TSqO;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.31.253 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+Return-Path: <bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com>
+Received: from o17.ck.n.convertkit.com (o17.ck.n.convertkit.com. [167.89.31.253])
+        by mx.google.com with ESMTPS id 95si1967291edq.375.2020.04.21.08.26.41
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Apr 2020 08:26:42 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.31.253 as permitted sender) client-ip=167.89.31.253;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=RWXxHJVW;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=DJ82TSqO;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.31.253 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=n.convertkit.com;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=s1; bh=RmCsmV0P1aZJphjh2bdbhmglsCJpnpZ33J2DInSiFI0=;
+	b=RWXxHJVWXF6EQ/IWrI8TYuyAM3N+Mz+aoM9CeJAWFrXdldNgqjMyHJwoFkUR81sTiAA2
+	g0KsGH3cYXbGfXdl+e8B5d31Cc0qx0tQzJt+ipDMsP3HMPuOFBQSxEd5jv5bV0V67pVz46
+	2gDUjW8ZH+xsAW2/ZqxltaPiX/ytwKB74=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=smtpapi; bh=RmCsmV0P1aZJphjh2bdbhmglsCJpnpZ33J2DInSiFI0=;
+	b=DJ82TSqOMRrYQugzNcvlcGN2W6PhB+pXrDiIIMuJW65XXoQPvRV/3nsjzJVCTD4n8JsC
+	plo0K8j2I9hJniX8OPPw0aJHmSifPwWdlODh4niXdAu2KITKWXEXg9rW0O7UiYp7jBU3Ke
+	yv2ViwpC8Q+enFg8m/dIWiT2TF/R0tgRo=
+Received: by filter0084p3las1.sendgrid.net with SMTP id filter0084p3las1-1974-5E9F10B0-14C
+        2020-04-21 15:26:40.596521099 +0000 UTC m=+494693.259538407
+Received: from ODc1MTQ5Mw (unknown)
+	by geopod-ismtpd-3-2 (SG) with HTTP
+	id VpBx9IgZSQKY3o4Nnusfdg
+	Tue, 21 Apr 2020 15:26:40.432 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=643cf7bc7c024cf3509682452232b459517dfbe9f6e3c58353b809f7775c
+Date: Tue, 21 Apr 2020 15:26:40 +0000 (UTC)
+From: Jovica <contact@jovicailic.org>
+Mime-Version: 1.0
+Message-ID: <92uv6doe9madul2mdwh9@convertkit-mail.com>
+Subject: Mastering Vim Quickly #36
+X-Report-Spam: <abuse@convertkit.com>
+X-Report-Abuse: <abuse@convertkit.com>
+Precedence: bulk
+Feedback-ID: 1751847:35692:emailtemplate:CK
+List-Unsubscribe: 
+ <https://unsubscribe.convertkit-mail.com/92uv6doe9madul2mdwh9>
+X-Feedback-ID: 8751493:SG
+X-SG-EID: 
+ =?us-ascii?Q?Z9YfueylEVxjF1sQk2=2Fm3hKaryiKObExs9bv2OnpmyOMnYytH=2FVZZIu+ZraDDs?=
+ =?us-ascii?Q?hn3FKIJFLMYch7V9FxPHe9XnMvmDepsT7Qs4SNw?=
+ =?us-ascii?Q?MRMxfs8sRtKKsh=2F2E0TEjSzMa5R88vlTX+nkN3H?=
+ =?us-ascii?Q?xeY6aY5ucdh9cPlwibIDv2JNHObuvu8NsZWrfbQ?=
+ =?us-ascii?Q?vye6K=2FJCoD7lYG0tLMMdqnY5BHBP127SYGBA=2F6X?=
+ =?us-ascii?Q?EQKF=2Fav8STchE=2Fe10=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FJuvNbq56rw8btU4e1FM1?=
+ =?us-ascii?Q?OTbCPkIYJUnoA7EYapFbML7TG2rt6v8JT9fnaYb?=
+ =?us-ascii?Q?qnBxWkuKM0ytReAUUfaOo4TJ6wy9kbhnPZkUS7n?=
+ =?us-ascii?Q?XmyuYjAHGrs3fZ+q5YBdcdoCpTunI7jRBR1v5aq?=
+ =?us-ascii?Q?V9xjj7CeQh3n9czi2cLcj2Kn2YBgL3ckXcKO7ZE?=
+ =?us-ascii?Q?LnGFlpkwH2zIZ6E=2F0JpZcnSsMQGcLxPGEWtawW4?=
+ =?us-ascii?Q?UrunH66TpRtc8wtfhJFsVG7wig41+R2EHi7LDEa?=
+ =?us-ascii?Q?Gvrz5PVTEZr48jPYRYmXhHZgOBExMSYO+oOYlYY?=
+ =?us-ascii?Q?1hMPmFOuHXHAGTzSlBG0iliStqvnCdgO0M8KfHs?=
+ =?us-ascii?Q?uTUg+O2nA0?=
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+
+--643cf7bc7c024cf3509682452232b459517dfbe9f6e3c58353b809f7775c
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+<br>Bhaskar Chowdhury,<br>
+
+This is an unusual newsletter.
+
+After years of research and writing Mastering Vim Quickly (
+https://el2.convertkit-mail.com/c/92uv6doe9madul2mdwh9/qvh8h7h5el59x/aHR0cH=
+M6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHkv ), I can honestly sa=
+y
+this is the best and most valuable side-project I've done in my
+work life so
+far.
+
+And I need your help.
+
+I wrote the book to challenge the popular idea that Vim is hard
+to learn.
+
+As you can probably guess, that=E2=80=99s not the most popular opinion,
+especially on the internet.
+
+I=E2=80=99m writing to ask for your help with spreading the word on
+Mastering Vim Quickly ( https://el2.convertkit-mail.com/c/92uv6doe9madul2md=
+wh9/gkunh5h5g054v/aHR0cHM6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrb=
+Hkv ).
+
+Insider details: (because I share everything with this list): so
+far, there
+was not a single negative or bad comment on the book!
+There were few mistakes
+here and there in the book - but 100% of the feedback I'm getting
+is very
+positive!
+
+Now, I would like to show how awesome Vim is, to even more
+people.
+So if you have connections or contacts (authors, podcasts,
+newsletters, etc) which might help me do so, let me know.
+Or if you have the access to a tech audience of your own, please
+reply back and let me know.
+
+If you don't have connections to the above, and want to help,
+that's awesome!
+
+Tell one person about the book, post it to Slack in your office,
+share it on social media or write me your thoughts about it - and
+that's a huge deal to me!
+
+Have a great rest of the week
+Bhaskar Chowdhury
+
+Cheers,
+Jovica
+
+Unsubscribe ( https://unsubscribe.convertkit-mail.com/92uv6doe9madul2mdwh9 =
+) |
+Update your profile ( https://preferences.convertkit-mail.com/92uv6doe9madu=
+l2mdwh9 ) |
+113 Cherry St #92768, Seattle, WA 98104-2205
+--643cf7bc7c024cf3509682452232b459517dfbe9f6e3c58353b809f7775c
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+</head>
+<body>
+<div class=3D"message-content" style=3D"max-width:600px">
+<p style=3D"margin-bottom:1em"><br>Bhaskar Chowdhury,<br></p>
+<p style=3D"margin-bottom:1em">This is an unusual newsletter. </p>
+<p style=3D"margin-bottom:1em">
+After years of research and writing <a href=3D"https://el2.convertkit-mail.=
+com/c/92uv6doe9madul2mdwh9/qvh8h7h5el59x/aHR0cHM6Ly9qb3ZpY2FpbGljLm9yZy9tYX=
+N0ZXJpbmctdmltLXF1aWNrbHkv" target=3D"_blank">Mastering Vim Quickly</a>, I =
+can honestly say
+this is the best and most valuable side-project I've done in my work life s=
+o
+far. </p>
+<p style=3D"margin-bottom:1em">And I need your help.
+<br>
+I wrote the book to challenge the popular idea that Vim is hard to learn.
+<br>As you can probably guess, that=E2=80=99s not the most popular opinion,=
+ especially on the internet. </p>
+<p style=3D"margin-bottom:1em">
+I=E2=80=99m writing to ask for your help with spreading the word on <a href=
+=3D"https://el2.convertkit-mail.com/c/92uv6doe9madul2mdwh9/gkunh5h5g054v/aH=
+R0cHM6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHkv" target=3D"_blan=
+k">Mastering Vim Quickly</a>.<br>
+Insider details: (because I share everything with this list): so far, there
+was not a single negative or bad comment on the book!<br>There were few mis=
+takes
+here and there in the book - but 100% of the feedback I'm getting is very
+positive!
+<br></p>
+<p style=3D"margin-bottom:1em">Now, I would like to show how awesome Vim is=
+, to even more people. <br>So if you have connections or contacts (authors,=
+ podcasts, newsletters, etc) which might help me do so, let me know. <br>Or=
+ if you have the access to a tech audience of your own, please reply back a=
+nd let me know. </p>
+<p style=3D"margin-bottom:1em">
+If you don't have connections to the above, and want to help, that's awesom=
+e!
+<br>Tell one person about the book, post it to Slack in your office, share =
+it on social media or write me your thoughts about it - and that's a huge d=
+eal to me!</p>
+<p style=3D"margin-bottom:1em">
+Have a great rest of the week Bhaskar Chowdhury</p>
+<p style=3D"margin-bottom:1em">
+Cheers,<br>Jovica</p>
+<br>
+<br>
+<small>
+<a href=3D'https://unsubscribe.convertkit-mail.com/92uv6doe9madul2mdwh9'>Un=
+subscribe</a> | <a href=3D'https://preferences.convertkit-mail.com/92uv6doe=
+9madul2mdwh9'>Update your profile</a> | 113 Cherry St #92768, Seattle, WA 9=
+8104-2205
+<br>
+</small>
+</div>
+
+<!-- -->
+  <img src=3D"https://el2.convertkit-mail.com/o/92uv6doe9madul2mdwh9" alt=
+=3D"">
+</body>
+</html>
+
+--643cf7bc7c024cf3509682452232b459517dfbe9f6e3c58353b809f7775c--

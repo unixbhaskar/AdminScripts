@@ -1,0 +1,113 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp364386lfc;
+        Tue, 17 Dec 2019 22:37:25 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxeRRAf71sV04qqmOz4s7UrJgFjSciWrrdb1GIO4kT8ZVxA+BpvH8/MXROM6CF4c3YiVES/
+X-Received: by 2002:adf:ef49:: with SMTP id c9mr742001wrp.292.1576651045491;
+        Tue, 17 Dec 2019 22:37:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1576651045; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LCQm3tAU7GCqMM5UguiMobyd1ELlcp3hpugeX9b5lFnkFyxGLUnsPuMe90YzW0mxCy
+         QVK9SPrvr9u4fXOSZAERBbkC3Pp2ppCNKCHA0x/pUVjCbOww8hAosECvcq+qFSD4dvoE
+         cg1NzpVg6ydj5iiR1Ag7O4mCkH13TC1LbmCqn8K5sI7QHFLBGQJ0BZt+muGbZQavhHF9
+         27KeXPv2dIZkIc358pbM8E+7vYFLk5HJmE8TOzrRVbR+MY173VxNYQLi6fwm61xtOUXk
+         83jYXg7nYU69gC8xLSrTMUm9PlzBZBISp0VSxIJehvg6F0srWR8OAzDGP2Jz37R1C4Tv
+         Bbgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=precedence:in-reply-to:references:content-transfer-encoding
+         :mime-version:to:reply-to:from:subject:date:message-id
+         :dkim-signature;
+        bh=w3OtuwXBB4GzNfRg5QBVw14Bgn/yW8eW8Jr8GE/l4r8=;
+        b=k57T24wucM8pAPiUasNwK/nRQUdJwzeiPMBizVbBt7PLzj17c84RCU8rmkX7EdLURb
+         xvXgT4+bfN0Yd8HsT3q0/QcRAZeSsEPJxgRNERcJH6vqqy/fYIrCW5CdnkGseQaKvkAp
+         ibKYTPfUksH1D2j3GwP6d3LZtGkAWjjqW0ptWWnLRYA5dXoHxbnlbrZRaKpbY5zSpoPq
+         8xifLQmSV9/LrE2pB2Fx8TokiTzVO+XqwfkTTrs/4AjjiNVXs5/G7dWZ2LZgfhClFkYI
+         leggc2Rzd/YfG7AR4z2SeIz4n205/N6zQrqamOXAGzVr3+tWEO4QK18RwHMF6NMljy3M
+         k8sQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@archlinux.org header.s=orion header.b=FrS2PMJ7;
+       spf=pass (google.com: domain of bugs@archlinux.org designates 88.198.91.70 as permitted sender) smtp.mailfrom=bugs@archlinux.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=archlinux.org
+Return-Path: <bugs@archlinux.org>
+Received: from orion.archlinux.org (orion.archlinux.org. [88.198.91.70])
+        by mx.google.com with ESMTPS id h6si1507399wrv.60.2019.12.17.22.37.25
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2019 22:37:25 -0800 (PST)
+Received-SPF: pass (google.com: domain of bugs@archlinux.org designates 88.198.91.70 as permitted sender) client-ip=88.198.91.70;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@archlinux.org header.s=orion header.b=FrS2PMJ7;
+       spf=pass (google.com: domain of bugs@archlinux.org designates 88.198.91.70 as permitted sender) smtp.mailfrom=bugs@archlinux.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=archlinux.org
+Received: from orion.archlinux.org (localhost [127.0.0.1])
+	by orion.archlinux.org (Postfix) with ESMTP id 87B95174B8C121
+	for <unixbhaskar@gmail.com>; Wed, 18 Dec 2019 06:37:22 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.3 (2019-12-06) on orion.archlinux.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=ALL_TRUSTED=-1,BAYES_00=-1,
+	DKIMWL_WL_HIGH=-0.001,DKIM_SIGNED=0.1,DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1,T_DMARC_POLICY_NONE=0.01 autolearn=unavailable
+	autolearn_force=no version=3.4.3
+X-Spam-BL-Results: 
+Received: from bugs.archlinux.org (unknown [IPv6:2a01:4f8:c0c:18c8::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: bugs)
+	by orion.archlinux.org (Postfix) with ESMTPSA id 581D8174B8C11E
+	for <unixbhaskar@gmail.com>; Wed, 18 Dec 2019 06:37:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=archlinux.org;
+	s=orion; t=1576651042;
+	bh=2E34PQ/t0A9p+ZtTFpM86ZCJ/mfY3arAuI0bluWXnJU=;
+	h=Date:Subject:From:Reply-To:To:References:In-Reply-To;
+	b=FrS2PMJ7dkDTMh6JNJ8rx1XqSwo4BvnmujlZmP1a6WkMQMOnE+b0JO6bCwFoMJkIe
+	 LsXunAL2MmNIjSsSrbnK8L/X0UlMoisxFMK9tbPkvWqM35Z3mQ0aJY5TmEq6kApWCh
+	 KwdoZm/WyNqeEyzliziR+bmvDUkuQgGruqO4fNV2p6fkf+XgSPcTM5bCtFDnik/5zU
+	 oMEuuwNmluVFHPyppHPNQfU1iTFccSQcW+yn/+5Ps3srcYV0sVXWO2hVYBPvgiKj26
+	 JxUN4vbcbJzWOFciSiGlauimh+KH3V2MlpKalv9eiWmI52QkM23CGiP25kt08MgypW
+	 iUPs0+3yAnz8RwqujJDdFwVR4PiEVHmYZvHjPXViwnbiEMTf1qxBewTYoGiXV8QRqk
+	 mao/5BH9avD0tIZfwlY0w1mgHqhCyqibGOMvMkTLypBWxG3QlgZY6Re80ZEEW/0iuK
+	 TcNzQ7F1F/GTgRE/HYHEfzLoP7zE7U6gekrK1skfV08dqDTpCIMRf66T4ACheZkmmt
+	 Enr8WcFMsD1frFtz8Yi6QqI0YPjxvqFe9TTglOxirnUDMBdUYb5xfV2mMGywSmHRDZ
+	 BEFxn7jnd2Ntu6g/hrXNEtMmqgtkL57XZqex2SnqUjYZET2AolceKh23kytL8OAOlB
+	 ZSSbs8k8LTdV4Ti+uCtkUis0=
+Received: from bugs.archlinux.org (localhost [127.0.0.1])
+	by bugs.archlinux.org (Postfix) with ESMTP id 1AB512F5E3
+	for <unixbhaskar@gmail.com>; Wed, 18 Dec 2019 06:37:22 +0000 (UTC)
+Message-ID: <1576651042.5df9c92209456@bugs.archlinux.org>
+Date: Wed, 18 Dec 2019 06:37:22 +0000
+Subject: FS#64879: Spotify deb pkg not downloading while makepkg -s (Task
+ closed)
+From: Arch Linux <bugs@archlinux.org>
+Reply-To: bugs@archlinux.org
+To: bugs@archlinux.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+References: <FS64879@bugs.archlinux.org>
+In-Reply-To: <FS64879@bugs.archlinux.org>
+X-Mailer: Flyspray
+Precedence: list
+
+THIS IS AN AUTOMATED MESSAGE, DO NOT REPLY.
+
+The following tas=
+k is now closed:
+
+FS#64879 - Spotify deb pkg not downloading whi=
+le makepkg -s
+User who did this - Doug Newgard (Scimmia)
+
+Re=
+ason for closing: Not a bug
+Additional comments about closing: AUR pa=
+ckages are not supported
+
+More information can be found at the f=
+ollowing URL:
+https://bugs.archlinux.org/task/64879
+
+You a=
+re receiving this message because you have requested it from the Flyspra=
+y bugtracking system.  If you did not expect this message or don't want =
+to receive mails in future, you can change your notification settings at=
+ the URL shown above.

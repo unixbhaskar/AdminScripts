@@ -1,0 +1,115 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp4554962lfj;
+        Mon, 9 Sep 2019 07:26:30 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyWeb010k6ADLlxAPu27T8Py4oH5XvsW0CMoZ036zPT+3eKvUlSfva9LLCggj05Ogj/UYgK
+X-Received: by 2002:a50:eb44:: with SMTP id z4mr19150897edp.203.1568039190404;
+        Mon, 09 Sep 2019 07:26:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568039190; cv=none;
+        d=google.com; s=arc-20160816;
+        b=KMc9nOr4Hk0uRxcpBHyc7qWsnkBU3qtNzDZi+f0RhM+LhQd08i0u+dotaAnE1FB1C2
+         CqIo2xlTUa0wGZ/Jk9ib+OE0koyVFijYUusuPw/6Qlz7FF4kn/i4Wjg3FCwkP3d6o0Im
+         6FEKfTIm5L7dQAh1LU6LIObRt5ARTPyl9k/zJetSDiX+8BXhXtmnC44gEqIH2+pIdc25
+         dNC7K+QsLUgRUquaZfLyCJxBWFIgdsVx9ovEMoR8LHXNp1BzsrYec43hoctUPlgg5W+R
+         Uv/6BIKAaWkfTmhFtTXA6XOTL2BVD4rPAvilWheg+WGKcsbKzub6SqJMPGu55qqLb+Vp
+         GehQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-language
+         :content-transfer-encoding:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject;
+        bh=9+zCwe5y3DRrFoTG7u0qUYAwKlAYfsVND8Cn+ysMokk=;
+        b=EEg4oveeMjfu9/XK9UgNk3pJcn3ObdrC0jXJE3rn/V5U3/goLR+Jz4+3S63qTN1WnS
+         kKvoRzU+IA6sqvBEc7Rx1zMkC9X6thgmgJPgHX/Ot2/M0B/UW97lI9nElU2a6YFhSW48
+         oLJkTku421qylXQoVSrMp6fvx/PS+4P+A1IWda/iG5dToKVb5OEMgw4wVJgX5l0ll+mq
+         BAE2oqmUOuIAa+QDNPA2QuaER4CQcf65HqfWYenZDe9FS/BQFK97kbALMbjfzCo97hEv
+         rdDqpL0pp7RPbpvAWAV6cZZFb3+OK3H+Q1LoaQZktm0MUEQFyXHKWr3X9/yIdjsm1qye
+         XnvA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=intel.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id x15si9286267eda.53.2019.09.09.07.26.05;
+        Mon, 09 Sep 2019 07:26:30 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=intel.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727623AbfIIGHE (ORCPT <rfc822;artur.folwarczny@gmail.com>
+        + 99 others); Mon, 9 Sep 2019 02:07:04 -0400
+Received: from mga05.intel.com ([192.55.52.43]:17442 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726646AbfIIGHD (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 9 Sep 2019 02:07:03 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Sep 2019 23:07:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,483,1559545200"; 
+   d="scan'208";a="186411116"
+Received: from shao2-debian.sh.intel.com (HELO [10.239.13.6]) ([10.239.13.6])
+  by orsmga003.jf.intel.com with ESMTP; 08 Sep 2019 23:07:00 -0700
+Subject: Re: [xfs] 610125ab1e: fsmark.app_overhead -71.2% improvement
+To:     Dave Chinner <dchinner@redhat.com>
+Cc:     "Darrick J. Wong" <darrick.wong@oracle.com>,
+        Christoph Hellwig <hch@lst.de>,
+        LKML <linux-kernel@vger.kernel.org>, linux-xfs@vger.kernel.org,
+        lkp@01.org
+References: <20190909015849.GN15734@shao2-debian> <20190909053236.GP2254@rh>
+From:   Rong Chen <rong.a.chen@intel.com>
+Message-ID: <df5f4105-58a9-492d-882e-0963fd5cb23f@intel.com>
+Date:   Mon, 9 Sep 2019 14:06:54 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190909053236.GP2254@rh>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Hi Dave,
+
+On 9/9/19 1:32 PM, Dave Chinner wrote:
+> On Mon, Sep 09, 2019 at 09:58:49AM +0800, kernel test robot wrote:
+>> Greeting,
+>>
+>> FYI, we noticed a -71.2% improvement of fsmark.app_overhead due to commit:
+> A negative improvement? That's somewhat ambiguous...
+
+Sorry for causing the misunderstanding, it's a improvement not a regression.
+
+
+>
+>> 0e822255f95db400 610125ab1e4b1b48dcffe74d9d8
+>> ---------------- ---------------------------
+>>           %stddev     %change         %stddev
+>>               \          |                \
+>>   1.095e+08           -71.2%   31557568        fsmark.app_overhead
+>>        6157           +95.5%      12034        fsmark.files_per_sec
+> So, the files/s rate doubled, and the amount of time spent in
+> userspace by the fsmark app dropped by 70%.
+>
+>>      167.31           -47.3%      88.25        fsmark.time.elapsed_time
+>>      167.31           -47.3%      88.25        fsmark.time.elapsed_time.max
+> Wall time went down by 50%.
+>
+>>       91.00            -8.8%      83.00        fsmark.time.percent_of_cpu_this_job_got
+>>      148.15           -53.2%      69.38        fsmark.time.system_time
+> As did system CPU.
+>
+> IOWs, this change has changed create performance by a factor of 4 -
+> the file create is 2x faster for half the CPU spent.
+>
+> I don't think this is a negative improvement - it's a large positive
+> improvement.  I suspect that you need to change the metric
+> classifications for this workload...
+To avoid misunderstanding, we'll use fsmark.files_per_sec instead of 
+fsmark.app_overhead in the subject.
+
+Best Regards,
+Rong Chen

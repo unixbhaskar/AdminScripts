@@ -1,0 +1,116 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp1747335lfk;
+        Thu, 21 May 2020 11:05:49 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx0cz4i0lyOfHbEVQ/A0CArqw1mJ/YVlMv1b6X0ssjGdADQJhXRByXsvYPsB8aQp9LrETt/
+X-Received: by 2002:a17:906:379b:: with SMTP id n27mr4567968ejc.432.1590084349204;
+        Thu, 21 May 2020 11:05:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590084349; cv=none;
+        d=google.com; s=arc-20160816;
+        b=YnzykwVQjKgQGM/ViHvGaWV5Omcz1QSoI5aTFhAJw6rty8DrXtOkhkQ/4Odgo6gCk2
+         ff5IVUmm8aShPZa5CLc9L8CQeREThzkJjjAGaNLnstVrF7EU9zdJEvL3jzid0KpSLEe3
+         Otwp70B2sXwCjN6Ph4FUoLbKvxmRvILymoPJ8PmRGZDLMv07ENtLos+EtvG1od6hZG1B
+         qgkidTpkM5jIzP1vDFNvGhttXDVXX9gngeb4Gw7xnDo7UebUCxCwjfdMwLuC+5TIgVhW
+         7hf9uM7yFVXUWCrBjnQ6eAG74NCMuZik99mEh41sr+xrYMQp+NbPq4LE2xZBvzt5RUvb
+         09kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=6Gg4b4CDCsETMIm4Edj1Xv31p6ZdZ0NWSz903G/X2Po=;
+        b=F8YjMnX7VM6RVrLnKR9oIxPM4Xi9P//ztLdbRi6MvJ6vkPflzN2rr33WWP2yKWQxl+
+         4H+jMsVpVKkTuZVBe2sH3hHIp7CyCZXG0rm7zyNy12xEyOfN93sDb7qQ6+VsqwqsjbbT
+         ySgq7qBqftcdCtfGPK3Ss+hDA6QWpdFASKnk8c52eytFKFO2G3fLuPjrhKk+riLAS6Ud
+         3ep+oHNUHRa7rNz/AVFR1ERvEk9nxrH3o6x8yCmNt9If5xgRUt6huSwiYO0ur1Gjn19e
+         pCyelPByjVFLBC2bxxvnBV1Vgi8/NisSEANva2gHDAJjnFPfewhxDAC/0aBASaw+CgjE
+         1QZA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=C+6xQYv4;
+       spf=pass (google.com: domain of bpf-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=bpf-owner@vger.kernel.org
+Return-Path: <bpf-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id i15si3464921ejy.126.2020.05.21.11.05.26;
+        Thu, 21 May 2020 11:05:49 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bpf-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=C+6xQYv4;
+       spf=pass (google.com: domain of bpf-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=bpf-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728911AbgEUSEG (ORCPT <rfc822;colrack@gmail.com> + 72 others);
+        Thu, 21 May 2020 14:04:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728067AbgEUSEG (ORCPT <rfc822;bpf@vger.kernel.org>);
+        Thu, 21 May 2020 14:04:06 -0400
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC66CC061A0E
+        for <bpf@vger.kernel.org>; Thu, 21 May 2020 11:04:05 -0700 (PDT)
+Received: by mail-lj1-x243.google.com with SMTP id b6so9448617ljj.1
+        for <bpf@vger.kernel.org>; Thu, 21 May 2020 11:04:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6Gg4b4CDCsETMIm4Edj1Xv31p6ZdZ0NWSz903G/X2Po=;
+        b=C+6xQYv405ppXq81KjYUQtltgLKHhtWFV7DfKyUQgnD/o5JsMIaX3ld48tDI1ZlD7K
+         U7kuhQvl7mdKFxmVsF/c3fYz37gu4oWx14U5jtAODWIsK4FqzsUCdodSWDq8PJADqJQN
+         fxp/doyT7dYvEricBmr9oFTSOXixPbh/BPwNs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6Gg4b4CDCsETMIm4Edj1Xv31p6ZdZ0NWSz903G/X2Po=;
+        b=mPYI6Vm2H1L0z6vjxFGXUXQXQh7e1SzsUTNXjuirqxXD1ICNXqKlPLqtN3gWIqBup4
+         Hp5PhZkTrMlnMcRzKnQLqhz/s3YyI0hULa+TuHNzsJzoL4fLMqJ3EmtyflayINt5esoS
+         NMcCLECso44P0DwZNQDTMykRA4ysV36U15bPo1GqEaeywxLwTeaS2CXP1wkYvsVFPrhf
+         iOlIr6nOqzKvLUI2XUu89WpMZBTaG9TCoPD6ymy/kxmracIrHAM5B8TTYOMneXwlnXM/
+         732Ad5O5CPiJsrJLsMz+7Za7nEoXJkUYAh7I9KdQEPzXHM666LwCEq8rvsBzoIP5O+nQ
+         8KfA==
+X-Gm-Message-State: AOAM532rVWTZaoHYUtqyVuLKYaS16gMOGvKvMtz6Ss1n9SHIoFtTZRri
+        X7sWwcBNZYNt/4Weetx7nTyFQoao8es=
+X-Received: by 2002:a2e:9a0d:: with SMTP id o13mr5282500lji.15.1590084242433;
+        Thu, 21 May 2020 11:04:02 -0700 (PDT)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
+        by smtp.gmail.com with ESMTPSA id k22sm1923840lfg.69.2020.05.21.11.04.01
+        for <bpf@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 May 2020 11:04:01 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id z6so9366525ljm.13
+        for <bpf@vger.kernel.org>; Thu, 21 May 2020 11:04:01 -0700 (PDT)
+X-Received: by 2002:a2e:9891:: with SMTP id b17mr3748342ljj.312.1590084240602;
+ Thu, 21 May 2020 11:04:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200521152301.2587579-1-hch@lst.de>
+In-Reply-To: <20200521152301.2587579-1-hch@lst.de>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Thu, 21 May 2020 11:03:43 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wiQa3GNytJDdN=RKzSKfGQdPBvso+2Lmi+BpOP=BA_n6A@mail.gmail.com>
+Message-ID: <CAHk-=wiQa3GNytJDdN=RKzSKfGQdPBvso+2Lmi+BpOP=BA_n6A@mail.gmail.com>
+Subject: Re: clean up and streamline probe_kernel_* and friends v4
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     "the arch/x86 maintainers" <x86@kernel.org>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        linux-parisc@vger.kernel.org,
+        linux-um <linux-um@lists.infradead.org>,
+        Netdev <netdev@vger.kernel.org>, bpf@vger.kernel.org,
+        Linux-MM <linux-mm@kvack.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: bpf-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <bpf.vger.kernel.org>
+X-Mailing-List: bpf@vger.kernel.org
+
+On Thu, May 21, 2020 at 8:23 AM Christoph Hellwig <hch@lst.de> wrote:
+>
+> this series start cleaning up the safe kernel and user memory probing
+> helpers in mm/maccess.c, and then allows architectures to implement
+> the kernel probing without overriding the address space limit and
+> temporarily allowing access to user memory.  It then switches x86
+> over to this new mechanism by reusing the unsafe_* uaccess logic.
+
+I could not see anything to object to in this version. So Ack from me,
+but obviously I'm hoping others will try to read it through as well.
+
+              Linus

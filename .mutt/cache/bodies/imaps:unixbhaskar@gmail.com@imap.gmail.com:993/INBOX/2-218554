@@ -1,0 +1,118 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp6246089lfc;
+        Tue, 14 Jan 2020 17:56:25 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwv3oAeiVxDljhMw2vSUrF4LcuGAENDrAKDk5kSP+ZL5yy/cAYIaPdb1pZ69q8teh6YDKWR
+X-Received: by 2002:ac8:3fd5:: with SMTP id v21mr1409391qtk.345.1579053385305;
+        Tue, 14 Jan 2020 17:56:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579053385; cv=none;
+        d=google.com; s=arc-20160816;
+        b=l5rOLEmLsgZRLnDY+fbU4oPLC92bHFLMGLib3YQ4CR8mRmAxnCbKu6AwDf6adqZ15+
+         iqSdqlWabN4y0ZnjeE7+bkuwVx4FgYbguzVNe4tvOrv5wDR2Qcpn3pSIyGk0FjxmW6ML
+         3kRn46KIHjqDW0XxhmI79bR9ExhChWXGV/gC6lz1MgVz1M1zJRpWbq0J6PCJ0WAtOC8O
+         j5iQlbvpB8VS6saKbxCAC/pvoQCpEZliPao66d697j5RyaPHyeANflXiVJ14lcV7tcB3
+         cxqIPU/9o+awMGaE8K7gmlHHPFKrEmZYT2onsF+eARun81wrvw6HpFkkCp6DFUQiLu5x
+         SsNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-post:list-archive:list-id:precedence
+         :content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:reply-to:from:date:dkim-signature;
+        bh=iX7S8MZPweclt2xdBuE7TBmiTiDlhQHk1aRh0FGibYo=;
+        b=A9ftJS0Ri7wdQTkgaV4UKV2UJfV3C691dPQTfekHbKoMiJPwwtsZ0NnL5RfVG6NQ1P
+         SMTKqDXpAi8FtmKXABDGk+dDL0vDor/N+gMefyT6Cmw1tY9S99EPVM/FbdHJK+j8wktY
+         u6Q050NKbwv3SfgBY54vVSLMPG3xK+8Vep3k8RrHtzy1tiVqwDYgmo8DnyfGmpjg5XZl
+         J6g0Zl6DNfyWkbSMB311oh1inJ6yV0+WHNbU3uo6dnWva48BzKO+/JI4ZKnKSRs7qtIT
+         zcNM+2JhjepDazMmouvBiZdINyScXZrSFvBMHQO/1ONYvYgtlcWDXqAUajYh8y+95oml
+         0FHw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=Rbxpjo0l;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.194 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-3.smtp.github.com (out-3.smtp.github.com. [192.30.252.194])
+        by mx.google.com with ESMTPS id m7si9682576qtn.1.2020.01.14.17.56.25
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 14 Jan 2020 17:56:25 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.194 as permitted sender) client-ip=192.30.252.194;
+Authentication-Results: mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=Rbxpjo0l;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.194 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Received: from github-lowworker-275fa97.va3-iad.github.net (github-lowworker-275fa97.va3-iad.github.net [10.48.17.64])
+	by smtp.github.com (Postfix) with ESMTP id F344B2C0E57
+	for <unixbhaskar@gmail.com>; Tue, 14 Jan 2020 17:56:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2014; t=1579053384;
+	bh=iX7S8MZPweclt2xdBuE7TBmiTiDlhQHk1aRh0FGibYo=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:From;
+	b=Rbxpjo0ltAivYNCzTPAkGRBZ2WhnP1bSctvZyodGbzHj2a3/3xtkEZoQeMJHPry5v
+	 q2x/XSmoWIqUw7Ib5zdWmDGUJcJYsCKU/hPfwhStb8Qvo1a7r+aHJfVivRm7+ejm5W
+	 B/HH0C7czAHd1EBwaWTChxa/m/DX17WkgohGPDLA=
+Date: Tue, 14 Jan 2020 17:56:24 -0800
+From: puneetse <notifications@github.com>
+Reply-To: clearlinux/distribution <reply+AAA3X24RK4OKCF72MHUWQUF4FOR4REVBNHHBKBV3PA@reply.github.com>
+To: clearlinux/distribution <distribution@noreply.github.com>
+Cc: Bhaskar Chowdhury <unixbhaskar@gmail.com>, 
+ Author <author@noreply.github.com>
+Message-ID: <clearlinux/distribution/issue/159/issue_event/2949238044@github.com>
+In-Reply-To: <clearlinux/distribution/issues/159@github.com>
+References: <clearlinux/distribution/issues/159@github.com>
+Subject: Re: [clearlinux/distribution] There is long pause with no infomation
+ between pack download and apply  (#159)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5e1e7148e3edb_56d3fd5686cd964181490";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: puneetse
+X-GitHub-Recipient: unixbhaskar
+X-GitHub-Reason: author
+List-ID: clearlinux/distribution <distribution.clearlinux.github.com>
+List-Archive: https://github.com/clearlinux/distribution
+List-Post: <mailto:reply+AAA3X24RK4OKCF72MHUWQUF4FOR4REVBNHHBKBV3PA@reply.github.com>
+List-Unsubscribe: <mailto:unsub+AAA3X24RK4OKCF72MHUWQUF4FOR4REVBNHHBKBV3PA@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/AAA3X25FKPK5F2FCMG25DMLQ5ZUMRANCNFSM4FQ3JMUA>
+X-Auto-Response-Suppress: All
+X-GitHub-Recipient-Address: unixbhaskar@gmail.com
+
+
+----==_mimepart_5e1e7148e3edb_56d3fd5686cd964181490
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Closed #159.
+
+-- 
+You are receiving this because you authored the thread.
+Reply to this email directly or view it on GitHub:
+https://github.com/clearlinux/distribution/issues/159#event-2949238044
+----==_mimepart_5e1e7148e3edb_56d3fd5686cd964181490
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Closed <a class="issue-link js-issue-link" data-error-text="Failed to load issue title" data-id="352762744" data-permission-text="Issue title is private" data-url="https://github.com/clearlinux/distribution/issues/159" data-hovercard-type="issue" data-hovercard-url="/clearlinux/distribution/issues/159/hovercard" href="https://github.com/clearlinux/distribution/issues/159">#159</a>.</p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />You are receiving this because you authored the thread.<br />Reply to this email directly, <a href="https://github.com/clearlinux/distribution/issues/159?email_source=notifications&amp;email_token=AAA3X25H7ICS3IVVP3XURRDQ5ZUMRA5CNFSM4FQ3JMUKYY3PNVWWK3TUL52HS4DFWZEXG43VMVCXMZLOORHG65DJMZUWGYLUNFXW5KTDN5WW2ZLOORPWSZGOV7E42HA#event-2949238044">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/AAA3X2YCPJBA7UWZLSZUFALQ5ZUMRANCNFSM4FQ3JMUA">unsubscribe</a>.<img src="https://github.com/notifications/beacon/AAA3X23WDXZHINMYYLLR52TQ5ZUMRA5CNFSM4FQ3JMUKYY3PNVWWK3TUL52HS4DFWZEXG43VMVCXMZLOORHG65DJMZUWGYLUNFXW5KTDN5WW2ZLOORPWSZGOV7E42HA.gif" height="1" width="1" alt="" /></p>
+<script type="application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/clearlinux/distribution/issues/159?email_source=notifications\u0026email_token=AAA3X25H7ICS3IVVP3XURRDQ5ZUMRA5CNFSM4FQ3JMUKYY3PNVWWK3TUL52HS4DFWZEXG43VMVCXMZLOORHG65DJMZUWGYLUNFXW5KTDN5WW2ZLOORPWSZGOV7E42HA#event-2949238044",
+"url": "https://github.com/clearlinux/distribution/issues/159?email_source=notifications\u0026email_token=AAA3X25H7ICS3IVVP3XURRDQ5ZUMRA5CNFSM4FQ3JMUKYY3PNVWWK3TUL52HS4DFWZEXG43VMVCXMZLOORHG65DJMZUWGYLUNFXW5KTDN5WW2ZLOORPWSZGOV7E42HA#event-2949238044",
+"name": "View Issue"
+},
+"description": "View this Issue on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>
+----==_mimepart_5e1e7148e3edb_56d3fd5686cd964181490--

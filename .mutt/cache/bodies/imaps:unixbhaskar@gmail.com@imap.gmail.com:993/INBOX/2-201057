@@ -1,0 +1,122 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2774142lfj;
+        Sun, 15 Sep 2019 00:01:09 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzDr6E34KeFoXfsgFeHmDMZ2a0kRZH0Uuf6XT0yFOvBq5xrJaOfythnXO6j1OxatOwCfud6
+X-Received: by 2002:a05:6402:350:: with SMTP id r16mr27799161edw.296.1568530869674;
+        Sun, 15 Sep 2019 00:01:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568530869; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xgY62XTbd4x2O4XRwBbJT7TD69VzEa0hVJGFRNQ20jCl5Ps6/Iy74vhFctMSdAWpMg
+         oaMTXjtyjwNXRVcMCTvA0qxaAZpN779s22eGn0HUc0klQIDuquhLTWuBqGlbYztn/Uas
+         sUzUOwNwschyNZExJIuUn8XBAG4dtTFHrqGQN3pYbljVLMowIJQYUQlS9vN9mm5JIvRP
+         yj6Vgu6n+M4LmdTf2aShz353isvhCjiESshwfW9CllLadILiUu2NUCxej624JXSRjxd5
+         5KRBI0BdR294U28woNAXDWwWoJyKiokRMbWgSVBs3aan5qcBZKpErr3Y6bKAhIRi5bAg
+         vyiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=lUOoCxGr0hKRreStmiLzUwxEyRHt+AIpNutOvvWhSXw=;
+        b=zUz8COQWmpLSIoJnwtScc3bRssDKs3lp3NDoy2D8X0xKXeGLR5Jvso246K0HUJSdbG
+         OSsjDIKmLpQP/fK8ABSd/2ZPZTD/c/jxSXiX/FyKI8nunW/5Thpdn3Id6AFqn8UThuBO
+         OrTNgt0+DckN0scEgbjK0/w38mSGgEs60wQlF8jNXa7QHkvE6qXWVdT6Bwmhorrsbo2F
+         lp1I0IgvLsSqi1g/KLpbIIk54Aj8UCOSsnSV/pwq3TDU2ceJszxKor0EY45ymN46fg10
+         P7O1kRKhQkfpWGBvH721T5O8OkAskxdjTtxZU6+dCL5hZqkF/UIRIzR14M8WMalf8Sb0
+         ajsA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id b9si2411834eju.269.2019.09.15.00.00.45;
+        Sun, 15 Sep 2019 00:01:09 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726764AbfIOG46 (ORCPT <rfc822;sheriffesseson@gmail.com>
+        + 99 others); Sun, 15 Sep 2019 02:56:58 -0400
+Received: from gardel.0pointer.net ([85.214.157.71]:38262 "EHLO
+        gardel.0pointer.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725991AbfIOG45 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 15 Sep 2019 02:56:57 -0400
+X-Greylist: delayed 313 seconds by postgrey-1.27 at vger.kernel.org; Sun, 15 Sep 2019 02:56:57 EDT
+Received: from gardel-login.0pointer.net (gardel.0pointer.net [85.214.157.71])
+        by gardel.0pointer.net (Postfix) with ESMTP id 51E95E811E1;
+        Sun, 15 Sep 2019 08:56:56 +0200 (CEST)
+Received: by gardel-login.0pointer.net (Postfix, from userid 1000)
+        id F3F4B160ADC; Sun, 15 Sep 2019 08:56:55 +0200 (CEST)
+Date:   Sun, 15 Sep 2019 08:56:55 +0200
+From:   Lennart Poettering <mzxreary@0pointer.de>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     "Alexander E. Patrakov" <patrakov@gmail.com>,
+        "Ahmed S. Darwish" <darwish.07@gmail.com>,
+        "Theodore Y. Ts'o" <tytso@mit.edu>,
+        Andreas Dilger <adilger.kernel@dilger.ca>,
+        Jan Kara <jack@suse.cz>, Ray Strode <rstrode@redhat.com>,
+        William Jon McCann <mccann@jhu.edu>,
+        zhangjs <zachary@baishancloud.com>, linux-ext4@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: Linux 5.3-rc8
+Message-ID: <20190915065655.GB29681@gardel-login>
+References: <CAHk-=whW_AB0pZ0u6P9uVSWpqeb5t2NCX_sMpZNGy8shPDyDNg@mail.gmail.com>
+ <CAHk-=wi_yXK5KSmRhgNRSmJSD55x+2-pRdZZPOT8Fm1B8w6jUw@mail.gmail.com>
+ <20190911173624.GI2740@mit.edu>
+ <20190912034421.GA2085@darwi-home-pc>
+ <20190912082530.GA27365@mit.edu>
+ <CAHk-=wjyH910+JRBdZf_Y9G54c1M=LBF8NKXB6vJcm9XjLnRfg@mail.gmail.com>
+ <20190914150206.GA2270@darwi-home-pc>
+ <CAHk-=wjuVT+2oj_U2V94MBVaJdWsbo1RWzy0qXQSMAUnSaQzxw@mail.gmail.com>
+ <214fed0e-6659-def9-b5f8-a9d7a8cb72af@gmail.com>
+ <CAHk-=wiB0e_uGpidYHf+dV4eeT+XmG-+rQBx=JJ110R48QFFWw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHk-=wiB0e_uGpidYHf+dV4eeT+XmG-+rQBx=JJ110R48QFFWw@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sa, 14.09.19 09:52, Linus Torvalds (torvalds@linux-foundation.org) wrote:
+
+> On Sat, Sep 14, 2019 at 9:35 AM Alexander E. Patrakov
+> <patrakov@gmail.com> wrote:
+> >
+> > Let me repeat: not -EINVAL, please. Please find some other error code,
+> > so that the application could sensibly distinguish between this case
+> > (low quality entropy is in the buffer) and the "kernel is too dumb" case
+> > (and no entropy is in the buffer).
+>
+> I'm not convinced we want applications to see that difference.
+>
+> The fact is, every time an application thinks it cares, it has caused
+> problems. I can just see systemd saying "ok, the kernel didn't block,
+> so I'll just do
+>
+>    while (getrandom(x) == -ENOENTROPY)
+>        sleep(1);
+>
+> instead. Which is still completely buggy garbage.
+>
+> The fact is, we can't guarantee entropy in general. It's probably
+> there is practice, particularly with user space saving randomness from
+> last boot etc, but that kind of data may be real entropy, but the
+> kernel cannot *guarantee* that it is.
+
+I am not expecting the kernel to guarantee entropy. I just expecting
+the kernel to not give me garbage knowingly. It's OK if it gives me
+garbage unknowingly, but I have a problem if it gives me trash all the
+time.
+
+There's benefit in being able to wait until the pool is initialized
+before we update the random seed stored on disk with a new one, and
+there's benefit in being able to wait until the pool is initialized
+before we let cryptsetup read a fresh, one-time key for dm-crypt from
+/dev/urandom. I fully understand that any such reporting for
+initialization is "best-effort", i.e. to the point where we don't know
+anything to the contrary, but at least give userspace that.
+
+Lennart
+
+--
+Lennart Poettering, Berlin

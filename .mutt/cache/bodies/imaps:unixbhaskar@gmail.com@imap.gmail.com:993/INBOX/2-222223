@@ -1,0 +1,90 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp892780lfc;
+        Fri, 7 Feb 2020 10:45:40 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzNPwcBAPx66p2cEpVnBlU7/OEDk0bp1syyl7yQ7jXkhbNLd2Tx3ZAh+wJY9rAbG2n1MxI7
+X-Received: by 2002:a9d:7e8a:: with SMTP id m10mr533633otp.27.1581101140047;
+        Fri, 07 Feb 2020 10:45:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1581101140; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Xpz8r8lYL+ram43JY5tLUV/UUrdEKSM2AvSn5SvIKbf7ldTuGrfFaIfch0/eJBx6EP
+         RX0DUOUmz15R9WhnwE1cLq3ElEl2OXtDjRJu4KJWeKgwMX6i5aoLqhgqdCLfZmXSa7qi
+         my1CgMPF3Gr3b3GMjjSY6YQ/CpzX/27wlf5IZCING8pNCg3NENXYIt+UJgrxLYdLcyfW
+         r9zwoGC0ncqFcNygdvMNnUdJHHNm9gNs7SkOuP9Jud334aMjzmDSuWL2FvVD9cshBIv6
+         SMJg6dkoRu6qc/6MKmh3kMxNCxQrlHCjY9FoZd+/Uc7ZPTzB+HxL83sfuVYZf1u/LaX2
+         Y/7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=dL65iWwv+xL4sEq5XYjorlxcDRykofKdxAZKl+L2nJ4=;
+        b=dyUe6Te+N4vve7MliGceuVaIQFI9vHty86ZoBRCgucKZDn0hP5OmF39AzKZ5lM6hO+
+         ZCF9ViUGNAkR6vNWhx+NgI91Y8ruY3SeB1PWsEjHFRanXbAcUnQtO7qz4YERIcgmCQux
+         Qmt/qAjbHc2VscGbA2aA2IDPUxVCiOWthbNRThUFz0xmMgjPs6pLTp6Xh9LMGfIJXITz
+         bHqSIULGevcmiRRY1sERhVwpgLQInqBbcIQx0c725W97jRR8EOTaKPw9Fk1UmcwO25LG
+         Zwqp8klz/uf9ApnloeE3TxD2fVSugzJWXF5XGEneGfjOMaEIuGw186IZinngonXH31/t
+         K6mQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id o16si54817otp.289.2020.02.07.10.45.22;
+        Fri, 07 Feb 2020 10:45:40 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727048AbgBGSoF (ORCPT <rfc822;tavery321@gmail.com> + 99 others);
+        Fri, 7 Feb 2020 13:44:05 -0500
+Received: from zeniv.linux.org.uk ([195.92.253.2]:47610 "EHLO
+        ZenIV.linux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726900AbgBGSoF (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 7 Feb 2020 13:44:05 -0500
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1j08bj-008ztl-KQ; Fri, 07 Feb 2020 18:44:03 +0000
+Date:   Fri, 7 Feb 2020 18:44:03 +0000
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     syzbot <syzbot+98704a51af8e3d9425a9@syzkaller.appspotmail.com>
+Cc:     linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+        syzkaller-bugs@googlegroups.com, Xiubo Li <xiubli@redhat.com>,
+        Jeff Layton <jlayton@kernel.org>,
+        Ilya Dryomov <idryomov@gmail.com>
+Subject: Re: BUG: sleeping function called from invalid context in __kmalloc
+Message-ID: <20200207184403.GD23230@ZenIV.linux.org.uk>
+References: <000000000000d895bd059dffb65c@google.com>
+ <000000000000e2de9d059dffefe3@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <000000000000e2de9d059dffefe3@google.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Feb 07, 2020 at 09:44:10AM -0800, syzbot wrote:
+> syzbot has found a reproducer for the following crash on:
+> 
+> HEAD commit:    90568ecf Merge tag 'kvm-5.6-2' of git://git.kernel.org/pub..
+> git tree:       upstream
+> console output: https://syzkaller.appspot.com/x/log.txt?x=15b26831e00000
+> kernel config:  https://syzkaller.appspot.com/x/.config?x=69fa012479f9a62
+> dashboard link: https://syzkaller.appspot.com/bug?extid=98704a51af8e3d9425a9
+> compiler:       clang version 10.0.0 (https://github.com/llvm/llvm-project/ c2443155a0fb245c8f17f2c1c72b6ea391e86e81)
+> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=172182b5e00000
+> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1590aab5e00000
+> 
+> IMPORTANT: if you fix the bug, please add the following tag to the commit:
+> Reported-by: syzbot+98704a51af8e3d9425a9@syzkaller.appspotmail.com
+
+commit 4fbc0c711b2464ee1551850b85002faae0b775d5
+Author: Xiubo Li <xiubli@redhat.com>
+Date:   Fri Dec 20 09:34:04 2019 -0500
+
+    ceph: remove the extra slashes in the server path
+
+is broken.  You really should not do blocking allocations under spinlocks.
+What's more, this is pointless - all you do with the results of two such
+calls is strcmp_null, for pity sake...  You could do the comparison in
+one pass, no need for all of that.  Or you could do a normalized copy when
+you parse options, store that normalized copy in addition to what you are
+storing now and compare _that_.

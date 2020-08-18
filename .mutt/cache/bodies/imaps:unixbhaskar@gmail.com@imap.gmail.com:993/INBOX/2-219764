@@ -1,0 +1,174 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a17:90a:3844:0:0:0:0 with SMTP id l4csp307050pjf;
+        Wed, 22 Jan 2020 06:06:52 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwZCf5oGJFIMcAJMH9l5crnAayyVLyaHxBekz6TLRrwMWp2TMK9TpBqjajQerLh6YuLjxaY
+X-Received: by 2002:aa7:85d8:: with SMTP id z24mr2870510pfn.202.1579702012223;
+        Wed, 22 Jan 2020 06:06:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579702012; cv=none;
+        d=google.com; s=arc-20160816;
+        b=tYeuCRt2CjRCwHF2M5WYtd6tJhP2lU+G+XpgrREE5XGXR/L1dJX9IHnaz9J55KO78u
+         IMiJxY6kDo5y0gMuYkd0oGtyNXAETMtFmx8Y2OdnYg8m0+MCAFwwsmNS6xfMPbKi9vSG
+         Uc+Voexj/WEi5iJkKnBrNBcUNZIf2/L5sofYp/pHgrERJ+PZEVGVg/F7HNkBkcZ1wk+H
+         MUWPJCwwQf9eXEfqhOCv1mauvy2vwhQaYeTH6sPpdsPsgZa7LhX2to3HC4mdE2hAezkf
+         qYmNd4nNnK7GyO9ax7M4gFEqhdIf5Eo0KRi03vAPqjcFefl+dUPK2x6/gdiFpSYli/c6
+         pLvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:auto-submitted:references:in-reply-to:message-id:date
+         :subject:to:from;
+        bh=tNcDzRYZKg3wusiUX/fzpZLSMKABx4YgW89d2C8Airc=;
+        b=rEao1Yya8xO3pw/W7oWA0/vXDb88k+VJUs4pI1AyhLEDz+rAhQuNJM6ee/V2en5vFZ
+         Sre77hXfMXBqW6sFU2L9/mf5tAbZDd5GC9lEP625Ab1TNK/ILvOE/91iui7LPCVk1sqC
+         +BMFjiPR+g6vDlgO9mDSQm7UlY70OdMGDCzxPHOJ2qjVhJMpo+yHjneS3RzG+4foM2a3
+         n4xdiWhiat7VoYJznudB+6urdV03suU0h3Qovl05tqejnXfP+M46jeVm+O6zMbn+h2f5
+         JFlxpv6S6jZwzmz0RoRnMZKufKbWdMIVLK7chtUPxMWZ4pYg/uFIrX10e09PfI8k28L4
+         ogsA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of bugzilla_noreply@novell.com designates 137.65.250.171 as permitted sender) smtp.mailfrom=bugzilla_noreply@novell.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=novell.com
+Return-Path: <bugzilla_noreply@novell.com>
+Received: from mh.novell.com (monroe.provo.novell.com. [137.65.250.171])
+        by mx.google.com with ESMTPS id h10si39746677pgv.486.2020.01.22.06.06.52
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Jan 2020 06:06:52 -0800 (PST)
+Received-SPF: pass (google.com: domain of bugzilla_noreply@novell.com designates 137.65.250.171 as permitted sender) client-ip=137.65.250.171;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of bugzilla_noreply@novell.com designates 137.65.250.171 as permitted sender) smtp.mailfrom=bugzilla_noreply@novell.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=novell.com
+Received: from novprvlin1091.provo.novell.com ([137.65.249.143])
+	by mh.novell.com with ESMTP (NOT encrypted); Wed, 22 Jan 2020 07:06:23 -0700
+Received: by novprvlin1091.provo.novell.com (Postfix, from userid 30)
+	id 61C9974050; Wed, 22 Jan 2020 14:06:23 +0000 (UTC)
+From: bugzilla_noreply@novell.com
+To: unixbhaskar@gmail.com
+Subject: [Bug 1158777] dracut fails to create initrd because of
+ 05-convertfs.conf
+Date: Wed, 22 Jan 2020 14:06:21 +0000
+X-Bugzilla-Reason: CC Reporter
+X-Bugzilla-Type: changed
+X-Bugzilla-Watch-Reason: None
+X-Bugzilla-Classification: openSUSE
+X-Bugzilla-Product: openSUSE Tumbleweed
+X-Bugzilla-Component: Upgrade Problems
+X-Bugzilla-Version: Current
+X-Bugzilla-Keywords: 
+X-Bugzilla-Severity: Major
+X-Bugzilla-Who: conde.philippe@skynet.be
+X-Bugzilla-Status: NEW
+X-Bugzilla-Priority: P2 - High
+X-Bugzilla-Assigned-To: daniel.molkentin@suse.com
+X-Bugzilla-QA-Contact: jsrain@suse.com
+X-Bugzilla-Target-Milestone: ---
+X-Bugzilla-Flags: 
+X-Bugzilla-Changed-Fields: flagtypes.name
+X-Bugzilla-NTS-Support-Num: 
+Message-ID: <bug-1158777-87276-aCFWbr3wVg@http.bugzilla.suse.com/>
+In-Reply-To: <bug-1158777-87276@http.bugzilla.suse.com/>
+References: <bug-1158777-87276@http.bugzilla.suse.com/>
+Content-Type: multipart/alternative; boundary="1579701983.1fabDFB34.20465";
+ charset="UTF-8"
+X-Bugzilla-URL: http://bugzilla.suse.com/
+Auto-Submitted: auto-generated
+MIME-Version: 1.0
+
+
+--1579701983.1fabDFB34.20465
+Date: Wed, 22 Jan 2020 14:06:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+http://bugzilla.suse.com/show_bug.cgi?id=1158777
+http://bugzilla.suse.com/show_bug.cgi?id=1158777#c15
+
+Philippe Condé <conde.philippe@skynet.be> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+              Flags|needinfo?(conde.philippe@sk |
+                   |ynet.be)                    |
+
+--- Comment #15 from Philippe Condé <conde.philippe@skynet.be> ---
+Hello,
+
+I installed dracut-049+git120.d0ae87c4-11.1.x86_64.rpm.
+After reboot i see that var/run is now a symlink of /run
+
+# ls -ld /var/run
+lrwxrwxrwx 1 root root 6 22 janv. 14:58 /var/run -> ../run
+
+So for me this bug is solved
+
+Many thanks
+Philippe
+
+-- 
+You are receiving this mail because:
+You are on the CC list for the bug.
+You reported the bug.
+--1579701983.1fabDFB34.20465
+Date: Wed, 22 Jan 2020 14:06:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="http://bugzilla.suse.com/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:conde.philippe&#64;skynet.be" title="Philippe Condé &lt;conde.philippe&#64;skynet.be&gt;"> <span class="fn">Philippe Condé</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - dracut fails to create initrd because of 05-convertfs.conf"
+   href="http://bugzilla.suse.com/show_bug.cgi?id=1158777">bug 1158777</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Flags</td>
+           <td>needinfo?(conde.philippe&#64;skynet.be)
+           </td>
+           <td>
+               &nbsp;
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - dracut fails to create initrd because of 05-convertfs.conf"
+   href="http://bugzilla.suse.com/show_bug.cgi?id=1158777#c15">Comment # 15</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - dracut fails to create initrd because of 05-convertfs.conf"
+   href="http://bugzilla.suse.com/show_bug.cgi?id=1158777">bug 1158777</a>
+              from <span class="vcard"><a class="email" href="mailto:conde.philippe&#64;skynet.be" title="Philippe Condé &lt;conde.philippe&#64;skynet.be&gt;"> <span class="fn">Philippe Condé</span></a>
+</span></b>
+        <pre>Hello,
+
+I installed dracut-049+git120.d0ae87c4-11.1.x86_64.rpm.
+After reboot i see that var/run is now a symlink of /run
+
+# ls -ld /var/run
+lrwxrwxrwx 1 root root 6 22 janv. 14:58 /var/run -&gt; ../run
+
+So for me this bug is solved
+
+Many thanks
+Philippe</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are on the CC list for the bug.</li>
+          <li>You reported the bug.</li>
+      </ul>
+    </body>
+</html>
+--1579701983.1fabDFB34.20465--

@@ -1,0 +1,187 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp4126295lfk;
+        Tue, 2 Jun 2020 12:56:42 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyybykZl6oR3JTuzg2tR9afjCdjfBoksjWLdcCXBoywcUZjdQ0TvPjIMi6ubwmCi9MU9/j8
+X-Received: by 2002:a17:906:dbda:: with SMTP id yc26mr24415931ejb.82.1591127801854;
+        Tue, 02 Jun 2020 12:56:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591127801; cv=none;
+        d=google.com; s=arc-20160816;
+        b=c+sZe55gPNEL8qpdHdYZWBLiOdRQHE3o/kxCdnhh4Dag4xVz02DYxcy9jwmLpcT8+z
+         VerSV9LuJXaLEcIrtZF6abgmboU329wgwwXOQE9U4qnrWXJyOXmDOCOHT1FAtO5BR+a2
+         zV2tyVpc8eHUa4+od8jtc7KYFzVPCdKHxViwAq6wG0WFmeePIJHAVvVESpdKj8eUDPOj
+         njxvBFVWnrvNIOmqwy5RYp9Ois5X42WAOXZhjER9afWufRn9k+pOxUMWZDN55yAZrj2T
+         SD1hpECNaqiWwectypZYx8fUGf4rqAKGmWyLf1BQ8c3lVH3DWkxJ9pW/k4aAPi6YMeFm
+         iupQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :references:in-reply-to:date:cc:to:from:subject:message-id
+         :dkim-signature:dkim-signature;
+        bh=AMag+19u/xFYxbg64S8iXnp79dU2eUiZPmEAXImWNkQ=;
+        b=gZef3P2hQHwBJlKXw3o1gYBTGX2R8P0gQx70iGCrWqGCXcj9lZCLSHZwAkcUegIy9P
+         H9+kEP21NwNyEaaBuJd1ntpspahtDInZR6TSumQlvN07An+AeRrdljxSuwCBffLrz3Yr
+         WI0RAkSVWyR/t+KWAOY5p6Y585Oos8Z8sYXUx0uVyglUTMsOGKY1tQPyrn7Q9UTvU8ZZ
+         Au3bKyDQaOE5TqRuuWRXen3fPWJ6PupTP1ZojC6Dt8NuGfSDdVZeptBJWrClw1LdXUs0
+         X8lcIdGCgxc438zdx4AV+b7KDHJ1HmUPyrJZSHH0RBJ7kY3bDqAA+UQsYjIQZtvisyN/
+         Q+sw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@hansenpartnership.com header.s=20151216 header.b=wLxGzutP;
+       dkim=fail header.i=@hansenpartnership.com header.s=20151216 header.b=wLxGzutP;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=hansenpartnership.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id e9si1910342eja.348.2020.06.02.12.56.18;
+        Tue, 02 Jun 2020 12:56:41 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@hansenpartnership.com header.s=20151216 header.b=wLxGzutP;
+       dkim=fail header.i=@hansenpartnership.com header.s=20151216 header.b=wLxGzutP;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=hansenpartnership.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727982AbgFBTyT (ORCPT <rfc822;cafebabe4fun@gmail.com>
+        + 99 others); Tue, 2 Jun 2020 15:54:19 -0400
+Received: from bedivere.hansenpartnership.com ([66.63.167.143]:48398 "EHLO
+        bedivere.hansenpartnership.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726589AbgFBTyS (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 2 Jun 2020 15:54:18 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by bedivere.hansenpartnership.com (Postfix) with ESMTP id D6A608EE268;
+        Tue,  2 Jun 2020 12:54:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=hansenpartnership.com;
+        s=20151216; t=1591127657;
+        bh=BnRTz0H3of5YQTsobSyKAMRC+EgHR1zd32h9qrh3mL0=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=wLxGzutPw6wLP7nAdTeh2H079b6mUpp6Vzs8J/WCwOrzFDGyhr0+0fcmf4q+jbiUh
+         jVFSI0+Z7Mp3J6guDguNNu+UTROi0o5ARRNtqv92L6T+bIJsXpoziPLxAOuxLuNC/N
+         8H17TqLL537SUtgx21SSCRHvDkN+lqBGhBZxBLYA=
+Received: from bedivere.hansenpartnership.com ([127.0.0.1])
+        by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 9xuGT-2m2fYZ; Tue,  2 Jun 2020 12:54:17 -0700 (PDT)
+Received: from [153.66.254.194] (unknown [50.35.76.230])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id 1CC838EE0F8;
+        Tue,  2 Jun 2020 12:54:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=hansenpartnership.com;
+        s=20151216; t=1591127657;
+        bh=BnRTz0H3of5YQTsobSyKAMRC+EgHR1zd32h9qrh3mL0=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=wLxGzutPw6wLP7nAdTeh2H079b6mUpp6Vzs8J/WCwOrzFDGyhr0+0fcmf4q+jbiUh
+         jVFSI0+Z7Mp3J6guDguNNu+UTROi0o5ARRNtqv92L6T+bIJsXpoziPLxAOuxLuNC/N
+         8H17TqLL537SUtgx21SSCRHvDkN+lqBGhBZxBLYA=
+Message-ID: <1591127656.16819.7.camel@HansenPartnership.com>
+Subject: Re: kobject_init_and_add is easy to misuse
+From:   James Bottomley <James.Bottomley@HansenPartnership.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Matthew Wilcox <willy@infradead.org>,
+        Wang Hai <wanghai38@huawei.com>, cl@linux.com,
+        penberg@kernel.org, rientjes@google.com, iamjoonsoo.kim@lge.com,
+        akpm@linux-foundation.org, khlebnikov@yandex-team.ru,
+        linux-mm@kvack.org, linux-kernel@vger.kernel.org
+Date:   Tue, 02 Jun 2020 12:54:16 -0700
+In-Reply-To: <20200602173603.GB3579519@kroah.com>
+References: <20200602115033.1054-1-wanghai38@huawei.com>
+         <20200602121035.GL19604@bombadil.infradead.org>
+         <1591111514.4253.32.camel@HansenPartnership.com>
+         <20200602173603.GB3579519@kroah.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.26.6 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, 2020-06-02 at 19:36 +0200, Greg Kroah-Hartman wrote:
+> On Tue, Jun 02, 2020 at 08:25:14AM -0700, James Bottomley wrote:
+> > On Tue, 2020-06-02 at 05:10 -0700, Matthew Wilcox wrote:
+> > > On Tue, Jun 02, 2020 at 07:50:33PM +0800, Wang Hai wrote:
+> > > > syzkaller reports for memory leak when kobject_init_and_add()
+> > > > returns an error in the function sysfs_slab_add() [1]
+> > > > 
+> > > > When this happened, the function kobject_put() is not called
+> > > > for the corresponding kobject, which potentially leads to
+> > > > memory leak.
+> > > > 
+> > > > This patch fixes the issue by calling kobject_put() even if
+> > > > kobject_init_and_add() fails.
+> > > 
+> > > I think this speaks to a deeper problem with
+> > > kobject_init_and_add()
+> > > -- the need to call kobject_put() if it fails is not readily
+> > > apparent
+> > > to most users.  This same bug appears in the first three users of
+> > > kobject_init_and_add() that I checked --
+> > > arch/ia64/kernel/topology.c
+> > > drivers/firmware/dmi-sysfs.c
+> > > drivers/firmware/efi/esrt.c
+> > > drivers/scsi/iscsi_boot_sysfs.c
+> > > 
+> > > Some do get it right --
+> > > arch/powerpc/kernel/cacheinfo.c
+> > > drivers/gpu/drm/ttm/ttm_bo.c
+> > > drivers/gpu/drm/ttm/ttm_memory.c
+> > > drivers/infiniband/hw/mlx4/sysfs.c
+> > > 
+> > > I'd argue that the current behaviour is wrong,
+> > 
+> > Absolutely agree with this.  We have a big meta pattern here where
+> > we introduce functions with tortuous semantics then someone creates
+> > a checker for the semantics and misuses come crawling out of the
+> > woodwork leading to floods of patches, usually for little or never
+> > used error paths, which really don't buy anything apart from
+> > theoretical correctness.  Just insisting on simple semantics would
+> > have avoided this.
+> 
+> I "introduced" this way back at the end of 2007.  It's not exactly a
+> new function.
+
+Heh, well, if it never fails, how you handle the failure become
+unimportant semantics ...
+
+> > >  that kobject_init_and_add() should call kobject_put() if the add
+> > > fails.  This would need a tree-wide audit.  But somebody needs to
+> > > do that anyway because based on my random sampling, half of the
+> > > users currently get it wrong.
+> > 
+> > Well, the semantics of kobject_init() are free on fail, so these
+> > are the ones everyone seems to be using.  The semantics of
+> > kobject_add are put on fail.  The problem is that put on fail isn't
+> > necessarily correct in the kobject_init() case: the release
+> > function may make assumptions about the object hierarchy which
+> > aren't satisfied in the kobject_init() failure case.  This argues
+> > that kobject_init_and_add() can't ever have correct semantics and
+> > we should eliminate it.
+> 
+> At the time, it did reduce common functionality and error handling
+> all into a simpler function.  And, given it's history, it must have
+> somehow worked for the past 12 years or so :)
+
+Well, like I said, as long as it never fails, no problem.
+
+It was just Matthew saying "couldn't we make it do kobject_put()
+itself?" that got me thinking that perhaps that wouldn't work with all
+cases.  So now we're discussing failure handling, we're into the
+esoteric rabbit hole case that never happens.
+
+> Odds are, lots of the callers shouldn't be messing around with
+> kobjects in the first place.  Originally it was only assumed that
+> there would be very few users.  But it has spread to filesystems and
+> firmware subsystems.  Drivers should never use it though, so it's a
+> good hint something is wrong there...
+> 
+> Anyway, patches to fix this up to make a "sane" api for kobjects is
+> always appreciated.  Personally I don't have the time at the moment.
+
+I think the only way we can make the failure semantics consistent is to
+have the kobject_init() ones (so kfree on failure).  That means for the
+add part, the function would have to unwind everything it did from init
+on so kfree() is still an option.  If people agree, then I can produce
+the patch ... it's just the current drive to transform everyone who's
+doing kfree() into kobject_put() would become wrong ...
+
+James
+

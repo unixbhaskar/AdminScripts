@@ -1,0 +1,49 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from Slackware ([103.231.91.34])
+        by smtp.gmail.com with ESMTPSA id d9sm7450438pgc.80.2019.11.01.15.23.09
+        for <lwn@lwn.net>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Nov 2019 15:23:11 -0700 (PDT)
+Date: Sat, 2 Nov 2019 03:52:56 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: lwn@lwn.net
+Subject: Edit the spelling mistake in the article:
+ https://lwn.net/Articles/803619/
+Message-ID: <20191101222256.GA12521@Slackware>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="rwEMma7ioTxnRzrJ"
+Content-Disposition: inline
+User-Agent: Mutt/1.12.2 (2019-09-21)
+
+
+--rwEMma7ioTxnRzrJ
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+
+Jon,
+
+it creeps in second last paragraph
+
+s/pubic-inbox/public-inbox/p
+
+:)
+
+~Bhaskar
+
+--rwEMma7ioTxnRzrJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl28sDoACgkQsjqdtxFL
+KRUldQf9HA3NNKmQDRJ+IcBUIrVByjMM3HBDgZljj3WHOWWVFxp1KmW/tULaLcjB
+JFSDTMLixEGXGUk/16jBPxczYB45SGZBK35fBPnkIHl5wyfUtgCJIJPQs1EV4/LD
+gmZmyg+a6ui6+8HPUoJZktH53v+oywZeVB8ztQom12IRmaO6gYYyq0g0xw9EPkPw
+tf34rcm5MQBumN4SnodDEUAmfMdM0r2fyiLbZfdSKd9QODvF1M59H7ZOOLViWAOf
+B0b5GvOzkKl3QEFIupoyrA0vRvCJH/tyo78CqT6b6r+QzyDeum1ewKTZo60f79hf
+UUFu1ka27DSMNj5HRs5MB+zeTsWDmQ==
+=Vks/
+-----END PGP SIGNATURE-----
+
+--rwEMma7ioTxnRzrJ--

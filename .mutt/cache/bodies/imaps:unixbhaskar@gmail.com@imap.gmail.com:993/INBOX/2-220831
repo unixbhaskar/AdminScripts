@@ -1,0 +1,84 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp490900lfc;
+        Wed, 29 Jan 2020 04:26:21 -0800 (PST)
+X-Google-Smtp-Source: APXvYqyBHNzrCYYS/Wzp/h8rRbqBULV9xAhknaHcAamXHUKU9Cho4slJ+sEi6Mx3KLzy4mxQs+i+
+X-Received: by 2002:a63:5407:: with SMTP id i7mr30450048pgb.330.1580300781185;
+        Wed, 29 Jan 2020 04:26:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580300781; cv=none;
+        d=google.com; s=arc-20160816;
+        b=zmQjqUTPSGWZ2WJv4XeQl4X2bTvX7MS6CD0zbSz2TxXmEwcT1npTpTNsMDe5xUBdZy
+         R0g8GSXiwm1AFESvgdKp7UdPst4UO43FZ+lgJgwZOVX3a3w4f0fFRlciY2CZ4pidf5jC
+         D7dvp2DQc8ejt6Zu8bTqAh8qmW3NuwhkC/01mljrhmEnXWaX/jd1aTFQ3UTm9gqtYzDE
+         NG0q79n2ecOrTSk30xfSzBehkBvOaR50WGXQqPU76imsaP6S8NCIncLHz1iYbvjStqed
+         jU/Bvg8coNpldyD3pJN/DxKC7srCHHpcjTrSuB1TSsIMCIuucVHo/N6BsfwOBSeySjrI
+         ECWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=sender:errors-to:list-id:precedence:date:message-id:auto-submitted
+         :reply-to:subject:to:from:content-transfer-encoding:mime-version;
+        bh=poY+hu7WpexuH6ZHWLKaKi8khKI9YJPenKHccB9Ypmg=;
+        b=yas1HkthsZXR0wg7N8S0tvg4kgAEMY1U+fOvYJFMqTHjP3uT5kkkb5oYWuJqpIC6V3
+         uPpa+BcXdprrDbdVJFvpHqe/FwsDHYjkqQbz0DfWUnEc8cGR9wLX3hsz6K069ImN1X5q
+         iVBwYmjgfSljBC+/Q8IQiAucDfi3Yn/quAuzgIaO62fg51FRmyqZvyN3jvV6LEmVJRoY
+         mfeD4QfvTnFur08x7nfr4ClAaEUkW21ngWbNrxwgL+bjzbDKrfRLv4hcdh1SvkmBMtIC
+         gBbEtXIu/+URtWt8dZ1UvWJmJkt8QZ0OQPrjcQTkzozxSlatVCQG3Acl2jQRAYCw91sX
+         WMhw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of wireguard-bounces@lists.zx2c4.com designates 192.95.5.69 as permitted sender) smtp.mailfrom=wireguard-bounces@lists.zx2c4.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=zx2c4.com
+Return-Path: <wireguard-bounces@lists.zx2c4.com>
+Received: from krantz.zx2c4.com (krantz.zx2c4.com. [192.95.5.69])
+        by mx.google.com with ESMTPS id j23si1639945pll.234.2020.01.29.04.26.19
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 29 Jan 2020 04:26:21 -0800 (PST)
+Received-SPF: pass (google.com: domain of wireguard-bounces@lists.zx2c4.com designates 192.95.5.69 as permitted sender) client-ip=192.95.5.69;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of wireguard-bounces@lists.zx2c4.com designates 192.95.5.69 as permitted sender) smtp.mailfrom=wireguard-bounces@lists.zx2c4.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=zx2c4.com
+Received: from krantz.zx2c4.com (localhost [IPv6:::1])
+	by krantz.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 82d5f965
+	for <unixbhaskar@gmail.com>;
+	Wed, 29 Jan 2020 12:26:15 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+From: wireguard-request@lists.zx2c4.com
+To: unixbhaskar@gmail.com
+Subject: confirm aeac132ceb21e0ae70e7c9ff348f61b37ee9656b
+Reply-To: wireguard-request@lists.zx2c4.com
+Auto-Submitted: auto-generated
+Message-ID: <mailman.0.1580300773.19472.wireguard@lists.zx2c4.com>
+Date: Wed, 29 Jan 2020 13:26:13 +0100
+Precedence: bulk
+X-BeenThere: wireguard@lists.zx2c4.com
+X-Mailman-Version: 2.1.15
+List-Id: Development discussion of WireGuard <wireguard.lists.zx2c4.com>
+X-List-Administrivia: yes
+Errors-To: wireguard-bounces@lists.zx2c4.com
+Sender: "WireGuard" <wireguard-bounces@lists.zx2c4.com>
+
+Mailing list subscription confirmation notice for mailing list
+WireGuard
+
+We have received a request from 103.231.91.35 for subscription of your
+email address, "unixbhaskar@gmail.com", to the
+wireguard@lists.zx2c4.com mailing list.  To confirm that you want to
+be added to this mailing list, simply reply to this message, keeping
+the Subject: header intact.  Or visit this web page:
+
+    https://lists.zx2c4.com/mailman/confirm/wireguard/aeac132ceb21e0ae70e7c9ff348f61b37ee9656b
+
+
+Or include the following line -- and only the following line -- in a
+message to wireguard-request@lists.zx2c4.com:
+
+    confirm aeac132ceb21e0ae70e7c9ff348f61b37ee9656b
+
+Note that simply sending a `reply' to this message should work from
+most mail readers, since that usually leaves the Subject: line in the
+right form (additional "Re:" text in the Subject: is okay).
+
+If you do not wish to be subscribed to this list, please simply
+disregard this message.  If you think you are being maliciously
+subscribed to the list, or have any other questions, send them to
+wireguard-owner@lists.zx2c4.com.

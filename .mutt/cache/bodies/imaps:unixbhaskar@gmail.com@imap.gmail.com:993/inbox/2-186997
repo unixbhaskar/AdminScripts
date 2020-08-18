@@ -1,0 +1,84 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:6752:0:0:0:0:0 with SMTP id e18csp4722975lfj;
+        Mon, 24 Jun 2019 21:40:21 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqy/hIm3PRJxlajRNdL5jlPcCZJMRZNQvxuWHMOOFy9VyXNAK02mA0liknnTozUpsGYQbBj2
+X-Received: by 2002:a63:d415:: with SMTP id a21mr35569373pgh.229.1561437621413;
+        Mon, 24 Jun 2019 21:40:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1561437621; cv=none;
+        d=google.com; s=arc-20160816;
+        b=jMg+Sy5ENpQmpyf93PGAFzjgZWxzcusnGS9bOQmcgZGFbmCr2Mx10SoRnq2SXX6Y3g
+         Rh5L/k7m6PQ54ud/Pmt9B1n8cP+3gMvdZhEKeUx4IItGboWDES17uA5OSoYqct6DxdA7
+         H05+E60AXYtyVjZhUZQXl00YVILZHZa/An5f1JHu6YbRxvzr7eg2UplgoRQ4LllciXXy
+         EvCowdEF8mU/0L22GcpGep9abyVV7/Mnx+PE5MGSgDOVWBEB/n8qwquR2ht2YVNMax82
+         RQlJ5qE76XAdxOiRmLljvXj6lQIvfi8QAGsZ/GO/Eq+Ms7KxCtYSsyp4oa5r4Ym8rQYr
+         AzNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:date:precedence:to
+         :auto-submitted:message-id:references:in-reply-to:reply-to:from
+         :subject;
+        bh=IgSiOrRS0vvjDk0HNPuPizAfxm69FWaDS7c2BcqKAM4=;
+        b=vZB+cjb9fTHCc9uraj1/LvAHZELRV+W35NVoBZR8nYFhRuSt6yKCAgAcvz8y7PO0bo
+         ZPuPZyTX5NoQ32qi7NqlNp+7vgFNHLjzOUyeLd3vZVSx7Dfz1Yzz1DeO+mYgPjUHLX99
+         ZSLDgVBbuNGQykO6C3cCbJJeHcelNUYxpCZ82hNU7f+Z/ziEekQrO93FG3iunsvvlVP8
+         /+vaAAmgvBMElll6IAXXlgFwKItUrFTkTx2rufIMcESOURnf81mI7k8YNKiRLwoEcdXa
+         DAiuUKwaoQ3w4CYnL6kye4Z/7rf6EhxU/lOlKXuKH7yha9oT02680l5eo7po55AaujA8
+         d6VQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of apache@rt.linuxfoundation.org designates 140.211.169.13 as permitted sender) smtp.mailfrom=apache@rt.linuxfoundation.org
+Return-Path: <apache@rt.linuxfoundation.org>
+Received: from smtp1.linuxfoundation.org (smtp1.linuxfoundation.org. [140.211.169.13])
+        by mx.google.com with ESMTPS id v25si12721988pff.274.2019.06.24.21.40.21
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 24 Jun 2019 21:40:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of apache@rt.linuxfoundation.org designates 140.211.169.13 as permitted sender) client-ip=140.211.169.13;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of apache@rt.linuxfoundation.org designates 140.211.169.13 as permitted sender) smtp.mailfrom=apache@rt.linuxfoundation.org
+Received: from rt.cvo.linuxfoundation.org (rt.cvo.linuxfoundation.org [172.17.192.131])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 09F11710
+	for <unixbhaskar@gmail.com>; Tue, 25 Jun 2019 04:40:21 +0000 (UTC)
+Received: by rt.cvo.linuxfoundation.org (Postfix, from userid 48)
+	id F052C632; Tue, 25 Jun 2019 04:40:20 +0000 (UTC)
+Subject: [Kernel.org Helpdesk #77166] AutoReply: sing failed on latest stable 5.1.15
+From: "Kernel.org IT Helpdesk via RT" <kernel-helpdesk@rt.linuxfoundation.org>
+Reply-To: kernel-helpdesk@rt.linuxfoundation.org
+In-Reply-To: <20190625044004.GB18578@Gentoo>
+References: <RT-Ticket-77166@linuxfoundation> <20190625044004.GB18578@Gentoo>
+Message-ID: <rt-4.4.0-28640-1561437620-799.77166-3-0@linuxfoundation>
+X-RT-Loop-Prevention: linuxfoundation.org
+X-RT-Ticket: linuxfoundation.org #77166
+X-Managed-BY: RT 4.4.0 (http://www.bestpractical.com/rt/)
+X-RT-Originator: unixbhaskar@gmail.com
+Auto-Submitted: auto-replied
+To: unixbhaskar@gmail.com
+Content-Type: text/plain; charset="utf-8"
+X-RT-Original-Encoding: utf-8
+Precedence: bulk
+Date: Tue, 25 Jun 2019 00:40:20 -0400
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+Greetings,
+
+Your support ticket regarding:
+	"sing failed on latest stable 5.1.15 ", has been entered in our ticket tracker.
+A summary of your ticket appears below.
+
+If you have any follow-up related to this issue, please reply to this email.
+
+You may also follow up on your open tickets by visiting https://rt.linuxfoundation.org/ -- if you have not logged into RT before, you will need to follow the "Forgot your password" link to set an RT password.
+
+-- 
+The Linux Foundation Support Team
+-------------------------------------------------------------------------
+Well, it throws like this :
+
+Downloading the signature file for linux-5.1.15
+Downloading the XZ tarball for linux-5.1.15
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  101M  100  101M    0     0   434k      0  0:03:59  0:03:59 --:--:--  296k
+Verifying checksum on linux-5.1.15.tar.xz
+/usr/bin/sha256sum: /home/bhaskar/latest_kernel_build_Gentoo_2019-06-25/linux-tarball-verify.8ADm5R.untrusted/sha256sums.txt: no properly formatted SHA256 checksum lines found
+FAILED to verify the downloaded tarball checksum
+

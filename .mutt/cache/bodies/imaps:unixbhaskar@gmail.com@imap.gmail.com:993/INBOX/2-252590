@@ -1,0 +1,362 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp4228655lfj;
+        Sun, 9 Aug 2020 15:26:21 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwd0ye28am+qMFmoJs9pjmccmKp1gMPz+ySatowg4mZlriX+g8FyelfAeTNljxhu2e9F7ZG
+X-Received: by 2002:a05:6402:305b:: with SMTP id bu27mr18880621edb.300.1597011981125;
+        Sun, 09 Aug 2020 15:26:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597011981; cv=none;
+        d=google.com; s=arc-20160816;
+        b=GQz9UMM5Vy9uq7/3u5POwUmepncyPaKNkbcNU6c2jKpiSxuJdqWwleGAXsH+Fh7KZF
+         BRFbqhXh1aTnldn6roF31x/C6b7NR+IBhLn94AmpUnqsypxdnshZifhN3/jtUaIX87fw
+         YmQ2kkEQT6ufHtG+zSuzST5DRR3XtrKdbHthFWF8CTaL4035SVA06tJ1RvF8KFKgF2Ts
+         NUwvjF1urW1SfUm1mnlUDlJzig8rYrQE1CyHpoYakWQ/6K5mXzX1iIET607RDoY2B++i
+         ujxpmHus3fNM7o4JxmfqWmWECNnDyqlRJG6KV/ht0exYEGcqkcNV9FFKw75vrC2adSu6
+         vQkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:content-transfer-encoding
+         :content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=so23Mez6QWw9ojBTKHnuc5MjnIkhyMlRbF1NJ+C/VzQ=;
+        b=lGWdHeMUTRFtridEqtcpm5GlmMwXFkTbf+Z4zWu3bmT98UnpdINrdUChpbniA0D1Ul
+         kQoiOZbGkM3riIHfGieTmvaYHIGj3wJ6Ilk2QgCKiKbBOn1DQuZyIjG5exXXoDFRXPJ/
+         4jhy8iV1FuPWjozXFyEueu2otkdOGQooNH4v+afczbQzZ1XlGkvXSdnFDH+dfVQdtgQ7
+         f0Bd7BLZ6YG4C1G5JdRe98t3dHdUgiOPGu8vj9yglCiWUF2NFpalFTlvIxGLPn7zSqy2
+         OtEN91W/G4TvjdUrgPR9oayltY/JxcZvddHiYs8kAkWBXD0UftqNSVSGQanRlT7Fs/Gb
+         VX+Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@rere.qmqm.pl header.s=1 header.b="jK/pVqcP";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id i8si9361820edr.108.2020.08.09.15.25.57;
+        Sun, 09 Aug 2020 15:26:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@rere.qmqm.pl header.s=1 header.b="jK/pVqcP";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726399AbgHIWZs (ORCPT <rfc822;bl0pbl33p@gmail.com> + 99 others);
+        Sun, 9 Aug 2020 18:25:48 -0400
+Received: from rere.qmqm.pl ([91.227.64.183]:34272 "EHLO rere.qmqm.pl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726321AbgHIWZp (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 9 Aug 2020 18:25:45 -0400
+Received: from remote.user (localhost [127.0.0.1])
+        by rere.qmqm.pl (Postfix) with ESMTPSA id 4BPtw53wq0z18;
+        Mon, 10 Aug 2020 00:25:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
+        t=1597011941; bh=EKUp6dgim3edHdnzMhtfoqOahGekn46KiZbqNMoQp1M=;
+        h=Date:From:To:Cc:Subject:From;
+        b=jK/pVqcP2+suRUodL5MjgbItBN8kXv7D1BwGKiegHUO2BaskKD+zeGrvApKRNVr2i
+         u7Vae51VyiW8nn33EZ7Vmt8Gkgr7/5bimqHuwKqfUH6Fnrfi8UT5v+Fvx2xmGXOtND
+         pb4Bwt67jPnRItB/GWMW4KXNF/AI3vvDGePMZ/Stmr7GODIoRVGz88jjTKsNvBsd08
+         PuxYyXJdk9wgnKgiHsSQGIXwTuaNEese4LRKuJOjc8A6CZgVlhxazWhM1aJuxx7uXN
+         iTEhXtR2W1xDyp0JFzIqiqAdp4FHrqLFROQSQ5YZXybJGJTKU+sGJ24g3kCc414GyV
+         R4qpznUdeV3rw==
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.102.4 at mail
+Date:   Mon, 10 Aug 2020 00:25:37 +0200
+From:   =?iso-8859-2?Q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-kernel@vger.kernel.org
+Subject: regulator: deadlock vs memory reclaim
+Message-ID: <20200809222537.GA5522@qmqm.qmqm.pl>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-2
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Hi guys,
+
+Commit f8702f9e4aa7 ("regulator: core: Use ww_mutex for regulators locking")
+from Nov 2018 tried to fix possible deadlocks when handling coupled
+regulators. Unfortunately it introduced another possible deadlock,
+as discovered by lockdep (see below), instead.
+
+regulator_lock_dependent() starts by taking regulator_list_mutex, The
+same mutex covers eg. regulator initialization, including memory allocations
+that happen there. This will deadlock when you have filesystem on eg. eMMC
+(which uses a regulator to control module voltages) and you register
+a new regulator (hotplug a device?) when under memory pressure.
+
+There is also another problem with regulator_lock_dependent(): all the
+w/w rollback stuff is useless: because of the outer lock, there can only
+be one contendant doing multiple-lock-grabbing procedure. In this setup,
+the procedure cannot detect other processes waiting on
+regulator_lock_dependent() and it cannot signal (wound a transaction of)
+current holders of locks taken by regulator_lock().
+
+Basically, we have a BKL for regulator_enable() and we're using ww_mutex
+as a recursive mutex with no deadlock prevention whatsoever. The locks
+also seem to cover way to much (eg. initialization even before making the
+regulator visible to the system).
+
+To fix the regulator vs memory reclaim path I tried pushing all allocations
+out of protected sections. After doing a few patches, though, I'm not sure
+I'm going in the right direction. Your thoughts?
+
+Best Regards
+Micha³ Miros³aw
+
+
+======================================================
+WARNING: possible circular locking dependency detected
+5.7.13+ #537 Not tainted
+------------------------------------------------------
+kworker/u2:11/184 is trying to acquire lock:
+c0e5d8d8 (regulator_list_mutex){+.+.}-{3:3}, at: regulator_lock_dependent+0x54/0x2c0
+
+but task is already holding lock:
+cca919dc (&sbi->write_io[i][j].io_rwsem){++++}-{3:3}, at: __submit_merged_write_cond+0xac/0x154
+
+which lock already depends on the new lock.
+
+the existing dependency chain (in reverse order) is:
+
+-> #2 (&sbi->write_io[i][j].io_rwsem){++++}-{3:3}:
+       down_write+0x40/0x90
+       f2fs_submit_page_write+0x5c/0x660
+       do_write_page+0x60/0x12c
+       f2fs_outplace_write_data+0x64/0x134
+       f2fs_do_write_data_page+0x57c/0x9b4
+       f2fs_write_single_data_page+0x7f0/0x834
+       f2fs_write_data_page+0x74/0xac
+       shrink_page_list+0xaac/0x1010
+       shrink_inactive_list+0x200/0x43c
+       shrink_node+0x5ac/0x980
+       kswapd+0x444/0x930
+       kthread+0x168/0x16c
+       ret_from_fork+0x14/0x20
+       0x0
+
+-> #1 (fs_reclaim){+.+.}-{0:0}:
+       fs_reclaim_acquire.part.11+0x40/0x50
+       fs_reclaim_acquire+0x24/0x28
+       __kmalloc+0x54/0x218
+       regulator_register+0x878/0x15dc
+       dummy_regulator_probe+0x60/0xa8
+       platform_drv_probe+0x58/0xa8
+       really_probe+0x1d8/0x468
+       driver_probe_device+0x174/0x1d0
+       device_driver_attach+0x68/0x70
+       __driver_attach+0xa0/0x154
+       bus_for_each_dev+0x84/0xc4
+       driver_attach+0x2c/0x30
+       bus_add_driver+0x128/0x208
+       driver_register+0x84/0x118
+       __platform_driver_register+0x50/0x58
+       regulator_dummy_init+0x74/0x98
+       regulator_init+0xa0/0xc0
+       do_one_initcall+0x7c/0x274
+       kernel_init_freeable+0x180/0x1f0
+       kernel_init+0x18/0x120
+       ret_from_fork+0x14/0x20
+       0x0
+
+-> #0 (regulator_list_mutex){+.+.}-{3:3}:
+       __lock_acquire+0x15e8/0x2ddc
+       lock_acquire+0xf4/0x410
+       __mutex_lock+0x8c/0x628
+       mutex_lock_nested+0x2c/0x34
+       regulator_lock_dependent+0x54/0x2c0
+       regulator_get_voltage+0x38/0xec
+       regulator_is_supported_voltage+0x44/0x104
+       mmc_regulator_set_voltage_if_supported+0x2c/0x68
+       mmc_regulator_set_vqmmc+0xf0/0x190
+       sdhci_start_signal_voltage_switch+0xf4/0x34c
+       sdhci_runtime_resume_host+0x88/0x26c
+       sdhci_at91_runtime_resume+0x3c/0x54
+       pm_generic_runtime_resume+0x3c/0x48
+       __rpm_callback+0x84/0x13c
+       rpm_callback+0x64/0x90
+       rpm_resume+0x5d4/0x740
+       __pm_runtime_resume+0x5c/0x74
+       __mmc_claim_host+0x1d8/0x228
+       mmc_get_card+0x38/0x3c
+       mmc_mq_queue_rq+0x270/0x278
+       __blk_mq_try_issue_directly+0x150/0x1dc
+       blk_mq_request_issue_directly+0x58/0x88
+       blk_mq_try_issue_list_directly+0x60/0xdc
+       blk_mq_sched_insert_requests+0x15c/0x1d8
+       blk_mq_flush_plug_list+0x1ac/0x278
+       blk_flush_plug_list+0xd8/0xf4
+       blk_mq_make_request+0x31c/0x6d0
+       generic_make_request+0xc8/0x318
+       submit_bio+0x44/0x180
+       __submit_bio+0x74/0x41c
+       __submit_merged_bio+0x6c/0x1cc
+       __submit_merged_write_cond+0xe0/0x154
+       f2fs_write_cache_pages+0x75c/0x7c0
+       f2fs_write_data_pages+0x350/0x3c0
+       do_writepages+0x54/0xf0
+       __writeback_single_inode+0x60/0x4cc
+       writeback_sb_inodes+0x200/0x4b4
+       __writeback_inodes_wb+0x70/0xbc
+       wb_writeback+0x2c0/0x3a0
+       wb_workfn+0x3cc/0x568
+       process_one_work+0x2c4/0x684
+       worker_thread+0x60/0x588
+       kthread+0x168/0x16c
+       ret_from_fork+0x14/0x20
+       0x0
+
+other info that might help us debug this:
+
+Chain exists of:
+  regulator_list_mutex --> fs_reclaim --> &sbi->write_io[i][j].io_rwsem
+
+ Possible unsafe locking scenario:
+
+       CPU0                    CPU1
+       ----                    ----
+  lock(&sbi->write_io[i][j].io_rwsem);
+                               lock(fs_reclaim);
+                               lock(&sbi->write_io[i][j].io_rwsem);
+  lock(regulator_list_mutex);
+
+ *** DEADLOCK ***
+
+6 locks held by kworker/u2:11/184:
+ #0: cd703ea4 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x22c/0x684
+ #1: cd71fef0 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x22c/0x684
+ #2: cca9787c (&type->s_umount_key#25){.+.+}-{3:3}, at: trylock_super+0x24/0x68
+ #3: cca96094 (&sbi->writepages){+.+.}-{3:3}, at: f2fs_write_data_pages+0x338/0x3c0
+ #4: cca919dc (&sbi->write_io[i][j].io_rwsem){++++}-{3:3}, at: __submit_merged_write_cond+0xac/0x154
+ #5: cb69cfe0 (hctx->srcu){....}-{0:0}, at: hctx_lock+0x60/0xb8
+
+stack backtrace:
+CPU: 0 PID: 184 Comm: kworker/u2:11 Not tainted 5.7.13+ #537
+Hardware name: Atmel SAMA5
+Workqueue: writeback wb_workfn (flush-179:0)
+Backtrace: 
+[<c010d5a8>] (dump_backtrace) from [<c010d848>] (show_stack+0x20/0x24)
+ r7:c140ecb8 r6:c1326a98 r5:c1337b38 r4:c1327ff8
+[<c010d828>] (show_stack) from [<c04cb068>] (dump_stack+0x24/0x28)
+[<c04cb044>] (dump_stack) from [<c015f9b0>] (print_circular_bug+0x27c/0x2d8)
+[<c015f734>] (print_circular_bug) from [<c015fb58>] (check_noncircular+0x14c/0x204)
+ r10:c14ca130 r9:cd564700 r8:00000000 r7:cd71f2e8 r6:cd5646c0 r5:cd564700
+ r4:c0e08a88
+[<c015fa0c>] (check_noncircular) from [<c01628e4>] (__lock_acquire+0x15e8/0x2ddc)
+ r9:cd564700 r8:00000006 r7:cd564200 r6:c1327ff8 r5:cd5646c0 r4:00000005
+[<c01612fc>] (__lock_acquire) from [<c0164a0c>] (lock_acquire+0xf4/0x410)
+ r10:00000000 r9:c0e5d8d8 r8:00000000 r7:cb532800 r6:c0ea2bc8 r5:ffffe000
+ r4:c0e08a88
+[<c0164918>] (lock_acquire) from [<c098197c>] (__mutex_lock+0x8c/0x628)
+ r10:c14ca130 r9:c0158a08 r8:c0e08a88 r7:cb532800 r6:00000000 r5:00000000
+ r4:c0e5d8a4
+[<c09818f0>] (__mutex_lock) from [<c0981f44>] (mutex_lock_nested+0x2c/0x34)
+ r10:ffffe000 r9:c0158a08 r8:c0e08a88 r7:cb532800 r6:c0e5d634 r5:00000000
+ r4:cd71f4ec
+[<c0981f18>] (mutex_lock_nested) from [<c051c110>] (regulator_lock_dependent+0x54/0x2c0)
+[<c051c0bc>] (regulator_lock_dependent) from [<c051c3b4>] (regulator_get_voltage+0x38/0xec)
+ r10:ffffe000 r9:c0158a08 r8:cb532800 r7:0036ee80 r6:002dc6c0 r5:cb5ff300
+ r4:c0e08a88
+[<c051c37c>] (regulator_get_voltage) from [<c051e08c>] (regulator_is_supported_voltage+0x44/0x104)
+ r6:002dc6c0 r5:cb5ff300 r4:0036ee80
+[<c051e048>] (regulator_is_supported_voltage) from [<c067774c>] (mmc_regulator_set_voltage_if_supported+0x2c/0x68)
+ r9:c0158a08 r8:00004087 r7:002dc6c0 r6:00325aa0 r5:cb5ff300 r4:0036ee80
+[<c0677720>] (mmc_regulator_set_voltage_if_supported) from [<c0677878>] (mmc_regulator_set_vqmmc+0xf0/0x190)
+ r7:0036ee80 r6:00325aa0 r5:002dc6c0 r4:cd635000
+[<c0677788>] (mmc_regulator_set_vqmmc) from [<c0683230>] (sdhci_start_signal_voltage_switch+0xf4/0x34c)
+ r7:c0ea1ce5 r6:cd63536c r5:00000000 r4:cd635000
+[<c068313c>] (sdhci_start_signal_voltage_switch) from [<c0683c0c>] (sdhci_runtime_resume_host+0x88/0x26c)
+ r10:ffffe000 r9:c0158a08 r8:00004087 r7:cd63536c r6:cd635734 r5:cd635000
+ r4:cd635540 r3:c068313c
+[<c0683b84>] (sdhci_runtime_resume_host) from [<c068873c>] (sdhci_at91_runtime_resume+0x3c/0x54)
+ r10:ffffe000 r9:c0158a08 r8:00000000 r7:c0558ac4 r6:cd635540 r5:cd55c810
+ r4:00000000
+[<c0688700>] (sdhci_at91_runtime_resume) from [<c0558b00>] (pm_generic_runtime_resume+0x3c/0x48)
+ r7:c0558ac4 r6:04a08060 r5:cd55c91c r4:cd55c810
+[<c0558ac4>] (pm_generic_runtime_resume) from [<c055bbfc>] (__rpm_callback+0x84/0x13c)
+[<c055bb78>] (__rpm_callback) from [<c055bd18>] (rpm_callback+0x64/0x90)
+ r9:c0158a08 r8:00000004 r7:cd52911c r6:04a08060 r5:ffffe000 r4:cd55c810
+[<c055bcb4>] (rpm_callback) from [<c055b898>] (rpm_resume+0x5d4/0x740)
+ r7:cd52911c r6:c0558ac4 r5:cd529010 r4:cd55c810
+[<c055b2c4>] (rpm_resume) from [<c055ba60>] (__pm_runtime_resume+0x5c/0x74)
+ r10:cd635000 r9:ffffe000 r8:cb59640c r7:60070013 r6:00000004 r5:cd55c91c
+ r4:cd55c810
+[<c055ba04>] (__pm_runtime_resume) from [<c0666bbc>] (__mmc_claim_host+0x1d8/0x228)
+ r7:00000000 r6:60070013 r5:cd635348 r4:00000000
+[<c06669e4>] (__mmc_claim_host) from [<c0666c44>] (mmc_get_card+0x38/0x3c)
+ r10:00000001 r9:cd635000 r8:cb5964b8 r7:cb568000 r6:cb596410 r5:cb59640c
+ r4:cb568000
+[<c0666c0c>] (mmc_get_card) from [<c067d188>] (mmc_mq_queue_rq+0x270/0x278)
+ r5:ccb24a40 r4:cb596408
+[<c067cf18>] (mmc_mq_queue_rq) from [<c0444848>] (__blk_mq_try_issue_directly+0x150/0x1dc)
+ r10:c0e08a88 r9:00000021 r8:cd71f800 r7:00000001 r6:cb69ce00 r5:ccb24a40
+ r4:c0e08a88
+[<c04446f8>] (__blk_mq_try_issue_directly) from [<c0445614>] (blk_mq_request_issue_directly+0x58/0x88)
+ r9:cd6bc680 r8:cb69ad78 r7:00000000 r6:ccb24a40 r5:cb69ce00 r4:c0e08a88
+[<c04455bc>] (blk_mq_request_issue_directly) from [<c04456a4>] (blk_mq_try_issue_list_directly+0x60/0xdc)
+ r7:cb69ce00 r6:00000000 r5:ccb24a40 r4:cd71f8ac
+[<c0445644>] (blk_mq_try_issue_list_directly) from [<c0449eac>] (blk_mq_sched_insert_requests+0x15c/0x1d8)
+ r7:00000000 r6:cd71f8ac r5:cb69a7b8 r4:cb69ce00
+[<c0449d50>] (blk_mq_sched_insert_requests) from [<c04454f0>] (blk_mq_flush_plug_list+0x1ac/0x278)
+ r9:cd71f8a4 r8:00000000 r7:cd71fe00 r6:cd6bc680 r5:cb69ce00 r4:00000002
+[<c0445344>] (blk_mq_flush_plug_list) from [<c043932c>] (blk_flush_plug_list+0xd8/0xf4)
+ r10:00000100 r9:00000122 r8:00000000 r7:cd71fe00 r6:c0e08a88 r5:cd71f8ec
+ r4:cd71fdf8
+[<c0439254>] (blk_flush_plug_list) from [<c0444ca8>] (blk_mq_make_request+0x31c/0x6d0)
+ r10:c0ea52f8 r9:c0e08a88 r8:cd71fdf8 r7:c0e08a88 r6:00000000 r5:ccb24ec0
+ r4:cb69a7b8
+[<c044498c>] (blk_mq_make_request) from [<c0437938>] (generic_make_request+0xc8/0x318)
+ r10:cd547500 r9:c0e08a88 r8:00000022 r7:00000000 r6:c0e1e1b4 r5:00000000
+ r4:cb69a7b8
+[<c0437870>] (generic_make_request) from [<c0437bcc>] (submit_bio+0x44/0x180)
+ r10:00063800 r9:c0ea4db8 r8:00000a00 r7:00000000 r6:c0ea1b75 r5:cd547500
+ r4:c0e08a88
+[<c0437b88>] (submit_bio) from [<c03c27c0>] (__submit_bio+0x74/0x41c)
+ r10:00063800 r9:c0ea4db8 r8:cca97800 r7:00000000 r6:c0ea1b75 r5:c0e08a88
+ r4:cd547500
+[<c03c274c>] (__submit_bio) from [<c03c2bd4>] (__submit_merged_bio+0x6c/0x1cc)
+ r10:00063800 r9:c0ea4e00 r8:cca96000 r7:00000000 r6:00000000 r5:cd547500
+ r4:cca91938
+[<c03c2b68>] (__submit_merged_bio) from [<c03c2e14>] (__submit_merged_write_cond+0xe0/0x154)
+ r10:00063800 r9:cca919a4 r8:cca96000 r7:00000000 r6:00000001 r5:00000000
+ r4:00000138 r3:cd564200
+[<c03c2d34>] (__submit_merged_write_cond) from [<c03cc6a0>] (f2fs_write_cache_pages+0x75c/0x7c0)
+ r10:cc374208 r9:00000000 r8:fffff000 r7:cd71fd40 r6:00000006 r5:cc3740c0
+ r4:00000000
+[<c03cbf44>] (f2fs_write_cache_pages) from [<c03cca54>] (f2fs_write_data_pages+0x350/0x3c0)
+ r10:ffffe000 r9:c0ea4cb0 r8:cca96060 r7:cc374208 r6:c0e08a88 r5:cd71fd40
+ r4:cc3740c0
+[<c03cc704>] (f2fs_write_data_pages) from [<c01f6234>] (do_writepages+0x54/0xf0)
+ r10:ffffe000 r9:cc374208 r8:c01f3324 r7:c0e08a88 r6:cd71fd40 r5:cd71fd40
+ r4:cc374208
+[<c01f61e0>] (do_writepages) from [<c0286014>] (__writeback_single_inode+0x60/0x4cc)
+ r8:cc3740c0 r7:c0ea3948 r6:cd71fd40 r5:c0ea1a63 r4:cc3740c0
+[<c0285fb4>] (__writeback_single_inode) from [<c0286680>] (writeback_sb_inodes+0x200/0x4b4)
+ r10:ffffe000 r9:c0e08a88 r8:cc3740c0 r7:c0e1e3b0 r6:cd71fe78 r5:cb596048
+ r4:cc3741b8
+[<c0286480>] (writeback_sb_inodes) from [<c02869a4>] (__writeback_inodes_wb+0x70/0xbc)
+ r10:cc265178 r9:c0e1e3b0 r8:cb59605c r7:cd71fe78 r6:00000001 r5:cb596048
+ r4:cca97800
+[<c0286934>] (__writeback_inodes_wb) from [<c0286cb0>] (wb_writeback+0x2c0/0x3a0)
+ r10:cb596110 r9:c0bdf648 r8:c0bf40d8 r7:c0ea3948 r6:00001a63 r5:cd71fe78
+ r4:cb596048
+[<c02869f0>] (wb_writeback) from [<c0288c2c>] (wb_workfn+0x3cc/0x568)
+ r10:cb596110 r9:cb596048 r8:c0ea3948 r7:00000000 r6:c0ea195b r5:00002a5b
+ r4:cb59613c
+[<c0288860>] (wb_workfn) from [<c013f188>] (process_one_work+0x2c4/0x684)
+ r10:c0e08a88 r9:c0ea28f8 r8:cd445f00 r7:cd40de00 r6:c0ea195b r5:cd642680
+ r4:cb59613c
+[<c013eec4>] (process_one_work) from [<c013f5a8>] (worker_thread+0x60/0x588)
+ r10:cd40de00 r9:c0e1e3b0 r8:cd40de38 r7:00000088 r6:cd40de00 r5:cd642694
+ r4:cd642680
+[<c013f548>] (worker_thread) from [<c01465a0>] (kthread+0x168/0x16c)
+ r10:cd6f1e44 r9:c013f548 r8:cd642680 r7:cd71e000 r6:00000000 r5:cd65fc00
+ r4:cd69edc0
+[<c0146438>] (kthread) from [<c0100114>] (ret_from_fork+0x14/0x20)
+Exception stack(0xcd71ffb0 to 0xcd71fff8)
+ffa0:                                     00000000 00000000 00000000 00000000
+ffc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+ffe0: 00000000 00000000 00000000 00000000 00000013 00000000
+ r10:00000000 r9:00000000 r8:00000000 r7:00000000 r6:00000000 r5:c0146438
+ r4:cd69edc0

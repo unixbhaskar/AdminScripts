@@ -1,0 +1,295 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.194.70.3 with SMTP id i3csp6285900wju;
+        Sun, 3 Jan 2016 20:39:24 -0800 (PST)
+X-Received: by 10.98.65.83 with SMTP id o80mr60698858pfa.104.1451882364556;
+        Sun, 03 Jan 2016 20:39:24 -0800 (PST)
+Return-Path: <sivakumar.p@heymath.com>
+Received: from mail-pa0-x22b.google.com (mail-pa0-x22b.google.com. [2607:f8b0:400e:c03::22b])
+        by mx.google.com with ESMTPS id m1si51243375pfi.234.2016.01.03.20.39.24
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 03 Jan 2016 20:39:24 -0800 (PST)
+Received-SPF: softfail (google.com: domain of transitioning sivakumar.p@heymath.com does not designate 2607:f8b0:400e:c03::22b as permitted sender) client-ip=2607:f8b0:400e:c03::22b;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning sivakumar.p@heymath.com does not designate 2607:f8b0:400e:c03::22b as permitted sender) smtp.mailfrom=sivakumar.p@heymath.com;
+       dkim=pass header.i=@heymath-com.20150623.gappssmtp.com
+Received: by mail-pa0-x22b.google.com with SMTP id cy9so184089404pac.0
+        for <unixbhaskar@gmail.com>; Sun, 03 Jan 2016 20:39:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=heymath-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:references:in-reply-to:subject:date:message-id
+         :mime-version:content-type:thread-index:content-language;
+        bh=vm81Tx/0Xfsjbo7TMcSIOCC95cPmsuJpNpVPsYhbhP8=;
+        b=Sbo35hg5+sz0Y1hpKoPyMArkWAhJNs3DgNmoSTUCly5/o0RW+4VlEC4434s39/MPUR
+         luJsPKwYI36GghLm3vODp2JVaAPGzHCPoAmdp0gWSxJfevP/9nsxhHccFTNfKQkPsK4u
+         8SLdEuHznCRLwwY4tytRud4PJwISWNk248cM9zAO7863Cq0DjWoXATRAnz/M5P4pbeRD
+         0pApbijtdqH0GlByHSdsDtR3XNrc8Ouum6Zq1tSBq6/HCDr6AzQ7OwHm5PrUXjyUyla5
+         3F1XGs5NIeBxj3DHZ8I7K3Hjr4QllsQvZL5gjV8LiKSa8C3AomzayDOITS6azoA/SHRf
+         09Cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
+         :message-id:mime-version:content-type:thread-index:content-language;
+        bh=vm81Tx/0Xfsjbo7TMcSIOCC95cPmsuJpNpVPsYhbhP8=;
+        b=NAWq+lEjmTERG9mYJ6UVKEBrvGwjZjgdV6xXYqfxQyKdSWU/EmSlbm4fg7f+vlvm2+
+         4zRKT08V4pdgEqJKQ2vpFw99EYSaUNrM6r+hKW4hrBVTVlgylX01uHyqrLhjVPrtKjCZ
+         6aLlSqG6Gc2BmArf2e/yj4isjiXhv7gJ8d49xj+dvjSlWvYpUON1nlIoKliymeW8j1h3
+         MP4nIwJ8eVLASALDcX34dJiXEqIbq6YZJ6o/pL7Gz+4VMPldi2MMKMRdHEFgFJzLsScJ
+         /0p++HFM6pe0yGfFY9bcdEuYVFWLXIANfP/a+lqTci7851Xgx8oqUPFPFrlnaW4tZGdA
+         9/+Q==
+X-Gm-Message-State: ALoCoQnxMArWhZVQXNTdr4xk1BTjy2+VvLgiNclGcv25SVUW7RsnghIosTKlxqrkWBh8j6OOBtFLhXT/+teplK6EarQTbikELw==
+X-Received: by 10.66.102.73 with SMTP id fm9mr70750076pab.32.1451882364241;
+        Sun, 03 Jan 2016 20:39:24 -0800 (PST)
+Return-Path: <sivakumar.p@heymath.com>
+Received: from Sivakumar ([122.183.253.38])
+        by smtp.gmail.com with ESMTPSA id l64sm117356315pfb.40.2016.01.03.20.39.21
+        (version=TLSv1/SSLv3 cipher=OTHER);
+        Sun, 03 Jan 2016 20:39:23 -0800 (PST)
+From: "Sivakumar" <sivakumar.p@heymath.com>
+To: <bhaskar.chowdhury@heymath.com>,
+	<unixbhaskar@gmail.com>
+Cc: <ranjanray.chaudhuri1@heymath.com>,
+	<alok.panda@heymath.com>
+References: 
+In-Reply-To: 
+Subject: FW: Consulting Agreement with HeyMath!
+Date: Mon, 4 Jan 2016 10:09:33 +0530
+Message-ID: <003b01d146a9$ea30d060$be927120$@heymath.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_003C_01D146D8.03EA9300"
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AdCqmKMCTr5uciWPQtSCxl95CF5lghQs+n7QEtcvhAAAACCHIA==
+Content-Language: en-in
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_003C_01D146D8.03EA9300
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Bhaskar
+
+=20
+
+We would like to extend the Consulting agreement till the end of this =
+January 2016 (29th January).=20
+
+=20
+
+Further details about handover and knowledge transfer will be explained =
+by Alok.
+
+=20
+
+Thanks,
+
+Sivakumar
+
+=20
+
+From: Sivakumar [mailto:sivakumar.p@heymath.com]=20
+Sent: 30 September 2015 12:24
+To: unixbhaskar@gmail.com
+Cc: Ranjan Ray Chaudhuri (ranjanray.chaudhuri@heymath.com); =
+alok.panda@heymath.com
+Subject: Consulting Agreement with HeyMath!
+
+=20
+
+Dear Bhaskar,
+
+=20
+
+Please find the scanned copy of Consulting agreement along with NDA =
+attached herewith. Kindly acknowledge your acceptance by signing and =
+sending across the scanned copy of the Agreement.
+
+=20
+
+All the Best!
+
+=20
+
+Rgds
+Sivakumar
+Senior Executive - Human Capital Mgt
++91 96267 18422 M
+ <mailto:cynthia.pramola@heymath.com> sivakumar.p@heymath.com
+
+HeyMath!
+Sankhyaa Learning  (P) Ltd.
+Steeple Reach, 1st Floor,
+25, Cathedral Road,
+Chennai 600086, INDIA
+ <http://www.heymath.com> www.heymath.com
+
+=20
+
+=20
+
+
+------=_NextPart_000_003C_01D146D8.03EA9300
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 14 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-IN link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Dear Bhaskar<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>We would like to extend the Consulting agreement till the end of this =
+January 2016 (29<sup>th</sup> January). <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Further details about handover and knowledge transfer will be =
+explained by Alok.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Thanks,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Sivakumar<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> Sivakumar =
+[<a =
+href=3D"mailto:sivakumar.p@heymath.com">mailto:sivakumar.p@heymath.com</a=
+>] <br><b>Sent:</b> 30 September 2015 12:24<br><b>To:</b> <a =
+href=3D"mailto:unixbhaskar@gmail.com">unixbhaskar@gmail.com</a><br><b>Cc:=
+</b> Ranjan Ray Chaudhuri (<a =
+href=3D"mailto:ranjanray.chaudhuri@heymath.com">ranjanray.chaudhuri@heyma=
+th.com</a>); <a =
+href=3D"mailto:alok.panda@heymath.com">alok.panda@heymath.com</a><br><b>S=
+ubject:</b> Consulting Agreement with =
+HeyMath!<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif"'>Dear =
+Bhaskar,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif"'><o:p>&nbsp;=
+</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif"'>Please =
+find the scanned copy of Consulting agreement along with NDA attached =
+herewith. Kindly acknowledge your acceptance by signing and sending =
+across the scanned copy of the Agreement.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif"'><o:p>&nbsp;=
+</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif"'>All the =
+Best!<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif"'><o:p>&nbsp;=
+</o:p></span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Rgds<br><spa=
+n =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'>Sivakumar<br>=
+</span><span =
+style=3D'font-size:9.0pt;font-family:"Arial","sans-serif"'>Senior =
+Executive - Human Capital Mgt<br>+91 96267 18422 M<br></span><a =
+href=3D"mailto:cynthia.pramola@heymath.com" target=3D"_blank"><span =
+style=3D'font-size:9.0pt'>sivakumar.p@heymath.com</span></a><span =
+style=3D'font-size:9.0pt;font-family:"Arial","sans-serif"'><br></span><sp=
+an =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif"'><br><b><span =
+style=3D'color:#FF6600'>Hey</span><span =
+style=3D'color:#3333FF'>Math!</span></b><br></span><span =
+style=3D'font-size:9.0pt;font-family:"Arial","sans-serif"'>Sankhyaa =
+Learning &nbsp;(P) Ltd.<br>Steeple Reach, 1st Floor,<br>25, Cathedral =
+Road,<br>Chennai 600086, INDIA<br></span><a =
+href=3D"http://www.heymath.com" target=3D"_blank"><span =
+style=3D'font-size:9.0pt;font-family:"Arial","sans-serif"'>www.heymath.co=
+m</span></a><span style=3D'color:black'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p></div></body></html>
+------=_NextPart_000_003C_01D146D8.03EA9300--
+

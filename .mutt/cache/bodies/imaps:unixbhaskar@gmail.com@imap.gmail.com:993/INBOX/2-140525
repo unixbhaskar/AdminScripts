@@ -1,0 +1,111 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.194.151.167 with SMTP id ur7csp337237wjb;
+        Tue, 12 Jul 2016 02:48:23 -0700 (PDT)
+X-Received: by 10.200.47.92 with SMTP id k28mr1997397qta.50.1468316903362;
+        Tue, 12 Jul 2016 02:48:23 -0700 (PDT)
+Return-Path: <01000155de81e53f-88c9160f-520a-403d-9f29-feb692965f34-000000@amazonses.com>
+Received: from a8-13.smtp-out.amazonses.com (a8-13.smtp-out.amazonses.com. [54.240.8.13])
+        by mx.google.com with ESMTPS id n23si1911792qki.133.2016.07.12.02.48.23
+        for <unixbhaskar@gmail.com>
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 12 Jul 2016 02:48:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 01000155de81e53f-88c9160f-520a-403d-9f29-feb692965f34-000000@amazonses.com designates 54.240.8.13 as permitted sender) client-ip=54.240.8.13;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@keybase.io;
+       dkim=pass header.i=@amazonses.com;
+       spf=pass (google.com: domain of 01000155de81e53f-88c9160f-520a-403d-9f29-feb692965f34-000000@amazonses.com designates 54.240.8.13 as permitted sender) smtp.mailfrom=01000155de81e53f-88c9160f-520a-403d-9f29-feb692965f34-000000@amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=4vhnhgkjdvoyogokghej4xkx5dgtimdn; d=keybase.io; t=1468316902;
+	h=From:To:Subject:MIME-Version:Content-Type:Message-ID:Date;
+	bh=frb6gr6SQEDk5pOvkTDi1XZG1yroPsbVYzlhHfdCZrc=;
+	b=VAGPBjHu1yJExZfRxK8LnuHUqhjs9hvKp6bjxKg33txgSKFGJNEArARd/7ClYGur
+	s/VYotoWi+8g7VdnzDKPBJAGOQbVzi7CvYOzSrco2Bzpawc3yw1jtNOxFG8uD11mSQB
+	U6Y1EhVboxvttO4N6n+MAK69/p+dFZIaLEYMEOQM=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1468316902;
+	h=From:To:Subject:MIME-Version:Content-Type:Message-ID:Date:Feedback-ID;
+	bh=frb6gr6SQEDk5pOvkTDi1XZG1yroPsbVYzlhHfdCZrc=;
+	b=OJyFAm0N4kQbHGwuJ7xNOtm0clFHvNEu/hCJVsvHiGuwsuAOdHsq1JhsbZC4c5WG
+	0az/Q+n69+biRRU8cEzFwuZ+mOEA65ThLEPKdAMSL4xKs7TXiia4G+EWgcDd7mb5Dn3
+	3v+foWUp2cxijGJa/VHEzhvv0bKoGfPJIFkj2lws=
+From: "Keybase.io" <notify@keybase.io>
+To: unixbhaskar@gmail.com
+Subject: chris just granted you 2 more invites (ALSO: Keybase Filesystem)
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_10729883_602353721.1468316902721"
+Message-ID: <01000155de81e53f-88c9160f-520a-403d-9f29-feb692965f34-000000@email.amazonses.com>
+Date: Tue, 12 Jul 2016 09:48:22 +0000
+X-SES-Outgoing: 2016.07.12-54.240.8.13
+Feedback-ID: 1.us-east-1.35Qs6oTJqJlRBp8zjxXYfyo2dyykpOoKW188Wk5KQ30=:AmazonSES
+
+------=_Part_10729883_602353721.1468316902721
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+Hey bhaskarchowdhury - I just granted you 2 invitations, which you can send to friends. Please don't squander them - we'd like to get a good batch of alpha testers, and there are literally thousands of people in the request queue, which you can now bypass.
+
+There should be a tab on the top of the website, letting you access the invitations. (They can't be sent from CLI, but your friend can accept from it.)
+
+Thanks! 
+
+  -chris
+
+p.s. As usual, please send us alpha reports on github: https://github.com/keybase/keybase-issues
+
+------=_Part_10729883_602353721.1468316902721
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+  <body>
+    <div style="max-width:700px;margin-top:50px;margin-left:0%;margin-right:0%;font-size:1.1em;line-height:1.5em;">
+      <div style="margin-top:0px;">
+        
+
+<p style="margin-bottom:30px">
+  Dear bhaskarchowdhury,
+</p>
+<p style="margin-bottom:30px">
+  <b><a href="https://keybase.io/chris" style="color:rgb(51,160,255)">chris</a> (chris@chriscoyne.com)</b> just granted you 2 more  Keybase invitations, which you can send to friends.
+  Please use them wisely! The signup queue is > 25,000 people long right now, and this bypasses the line entirely.
+</p>
+
+<p style="margin-bottom:30px">
+ There are now <b>two ways</b> to invite people:
+</p>
+
+<p style="margin-bottom:30px">
+  <b>1. The old-fashioned way</b>.  Use the tab on <a href="https://keybase.io/" style="color:rgb(51,160,255)">the top of the website</a>.
+</p>
+
+<p style="margin-bottom:30px">
+ <b>2. By sharing encrypted files</b> in the <a href="https://keybase.io/docs/kbfs" style="color:rgb(51,160,255)">Keybase filesystem</a></b>. Just drop files in a folder with you and <i>username@service</i>, such as <b>/keybase/private/bhaskarchowdhury,someone@twitter/</b>.  That actually works. Real end-to-end encryption. A popup window will arise, like the godhead at dawn, and tell you what happens next. That is our prophesy.
+</p>
+
+<p style="margin-bottom:30px">
+  <i>Either way, you're now invited to play with the Keybase filesystem.  Make sure to run <a href="https://keybase.io/download" style="color:rgb(51,160,255)">the latest Keybase</a> app.</i>
+</p>
+
+<p style="margin-bottom:30px">
+  Thanks,<br>
+  Keybase
+</p>
+
+      </div>
+      <div style="margin-top:20px;margin-bottom:20px;text-align:center;">
+        <img src="https://keybase.io/images/icons/logo-no-text.png" width="72" height="72">
+      </div>
+      
+          
+        
+    </div>
+  </body>
+</html>
+
+------=_Part_10729883_602353721.1468316902721--

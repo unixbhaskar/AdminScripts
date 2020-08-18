@@ -1,0 +1,211 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a17:90a:1ae3:0:0:0:0 with SMTP id p90csp3926671pjp;
+        Tue, 14 Apr 2020 08:27:09 -0700 (PDT)
+X-Google-Smtp-Source: APiQypLuJ7bH/h9mXdpvtFm+d8fPFzluA6IEtq9e8EOw0pSAbOhu+0wo1+Rm4Lir6999wuJXbBSl
+X-Received: by 2002:a17:906:258a:: with SMTP id m10mr639566ejb.255.1586878029201;
+        Tue, 14 Apr 2020 08:27:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586878029; cv=none;
+        d=google.com; s=arc-20160816;
+        b=uzsTN2Wwj1odjax9M+IiIbqkVye3JMo37VYgNrk90y0o+RVAl+oguyGsUerhJ9lHjr
+         luHAW2ug50QCW1MM+TOOxGu0dx2Criqnvw2V4AE5tbtxCuYyfCgg1qLNmoSWGavU/fWy
+         zHBEmtQLqGUNbbnHoquS9gzAyoHIcM7uD+UGGDf388qgVjiAanoiHkie81YTqIfojeCl
+         nW2iV+kXvxB7yDzp+eDC1YlK4oUcNokCuHGDqG4GwUslE3h+sFhHpI0R28IAU5jDrXH3
+         iX9r+rWai9VJBGHAAb+etD7thOv04XTbK8hRJRSCBd3twu1fRW8qY6U34j+sFVEVHlKN
+         K+SA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:feedback-id:precedence:list-unsubscribe:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=pcTLCaMm9MqRwEOOu/1yqWwHw/8DgD+87RgrFh0uxSI=;
+        b=ZsCgEyIp41PdLHM002EkLDK0Vk3fQuFekbq4rKRVS3stseEEu6/+MJg6h7PRZXDmEP
+         j25IZAUyJ4SbSU/XLrS8Ab54c4EhH+jJT7cbSu+NwFRFlB5Uq3yfvisC33D9wuhUSHNF
+         dGjea+00odK2u0+syaEWu0dLu2wqVclTcdd9L4OfVo4znT5JnusWFprVef8SzYUW6v3g
+         XUfm3Z24t/NSaPoIAHFqED5D/EhVXfKzzjGl46QCuWWp0UbgCVbCyNeREOcFG2kyomqQ
+         zz752zmx03qD6jQ1vHdSlgWZLGfkVnU74QjB8+4Mf0X8QXHEeF9VsECQN3jd0Sn3YXnl
+         xSoA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=cKCjCEe2;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=JRughZSz;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 168.245.93.138 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+Return-Path: <bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com>
+Received: from o10.ck.n.convertkit.com (o10.ck.n.convertkit.com. [168.245.93.138])
+        by mx.google.com with ESMTPS id lu23si1931482ejb.200.2020.04.14.08.27.08
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Apr 2020 08:27:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 168.245.93.138 as permitted sender) client-ip=168.245.93.138;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=cKCjCEe2;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=JRughZSz;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 168.245.93.138 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=n.convertkit.com;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=s1; bh=pcTLCaMm9MqRwEOOu/1yqWwHw/8DgD+87RgrFh0uxSI=;
+	b=cKCjCEe2F8BuOhbZb7lRZ1GNQFFrBBOypNVzipJhDo5BsBQeMOQcPpVNTUGa8HkxnF0D
+	iCNGcTSPjZlMWWUAm3sFjzUoux/ghGy3Bg6W3ccoCcJMnCF/TVAy9hclkxt/MRQH6jtC3v
+	ARk+sClKvR+oue4BqfRspnWeJdTGIJs2E=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=smtpapi; bh=pcTLCaMm9MqRwEOOu/1yqWwHw/8DgD+87RgrFh0uxSI=;
+	b=JRughZSz+anPjfgV76ls9LsSLZSX6F66y8OLZX/tsTfgxxF3GnPqFs8xee04mVvhQyaq
+	ZtZzgsZcM61rDQ53wkwUgogedX/veQNO02KjDWTCojCqO11uj1YM9IvfCDigyfS3lo57rB
+	wdAzjLUN/IEYO7KUUeWzpiMvyTIkP+8LI=
+Received: by filter0135p3las1.sendgrid.net with SMTP id filter0135p3las1-9353-5E95D64B-4F
+        2020-04-14 15:27:07.16832492 +0000 UTC m=+1101014.540982634
+Received: from ODc1MTQ5Mw (unknown)
+	by ismtpd0012p1iad2.sendgrid.net (SG)
+	with HTTP
+	id QSfo4KtnRpaxnVC_MBMFDA
+	Tue, 14 Apr 2020 15:27:07.291 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=04eb72d7d1710867e434d4367b1fb036d7dc434e5734f85932e03452f387
+Date: Tue, 14 Apr 2020 15:27:07 +0000 (UTC)
+From: Jovica <contact@jovicailic.org>
+Mime-Version: 1.0
+Message-ID: <n4um6vnl4qtqukk9vxh6@convertkit-mail.com>
+Subject: Mastering Vim Quickly #35
+List-Unsubscribe: <https://el2.convertkit-mail.com/u/n4um6vnl4qtqukk9vxh6>
+X-Report-Spam: <abuse@convertkit.com>
+X-Report-Abuse: <abuse@convertkit.com>
+Precedence: bulk
+Feedback-ID: 1738586:35692:emailtemplate:CK
+X-Feedback-ID: 8751493:SG
+X-SG-EID: 
+ =?us-ascii?Q?Z9YfueylEVxjF1sQk2=2Fm3hKaryiKObExs9bv2OnpmyOMnYytH=2FVZZIu+ZraDDs?=
+ =?us-ascii?Q?hn3FKIJFLMYch7V9FxPHe9Xvdfb5faezhm20tIq?=
+ =?us-ascii?Q?EmZLu3oT0=2FTvgWo=2FyPe0Mhaa4Haq2kdKSrLITYH?=
+ =?us-ascii?Q?MnCevWyj7sadP=2FxWUc9=2FEkPY9bMZ4RyEb9vqp5=2F?=
+ =?us-ascii?Q?wo1m6tpyLuEX9QA9liv9mkv5xhy7D+YJugwEjDh?=
+ =?us-ascii?Q?fxANMl9=2FR8xUq+AZc=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FJuvNbq56rw8btU4e1FM1?=
+ =?us-ascii?Q?OTbCPkIYJUnoA7EYapFbML7Rd0DgflO7ebfY22F?=
+ =?us-ascii?Q?vJkl4W3j+rRCitLnOrjxkC3Ra6JOIgjSSkJbvGP?=
+ =?us-ascii?Q?UvPXcY0FWFdoMa=2FNDItyTU+nFXvYSHaWgvAaDBT?=
+ =?us-ascii?Q?HBCy=2F7+5T4DIO=2FH3iHWTokUHQWUX3q5jr9kMH9m?=
+ =?us-ascii?Q?fj86Vq1LPmOWAmr5nelGNEY=2F2LyOjCc7yoA5hBo?=
+ =?us-ascii?Q?Q=2FdMmtzhE1MBvwoLSkUNhovDGzaROVjUfRqOJ0Q?=
+ =?us-ascii?Q?lUhwuAMdTX+Xbe72fTaXVW++X56+WIVOWphkbe2?=
+ =?us-ascii?Q?xs+GeulVuQQxwebIC6xeNum6sCrRfNAZ8sKlVBP?=
+ =?us-ascii?Q?hAW94wttrv?=
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+
+--04eb72d7d1710867e434d4367b1fb036d7dc434e5734f85932e03452f387
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+<br>  Hello Bhaskar Chowdhury,<br>
+
+Did you know that you can execute the macro stored in register a
+on all lines matching a "pattern" like:
+
+:g/pattern/norm @a
+
+Or did you know you can delete all strings inside the " on all
+the lines like:
+
+:%norm di"
+
+The magic command in both of these examples is the norm[al]
+command.
+
+If you try running the command:
+
+:normal gg
+
+you=E2=80=99ll see that your cursor will jump to the first line in your
+current buffer.
+
+As you might guess
+already, norm[al] command simply takes a sequence of keys you=E2=80=99ve
+typed and treats them as a
+Vim command you would enter in Normal mode. This makes it very
+powerful!
+
+Of course, this command will pick up your personal mappings if
+they exist. That brings us to
+the next question: what happens if a user has remapped gg command
+to delete one line, instead
+of jumping to first line of the buffer?
+
+You can find that out (and much more), in CHAPTER 18. EFFECTIVE
+MULTIPLE FILE EDITING ( https://el2.convertkit-mail.com/c/n4um6vnl4qtqukk9v=
+xh6/p8heh9hogek4v/aHR0cHM6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrb=
+Hkv ) of my book.
+
+Cheers,
+Jovica
+
+P.S. If you already use normal command
+Bhaskar Chowdhury - send me your examples of
+how you usually use it.
+
+Unsubscribe ( https://el2.convertkit-mail.com/u/n4um6vnl4qtqukk9vxh6 ) |
+Update your profile ( https://preferences.convertkit-mail.com/n4um6vnl4qtqu=
+kk9vxh6 ) |
+113 Cherry St #92768, Seattle, WA 98104-2205
+--04eb72d7d1710867e434d4367b1fb036d7dc434e5734f85932e03452f387
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+</head>
+<body>
+<div class=3D"message-content" style=3D"max-width:600px">
+<p style=3D"margin-bottom:1em"><br>  Hello Bhaskar Chowdhury,<br></p>
+<p style=3D"margin-bottom:1em">Did you know that you can execute the macro =
+stored in register <strong>a</strong> on all lines matching a "pattern" lik=
+e:</p>
+<p style=3D"margin-bottom:1em"><strong>:g/pattern/norm @a</strong> </p>
+<p style=3D"margin-bottom:1em">Or did you know you can delete all strings i=
+nside the " on all the lines like:</p>
+<p style=3D"margin-bottom:1em"><strong>:%norm di"</strong> </p>
+<p style=3D"margin-bottom:1em">The magic command in both of these examples =
+is the <strong>norm[al]</strong> command.</p>
+<p style=3D"margin-bottom:1em">If you try running the command:</p>
+<p style=3D"margin-bottom:1em"><strong>:normal gg</strong> </p>
+<p style=3D"margin-bottom:1em">you=E2=80=99ll see that your cursor will jum=
+p to the first line in your current buffer. </p>
+<p style=3D"margin-bottom:1em">As you might guess
+already, <strong>norm[al]</strong> command simply takes a sequence of keys =
+you=E2=80=99ve typed and treats them as a
+Vim command you would enter in Normal mode. This makes it very powerful!</p=
+>
+<p style=3D"margin-bottom:1em">Of course, this command will pick up your pe=
+rsonal mappings if they exist. That brings us to
+the next question: what happens if a user has remapped <strong>gg</strong> =
+command to delete one line, instead
+of jumping to first line of the buffer?</p>
+<p style=3D"margin-bottom:1em">You can find that out (and much more), in <e=
+m><a href=3D"https://el2.convertkit-mail.com/c/n4um6vnl4qtqukk9vxh6/p8heh9h=
+ogek4v/aHR0cHM6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHkv" target=
+=3D"_blank">CHAPTER 18. EFFECTIVE MULTIPLE FILE EDITING</a></em><span class=
+=3D"redactor-invisible-space"><em><a href=3D"https://el2.convertkit-mail.co=
+m/c/n4um6vnl4qtqukk9vxh6/xmuph6h09m8eg/aHR0cHM6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0=
+ZXJpbmctdmltLXF1aWNrbHkv"></a></em> of my book.</span><br></p>
+<p style=3D"margin-bottom:1em">Cheers,<br>Jovica</p>
+<p style=3D"margin-bottom:1em">P.S. If you already use normal command Bhask=
+ar Chowdhury - send me your examples of how you usually use it.</p>
+<br>
+<br>
+<small>
+<a href=3D'https://el2.convertkit-mail.com/u/n4um6vnl4qtqukk9vxh6'>Unsubscr=
+ibe</a> | <a href=3D'https://preferences.convertkit-mail.com/n4um6vnl4qtquk=
+k9vxh6'>Update your profile</a> | 113 Cherry St #92768, Seattle, WA 98104-2=
+205
+<br>
+</small>
+</div>
+
+<!-- -->
+  <img src=3D"https://el2.convertkit-mail.com/o/n4um6vnl4qtqukk9vxh6" alt=
+=3D"">
+</body>
+</html>
+
+--04eb72d7d1710867e434d4367b1fb036d7dc434e5734f85932e03452f387--

@@ -1,0 +1,142 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp433378lfg;
+        Fri, 3 Apr 2020 02:38:01 -0700 (PDT)
+X-Google-Smtp-Source: APiQypIglEStsua99Xnoc6OJdD0fOHJmgoYMg8SyFbdyB3eu3vEj9oHrBvFhqOWTR1SITwXi7U1e
+X-Received: by 2002:a05:6830:10a:: with SMTP id i10mr5933109otp.190.1585906680990;
+        Fri, 03 Apr 2020 02:38:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585906680; cv=none;
+        d=google.com; s=arc-20160816;
+        b=oRTXWoI7Ao+LN25z6K8x0IFWPBFI44ibmv0L85fbdudpV3RFEyFVcYc314nQhY/5nr
+         8z85AMfTYk7opoSEerZY771eu05ue+ERE2hAIZH03jZUZXh3mTG846g2ZUkJZpErHJnI
+         3i7ORE19JG8YgTErYVKzYkhisTykDO28ru5Ilvg1k+xlA3M3gY8lASfd9Qrebz/ZA1r2
+         VroLPOTI6V2TwibEDz4TQKVPEazIMcTcsy827nasTzDTd/hiZoWxY3Gty8sS2iBE+I+V
+         2yOY2G3h16wuyoM/8HGWF0qmlpJmWst+LH5R7E1gvjrp6QNXbeY/t942+H2P0SrPr5n6
+         NsOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=uiQGWwu6AHGQKelA7eMqLq0sMnpQ7erdKXiPAim8zVY=;
+        b=OsKWTaaFE+lBaolQpS7kXjdrM9OfIH4xc8QIMDXXsbWV/MnPOlYcHG+3jZy4TlxM1x
+         JiCU3HZ6AcA/ogLQLF/tZLpKVVIVK+uoHywMOehogez/tg/ye1S6+FUdck2N/a0JXvH/
+         tYAbH/LYngzOSHaUmULpbGFzoOIimm8djSAhBl5BDMmRUWBrFW88yz+Pg/RBbg1X5mwQ
+         B+2YYNiMvj5mf3Su/8iYnoj67svrwZwMveu5n7o4fVPj+KnqBg1Xddlk2k4hN5ZmG6Ea
+         i4Px7HgighyTfJR360uwdjJdmrbQww385uH/7uG8P/ZpJ7j2gF2ZPciWO4VW6nQRuRZC
+         L+cQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id d21si3520319oof.2.2020.04.03.02.37.48;
+        Fri, 03 Apr 2020 02:38:00 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2389297AbgDCJhF (ORCPT <rfc822;bluekernelvirtual@gmail.com>
+        + 99 others); Fri, 3 Apr 2020 05:37:05 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:47143 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727843AbgDCJhF (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 3 Apr 2020 05:37:05 -0400
+Received: from ip5f5bf7ec.dynamic.kabel-deutschland.de ([95.91.247.236] helo=wittgenstein)
+        by youngberry.canonical.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <christian.brauner@ubuntu.com>)
+        id 1jKIkI-0000BB-CT; Fri, 03 Apr 2020 09:36:14 +0000
+Date:   Fri, 3 Apr 2020 11:36:12 +0200
+From:   Christian Brauner <christian.brauner@ubuntu.com>
+To:     Oleg Nesterov <oleg@redhat.com>
+Cc:     syzbot <syzbot+f675f964019f884dbd0f@syzkaller.appspotmail.com>,
+        adobriyan@gmail.com, akpm@linux-foundation.org,
+        allison@lohutok.net, areber@redhat.com, aubrey.li@linux.intel.com,
+        avagin@gmail.com, bfields@fieldses.org, christian@brauner.io,
+        cyphar@cyphar.com, ebiederm@xmission.com,
+        gregkh@linuxfoundation.org, guro@fb.com, jlayton@kernel.org,
+        joel@joelfernandes.org, keescook@chromium.org,
+        linmiaohe@huawei.com, linux-fsdevel@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mhocko@suse.com, mingo@kernel.org,
+        peterz@infradead.org, sargun@sargun.me,
+        syzkaller-bugs@googlegroups.com, tglx@linutronix.de,
+        viro@zeniv.linux.org.uk
+Subject: Re: possible deadlock in send_sigurg
+Message-ID: <20200403093612.mtd7edubsng24uuh@wittgenstein>
+References: <00000000000011d66805a25cd73f@google.com>
+ <20200403091135.GA3645@redhat.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200403091135.GA3645@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Apr 03, 2020 at 11:11:35AM +0200, Oleg Nesterov wrote:
+> On 04/02, syzbot wrote:
+> >
+> >                       lock_acquire+0x1f2/0x8f0 kernel/locking/lockdep.c:4923
+> >                       __raw_spin_lock include/linux/spinlock_api_smp.h:142 [inline]
+> >                       _raw_spin_lock+0x2a/0x40 kernel/locking/spinlock.c:151
+> >                       spin_lock include/linux/spinlock.h:353 [inline]
+> >                       proc_pid_make_inode+0x1f9/0x3c0 fs/proc/base.c:1880
+> 
+> Yes, spin_lock(wait_pidfd.lock) is not safe...
+> 
+> Eric, at first glance the fix is simple.
+> 
+> Oleg.
+> 
+> 
+> diff --git a/fs/proc/base.c b/fs/proc/base.c
+
+Um, when did this lock get added to proc/base.c in the first place and
+why has it been abused for this?
+People just recently complained loudly about this in the
+cred_guard_mutex thread that abusing locks for things they weren't
+intended for is a bad idea...
+
+> index 74f948a6b621..9ec8c114aa60 100644
+> --- a/fs/proc/base.c
+> +++ b/fs/proc/base.c
+> @@ -1839,9 +1839,9 @@ void proc_pid_evict_inode(struct proc_inode *ei)
+>  	struct pid *pid = ei->pid;
+>  
+>  	if (S_ISDIR(ei->vfs_inode.i_mode)) {
+> -		spin_lock(&pid->wait_pidfd.lock);
+> +		spin_lock_irq(&pid->wait_pidfd.lock);
+>  		hlist_del_init_rcu(&ei->sibling_inodes);
+> -		spin_unlock(&pid->wait_pidfd.lock);
+> +		spin_unlock_irq(&pid->wait_pidfd.lock);
+>  	}
+>  
+>  	put_pid(pid);
+> @@ -1877,9 +1877,9 @@ struct inode *proc_pid_make_inode(struct super_block * sb,
+>  	/* Let the pid remember us for quick removal */
+>  	ei->pid = pid;
+>  	if (S_ISDIR(mode)) {
+> -		spin_lock(&pid->wait_pidfd.lock);
+> +		spin_lock_irq(&pid->wait_pidfd.lock);
+>  		hlist_add_head_rcu(&ei->sibling_inodes, &pid->inodes);
+> -		spin_unlock(&pid->wait_pidfd.lock);
+> +		spin_unlock_irq(&pid->wait_pidfd.lock);
+>  	}
+>  
+>  	task_dump_owner(task, 0, &inode->i_uid, &inode->i_gid);
+> diff --git a/fs/proc/inode.c b/fs/proc/inode.c
+> index 1e730ea1dcd6..6b7ee76e1b36 100644
+> --- a/fs/proc/inode.c
+> +++ b/fs/proc/inode.c
+> @@ -123,9 +123,9 @@ void proc_invalidate_siblings_dcache(struct hlist_head *inodes, spinlock_t *lock
+>  		if (!node)
+>  			break;
+>  		ei = hlist_entry(node, struct proc_inode, sibling_inodes);
+> -		spin_lock(lock);
+> +		spin_lock_irq(lock);
+>  		hlist_del_init_rcu(&ei->sibling_inodes);
+> -		spin_unlock(lock);
+> +		spin_unlock_irq(lock);
+>  
+>  		inode = &ei->vfs_inode;
+>  		sb = inode->i_sb;
+> 

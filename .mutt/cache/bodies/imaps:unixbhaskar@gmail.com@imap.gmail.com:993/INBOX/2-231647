@@ -1,0 +1,121 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp1073543lfg;
+        Wed, 1 Apr 2020 16:11:19 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKLJC0KYjP9ihLWVpScTUHg/n++3VfxF7gjJl/3lyKF/cRkiSqZNHnXyzoUzSuYHLNub7cY
+X-Received: by 2002:a9d:6a92:: with SMTP id l18mr194517otq.252.1585782678903;
+        Wed, 01 Apr 2020 16:11:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585782678; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wsrGAtvGqY7VmuKWD5NQoYAnOpiUwC/FCpj87Mad9lzjewpbgahrbppYBN53p+Zas/
+         Fzl+z/zdYUJdyKHZn2peneg/ItF1vPkPfdvvNT6ViyOtNRcMCD7OksT44ab3DaHsl27+
+         8ObVNLNc8khi4yYqSMI8Gi4ZMuA3VsENqRV8dBC7Rl9zlQ3EFF9b6GlxjcmXdoif+5zV
+         Z+bU0zRh0cb5FPIHJMdejWPwdsnbo0dWW+YkasOPOdV28DbXNN86hcAE9VR9ym9AMZjo
+         BK4AnP8PGcuCf8+CzevDuDuCoXKprhhaNvRMaShcxJsnwdKkHWloOcfrveVwLqWsEX6j
+         BHng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:cc:to:subject
+         :message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=gad56CloD439ohxZjon0dupGvFU9Ybe3HRlECYVOlSQ=;
+        b=nPDZA1JUXyPCZ27GaMueZYYfz3OB5D0e1jhFgi445wW8i2tgefgN8zgAKEeHaigafx
+         vwQSwQkgq63+eTs1WEe4G1B/jhahLwa4FU73sjVARU1v1sbEZmLraL81ugo02Z2KdYig
+         ZkYeMfhPqqMn38u8mX+mgcF/j/1dmM8KVO2tjxy/fOZl0i/dFcE3YKXRDFPBwx8yI4p4
+         wKH6HPAUal8Z0OBfeaU7EW5Gm1JVLfK/5kNfaqvDLVhCDEWrRyDZlTCVMRP6Kv8OZ/oN
+         Cih7l2GzvIIH2tav31gSG/IJYja9SAYPWni+04tpWgX9qwHNcOwh5f23UCRSMN28oTi8
+         s60Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=HocDrEHK;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id a12si1458848otr.321.2020.04.01.16.11.06;
+        Wed, 01 Apr 2020 16:11:18 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=HocDrEHK;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2387612AbgDAW6F (ORCPT <rfc822;kerneldrwho@gmail.com>
+        + 99 others); Wed, 1 Apr 2020 18:58:05 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:36794 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732537AbgDAW6F (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 1 Apr 2020 18:58:05 -0400
+Received: by mail-lf1-f67.google.com with SMTP id w145so1149505lff.3
+        for <linux-kernel@vger.kernel.org>; Wed, 01 Apr 2020 15:58:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=gad56CloD439ohxZjon0dupGvFU9Ybe3HRlECYVOlSQ=;
+        b=HocDrEHKCiLFMTYMd1fZhuSqk9lSxwYngye9ESDy4iznGNrUlEieE17iajSRTSIZbJ
+         y0Mgxw7e+T1ZgkLL9I4+n1tKn9eNXCLNyNKwQZIRiOByysW/W4EN9GQZPCSTHSGkcf6e
+         vJ7T6MFuMaUGRD09FJs+TDBi0Mq/3zgtK1QDM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=gad56CloD439ohxZjon0dupGvFU9Ybe3HRlECYVOlSQ=;
+        b=PCY5SHEIGsTHSc3bRiAYQObE2au2OV+WKx/49MJKvF0+7vc0YwsOtwwVRVN/uf6jU1
+         HvuvovRJhGcn+oxgJ2QgCCDnvR6XdHGVOp2SP0AHYtjk70mQgs8xqOoo9w0yF4TXBRPv
+         nhik1tIGEmtJMQk0Qoin0NmOqXuuvUJKTbkqqc2cxqznONEaAhWmFu6RmwGeMc0MQJ4J
+         g4CsZfTk4x4AIc9VCbjxqwFD9V34bhhshdVQ9KIU+IdmyweoQPWbhXH/OaVPxCIfrntZ
+         jLwGO6E7Qb/dXvqb6mcQcPIhOT1yBBPzxPEQ1GmQl2gog0jiDazLeEoQMvXw2+qsNZd8
+         LtMg==
+X-Gm-Message-State: AGi0PuaoIBq8vwpZhG4GwtsNXib1rMcDuyAm+rfHr35L7UtmW/Gf8H7l
+        dmcJAU3mzh/HrnAJg6Tg9+7dtSTB7h8=
+X-Received: by 2002:a19:5508:: with SMTP id n8mr286670lfe.1.1585781882358;
+        Wed, 01 Apr 2020 15:58:02 -0700 (PDT)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com. [209.85.167.53])
+        by smtp.gmail.com with ESMTPSA id c22sm2500337lfi.41.2020.04.01.15.58.00
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Apr 2020 15:58:01 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id 131so1094186lfh.11
+        for <linux-kernel@vger.kernel.org>; Wed, 01 Apr 2020 15:58:00 -0700 (PDT)
+X-Received: by 2002:a19:6144:: with SMTP id m4mr277724lfk.192.1585781880067;
+ Wed, 01 Apr 2020 15:58:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <nycvar.YFH.7.76.2004011353080.19500@cbobk.fhfr.pm>
+In-Reply-To: <nycvar.YFH.7.76.2004011353080.19500@cbobk.fhfr.pm>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Wed, 1 Apr 2020 15:57:44 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgy8AM+BOt4jhnoQ+wa=YVyXT4ARg=qEYC=S-OW4ZjZzw@mail.gmail.com>
+Message-ID: <CAHk-=wgy8AM+BOt4jhnoQ+wa=YVyXT4ARg=qEYC=S-OW4ZjZzw@mail.gmail.com>
+Subject: Re: [GIT PULL] HID for 5.7
+To:     Jiri Kosina <jikos@kernel.org>
+Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Wed, Apr 1, 2020 at 5:11 AM Jiri Kosina <jikos@kernel.org> wrote:
+>
+> Samuel =C4=8Cavoj (1):
+>       HID: Add driver fixing Glorious PC Gaming Race mouse report descrip=
+tor
+
+What a glorious name for a piece of hardware. Even if it's apparently
+buggy and needs help to work right.
+
+I felt bad saying I don't need that glorious driver when doing my oldconfig=
+.
+
+Anyway, because I noticed this due to the name, it does strike me that
+clearly Windows must be ignoring - or otherwise reacting differently
+to - the HID_MAIN_ITEM_CONSTANT flag. Because presumably those mice
+work under Windows without special drivers?
+
+In fact, reading that driver, it looks like they report being *both*
+constant *and* variable in their report descriptors. Which sounds odd.
+Maybe we should do whatever Windows does, and not need a special
+driver for this maybe-bot-so-glorious-after-all mouse hardware?
+
+Hmm?
+
+              Linus

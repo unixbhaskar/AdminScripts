@@ -1,0 +1,288 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp281603lfc;
+        Tue, 3 Dec 2019 23:14:22 -0800 (PST)
+X-Google-Smtp-Source: APXvYqyPyL4hSqcKVhfuV6aOXwJ87v5BQGG7x7feLWFupleyFooE5kV7NEIoXul+5Mooj2mV5sdr
+X-Received: by 2002:a17:90a:fb45:: with SMTP id iq5mr1751211pjb.93.1575443661924;
+        Tue, 03 Dec 2019 23:14:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1575443661; cv=none;
+        d=google.com; s=arc-20160816;
+        b=h+q1GDFg0ZWkZhl6nfBrcJfy/cLoYwSzF4TGeHd9XRSATilCDC/YQQ88bfqMN5KkCe
+         iG0gSPAiBq40mhTMOGLFNknR5ST3xGSkB6uZWOg75v4T4/ieuk1Iel4yqGeghzpGotjV
+         kyHkhRgfRvuULhS3DkCOvTzXe8q25AflNZb57VDbswxaQWJZ3UVI8EhCo5MdA2b+lpy2
+         C6gnfpU0KS51iVmgCHz8eVpbIgMAhNdvDKZ3L+DQGEop0a+pYoa3nP+F+q5wRe9w6JAB
+         GSSs5hlHTslgqZOSYq6m+V1uNLv+9YiDPTsJfQPMpS8gbhTHqBNdZIGSyAWL0xjtdPMg
+         SjMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:sender:message-id:subject
+         :reply-to:from:to:date:dkim-signature;
+        bh=ISSnZmNqtxP6xB3b57QIlK7qs1iDLkXV8NsVDX3xZnw=;
+        b=aZb+RFKXP0rfX7hxgwnQRyCyQYCaGrBqOj4UE77xELl+JT3Ty2GWIN6fI6HEVpN1Q3
+         /zVn2B+VcJ6bxOVkG//Hp4+8q1Mi6CwSmecsBUilne8e/JIXoLaYWoov1jzFybBAox9z
+         ooV/FxeYzLDxpUmo6UnT12GEHWTxVpFmpp177VheqUbCnlsROIYOh8m/xPLJrWhVzSTc
+         AseL/88P9V8J0en3uarp7mwT4PVSrrCJMIDZns33RUPU3oj7LuoMEOfEDRo485LSph51
+         iQC2c6W6tefabqclZ2bTDezFuAg3DJ2VtfZsMrybRVzQg92+L3dRNbfXp8awUIa7G5lP
+         Lksg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@naukri.com header.s=2015 header.b=i2MV1fbC;
+       spf=pass (google.com: domain of lipsha.pzw5udmvllm5lda==@naukri.com designates 103.214.115.134 as permitted sender) smtp.mailfrom="lipsha.pZW5udmVlLm5ldA==@naukri.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=naukri.com
+Return-Path: <lipsha.pZW5udmVlLm5ldA==@naukri.com>
+Received: from nmail-one03-two14-one15-one34.naukri.com (nmail-one03-two14-one15-one34.naukri.com. [103.214.115.134])
+        by mx.google.com with ESMTPS id t12si2718099pgj.303.2019.12.03.23.14.21
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 03 Dec 2019 23:14:21 -0800 (PST)
+Received-SPF: pass (google.com: domain of lipsha.pzw5udmvllm5lda==@naukri.com designates 103.214.115.134 as permitted sender) client-ip=103.214.115.134;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@naukri.com header.s=2015 header.b=i2MV1fbC;
+       spf=pass (google.com: domain of lipsha.pzw5udmvllm5lda==@naukri.com designates 103.214.115.134 as permitted sender) smtp.mailfrom="lipsha.pZW5udmVlLm5ldA==@naukri.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=naukri.com
+Return-Path: <lipsha.pZW5udmVlLm5ldA==@naukri.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=naukri.com; s=2015;
+	t=1575443659; bh=b9artPdGMe73kmwE7R7WBj910KP6Yb05eOsi0xbUWgA=;
+	h=Date:To:From:Reply-To:Subject;
+	b=i2MV1fbCU7VZjQNcyDH6jWBWL7+UScfrPv7BPgWgQ6LYMvs+avAJg2oRMyYvyGIeb
+	 qH/pIZO4qMLkYNer06h6sXJS66jZxPdxzqTRPxxfQyidFxoXItYujLTJMXt3Fvzu1h
+	 EXXpWo3653ZKwq9TC2r2icmnodBmk5SvmPmf5SYw=
+Received: from [172.10.115.133] ([172.10.115.133:48134] helo=n5plnjobdb15.ieil.net)
+	by n5plimla02.ieil.net (envelope-from <lipsha.pZW5udmVlLm5ldA==@naukri.com>)
+	(ecelerity 3.6.13.50539 r(Core:3.6.13.0)) with ESMTP
+	id D8/31-51681-BCC57ED5; Wed, 04 Dec 2019 12:44:19 +0530
+Date: Wed, 4 Dec 2019 12:44:19 +0530
+To: unixbhaskar@gmail.com
+From: ennVee Solutions Private Limited <lipsha.pZW5udmVlLm5ldA==@naukri.com>
+Reply-To: lipsha.pzw5udmvllm5lda==ice83-rd@rmsg.naukri.com
+Subject: Job | Job Opportunity: Linux Administration : ennVee Technogroup
+Message-ID: <9fe8846bfe30c76ba3d8ec3fd77bf632@n5plnjobdb15.ieil.net>
+X-Priority: 3
+X-Mailer: Naukri Mailer
+Sender: resdex@naukri.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+     <div class=3D"emailBody er0"> <table width=3D"600" cellspacing=3D"1" c=
+ellpadding=3D"5" align=3D"center" border=3D"0"><tr> <td style=3D"word-break=
+:normal;margin-bottom:5px;line-height:16px;" height=3D"30" bgcolor=3D"#ffff=
+ff" align=3D"center"><span style=3D"font-size:11px; font-family:Arial, Helv=
+etica, sans-serif; color:#888"> <!--RMJHEADERSTART--> The sender of this em=
+ail is registered with Naukri.com as ennVee Solutions Private Limited  comp=
+any. To respond back directly to the Employer, please click on Reply button=
+, or send an email to <a href=3D"mailto:lipsha.p@ennvee.net" title=3D"lipsh=
+a.p@ennvee.net">lipsha.p@ennvee.net</a> <!--RMJHEADEREND--> <!--ALERTMESSAG=
+ESTART--><div style=3D"font-size:11px; font-family:Arial, Helvetica, sans-s=
+erif; color:#333">Do Not forward this email, it contains links which allow =
+direct login to your Naukri account.</div><!--ALERTMESSAGEEND--></span></td=
+></tr><td bgcolor=3D"#fafafa" style=3D"border:1px solid #eeeeee;padding:0;"=
+><table width=3D'100%'><tr><td width=3D'10%' style=3D'font-family:Arial; fo=
+nt-size:12px; color:#666; padding:3px 8px 0 0;' valign=3D'top'><img src=3D"=
+https://naukrirecruiter.naukri.com/profilePic/getpic?pid=3D1547441896rp3946=
+614_medium4" width=3D'100' height=3D'100'/></td><td width=3D'40%' style=3D'=
+font-family:Arial; font-size:12px; color:#333' valign=3D'top'><strong style=
+=3D'font-size:18px;'>Madhumathi.S</strong><br /><br /><span>HR Manager</spa=
+n> <br /><span>ennvee solutions<br /><small style=3D'color:#04A414;font-siz=
+e:12px;'>Bengaluru / Bangalore</small></span><br /><a href=3D"https://recru=
+iters.naukri.com/profile/madhumathis-3946614" target=3D'_blank' style=3D'co=
+lor:#008ed7; text-decoration:none;margin-top:8px;float:left'><strong style=
+=3D"color:#3c98ed">Follow my job updates</strong></a></td><td width=3D'40%'=
+ valign=3D'top' style=3D'font-family:Arial; font-size:12px;'><p style=3D'pa=
+dding-bottom:5px;line-height:16px;margin-top:5px;margin-bottom:10px;font-si=
+ze: 12px;'>Oracle EBS Technical Consultant</p><span style=3D'color:#89909d;=
+padding-bottom:5px;'>Skills/Roles i hire for</span><p style=3D'padding-bott=
+om:5px;line-height:16px;margin-top:5px;font-size: 12px;font-family:Roboto,A=
+rial;'>Oracle Dba, Oracle E-business Suite</p></td></tr></table> </td></tr>=
+<tr style=3D"background:#fff"><td style=3D"border:1px solid #f1f1f1;border-=
+top:none;padding-left:6px; padding-right:6pxpadding-top:0px;padding-bottom:=
+0px;"><table><tr><td style=3D"word-break:break-word" bgcolor=3D"#FFFFFF" va=
+lign=3D"top"><font face=3D"Arial, Helvetica, sans-serif" color=3D"#000000">=
+ <span style=3D'font-size:14px;'>  <div style=3D'margin:0px; padding:3px 0p=
+x;'><strong>Experience required for the Job:</strong>&nbsp;5&nbsp;-&nbsp;10=
+ years</div>   <div style=3D'margin:0px; padding:3px 0px;'><strong>Annual S=
+alary of the Job:</strong>&nbsp;0.00 - 13.00 Lacs</div>  <div style=3D"word=
+-break:break-word">  </div> <div style=3D'margin:0px; padding:3px 0px;word-=
+break:break-word'><strong>Job Location:</strong>&nbsp;Bengaluru/Bangalore, =
+Chennai</div>  </span>   <br>  <br/><a class=3D"mainPrevColor" title=3D"Sen=
+d your Naukri profile to the recruiter in one click" href=3D" http://my.nau=
+kri.com/AL/ResdexRMJMail/alid/{}/redirectParam/applyProcessRMJ?applytype=3D=
+single&amp;ApplyMode=3D1&amp;src=3Drmj &reqId=3D257218&messageId=3DMjAxOTEy=
+I0E3ckVCNFhsamtFPV8xNTc1NDQzNjE3&logstr=3DER0" style=3D'margin-right: 5px; =
+background:#3c98ed; font-size:17px; font-weight:bold;color:#fff; padding:7p=
+x 10px;font-family:Arial, Helvetica, sans-serif; text-decoration:none;'>App=
+ly Now</a>   &nbsp;&nbsp;  <a class=3D"mainPrevColor" title=3D'Reply with a=
+dditional details sought by the recruiter' href=3D' http://my.naukri.com/AL=
+/ResdexRMJMail/alid/{}/redirectParam/replyView?applytype=3Dsingle&amp;Apply=
+Mode=3D1&amp;src=3Drmj  &reqId=3D257218&messageId=3DMjAxOTEyI0E3ckVCNFhsamt=
+FPV8xNTc1NDQzNjE3' style=3D'background:#3c98ed; font-size:17px; font-weight=
+:bold;color:#fff; padding:7px 10px;font-family:Arial, Helvetica, sans-serif=
+; text-decoration:none;'>Reply</a>   <!--RMJBODYSTART--><!-- VNAME=3DMadhum=
+athi.S--><!--VPHOTO=3Dhttps://naukrirecruiter.naukri.com/profilePic/getpic?=
+pid=3D1547441896rp3946614_medium4--><!--JOBMAXEXPERIENCE=3D10--><!--JOBMINE=
+XPERIENCE=3D5--><!--JOBLOCATION=3DBengaluru/Bangalore, Chennai--><!--JOBMES=
+SAGEID=3DMjAxOTEyI0E3ckVCNFhsamtFPV8xNTc1NDQzNjE3--><!--DESIGNATION=3DHR Ma=
+nager--><!--COMPID=3Dennvee solutions--><!--LOCATION=3DBengaluru / Bangalor=
+e--><!--VSLUG=3Dhttps://recruiters.naukri.com/profile/madhumathis-3946614--=
+><!--PROFILEHEADING=3DOracle EBS Technical Consultant--><!--DOMAINEXP=3DOra=
+cle Dba, Oracle E-business Suite--><!--APPLYURL=3Dhttp%3A%2F%2Fapply.naukri=
+.com%2Fapply%2FprocessRmj%3Fapplytype%3Dsingle%26ApplyMode%3D1%26src%3Drmj%=
+26applySrc%3Drmj&reqId=3D257218%26messageId=3DMjAxOTEyI0E3ckVCNFhsamtFPV8xN=
+Tc1NDQzNjE3--><!--REPLYURL=3Dhttps%3A%2F%2Fwww.naukri.com%2Fmyapply%2Fsaver=
+mj%3Fsrc%3Drmj%26reqId=3D257218%26msgId=3DMjAxOTEyI0E3ckVCNFhsamtFPV8xNTc1N=
+DQzNjE3--><p style=3D"clear:both; font-size:12px;padding:0 0 10px 0"><br/><=
+strong>Dear Bhaskar Chowdhury,</strong></p>  <blockquote style=3D'margin:0p=
+x; padding:10px 0px; font-size: 12px;font-family:Arial, Helvetica, sans-ser=
+if;word-break:break-word'> Linux/UNIX system administrator to perform daily=
+ support tasks as part of the client team. Duties include 24x7 event/incide=
+nt support; L1/L2/L3 event troubleshooting, triage and escalation; executio=
+n of scheduled activities and ad-hoc work requests; and event and incident =
+trend analysis and reporting.<div style=3D"margin-bottom:7px;margin-left:0;=
+margin-right:0;margin-top:0">Job Description:</div><div style=3D"margin-bot=
+tom:7px;margin-left:0;margin-right:0;margin-top:0">=E2=80=A2  Monitoring, o=
+ptimizing and managing of UNIX/Linux OS, system hardware and application pe=
+rformance</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0=
+;margin-top:0">=E2=80=A2  Perform application upgrades, patches, be able to=
+ identify and troubleshoot bugs that involved Tuxedo, Tomcat and Apache</di=
+v><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0=
+">=E2=80=A2  Experience managing servers in an enterprise environment</div>=
+<div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=
+=E2=80=A2  Strong experience in System Administration, Hardware and OS trou=
+bleshooting, Configuration, Backup, Security, Disaster Recovery, and Perfor=
+mance Monitoring.</div><div style=3D"margin-bottom:7px;margin-left:0;margin=
+-right:0;margin-top:0">=E2=80=A2  Experience with Redhat Cluster as well as=
+ Veritas Cluster Server Support desired.</div><div style=3D"margin-bottom:7=
+px;margin-left:0;margin-right:0;margin-top:0">=E2=80=A2  Experience Using S=
+AN/NAS storage, LVM or VXVM</div><div style=3D"margin-bottom:7px;margin-lef=
+t:0;margin-right:0;margin-top:0">=E2=80=A2  Complete shell scripting sh, cs=
+h, ksh and bash.</div><div style=3D"margin-bottom:7px;margin-left:0;margin-=
+right:0;margin-top:0">=E2=80=A2  Experience with cloud infrastructure, OCI =
+required, AWS good to have</div><div style=3D"margin-bottom:7px;margin-left=
+:0;margin-right:0;margin-top:0">=E2=80=A2  Experience in setting up and con=
+figuring network in cloud environment and connecting to on premise</div><di=
+v style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=
+=E2=80=A2  OS User administration, OS Server administration, install and pa=
+tching OS</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0=
+;margin-top:0">=E2=80=A2  Required to work on shifts supporting client, any=
+ shift 24*7</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right=
+:0;margin-top:0"><br></div><div style=3D"margin-bottom:7px;margin-left:0;ma=
+rgin-right:0;margin-top:0">If you are keen, kindly share your updated profi=
+le with below details: </div><div style=3D"margin-bottom:7px;margin-left:0;=
+margin-right:0;margin-top:0"></div><div style=3D"margin-bottom:7px;margin-l=
+eft:0;margin-right:0;margin-top:0"><b>Total Experience:</b></div><div style=
+=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0"><b>Relevan=
+t Experience:</b></div><div style=3D"margin-bottom:7px;margin-left:0;margin=
+-right:0;margin-top:0"><b>Current CTC:</b></div><div style=3D"margin-bottom=
+:7px;margin-left:0;margin-right:0;margin-top:0"><b>Expected CTC:</b></div><=
+div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0"><=
+b>Notice Period: Preferred who can join Immediate /7 days</b></div><div sty=
+le=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0"><b>Linux=
+ Certification (Mandatory) (Yes/No): </b></div><div style=3D"margin-bottom:=
+7px;margin-left:0;margin-right:0;margin-top:0"><br></div><div style=3D"marg=
+in-bottom:7px;margin-left:0;margin-right:0;margin-top:0"><br></div></blockq=
+uote><!--RMJBODYSTOP--> <br> <!--RMJSIGNATURESTART--> <blockquote style=3D'=
+margin:0px; padding:10px 0px; font-size: 12px;font-weight:normal;font-famil=
+y: Arial, Helvetica, sans-serif;word-break:break-word'>Thanks &amp; Regards=
+,<div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0"=
+>Lipsha</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;m=
+argin-top:0"> </div><div style=3D"margin-bottom:7px;margin-left:0;margin-ri=
+ght:0;margin-top:0">ennVee =E2=80=A2 Delivering tomorrow=E2=80=99s solution=
+s, today.</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0=
+;margin-top:0">m: <b>7893097587</b></div><div style=3D"margin-bottom:7px;ma=
+rgin-left:0;margin-right:0;margin-top:0">e  lipsha.p@ennvee.net  w www.ennv=
+ee.com  | LinkedIn</div><div style=3D"margin-bottom:7px;margin-left:0;margi=
+n-right:0;margin-top:0">a   #53, CKM Road, 2nd Cross,</div><div style=3D"ma=
+rgin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">1st Main Road,RM=
+V 2nd Stage,Bangalore =E2=80=93 560094</div><div style=3D"margin-bottom:7px=
+;margin-left:0;margin-right:0;margin-top:0"><br></div> </blockquote> <!--RM=
+JSIGNATUREEND--> <div style=3D"clear:both;"></div> <!--RMJFOOTERSTART-->  <=
+p style=3D'color:#444444; font-size:12px; font-family:Arial, Helvetica, san=
+s-serif; border:#d1f1fe solid 1px; background:#f4fcff;padding:0 10px;line-h=
+eight:15px'><br />You are receiving this e-mail because your profile contai=
+ned one or more of the following words that the recruiter searched on: " <e=
+m style=3D'font-weight:700;font-style: normal;font-size:10px'>&quot;linux a=
+dministrator&quot;</em> ", " <em style=3D'font-weight:700;font-style: norma=
+l;font-size:10px'>&quot;linux system administrator&quot;</em> ", " <em styl=
+e=3D'font-weight:700;font-style: normal;font-size:10px'>&quot;linux system =
+administration&quot;</em> "<br /><br /></p>     <table align=3D"center" wid=
+th=3D"280" cellpadding=3D"0" cellspacing=3D"0" style=3D"margin-left:auto; m=
+argin-right:auto; margin-top:10px; margin-bottom:0px;"><tr><td width=3D"275=
+" bgcolor=3D"#f4f8fe" style=3D"border:1px solid #e7f0fe; font:bold 13px Ari=
+al, Helvetica, sans-serif;color:#5d6f8a; padding:10px; margin:0 auto;">Is t=
+his job relevant to you? <a href=3D"http://jobsearch.naukri.com/mynaukri/jo=
+bs_feedback.php?response=3Dyes&mid=3D49286276" style=3D"background:#5d6f8a;=
+ padding:5px; text-align:center;color:#fff !important; text-decoration:none=
+; margin:0 5px;cursor:pointer;font-weight:bold">Yes</a> <a href=3D"http://j=
+obsearch.naukri.com/mynaukri/jobs_feedback.php?response=3Dno&mid=3D49286276=
+" style=3D"background:#5d6f8a; padding:5px; text-align:center;color:#fff !i=
+mportant; text-decoration:none;cursor:pointer;font-weight:bold;">No</a></td=
+></tr></table>  </font></td></tr> <tr><td bgcolor=3D"#FFFFFF" style=3D'font=
+-size:11px;border-bottom:1px solid #f1f1f1;' align=3D'center'> <font face=
+=3D"Arial, Helvetica, sans-serif" color=3D"#313131" style=3D"font-weight:0;=
+font-family:Arial, Helvetica, sans-serif;">Your feedback would help us in s=
+ending you the most relevant job opportunities</font></td><td height=3D'30'=
+></td></tr> <tr> <td valign=3D'top' bgcolor=3D'#FFFFFF'> <font face=3D'Aria=
+l, Helvetica, sans-serif' color=3D'#313131'><div style=3D'border-bottom:1px=
+ solid #888888; line-height:16px; font-size:10px; font-weight:bold;'>Discla=
+imer:</div> <div style=3D'padding-top:5px; font-size:10px;font-family:Arial=
+, Helvetica, sans-serif;word-break:break-word'>The sender of this email is =
+registered with naukri.com as <strong>ennVee Solutions Private Limited </st=
+rong> (<a href=3D'mailto:madhumathi.s@ennvee.net' style=3D'cursor:pointer;'=
+ title=3D"madhumathi.s@ennvee.net">madhumathi.s@ennvee.net</a>, 53, CKM Roa=
+d 2nd Cross 1st Main Road, RMV 2nd Street, Bengaluru (Bangalore) Urban, BAN=
+GALORE, Karnataka - 560094) using Naukri.com services. The responsibility o=
+f checking the authenticity of offers/correspondence lies with you. If you =
+consider the content of this email inappropriate or spam, you may: Forward =
+this email to: <a href=3D'mailto:compliance@naukri.com' style=3D'cursor:poi=
+nter;'>compliance@naukri.com</a> or you can <a href=3D'http://my.naukri.com=
+/BlockCompany/blockOneCompany?companyIdStr=3D117680' style=3D'cursor:pointe=
+r;'>Block this Company</a> from searching your resume in the database.<br /=
+><strong>Please Note:</strong> This mail is a private message from the recr=
+uiter. We have enabled auto login for your convenience, you are strongly ad=
+vised not to forward this email to protect your account from unauthorized a=
+ccess.<br /><strong>Advisory</strong>: Please do not pay any money to anyon=
+e who promises to find you a job. This could be in the form of a registrati=
+on fee or document processing fee or visa charges or any other pretext. The=
+ money could be asked for upfront or it could be asked after trust has been=
+ built after some correspondence has been exchanged. Also please note that =
+in case you get a job offer or a letter of intent without having been throu=
+gh an interview process it is probably a scam and you should contact <a hre=
+f=3D'mailto:compliance@naukri.com' style=3D'cursor:pointer;'>compliance@nau=
+kri.com</a> for advise.</div></font> <table width=3D'100%' border=3D'0' cel=
+lspacing=3D'0' cellpadding=3D'0'><tr><td height=3D'5'></td></tr><tr><td sty=
+le=3D'font-family:Arial, Helvetica, sans-serif;font-size:14px;border:1px so=
+lid #d1f1fe; line-height:30px; background:#f4fcff' align=3D'center'><a clas=
+s=3D"linkMainColor" href=3D'http://my.naukri.com/HomePage/view' style=3D'cu=
+rsor:pointer; font-weight:bold; font-family:Arial, Helvetica, sans-serif; f=
+ont-size:14px;color:#3c98ed' title=3D'Update Your Resume Now'>Update Your R=
+esume Now</a> to be on the top of Employer's Resume Search</td></tr><tr><td=
+ height=3D'5'></td></tr><tr><td style=3D'border:1px solid #d1f1fe; line-hei=
+ght:30px; background:#f4fcff;font-family:Arial, Helvetica, sans-serif; text=
+-align: center; font-size: 14px; '><a class=3D"linkMainColor" href=3D"http:=
+//jobsearch.naukri.com/mynaukri/js_msngr.php?xz=3D0_0_5&amp;ma=3DC" style=
+=3D'font-size:14px;font-weight:bold;font-family:Arial, Helvetica, sans-seri=
+f;color:#3c98ed'>Create your own job alert</a> to receive similar jobs dire=
+ctly in your inbox.</td></tr></table> <table width=3D"100%" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"0"><tr> <td height=3D"5"></td> </tr> <tr> <t=
+d bgcolor=3D"#e9e9e9" align=3D"center"><font face=3D"Arial, Helvetica, sans=
+-serif" style=3D"font-size:11px;word-break:break-word"><strong>Your Resume =
+has only 30 seconds to impress a Recruiter. <a class=3D"linkMainColor" href=
+=3D"http://resume.naukri.com/resume-writing-services?fftid=3D700003" style=
+=3D"cursor:pointer;font-weight:bold;color:#3c98ed">Get your resume written =
+by Experts.</a> <br /> Call 1800-3010-5557 now! (Toll-Free)</strong></font>=
+</td></tr></table></td></tr></table></td></tr> <tr><td> <img width=3D"0px" =
+height=3D"0px" src=3D"http://jatracking.naukri.com/Finale/tracking_resdex.p=
+hp?data=3DeyJtYWlsS2V5IjoiOGNmZDNhYmI3MDZkZWE4NjQ0ZmM3MmFhM2UzMmU2ZDUiLCJjb=
+GllbnQiOiJSTUpNYWlsIiwiYXBwX2lkIjoxMTIsIm1haWxlcl9pZCI6IjQ5Mjg2Mjc2IiwibWFp=
+bHNlbnR0aW1lc3RhbXAiOjE1NzU0NDM2MTY5NTEsInNvdXJjZSI6IlJNSiIsInN0eWxlIjoiRVI=
+wIiwicmR4dXNlcmlkIjoiMzk0NjYxNCIsImNvbXBhbnlpZCI6MTEyNDUxNCwiZG9jX2lkIjoiYm=
+Q3MzUzMzk0NjI5YWRhMmFkNTQ5OGIzOTVmMDQ0OWUiLCJqc3VuaXFpZCI6IjNhY2MwZWI0NjkwM=
+jUwZjQ5OCJ9" style=3D"display:none !important"/><img width=3D"0px" height=
+=3D"0px" src=3D"https://logs.naukri.com/collectorapi/v1/uba?data=3D%7B%22te=
+nantId%22%3A1%2C%22deviceType%22%3A%22WEB%22%2C%22eventName%22%3A%22communi=
+cationOpen%22%2C%22alertId%22%3A%22anjali_2019-12-04%22%2C%22communicationT=
+ype%22%3A%22MAIL%22%2C%22mailerId%22%3A%2249286276%22%2C%22mailType%22%3A%2=
+2RMJ%22%2C%22communicationId%22%3A%2249286276%22%2C%22appId%22%3A112%2C%22u=
+serId%22%3A%223946614%22%2C%22companyId%22%3A1124514%2C%22encEmail%22%3A%22=
+7f67428e7a4d0854226fc18ca8438c206bd8de1cf0e75953386ac7ac6481fd6892d2d6ac5f2=
+1f68f%22%7D" style=3D"display:none !important"/> <img width=3D"0px" height=
+=3D"0px" src=3D"http://mailtracking.naukri.com/Finale/mmm_main/resdex_recor=
+d_response.php?src=3DRMJ&messageId=3D49286276&style=3DER0" style=3D"display=
+:none !important"/> </td></tr> </table> </div>  <!--RMJFOOTEREND-->  

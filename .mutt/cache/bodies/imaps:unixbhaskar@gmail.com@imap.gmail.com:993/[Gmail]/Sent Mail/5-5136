@@ -1,0 +1,54 @@
+Date: Sat, 28 Sep 2019 20:43:00 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: Jonathan Corbet <corbet@lwn.net>
+Cc: LinuxKernel <linux-kernel@vger.kernel.org>
+Subject: [GIT PULL] remove dead mutt url and add active mutt url
+Message-ID: <20190928151300.GA18122@debian>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="BOKacYhQ+x31HxR3"
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+
+--BOKacYhQ+x31HxR3
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+The following changes since commit 4e4327891fe2a2a4db342985bff4d4c48703c707:
+
+  replace dead mutt url with active one. (2019-09-28 20:11:00 +0530)
+
+  are available in the Git repository at:
+
+    https://github.com/unixbhaskar/linux.git=20
+    gpg: Signature made Sat 28 Sep 2019 08:11:25 PM IST
+    gpg:                using RSA key
+    9F017E9D66B07216543CEBB0B23A9DB7114B2915
+    gpg: Good signature from "Bhaskar Chowdhury
+    (Musing_with_GNU/Linux!!) <unixbhaskar@gmail.com>" [ultimate]
+    gpg:                 aka "[jpeg image of size 2135]" [ultimate]
+
+    for you to fetch changes up to
+    4e4327891fe2a2a4db342985bff4d4c48703c707:
+
+      replace dead mutt url with active one. (2019-09-28 20:11:00 +0530)
+
+
+--BOKacYhQ+x31HxR3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl2PeHcACgkQsjqdtxFL
+KRXypAgAw8a4wvWxo3mUe9oQ47VZhY39flqwpGbdNj3Mt9vwMGI/epynLs86XJXG
+pTPnXCJ9coNqknz8DKxf7etpjS8QbX+bRei33eyeInqD4vfroxlsm+5ys4Px+D9Q
+vUI2hD5vip6EuvS9Q2iUxcTmSLSIii2Y0jABee/LmIICBDuXhWX1ycrDqwfzEIHm
+R1l+CCUe9hf+ol4PhcbOzQZKmc4Hg08Nv/mEF8jHnXu5UyCxfohW+cNv+SrHsWMj
+5MrNug44UkNEUh5Hyy2j3Tj1ZUPNDxQKbKpILuyecgoIIeu7Kq1G7X+4d4kfWD0F
+BX72//UrOk9NquBYOlRvEHjCowFG1A==
+=6Td2
+-----END PGP SIGNATURE-----
+
+--BOKacYhQ+x31HxR3--

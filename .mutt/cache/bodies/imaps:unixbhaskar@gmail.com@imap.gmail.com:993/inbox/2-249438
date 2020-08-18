@@ -1,0 +1,1289 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp1589841lfj;
+        Sun, 19 Jul 2020 16:08:05 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzeC+RQdcBeMx2R2nVizfOEG3XHK6c/7CUsZY62x4r/9d5QFZDEFK2jmpWi5E15k996bJ4G
+X-Received: by 2002:a17:906:191a:: with SMTP id a26mr19010056eje.315.1595200085345;
+        Sun, 19 Jul 2020 16:08:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1595200085; cv=none;
+        d=google.com; s=arc-20160816;
+        b=JcTcsK2uJfFedMMotRCbN0uQzeWa5Zbb3l9Tjaxzy6RVP+pJLsv3qTh9s1+WYOVj66
+         PPfU/KTvajEArqNCxpgwsJVUn6gg+vWEyPi6fH/J4FwEwP+upWLFbsfeBTX6RDBg4TGQ
+         0EjhYHY8oTn5kjBbdSr7maPH/GYem89peo1aM9XrrYdb4jHMr5dFCO5pyukfPH02ZjKP
+         A1yQMNM3Q3CWwKERuZ82trpghw/OFvYnSnzuXotm+AQjLdw28Flb+z/AS73Jp6aFEKpM
+         uy4ANV1IJpb0JKUSuGpwl7xNoy7xEOi4LvJG1NuDBS+gXqC+uBr8Q8vPx2aq6CggxrQr
+         LO/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:to:subject
+         :message-id:date:from:mime-version:dkim-signature;
+        bh=42fcvuZ80jbJfZPQpMTa2A44RrkLOYe6wzc8lOue/UA=;
+        b=dQitSDpvNFjqy6w12ZT2nBD0oJ0ihqpSV42dt7jr4lTIZXseSjrlrIDm/1/BArEjuj
+         kKWvLwY5zpuXkoKBbgxAV+4WFvPkAargRkj09QK0/rYqsV2p/FPJjFe6/NZ5ybAroe1g
+         /EHgzlzcEO3NRcxKe2Tu/2owK9DPRXI/rF4bZ5zQurBP1o2TAcYT/kG4GgvABRdW5i+y
+         51LahGNa+eOqMv+UKgPe2RpiSYJEBGicVD4R9XAuNRm5JAgy2lOlBKEh8rtYVtJpG2Fl
+         4PyF+VnD6KZLC+KTFt8krynkTWZ2sEelIidNwxVFF9QMGbRBV6PeEOMHUIe/O9kaSVGv
+         xxmw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b="Tl/AfpSX";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id dd7si9829979ejb.615.2020.07.19.16.07.49;
+        Sun, 19 Jul 2020 16:08:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b="Tl/AfpSX";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726510AbgGSXD3 (ORCPT <rfc822;petrus.archlinux@gmail.com>
+        + 68 others); Sun, 19 Jul 2020 19:03:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54566 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726126AbgGSXD3 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 19 Jul 2020 19:03:29 -0400
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1F4C0619D2
+        for <linux-kernel@vger.kernel.org>; Sun, 19 Jul 2020 16:03:28 -0700 (PDT)
+Received: by mail-lj1-x244.google.com with SMTP id q4so18308189lji.2
+        for <linux-kernel@vger.kernel.org>; Sun, 19 Jul 2020 16:03:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=42fcvuZ80jbJfZPQpMTa2A44RrkLOYe6wzc8lOue/UA=;
+        b=Tl/AfpSXwEqCuteoYiwZiO8j61i5hCtzvHJL3M6GdzxfgOieWo4YXxr2M3KSNm6Nll
+         QRk+mCApkIpbAJUzmicPVSaN1vOkTeM5ft/GPyV5hQz+/LaoVW4ik8V5xAqQdC5zd1Uo
+         9v4lyOMQ5AuNxDO7VcZJm289ArF+7dqY5Laec=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=42fcvuZ80jbJfZPQpMTa2A44RrkLOYe6wzc8lOue/UA=;
+        b=bsspjeUkg4wQrmwJv73RPdHg1hTb/NX2vGdx5oeVsSpYwi6K24AppqVJxlyixROmwA
+         7pjLbDMAPNkOj+qh3LVNaRkm/afRdwMHxJedRmMM0UXar1R0IMKbfKlKuk2Bk98xRUG9
+         i6P9qFQl5I1Qk3Wsp9HGzTfnvIGnB0FOi8Li6opP/ZukKD35Jxwum8aZIhQD3/fJ4KER
+         o121Ii/D/7oGkwmQQuHFky2iRIQuOWqNqvtl1B6X+clat5TNm7cppRMZakcigoXhBvHJ
+         Tcn/r89NP6qTzJt4EcJNJkw3a7AXj4ROv+dKJ+z7+1aOmlkxhdsOPKResoBPfA2Q/R9J
+         fC8Q==
+X-Gm-Message-State: AOAM533ytYzCC+Lmj9huZKzlb64BKG9MYzTuc+v7UL9Inr4UgU1uqGrA
+        hcjG00HE6uXR9c9hxZiSqrmZxPm6OR4=
+X-Received: by 2002:a2e:960a:: with SMTP id v10mr9418753ljh.223.1595199805830;
+        Sun, 19 Jul 2020 16:03:25 -0700 (PDT)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com. [209.85.208.174])
+        by smtp.gmail.com with ESMTPSA id m10sm3406884lji.72.2020.07.19.16.03.24
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Jul 2020 16:03:24 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id f5so18228711ljj.10
+        for <linux-kernel@vger.kernel.org>; Sun, 19 Jul 2020 16:03:24 -0700 (PDT)
+X-Received: by 2002:a2e:86c4:: with SMTP id n4mr9351118ljj.312.1595199803957;
+ Sun, 19 Jul 2020 16:03:23 -0700 (PDT)
+MIME-Version: 1.0
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 19 Jul 2020 16:03:07 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wj_gy9xpqFx_aLTtLtFTCTKKLfV9E2bgE5J2GeKit3MCg@mail.gmail.com>
+Message-ID: <CAHk-=wj_gy9xpqFx_aLTtLtFTCTKKLfV9E2bgE5J2GeKit3MCg@mail.gmail.com>
+Subject: Linux 5.8-rc6
+To:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Things continue to look very normal, even if this is a big release.
+rc6 is pretty much par for the course, and nothing in here stands out
+size-wise or otherwise.
+
+The stats all look normal, with a fairly flat diffstat (so no huge
+hotspots, no big scary changes). Drivers (all over), architecture
+updates (arm64, x86), with some filesystem and core kernel changes.
+
+Shortlog appended, but I doubt most people will find anything exciting
+in there. Which is all good. Calm and boring is how I like it.
+
+            Linus
+
+---
+
+AceLan Kao (1):
+      USB: serial: option: add Quectel EG95 LTE modem
+
+Alex Deucher (1):
+      drm/amdgpu/display: create fake mst encoders ahead of time (v4)
+
+Alex Hung (1):
+      thermal: int3403_thermal: Downgrade error message
+
+Alexander Lobakin (1):
+      virtio: virtio_console: add missing MODULE_DEVICE_TABLE() for rproc s=
+erial
+
+Alexander Shishkin (4):
+      intel_th: pci: Add Jasper Lake CPU support
+      intel_th: pci: Add Tiger Lake PCH-H support
+      intel_th: pci: Add Emmitsburg PCH support
+      intel_th: Fix a NULL dereference when hub driver is not loaded
+
+Alexander Usyskin (1):
+      mei: bus: don't clean driver pointer
+
+Amir Goldstein (7):
+      ovl: relax WARN_ON() when decoding lower directory file handle
+      ovl: fix oops in ovl_indexdir_cleanup() with nfs_export=3Don
+      ovl: fix regression with re-formatted lower squashfs
+      ovl: force read-only sb on failure to create index dir
+      ovl: fix mount option checks for nfs_export with no upperdir
+      ovl: fix unneeded call to ovl_change_flags()
+      ovl: fix lookup of indexed hardlinks with metacopy
+
+Andreas Schwab (1):
+      riscv: use 16KB kernel stack on 64-bit
+
+Andy Lutomirski (1):
+      x86/ioperm: Fix io bitmap invalidation on Xen PV
+
+Andy Shevchenko (3):
+      dmaengine: dw: Initialize channel before each transfer
+      serial: core: Initialise spin lock before use in uart_configure_port(=
+)
+      platform/x86: thinkpad_acpi: Revert "Use strndup_user() in
+dispatch_proc_write()"
+
+Aneesh Kumar K.V (1):
+      powerpc/book3s64/pkeys: Fix pkey_access_permitted() for execute
+disable pkey
+
+Angelo Dureghello (1):
+      dmaengine: fsl-edma: fix wrong tcd endianness for big-endian cpu
+
+Anna Schumaker (1):
+      NFS: Fix interrupted slots by sending a solo SEQUENCE operation
+
+Anthony Iliopoulos (1):
+      nvme: explicitly update mpath disk capacity on revalidation
+
+Armas Spann (1):
+      ALSA: hda/realtek: enable headset mic of ASUS ROG Zephyrus
+G14(G401) series with ALC289
+
+Arnaldo Carvalho de Melo (2):
+      perf tools: Sync hashmap.h with libbpf's
+      tools arch kvm: Sync kvm headers with the kernel sources
+
+Arnd Bergmann (2):
+      phy: intel: fix enum type mismatch warning
+      x86: math-emu: Fix up 'cmp' insn for clang ias
+
+Arvind Sankar (1):
+      x86/boot: Don't add the EFI stub to targets
+
+Bartosz Szczepanek (1):
+      thermal/int340x_thermal: Prevent page fault on .set_mode() op
+
+Bjorn Helgaas (1):
+      ARM: imx: Remove imx_add_imx_dma() unused irq_err argument
+
+Caiyuan Xie (1):
+      HID: alps: support devices with report id 2
+
+Chandrakanth Patil (1):
+      scsi: megaraid_sas: Remove undefined ENABLE_IRQ_POLL macro
+
+Charan Teja Kalla (1):
+      dmabuf: use spinlock to access dmabuf->name
+
+Chen Tao (1):
+      ARM: OMAP2+: Fix possible memory leak in omap_hwmod_allocate_module
+
+Chirantan Ekbote (1):
+      fuse: Fix parameter for FS_IOC_{GET,SET}FLAGS
+
+Chris Wilson (2):
+      drm/i915/gt: Ignore irq enabling on the virtual engines
+      drm/i915/gt: Only swap to a random sibling once upon creation
+
+Christian Hewitt (1):
+      soc: amlogic: meson-gx-socinfo: Fix S905X3 and S905D3 ID's
+
+Christophe JAILLET (1):
+      iio: adc: ad7780: Fix a resource handling path in 'ad7780_probe()'
+
+Christophe Leroy (1):
+      tty: serial: cpm_uart: Fix behaviour for non existing GPIOs
+
+Chu Lin (1):
+      hwmon: (adm1275) Make sure we are reading enough data for different c=
+hips
+
+Chuck Lever (4):
+      xprtrdma: Fix double-free in rpcrdma_ep_create()
+      xprtrdma: Fix recursion into rpcrdma_xprt_disconnect()
+      xprtrdma: Fix return code from rpcrdma_xprt_connect()
+      xprtrdma: Fix handling of connect errors
+
+Chuhong Yuan (2):
+      iio: mma8452: Add missed iio_device_unregister() call in mma8452_prob=
+e()
+      serial: mxs-auart: add missed iounmap() in probe failure and remove
+
+Colin Ian King (2):
+      phy: sun4i-usb: fix dereference of pointer phy0 before it is null che=
+cked
+      xprtrdma: fix incorrect header size calculations
+
+Cristian Marussi (1):
+      hwmon: (scmi) Fix potential buffer overflow in scmi_hwmon_probe()
+
+Dan Carpenter (2):
+      coresight: cti: Fix error handling in probe
+      staging: comedi: verify array index is correct before using it
+
+Dave Jiang (3):
+      dmaengine: idxd: fix hw descriptor fields for delta record
+      dmaengine: idxd: cleanup workqueue config after disabling
+      dmaengine: idxd: fix misc interrupt handler thread unmasking
+
+Dave Wang (1):
+      Input: elan_i2c - add more hardware ID for Lenovo laptops
+
+David Gow (1):
+      clk: Specify IOMEM dependency for HSDK pll driver
+
+David Howells (1):
+      afs: Fix interruption of operations
+
+David Pedersen (1):
+      Input: i8042 - add Lenovo XiaoXin Air 12 to i8042 nomux list
+
+David Rheinsberg (1):
+      MAINTAINERS: update uhid and hid-wiimote entry
+
+Derek Basehore (1):
+      Input: elan_i2c - only increment wakeup count on touch
+
+Dilip Kota (1):
+      phy: intel: Fix compilation error on FIELD_PREP usage
+
+Dinghao Liu (2):
+      iio: magnetometer: ak8974: Fix runtime PM imbalance on error
+      dmaengine: tegra210-adma: Fix runtime PM imbalance on error
+
+Dinh Nguyen (3):
+      arm64: dts: agilex: add status to qspi dts node
+      arm64: dts: stratix10: add status to qspi dts node
+      arm64: dts: stratix10: increase QSPI reg address in nand dts file
+
+Dmitry Torokhov (2):
+      HID: magicmouse: do not set up autorepeat
+      Revert "Input: elants_i2c - report resolution information for touch m=
+ajor"
+
+Douglas Anderson (1):
+      regmap: debugfs: Don't sleep while atomic for fast_io regmaps
+
+Eddie James (1):
+      clk: AST2600: Add mux for EMMC clock
+
+Enric Balletbo i Serra (1):
+      Revert "thermal: mediatek: fix register index error"
+
+Esben Haabendal (2):
+      uio_pdrv_genirq: Remove warning when irq is not specified
+      uio_pdrv_genirq: fix use without device tree and no interrupt
+
+Evgeny Novikov (2):
+      hwmon: (aspeed-pwm-tacho) Avoid possible buffer overflow
+      usb: gadget: udc: gr_udc: fix memleak on error handling path in
+gr_ep_init()
+
+Fabio Estevam (1):
+      dmaengine: imx-sdma: Fix: Remove 'always true' comparison
+
+Federico Ricchiuto (1):
+      HID: i2c-hid: add Mediacom FlexBook edge13 to descriptor override
+
+Frederic Weisbecker (2):
+      timer: Prevent base->clk from moving backward
+      timer: Fix wheel index calculation on last level
+
+Geert Uytterhoeven (1):
+      iommu: SUN50I_IOMMU should depend on HAS_DMA
+
+Guenter Roeck (3):
+      drm/aspeed: Call drm_fbdev_generic_setup after drm_dev_register
+      ARM: imx: Provide correct number of resources when registering
+gpio devices
+      hwmon: (nct6775) Accept PECI Calibration as temperature source
+for NCT6798D
+
+Hans de Goede (3):
+      HID: apple: Disable Fn-key key-re-mapping on clone keyboards
+      virt: vbox: Fix VBGL_IOCTL_VMMDEV_REQUEST_BIG and _LOG req
+numbers to match upstream
+      virt: vbox: Fix guest capabilities mask check
+
+Haren Myneni (2):
+      powerpc/vas: Report proper error code for address translation failure
+      selftests/powerpc: Use proper error code to check fault address
+
+Heikki Krogerus (2):
+      usb: dwc3: pci: add support for the Intel Tiger Lake PCH -H variant
+      usb: dwc3: pci: add support for the Intel Jasper Lake
+
+Igor Moura (1):
+      USB: serial: ch341: add new Product ID for CH340
+
+Ilya Katsnelson (1):
+      Input: synaptics - enable InterTouch for ThinkPad X1E 1st gen
+
+Ingo Molnar (1):
+      x86/entry/32: Fix XEN_PV build dependency
+
+Jack Xiao (2):
+      drm/amdgpu/gfx10: fix race condition for kiq
+      drm/amdgpu: fix preemption unit test
+
+James Hilliard (2):
+      USB: serial: cypress_m8: enable Simply Automated UPB PIM
+      HID: quirks: Ignore Simply Automated UPB PIM
+
+Jan Kiszka (1):
+      Revert "tty: xilinx_uartps: Fix missing id assignment to the console"
+
+Jerome Brunet (1):
+      arm64: dts: meson: add missing gxl rng clock
+
+Jian Cai (1):
+      x86/entry: Add compatibility with IAS
+
+Jian-Hong Pan (1):
+      ALSA: hda/realtek: Enable headset mic of Acer TravelMate
+B311R-31 with ALC256
+
+Joerg Roedel (1):
+      iommu/amd: Make amd_iommu_apply_ivrs_quirks() static inline
+
+Johan Hovold (4):
+      Revert "serial: core: Refactor uart_unlock_and_check_sysrq()"
+      serial: core: fix sysrq overhead regression
+      serial: core: drop redundant sysrq checks
+      USB: serial: iuu_phoenix: fix memory corruptionAceLan Kao (1):
+      USB: serial: option: add Quectel EG95 LTE modem
+
+Alex Deucher (1):
+      drm/amdgpu/display: create fake mst encoders ahead of time (v4)
+
+Alex Hung (1):
+      thermal: int3403_thermal: Downgrade error message
+
+Alexander Lobakin (1):
+      virtio: virtio_console: add missing MODULE_DEVICE_TABLE() for rproc s=
+erial
+
+Alexander Shishkin (4):
+      intel_th: pci: Add Jasper Lake CPU support
+      intel_th: pci: Add Tiger Lake PCH-H support
+      intel_th: pci: Add Emmitsburg PCH support
+      intel_th: Fix a NULL dereference when hub driver is not loaded
+
+Alexander Usyskin (1):
+      mei: bus: don't clean driver pointer
+
+Amir Goldstein (7):
+      ovl: relax WARN_ON() when decoding lower directory file handle
+      ovl: fix oops in ovl_indexdir_cleanup() with nfs_export=3Don
+      ovl: fix regression with re-formatted lower squashfs
+      ovl: force read-only sb on failure to create index dir
+      ovl: fix mount option checks for nfs_export with no upperdir
+      ovl: fix unneeded call to ovl_change_flags()
+      ovl: fix lookup of indexed hardlinks with metacopy
+
+Andreas Schwab (1):
+      riscv: use 16KB kernel stack on 64-bit
+
+Andy Lutomirski (1):
+      x86/ioperm: Fix io bitmap invalidation on Xen PV
+
+Andy Shevchenko (3):
+      dmaengine: dw: Initialize channel before each transfer
+      serial: core: Initialise spin lock before use in uart_configure_port(=
+)
+      platform/x86: thinkpad_acpi: Revert "Use strndup_user() in
+dispatch_proc_write()"
+
+Aneesh Kumar K.V (1):
+      powerpc/book3s64/pkeys: Fix pkey_access_permitted() for execute
+disable pkey
+
+Angelo Dureghello (1):
+      dmaengine: fsl-edma: fix wrong tcd endianness for big-endian cpu
+
+Anna Schumaker (1):
+      NFS: Fix interrupted slots by sending a solo SEQUENCE operation
+
+Anthony Iliopoulos (1):
+      nvme: explicitly update mpath disk capacity on revalidation
+
+Armas Spann (1):
+      ALSA: hda/realtek: enable headset mic of ASUS ROG Zephyrus
+G14(G401) series with ALC289
+
+Arnaldo Carvalho de Melo (2):
+      perf tools: Sync hashmap.h with libbpf's
+      tools arch kvm: Sync kvm headers with the kernel sources
+
+Arnd Bergmann (2):
+      phy: intel: fix enum type mismatch warning
+      x86: math-emu: Fix up 'cmp' insn for clang ias
+
+Arvind Sankar (1):
+      x86/boot: Don't add the EFI stub to targets
+
+Bartosz Szczepanek (1):
+      thermal/int340x_thermal: Prevent page fault on .set_mode() op
+
+Bjorn Helgaas (1):
+      ARM: imx: Remove imx_add_imx_dma() unused irq_err argument
+
+Caiyuan Xie (1):
+      HID: alps: support devices with report id 2
+
+Chandrakanth Patil (1):
+      scsi: megaraid_sas: Remove undefined ENABLE_IRQ_POLL macro
+
+Charan Teja Kalla (1):
+      dmabuf: use spinlock to access dmabuf->name
+
+Chen Tao (1):
+      ARM: OMAP2+: Fix possible memory leak in omap_hwmod_allocate_module
+
+Chirantan Ekbote (1):
+      fuse: Fix parameter for FS_IOC_{GET,SET}FLAGS
+
+Chris Wilson (2):
+      drm/i915/gt: Ignore irq enabling on the virtual engines
+      drm/i915/gt: Only swap to a random sibling once upon creation
+
+Christian Hewitt (1):
+      soc: amlogic: meson-gx-socinfo: Fix S905X3 and S905D3 ID's
+
+Christophe JAILLET (1):
+      iio: adc: ad7780: Fix a resource handling path in 'ad7780_probe()'
+
+Christophe Leroy (1):
+      tty: serial: cpm_uart: Fix behaviour for non existing GPIOs
+
+Chu Lin (1):
+      hwmon: (adm1275) Make sure we are reading enough data for different c=
+hips
+
+Chuck Lever (4):
+      xprtrdma: Fix double-free in rpcrdma_ep_create()
+      xprtrdma: Fix recursion into rpcrdma_xprt_disconnect()
+      xprtrdma: Fix return code from rpcrdma_xprt_connect()
+      xprtrdma: Fix handling of connect errors
+
+Chuhong Yuan (2):
+      iio: mma8452: Add missed iio_device_unregister() call in mma8452_prob=
+e()
+      serial: mxs-auart: add missed iounmap() in probe failure and remove
+
+Colin Ian King (2):
+      phy: sun4i-usb: fix dereference of pointer phy0 before it is null che=
+cked
+      xprtrdma: fix incorrect header size calculations
+
+Cristian Marussi (1):
+      hwmon: (scmi) Fix potential buffer overflow in scmi_hwmon_probe()
+
+Dan Carpenter (2):
+      coresight: cti: Fix error handling in probe
+      staging: comedi: verify array index is correct before using it
+
+Dave Jiang (3):
+      dmaengine: idxd: fix hw descriptor fields for delta record
+      dmaengine: idxd: cleanup workqueue config after disabling
+      dmaengine: idxd: fix misc interrupt handler thread unmasking
+
+Dave Wang (1):
+      Input: elan_i2c - add more hardware ID for Lenovo laptops
+
+David Gow (1):
+      clk: Specify IOMEM dependency for HSDK pll driver
+
+David Howells (1):
+      afs: Fix interruption of operations
+
+David Pedersen (1):
+      Input: i8042 - add Lenovo XiaoXin Air 12 to i8042 nomux list
+
+David Rheinsberg (1):
+      MAINTAINERS: update uhid and hid-wiimote entry
+
+Derek Basehore (1):
+      Input: elan_i2c - only increment wakeup count on touch
+
+Dilip Kota (1):
+      phy: intel: Fix compilation error on FIELD_PREP usage
+
+Dinghao Liu (2):
+      iio: magnetometer: ak8974: Fix runtime PM imbalance on error
+      dmaengine: tegra210-adma: Fix runtime PM imbalance on error
+
+Dinh Nguyen (3):
+      arm64: dts: agilex: add status to qspi dts node
+      arm64: dts: stratix10: add status to qspi dts node
+      arm64: dts: stratix10: increase QSPI reg address in nand dts file
+
+Dmitry Torokhov (2):
+      HID: magicmouse: do not set up autorepeat
+      Revert "Input: elants_i2c - report resolution information for touch m=
+ajor"
+
+Douglas Anderson (1):
+      regmap: debugfs: Don't sleep while atomic for fast_io regmaps
+
+Eddie James (1):
+      clk: AST2600: Add mux for EMMC clock
+
+Enric Balletbo i Serra (1):
+      Revert "thermal: mediatek: fix register index error"
+
+Esben Haabendal (2):
+      uio_pdrv_genirq: Remove warning when irq is not specified
+      uio_pdrv_genirq: fix use without device tree and no interrupt
+
+Evgeny Novikov (2):
+      hwmon: (aspeed-pwm-tacho) Avoid possible buffer overflow
+      usb: gadget: udc: gr_udc: fix memleak on error handling path in
+gr_ep_init()
+
+Fabio Estevam (1):
+      dmaengine: imx-sdma: Fix: Remove 'always true' comparison
+
+Federico Ricchiuto (1):
+      HID: i2c-hid: add Mediacom FlexBook edge13 to descriptor override
+
+Frederic Weisbecker (2):
+      timer: Prevent base->clk from moving backward
+      timer: Fix wheel index calculation on last level
+
+Geert Uytterhoeven (1):
+      iommu: SUN50I_IOMMU should depend on HAS_DMA
+
+Guenter Roeck (3):
+      drm/aspeed: Call drm_fbdev_generic_setup after drm_dev_register
+      ARM: imx: Provide correct number of resources when registering
+gpio devices
+      hwmon: (nct6775) Accept PECI Calibration as temperature source
+for NCT6798D
+
+Hans de Goede (3):
+      HID: apple: Disable Fn-key key-re-mapping on clone keyboards
+      virt: vbox: Fix VBGL_IOCTL_VMMDEV_REQUEST_BIG and _LOG req
+numbers to match upstream
+      virt: vbox: Fix guest capabilities mask check
+
+Haren Myneni (2):
+      powerpc/vas: Report proper error code for address translation failure
+      selftests/powerpc: Use proper error code to check fault address
+
+Heikki Krogerus (2):
+      usb: dwc3: pci: add support for the Intel Tiger Lake PCH -H variant
+      usb: dwc3: pci: add support for the Intel Jasper Lake
+
+Igor Moura (1):
+      USB: serial: ch341: add new Product ID for CH340
+
+Ilya Katsnelson (1):
+      Input: synaptics - enable InterTouch for ThinkPad X1E 1st gen
+
+Ingo Molnar (1):
+      x86/entry/32: Fix XEN_PV build dependency
+
+Jack Xiao (2):
+      drm/amdgpu/gfx10: fix race condition for kiq
+      drm/amdgpu: fix preemption unit test
+
+James Hilliard (2):
+      USB: serial: cypress_m8: enable Simply Automated UPB PIM
+      HID: quirks: Ignore Simply Automated UPB PIM
+
+Jan Kiszka (1):
+      Revert "tty: xilinx_uartps: Fix missing id assignment to the console"
+
+Jerome Brunet (1):
+      arm64: dts: meson: add missing gxl rng clock
+
+Jian Cai (1):
+      x86/entry: Add compatibility with IAS
+
+Jian-Hong Pan (1):
+      ALSA: hda/realtek: Enable headset mic of Acer TravelMate
+B311R-31 with ALC256
+
+Joerg Roedel (1):
+      iommu/amd: Make amd_iommu_apply_ivrs_quirks() static inline
+
+Johan Hovold (4):
+      Revert "serial: core: Refactor uart_unlock_and_check_sysrq()"
+      serial: core: fix sysrq overhead regression
+      serial: core: drop redundant sysrq checks
+      USB: serial: iuu_phoenix: fix memory corruption
+
+Jonathan Cameron (6):
+      iio:health:afe4403 Fix timestamp alignment and prevent data leak.
+      iio:health:afe4404 Fix timestamp alignment and prevent data leak.
+      iio:magnetometer:ak8974: Fix alignment and data leak issues
+      iio:humidity:hdc100x Fix alignment and data leak issues
+      iio:humidity:hts221 Fix alignment and data leak issues
+      iio:pressure:ms5611 Fix buffer element alignment
+
+Jordan Crouse (1):
+      iommu/arm-smmu: Mark qcom_smmu_client_of_match as possibly unused
+
+Josip Pavic (1):
+      drm/amd/display: handle failed allocation during stream construction
+
+J=C3=B6rgen Storvist (1):
+      USB: serial: option: add GosunCn GM500 series
+
+Kailang Yang (3):
+      ALSA: hda/realtek - change to suitable link model for ASUS platform
+      ALSA: hda/realtek - Enable Speaker for ASUS UX533 and UX534
+      ALSA: hda/realtek - Enable Speaker for ASUS UX563
+
+Kees Cook (1):
+      x86/entry: Actually disable stack protector
+
+Konrad Dybcio (1):
+      regulator: qcom_smd: Fix pmi8994 label
+
+Krzysztof Kozlowski (6):
+      dmaengine: fsl-edma: Add lockdep assert for exported function
+      dmaengine: fsl-edma: Fix NULL pointer exception in fsl_edma_tx_handle=
+r
+      dmaengine: mcf-edma: Fix NULL pointer exception in mcf_edma_tx_handle=
+r
+      ARM: dts: meson: Align L2 cache-controller nodename with dtschema
+      ARM: dts: socfpga: Align L2 cache-controller nodename with dtschema
+      arm64: dts: spcfpga: Align GIC, NAND and UART nodenames with dtschema
+
+Lad Prabhakar (2):
+      serial: sh-sci: Initialize spinlock for uart console
+      arm64: defconfig: Enable CONFIG_PCIE_RCAR_HOST
+
+Leonid Ravich (1):
+      dmaengine: ioat setting ioat timeout as module parameter
+
+Linus Torvalds (2):
+      mm: document warning in move_normal_pmd() and make it warn only once
+      Linux 5.8-rc6
+
+Lukas Bulwahn (1):
+      MAINTAINERS: remove obsolete entry after file renaming
+
+Maarten Lankhorst (1):
+      drm/i915: Move cec_notifier to intel_hdmi_connector_unregister, v2.
+
+Maciej S. Szmigiero (2):
+      HID: logitech-hidpp: avoid repeated "multiplier =3D " log messages
+      hwmon: (drivetemp) Avoid SCT usage on Toshiba DT01ACA family drives
+
+Marc Kleine-Budde (2):
+      regmap: dev_get_regmap_match(): fix string comparison
+      spi: spi-sun6i: sun6i_spi_transfer_one(): fix setting of clock rate
+
+Mathieu Desnoyers (1):
+      sched: Fix unreliable rseq cpu_id for new tasks
+
+Matt Ranostay (1):
+      iio: core: add missing IIO_MOD_H2/ETHANOL string identifiers
+
+Maxime Ripard (2):
+      iommu/sun50i: Change the readl timeout to the atomic variant
+      iommu/sun50i: Remove unused variable
+
+Mazin Rezk (1):
+      HID: logitech: Use HIDPP_RECEIVER_INDEX instead of 0xff
+
+Merlijn Wajer (2):
+      Input: add `SW_MACHINE_COVER`
+      ARM: dts: n900: remove mmc1 card detect gpio
+
+Micha=C5=82 Miros=C5=82aw (3):
+      misc: atmel-ssc: lock with mutex instead of spinlock
+      usb: gadget: udc: atmel: remove outdated comment in usba_ep_disable()
+      usb: gadget: udc: atmel: fix uninitialized read in debug printk
+
+Mika Westerberg (1):
+      thunderbolt: Fix path indices used in USB3 tunnel discovery
+
+Mike Leach (1):
+      coresight: etmv4: Fix CPU power management setup in probe() function
+
+Miklos Szeredi (6):
+      fuse: move rb_erase() before tree_insert()
+      fuse: fix warning in tree_insert() and clean up writepage insertion
+      fuse: use ->reconfigure() instead of ->remount_fs()
+      fuse: ignore 'data' argument of mount(..., MS_REMOUNT)
+      fuse: reject options on reconfigure via fsconfig(2)
+      fuse: clean up condition for writepage sending
+
+Minas Harutyunyan (1):
+      usb: dwc2: Fix shutdown callback in platform
+
+Nathan Chancellor (1):
+      clk: mvebu: ARMADA_AP_CPU_CLK needs to select ARMADA_AP_CP_HELPER
+
+Naveen Krishna Chatradhi (1):
+      hwmon: (amd_energy) match for supported models
+
+Navid Emamdoost (1):
+      iio: pressure: zpa2326: handle pm_runtime_get_sync failure
+
+Neil Armstrong (1):
+      arm64: dts: meson-gxl-s805x: reduce initial Mali450 core frequency
+
+Nicolas Saenz Julienne (5):
+      dma-direct: provide function to check physical memory area validity
+      dma-pool: get rid of dma_in_atomic_pool()
+      dma-pool: introduce dma_guess_pool()
+      dma-pool: make sure atomic pool suits device
+      dma-pool: do not allocate pool memory from CMA
+
+Nikhil Rao (1):
+      dmaengine: idxd: fix cdev locking for open and release
+
+Nuno S=C3=A1 (1):
+      iio: adc: adi-axi-adc: Fix object reference counting
+
+Olga Kornievskaia (1):
+      SUNRPC reverting d03727b248d0 ("NFSv4 fix CLOSE not waiting for
+direct IO compeletion")
+
+Palmer Dabbelt (1):
+      RISC-V: Upgrade smp_mb__after_spinlock() to iorw,iorw
+
+Pavel Begunkov (1):
+      io_uring: fix recvmsg memory leak with buffer selection
+
+PeiSen Hou (1):
+      ALSA: hda/realtek - fixup for yet another Intel reference board
+
+Peng Fan (1):
+      soc: imx: check ls1021a
+
+Peter Chen (3):
+      usb: chipidea: core: add wakeup support for extcon
+      usb: cdns3: ep0: fix some endian issues
+      usb: cdns3: trace: fix some endian issues
+
+Peter Ujfalusi (5):
+      dmaengine: ti: k3-udma: Use correct node to read "ti,udma-atype"
+      dmaengine: ti: k3-udma: Fix cleanup code for alloc_chan_resources
+      dmaengine: ti: k3-udma: Fix the running channel handling in
+alloc_chan_resources
+      dmaengine: ti: k3-udma: Fix delayed_work usage for tx drain workaroun=
+d
+      dmaengine: dmatest: stop completed threads when running without
+set channel
+
+Peter Zijlstra (1):
+      sched: Fix loadavg accounting race
+
+Pierre-Louis Bossart (2):
+      soundwire: intel: fix memory leak with devm_kasprintf
+      regmap: add missing dependency on SoundWire
+
+Qi Liu (2):
+      drivers/perf: Fix kernel panic when rmmod PMU modules during perf sam=
+pling
+      drivers/perf: Prevent forced unbinding of PMU drivers
+
+Qian Cai (1):
+      iommu: Fix use-after-free in iommu_release_device
+
+Rafael J. Wysocki (1):
+      cpufreq: intel_pstate: Fix active mode setting from command line
+
+Randy Dunlap (2):
+      tty/serial: fix serial_core.c kernel-doc warnings
+      usb: gadget: fix langid kernel-doc warning in usbstring.c
+
+Ravi Bangoria (1):
+      libsubcmd: Fix OPT_CALLBACK_SET()
+
+Rikard Falkeborn (2):
+      phy: ti: am654-serdes: Constify regmap_config
+      phy: ti: j721e-wiz: Constify structs
+
+Robin Gong (1):
+      dmaengine: fsl-edma-common: correct DSIZE_32BYTE
+
+Rodrigo Rivas Costa (1):
+      HID: steam: fixes race in handling device list.
+
+Roland Scheidegger (1):
+      drm/vmwgfx: fix update of display surface when resolution changes
+
+Saravana Kannan (3):
+      driver core: Don't do deferred probe in parallel with kernel_init thr=
+ead
+      driver core: Rename dev_links_info.defer_sync to defer_hook
+      driver core: Avoid deferred probe due to fw_devlink_pause/resume()
+
+Satheesh Rajendran (1):
+      powerpc/pseries/svm: Fix incorrect check for shared_lppaca_size
+
+Sebastian Parschauer (1):
+      HID: quirks: Always poll Obins Anne Pro 2 keyboard
+
+Sedat Dilek (1):
+      x86/entry: Fix vectors to IDTENTRY_SYSVEC for CONFIG_HYPERV
+
+Seth Forshee (1):
+      regulator: rename da903x to da903x-regulator
+
+Srinivas Pandruvada (1):
+      platform/x86: ISST: Add new PCI device ids
+
+Sudeep Holla (1):
+      drm/i915/selftests: Fix compare functions provided for sorting
+
+Syed Nayyar Waris (2):
+      counter: 104-quad-8: Add lock guards - differential encoder
+      counter: 104-quad-8: Add lock guards - filter clock prescaler
+
+Takashi Iwai (3):
+      ALSA: line6: Perform sanity check for each URB creation
+      ALSA: line6: Sync the pending work cancel at disconnection
+      ALSA: usb-audio: Fix race against the error recovery URB submission
+
+Thomas Gleixner (5):
+      x86/traps: Disable interrupts in exc_aligment_check()
+      x86/entry: Mark check_user_regs() noinstr
+      x86/entry/common: Make prepare_exit_to_usermode() static
+      irqdomain/treewide: Keep firmware node unconditionally allocated
+      genirq/affinity: Handle affinity setting on inactive interrupts corre=
+ctly
+
+Tiezhu Yang (1):
+      phy: rockchip: Fix return value of inno_dsidphy_probe()
+
+Tim Harvey (1):
+      ARM: dts: imx6qdl-gw551x: fix audio SSI
+
+Tom Rix (1):
+      USB: c67x00: fix use after free in c67x00_giveback_urb
+
+Tony Lindgren (3):
+      bus: ti-sysc: Fix wakeirq sleeping function called from invalid conte=
+xt
+      bus: ti-sysc: Fix sleeping function called from invalid context
+for RTC quirk
+      bus: ti-sysc: Do not disable on suspend for no-idle
+
+Umesh Nerlige Ramappa (1):
+      drm/i915/perf: Use GTT when saving/restoring engine GPR
+
+Vasiliy Kupriakov (1):
+      platform/x86: asus-wmi: allow BAT1 battery name
+
+Vasily Averin (1):
+      fuse: don't ignore errors from fuse_writepages_fill()
+
+Ville Syrj=C3=A4l=C3=A4 (1):
+      drm/i915: Recalculate FBC w/a stride when needed
+
+Vincent Guittot (1):
+      sched/fair: handle case of task_h_load() returning 0
+
+Vinod Koul (1):
+      MAINTAINERS: switch dmaengine tree to kernel.org
+
+Vishwas M (1):
+      hwmon: (emc2103) fix unable to change fan pwm1_enable attribute
+
+Wade Mealing (1):
+      Revert "zram: convert remaining CLASS_ATTR() to CLASS_ATTR_RO()"
+
+Walter Lozano (1):
+      opp: Increase parsed_static_opps in _of_add_opp_table_v1()
+
+Wei Yongjun (1):
+      keys: asymmetric: fix error return code in software_key_query()
+
+Will Deacon (9):
+      efi/libstub/arm64: Retain 2MB kernel Image alignment if !KASLR
+      arm64: ptrace: Consistently use pseudo-singlestep exceptions
+      arm64: ptrace: Override SPSR.SS when single-stepping is enabled
+      arm64: compat: Ensure upper 32 bits of x0 are zero on syscall return
+      arm64: ptrace: Add a comment describing our syscall entry/exit trap A=
+BI
+      arm64: syscall: Expand the comment about ptrace and syscall(-1)
+      arm64: ptrace: Use NO_SYSCALL instead of -1 in syscall_trace_enter()
+      arm64: Use test_tsk_thread_flag() for checking TIF_SINGLESTEP
+      asm-generic/mmiowb: Allow mmiowb_set_pending() when preemptible()
+
+Xiaojie Yuan (1):
+      drm/amdgpu/sdma5: fix wptr overwritten in ->get_wptr()
+
+Yoshihiro Shimoda (1):
+      dmaengine: sh: usb-dmac: set tx_result parameters
+
+Yu Kuai (1):
+      dmaengine: ti: k3-udma: add missing put_device() call in
+of_xudma_dev_get()
+
+Zhang Qiang (1):
+      usb: gadget: function: fix missing spinlock in f_uac1_legacy
+
+chen gong (1):
+      drm/amdgpu/powerplay: Modify SMC message name for setting power
+profile mode
+
+dillon min (1):
+      ARM: dts: Fix dcan driver probe failed on am437x platform
+
+hersen wu (1):
+      drm/amd/display: OLED panel backlight adjust not work with
+external display connected
+
+leilk.liu (1):
+      spi: mediatek: use correct SPI_CFG2_REG MACRO
+
+youngjun (3):
+      ovl: inode reference leak in ovl_is_inuse true case.
+      ovl: change ovl_copy_up_flags static
+      ovl: remove not used argument in ovl_check_origin
+
+
+Jonathan Cameron (6):
+      iio:health:afe4403 Fix timestamp alignment and prevent data leak.
+      iio:health:afe4404 Fix timestamp alignment and prevent data leak.
+      iio:magnetometer:ak8974: Fix alignment and data leak issues
+      iio:humidity:hdc100x Fix alignment and data leak issues
+      iio:humidity:hts221 Fix alignment and data leak issues
+      iio:pressure:ms5611 Fix buffer element alignment
+
+Jordan Crouse (1):
+      iommu/arm-smmu: Mark qcom_smmu_client_of_match as possibly unused
+
+Josip Pavic (1):
+      drm/amd/display: handle failed allocation during stream construction
+
+J=C3=B6rgen Storvist (1):
+      USB: serial: option: add GosunCn GM500 series
+
+Kailang Yang (3):
+      ALSA: hda/realtek - change to suitable link model for ASUS platform
+      ALSA: hda/realtek - Enable Speaker for ASUS UX533 and UX534
+      ALSA: hda/realtek - Enable Speaker for ASUS UX563
+
+Kees Cook (1):
+      x86/entry: Actually disable stack protector
+
+Konrad Dybcio (1):
+      regulator: qcom_smd: Fix pmi8994 label
+
+Krzysztof Kozlowski (6):
+      dmaengine: fsl-edma: Add lockdep assert for exported function
+      dmaengine: fsl-edma: Fix NULL pointer exception in fsl_edma_tx_handle=
+r
+      dmaengine: mcf-edma: Fix NULL pointer exception in mcf_edma_tx_handle=
+r
+      ARM: dts: meson: Align L2 cache-controller nodename with dtschema
+      ARM: dts: socfpga: Align L2 cache-controller nodename with dtschema
+      arm64: dts: spcfpga: Align GIC, NAND and UART nodenames with dtschema
+
+Lad Prabhakar (2):
+      serial: sh-sci: Initialize spinlock for uart console
+      arm64: defconfig: Enable CONFIG_PCIE_RCAR_HOST
+
+Leonid Ravich (1):
+      dmaengine: ioat setting ioat timeout as module parameter
+
+Linus Torvalds (2):
+      mm: document warning in move_normal_pmd() and make it warn only once
+      Linux 5.8-rc6
+
+Lukas Bulwahn (1):
+      MAINTAINERS: remove obsolete entry after file renaming
+
+Maarten Lankhorst (1):
+      drm/i915: Move cec_notifier to intel_hdmi_connector_unregister, v2.
+
+Maciej S. Szmigiero (2):
+      HID: logitech-hidpp: avoid repeated "multiplier =3D " log messages
+      hwmon: (drivetemp) Avoid SCT usage on Toshiba DT01ACA family drives
+
+Marc Kleine-Budde (2):
+      regmap: dev_get_regmap_match(): fix string comparison
+      spi: spi-sun6i: sun6i_spi_transfer_one(): fix setting of clock rate
+
+Mathieu Desnoyers (1):
+      sched: Fix unreliable rseq cpu_id for new tasks
+
+Matt Ranostay (1):
+      iio: core: add missing IIO_MOD_H2/ETHANOL string identifiers
+
+Maxime Ripard (2):
+      iommu/sun50i: Change the readl timeout to the atomic variant
+      iommu/sun50i: Remove unused variable
+
+Mazin Rezk (1):
+      HID: logitech: Use HIDPP_RECEIVER_INDEX instead of 0xff
+
+Merlijn Wajer (2):
+      Input: add `SW_MACHINE_COVER`
+      ARM: dts: n900: remove mmc1 card detect gpio
+
+Micha=C5=82 Miros=C5=82aw (3):
+      misc: atmel-ssc: lock with mutex instead of spinlock
+      usb: gadget: udc: atmel: remove outdated comment in usba_ep_disable()
+      usb: gadget: udc: atmel: fix uninitialized read in debug printk
+
+Mika Westerberg (1):
+      thunderbolt: Fix path indices used in USB3 tunnel discovery
+
+Mike Leach (1):
+      coresight: etmv4: Fix CPU power management setup in probe() function
+
+Miklos Szeredi (6):
+      fuse: move rb_erase() before tree_insert()
+      fuse: fix warning in tree_insert() and clean up writepage insertion
+      fuse: use ->reconfigure() instead of ->remount_fs()
+      fuse: ignore 'data' argument of mount(..., MS_REMOUNT)
+      fuse: reject options on reconfigure via fsconfig(2)
+      fuse: clean up condition for writepage sending
+
+Minas Harutyunyan (1):
+      usb: dwc2: Fix shutdown callback in platform
+
+Nathan Chancellor (1):
+      clk: mvebu: ARMADA_AP_CPU_CLK needs to select ARMADA_AP_CP_HELPER
+
+Naveen Krishna Chatradhi (1):
+      hwmon: (amd_energy) match for supported models
+
+Navid Emamdoost (1):
+      iio: pressure: zpa2326: handle pm_runtime_get_sync failure
+
+Neil Armstrong (1):
+      arm64: dts: meson-gxl-s805x: reduce initial Mali450 core frequency
+
+Nicolas Saenz Julienne (5):
+      dma-direct: provide function to check physical memory area validity
+      dma-pool: get rid of dma_in_atomic_pool()
+      dma-pool: introduce dma_guess_pool()
+      dma-pool: make sure atomic pool suits device
+      dma-pool: do not allocate pool memory from CMA
+
+Nikhil Rao (1):
+      dmaengine: idxd: fix cdev locking for open and release
+
+Nuno S=C3=A1 (1):
+      iio: adc: adi-axi-adc: Fix object reference counting
+
+Olga Kornievskaia (1):
+      SUNRPC reverting d03727b248d0 ("NFSv4 fix CLOSE not waiting for
+direct IO compeletion")
+
+Palmer Dabbelt (1):
+      RISC-V: Upgrade smp_mb__after_spinlock() to iorw,iorw
+
+Pavel Begunkov (1):
+      io_uring: fix recvmsg memory leak with buffer selection
+
+PeiSen Hou (1):
+      ALSA: hda/realtek - fixup for yet another Intel reference board
+
+Peng Fan (1):
+      soc: imx: check ls1021a
+
+Peter Chen (3):
+      usb: chipidea: core: add wakeup support for extcon
+      usb: cdns3: ep0: fix some endian issues
+      usb: cdns3: trace: fix some endian issues
+
+Peter Ujfalusi (5):
+      dmaengine: ti: k3-udma: Use correct node to read "ti,udma-atype"
+      dmaengine: ti: k3-udma: Fix cleanup code for alloc_chan_resources
+      dmaengine: ti: k3-udma: Fix the running channel handling in
+alloc_chan_resources
+      dmaengine: ti: k3-udma: Fix delayed_work usage for tx drain workaroun=
+d
+      dmaengine: dmatest: stop completed threads when running without
+set channel
+
+Peter Zijlstra (1):
+      sched: Fix loadavg accounting race
+
+Pierre-Louis Bossart (2):
+      soundwire: intel: fix memory leak with devm_kasprintf
+      regmap: add missing dependency on SoundWire
+
+Qi Liu (2):
+      drivers/perf: Fix kernel panic when rmmod PMU modules during perf sam=
+pling
+      drivers/perf: Prevent forced unbinding of PMU drivers
+
+Qian Cai (1):
+      iommu: Fix use-after-free in iommu_release_device
+
+Rafael J. Wysocki (1):
+      cpufreq: intel_pstate: Fix active mode setting from command line
+
+Randy Dunlap (2):
+      tty/serial: fix serial_core.c kernel-doc warnings
+      usb: gadget: fix langid kernel-doc warning in usbstring.c
+
+Ravi Bangoria (1):
+      libsubcmd: Fix OPT_CALLBACK_SET()
+
+Rikard Falkeborn (2):
+      phy: ti: am654-serdes: Constify regmap_config
+      phy: ti: j721e-wiz: Constify structs
+
+Robin Gong (1):
+      dmaengine: fsl-edma-common: correct DSIZE_32BYTE
+
+Rodrigo Rivas Costa (1):
+      HID: steam: fixes race in handling device list.
+
+Roland Scheidegger (1):
+      drm/vmwgfx: fix update of display surface when resolution changes
+
+Saravana Kannan (3):
+      driver core: Don't do deferred probe in parallel with kernel_init thr=
+ead
+      driver core: Rename dev_links_info.defer_sync to defer_hook
+      driver core: Avoid deferred probe due to fw_devlink_pause/resume()
+
+Satheesh Rajendran (1):
+      powerpc/pseries/svm: Fix incorrect check for shared_lppaca_size
+
+Sebastian Parschauer (1):
+      HID: quirks: Always poll Obins Anne Pro 2 keyboard
+
+Sedat Dilek (1):
+      x86/entry: Fix vectors to IDTENTRY_SYSVEC for CONFIG_HYPERV
+
+Seth Forshee (1):
+      regulator: rename da903x to da903x-regulator
+
+Srinivas Pandruvada (1):
+      platform/x86: ISST: Add new PCI device ids
+
+Sudeep Holla (1):
+      drm/i915/selftests: Fix compare functions provided for sorting
+
+Syed Nayyar Waris (2):
+      counter: 104-quad-8: Add lock guards - differential encoder
+      counter: 104-quad-8: Add lock guards - filter clock prescaler
+
+Takashi Iwai (3):
+      ALSA: line6: Perform sanity check for each URB creation
+      ALSA: line6: Sync the pending work cancel at disconnection
+      ALSA: usb-audio: Fix race against the error recovery URB submission
+
+Thomas Gleixner (5):
+      x86/traps: Disable interrupts in exc_aligment_check()
+      x86/entry: Mark check_user_regs() noinstr
+      x86/entry/common: Make prepare_exit_to_usermode() static
+      irqdomain/treewide: Keep firmware node unconditionally allocated
+      genirq/affinity: Handle affinity setting on inactive interrupts corre=
+ctly
+
+Tiezhu Yang (1):
+      phy: rockchip: Fix return value of inno_dsidphy_probe()
+
+Tim Harvey (1):
+      ARM: dts: imx6qdl-gw551x: fix audio SSI
+
+Tom Rix (1):
+      USB: c67x00: fix use after free in c67x00_giveback_urb
+
+Tony Lindgren (3):
+      bus: ti-sysc: Fix wakeirq sleeping function called from invalid conte=
+xt
+      bus: ti-sysc: Fix sleeping function called from invalid context
+for RTC quirk
+      bus: ti-sysc: Do not disable on suspend for no-idle
+
+Umesh Nerlige Ramappa (1):
+      drm/i915/perf: Use GTT when saving/restoring engine GPR
+
+Vasiliy Kupriakov (1):
+      platform/x86: asus-wmi: allow BAT1 battery name
+
+Vasily Averin (1):
+      fuse: don't ignore errors from fuse_writepages_fill()
+
+Ville Syrj=C3=A4l=C3=A4 (1):
+      drm/i915: Recalculate FBC w/a stride when needed
+
+Vincent Guittot (1):
+      sched/fair: handle case of task_h_load() returning 0
+
+Vinod Koul (1):
+      MAINTAINERS: switch dmaengine tree to kernel.org
+
+Vishwas M (1):
+      hwmon: (emc2103) fix unable to change fan pwm1_enable attribute
+
+Wade Mealing (1):
+      Revert "zram: convert remaining CLASS_ATTR() to CLASS_ATTR_RO()"
+
+Walter Lozano (1):
+      opp: Increase parsed_static_opps in _of_add_opp_table_v1()
+
+Wei Yongjun (1):
+      keys: asymmetric: fix error return code in software_key_query()
+
+Will Deacon (9):
+      efi/libstub/arm64: Retain 2MB kernel Image alignment if !KASLR
+      arm64: ptrace: Consistently use pseudo-singlestep exceptions
+      arm64: ptrace: Override SPSR.SS when single-stepping is enabled
+      arm64: compat: Ensure upper 32 bits of x0 are zero on syscall return
+      arm64: ptrace: Add a comment describing our syscall entry/exit trap A=
+BI
+      arm64: syscall: Expand the comment about ptrace and syscall(-1)
+      arm64: ptrace: Use NO_SYSCALL instead of -1 in syscall_trace_enter()
+      arm64: Use test_tsk_thread_flag() for checking TIF_SINGLESTEP
+      asm-generic/mmiowb: Allow mmiowb_set_pending() when preemptible()
+
+Xiaojie Yuan (1):
+      drm/amdgpu/sdma5: fix wptr overwritten in ->get_wptr()
+
+Yoshihiro Shimoda (1):
+      dmaengine: sh: usb-dmac: set tx_result parameters
+
+Yu Kuai (1):
+      dmaengine: ti: k3-udma: add missing put_device() call in
+of_xudma_dev_get()
+
+Zhang Qiang (1):
+      usb: gadget: function: fix missing spinlock in f_uac1_legacy
+
+chen gong (1):
+      drm/amdgpu/powerplay: Modify SMC message name for setting power
+profile mode
+
+dillon min (1):
+      ARM: dts: Fix dcan driver probe failed on am437x platform
+
+hersen wu (1):
+      drm/amd/display: OLED panel backlight adjust not work with
+external display connected
+
+leilk.liu (1):
+      spi: mediatek: use correct SPI_CFG2_REG MACRO
+
+youngjun (3):
+      ovl: inode reference leak in ovl_is_inuse true case.
+      ovl: change ovl_copy_up_flags static
+      ovl: remove not used argument in ovl_check_origin

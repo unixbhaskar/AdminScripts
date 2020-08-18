@@ -1,0 +1,97 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp2762846lfj;
+        Fri, 24 Jul 2020 11:43:31 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy5PE9u4x6lDuWCDvqItigjLu/Py4Hk6bAi494bzCEpYSIrD8bP7fkVaudLUf43yLG+MWxj
+X-Received: by 2002:a17:906:840a:: with SMTP id n10mr10179712ejx.453.1595616211687;
+        Fri, 24 Jul 2020 11:43:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1595616211; cv=none;
+        d=google.com; s=arc-20160816;
+        b=VtVYlw8UYC1s0Jrw/1AC0mF/3P6fH9sFHiy2uwh8medQM+hleW+C6Ijf6fWbJcEok7
+         dyRUkcaEl0nxr27TtpIvJ0MxjzQSX5BVjkZqJPPjix28lqnsyv14B9qbD7EUTO/Oi9SI
+         mqMb7C0H2IhWOwHnzOag8RCsvTHwmsxmP8I7pDluryICCI1uBYGfYSe7ryxdx1BDRCx3
+         stGtWbxLaUZtq0v8jC7UnFYi2HHAkjxzKnL7HfgI97L7IYyZE1PIDwvr+po8OR3fPvjN
+         BOP+02298xgYXsgzO05BChlogj5hxS5vRm58vhhBUegy3XTHJ4RkODrh7WwE2EKGI/mf
+         Djpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :references:in-reply-to:message-id:subject:cc:to:from:date;
+        bh=02ShyjK90smM5o8GKHHFi2FqMsYosQM02Nk/6KvZONU=;
+        b=Vt/yy745mlGw/PziXe1CbeDi6KOzHU+oisdXNT1+Rus73wAEqK+0fSX2oG8VcDaEW+
+         9Le2m8PN3YevHcT45BLPVRrgU9HMbRDDOU4gilpYiZ/zwUMvBL+aPQCis8HNNlTrOp6U
+         7gqXqxvTPI1dZ/MclWRSKGbbYdJ0LDulMnTkp80CtFVWYi64+UTuUi6zQPBup6/s7eSA
+         rMqQrzHxVInVpXmUAr9VS6gC6/oMVk35SapsEhrE2cGf42hRsGnPxqlba7D4Z6mBib7h
+         bFDp74bp3LyWEGtn1j9sueOD7L3PCGf3BBuL/NOGX7B0EaEwFZiAX2EY1vg4i65qpsxh
+         PAmQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Return-Path: <linux-doc-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id i25si971989edy.478.2020.07.24.11.42.59;
+        Fri, 24 Jul 2020 11:43:31 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726652AbgGXSmg (ORCPT <rfc822;dwlsalmeida@gmail.com>
+        + 99 others); Fri, 24 Jul 2020 14:42:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39354 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726411AbgGXSmg (ORCPT <rfc822;linux-doc@vger.kernel.org>);
+        Fri, 24 Jul 2020 14:42:36 -0400
+Received: from oasis.local.home (cpe-66-24-58-225.stny.res.rr.com [66.24.58.225])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D1F152065E;
+        Fri, 24 Jul 2020 18:42:35 +0000 (UTC)
+Date:   Fri, 24 Jul 2020 14:42:34 -0400
+From:   Steven Rostedt <rostedt@goodmis.org>
+To:     Jonathan Corbet <corbet@lwn.net>
+Cc:     Peter Zijlstra <peterz@infradead.org>, linux-doc@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>, Neil Brown <neilb@suse.de>
+Subject: Re: Minor RST rant
+Message-ID: <20200724144234.3227b501@oasis.local.home>
+In-Reply-To: <20200724113325.44923f75@lwn.net>
+References: <20200724132200.51fd2065@oasis.local.home>
+        <20200724113325.44923f75@lwn.net>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: linux-doc-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-doc.vger.kernel.org>
+X-Mailing-List: linux-doc@vger.kernel.org
+
+On Fri, 24 Jul 2020 11:33:25 -0600
+Jonathan Corbet <corbet@lwn.net> wrote:
+
+> Give people a tool, some of them will make more use of it than you might
+> like. I do my best to push back against excessive markup (which all of the
+> above qualifies as, as far as I'm concerned), but I can't really even do
+> that will all that goes through my tree, much less all the docs stuff
+> merged by others.
+> 
+> The markup in question was seemingly added by Neil; I've added him to CC
+> in case he wants to comment on it.
+
+I saw Neil as the author and should have Cc'd him.
+
+Neil, you can read my full email here:
+
+  https://lore.kernel.org/r/20200724132200.51fd2065@oasis.local.home
+
+> 
+> I'm not sure what to do other than to continue to push for minimal use of
+> intrusive markup.
+
+Yeah, I really didn't expect an action item to come from this. It was
+just some feedback, and perhaps you can use this as an example of "too
+much markup" when dealing with others.
+
+Looking at the web page that Matthew pointed out to, does make it much
+easier to read. But one still needs to remember that a large audience
+of this work is still those of us that will read the plain text.
+
+My viewer of choice is "less" ;-)
+
+-- Steve

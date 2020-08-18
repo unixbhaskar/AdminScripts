@@ -1,0 +1,124 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp825903lfj;
+        Wed, 5 Aug 2020 12:20:06 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwadgz1NtLqasUQQ2oWMY5HLuNGoqxe9ku58UFafYtNSXTNflzcKzRT2kkYlDKWIOO8kB5E
+X-Received: by 2002:aa7:cdc4:: with SMTP id h4mr758188edw.252.1596655206816;
+        Wed, 05 Aug 2020 12:20:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596655206; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Rjru69aoE2zcCTXPjiBIJVRrhKuStULzs8casOaTcmXjsKQj0nj9mHgnwG3rhq7pUC
+         tCXhBNCsCrFD9ibGddCmvgN2O19ef2bwaA+He/AxSrV4EKa2DnEtnfMTNiMSBpTPeETe
+         KFg3RGwLmIwxjdUSzEz0ubFI8lvQkHQydXbZnWK97KPLwb1eBcCYGu3bw64+/gf/H6iC
+         Y/DNZvVNE92aBpOTD+H0GOXZPFT62wyk9Te2G38r02kzl378HR8FLDXvcj30ZMSKKwG0
+         m9louhiJpUgm5wFrQnHnKkUfcaGen47swekRA6wn1ks6Ng0O1+3n5Sre578AZsA6KxkC
+         iiOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=jYEN2cvet5zB5B5eyNC+shZAVcvkiH+f+FbncW7ectU=;
+        b=YKZM2F6uLBBTw74ohn0G8A2KPYjg7C1PHIg08f5TGL5byfKQvsEP1MHS5xy7X+Hv2b
+         g4WPYDhoxNzTonQWYcnWUDtm5X7iGO0LR6Wnf0aphRyeM7NP/gta2y/14AJZ968kXqPN
+         jzJXK2HWcqhPodA2VqWtJ5bUtnbsad9YDLkTVS9aPPxJLO8PxmZVkH1T7FLSTvxxry2B
+         Wq81Z4P7Z0ipBDaELeCSXYjHCOWVrF67iX8ybisZsGQhsTU2zYnn2tHnzi32lPn9goWb
+         N6pMesqCWaDEergUwXkaPejbwyzDcNUCNUKpZNSZLTOs8qqWKBHF7yCRuYiK6pRkKefu
+         ffMg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Ena+3Y8j;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id gq12si1910130ejb.428.2020.08.05.12.19.58;
+        Wed, 05 Aug 2020 12:20:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Ena+3Y8j;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728146AbgHETSN (ORCPT <rfc822;guilhem.herail@gmail.com>
+        + 35 others); Wed, 5 Aug 2020 15:18:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728332AbgHETQY (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 5 Aug 2020 15:16:24 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E221AC06174A
+        for <linux-kernel@vger.kernel.org>; Wed,  5 Aug 2020 12:15:47 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id o21so19875281oie.12
+        for <linux-kernel@vger.kernel.org>; Wed, 05 Aug 2020 12:15:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jYEN2cvet5zB5B5eyNC+shZAVcvkiH+f+FbncW7ectU=;
+        b=Ena+3Y8jxN4bGxdwm2AgkNEPvhg6MLLZCSTy7U08iocYStSazDPf+mGA4GOi9UBExJ
+         yyTAwbejrI9oilVci6jN+uTDCXPdwtYjC29V613/TBch+v6qBURzpNLeeokDLwtyHbJg
+         bUATeRa0Te0lbhpCWgdx5vOURqCdNxw8cjPj0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jYEN2cvet5zB5B5eyNC+shZAVcvkiH+f+FbncW7ectU=;
+        b=dqEzeNNSFUJbNt6QpF7fpwd3EuwOuN4oK83h/VGu8NpIrkrYIkxx7MIvr9RhP4hUf3
+         2rDyuh9J/fKrA4oVW/DQBP1Ztbhe5fJCTnVwX/NUzj5Pt1u2JDI33aZvQLpY+j6tqh6u
+         h8qYcezBPCmZ736k/qi+jm+t9PKmEAslr1R7KYP1Uwoew/GmFfazRgmJv5m2HFOdz4ml
+         W22e0zQROlbqVuxmM+fH0tIygOtGCg33t6wwuZ8zNWOvsp/yahUm66X5TJd5JGfnbJon
+         f47LYgFFM3L2frKEm0MfUBV50v37MEJW5azHB29FEFfPHXaTy/9dy3k1e+HNIAfauccy
+         ++ug==
+X-Gm-Message-State: AOAM533/4oKVwrd43HGZALIb8gZAXzMja4wUv+9BEvua/XTPT3VFKEj5
+        E2xYg1/kP4KexxeiP6Iq1FtyDg==
+X-Received: by 2002:aca:b30b:: with SMTP id c11mr2101630oif.48.1596654945457;
+        Wed, 05 Aug 2020 12:15:45 -0700 (PDT)
+Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net. [24.9.64.241])
+        by smtp.gmail.com with ESMTPSA id o22sm539984ota.49.2020.08.05.12.15.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Aug 2020 12:15:44 -0700 (PDT)
+Subject: Re: [GIT PULL] Kselftest update for Linux 5.9-rc1
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Kees Cook <keescook@chromium.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Shuah Khan <skhan@linuxfoundation.org>
+References: <0e3a9c1f-7ac6-33e2-ed11-5a56659fc5f7@linuxfoundation.org>
+ <CAHk-=wi4iDwuazgXQ-1yvM_JMTBepi9rc-zfSMeyjfDgSS2fgA@mail.gmail.com>
+ <8d894cb3-83ac-66bc-48ec-dc273d1afcbe@linuxfoundation.org>
+ <CAHk-=wiKe_rBFthfttj1fM3cwqaArSUN0Dz1KhARdMNo1a2F=A@mail.gmail.com>
+From:   Shuah Khan <skhan@linuxfoundation.org>
+Message-ID: <3c439640-111e-7399-5839-a5cba4a98a54@linuxfoundation.org>
+Date:   Wed, 5 Aug 2020 13:15:43 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <CAHk-=wiKe_rBFthfttj1fM3cwqaArSUN0Dz1KhARdMNo1a2F=A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 8/5/20 11:32 AM, Linus Torvalds wrote:
+> On Wed, Aug 5, 2020 at 7:13 AM Shuah Khan <skhan@linuxfoundation.org> wrote:
+>>
+>> Please pull the following Kselftest update for Linux 5.9-rc1.
+> 
+> Ok, it worked fine this time, although now you lost the note about the
+> conflict ;)
+> 
+
+Sorry about that. I should have included that as well.
+
+> I took the version from the seccomp tree that seemed to be the
+> slightly cleaned-up one.
+> 
+
+Yes. The version from seccomp tree is the one to pick up. Thanks
+for working through this.
+
+thanks,
+-- Shuah

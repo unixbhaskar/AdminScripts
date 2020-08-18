@@ -1,0 +1,97 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp682864lfj;
+        Tue, 4 Aug 2020 10:56:02 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx47WdTI6giezvqWnvJdubVWVTzWIXuKy1oYUOq21Z6e42K0N+j4eWRBe9gS8R00fO4K+PD
+X-Received: by 2002:a05:6402:a5b:: with SMTP id bt27mr22073235edb.120.1596563762166;
+        Tue, 04 Aug 2020 10:56:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596563762; cv=none;
+        d=google.com; s=arc-20160816;
+        b=r+ALNiKQEfCblFdXmOKkCoBSViqOPgkpANLM0MLDKviiupD61aAGtDO2RnDRrToAsU
+         Jsgky1rFD7OiGWg2fxMqfnI+wWJPh6HyxwYCbwtWnI1R2/EqEmrKqK0Eucy9R8jOkIC2
+         epZqgGKSr/324mC9U5glA+81SMhgAGlFXkWSQx+Bv/ruxhQt/yKNdHg022EViitrhmwX
+         at4eW3Sxl311Oh2AucFH60nhUGlpnOgpZ3BkBmIRYAtBOgUcL5PBVgb8u2b06/ire/fy
+         YsXQ30jcjwraw7Bk7pWDfStnT36G5tmTAYs8FIUL6jSE1loGjs7N8pycgiJZrZSTIW8V
+         AXlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :user-agent:references:in-reply-to:date:cc:to:from:subject
+         :message-id;
+        bh=D5QZ1w9EODxQidoF4JtN7ZsT1nBHpegvlN57wJ7Zuu8=;
+        b=ZbsvaNIrq1mkkSLp94z0k5n3ANLsyDXG4oz59d7gMksAUrZOxxvtJaBrOvtNm8EuXe
+         2GCS1Gi6Ga41wQ4SOVT9FgKRBi4TvfbFPG0SCjZva8K8lE1KqpDsiJqwLlhFgT5QDPe5
+         eibIQ1zy2vPkS/1CGG75jCtez27BtHsbmwt40ikSomZ1pGlwyKPH1DEOS8YUe8qr9/Rf
+         1FfG0NSmAFGg9BWMDdJHoD1Sl2zXwtNJWfY2aK0JCaA8Zi6flhuKbiD6uPDDxavpVjdk
+         P2kh+rsnSOZpYLBPw2lrc0meqK4TwpRPiw2nKZ6BLiF+/Q7Pb/PEfBmKedw1YSSMBYkL
+         dEmQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id u16si13627511eje.469.2020.08.04.10.55.53;
+        Tue, 04 Aug 2020 10:56:02 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726036AbgHDRyE (ORCPT <rfc822;garykrige@gmail.com> + 34 others);
+        Tue, 4 Aug 2020 13:54:04 -0400
+Received: from smtprelay0192.hostedemail.com ([216.40.44.192]:49980 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725826AbgHDRyD (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 4 Aug 2020 13:54:03 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay07.hostedemail.com (Postfix) with ESMTP id A98CE181D303C;
+        Tue,  4 Aug 2020 17:54:02 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:599:960:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1540:1593:1594:1711:1730:1747:1777:1792:2282:2393:2559:2562:2828:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3870:3873:4321:5007:7903:8700:9010:10004:10400:10848:11026:11232:11658:11914:12043:12297:12438:12740:12760:12895:13069:13071:13184:13229:13311:13357:13439:14096:14097:14180:14181:14659:14721:14819:21060:21067:21080:21222:21433:21627:21740:30054:30055:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:2,LUA_SUMMARY:none
+X-HE-Tag: army50_54005e126fa8
+X-Filterd-Recvd-Size: 1724
+Received: from XPS-9350.home (unknown [47.151.133.149])
+        (Authenticated sender: joe@perches.com)
+        by omf19.hostedemail.com (Postfix) with ESMTPA;
+        Tue,  4 Aug 2020 17:54:01 +0000 (UTC)
+Message-ID: <ce2ec5ce170b17a902074d111b28f8e924553a87.camel@perches.com>
+Subject: Re: False positive in checkpatch.pl
+From:   Joe Perches <joe@perches.com>
+To:     "Kumar K, Anil" <anil.kumar.k@intel.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>
+Date:   Tue, 04 Aug 2020 10:54:00 -0700
+In-Reply-To: <MWHPR11MB1712232275EA75228B5069FECE4A0@MWHPR11MB1712.namprd11.prod.outlook.com>
+References: <MWHPR11MB1712232275EA75228B5069FECE4A0@MWHPR11MB1712.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.36.3-0ubuntu1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, 2020-08-04 at 17:44 +0000, Kumar K, Anil wrote:
+> Hi Joe,
+
+Hello.
+
+Please always cc linux-kernel@vger.kernel.org
+
+> I noticed a false positive while executing checkpatch.pl. Checkpatch
+> identifies the * as multiplication I guess. I saw there was some
+> discussion about this before. Was there a workaround/fix for this ?
+> Can u please share if so. Thanks for your time
+> 
+> ERROR: need consistent spacing around '*' (ctx:WxV)
+> #8195: FILE: src/soc/intel/abc/include/soc/romstage.h:21:
+> +void mainboard_memory_init_params(FSPM_UPD *mupd);
+
+Basically, avoid typedefs.
+
+Either have the typedef available for checkpatch in the same
+file or don't use typedefs at all.
+
+If your project has multiple typedefs and these messages
+annoy you, you could add --typedefsfile=<filepath> to the
+checkpatch command line where <filepath> contains a
+one entry per line list of the typedefs used.
+
+

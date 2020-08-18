@@ -1,0 +1,91 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp2744448lfj;
+        Fri, 24 Jul 2020 11:16:06 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzz4n3fQsHzJPJK4RLQ7mz36c47RtA8OrG6m9m5/biKMX0nDeUaiQM3Gp7JsLcjKoyV/BUL
+X-Received: by 2002:a17:906:2b04:: with SMTP id a4mr9794342ejg.199.1595614566454;
+        Fri, 24 Jul 2020 11:16:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1595614566; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XRay3FreMgKqHN7cx8E30oZPmhc1gqowzSLH5C8EL/fySar51530mehd3VaYx2Duh9
+         BEzzHuaFo9aZHIQ/HGWOjuHlMKQcPEW4g4qakN2xXT6nqg9duh+3iymRShdt80C79P3v
+         YdJ4Mc8cDqKZ8qU4vB9cKBbvtD2u0iKZ+GxBh5w2KqLzfD/X3tt0SNxuG6vCfPYI9zj4
+         oc1cXtBpXxMn9lYK9saZdS+l5/0KbAlixfYU1yWOpEL7KzEwMOzL84+EogxGkZC347VF
+         V109fNDYAidSW1g9Iui18uainH4aPdRDqhKzqCgEiv7a/zUOeOaoiHCKfqlxxcjRa/fp
+         6V5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:mail-followup-to
+         :reply-to:message-id:subject:cc:to:from:date;
+        bh=c8vC2b/aSbExBYD5kR/OEMl7uZ5fDNIsNwYGqZvfzz0=;
+        b=LU8Y0xWR4Z+azAgyq93cSjNX4TwM43CvFekgB6bYL329GbCJ1pT9hzVEgQ9HQvtISl
+         8xt+ak+BECugREO97tothePI8tTwWNiT/nVZdKxYuYg8AZRNNFkJJmiPunqHtLUqKhxt
+         38E4zF48kSkidCqBG0CWFLq3JRsbk/pGjdxkRdV8v5EjFa2RGPB2ko/uEimUQYnjfCk1
+         1tHsECEH9HaPhIGZdhFCGK0k6Pb2TURcwXVHo1UNtSUnW7UldTogeT7ZE7TSiUBqpkQf
+         05WUpa7GicSjC3aoMmYsaIFORsE3GfCUPH+1hqCAxM33IWbzd7HaY3XkDO8b2m3rYDsL
+         cvSg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Return-Path: <linux-doc-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id dd1si984908ejb.452.2020.07.24.11.15.32;
+        Fri, 24 Jul 2020 11:16:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726503AbgGXSPW (ORCPT <rfc822;dwlsalmeida@gmail.com>
+        + 99 others); Fri, 24 Jul 2020 14:15:22 -0400
+Received: from mx2.suse.de ([195.135.220.15]:33224 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726326AbgGXSPW (ORCPT <rfc822;linux-doc@vger.kernel.org>);
+        Fri, 24 Jul 2020 14:15:22 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 4B570AAC7;
+        Fri, 24 Jul 2020 18:15:29 +0000 (UTC)
+Received: by ds.suse.cz (Postfix, from userid 10065)
+        id D048CDA701; Fri, 24 Jul 2020 20:14:53 +0200 (CEST)
+Date:   Fri, 24 Jul 2020 20:14:53 +0200
+From:   David Sterba <dsterba@suse.cz>
+To:     Matthew Wilcox <willy@infradead.org>
+Cc:     Steven Rostedt <rostedt@goodmis.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Peter Zijlstra <peterz@infradead.org>,
+        linux-doc@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: Minor RST rant
+Message-ID: <20200724181453.GH3703@twin.jikos.cz>
+Reply-To: dsterba@suse.cz
+Mail-Followup-To: dsterba@suse.cz, Matthew Wilcox <willy@infradead.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Peter Zijlstra <peterz@infradead.org>, linux-doc@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20200724132200.51fd2065@oasis.local.home>
+ <20200724174130.GC23808@casper.infradead.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200724174130.GC23808@casper.infradead.org>
+User-Agent: Mutt/1.5.23.1-rc1 (2014-03-12)
+Sender: linux-doc-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-doc.vger.kernel.org>
+X-Mailing-List: linux-doc@vger.kernel.org
+
+On Fri, Jul 24, 2020 at 06:41:30PM +0100, Matthew Wilcox wrote:
+> I think we're all pretty comfortable seeing function names adorned with
+> a closing pair of parens.  The ``...`` to adorn constants feels OK to me,
+> but maybe not to you?  If that feels excessive, can you suggest something
+> that would distinguish between POSIX and AT_EMPTY_PATH?
+> 
+> [1] Too far being a subjective measure, of course.  My preferences
+> are on display in core-api/xarray.rst
+
+I like that minimalistic style and I'd suggest to use the quotes only
+for the document-specific definitions, eg. the XA_ macros, and drop
+quotes around NULL or other standard macros like LONG_MAX.  The quotes
+are hilighted in vim and seeing NULL is actually distracting.
+
+Functions get automatically converted to html links so this does not
+need to be explicitly quoted, but similar to wikipedia style, the first
+mention could be quoted to provide a visual anchor.

@@ -1,0 +1,112 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp1151098lfc;
+        Fri, 10 Jan 2020 12:39:40 -0800 (PST)
+X-Google-Smtp-Source: APXvYqw1iyGcJIg592uDr4hkAIvU6EKBKuXMkOjvFz3LCIOrLaJzwYJlgUQ3kVlkKkytNW5YQv5q
+X-Received: by 2002:aca:ab0e:: with SMTP id u14mr3838742oie.1.1578688780179;
+        Fri, 10 Jan 2020 12:39:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1578688780; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Jsnrznhk7takUkQxH01+rcW/m4+zhxJZVRsRj9P5FcaE++cVe6Kb/H2fvMv281aful
+         o3s9SekB3I9P6aAc+s3uQcq4x2bTzd4yBZtyEPWHry8rxbzgKoTQPzu5XxF451WB23RU
+         O+BpWwvhltCdBS0LZZiGo99ZnFcvi2Jdh+OYh0FfGAHFPGeF+7fgX48cpe4HbpIZH5/H
+         PezNqd0L5FlUEhByW1TRwBzgrQYPCeUIafDc3C6Y9Whvmv8hbGvm2CwlNxm3TXmcoA/t
+         t1DooQy1KS1hNWIZV4SyCXFWYBbPGPl8VFQFk+QZ4eoKenz80fsiOD0nSgkZvIc+SDaG
+         l8ow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=nwolBsIgDGCVUkuSZAXRmkjdEmEEA4cQUilISYO+J6g=;
+        b=zIE4Bf3mRz04xmkUGE0K015xhgcaAnhWmvKF/gsArqdB+ii+8vhYrb0w4vzS2/Zvm0
+         LO0q9mSHYDGVdV67KRNE0rvsGy303R0vjl8rTJc7MicihH78Ey+8vBYeH5yREiyWpMgy
+         f0s7tMINft+Npfr+Tvcv4uP2ktR1AunGxIYBnJrbcPjzMXM5ij5actRcSaMLQXjiMoDf
+         +BAhJ1HE7r7zZ4tYdXTQQo1q1EBaRLoHz1RRMpvHe8d6MHsNCMZFaVzQupTn+NARcGVq
+         u1ZGdYNIu57s2+tWLCo6X1Os3ovbm2vN+Cj3EVGyJsRkvpmFSgKMqiGNhZ+/DPXWkNrT
+         SQMA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=KMWtE7+Y;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id o13si2007929otp.27.2020.01.10.12.39.28;
+        Fri, 10 Jan 2020 12:39:40 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=KMWtE7+Y;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726783AbgAJUi5 (ORCPT <rfc822;asglitc12@gmail.com> + 99 others);
+        Fri, 10 Jan 2020 15:38:57 -0500
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:40950 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726643AbgAJUi5 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 10 Jan 2020 15:38:57 -0500
+Received: by mail-lj1-f193.google.com with SMTP id u1so3458016ljk.7
+        for <linux-kernel@vger.kernel.org>; Fri, 10 Jan 2020 12:38:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nwolBsIgDGCVUkuSZAXRmkjdEmEEA4cQUilISYO+J6g=;
+        b=KMWtE7+YPwle9SL0j+y71fRurG4RTvYhGihBiblvXCB/Ffgesfl67Jf9uO2iN6Zowv
+         V+httb+uJNwFOpVTmASjdnvw4XkNlnc15na/eSuYdTWfmU/csZGjKyNqoozQGm/sOVkq
+         DI9KVcBBLukvUyMHO9zoVyU0CY//JZepI+q/4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nwolBsIgDGCVUkuSZAXRmkjdEmEEA4cQUilISYO+J6g=;
+        b=S7TOCYg2Jh7Knf27AOC4rKckT4NneGs+X1iYUE/v71y3tenL3eHSONyF/DC5kQjqQY
+         jDMltOAO8Cz2TRrF68vcBiz4Z7rW6DcmM95mTD2UGFNAAnuZnjpcA1A3+PJbr06C9x1S
+         1fmUKMLD4isoDAUzYi/l5tXSWGmiqG0IkuaUpnmP1ER0kGQ2A5mk8k+C2Wb0P8nj9jLM
+         oXodn4pHZupopUttGC1dhLW79zbdsQY3eEUOZMo6PpX7UZ4c2ouIv3Ua2XE5p/0jS7sU
+         XWE10YZWPHn9hV/dmG84fgDodULAdfG6zBWb5v6tJHw0OqrBuOk1m1KzBCZOc8vSyC+P
+         05JA==
+X-Gm-Message-State: APjAAAUUcaIZ16jILQ0AWVwBYKA6ncOefI9lbqqhVyx8lNFuGrxo1tbk
+        mD/tM2ikF+71XB++2xVWWYFOfIRhTuA=
+X-Received: by 2002:a2e:2c04:: with SMTP id s4mr3924378ljs.35.1578688734745;
+        Fri, 10 Jan 2020 12:38:54 -0800 (PST)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com. [209.85.208.175])
+        by smtp.gmail.com with ESMTPSA id d20sm1573185lfm.32.2020.01.10.12.38.53
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Jan 2020 12:38:53 -0800 (PST)
+Received: by mail-lj1-f175.google.com with SMTP id a13so3437389ljm.10
+        for <linux-kernel@vger.kernel.org>; Fri, 10 Jan 2020 12:38:53 -0800 (PST)
+X-Received: by 2002:a2e:93d5:: with SMTP id p21mr3902573ljh.50.1578688733508;
+ Fri, 10 Jan 2020 12:38:53 -0800 (PST)
+MIME-Version: 1.0
+References: <20200110154218.0b28309f@xps13> <CAHk-=wg=8=nTeOYGoAbJ=VjS47Nh4-_OFK9zKsK3mK4nAi2dNA@mail.gmail.com>
+In-Reply-To: <CAHk-=wg=8=nTeOYGoAbJ=VjS47Nh4-_OFK9zKsK3mK4nAi2dNA@mail.gmail.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Fri, 10 Jan 2020 12:38:37 -0800
+X-Gmail-Original-Message-ID: <CAHk-=whdsFSX0gTOiNkTANONgHHVY+8jUd1DmY2SJpdNOq5xJw@mail.gmail.com>
+Message-ID: <CAHk-=whdsFSX0gTOiNkTANONgHHVY+8jUd1DmY2SJpdNOq5xJw@mail.gmail.com>
+Subject: Re: [GIT PULL] mtd: Fixes for v5.5-rc6
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Cc:     linux-mtd@lists.infradead.org, Richard Weinberger <richard@nod.at>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Jan 10, 2020 at 12:31 PM Linus Torvalds
+<torvalds@linux-foundation.org> wrote:
+>
+> Konstantin, can you see what's wrong?
+
+It's not just Miquel's. The sound, thermal, and power management fixes
+pulls seem to also be lacking pr-tracker-bot responses.
+
+But Jens got one for block - but that went to the block mailing list,
+not lkml. So maybe it's specific to lkml itself.
+
+Maybe things are just slow, and I have gotten used to the
+almost-instant responses when I do a "git push" to publish my pulls.
+
+               Linus

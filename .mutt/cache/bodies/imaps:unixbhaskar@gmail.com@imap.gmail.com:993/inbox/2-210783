@@ -1,0 +1,112 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:57c1:0:0:0:0:0 with SMTP id k1csp2814024lfo;
+        Mon, 18 Nov 2019 04:47:55 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxTD5tEQmTmVDZfrn/B2eYJfTQ/dhAWsVFkH5iWkEjzKzifoh6Mt+p3puNVrW5H/9lp6Kxt
+X-Received: by 2002:a17:906:3495:: with SMTP id g21mr26714827ejb.190.1574081275133;
+        Mon, 18 Nov 2019 04:47:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1574081275; cv=none;
+        d=google.com; s=arc-20160816;
+        b=z1+bPRqPCUs+EquA6TgV2dBhaXby72XT6tMqGb3Sp2l4tOOGZQWtpuxlZl/XTMQSTx
+         Q98AgHBe1baPRN0HNC8cVFdY/KT6q/KpTRpdtnsdpifrJ3jnTLJ3S67ZrzjJ5/LEvmle
+         9RbK5QPvhSgNIw0UghLR33NJjTymWc3sv/G9mtfENwx2O+u9aIMmw7F3l4CEuL3wlfTs
+         rzBMIcNIbh27L32KKfvKxvrPxMoyvM+4E+WgKr4N/dmokDgdWXbMe90qDD3gSEXzm/lE
+         eChoi+dZkZm3R/t1QuuowaTpkwfiUcUllzLYtwV/WYR1lhFF/Q3YVMS1EKfSa6bfTxUt
+         qxXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date;
+        bh=CWcUfugU18CfdorGy+lGIjNrO4Gd6hi1swv20gulK0Y=;
+        b=oIsSXjDTfQlvA22/xVBHzuGQe73rHAfju/qhQr06cgmPWbvhcOG1sKD5zPiCSbhNt7
+         sgm9iXgbEt/DM5jWKBRb5WzexZkNsAgqih5gGM0NnnVIj7fba77uvduqsPVeP7HKDMFH
+         NuAx7XBN06eOFhbL9V7W/JZxwI15cjKUXTt2FrtM+qLrcX6cWFpDzCZtHg0zZrtqdfZM
+         zSa4mwWH0BcCnQ0zXM/KLLg+Ov2xrw6+o2M2BIt8HYu3YtnxcAAa6u0es3nTHRrKubq7
+         OONQ+oHPRAsCnkmhIpZ8vzMzNIXY7JhRmJi/f+VsJ22xRRN4tNV2O0QPsKo1MbG154KM
+         eH6w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=intel.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id w9si11529501ejj.374.2019.11.18.04.47.29;
+        Mon, 18 Nov 2019 04:47:55 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=intel.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726795AbfKRMpb (ORCPT <rfc822;hari.prasath50250@gmail.com>
+        + 99 others); Mon, 18 Nov 2019 07:45:31 -0500
+Received: from mga18.intel.com ([134.134.136.126]:20616 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726506AbfKRMpb (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 18 Nov 2019 07:45:31 -0500
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 18 Nov 2019 04:45:30 -0800
+X-IronPort-AV: E=Sophos;i="5.68,320,1569308400"; 
+   d="scan'208";a="196116167"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 18 Nov 2019 04:45:28 -0800
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 4127C20731; Mon, 18 Nov 2019 14:45:26 +0200 (EET)
+Date:   Mon, 18 Nov 2019 14:45:26 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc:     Stephen Rothwell <sfr@canb.auug.org.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Subject: Re: linux-next: manual merge of the pm tree with the printk tree
+Message-ID: <20191118124526.GD5391@paasikivi.fi.intel.com>
+References: <20191115110500.2bad45b2@canb.auug.org.au>
+ <2126744.rv85diC2z5@kreacher>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2126744.rv85diC2z5@kreacher>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Nov 15, 2019 at 11:46:53AM +0100, Rafael J. Wysocki wrote:
+> On Friday, November 15, 2019 1:05:00 AM CET Stephen Rothwell wrote:
+> > 
+> > --Sig_/8dHD0qGh0F9UnYxbYqUlngQ
+> > Content-Type: text/plain; charset=US-ASCII
+> > Content-Transfer-Encoding: quoted-printable
+> > 
+> > Hi all,
+> > 
+> > Today's linux-next merge of the pm tree got a conflict in:
+> > 
+> >   scripts/checkpatch.pl
+> > 
+> > between commit:
+> > 
+> >   1d28122131b2 ("checkpatch: don't warn about new vsprintf pointer extensio=
+> > n '%pe'")
+> > 
+> > from the printk tree and commit:
+> > 
+> >   3bd32d6a2ee6 ("lib/vsprintf: Add %pfw conversion specifier for printing f=
+> > wnode names")
+> > 
+> > from the pm tree.
+> > 
+> > I fixed it up (see below) and can carry the fix as necessary.
+> 
+> Thanks, and it looks good to me.
+
+The change seems fine to me as well.
+
+Thanks.
+
+-- 
+Sakari Ailus

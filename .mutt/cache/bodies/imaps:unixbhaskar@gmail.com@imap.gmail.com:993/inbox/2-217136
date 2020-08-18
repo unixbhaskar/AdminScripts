@@ -1,0 +1,119 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp22953957lfc;
+        Mon, 6 Jan 2020 03:40:53 -0800 (PST)
+X-Google-Smtp-Source: APXvYqyKZ7X46e4VSqVgj2l++bFsv3miZB/D/x7IeZDzS2KKuVhxlvDRXIS6FeTzuBCMEfcmM4tG
+X-Received: by 2002:a05:620a:1265:: with SMTP id b5mr82286276qkl.172.1578310853090;
+        Mon, 06 Jan 2020 03:40:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1578310853; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XFNX7glYFQgiLXxlf1ZggTamc45WNtZENk4pKgjjN5Ll4VmnERVh15hSj7sxXBXFMR
+         iot4rdqo5xhyYw5zdz83yGH/2S3aFKUHRoQbzmNd1XMrOa/WfyFOL2SUtTdRUbss1aCr
+         XH3M8N54/FPmoPY1BN+bUROaxtOfh4d/Zg6AgDMTRL5i2CtbnW057v1EjCsULSty0sOD
+         p3/z9xjHdMT8AMYNehX41SYUn4d4aKMkCkO45xWRpJ1RrDKoaWRJCF/emaMwKjbB3ze4
+         /eDRuh55aSowaI6Go/bKwdVAUkXR2gZELGB0SIivcg4svSjDHFoAq34xXdcr9mdB9ZnS
+         3xWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-post:list-archive:list-id:precedence
+         :content-transfer-encoding:mime-version:subject:message-id:cc:to
+         :reply-to:from:dkim-signature:date;
+        bh=6T3SqqKlsu4RA5NqkU1UaISt4ipFiZze/NHl7HmYaFY=;
+        b=dALGvTSqrZwgYPk9krjKIo89ncgRP99c6PzHcQnObMLdpdI+R3Z4GWXLbu327j6UeV
+         m4K6fEbjiJ4XRkDvXuSmj9dHdjDqIekmIpvVgZeOKBF70aH6dM5nGWT1PnKrMohXRe0o
+         PArNVtG/1U1lEploKajzwNyYYLx+cYhigERVc9bwPT2YHBgCcf8oOnoup3ZzdPA4m37F
+         39n9YlFp4qnRuF9xeyGGMAqAxq2FBd1kwd6iIuUo3Lzrj1bQMDGo6SG4T6aNVuFZ2fDw
+         SswSwWV/Aq/Iv05WOFzb5pUtdXocJ+W9Jb15b85ucxqgYLmbWqD0BZ4Tj2lB94L40CYi
+         klYw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=gpmNPh2e;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.206 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-23.smtp.github.com (out-23.smtp.github.com. [192.30.252.206])
+        by mx.google.com with ESMTPS id n19si28709892qtf.63.2020.01.06.03.40.52
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 06 Jan 2020 03:40:53 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.206 as permitted sender) client-ip=192.30.252.206;
+Authentication-Results: mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=gpmNPh2e;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.206 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Date: Mon, 06 Jan 2020 03:40:52 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2014; t=1578310852;
+	bh=6T3SqqKlsu4RA5NqkU1UaISt4ipFiZze/NHl7HmYaFY=;
+	h=Date:From:Reply-To:To:Cc:Subject:List-ID:List-Archive:List-Post:
+	 List-Unsubscribe:From;
+	b=gpmNPh2e5IUn5NUbVGP9pBo2B4NqVo7EajGoc+j+o7FOvEZx9beB2RnjPqZjHK7ne
+	 l21Iwqpcw9I+AbtrvXgV8Q5N3RLJd/Bu+ZttjhERhJHBtfL4Nsvs/WvZkkMU8mkRXJ
+	 wLarQ9Lse6EnjItB9o78DoX7fy5gGXZdz+4wVF5Y=
+From: bereska <notifications@github.com>
+Reply-To: lfit/itpol <reply+AAA3X22MBISMILNCPHJPDH54EBHUJEVBNHHCBBT4KQ@reply.github.com>
+To: lfit/itpol <itpol@noreply.github.com>
+Cc: Subscribed <subscribed@noreply.github.com>
+Message-ID: <lfit/itpol/issues/32@github.com>
+Subject: [lfit/itpol] gpg: error reading key: No public key (#32)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5e131cc4b57c6_24e63ff6fe8cd9645854d";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: bereska
+X-GitHub-Recipient: unixbhaskar
+X-GitHub-Reason: subscribed
+List-ID: lfit/itpol <itpol.lfit.github.com>
+List-Archive: https://github.com/lfit/itpol
+List-Post: <mailto:reply+AAA3X22MBISMILNCPHJPDH54EBHUJEVBNHHCBBT4KQ@reply.github.com>
+List-Unsubscribe: <mailto:unsub+AAA3X22MBISMILNCPHJPDH54EBHUJEVBNHHCBBT4KQ@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/AAA3X2ZKILHHESFZS4YPCQDQ4MKEJANCNFSM4KDDHRQA>
+X-Auto-Response-Suppress: All
+X-GitHub-Recipient-Address: unixbhaskar@gmail.com
+
+
+----==_mimepart_5e131cc4b57c6_24e63ff6fe8cd9645854d
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+I followed your guide and copied .gnupg to an encrypted external volume
+but after running:
+gpg2 --homedir=/volumes/gnupg/gnupg-backup --list-key [fpr]
+i get this error
+gpg: error reading key: No public key
+
+-- 
+You are receiving this because you are subscribed to this thread.
+Reply to this email directly or view it on GitHub:
+https://github.com/lfit/itpol/issues/32
+----==_mimepart_5e131cc4b57c6_24e63ff6fe8cd9645854d
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>I followed your guide and copied .gnupg to an encrypted external volume<br>
+but after running:<br>
+gpg2 --homedir=/volumes/gnupg/gnupg-backup --list-key [fpr]<br>
+i get this error<br>
+gpg: error reading key: No public key</p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />You are receiving this because you are subscribed to this thread.<br />Reply to this email directly, <a href="https://github.com/lfit/itpol/issues/32?email_source=notifications&amp;email_token=AAA3X26IVHHTDAIZB62PY53Q4MKEJA5CNFSM4KDDHRQKYY3PNVWWK3TUL52HS4DFUVEXG43VMWVGG33NNVSW45C7NFSM4IEGPRKA">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/AAA3X274YGQACCDTE2ROMPTQ4MKEJANCNFSM4KDDHRQA">unsubscribe</a>.<img src="https://github.com/notifications/beacon/AAA3X27P45OIWAC2AYIUHH3Q4MKEJA5CNFSM4KDDHRQKYY3PNVWWK3TUL52HS4DFUVEXG43VMWVGG33NNVSW45C7NFSM4IEGPRKA.gif" height="1" width="1" alt="" /></p>
+<script type="application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/lfit/itpol/issues/32?email_source=notifications\u0026email_token=AAA3X26IVHHTDAIZB62PY53Q4MKEJA5CNFSM4KDDHRQKYY3PNVWWK3TUL52HS4DFUVEXG43VMWVGG33NNVSW45C7NFSM4IEGPRKA",
+"url": "https://github.com/lfit/itpol/issues/32?email_source=notifications\u0026email_token=AAA3X26IVHHTDAIZB62PY53Q4MKEJA5CNFSM4KDDHRQKYY3PNVWWK3TUL52HS4DFUVEXG43VMWVGG33NNVSW45C7NFSM4IEGPRKA",
+"name": "View Issue"
+},
+"description": "View this Issue on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>
+----==_mimepart_5e131cc4b57c6_24e63ff6fe8cd9645854d--

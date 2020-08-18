@@ -1,0 +1,89 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp6330568lfj;
+        Tue, 3 Sep 2019 12:57:55 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqz0YVs6yyHnULvQjcz5TiodCukqOtvleZBvAI4aYbk7NxfJuQ5805nYD0hgk/1v+oGFGsED
+X-Received: by 2002:a17:90a:ad84:: with SMTP id s4mr1111622pjq.32.1567540675363;
+        Tue, 03 Sep 2019 12:57:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1567540675; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ocT4Ym/xHc/hQvZST4AZL98/oRJlTvZ0s0Ix/thUhQv6Ecm7DKXac48NOTS8FsilEE
+         nXssyuGqfKkz+z7Zb6lisI241Nn7fEqVbwEWbg6VQWkYqQpNXdc3MIoKjXYu2bI/EiX4
+         ROgMjf+XfGLvaKG5uF5uHHwUXn42SkpVKjNMK6b/A4C7k7pswCHZkLr+al+DvbPXKVFd
+         IRkws6xP8O0ah3VLLBVJ7gLZHRn19u27H3rqgI5DdXKJSXWjLiY8U1sq3E8eNtW/GhzX
+         UsepzGZwvzEsyuFRZRvvXFqe3+ENTJZID4ReQKhVK594/dY0PEzDeB37W4gGQXXXXepq
+         VXdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:dkim-signature;
+        bh=g0YvnvZio0oQLUMa+DtP7ArbDiH8rN0tBfYE/0JggSY=;
+        b=t7PteQpI6pHaQUoEZC08FjtQ8g0gW6iwneLV5Zyz03RPQZpMRpE4ZXe0ErU163jTtw
+         aw4Qryq/O2I74KWzW/Pv49x9TNy3EBAzDtaFeCl0GiGNJdzzda2eZQzeXziBzxxArLl5
+         TPgJrQezZuJZZqwM/Z5ToT5ZzNjv7DGBHzfDHOJQXNamMslyJxN1pJqqD3bq5gd7EF3l
+         9qP94WG0jY+xRuRwMdC3txJZzvGPWIgqrOmMymsRJqy8U3uLY3XAGz9ngf/C2jmqxRGz
+         KZRkC74c8HtOaqW5DA9WJFHqeOIx+1R4QVqNxi/ZLSM7vFKiwg/EenFwV2qF+4jJqhYx
+         anIw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=xT35FxMK;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id g1si15950685plp.211.2019.09.03.12.57.40;
+        Tue, 03 Sep 2019 12:57:55 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=xT35FxMK;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726846AbfICT4y (ORCPT <rfc822;snailbinich@gmail.com>
+        + 99 others); Tue, 3 Sep 2019 15:56:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46754 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725990AbfICT4y (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 3 Sep 2019 15:56:54 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5A99C207E0;
+        Tue,  3 Sep 2019 19:56:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567540613;
+        bh=2/37sJPnUxxD47PUnZ3POQ1Y47PcdSEHSMljEYEH3v4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=xT35FxMKW8XUYLwyDYWBalquVdvfv8gCXbyKHwXC0NWjCXLQPp6OelYhcJy9xhoHA
+         tFQqgYGrpFuDyHrk45RRwxnFFQgV/iqbB3gF+85k12aW6Bj/t6Bq3RRsgEiSs319Pz
+         oP+2GItBkp08rvNbUDu7pXLGtzK8CcG/9TbGfrAE=
+Date:   Tue, 3 Sep 2019 21:56:51 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Mika Westerberg <mika.westerberg@linux.intel.com>
+Cc:     Andreas Noever <andreas.noever@gmail.com>,
+        Michael Jamet <michael.jamet@intel.com>,
+        Yehezkel Bernat <YehezkelShB@gmail.com>,
+        Lukas Wunner <lukas@wunner.de>, linux-kernel@vger.kernel.org
+Subject: Re: [GIT PULL] Thunderbolt changes for v5.4
+Message-ID: <20190903195651.GD13390@kroah.com>
+References: <20190831135616.GR3177@lahna.fi.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190831135616.GR3177@lahna.fi.intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sat, Aug 31, 2019 at 04:56:16PM +0300, Mika Westerberg wrote:
+> Hi Greg,
+> 
+> The following changes since commit e21a712a9685488f5ce80495b37b9fdbe96c230d:
+> 
+>   Linux 5.3-rc3 (2019-08-04 18:40:12 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/westeri/thunderbolt.git tags/thunderbolt-for-v5.4
+
+Pulled and pushed out, thanks.
+
+greg k-h

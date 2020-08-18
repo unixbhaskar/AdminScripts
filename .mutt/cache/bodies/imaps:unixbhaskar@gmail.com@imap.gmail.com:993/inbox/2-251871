@@ -1,0 +1,105 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp29583lfj;
+        Tue, 4 Aug 2020 14:47:25 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzQ2v92OUo3SPvd8MU2WjwhUnBBkOsEM0AR9wANM2haDAejrxIAxBH+FCjQ6IjJRVA8+eBn
+X-Received: by 2002:a17:906:3ac4:: with SMTP id z4mr135250ejd.65.1596577645175;
+        Tue, 04 Aug 2020 14:47:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596577645; cv=none;
+        d=google.com; s=arc-20160816;
+        b=P6SNAngD1MG9VzcadI9kxjh0zBiC9mLYYBki77fs/KtudZM5E5x2dsgbonH744Fq0Z
+         Wfip7PBOMJjNG7G0I1EHRdyyfR3wweg8IwuAHe+odGJTU/To1xkcABSXB1gJH0tEteA9
+         HCEgPdIs2FjCKxGXsvujtfmGGJIyrYvBQQEZvWkR6sw2wUrbLLt4UV3a0C06tmuup1tq
+         L6dpBAWkDFmd84vPkraZ0hnk4YyUuslRFYRgblFzjtgrmiGQDSRMt87UOsMj6zE9ilxK
+         T+RWVOw/TCSIvnbT3q0G1I6FW5B7Dao6v3w3Awx304ZAqhanKYDsFL0YYG4n+GxwrSDm
+         8WUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-language
+         :content-transfer-encoding:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=FUdYe0IBctUZEGwqD3LywKgSj01JLkKeBk54wXzszqw=;
+        b=1G4h7Jpg82WVX+5d3rEyYRricBfSqKmSIGPKNpnNGcGMPxNH64JgU3Dvmt6qMD8x6r
+         msoGNF5oWha3u0jjdscNRHG+kBN+lw3wyLEQdUyxEZN9LHjFqGrp3VneJFhiq5EdRukD
+         mBqzkY7D9FLrkSB3CskUgUjdGtd3owXcNZxujF6nrdfsc6/tv68PdWI19yw1q360ymNF
+         b5SBtlSciAZjYKAi+YbHESxfblTY1CNhdTa2oeVNkJLghUzXJQj+5dNQa2xztXO9eP6Q
+         ZV69576xr4mW+Eb+KTUZsKwxLgGprT5+SLFkKvDvQi5d8k57otjzyGopX0fomiea+o2u
+         oPvw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="pS/D8xIc";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id y12si16657ejl.170.2020.08.04.14.47.16;
+        Tue, 04 Aug 2020 14:47:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="pS/D8xIc";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728198AbgHDVnZ (ORCPT <rfc822;garykrige@gmail.com> + 34 others);
+        Tue, 4 Aug 2020 17:43:25 -0400
+Received: from sonic307-15.consmr.mail.ne1.yahoo.com ([66.163.190.38]:37894
+        "EHLO sonic307-15.consmr.mail.ne1.yahoo.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727773AbgHDVnZ (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 4 Aug 2020 17:43:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1596577404; bh=FUdYe0IBctUZEGwqD3LywKgSj01JLkKeBk54wXzszqw=; h=Subject:To:Cc:References:From:Date:In-Reply-To:From:Subject; b=pS/D8xIcGppJzVXlbBX9+mvlHHuKsnvd+EOKQUGTZyKJ1Es+XWLJekzRTn/RCJ7vvpd+CI6TbH7472Cnqq7SV8kvfiPXkw+L6DgWD+YAs+qohlPZLzjIWmEja2W/Nw6/39jKhJbSxfrM0HJFflwVKRkdV394ZnFIXOI8TbHhljk0ffq2yHuOWTTeszuDNWPdqR+799VMD0Nm626G1MvOSGETga/xZToEZsqqqBpcCwJQ/HxFhUEPc2Z6EeRiStwMe5SnmZ1aBYLtCW643gAsJsKFS5YhopZ/GKKjUBVQqPfPXkeRxfmb5ZVCoN1jAhCgIeLwp/6rppXxGsYApRznUw==
+X-YMail-OSG: kuUr3KwVM1nN0ELkdL3PWjjv0jvx90sD3cXNNxYU8gWIR3DJFyL7JKle2wizLgn
+ QKqftlZKZl4gELGAI6ZoCaaW.lMZZPFFmREK8aKLc9isPiWKPCKAOaIAIDoqObiYy.UjX4COE6LS
+ J0DaLx_jkA8cjQDXb2_Md1om8Y4bg_yCFa6uXstklN8ADh8mrfcZtXUwTc_g5gXOFrLFgmNwk.fg
+ uVITJdJv9aGxdr.6.99I2w8zQ.cDfGsC68VWLj8ev7T4hyiH41LGtnxnerVhAZDNBb1cp1pxMU2h
+ PfG8DPakZ1_B2F_6Ech3VcQcgTrRXT5FDvoyB5kKhCmpnWbSUP.OnMSu9XJcyIoxs0qMkHJYsSEr
+ eLWeloNSiBQcrfEpf3skfRiOGrTDIMp0PBVhsEcEACeCFSi8BMj0PoeFflgPu84vbUTA9SsnnHfy
+ qKBdrMhfRnIit4pdbw8Cnv.C7ZKrxyUBTiUe3IOuV43JDhSu3jNSdpINRISTpXRLLnn6dQQMrUoF
+ I8v0KFc9zsqpqRbSFoYe.aki8tW0C5Ap2LoDbQxHpN76tj0MGHdi307BTr0JuAQMIH43cHi5SUcY
+ PfWCcaN0E.LuaUYsejBBA3X8kUuf6mwcUMvpAlLZqz3eqX_c17PJEm_6F_pPBh2WnKUyW52gsl2D
+ EZYLsKlq9Q3pfVrwoCUz3hi51IQlndGkDV8otwOPv7beuYUv28TlEi6yye8q6g.CCXy0LQ7Fhtum
+ 14Aw34IU4183imtyWJMyizqzHcP2SGpyg6xRHXScd0HnclaD09qclXP7BT5fX1tPK5W3kS_vhZFB
+ rN82R89jrVDKvxA2uRD1WsXm_8kTfDRP3zs3_vRXpiMJCbuaRqLY4b7ZJoeUgI2h_fTPA.5QUI.9
+ ybJRuDBLbWFFhPnu1SU8_Hdvq2E8_VbpnM_l7rMQo1aoh4b8C5HlQSlOHaDGZP3m_rjrX9gW3ql.
+ Lb8rJAceXqiRuAY4CFjec0RjP0EZ6OQIKG9x2GagJ8KAEIvw_E3PfYTIhC2HH2piEdpYjDZ7i0kc
+ 8crfqc9TDk5uGvY0nw7flPsYnNgQUW06l6veq5R5LWFEN_r4W.odwaPSZvLwelQP3x5QK38WwyQt
+ t6.JWPN6EYMVs8aytZ2IBDOdEUQ9G6i7RGCqsC7yc8zZXg350aheyXhDCNgObzzj_jyY9.1vD4gS
+ RzLqoyqGEi14OG5kkatpFvsaQFeRh8knejwRWrLuR1A95nkh23nN4TeqcfAyOc3G.0XJqjzJRyD8
+ qAxwrqThlLV0feUq28Q4fwHf7iGhvkIefVuOll4F4CthZo15Br4ZmRACF_296P1r8.y7_i3Pm8RT
+ 2zjSY7qpCUWku4_CVcMnlcskewC.TDS4Tzc897IzRClgQAM.VoQzBgw2knNbJuMH3R9N9
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.ne1.yahoo.com with HTTP; Tue, 4 Aug 2020 21:43:24 +0000
+Received: by smtp420.mail.gq1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA ID 08988a7113e655af56d674f4574816c9;
+          Tue, 04 Aug 2020 21:43:20 +0000 (UTC)
+Subject: Re: [GIT PULL] Smack patches for v5.9
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Linux Security Module list 
+        <linux-security-module@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <8ce85723-5656-0ee8-67a7-35597d9df0dd.ref@schaufler-ca.com>
+ <8ce85723-5656-0ee8-67a7-35597d9df0dd@schaufler-ca.com>
+ <CAHk-=wjkuGCCk7DCNP6836FYeOaKZR9KLOBzr21fPOVNnOZiKA@mail.gmail.com>
+From:   Casey Schaufler <casey@schaufler-ca.com>
+Message-ID: <a900626d-be1e-55cb-7fd3-2de444c30109@schaufler-ca.com>
+Date:   Tue, 4 Aug 2020 14:43:19 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
+MIME-Version: 1.0
+In-Reply-To: <CAHk-=wjkuGCCk7DCNP6836FYeOaKZR9KLOBzr21fPOVNnOZiKA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Mailer: WebService/1.1.16436 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo Apache-HttpAsyncClient/4.1.4 (Java/11.0.7)
+Content-Length: 529
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 8/4/2020 2:26 PM, Linus Torvalds wrote:
+> On Tue, Aug 4, 2020 at 10:49 AM Casey Schaufler <casey@schaufler-ca.com> wrote:
+>> Here are three minor fixes to Smack for the v5.9 release.
+> I can't pull this: that's not a signed tag, and I don't pull unsigned
+> stuff from open hosting sites, no matter how obvious they may seem.
+>
+> You typically have a capitalized signed tag, but I'm not seeing that
+> this time. Hmm?
+
+You're right. Tag usage failure on my part.
+I will resubmit. Sorry for the extra work.
+
+>              Linus

@@ -1,0 +1,190 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp4698951lfj;
+        Mon, 16 Sep 2019 14:17:06 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwzZOQmQM5O+LJZsA9lw9ehGkdb36tu8OmmFoQNjKP0cFlCC20Lc12ZUNCJQauYqFSAWamn
+X-Received: by 2002:a05:6602:1d6:: with SMTP id w22mr389057iot.144.1568668626123;
+        Mon, 16 Sep 2019 14:17:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568668626; cv=none;
+        d=google.com; s=arc-20160816;
+        b=cZBF1xrfHKWV7jLp+OqfWTSlaW+z3Er2RFMnOGQPb+u/HoAG0n0Wit5yK8d4p0m/LS
+         lrEyHajyoAwr6B14RN2ZELsZLUCa8X4TeS6d95ynkAKBuAbsTR3Zw4M6p5fL0wf5rQtU
+         GWcSl94uV1v2WPQspxR3pc87CZog4om2Zj3G713Ti8sC8sEVHNCIA1QJGx9hoWKomBUG
+         hmjOKFNIliWXcvmFXxgXU+li4oGy+BF8tNAoAxuv4m0Bv4hW60/7Cf/Nq6k624NHbzbO
+         JNatghDr6NZkcVYsfiAiJnxdTLyGKJjOxDDs4EkiGRNvWK2NDU5zoZCcKA0WS+jHSU3F
+         QSJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-archive:list-post:list-owner:list-subscribe:list-id
+         :list-software:list-unsubscribe:list-help:reply-to:precedence
+         :errors-to:sender:message-id:from:to:subject
+         :content-transfer-encoding:mime-version:references:in-reply-to
+         :user-agent:date:delivered-to:dkim-signature:dkim-signature;
+        bh=iGRc+XXmGueKeI4V3si4BcgA67sILnvpUE7UrOKge4c=;
+        b=guJFX20WEDfrp3e3k8rUVff/ZhBYqNo7XWKot0TWvZtnWjwIrLLgKXtAKdOLsyyRsD
+         tqgB5J7o3SHBptRCIc+2aq599Vy6btVr2FMJ5s0wPJpJYG4bnqPrF5+N/cXoHPqCz24M
+         nf/AoopkjRZ6+kNyuQxBY3lZoq5FHkY6vYeeaG6ZQeiN3iVfXKdh5UnnY/1ivYMNGKe9
+         LwZlFW8dJghdqzXdHQZgxm4iBhfLIDbc5FPSxfX1rG+hy7JfLM2iNlEsUZCmZZHNMfH2
+         eUGrJmG5v1XoV4Zu9Qm9Ub67kORtiH5wi8jEjv86LW0CkT0HYR4h57505tV63FfJyL9Q
+         SF1A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=T3P8yCYA;
+       dkim=pass header.i=@freelists.org header.s=turing header.b="RPa/VZxN";
+       spf=pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) smtp.mailfrom=i3-discuss-bounce@freelists.org
+Return-Path: <i3-discuss-bounce@freelists.org>
+Received: from turing.freelists.org (turing.freelists.org. [206.53.239.180])
+        by mx.google.com with ESMTPS id i16si303441jac.90.2019.09.16.14.17.05
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 16 Sep 2019 14:17:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) client-ip=206.53.239.180;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=T3P8yCYA;
+       dkim=pass header.i=@freelists.org header.s=turing header.b="RPa/VZxN";
+       spf=pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) smtp.mailfrom=i3-discuss-bounce@freelists.org
+Received: from localhost (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id 8B2B520F5A;
+	Mon, 16 Sep 2019 17:16:47 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=freelists.org;
+	s=turing; t=1568668607;
+	bh=pu6lsafc/9zbkP9ojvjK+YjkROb6kWIhMhL8WoOF7AA=;
+	h=Date:In-Reply-To:References:Subject:To:From:Reply-To:List-Help:
+	 List-Unsubscribe:List-Id:List-Subscribe:List-Owner:List-post:
+	 List-Archive;
+	b=T3P8yCYABLh53M2nE9UARJ/TfeguyasPvO0ixY8c7Gp9F0czw1boBDxCVfGHv6/kp
+	 zx88CmbWzIxazFRqWIvHUmUmQsUximx2hPWWLhSwdTZKh436IsOsjmYY1BFHy1o5Uh
+	 dkdRDBRpSAsWzPFmKzG5aqE/hreAOBRJV9msz0OA=
+X-Virus-Scanned: Debian amavisd-new at turing.freelists.org
+Received: from turing.freelists.org ([127.0.0.1])
+	by localhost (turing.freelists.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id wHe5XY034cJK; Mon, 16 Sep 2019 17:16:47 -0400 (EDT)
+Received: from turing.freelists.org (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id 82D1620A23;
+	Mon, 16 Sep 2019 17:16:29 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=freelists.org;
+	s=turing; t=1568668606;
+	bh=pu6lsafc/9zbkP9ojvjK+YjkROb6kWIhMhL8WoOF7AA=;
+	h=Date:In-Reply-To:References:Subject:To:From:Reply-To:List-Help:
+	 List-Unsubscribe:List-Id:List-Subscribe:List-Owner:List-post:
+	 List-Archive;
+	b=RPa/VZxNy+KhtFCONFXOcBADn437MpFETrtMcz15XVCUYqZZM+FVEWATEVWCkKi3h
+	 G7W+CPSw1DQNZxPxfJJyInHTJ2ACz+UfNdgL5Z58q06Q7ijfPcLVmuWyZJzWA1j+vy
+	 34gs/UZGXWpOP5DzTsX0B+5WjN7MjOsU/b8c1zxo=
+Received: with ECARTIS (v1.0.0; list i3-discuss); Mon, 16 Sep 2019 17:16:29 -0400 (EDT)
+X-Original-To: i3-discuss@freelists.org
+Delivered-To: i3-discuss@freelists.org
+Received: from localhost (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id 38F1820A37
+	for <i3-discuss@freelists.org>; Mon, 16 Sep 2019 17:16:29 -0400 (EDT)
+X-Virus-Scanned: Debian amavisd-new at turing.freelists.org
+Received: from turing.freelists.org ([127.0.0.1])
+	by localhost (turing.freelists.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id WEsvgPf1jUl5 for <i3-discuss@freelists.org>;
+	Mon, 16 Sep 2019 17:16:29 -0400 (EDT)
+Received: from mailout00.webspace-verkauf.com (mailout00.webspace-verkauf.com [37.218.254.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTPS id 83DFE20A23
+	for <i3-discuss@freelists.org>; Mon, 16 Sep 2019 17:16:28 -0400 (EDT)
+Received: from c4.webspace-verkauf.de (c4.webspace-verkauf.de [37.218.254.104])
+	by mailout00.webspace-verkauf.com (Postfix) with ESMTPS id CF78D40223E;
+	Mon, 16 Sep 2019 23:16:26 +0200 (CEST)
+Received: from Airblader-S9.fritz.box (ip5f5bfa86.dynamic.kabel-deutschland.de [95.91.250.134])
+	by c4.webspace-verkauf.de (Postfix) with ESMTPSA id 832994401F9;
+	Mon, 16 Sep 2019 23:16:26 +0200 (CEST)
+Date: Mon, 16 Sep 2019 23:16:28 +0200
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20190916210857.lwemtzewetlkghau@first.in-berlin.de>
+References: <20190916210857.lwemtzewetlkghau@first.in-berlin.de>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="----5TIQZSVR7937MVR7HTT8DO7S5EW4R7"
+Content-Transfer-Encoding: 7bit
+Subject: [i3-discuss] Re: Content of workspaces (screen background) visible on others
+To: i3-discuss@freelists.org,Oliver Bandel <oliver@first.in-berlin.de>
+From: =?ISO-8859-1?Q?Ingo_B=FCrk?= <admin@airblader.de>
+Message-ID: <1586AEE0-092B-41DB-9E3B-7B8BC49865F1@airblader.de>
+X-archive-position: 513
+X-ecartis-version: Ecartis v1.0.0
+Sender: i3-discuss-bounce@freelists.org
+Errors-to: i3-discuss-bounce@freelists.org
+X-original-sender: admin@airblader.de
+Precedence: normal
+Reply-To: i3-discuss@freelists.org
+List-Help: <mailto:ecartis@freelists.org?Subject=help>
+List-Unsubscribe: <mailto:i3-discuss-request@freelists.org?Subject=unsubscribe>
+List-software: Ecartis version 1.0.0
+List-Id: i3-discuss <i3-discuss.freelists.org>
+X-List-ID: i3-discuss <i3-discuss.freelists.org>
+List-Subscribe: <mailto:i3-discuss-request@freelists.org?Subject=subscribe>
+List-Owner: <mailto:>
+List-post: <mailto:i3-discuss@freelists.org>
+List-Archive: <http://www.freelists.org/archives/i3-discuss>
+X-list: i3-discuss
+
+------5TIQZSVR7937MVR7HTT8DO7S5EW4R7
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+This is usually an issue with the compositor or the graphics driver=2E Two =
+things to try:
+
+1) Does downgradijg i3 actually fix it?
+2) Are you running a compositor like compton? If yes, try without, if no, =
+try with (just to check)=2E
+
+
+Ingo=20
+
+On September 16, 2019 11:08:57 PM GMT+02:00, Oliver Bandel <oliver@first=
+=2Ein-berlin=2Ede> wrote:
+>Hello,
+>
+>since a while (I think since last update of i3-wm), the window-contents
+>of one
+>workspace can be seen on another workspace, if after switching to the
+>new workspace, the updated content does not fill the whole secreen=2E
+>
+>For example if I'm on workspace 1 and have the browser there filling
+>the
+>whole window, the  changing to worskpace 2, wher mplayer just updates a
+>smaller region of the screen, then around the mplayer-content the
+>browser-stuff from workspace 1 is frame around the updated contents=2E
+>
+>Before this behaviour occured, the screen was always set to black at
+>unused parts of a selected workspace=2E
+>
+>Is this a bug or intended behaviour?
+>Is there a new option that must be set, so that theold blackening
+>behaviour comes back?
+>
+>Ciao,
+>  Oliver
+
+--=20
+Sent from my Android device with K-9 Mail=2E Please excuse my brevity=2E
+------5TIQZSVR7937MVR7HTT8DO7S5EW4R7
+Content-Type: text/html;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body>This is usually an issue with the compositor or th=
+e graphics driver=2E Two things to try:<br><br>1) Does downgradijg i3 actua=
+lly fix it?<br>2) Are you running a compositor like compton? If yes, try wi=
+thout, if no, try with (just to check)=2E<br><br><br>Ingo <br><br><div clas=
+s=3D"gmail_quote">On September 16, 2019 11:08:57 PM GMT+02:00, Oliver Bande=
+l &lt;oliver@first=2Ein-berlin=2Ede&gt; wrote:<blockquote class=3D"gmail_qu=
+ote" style=3D"margin: 0pt 0pt 0pt 0=2E8ex; border-left: 1px solid rgb(204, =
+204, 204); padding-left: 1ex;">
+<pre class=3D"k9mail">Hello,<br><br>since a while (I think since last upda=
+te of i3-wm), the window-contents of one<br>workspace can be seen on anothe=
+r workspace, if after switching to the<br>new workspace, the updated conten=
+t does not fill the whole secreen=2E<br><br>For example if I'm on workspace=
+ 1 and have the browser there filling the<br>whole window, the  changing to=
+ worskpace 2, wher mplayer just updates a<br>smaller region of the screen, =
+then around the mplayer-content the<br>browser-stuff from workspace 1 is fr=
+ame around the updated contents=2E<br><br>Before this behaviour occured, th=
+e screen was always set to black at<br>unused parts of a selected workspace=
+=2E<br><br>Is this a bug or intended behaviour?<br>Is there a new option th=
+at must be set, so that theold blackening<br>behaviour comes back?<br><br>C=
+iao,<br>  Oliver<br><br></pre></blockquote></div><br>-- <br>Sent from my An=
+droid device with K-9 Mail=2E Please excuse my brevity=2E</body></html>
+------5TIQZSVR7937MVR7HTT8DO7S5EW4R7--
+

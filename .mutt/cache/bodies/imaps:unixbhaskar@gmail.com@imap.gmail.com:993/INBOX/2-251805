@@ -1,0 +1,184 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp570676lfj;
+        Tue, 4 Aug 2020 08:16:31 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJytKh01n5su0Ur1RpisBixUew7mjc9fp8O086Rcn/KiXLUmOI6LiB28V4XRDajA0wCEA6/7
+X-Received: by 2002:a50:bb2f:: with SMTP id y44mr21266868ede.351.1596554191497;
+        Tue, 04 Aug 2020 08:16:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596554191; cv=none;
+        d=google.com; s=arc-20160816;
+        b=UjZ85+GMIDlJ2bd4EJgdgjFKHRwAobueFHtL7O8EOgZdNHVLwHRuBnoLGi8vnVDrNr
+         UjOe2tc8opoAKxId+g3kpK7+9x2l3soJh0tnPNrdgnHTD70gK1u8YCTX6VofcF1J1K/2
+         Jy7zgWMARtC/8oUKblPgiiqX7fqPr0L2XmADeGJw9oEn7CLk1j20aksGreNGXFatRgYO
+         PgxMOyeDoRaCtjpWD8csSIsE3k0DQHU47yPFJ3+qMWjGcrUFNGvTGy/X1VAtrgwj18SH
+         DH8wUfibu4RgiRJW0S4u4AyuLH2ditlu0GKQU3GAbwgcCmlzkTU0IUl3DYBlEVYhvNT2
+         43Rg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:list-unsubscribe:feedback-id:precedence:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=9AXuok741jBObRT0dg/CZde19b6XMklIpJigrsPYsoM=;
+        b=pDgiQFyh6OBb1nGEnJOWZu+NPm2iLNYNXWL4nT+v3QRb162d56T2We6VUfiBIejyJZ
+         eSPUIhIPxw9z+BxDoAXBvT8piJpBJtpmQaG5PEVZdl4L4NNA+wStgKIowW84Nt5Gp2j7
+         gpri0FphSWGYOkTmL648ehLokYJMD8FR/HCIhzZ70qfYLrOheLvt6ST1Nqd24FsZa94M
+         ulIAj4Oyo2Lc3pcdAqLObUxAqUh3PJIMkkBul+B3YCJDrLE7ZHlmCoU+v0LLTxACsv46
+         RHEcUSB7Wg1DTEFSCB/Zol11Vm7a0J5vdCgOqznt5zdJBx0AMSBzB1ew0QZPqMxFV94g
+         9D5A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=XgaLiiuy;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=McZNCHNa;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.30.32 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+Return-Path: <bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com>
+Received: from o15.ck.n.convertkit.com (o15.ck.n.convertkit.com. [167.89.30.32])
+        by mx.google.com with ESMTPS id h2si11032730edq.450.2020.08.04.08.16.31
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Aug 2020 08:16:31 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.30.32 as permitted sender) client-ip=167.89.30.32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=XgaLiiuy;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=McZNCHNa;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.30.32 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=n.convertkit.com;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=s1; bh=9AXuok741jBObRT0dg/CZde19b6XMklIpJigrsPYsoM=;
+	b=XgaLiiuyzr3H/m83UlAQvElQ1pDU6HsZQr/bcd6qhUPqo/Tr/twJ/osBaKjU7+Zc7yJ3
+	a49CCqAUj8mnM2qfzpRnEq9SNqxqohPta38oWFD/i1YlfbB0W13p7rCXEWY9Lm+rwNL5yd
+	sD614HQgF6IwaVXXE6QLZ5ryKy4sKUEVo=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=smtpapi; bh=9AXuok741jBObRT0dg/CZde19b6XMklIpJigrsPYsoM=;
+	b=McZNCHNaoJZb8iiPCbyi9MKa1rQwjrwU7dKo1qSMAXu/eLfGBci7t30gj0z0HHsBbLzp
+	IDDMdpUVuNuI2ZZAl5DpECHhtOQiEUgl/cW9n2VLzyJNJC++AEctW6S9qfquH9TBL2sbEu
+	qd9N3PP+6Iq8BH2xB02d/h1I9hz2Ndj84=
+Received: by filterdrecv-p3iad2-d8cc6d457-4rql4 with SMTP id filterdrecv-p3iad2-d8cc6d457-4rql4-20-5F297BCE-3F
+        2020-08-04 15:16:30.136379548 +0000 UTC m=+508095.081097800
+Received: from ODc1MTQ5Mw (unknown)
+	by ismtpd0031p1iad2.sendgrid.net (SG)
+	with HTTP
+	id RityA0B9T4myMuIRUj2PXw
+	Tue, 04 Aug 2020 15:16:30.078 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=d8a3e1f83ddac853e937ab5433bb11a89e0353cf895232b287a99642ae89
+Date: Tue, 04 Aug 2020 15:16:30 +0000 (UTC)
+From: Jovica <contact@jovicailic.org>
+Mime-Version: 1.0
+Message-ID: <k0u4nk8lo5u2u3xk9nhl@convertkit-mail.com>
+Subject: Mastering Vim Quickly #51
+Precedence: bulk
+Feedback-ID: 1946457:35692:emailtemplate:CK
+List-Unsubscribe: 
+ <https://unsubscribe.convertkit-mail.com/k0u4nk8lo5u2u3xk9nhl>
+X-Report-Spam: <abuse@convertkit.com>
+X-Report-Abuse: <abuse@convertkit.com>
+X-Feedback-ID: 8751493:SG
+X-SG-EID: 
+ =?us-ascii?Q?Z9YfueylEVxjF1sQk2=2Fm3hKaryiKObExs9bv2OnpmyOMnYytH=2FVZZIu+ZraDDs?=
+ =?us-ascii?Q?hn3FKIJFLMYch7V9FxPHe9Xlkcl+AqIHGiVvQtA?=
+ =?us-ascii?Q?R3NB1JJbIRZUdaJAZoZ2oc31LZiOjy5LsTPSEp4?=
+ =?us-ascii?Q?=2Fynt8+fv3PnC9mS5NWXEfvTC0YdysjmtsbvdcwV?=
+ =?us-ascii?Q?R6Fxvf+9LQ=2F=2FvT02e+8Ep63mMal13oRHMBMalhM?=
+ =?us-ascii?Q?vVl=2FBXff4KHC3pnbxN51CU8fa7mZ5gsrZaLCKn?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FJHjDFAea1uZocvZojyqe?=
+ =?us-ascii?Q?ADFOWl9yN0lI3AgewTqY66VLfi7PgdJUPXTcKZu?=
+ =?us-ascii?Q?U0tm9W0wsMCDOHxi06oK8uwhykplNMz2tOMPi5P?=
+ =?us-ascii?Q?qMkOXxK3PRyeZ=2FaUBztfi+gfscMaNEsO4kXvO0k?=
+ =?us-ascii?Q?fi7TAl4JnZTqEPxISPIgqbE31IwWT6OohV7PmjJ?=
+ =?us-ascii?Q?yaYatz1VCzDLo3EodMn9nFjP=2FRSv01LWuc49mFw?=
+ =?us-ascii?Q?e3Qyexhsc2YyHfZOn5tkRPsRRxWfXpKkW=2FNGrNz?=
+ =?us-ascii?Q?ifeplWHEJYsa0qEKQZJEl8dqLszPJHU1uxl88zE?=
+ =?us-ascii?Q?KiJvuE7BGttZtmqFTFPYdyvH7j3Q=3D?=
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+
+--d8a3e1f83ddac853e937ab5433bb11a89e0353cf895232b287a99642ae89
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0
+
+Hello Bhaskar Chowdhury,
+
+If you're not happy with your completion in Vim, or you think it
+could be better - you might like what I'm about to share.
+
+Conquer of Completion - Coc (
+https://el2.convertkit-mail.com/c/k0u4nk8lo5u2u3xk9nhl/n2hohvh8m283nk/aHR0c=
+HM6Ly9naXRodWIuY29tL25lb2NsaWRlL2NvYy5udmlt
+) is an intellisense engine for Vim 8 and Neovim.
+
+It works on Vim >=3D 8.1 and Neovim >=3D 0.3.1.
+
+I don't use it personally (mostly because of the nodejs
+requirement), but I've seen more than a few people online being
+very happy with it.
+
+So it might be something you want to try Bhaskar Chowdhury.
+
+Vim, of course, does have a powerful automatic completion, which
+I use on a daily basis.
+I wrote about it in Chapter 19 - Productivity Tips of Mastering
+Vim Quickly (
+https://el2.convertkit-mail.com/c/k0u4nk8lo5u2u3xk9nhl/08hwh9hovnodm2/aHR0c=
+HM6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHkv
+).
+
+Do you have any favorite completion plugin you use? Let me know.
+I read every email.
+
+Cheers,
+Jovica
+
+Unsubscribe (
+https://unsubscribe.convertkit-mail.com/k0u4nk8lo5u2u3xk9nhl ) |
+Update your profile (
+https://preferences.convertkit-mail.com/k0u4nk8lo5u2u3xk9nhl ) |
+113 Cherry St #92768, Seattle, WA 98104-2205
+--d8a3e1f83ddac853e937ab5433bb11a89e0353cf895232b287a99642ae89
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=us-ascii
+Mime-Version: 1.0
+
+
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"><d=
+iv class=3D"message-content" style=3D"max-width:600px">
+<p style=3D"margin-bottom:1em"><br>  Hello Bhaskar Chowdhury,<br></p>
+<p style=3D"margin-bottom:1em">If you're not happy with your completion in =
+Vim, or you think it could be better - you might like what I'm about to sha=
+re.</p>
+<p style=3D"margin-bottom:1em"><a href=3D"https://el2.convertkit-mail.com/c=
+/k0u4nk8lo5u2u3xk9nhl/n2hohvh8m283nk/aHR0cHM6Ly9naXRodWIuY29tL25lb2NsaWRlL2=
+NvYy5udmlt" target=3D"_blank" url-id=3D"306911405">Conquer of Completion - =
+Coc</a> is an intellisense engine for Vim 8 and Neovim.
+
+It works on Vim &gt;=3D 8.1 and Neovim &gt;=3D 0.3.1.<br></p>
+<p style=3D"margin-bottom:1em">I don't use it personally (mostly because of=
+ the nodejs requirement), but I've seen more than a few people online being=
+ very happy with it.</p>
+<p style=3D"margin-bottom:1em">So it might be something you want to try Bha=
+skar Chowdhury.</p>
+<p style=3D"margin-bottom:1em">Vim, of course, does have a powerful automat=
+ic completion, which I use on a daily basis. <br>I wrote about it in <a hre=
+f=3D"https://el2.convertkit-mail.com/c/k0u4nk8lo5u2u3xk9nhl/08hwh9hovnodm2/=
+aHR0cHM6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHkv" target=3D"_bl=
+ank" url-id=3D"306911409">Chapter 19 - Productivity Tips of Mastering Vim Q=
+uickly</a>.</p>
+<p style=3D"margin-bottom:1em">Do you have any favorite completion plugin y=
+ou use? Let me know. I read every email.</p>
+<p style=3D"margin-bottom:1em">Cheers,<br>Jovica</p>
+<br>
+<br>
+<small>
+<a href=3D"https://unsubscribe.convertkit-mail.com/k0u4nk8lo5u2u3xk9nhl">Un=
+subscribe</a> | <a href=3D"https://preferences.convertkit-mail.com/k0u4nk8l=
+o5u2u3xk9nhl">Update your profile</a> | 113 Cherry St #92768, Seattle, WA 9=
+8104-2205
+<br>
+</small>
+</div>
+
+<!-- -->
+  <img src=3D"https://el2.convertkit-mail.com/o/k0u4nk8lo5u2u3xk9nhl" alt=
+=3D"">
+
+
+--d8a3e1f83ddac853e937ab5433bb11a89e0353cf895232b287a99642ae89--

@@ -1,0 +1,95 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp459521lfg;
+        Tue, 5 May 2020 13:37:10 -0700 (PDT)
+X-Google-Smtp-Source: APiQypL2HzfpZ+nSXIjbhvKYbVd5iQCiH6PzB6vfyNARXie2qm6wC1UYLPTRZxL+7GgFULb64YYe
+X-Received: by 2002:aa7:c0d1:: with SMTP id j17mr4346156edp.308.1588711030509;
+        Tue, 05 May 2020 13:37:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1588711030; cv=none;
+        d=google.com; s=arc-20160816;
+        b=kc9QBiizUm+kjMH097V8vNGvRytTKPa8Y6YIR49Bt8CYi+viIErGtn8zHQqIsFkV7s
+         cdNiEXieo1c0CZTEazhhKSM4YvECqbf0sEdOGOSSJlKsUMgVAMezAxmI1kIClC3BgOzx
+         8qWyfa2+MG3BH3op2tQqKAaFdEUJVinYflvrvYRctDcIjo/COp4Zut5jMRmlX9WG7nE9
+         8SlACONbhLPKJZfmL9MzcoSO21sAdpmxXWLC3nRmWsmxZZQALQPyRh/BQVALTfJLBCNm
+         kh4QhX4O9fVJ9wrwCE6v+L0Cd2IfUx4R1YIXWh67l1wlZIG1KwSx1ta7EKANX/K9RqcJ
+         FHRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=CzA2u65+a6Ei62ICrj1Sy7g8IhdNqb7x7k8OFsyOjGc=;
+        b=kTylgEgWm7TidQH3MFJN6e6eIxHsYHX1Zwk25S1hysHI3EBQNOhdJ2KOTxf8UC1PiR
+         BHDZZBCC3Wd+zD+3d9/mQLIeZK87uOhIBAmtBJF6a9HuPHwPN+57pF91UST6g9DaMF5U
+         WS5yYOX3cyIS1jKEC6s5qRID00WNMlr6nUGXlwAH1coGz4ku4qzafdn7WYlBMMEAkphB
+         WI0mIfzDKByCuZ5Sqq2bBCg5sXrRYidFg4DFtHpn+rnJI1Tt0q2jcjmp7KP2zd4YdQRb
+         aV5Um+/NC/JyMsY/pDLGfwE/fiwK41NbapTkSgRvRUdcwJtJVoVQGLXZg5ISuIe4I9cG
+         BVbQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id j13si1852920edn.465.2020.05.05.13.36.41;
+        Tue, 05 May 2020 13:37:10 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729070AbgEEUfQ (ORCPT <rfc822;beyondssmith@gmail.com>
+        + 99 others); Tue, 5 May 2020 16:35:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52140 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726350AbgEEUfQ (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 5 May 2020 16:35:16 -0400
+Received: from ZenIV.linux.org.uk (zeniv.linux.org.uk [IPv6:2002:c35c:fd02::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE76C061A0F;
+        Tue,  5 May 2020 13:35:16 -0700 (PDT)
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1jW4H8-001jDE-Ib; Tue, 05 May 2020 20:34:46 +0000
+Date:   Tue, 5 May 2020 21:34:46 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Jeremy Kerr <jk@ozlabs.org>, Arnd Bergmann <arnd@arndb.de>,
+        Oleg Nesterov <oleg@redhat.com>,
+        "Eric W . Biederman" <ebiederm@xmission.com>, x86@kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-fsdevel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: remove set_fs calls from the coredump code v6
+Message-ID: <20200505203446.GZ23230@ZenIV.linux.org.uk>
+References: <20200505101256.3121270-1-hch@lst.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200505101256.3121270-1-hch@lst.de>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, May 05, 2020 at 12:12:49PM +0200, Christoph Hellwig wrote:
+> Hi all,
+> 
+> this series gets rid of playing with the address limit in the exec and
+> coredump code.  Most of this was fairly trivial, the biggest changes are
+> those to the spufs coredump code.
+> 
+> Changes since v5:
+>  - fix uaccess under spinlock in spufs (Jeremy)
+>  - remove use of access_ok in spufs
+> 
+> Changes since v4:
+>  - change some goto names as suggested by Linus
+> 
+> Changes since v3:
+>  - fix x86 compilation with x32 in the new version of the signal code
+>  - split the exec patches into a new series
+> 
+> Changes since v2:
+>  - don't cleanup the compat siginfo calling conventions, use the patch
+>    variant from Eric with slight coding style fixes instead.
+> 
+> Changes since v1:
+>  - properly spell NUL
+>  - properly handle the compat siginfo case in ELF coredumps
+
+Looks good.  Want me to put it into vfs.git?  #work.set_fs-exec, perhaps?

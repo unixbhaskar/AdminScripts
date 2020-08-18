@@ -1,0 +1,91 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp769968lfk;
+        Wed, 3 Jun 2020 13:36:16 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz+NgYAjkvOgyI/oMVzy+XgSLwyN8fcw4N13l0AUdvRs7D2WbxwuL+sieGms7qseeyE3Eu/
+X-Received: by 2002:aa7:dace:: with SMTP id x14mr1195825eds.343.1591216576118;
+        Wed, 03 Jun 2020 13:36:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591216576; cv=none;
+        d=google.com; s=arc-20160816;
+        b=R9sURqxCp3onkDm8/Q1VudcWkPvKpF/vDlVRlrkm0YVAx4lX6SZPBaK2rvE0y7CjAE
+         Ku4KMl957lk+uiNiutL4NwBJ+yWRTesYrqAeF/lpaVLOWu73GBZgfFnABK86IdXKm68d
+         M7pmwdhrao9sFe+zpI4xuhTcOiyROMb1JCTm/Ha8IpvYIVO+umtNvBVSBBBnCHFl0kzY
+         8LPIAszzK4mP3o2rVVg3BSeQvINQxIpneEM7vTaL0Od0wpNZs3c9VGDRQLn1PJfpx7Os
+         tKZXpkZEnFgUEr/F0jpR/RgG8jZAehHRtX8i1CWgi5vXMcYmCmLNO78FPmaA57P9CfaF
+         yyyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :organization:references:in-reply-to:message-id:subject:cc:to:from
+         :date;
+        bh=mJsIDssuJXKJvNCRQgYqmWgzjoBEJFiOBmxKmOL0Izo=;
+        b=VBECnfjPL34HPX7FxzrWAZrxlG9AXtUQxQtoQz9A9mSXSV3l12WMzfOksIsAlmGS4S
+         vib7xx4ABn1GeAmMUbhT0glwNn3Kb7G3qCDJNdWaINg34bD0IOdVjA/QBRwv2eI4gvnt
+         SOyReDw6qlS41ELiMqXCUKZihjmFNuYpZaTg8ZejAnhKlZx4gx2uUBizY6AHdG3wcGvV
+         QvjykbZSo429J6i3Zg8s+xT0tC6vSiAQqt9NUDH31WLTvDGJCVeh3h2QZj69uDq6lrXQ
+         pod/PcFgRYTbLPZirxKvNhx5tTmErWs3o+3op2DSJfq5km22j+CwgnX9oGGVnZ6V0Yvt
+         P1ug==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id f18si368572ejf.617.2020.06.03.13.35.53;
+        Wed, 03 Jun 2020 13:36:16 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726363AbgFCUdc (ORCPT <rfc822;wanli.li.dg@gmail.com>
+        + 99 others); Wed, 3 Jun 2020 16:33:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56326 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726116AbgFCUdb (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 3 Jun 2020 16:33:31 -0400
+Received: from ms.lwn.net (ms.lwn.net [IPv6:2600:3c01:e000:3a1::42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C18FDC08C5C0;
+        Wed,  3 Jun 2020 13:33:31 -0700 (PDT)
+Received: from lwn.net (localhost [127.0.0.1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id 9056D2E4;
+        Wed,  3 Jun 2020 20:33:30 +0000 (UTC)
+Date:   Wed, 3 Jun 2020 14:33:29 -0600
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Cc:     linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: reference to Linux Foundation NDA program obsolete?
+Message-ID: <20200603143329.6e303a46@lwn.net>
+In-Reply-To: <alpine.DEB.2.21.2005240722560.5201@felia>
+References: <alpine.DEB.2.21.2005240722560.5201@felia>
+Organization: LWN.net
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, 24 May 2020 07:33:29 +0200 (CEST)
+Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote:
+
+>     http://www.linuxfoundation.org/en/NDA_program
+> 
+> This kind of review is often enough to avoid serious problems later on
+> without requiring public disclosure of the project.
+> 
+> <--
+> 
+> The link is dead; internet search only showed some references from 
+> meeting minutes in 2008, but nothing more since then.
+> 
+> Has this LF NDA program simply been phased out?
+
+That information has now resurfaced at:
+
+	https://www.linuxfoundation.org/nda/
+
+I guess somebody should see to it that the docs get updated...:)
+
+Thanks again,
+
+jon

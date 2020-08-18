@@ -1,0 +1,112 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp3874090lfg;
+        Mon, 6 Apr 2020 08:54:55 -0700 (PDT)
+X-Google-Smtp-Source: APiQypL/NbyAPfB8+XMl+EJ2slS4Rfz0BgTQDidLIj5lv3I1lCT2rlIvYfIpfOYJUUpKB1HBzZNN
+X-Received: by 2002:a9d:4f07:: with SMTP id d7mr73741otl.363.1586188495751;
+        Mon, 06 Apr 2020 08:54:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586188495; cv=none;
+        d=google.com; s=arc-20160816;
+        b=cxLHqClaWJeuDluA97bHY1NUQpATD6K87C6X1/Hs2vIBz0EIG3utMv+W2uYcccW+Bq
+         WzMXPEFNQf9sRaelgxHOKv7CC8+dafxLLFtJ0phldRNF5RY554+tUAjcR7ITShIdDIc5
+         z7NExgxHb8jJJD6nzr04Gbp6RuXimN0hMvvZciXuT/9rTZWlIJgT8cbj0SMB/4nVBdyW
+         wUkToPCyothixYcD0hL9pc/Q1zn4XoDTV5rlvQppOSLWf81ewQvKp5ii/Tsiujk9Aq3s
+         0FjYFamBbEy2F+4Aybk9O1N+zDH35A/ryuTQyk1/US39wnDnzmd45evKanFEEMZRbRdc
+         lspQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Npl54g1ItqpAme/2buCJ5Yu5mdmAHuNU9wsDMO3jye0=;
+        b=jXaGLdBC3G4xP1YbtTrIQnpOj7rae8nF0TGi1nbD87rwQ9HPFmnoAoU2DBeq1blBB+
+         DwaRvASHebpRNqIeOgLw3qWe9LXbpwiwwy0MxCH5etFlpi773NMJ4mQ4sfU40Lu08aIe
+         W8mrR8p4X1Qyukmh1RBBX2D8fdeUzCDOWXK4hYrt57AYh8etUQQXnmWQj7RzftuJhboi
+         JTAbI5t8R/UVKy7w1qbj6LBQWJMKxgcTcGdrTsjZHuKfCWKmO2b3fsN5i6wdfZXR4dKa
+         +UJ/5nyZ5CV1d6nPmGMfmYssP4rdD4togUs4JjiNPLK0zmtbDjW4t/vd4V9nHRETbFo7
+         uA4Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=H4p3L21I;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id 34si7487683oth.307.2020.04.06.08.54.42;
+        Mon, 06 Apr 2020 08:54:55 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=H4p3L21I;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729141AbgDFPyJ (ORCPT <rfc822;sjd.zeus@gmail.com> + 99 others);
+        Mon, 6 Apr 2020 11:54:09 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:37651 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729077AbgDFPyI (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 6 Apr 2020 11:54:08 -0400
+Received: by mail-lj1-f195.google.com with SMTP id r24so219500ljd.4
+        for <linux-kernel@vger.kernel.org>; Mon, 06 Apr 2020 08:54:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Npl54g1ItqpAme/2buCJ5Yu5mdmAHuNU9wsDMO3jye0=;
+        b=H4p3L21IZ+E6Zf51TcjhGAy5KKt6jEvVABr7zIB8jRl0G2SuDYdEetPYUT+1ZxEWS6
+         6DgxrfZ6KnN4+KFuLplobcwfZUamqs9zkVWbAh1hO2ee6JuLvqUGOXWlP1C2HoiCV4Fx
+         R0dS7eJj7qE9B5xQZOSWZcZAPWfCpE9O+mXpk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Npl54g1ItqpAme/2buCJ5Yu5mdmAHuNU9wsDMO3jye0=;
+        b=m0Wy4+hqlx/p0k72RCzSdgY4pvOTGBJI7bRRJBEe6egM0mv42RX3DYAoIbFRe3Kfzx
+         hAV6hocVlIo3c2oUxj/mK47H+0+i406Ztqw1WxE3p4wmzv5w8PDRLqvN1fhUmW606aJq
+         dMYxG32pWLvco0wm875pnFkC3HJoOqVVpRCS0Pc0z0RmzzHmeIogSFYe/noSvi9IgGl/
+         luB1/MrTvX18xs3R8Rs2HAf4d6lnrqqca+Hak/jwD2u0+ygwQ7cbCTkcSIR5aijKd4t6
+         Cvb67LOnQBQuhBXlsmCN4IEwtGmBmG2p8YOj000vrOaxuPybLqRp4fngmZI/G0U1aTHU
+         y8vg==
+X-Gm-Message-State: AGi0PuZMiMDVo3Obskxl1uQlRXElcySsILNGd5VC4ZHrCq0m1qojXiB9
+        fqd9sYaSp4qfLqoeud/llA9DepMWe48=
+X-Received: by 2002:a2e:9f16:: with SMTP id u22mr12079275ljk.202.1586188445528;
+        Mon, 06 Apr 2020 08:54:05 -0700 (PDT)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com. [209.85.208.169])
+        by smtp.gmail.com with ESMTPSA id a11sm4587711lff.15.2020.04.06.08.54.04
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Apr 2020 08:54:04 -0700 (PDT)
+Received: by mail-lj1-f169.google.com with SMTP id i20so200706ljn.6
+        for <linux-kernel@vger.kernel.org>; Mon, 06 Apr 2020 08:54:04 -0700 (PDT)
+X-Received: by 2002:a2e:b4cb:: with SMTP id r11mr12993787ljm.201.1586188444079;
+ Mon, 06 Apr 2020 08:54:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200406110702.GA13469@nautica>
+In-Reply-To: <20200406110702.GA13469@nautica>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Mon, 6 Apr 2020 08:53:48 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whVEPEsKhU4w9y_sjbg=4yYHKDfgzrpFdy=-f9j+jTO3w@mail.gmail.com>
+Message-ID: <CAHk-=whVEPEsKhU4w9y_sjbg=4yYHKDfgzrpFdy=-f9j+jTO3w@mail.gmail.com>
+Subject: Re: [GIT PULL] 9p update for 5.7
+To:     Dominique Martinet <asmadeus@codewreck.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        v9fs-developer@lists.sourceforge.net
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Apr 6, 2020 at 4:07 AM Dominique Martinet
+<asmadeus@codewreck.org> wrote:
+>
+> - Fix read with O_NONBLOCK to allow incomplete read and return
+> immediately
+
+Hmm. This is kind of special semantics (normally a POSIX filesystem
+ignores O_NONBLOCK), but I guess it makes sense for a network
+filesystem.
+
+It might be worth a bti more documentation/commenting because of the
+special semantics. For example, since you don't have 'poll()',
+O_NONBLOCK doesn't really mean "nonblocking", it means "stop earlier"
+if I read that patch right. You can't just return -EAGAIN because
+there's no way to then avoid busy looping..
+
+                Linus

@@ -1,0 +1,1222 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.194.151.167 with SMTP id ur7csp471863wjb;
+        Tue, 12 Jul 2016 07:39:24 -0700 (PDT)
+X-Received: by 10.67.13.196 with SMTP id fa4mr4702692pad.115.1468334364236;
+        Tue, 12 Jul 2016 07:39:24 -0700 (PDT)
+Return-Path: <01010155df8c4a8c-fccee1ea-2366-42b0-96c5-6acf15369210-000000@us-west-2.amazonses.com>
+Received: from a27-47.smtp-out.us-west-2.amazonses.com (a27-47.smtp-out.us-west-2.amazonses.com. [54.240.27.47])
+        by mx.google.com with ESMTPS id w74si4374801pfa.169.2016.07.12.07.39.23
+        for <unixbhaskar@gmail.com>
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 12 Jul 2016 07:39:24 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 01010155df8c4a8c-fccee1ea-2366-42b0-96c5-6acf15369210-000000@us-west-2.amazonses.com designates 54.240.27.47 as permitted sender) client-ip=54.240.27.47;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@snapdeals.co.in;
+       dkim=pass header.i=@amazonses.com;
+       spf=pass (google.com: domain of 01010155df8c4a8c-fccee1ea-2366-42b0-96c5-6acf15369210-000000@us-west-2.amazonses.com designates 54.240.27.47 as permitted sender) smtp.mailfrom=01010155df8c4a8c-fccee1ea-2366-42b0-96c5-6acf15369210-000000@us-west-2.amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ba4avw3z5qykmtubo5w37vv7xby3i4sd; d=snapdeals.co.in;
+	t=1468334361;
+	h=From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:Date;
+	bh=WssOqlzUblyVNHRpGYOcQD4DMiEXeCMMf1XX3pHxZUs=;
+	b=XkjgKhkmg+qtPqQ8NkEkwMdFgLlJ5F1x8YBB8+j3Ah5xdOTOprChBruRNK/8oNuE
+	VWXlz38NI/X/+5dIXwK2tP+vk17nosfcWqOMmDuUwYbknrHphiUgvs3QhLA+U43F6Id
+	wtfvB5PmgZaELslUeKBqKHU8Cl7/z0Y5fmBdEGHM=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1468334361;
+	h=From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:Date:Feedback-ID;
+	bh=WssOqlzUblyVNHRpGYOcQD4DMiEXeCMMf1XX3pHxZUs=;
+	b=KJnSFJv4jC96O/6pQht2Ec5GqVZZ+7z1QYkhcXZdCMlCh/qcHtW4/6RZqY1FjJu+
+	+sEnLqpsokiwbzMjweQx63tYOiBQ1TjqaeoqM+NokpKWlFvRjkbfdzpdHdFntu8mnPi
+	ZMEmKbcoPZyhXE7ixyu5Q1Ej0PaTAAsnH8EvyVvQ=
+From: Snapdeal <noreply@snapdeals.co.in>
+Reply-To: noreply@snapdeals.co.in
+To: unixbhaskar@gmail.com
+Message-ID: <01010155df8c4a8c-fccee1ea-2366-42b0-96c5-6acf15369210-000000@us-west-2.amazonses.com>
+Subject:   Your Janasya Multicoloured Georgette ...  will be delivered
+ between  14 Jul - 16 Jul
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_369621_558737866.1468334360946"
+Date: Tue, 12 Jul 2016 14:39:21 +0000
+X-SES-Outgoing: 2016.07.12-54.240.27.47
+Feedback-ID: 1.us-west-2.ybLEwD3Nfcvr+bbGM6hWe3553enDJ7SvDpgQkUTD3sw=:AmazonSES
+
+------=_Part_369621_558737866.1468334360946
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_369622_52710807.1468334360946"
+
+------=_Part_369622_52710807.1468334360946
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+<img src="http://snapdealmail03.in/op/1468334360946/?xc-trgId=Lx0XHUJyBqO9F8dt6pMKchlwSDv8KWy4&xc-email=jj1dEAtNSmi0R_YsYJ2Lt3esmG9o40UV&xc-tstmp=SrtFFU0U4-VLuieMR_0D0fu8Yzl0VdKj" width="1" height="1"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <meta name="format-detection" content="telephone=no" />
+
+
+
+	<title>Snapdeal</title>
+
+
+
+	<style type="text/css">		
+
+
+
+		.tableCol{
+
+
+
+			min-width:280px;
+
+
+
+			width:50%!important;
+
+
+
+		}
+
+
+
+		.table2Col{
+
+
+
+			min-width:230px;
+
+
+
+			width:50%!important;
+
+
+
+		}
+
+
+
+		.subject{
+
+
+
+				font-size:20px!important;			
+
+
+
+			}
+
+
+
+		 @media only screen and (max-width: 600px) {			
+
+
+
+			.tableCol{
+
+
+
+				width:100%!important;			
+
+
+
+			}
+
+
+
+			.subject{
+
+
+
+				font-size:18px!important;			
+
+
+
+			}	
+
+
+
+		 }
+
+
+
+		  @media only screen and (max-width: 500px) {			
+
+
+
+			.table2Col{
+
+
+
+				width:100%!important;			
+
+
+
+			}
+
+
+
+			.subject{
+
+
+
+				font-size:16px!important;			
+
+
+
+			}	
+
+
+
+		 }
+
+
+
+	</style>
+
+
+
+	<!--[if gte mso 9]>
+
+
+
+		<style type="text/css">
+
+
+
+			.max-width{
+
+
+
+				width:600px;
+
+
+
+			}
+
+
+
+		</style>
+
+
+
+	<![endif]-->	
+
+
+
+</head>
+
+
+
+<body bgcolor="#ffffff" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
+
+    
+<!--[if (gte mso 9)|(IE)]><table width="620" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+
+
+
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="-webkit-text-size-adjust: 100%; font-family:Arial, Helvetica, sans-serif; 
+
+max-width:620px;">
+
+
+
+		<tr>
+
+
+
+			<td width="100%" bgcolor="#ffffff" style="padding:0 10px;">
+
+
+
+			<!--[if (gte mso 9)|(IE)]><table width="600" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->
+
+
+
+				<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" class="max-width" style="max-width:600px;">
+
+
+
+					<tbody>
+
+
+
+						<tr>
+
+
+
+							<td>
+
+
+
+								<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">				
+
+				
+
+
+
+									<tr>
+
+
+
+										<td align="center" style="padding:24px 0"><a href="http://snapdealmail03.in/?xc-trgId=Lx0XHUJyBqO9F8dt6pMKchlwSDv8KWy4&xc-email=jj1dEAtNSmi0R_YsYJ2Lt3esmG9o40UV&xc-tstmp=SrtFFU0U4-VLuieMR_0D0fu8Yzl0VdKj&aff_id=95452&br_channel=email&br_stage=cx" 
+
+target="_blank" style="display:inline-table; outline:none;"><img src="https://i.sdlcdn.com/static/img/eventImage/comm-mailers/images/snapdeal-logo.jpg" alt="" 
+
+style="border:0;" width="148" height="37"></a></td>
+
+
+
+									</tr>
+
+
+
+								</table>
+
+
+
+								<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+
+
+
+									<tr>
+
+
+
+										<td class="subject" bgcolor="#35b0e9" align="center" style="padding:16px 10px; min-width:276px; -moz-border-radius:3px 3px 0 0; -webkit-border-radius:3px 3px 0 0; border-radius:3px 3px 0 0;font: bold 16px/1.65 Arial; color:#ffffff; font-weight:bold;">
+										Hi Bhaskar<br>Your 
+																																											Janasya Multicoloured Georgette Saree
+																															 is on its way! </td>
+ 
+
+
+									</tr>
+
+
+
+								</table>
+
+
+
+							</td>
+
+
+
+						</tr>							
+
+
+
+					</tbody>
+
+
+
+				</table>				
+
+
+
+				<!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+
+
+
+			</td>
+
+
+
+		</tr>
+
+
+
+		<tr>
+
+
+
+			<td width="100%" bgcolor="#e0e0e0" style="padding:0 10px;">				
+
+
+
+				<!--[if (gte mso 9)|(IE)]><table width="600" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td style="padding-
+
+bottom:18px;"><![endif]-->
+
+
+
+				<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" class="max-width" style="max-width:600px; margin-bottom:18px; border-bottom:1px solid #ddd; box-shadow: 0px 2px 5px #dddddd;">
+
+
+
+					<tbody>
+
+
+
+						<tr>
+
+
+
+							<td bgcolor="#ffffff">
+
+
+
+								<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">				
+
+				
+
+
+
+									<tr>
+
+
+
+										<td align="left" style="font: 13.5px/1.65 Arial; color:#515151; padding:20px">We've 
+
+packed  it with care and shipped it  through our courier.   It will reach you 
+										
+
+										
+
+                                         										  												
+							                    between 14 Jul - 16 Jul.
+																																	
+                                        </td>
+
+
+
+									</tr>									
+
+
+
+								</table>
+
+
+
+								  
+
+ 
+
+							</td>
+
+
+
+						</tr>
+
+
+
+						<tr>
+
+
+
+							<td bgcolor="#ffffff" style="border-top:1px solid #eaeaea; border-bottom:1px solid #eaeaea; padding:12px 20px; 
+
+font: 12px/1.5 Arial; color:#676767;">								
+
+
+
+								<table width="100%" align="center" cellpadding="0" cellspacing="0" border="0">
+
+
+
+									<tr>
+
+
+
+										<td valign="top" style="font: 12px/1.5 Arial; color:#676767;"><span 
+
+style="color:#707070">Order ID: </span><a href="http://snapdealmail03.in/orderSummary?xc-trgId=Lx0XHUJyBqO9F8dt6pMKchlwSDv8KWy4&xc-email=jj1dEAtNSmi0R_YsYJ2Lt3esmG9o40UV&xc-tstmp=SrtFFU0U4-VLuieMR_0D0fu8Yzl0VdKj&order=14166519620&code=088bce36871affd63e913aaa6b83124f&aff_id=95452&br_channel=email&br_stage=cx" target="_blank" style="color:#1f95d5; outline:none; text-decoration:none;white-space:nowrap;">14166519620</a></td>
+
+
+
+										<td valign="top" style="font: 12px/1.5 Arial; color:#676767;" align="right"><span style="color:#707070">Placed on: </span><span style="color:#000000; display:inline-block;white-space:nowrap;">Tue, 12 Jul, 2016</span></td>
+
+
+
+									</tr>
+
+
+
+								</table>												
+
+					
+
+
+
+							</td>
+
+
+
+						</tr>
+
+
+
+						<tr>
+
+
+
+							<td bgcolor="#ffffff" style="font: 13.5px/1.5 Arial; color:#000000; padding:20px 10px;">
+
+
+
+								<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+
+
+
+									<tr>
+
+
+
+										<td>
+
+                                      
+											<table width="280" class="table2Col" cellpadding="0" cellspacing="0" border="0" 
+
+align="left">
+
+
+
+												<tr>
+
+
+
+													<td style="padding:20px 10px;">
+
+
+                                                 
+														<table width="100%" align="left" cellpadding="0" 
+
+cellspacing="0" border="0">
+
+
+
+															<tr>
+
+
+
+																<td width="19" valign="top" 
+
+style="padding:3px 21px 0 0;"><img src="https://i.sdlcdn.com/static/img/eventImage/comm-mailers/images/cal-icon.jpg" width="19" height="22" alt=""></td>
+
+
+
+																<td style="font: 13.5px/1.5 Arial; 
+
+color:#000000;"><span style="color:#909090">Estimated Delivery</span><br>
+
+
+                                               
+												
+							                    14 Jul - 16 Jul			
+
+												
+
+																								
+					</td>
+
+
+
+															</tr>
+
+
+
+														</table>
+
+
+
+													</td>	
+
+
+
+												</tr>
+
+
+
+											</table>
+									 
+
+
+
+
+
+											<table width="280" class="table2Col" cellpadding="0" cellspacing="0" border="0" 
+
+align="left">
+
+
+
+												<tr>
+
+
+
+													<td style="padding:20px 10px;">
+
+
+
+														<table width="100%" align="left" cellpadding="0" 
+
+cellspacing="0" border="0">
+
+
+
+															<tr>
+
+
+
+																<td width="22" valign="top" 
+
+style="padding:3px 18px 0 0;"><img src="https://i.sdlcdn.com/static/img/eventImage/comm-mailers/images/home-icon.jpg" width="22" height="20" alt=""></td>
+
+
+
+																<td style="font: 13.5px/1.5 Arial; 
+
+color:#000000;"><span style="color:#909090">Delivery Address</span><br>Bhaskar Chowdhury<br>K-100,Mayavilla,Bose Para Road, Flat no #5,Kamdohari,Garia <br>
+
+
+
+                                        
+                                          Near Saheb Kutir More, Next to Rubi Abashan<br>
+
+                                        
+                                        Kolkata - 700084<br>
+
+                                        West Bengal</td>
+
+
+
+															</tr>
+
+
+
+														</table>
+
+
+
+													</td>	
+
+
+
+												</tr>
+
+
+
+											</table>
+
+
+
+											<table width="280" class="table2Col" cellpadding="0" cellspacing="0" border="0" 
+
+align="left">
+
+
+
+												<tr>
+
+
+
+													<td style="padding:20px 10px;">
+
+
+
+														<table width="100%" align="left" cellpadding="0" 
+
+cellspacing="0" border="0">
+
+
+
+															<tr>
+
+
+
+																<td width="14" valign="top" 
+
+style="padding:3px 26px 0 0;"><img src="https://i.sdlcdn.com/static/img/eventImage/comm-mailers/images/phone-icon.jpg" width="14" height="22" alt=""></td>
+
+
+
+																<td style="font: 13.5px/1.5 Arial; 
+
+color:#000000;"><span style="color:#909090">Phone Number</span><br>9940290893</td>
+
+
+
+															</tr>
+
+
+
+														</table>
+
+
+
+													</td>	
+
+
+
+												</tr>
+
+
+
+											</table>
+
+											
+														
+									
+																		
+
+
+
+
+
+										</td>
+
+
+
+									</tr>		
+
+
+
+								</table>								
+
+
+
+							</td>
+
+
+
+						</tr>
+
+
+
+						<tr>
+
+
+
+							<td bgcolor="#ffffff" style="padding:14px 0; border-top:1px solid #eaeaea; -moz-border-radius:0 0 2px 2px; -
+
+webkit-border-radius:0 0 2px 2px; border-radius:0 0 2px 2px;">
+
+
+
+								<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">				
+
+				
+
+
+
+									<tr>
+
+
+
+										<td align="center">
+
+
+
+											<table cellpadding="0" cellspacing="0" border="0" align="center">
+
+
+
+												<tr>
+
+
+
+													<td style="padding:10px 6px;">
+
+
+
+														<table width="100%" cellpadding="0" cellspacing="0" 
+
+border="0" align="center">
+
+
+
+															<tr>
+
+
+
+																
+
+<td style="background-color:#ffffff;border-radius: 2px;border: 1px solid #ff8831;font:14px/1.5 Arial;text-align:center; height:42px; width:89px; vertical-align:middle;">
+
+																	<a 
+
+href="http://www.snapdeal.com/orderSummary?order=14166519620&code=088bce36871affd63e913aaa6b83124f&aff_id=95452&br_channel=email&br_stage=cx" target="_blank" style="display: inline-block;outline: medium none;text-decoration: none;color: #ff8831;font-weight: bold;text-align:center; height:42px; width:89px; line-height:42px;">CANCEL</a>
+
+
+
+																</td>
+
+
+
+															</tr>
+
+
+
+														</table>						
+
+										
+
+
+
+													</td>								
+
+				
+
+
+
+													<td style="padding:10px 6px;">
+
+
+
+														<table width="100%" cellpadding="0" cellspacing="0" 
+
+border="0" align="center">
+
+
+
+															<tr>
+
+
+
+																<td style="background-color: #FF8831;color: #ffffff;border-radius: 2px;border: 1px solid #FF8831;font:14px/1.5 Arial;text-align:center; height:42px; width:158px;">
+
+
+
+																	<a 
+
+href="http://www.snapdeal.com/orderSummary?order=14166519620&code=088bce36871affd63e913aaa6b83124f&aff_id=95452&br_channel=email&br_stage=cx" target="_blank" style="display: inline-block; outline: medium none; text-decoration: none;color: #ffffff;font-weight: bold;text-align:center; height:42px; width:158px; line-height:42px; vertical-align:middle;">TRACK MY ORDER</a>
+
+
+
+																</td>
+
+
+
+															</tr>
+
+
+
+														</table>		
+
+
+
+													</td>
+
+
+
+												</tr>		
+
+
+
+											</table>
+
+
+
+										</td>	
+
+
+
+									</tr>
+
+
+
+								</table>	
+
+
+
+							</td>
+
+
+
+						</tr>						
+
+
+
+					</tbody>
+
+
+
+				</table>
+
+
+
+				<!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+
+
+
+				<!--[if (gte mso 9)|(IE)]><table width="600" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td style="padding-
+
+bottom:18px;"><![endif]-->
+
+
+
+				<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" class="max-width" style="max-width:600px; margin-bottom:18px; border-bottom:1px solid #ddd; box-shadow: 0px 2px 5px #dddddd;">
+					<tbody>
+						<tr>
+							<td bgcolor="#ffffff" style="-moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; padding:20px 10px;">
+								<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">	
+									<tr>
+										<td width="100%" align="center">
+										      <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+                                                       																																									<tr>
+												<table width="280" class="tableCol" cellpadding="0" cellspacing="0" border="0" align="left">					
+												<tr>
+													<td align="center" style="padding:20px 10px;"><div style="width:240px;"><img src="http://n3.sdlcdn.com/imgs/b/g/z/Janasya-Multi-Color-Pure-Georgette-SDL335669520-1-2c0b7.jpeg" width="100%"  style="border:none;"></div></td>
+												</tr>
+											    </table>
+												<table width="280" class="tableCol" cellpadding="0" cellspacing="0" border="0" align="left">
+												<tr>
+													<td align="center" style="font: 13.2px/1.65 Arial; color:#000000; padding:15px 10px;"> 1. Janasya Multicoloured Georgette Saree </td>
+												</tr>	
+												<tr>
+													<td bgcolor="#ffffff" style="padding:5px 10px;">
+														<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="#f5f5f5">	
+															<tr>
+																<td align="center" style="font: 12px/1.5 Arial; color:#909090; padding:10px;">			
+																	Estimated Delivery: <span style="color:#000000; display: inline-block;">
+
+																		  14 Jul - 16 Jul			
+																		 </span>
+																</td>	
+															</tr>
+														</table>						
+													</td>	
+												</tr>
+                                                												</table>
+												</tr>
+																											 											</table>
+										</td>
+									</tr>
+								</table>		
+							</td>
+						</tr>							
+					</tbody>
+				</table>
+				<!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+
+
+
+				<!--[if (gte mso 9)|(IE)]><table width="600" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td style="padding-
+
+bottom:30px;"><![endif]-->
+
+
+
+				<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" class="max-width" style="max-width:600px; margin-
+
+bottom:30px;">
+
+
+
+					<tbody>
+
+
+
+						<tr>
+
+
+
+							<td>
+
+                                                            <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+                                    <tr>
+                                        <td align="center" style="padding:0px"><a href="http://snapdealmail03.in/orderShipped?xc-trgId=Lx0XHUJyBqO9F8dt6pMKchlwSDv8KWy4&xc-email=jj1dEAtNSmi0R_YsYJ2Lt3esmG9o40UV&xc-tstmp=SrtFFU0U4-VLuieMR_0D0fu8Yzl0VdKj&xc-dom=YqblbZTb2dFzHkUnC5H7F0g0g82rIt7oYdwWuNDj7zU." target="_blank" style="display:inline-table; outline:none;"><img src="http://n1.sdlcdn.com/imgs/b/0/0/10june_generic_app_emailer_1_-c7e20.jpg" width="100%" style="max-width:600px;" alt=""></a></td>
+                                    </tr>
+                                </table>
+                            
+								<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">				
+
+				
+
+
+
+									<tr>
+
+
+
+										<td align="center" style="padding:16px 0 0px 0; color:#000000; font: bold 16px/1.5 
+
+Arial;">We look forward to seeing you again soon.</td>
+
+
+
+									</tr>
+
+
+
+									<tr>
+
+
+
+										<td align="center" style="padding:8px 0; font: bold 16px/1.5 Arial; 
+
+color:#000000;font-weight:bold; ">Team Snapdeal</td>
+
+
+
+									</tr>
+
+									<tr>
+
+
+
+										<td align="center" style="padding:16px 0 0px; font: 16px/1.5 Arial; 
+
+color:#656565;">Donate for education of deprived katkari tribal girls via<br> <a href="http://snapdealmail03.in/offers/giveindia?xc-trgId=Lx0XHUJyBqO9F8dt6pMKchlwSDv8KWy4&xc-email=jj1dEAtNSmi0R_YsYJ2Lt3esmG9o40UV&xc-tstmp=SrtFFU0U4-VLuieMR_0D0fu8Yzl0VdKj&utm_source=shipment&aff_id=95452&br_channel=email&br_stage=cx" style="color:#1f95d5; text-
+
+decoration:underline;">Snapdeal Sunshine </a></td>
+
+
+
+									</tr>
+
+<tr>
+
+
+
+										<td align="center" style="padding:16px 0 0px; font: 16px/1.5 Arial; 
+
+color:#656565;">Returns and replacements are simple with our<br> <a href="http://snapdealmail03.in/info/easyReturn?xc-trgId=Lx0XHUJyBqO9F8dt6pMKchlwSDv8KWy4&xc-email=jj1dEAtNSmi0R_YsYJ2Lt3esmG9o40UV&xc-tstmp=SrtFFU0U4-VLuieMR_0D0fu8Yzl0VdKj&utm_source=shipment&aff_id=95452&br_channel=email&br_stage=cx" style="color:#1f95d5; text-
+
+decoration:underline;">7-day Easy Returns Policy </a></td>
+
+
+
+									</tr>
+
+
+
+									<tr>
+
+
+
+										<td align="center" style="padding:26px 0 0px 0; font: 16px/1.5 Arial; 
+
+color:#656565;">For all other queries and to browse our top FAQs, please go to</td>
+
+
+
+									</tr>
+
+
+
+									<tr>
+
+
+
+										<td align="center" style="padding:15px 0;">
+
+
+
+											<table cellpadding="0" cellspacing="0" border="0" align="center">
+
+
+
+												<tr>
+
+
+
+													<td  style="background-color:#ffffff;border-radius: 2px;border: 
+
+1px solid #ff8831;font:14px/1.5 Arial; text-align:center; height:42px; width:90px;">
+
+
+
+														<a href="http://snapdealmail03.in/info/contactus?xc-trgId=Lx0XHUJyBqO9F8dt6pMKchlwSDv8KWy4&xc-email=jj1dEAtNSmi0R_YsYJ2Lt3esmG9o40UV&xc-tstmp=SrtFFU0U4-VLuieMR_0D0fu8Yzl0VdKj&
+
+utm_source=shipment&aff_id=95452&br_channel=email&br_stage=cx" target="_blank" style="display: inline-block;outline: medium none;text-decoration: none;color: #ff8831;font-weight: bold;height:42px; width:90px; 
+
+text-align:center; line-height:42px; vertical-align:middle;">HELP</a>
+
+
+
+													</td>
+
+
+
+												</tr>
+
+
+
+											</table>
+
+
+
+										</td>
+
+
+
+									</tr>
+
+
+
+								</table>
+
+
+
+								  
+
+
+
+							</td>
+
+
+
+						</tr>
+
+
+
+					</tbody>
+
+
+
+				</table>
+
+
+
+				<!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+
+
+
+			</td>
+
+
+
+		</tr>
+
+
+
+		<tr>
+
+
+
+			<td width="100%" bgcolor="#ffffff" >
+
+
+
+				<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+
+
+
+					<tbody>
+
+
+
+						<tr>
+
+
+
+							<td align="center" style="padding:5px 0;">	
+
+
+
+								<table width="270" cellpadding="0" cellspacing="0" border="0" align="center">
+
+
+
+									<tr>
+
+
+
+										<td align="left" style="padding:10px 7px 10px 0; height:30px;"><a 
+
+href="https://www.facebook.com/Snapdeal?utm_source=shipment" target="_blank" style="display:inline-block; outline:none;"><img 
+
+src="http://i2.sdlcdn.com/img/storeFrontFeaturedProductAdmin/09/facebook-icon.jpg" width="10" height="15" alt="" style="border:0;"></a></td>
+
+
+
+										<td align="left" style="padding:10px 7px; height:30px;"><a 
+
+href="https://twitter.com/snapdeal?utm_source=shipment" target="_blank" style="display:inline-block; outline:none;"><img 
+
+src="http://i2.sdlcdn.com/img/storeFrontFeaturedProductAdmin/09/twitter-icon.jpg" width="14" height="15" alt="" style="border:0;"></a></td>
+
+
+
+										<td align="left" style="padding:10px 7px; height:30px;"><a 
+
+href="https://plus.google.com/+snapdeal/posts?utm_source=shipment" target="_blank" style="display:inline-block; outline:none;"><img 
+
+src="http://i2.sdlcdn.com/img/storeFrontFeaturedProductAdmin/09/google-plus-icon.jpg" width="14" height="15" alt="" style="border:0;"></a></td>
+
+
+
+										<td align="right" style="padding:10px 2px 10px 20px; height:30px;"><a 
+
+href="https://play.google.com/store/apps/details?id=com.snapdeal.main&hl=en?utm_source=shipment" target="_blank" style="display:inline-block; outline:none;"><img 
+
+src="http://i2.sdlcdn.com/img/storeFrontFeaturedProductAdmin/09/google-play-icon.jpg" width="85" height="29" alt="" style="border:0;"></a></td>
+
+
+
+										<td align="right" style="padding:10px 0 10px 2px; height:30px;"><a 
+
+href="https://itunes.apple.com/in/app/snapdeal-mobile-shopping/id721124909?utm_source=shipment" target="_blank" style="display:inline-block; outline:none;"><img 
+
+src="http://i2.sdlcdn.com/img/storeFrontFeaturedProductAdmin/09/app-store-icon.jpg" width="85" height="29" alt="" style="border:0;"></a></td>
+
+
+
+									</tr>
+
+
+
+								</table>				
+
+
+
+							</td>
+
+
+
+						</tr>							
+
+
+
+					</tbody>
+
+
+
+				</table>							
+
+
+
+			</td>
+
+
+
+		</tr>	
+
+
+
+	</table>
+
+
+
+<!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->	
+
+
+
+</body>
+
+
+
+</html>
+------=_Part_369622_52710807.1468334360946--
+
+------=_Part_369621_558737866.1468334360946--

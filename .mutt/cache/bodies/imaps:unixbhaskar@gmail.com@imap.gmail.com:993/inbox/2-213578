@@ -1,0 +1,140 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp677581lfc;
+        Wed, 4 Dec 2019 06:05:59 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwxs7mcyl8RLws7Jy/HraCEL6IZHrZEacFRvbihjQM6S7Oyh1Qyw5HvLDgRJtX0LX06k8AH
+X-Received: by 2002:aca:d484:: with SMTP id l126mr2551948oig.114.1575468359159;
+        Wed, 04 Dec 2019 06:05:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1575468359; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Oxiz3MjExWjmVC0+VafSIbnQ/1BMFZgizPTiF4Y2cuj1LcO+ROLihmMsU4UafIMSS8
+         TFqQoO5ySY/kmW9XtK30u01CWpzUDiAMjYzaOLBBRz5hS/huLANmvWChOLWD6592uecj
+         NIEfzho1DivbyONfbk23B9uSaeJwcj82slv7eQJEtFS2XAsLBlTgamR7RzjIZXBktRbJ
+         azRexfr4fIIQRK6fiAAHu5Ok8KfjEBndpK2XHjNAdBfTISij7uitxwE7dpbba8GjyIki
+         h2RIuHLFXIaa8uEEPwl6A4beb2ETtOt50MsrQvyb6MrehW5AiisYiOAssQp3ckguzzRI
+         gCRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version;
+        bh=3pDMBDXLIxm347ub8B5Ps0oyt6NR44k9ekVbqzawQ9Q=;
+        b=CHZXwfCoSVaAUNyYFiF6Eqn5TYGM7riXFa4iL2DZzLYscGUORMvlUmCxW9LYLHURew
+         C9tWW5PELy+IsaRYc1iec8h1uWWGI2Y2PcM5xVw8lgDL5UxxV+SkaF+m5eHoyWP/3SVu
+         WuLKx+SyHHMw/7FG3rK/KI36jV6nuauh5h8Yme4Ff9anLeHCpt6qE3qTUxvrYyR3GCen
+         nlLuvuqeJ6MCMCa/19ty5FULbbFpQSEBd1j/+Jg222EhcqLz8vYvr0wp7jIe311sKYAB
+         wzCuu8Vxp9U2yq/ERv3zFbaxz5wKn0m/N0FqLT5V3o27PJoZqoWUQgdIu3ORqbM+1n8W
+         Cgcw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id o12si3279837otk.323.2019.12.04.06.05.45;
+        Wed, 04 Dec 2019 06:05:59 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727993AbfLDOFd (ORCPT <rfc822;jameswoodrowstetter@gmail.com>
+        + 99 others); Wed, 4 Dec 2019 09:05:33 -0500
+Received: from mout.kundenserver.de ([212.227.126.135]:50247 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727828AbfLDOFc (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 4 Dec 2019 09:05:32 -0500
+Received: from mail-qk1-f175.google.com ([209.85.222.175]) by
+ mrelayeu.kundenserver.de (mreue011 [212.227.15.129]) with ESMTPSA (Nemesis)
+ id 1MirX2-1i6Rn50Zng-00ev0t; Wed, 04 Dec 2019 15:05:31 +0100
+Received: by mail-qk1-f175.google.com with SMTP id q28so7198988qkn.10;
+        Wed, 04 Dec 2019 06:05:30 -0800 (PST)
+X-Gm-Message-State: APjAAAUsxupyB35Eg91X2CCVgjevsbc+DPAi1dkr6WyAuKf85HWRPZ9N
+        OmU1XbjO2IHuTdIRgkv+tYx664ym8c9qeVZsQcc=
+X-Received: by 2002:ae9:eb12:: with SMTP id b18mr2945260qkg.3.1575468329900;
+ Wed, 04 Dec 2019 06:05:29 -0800 (PST)
+MIME-Version: 1.0
+References: <1575137443.5563.18.camel@HansenPartnership.com> <CAHk-=wjWNpPW91wyEj4FC4pOimWEUtLVb_RwQgB+9h2OO6ynyA@mail.gmail.com>
+In-Reply-To: <CAHk-=wjWNpPW91wyEj4FC4pOimWEUtLVb_RwQgB+9h2OO6ynyA@mail.gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 4 Dec 2019 15:05:09 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a33oETbN-60VjpNNeuW1U1Wzb4juVzdiw1ESdses6m3bw@mail.gmail.com>
+Message-ID: <CAK8P3a33oETbN-60VjpNNeuW1U1Wzb4juVzdiw1ESdses6m3bw@mail.gmail.com>
+Subject: Re: [GIT PULL] first round of SCSI updates for the 5.4+ merge window
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     James Bottomley <James.Bottomley@hansenpartnership.com>,
+        Al Viro <viro@zeniv.linux.org.uk>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        linux-scsi <linux-scsi@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Doug Gilbert <dgilbert@interlog.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:PrJhNMzdEgu7HmHaW+4RW1cXQjySBFOSIdr0MN+9q8+AAumf1ZC
+ /TtNLgSii9Az1L54qsdqb0uigh2N6vR0vs4+82h5TlbWTett89W8mB/GZo9Mg6FUXdUpH24
+ bSN1WLvdmqoEvPBYf78vkh41nVblJYfnTg4eTqc2S9aRZQRmIeSaOjJN9+4WxtPOZya03QE
+ qSY9EUxrqm5ulPtPdUbag==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:lFv8KiEf6Aw=:YEgixR4fabBY/FVMQbUVqM
+ lZY7gBr2acWKbCobF3jNMCJK+ls92OP09fAd73jHzRkoyna8it37BiRle7KLp2LRO31/Ro1U+
+ U8+0+PO4lTleqRLK7Xyfzu/mENEVSZ7LdOl+OSmDhytga9Nuiuf1IvM/53s7y5sfbNIUY8Mfq
+ 3kBKLqZNNnXU+Od+PhiczIjxDt+u7Y3W0H4C0NLnqANQ7ehALKiqRVW0s+QrpIdzPkh8CXZvX
+ iDc2p6KRJQXRPdO836rKCitcoSc6eTXe5tTXxgyN4dL0qbd175BCTa+lm+2FxCUwNJn7mFYZS
+ 9nya4sxsEg8sMJhOvZ5LMARY4uln+at0p10Sz8FozrzFebjsOZheFMqWIHDq3sCpjFBqW5J1t
+ s5YUFYcEsCsJaHjk9VcUrwr4TOCZtbf1qtaS96FMNve+PhbfKAGoaDHCyneqVtpd41LtgBKCG
+ AEuFvaxCWjTg7nU/E4LVvVDptjVZkpEbjTvGlGo+caV2XsuzhGl3y9esZ83zHEGnEy8gnCk9m
+ 4KNq1F6ysMfK47q6IifGdp2VDdG8hFWGFtReLGR48AHMEyiOElt8GHe3ZZAGChKtHormBaevt
+ NlgGWRbHj1yNiIpEdgQXoOUfTTrqn/D3cEbIkvPpy2i4qM/kOPlvo4huw2dimCaRKwX0lnMM+
+ I0E1wZL8E34PsMRi8BY623L4ssrcNZMThWMOY9sIDuPilqw4aeF+TyWKy/Y4rTXFdNelTFyVh
+ xxQATf0Vml7RznJ+KaOmUnhrj1NDoFpNw4sw9BC5XjJvIHiaLiptOvFvN38i4rQoFioN8O+Ct
+ I6Qyv2CysvUW6Ia7uwyghGZEPVavUvUukZdtAvXTIDKDyka7dOXSkHBY7se1FikYQLsfF2GXR
+ iumaF+m0hcsOd0Ta94MQ==
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Dec 2, 2019 at 10:58 PM Linus Torvalds
+<torvalds@linux-foundation.org> wrote:
+>
+> Anyway, the sg copyin/out changes by Al conflicted fairly badly with
+> Arnd's compat_ioctl changes.
+>
+> Al did
+>
+>   c35a5cfb4150 ("scsi: sg: sg_read(): simplify reading ->pack_id of
+> userland sg_io_hdr_t")
+>
+> which avoided doing a whole allocation of an 'sg_io_hdr_t' to just
+> read the one field of it.
+>
+> But Arnd did
+>
+>   98aaaec4a150 ("compat_ioctl: reimplement SG_IO handling")
+>
+> which created a get_sg_io_hdr() helper that copied the 'sg_io_hdr_t'
+> from user space the right way for both compat and native, which
+> basically relied on the old approach.
+
+Right, I also failed to notice that the linux-next conflict resolution
+was breaking my changes, the fixup looked simple enough there. :-(
+
+> since it turns out that the one 'pack_id' field we want does have the
+> same format in compat  mode as in native mode ("int" and
+> "compat_int_t" are the same), it's just at different offsets. But the
+> definition of 'compat_sg_io_hdr' isn't available in that place.
+>
+> I'm leaving it to Al and Arnd to decide if they want to fix the
+> stupidity. I tried to make the minimally invasive merge resolution.
+>
+> Al, Arnd? Comments?
+>
+> It looks like linux-next punted on this entirely, and took Al's
+> simplified version that doesn't work with the compat case. Maybe I
+> should have done the same - if you use read() on the /dev/sg* device,
+> you deserve to get broken for the compat case. And it didn't
+> historically work anyway. But it was kind of sad to see how Arnd fixed
+> it, and then it got broken again.
+
+I've tried now to move the pack_id logic into a separate function
+and, in doing so noticed a bug in my own patch: sg_new_read()
+needs to check for the compat_sg_io_hdr size, which also
+depends on the struct definition. I've drafted a patch that should
+do this right, but we could also just -EINVAL in compat mode here
+if that's too complex.
+
+       Arnd

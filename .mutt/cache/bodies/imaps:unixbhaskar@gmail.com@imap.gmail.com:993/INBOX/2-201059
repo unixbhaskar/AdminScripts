@@ -1,0 +1,88 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2777032lfj;
+        Sun, 15 Sep 2019 00:03:48 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx5PF5S0ePIwtrVvcxOGUSRNtW+2+PrqHxSMgiJrNUOpQ/T5mwecOx7Iy/DFOAJaCx9i+Ox
+X-Received: by 2002:a17:906:4a81:: with SMTP id x1mr47453802eju.23.1568531028334;
+        Sun, 15 Sep 2019 00:03:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568531028; cv=none;
+        d=google.com; s=arc-20160816;
+        b=yyg2NdY5aoajZyW5alJiMeHTGypyxN3iZylfE45ZJdsbc4I2lfV1eTHEhV36PliTb2
+         ST5x8v3wx4AkttjPgYBkz41oJ3cNKiCGjaH9YBX+cUhRWV6sxKXzOKsZLVW0ZZGfQ8rg
+         6iS4rRKVTUdfLZgZ+sXq7TPmVl+ZnDGcXmKNzXI6DiY/6MkMJSnHdjW8T8EjjPG0NtW8
+         p6wMJQLqn2cc7PooTmj9IP+6hAOJSdemS6Wl0zv6J/G/AwmVVIR2LaE24ZSQwyNpdmmr
+         9zR5lNG/OhQQq8xn8OaaX6AUjiD4JPA5BS55wJ4x6ORye0qjX5oDjB3iApAeEWRMrw+8
+         2goQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date;
+        bh=08jDVxByfKppNLkp8tPPzvB1e/px2HbJ0L3eMIljCoI=;
+        b=07VPm4B2FHlL6eSuvYYlK6n3ZuA9BPmU8ZQQo8NCzdXl3eUaXwsnKnBruPePZ1cs6q
+         WcLi8DCDZSSYfS/D+8WIhH3kVgpORopDN8DLZA9PDfAzsZGKkYfFUpgMSrEN/mII4qc3
+         9nkBemXWYTpDpQFa0B9HODZ+FZE7B6yHrlsFvyUDA0/v8F3FSrwRPlaB7QYRYfY9DK4z
+         xztjF2musI61cbOP0BPR8R+2TQdQZ78YPGLB7Rv1OYl2nOLhj3oF/bFvfr9yxWI6GyqR
+         Cn9SNpoM1OLaiL8lACFn22+nzp7B1q3vSYJh+lc+K/ymmA03BL0ZUkFdsOq32qRKeipo
+         JNWg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id g5si16957183ejw.309.2019.09.15.00.03.24;
+        Sun, 15 Sep 2019 00:03:48 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727143AbfIOHBW (ORCPT <rfc822;sheriffesseson@gmail.com>
+        + 99 others); Sun, 15 Sep 2019 03:01:22 -0400
+Received: from wtarreau.pck.nerim.net ([62.212.114.60]:45081 "EHLO 1wt.eu"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725773AbfIOHBV (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 15 Sep 2019 03:01:21 -0400
+Received: (from willy@localhost)
+        by pcw.home.local (8.15.2/8.15.2/Submit) id x8F713NQ021628;
+        Sun, 15 Sep 2019 09:01:03 +0200
+Date:   Sun, 15 Sep 2019 09:01:03 +0200
+From:   Willy Tarreau <w@1wt.eu>
+To:     Lennart Poettering <mzxreary@0pointer.de>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        "Alexander E. Patrakov" <patrakov@gmail.com>,
+        "Ahmed S. Darwish" <darwish.07@gmail.com>,
+        "Theodore Y. Ts'o" <tytso@mit.edu>,
+        Andreas Dilger <adilger.kernel@dilger.ca>,
+        Jan Kara <jack@suse.cz>, Ray Strode <rstrode@redhat.com>,
+        William Jon McCann <mccann@jhu.edu>,
+        zhangjs <zachary@baishancloud.com>, linux-ext4@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: Linux 5.3-rc8
+Message-ID: <20190915070103.GC20811@1wt.eu>
+References: <CAHk-=wi_yXK5KSmRhgNRSmJSD55x+2-pRdZZPOT8Fm1B8w6jUw@mail.gmail.com>
+ <20190911173624.GI2740@mit.edu>
+ <20190912034421.GA2085@darwi-home-pc>
+ <20190912082530.GA27365@mit.edu>
+ <CAHk-=wjyH910+JRBdZf_Y9G54c1M=LBF8NKXB6vJcm9XjLnRfg@mail.gmail.com>
+ <20190914150206.GA2270@darwi-home-pc>
+ <CAHk-=wjuVT+2oj_U2V94MBVaJdWsbo1RWzy0qXQSMAUnSaQzxw@mail.gmail.com>
+ <214fed0e-6659-def9-b5f8-a9d7a8cb72af@gmail.com>
+ <CAHk-=wiB0e_uGpidYHf+dV4eeT+XmG-+rQBx=JJ110R48QFFWw@mail.gmail.com>
+ <20190915065655.GB29681@gardel-login>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190915065655.GB29681@gardel-login>
+User-Agent: Mutt/1.6.1 (2016-04-27)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, Sep 15, 2019 at 08:56:55AM +0200, Lennart Poettering wrote:
+> There's benefit in being able to wait until the pool is initialized
+> before we update the random seed stored on disk with a new one,
+
+And what exactly makes you think that waiting with arms crossed not
+doing anything else has any chance to make the situation change if
+you already had no such entropy available when reaching that first
+call, especially during early boot ?
+
+Willy

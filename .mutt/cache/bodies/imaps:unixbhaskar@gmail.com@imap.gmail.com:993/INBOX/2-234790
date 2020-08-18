@@ -1,0 +1,822 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp3087102lfg;
+        Sun, 19 Apr 2020 14:59:52 -0700 (PDT)
+X-Google-Smtp-Source: APiQypIt/JApFX69mhxqygXb3oDlASadS9zAWcV73oNHGdP0P1TkjwvvU63EMxZmVQn1igt8ZpC1
+X-Received: by 2002:a17:906:2f8f:: with SMTP id w15mr3556271eji.255.1587333591857;
+        Sun, 19 Apr 2020 14:59:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587333591; cv=none;
+        d=google.com; s=arc-20160816;
+        b=jk1u3LngkyMFhGeLde3kAGDK6IkT424oh5CX4XGZYWR/fvS0wn5Gv5Z1c0Ii91q2gT
+         mSKToCC8X7ZjxKZL2ijzwIIafT+XFtOax8jBvrkhDg2ay7sXD0j357VZSWdbsAtibjn7
+         FP7qwL1TbnRJSA6OGstIhKK4vLTElEtC9/pVJhc6+ZTeHl0zstaO33+9ydfyLegNC4xc
+         mi3+w1jw1KxuO7ax1z1sjnxYxz2e7HeSOFYcfTkIjR+Bct5ZZoVczVHGKt6F1Hqley9K
+         sdBdoT9s/4/1Av67EsWz5G6Gwqcjy3wOVaFF6KQBwPRVftH6Y2rgjZIoqnoHBbF2PTxY
+         ub1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:to:subject
+         :message-id:date:from:mime-version:dkim-signature;
+        bh=ptuf1f365UK4/TH5qdeyMbh4neOkPRZX1BQrD8HFsME=;
+        b=lkOh2AM4fM5tAx/XBT7OjfvuMs+f7MvNmfq/mSrdQyiyOeB/XV5qkbGGgDi30lR0i1
+         vsP4N4PB9rF/hfs+l75BGlenUX/N1ULd89j9kpy2f/PH0guAdXD7dytr6tLoKav2DVOl
+         H6EfhhdAuLmXBheAr1GF3aAJ7/WuogktMxzMugtJe3lMea2xP+1OfO41cVBtrByYSoLF
+         Kt/tHfP6UmLPXSUy5GEroNTvCiynd7MZL8ErGQoIUa8BDXsIPUrVXx/AfFC9/RqQeZZF
+         9tIpE1UWJMt4st0tg+XsVb87lxtfG7jk3y4S+g56qAWTRk3keMNv4cUCY9FgJPWAJiSf
+         vYig==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=Hwp9c7sH;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id a4si18399902eje.61.2020.04.19.14.59.28;
+        Sun, 19 Apr 2020 14:59:51 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=Hwp9c7sH;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726079AbgDSV6k (ORCPT <rfc822;franhsutw@gmail.com> + 99 others);
+        Sun, 19 Apr 2020 17:58:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725848AbgDSV6k (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 19 Apr 2020 17:58:40 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C29FC061A0C
+        for <linux-kernel@vger.kernel.org>; Sun, 19 Apr 2020 14:58:39 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id k28so6274859lfe.10
+        for <linux-kernel@vger.kernel.org>; Sun, 19 Apr 2020 14:58:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=ptuf1f365UK4/TH5qdeyMbh4neOkPRZX1BQrD8HFsME=;
+        b=Hwp9c7sHOkntOt2fX9N2DAAulgJLnF9pJjosB/Mun9E/K2zPOkvkePslYXrE+g1Enz
+         K/aHuljgQfdPbJwbn20dt5nt+U0S2sJmK2FE+AJwO4/PMgmTWLs9Teq9Ge+hJ7J9KxEo
+         gNgCDocaIiKQHuh7lIP/4qeQNzMGakDy0GJQs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=ptuf1f365UK4/TH5qdeyMbh4neOkPRZX1BQrD8HFsME=;
+        b=a/u2Xo814oqnoJ8xIzbbIOUT9xDMDAH8KhD+JGb9SAdp6BsqCvAFbUN6WRsWf1QZeN
+         6zPqGKuLWvPQy37TSiwRZLwP7qvYDkS/trEIRig5digUNrrM+lCLP3H/tu3vPr1Tb1dy
+         hDo1vxSCpSmFRguGLS7WBrMlaz64BAbh1XZklb+jiQEC6lJNXa+vmWYQ6pRnYBhghXcH
+         e43eYUVgEGwR7nzYybnqO/X8l4UAPgqKUe+mNL+jtnJQFUy3GbgcNOlegbBgb8znpzYW
+         xAXycgk52E2WCakRsru4xW0z/MEtwULHyO4wYE+Swf0KreEr8onA9yeraMszB181Wt2M
+         k+9Q==
+X-Gm-Message-State: AGi0PuYjK1hrdA+GhWhaMySHLSfmZTZ7rCbA1WIR3fbl1C/zYXRc3kIg
+        kcelqVSaoyWYFdVLAKAh9kqtlQ60uvc=
+X-Received: by 2002:ac2:57cc:: with SMTP id k12mr8251319lfo.69.1587333517076;
+        Sun, 19 Apr 2020 14:58:37 -0700 (PDT)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
+        by smtp.gmail.com with ESMTPSA id y199sm24292869lfa.80.2020.04.19.14.58.36
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Apr 2020 14:58:36 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id f18so1789238lja.13
+        for <linux-kernel@vger.kernel.org>; Sun, 19 Apr 2020 14:58:36 -0700 (PDT)
+X-Received: by 2002:a2e:87d9:: with SMTP id v25mr3795590ljj.241.1587333515484;
+ Sun, 19 Apr 2020 14:58:35 -0700 (PDT)
+MIME-Version: 1.0
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 19 Apr 2020 14:58:19 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wiQsJu-ZFjt7+c9FVD5R40khtZiihrT+7O3UaVvHYz=HQ@mail.gmail.com>
+Message-ID: <CAHk-=wiQsJu-ZFjt7+c9FVD5R40khtZiihrT+7O3UaVvHYz=HQ@mail.gmail.com>
+Subject: Linux 5.7-rc2
+To:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Here we are, a week later, and rc2 looks pretty nice and calm. Of
+course, it usually does that - people taking a breather after the
+merge window, and we may not have had enough time to see all the
+problem reports yet.
+
+Everything continues to look fairly normal, with commit counts right
+in the middle of what you'd expect for rc2. And most of the changes
+are tiny and don't look scary at all.
+
+In fact, about 30% of the patch is tooling, and even there a lot of it
+is because of one larger diff due to the x86 system call table being
+re-synchronized with the main kernel side.
+
+Outside of that, we've got driver fixes (ethernet stands out, but
+there's also other networking, GPU, sound, hwmon, i2c, clk..).  And
+filesystems (afs, btrfs, xfs, ext4, cifs, proc). And Documentation,
+networking and arch fixes. And small random things elsewhere.
+
+Some of the spread out noise is the replacement of zero-sized arrays
+with flexible ones - we've had that come in through the various
+subsystems for a while now, and then Gustavo sent a pull request for
+another random collection.
+
+Nothing that really should be seen as all that exciting. Which is all
+good. The more noticeable one might be fixing the regression that was
+due to the EFI loaders not clearing the BSS section and us having lost
+the workaround for that. That caused boot problems for some. Not
+perhaps exciting, but an example of the kind of solid (boring?) small
+pedestrian things we've had.
+
+Shortlog appended so that you can scan the details if you want.
+
+               Linus
+
+---
+
+Adam Barber (1):
+      ALSA: hda/realtek - Enable the headset mic on Asus FX505DT
+
+Alex Deucher (1):
+      drm/amdgpu/gfx9: add gfxoff quirk
+
+Alexandru Tachici (1):
+      dt-bindings: iio: dac: AD5570R fix bindings errors
+
+Amol Grover (1):
+      netfilter: ipset: Pass lockdep expression to RCU lists
+
+Andrei Vagin (1):
+      proc, time/namespace: Show clock symbolic names in
+/proc/pid/timens_offsets
+
+Andrew Lunn (2):
+      net: dsa: mv88e6xxx: Configure MAC when using fixed link
+      net: dsa: Down cpu/dsa ports phylink will control
+
+Andrey Ignatov (2):
+      libbpf: Fix bpf_get_link_xdp_id flags handling
+      selftests/bpf: Add test for bpf_get_link_xdp_id
+
+Andrii Nakryiko (3):
+      bpf: Prevent re-mmap()'ing BPF map as writable for initially r/o mapp=
+ing
+      selftests/bpf: Validate frozen map contents stays frozen
+      libbpf: Always specify expected_attach_type on program load if suppor=
+ted
+
+Ann T Ropea (1):
+      hwmon: (drivetemp) Use drivetemp's true module name in Kconfig sectio=
+n
+
+Ard Biesheuvel (5):
+      efi/arm: Deal with ADR going out of range in efi_enter_kernel()
+      Documentation/x86, efi/x86: Clarify EFI handover protocol and
+its requirements
+      efi/libstub/file: Merge file name buffers to reduce stack usage
+      efi/x86: Don't remap text<->rodata gap read-only for mixed mode
+      efi/x86: Revert struct layout change to fix kexec boot regression
+
+Arnaldo Carvalho de Melo (14):
+      tools arch x86: Sync the msr-index.h copy with the kernel sources
+      perf python: Check if clang supports -fno-semantic-interposition
+      tools headers: Update linux/vdso.h and grab a copy of vdso/const.h
+      tools headers UAPI: Sync sched.h with the kernel
+      tools headers UAPI: Sync linux/mman.h with the kernel
+      tools arch x86: Sync asm/cpufeatures.h with the kernel sources
+      tools include UAPI: Sync linux/vhost.h with the kernel sources
+      tools headers UAPI: Sync linux/fscrypt.h with the kernel sources
+      tools headers kvm: Sync linux/kvm.h with the kernel sources
+      tools headers UAPI: Update tools's copy of drm.h headers
+      tools headers UAPI: Sync drm/i915_drm.h with the kernel sources
+      tools headers: Update x86's syscall_64.tbl with the kernel sources
+      tools headers: Adopt verbatim copy of compiletime_assert() from
+kernel sources
+      tools headers: Synchronize linux/bits.h with the kernel sources
+
+Arnd Bergmann (4):
+      net/tls: fix const assignment warning
+      clk: asm9260: fix __clk_hw_register_fixed_rate_with_accuracy typo
+      clk: mmp2: fix link error without mmp2
+      rtw88: avoid unused function warnings
+
+Arvind Sankar (2):
+      efi/x86: Move efi stub globals from .bss to .data
+      efi/x86: Always relocate the kernel for EFI handover entry
+
+Ashutosh Dixit (1):
+      drm/i915/perf: Do not clear pollin for small user read buffers
+
+Atish Patra (1):
+      irqchip/sifive-plic: Fix maximum priority threshold value
+
+Atsushi Nemoto (2):
+      net: phy: micrel: use genphy_read_status for KSZ9131
+      net: stmmac: socfpga: Allow all RGMII modes
+
+Ben Skeggs (1):
+      drm/nouveau/sec2/gv100-: add missing MODULE_FIRMWARE()
+
+Bj=C3=B6rn T=C3=B6pel (1):
+      riscv, bpf: Remove BPF JIT for nommu builds
+
+Bodo Stroesser (3):
+      scsi: target: Write NULL to *port_nexus_ptr if no ISID
+      scsi: target: fix PR IN / READ FULL STATUS for FC
+      scsi: target: tcmu: reset_ring should reset TCMU_DEV_BIT_BROKEN
+
+Borislav Petkov (1):
+      sched/vtime: Work around an unitialized variable warning
+
+Brian Foster (1):
+      xfs: acquire superblock freeze protection on eofblocks scans
+
+Brian Geffon (1):
+      mm: Fix MREMAP_DONTUNMAP accounting on VMA merge
+
+Cambda Zhu (1):
+      Documentation: Fix tcp_challenge_ack_limit default value
+
+Chris Packham (1):
+      docs: timekeeping: Use correct prototype for deprecated functions
+
+Christophe JAILLET (4):
+      soc: qcom: ipa: Add a missing '\n' in a log message
+      net: ethernet: ti: Add missing '\n' in log messages
+      net: mvneta: Fix a typo
+      platform/chrome: cros_ec_sensorhub: Add missing '\n' in log messages
+
+Chunyan Zhang (1):
+      clk: sprd: don't gate uart console clock
+
+Clemens Gruber (1):
+      net: phy: marvell: Fix pause frame negotiation
+
+Colin Ian King (5):
+      bpf: Fix spelling mistake "arithmatic" -> "arithmetic" in test_verifi=
+er
+      net-sysfs: remove redundant assignment to variable ret
+      net: neterion: remove redundant assignment to variable tmp64
+      efi/libstub/x86: Remove redundant assignment to pointer hdr
+      ipv6: remove redundant assignment to variable err
+
+DENG Qingfang (1):
+      net: dsa: mt7530: fix tagged frames pass-through in VLAN-unaware mode
+
+Dan Carpenter (1):
+      platform/chrome: cros_ec_sensorhub: Off by one in
+cros_sensorhub_send_sample()
+
+Daniel T. Lee (1):
+      tools, bpftool: Fix struct_ops command invalid pointer free
+
+Darrick J. Wong (2):
+      xfs: fix partially uninitialized structure in xfs_reflink_remap_exten=
+t
+      xfs: move inode flush to the sync workqueue
+
+David Ahern (1):
+      xdp: Reset prog in dev_change_xdp_fd when fd is negative
+
+David Howells (7):
+      afs: Fix missing XDR advance in xdr_decode_{AFS,YFS}FSFetchStatus()
+      afs: Fix decoding of inline abort codes from version 1 status records
+      afs: Fix rename operation status delivery
+      afs: Fix length of dump of bad YFSFetchStatus record
+      afs: Fix race between post-modification dir edit and readdir/d_revali=
+date
+      afs: Fix afs_d_validate() to set the right directory version
+      rxrpc: Fix DATA Tx to disable nofrag for UDP on AF_INET6 socket
+
+Dmitry Osipenko (2):
+      i2c: tegra: Better handle case where CPU0 is busy for a long time
+      i2c: tegra: Synchronize DMA before termination
+
+Dmytro Linkin (1):
+      net/mlx5e: Fix nest_level for vlan pop action
+
+Eli Cohen (1):
+      net/mlx5: Fix condition for termination table cleanup
+
+Eran Ben Elisha (1):
+      net/mlx5e: Add missing release firmware call
+
+Eric Biggers (1):
+      docs: admin-guide: merge sections for the kernel.modprobe sysctl
+
+Eric Dumazet (1):
+      netfilter: nf_tables: do not leave dangling pointer in
+nf_tables_set_alloc_name
+
+Eric W. Biederman (1):
+      proc: Handle umounts cleanly
+
+Eugene Syromiatnikov (4):
+      btrfs: re-instantiate the removed BTRFS_SUBVOL_CREATE_ASYNC definitio=
+n
+      clone3: fix cgroup argument sanity check
+      clone3: add a check for the user struct size if CLONE_INTO_CGROUP is =
+set
+      clone3: add build-time CLONE_ARGS_SIZE_VER* validity checks
+
+Evan Quan (2):
+      drm/amd/powerplay: unload mp1 for Arcturus RAS baco reset
+      drm/amdgpu: fix wrong vram lost counter increment V2
+
+Fabio Estevam (4):
+      dt-bindings: iio: dac: ad5770r: Add vendor to compatible string
+      dt-bindings: iio: dac: ad5770r: Fix the file path
+      dt-bindings: touchscreen: edt-ft5x06: Remove unneeded I2C unit name
+      dt-bindings: clock: syscon-icst: Remove unneeded unit name
+
+Fangrui Song (1):
+      arm64: Delete the space separator in __emit_inst
+
+Filipe Manana (3):
+      btrfs: fix lost i_size update after cloning inline extent
+      btrfs: make full fsyncs always operate on the entire file again
+      btrfs: fix reclaim counter leak of space_info objects
+
+Florian Fainelli (1):
+      net: stmmac: dwmac-sunxi: Provide TX and RX fifo sizes
+
+Florian Westphal (1):
+      mptcp: fix double-unlock in mptcp_poll
+
+Frank Rowand (5):
+      of: unittest: kmemleak on changeset destroy
+      of: unittest: kmemleak in of_unittest_platform_populate()
+      of: unittest: kmemleak in of_unittest_overlay_high_level()
+      of: overlay: kmemleak in dup_and_fixup_symbol_prop()
+      of: unittest: kmemleak in duplicate property update
+
+Gary Lin (1):
+      efi/x86: Fix the deletion of variables in mixed mode
+
+Geert Uytterhoeven (2):
+      m68k: Drop redundant generic-y +=3D hardirq.h
+      dt-bindings: Fix misspellings of "Analog Devices"
+
+Gilberto Bertin (1):
+      net: tun: record RX queue in skb before do_xdp_generic()
+
+Grygorii Strashko (1):
+      irqchip/ti-sci-inta: Fix processing of masked irqs
+
+Guenter Roeck (3):
+      mtd: spi-nor: Compile files in controllers/ directory
+      hwmon: (pmbus/isl68137) Fix up chip IDs
+      hwmon: (drivetemp) Return -ENODATA for invalid temperatures
+
+Gustavo A. R. Silva (29):
+      hv: hyperv_vmbus.h: Replace zero-length array with flexible-array mem=
+ber
+      bio: Replace zero-length array with flexible-array member
+      blk-mq: Replace zero-length array with flexible-array member
+      blk_types: Replace zero-length array with flexible-array member
+      can: dev: peak_canfd.h: Replace zero-length array with
+flexible-array member
+      digsig.h: Replace zero-length array with flexible-array member
+      dirent.h: Replace zero-length array with flexible-array member
+      enclosure.h: Replace zero-length array with flexible-array member
+      energy_model.h: Replace zero-length array with flexible-array member
+      ethtool.h: Replace zero-length array with flexible-array member
+      genalloc.h: Replace zero-length array with flexible-array member
+      igmp.h: Replace zero-length array with flexible-array member
+      ihex.h: Replace zero-length array with flexible-array member
+      irq.h: Replace zero-length array with flexible-array member
+      lib: cpu_rmap: Replace zero-length array with flexible-array member
+      list_lru.h: Replace zero-length array with flexible-array member
+      memcontrol.h: Replace zero-length array with flexible-array member
+      platform_data: wilco-ec.h: Replace zero-length array with
+flexible-array member
+      posix_acl.h: Replace zero-length array with flexible-array member
+      rio.h: Replace zero-length array with flexible-array member
+      rslib.h: Replace zero-length array with flexible-array member
+      sched: topology.h: Replace zero-length array with flexible-array memb=
+er
+      skbuff.h: Replace zero-length array with flexible-array member
+      swap.h: Replace zero-length array with flexible-array member
+      ti_wilink_st.h: Replace zero-length array with flexible-array member
+      tpm_eventlog.h: Replace zero-length array with flexible-array member
+      uapi: linux: dlm_device.h: Replace zero-length array with
+flexible-array member
+      uapi: linux: fiemap.h: Replace zero-length array with
+flexible-array member
+      xattr.h: Replace zero-length array with flexible-array member
+
+Hans de Goede (1):
+      i2c: designware: platdrv: Remove DPM_FLAG_SMART_SUSPEND flag on
+BYT and CHT
+
+Hui Wang (1):
+      ALSA: hda: call runtime_allow() for all hda controllers
+
+Ilya Dryomov (4):
+      rbd: avoid a deadlock on header_rwsem when flushing notifies
+      rbd: call rbd_dev_unprobe() after unwatching and flushing notifies
+      rbd: don't test rbd_dev->opts in rbd_dev_image_release()
+      rbd: don't mess with a page vector in rbd_notify_op_lock()
+
+Jakub Kicinski (1):
+      docs: networking: convert DIM to RST
+
+Jakub Sitnicki (1):
+      net, sk_msg: Don't use RCU_INIT_POINTER on sk_user_data
+
+James Morse (1):
+      x86/resctrl: Preserve CDP enable over CPU hotplug
+
+Jan Kara (1):
+      ext4: do not zeroout extents beyond i_disksize
+
+Jason Gunthorpe (2):
+      net/cxgb4: Check the return from t4_query_params properly
+      net/rds: Use ERR_PTR for rds_message_alloc_sgs()
+
+Jason Yan (9):
+      hwmon: (k10temp) make some symbols static
+      x86/umip: Make umip_insns static
+      net: tulip: make early_486_chipsets static
+      ext4: remove set but not used variable 'es'
+      ext4: remove set but not used variable 'es' in ext4_jbd2.c
+      mISDN: make dmril and dmrim static
+      arm/xen: make _xen_start_info static
+      irqchip/irq-mvebu-icu: Make legacy_bindings static
+      irqchip/irq-bcm7038-l1: Make bcm7038_l1_of_init() static
+
+Jeff Layton (1):
+      ceph: fix potential bad pointer deref in async dirops cb's
+
+Jens Axboe (4):
+      io_uring: correct O_NONBLOCK check for splice punt
+      io_uring: check for need to re-wait in polled async handling
+      io_uring: io_async_task_func() should check and honor cancelation
+      io_uring: only post events in io_poll_remove_all() if we completed so=
+me
+
+Jeremy Cline (1):
+      libbpf: Initialize *nl_pid so gcc 10 is happy
+
+Jin Yao (1):
+      perf stat: Fix no metric header if --per-socket and --metric-only set
+
+Joe Stringer (1):
+      bpf: Fix use of sk->sk_reuseport from sk_assign
+
+Johan Jonker (1):
+      dt-bindings: net: ethernet-phy: add desciption for
+ethernet-phy-id1234.d400
+
+Johannes Berg (1):
+      nl80211: fix NL80211_ATTR_FTM_RESPONDER policy
+
+John Allen (1):
+      x86/microcode/AMD: Increase microcode PATCH_MAX_SIZE
+
+John Garry (1):
+      blk-mq: Put driver tag in blk_mq_dispatch_rq_list() when no budget
+
+Jones Syue (1):
+      cifs: improve read performance for page size 64KB & cache=3Dstrict
+& vers=3D2.1+
+
+Josef Bacik (2):
+      btrfs: check commit root generation in should_ignore_root
+      btrfs: fix setting last_trans for reloc roots
+
+Josh Poimboeuf (5):
+      objtool: Fix CONFIG_UBSAN_TRAP unreachable warnings
+      objtool: Support Clang non-section symbols in ORC dump
+      objtool: Support Clang non-section symbols in ORC generation
+      objtool: Fix switch table detection in .text.unlikely
+      objtool: Make BP scratch register warning more robust
+
+Josh Triplett (1):
+      ext4: fix return-value types in several function comments
+
+Juergen Gross (1):
+      xen/xenbus: ensure xenbus_map_ring_valloc() returns proper grant stat=
+us
+
+KP Singh (1):
+      bpf, lsm: Fix the file_mprotect LSM test.
+
+Ka-Cheong Poon (2):
+      net/rds: Replace struct rds_mr's r_refcount with struct kref
+      net/rds: Fix MR reference counting problem
+
+Kai-Heng Feng (1):
+      ahci: Add Intel Comet Lake PCH-U PCI ID
+
+Konstantin Khlebnikov (1):
+      net: revert default NAPI poll timeout to 2 jiffies
+
+Li Bin (1):
+      scsi: sg: add sg_remove_request in sg_common_write
+
+Li RongQing (1):
+      xsk: Fix out of boundary write in __xsk_rcv_memcpy
+
+Likun Gao (1):
+      Revert "drm/amdgpu: change SH MEM alignment mode for gfx10"
+
+Linus Torvalds (1):
+      Linux 5.7-rc2
+
+Lothar Rubusch (4):
+      net: sock.h: fix skb_steal_sock() kernel-doc
+      Documentation: mdio_bus.c - fix warnings
+      Documentation: devlink: fix broken link warning
+      cfg80211: fix kernel-doc notation
+
+Luke Nelson (3):
+      riscv, bpf: Fix offset range checking for auipc+jalr on RV64
+      arm, bpf: Fix bugs with ALU64 {RSH, ARSH} BPF_K shift by 0
+      arm, bpf: Fix offset overflow for BPF_MEM BPF_DW
+
+Maciej =C5=BBenczykowski (1):
+      netfilter: xt_IDLETIMER: target v1 - match Android layout
+
+Magnus Karlsson (1):
+      xsk: Add missing check on user supplied headroom size
+
+Marc Zyngier (3):
+      irqchip/gic-v4.1: Add support for VPENDBASER's Dirty+Valid signaling
+      irqchip/gic-v4.1: Update effective affinity of virtual SGIs
+      irqchip/meson-gpio: Fix HARDIRQ-safe -> HARDIRQ-unsafe lock order
+
+Mark Rutland (1):
+      arm64: vdso: don't free unallocated pages
+
+Martin Fuzzey (4):
+      net: fec: set GPR bit on suspend by DT configuration.
+      ARM: dts: imx6: Use gpc for FEC interrupt controller to fix wake on L=
+AN.
+      dt-bindings: fec: document the new gpr property.
+      ARM: dts: imx6: add fec gpr property.
+
+Masahiro Yamada (1):
+      kbuild: check libyaml installation for 'make dt_binding_check'
+
+Matti Vaittinen (1):
+      dt-bindings: BD718x7 - add missing I2C bus properties
+
+Mauro Carvalho Chehab (6):
+      docs: dt: fix broken reference to phy-cadence-torrent.yaml
+      docs: dt: qcom,dwc3.txt: fix cross-reference for a converted file
+      docs: dt: fix a broken reference for a file converted to json
+      docs: dt: rockchip,dwc3.txt: fix a pointer to a renamed file
+      MAINTAINERS: dt: update display/allwinner file entry
+      MAINTAINERS: dt: fix pointers for ARM Integrator, Versatile and RealV=
+iew
+
+Michael Walle (1):
+      watchdog: sp805: fix restart handler
+
+Michael Wei=C3=9F (1):
+      l2tp: Allow management of tunnels and session in user namespace
+
+Moshe Shemesh (1):
+      net/mlx5: Fix frequent ioread PCI access during recovery
+
+Nilesh Javali (2):
+      scsi: qla2xxx: Fix regression warnings
+      scsi: MAINTAINERS: Update qla2xxx FC-SCSI driver maintainer
+
+Olaf Hering (1):
+      x86: hyperv: report value of misc_features
+
+Ondrej Mosnacek (1):
+      selinux: free str on error in str_read()
+
+Pablo Neira Ayuso (3):
+      netfilter: nf_tables: do not update stateful expressions if
+lookup is inverted
+      netfilter: nf_tables: report EOPNOTSUPP on unsupported flags/object t=
+ype
+      netfilter: nf_tables: reintroduce the NFT_SET_CONCAT flag
+
+Parav Pandit (2):
+      net/mlx5e: Fix pfnum in devlink port attribute
+      net/mlx5e: Fix devlink port netdev unregistration sequence
+
+Paul Blakey (2):
+      net: sched: Fix setting last executed chain on skb extension
+      net/mlx5e: CT: Use rhashtable's ct entries instead of a separate list
+
+Paul E. McKenney (1):
+      rcu: Don't acquire lock in NMI handler in rcu_nmi_enter_common()
+
+Pavel Begunkov (8):
+      io_uring: remove obsolete @mm_fault
+      io_uring: track mm through current->mm
+      io_uring: early submission req fail code
+      io_uring: keep all sqe->flags in req->flags
+      io_uring: move all request init code in one place
+      io_uring: fix cached_sq_head in io_timeout()
+      io_uring: kill already cached timeout.seq_offset
+      io_uring: don't count rqs failed after current one
+
+Peter Maydell (1):
+      scripts/kernel-doc: Add missing close-paren in c:function directives
+
+Peter Xu (1):
+      sched/isolation: Allow "isolcpus=3D" to skip unknown sub-parameters
+
+Prike Liang (1):
+      drm/amdgpu: fix the hw hang during perform system reboot and reset
+
+Qiujun Huang (1):
+      bpf: Fix a typo "inacitve" -> "inactive"
+
+Rafa=C5=82 Mi=C5=82ecki (1):
+      brcmfmac: add stub for monitor interface xmit
+
+Rajendra Nayak (1):
+      opp: Manage empty OPP tables with clk handle
+
+Randy Dunlap (1):
+      docs: networking: add full DIM API
+
+Reinette Chatre (1):
+      x86/resctrl: Fix invalid attempt at removing the default resource gro=
+up
+
+Ren=C3=A9 van Dorst (2):
+      net: dsa: mt7530: move mt7623 settings out off the mt7530
+      net: ethernet: mediatek: move mt7623 settings out off the mt7530
+
+Rob Herring (4):
+      dt-bindings: Fix dtc warnings on reg and ranges in examples
+      dt-bindings: hwmon: Fix incorrect $id paths
+      dt-bindings: interrupt-controller: Fix loongson,parent_int_map
+property schema
+      dt-bindings: pwm: Fix cros-ec-pwm example dtc 'reg' warning
+
+Roi Dayan (1):
+      net/mlx5e: Fix missing pedit action after ct clear action
+
+Roman Gushchin (1):
+      ext4: use non-movable memory for superblock readahead
+
+Roman Mashak (1):
+      tc-testing: remove duplicate code in tdc.py
+
+Ronnie Sahlberg (1):
+      cifs: dump the session id and keys also for SMB2 sessions
+
+Roy Spliet (1):
+      ALSA: hda: Explicitly permit using autosuspend if runtime PM is suppo=
+rted
+
+Russell King (2):
+      net: marvell10g: report firmware version
+      net: marvell10g: soft-reset the PHY when coming out of low power
+
+Sascha Hauer (1):
+      hwmon: (jc42) Fix name to have no illegal characters
+
+Sebastian Andrzej Siewior (1):
+      amd-xgbe: Use __napi_schedule() in BH context
+
+Sergei Lopatin (1):
+      drm/amd/powerplay: force the trim of the mclk dpm_levels if OD is ena=
+bled
+
+Shannon Nelson (4):
+      ionic: replay filters after fw upgrade
+      ionic: set station addr only if needed
+      ionic: add dynamic_debug header
+      ionic: fix unused assignment
+
+Slava Bacherikov (1):
+      kbuild, btf: Fix dependencies for DEBUG_INFO_BTF
+
+Stefan Haberland (1):
+      s390/dasd: remove IOSCHED_DEADLINE from DASD Kconfig
+
+Stefano Brivio (1):
+      netfilter: nft_set_rbtree: Drop spurious condition for overlap
+detection on insertion
+
+Steve French (1):
+      smb3: remove overly noisy debug line in signing errors
+
+Sumit Garg (1):
+      mac80211: fix race in ieee80211_register_hw()
+
+Taehee Yoo (2):
+      hsr: check protocol version in hsr_newlink()
+      net: macsec: fix using wrong structure in macsec_changelink()
+
+Takashi Iwai (11):
+      ALSA: usb-audio: Filter error from connector kctl ops, too
+      ALSA: usb-audio: Don't override ignore_ctl_error value from the map
+      ALSA: usb-audio: Don't create jack controls for PCM terminals
+      ALSA: usb-audio: Check mapping at creating connector controls, too
+      ALSA: hda: Don't release card at firmware loading error
+      ALSA: hda: Honor PM disablement in PM freeze and thaw_noirq ops
+      ALSA: hda: Release resources at error in delayed probe
+      ALSA: hda: Keep the controller initialization even if no codecs found
+      ALSA: hda: Skip controller resume if not needed
+      ALSA: hda: Allow setting preallocation again for x86
+      efi/cper: Use scnprintf() for avoiding potential buffer overflow
+
+Tamizh chelvam (1):
+      mac80211: fix channel switch trigger from unknown mesh peer
+
+Taras Chornyi (1):
+      net: ipv4: devinet: Fix crash when add/del multicast IP with autojoin
+
+Theodore Ts'o (2):
+      ext4: increase wait time needed before reuse of deleted inode numbers
+      ext4: convert BUG_ON's to WARN_ON's in mballoc.c
+
+Tianyu Lan (6):
+      x86/Hyper-V: Unload vmbus channel in hv panic callback
+      x86/Hyper-V: Free hv_panic_page when fail to register kmsg dump
+      x86/Hyper-V: Trigger crash enlightenment only once during system cras=
+h.
+      x86/Hyper-V: Report crash register data or kmsg before running
+crash kernel
+      x86/Hyper-V: Report crash register data when
+sysctl_record_panic_msg is not set
+      x86/Hyper-V: Report crash data in die() when panic_on_oops is set
+
+Tiezhu Yang (1):
+      scripts: documentation-file-ref-check: Add line break before exit
+
+Tim Stallard (2):
+      net: icmp6: do not select saddr from iif when route has prefsrc set
+      net: ipv6: do not consider routes via gateways for anycast address ch=
+eck
+
+Toke H=C3=B8iland-J=C3=B8rgensen (2):
+      libbpf: Fix type of old_fd in bpf_xdp_set_link_opts
+      selftests/bpf: Check for correct program attach/detach in xdp_attach =
+test
+
+Tommi Rantala (2):
+      blk-wbt: Use tracepoint_string() for wbt_step tracepoint string liter=
+als
+      blk-wbt: Drop needless newlines from tracepoint format strings
+
+Tony Luck (3):
+      x86/split_lock: Update to use X86_MATCH_INTEL_FAM6_MODEL()
+      x86/split_lock: Bits in IA32_CORE_CAPABILITIES are not architectural
+      x86/split_lock: Add Tremont family CPU models
+
+Trond Myklebust (1):
+      NFS: Fix an ABBA spinlock issue in pnfs_update_layout()
+
+Tuomas Tynkkynen (1):
+      mac80211_hwsim: Use kstrndup() in place of kasprintf()
+
+Tuong Lien (1):
+      tipc: fix incorrect increasing of link window
+
+Vasily Averin (1):
+      keys: Fix proc_keys_next to increase position index
+
+Vladimir Oltean (1):
+      net: mscc: ocelot: fix untagged packet drops when enslaving to
+vlan aware bridge
+
+Wang Wenhu (1):
+      net: qrtr: send msgs from local of same id as broadcast
+
+Wolfram Sang (2):
+      i2c: altera: use proper variable to hold errno
+      i2c: remove i2c_new_probed_device API
+
+Xiao Yang (1):
+      tracing: Fix the race between registering 'snapshot' event
+trigger and triggering 'snapshot' operation
+
+Xiaoguang Wang (1):
+      io_uring: restore req->work when canceling poll request
+
+Xu Wang (1):
+      ALSA: ctxfi: Remove unnecessary cast in kfree
+
+Yan Zhao (3):
+      drm/i915/gvt: hold reference of VFIO group during opening of vgpu
+      drm/i915/gvt: subsitute kvm_read/write_guest with vfio_dma_rw
+      drm/i915/gvt: switch to user vfio_group_pin/upin_pages
+
+YueHaibing (3):
+      hv_debugfs: Make hv_debug_root static
+      ath11k: fix compiler warnings without CONFIG_THERMAL
+      scsi: hisi_sas: Fix build error without SATA_HOST
+
+Zenghui Yu (1):
+      irqchip/mbigen: Free msi_desc on device teardown
+
+Zhiqiang Liu (2):
+      signal: check sig before setting info in kill_pid_usb_asyncio
+      signal: use kill_proc_info instead of kill_pid_info in kill_something=
+_info
+
+Zou Wei (1):
+      bpf: remove unneeded conversion to bool in __mark_reg_unknown
+
+afzal mohammed (1):
+      genirq: Remove setup_irq() and remove_irq()
+
+yangerkun (1):
+      ext4: use matching invalidatepage in ext4_writepage

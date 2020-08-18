@@ -1,0 +1,124 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp1109978lfj;
+        Wed, 5 Aug 2020 20:21:43 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwnyNGBl5L09YYSdRLjsfrdo6qp8xaE3TtAaOiLTOwLEBROQemMOfx5TpRFsu7rrDnHM1PA
+X-Received: by 2002:a17:906:9512:: with SMTP id u18mr851215ejx.207.1596684103046;
+        Wed, 05 Aug 2020 20:21:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596684103; cv=none;
+        d=google.com; s=arc-20160816;
+        b=s81CyyYff+Pf8RI0npHwdGHPoOQE90muDWMmGOysSkqTeDlT3QJQ5eN6Vbrvfp8w+9
+         ud7xI60ZHaUGHuEfjabtKEN/7A6ODbIpiQUSIBiIDYOFh78IyekA0cBkzomxaYIHz6qO
+         msJPFKynF9X+6KyKSemHniHsD0QANHxuK8quzEaYX4Bw2vuWzGPQYliUPxi4EskZE1om
+         jzEQnnfzV7nDFVageOfB++MbC76SiqtTAIXrHMA1N2UlXN2RVYFBDX/xihAgpJ2ebFCz
+         7a1DMeQS4OQi6paZjj5Y8RsA6HUjX3FHx+8kdTHdmTZMEsNvboe2DRl2Kmvxjk1XXUwm
+         x86g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :references:in-reply-to:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=Q/dLVTDgo6vDn50THw3QYrqxDzO3EHQdGs+epyJK/2A=;
+        b=K8u9QzHf+x5IMdnA79t1/0DJG3fwpYwaEMTIOP3vP/ad7icdYD4y9Mf94b/K8L6K90
+         jigLRjBOGERK32rWRyLDDSI2A5VIJjLq23cB+wJf+QHDX3SbbfG5RTI3Rj69HJbtf8gY
+         3Xyfv/sTGqNWbOjJI3DG6s1DlXP+cWjzC6fWI02uWoOLtZTfI/H7jStUebQ/NsZuMPma
+         T5Q6fSCR4GAGIqby4qhUavkj1DQ2P1l1LEj3WlKDBIj9I0+D3Nb0ROCOa7pf7SI+90Dd
+         VhRwfx1sqtGjLa50uIZtofVgEBQCGWYXH/lPcCH/ieH2q2SRWem+G1Y4e2ZKtKXEazVs
+         8zuA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@vfemail.net header.s=2018 header.b=WkKjeeRR;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id t18si2500381ejd.694.2020.08.05.20.21.16;
+        Wed, 05 Aug 2020 20:21:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@vfemail.net header.s=2018 header.b=WkKjeeRR;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1730237AbgHFDUs (ORCPT <rfc822;robby.willer@gmail.com>
+        + 99 others); Wed, 5 Aug 2020 23:20:48 -0400
+Received: from nl101-3.vfemail.net ([149.210.219.33]:30008 "EHLO
+        nl101-3.vfemail.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730228AbgHFDUs (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 5 Aug 2020 23:20:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=vfemail.net; h=date:from
+        :to:cc:subject:message-id:in-reply-to:references:mime-version
+        :content-type:content-transfer-encoding; s=2018; bh=Ue08wca4aM0I
+        SmyWal/liLfS8epsmUBIz5UxuAqlMdw=; b=WkKjeeRRzXXMuvvZ7LZy7tuRkHmJ
+        xnuXeUrmIDPlpQT8vqygaTkAIy85owyfpWtBJT7ufwuZ+UOzpNujxMT5hOy3dIhJ
+        dqDp/UBPWqvlCQwSUixUl2k5dtDXXnABZKIAaDUKhVQzeIN2TGSs3PYDisxdH4lL
+        imqJEI7J6fQ2/Ns=
+Received: (qmail 56125 invoked from network); 6 Aug 2020 03:20:47 -0000
+Received: by simscan 1.4.0 ppid: 56117, pid: 56122, t: 0.2011s
+         scanners:none
+Received: from unknown (HELO d3d3MTkyLnZmZW1haWwubmV0) (aGdudGt3aXNAdmZlbWFpbC5uZXQ=@MTkyLjE2OC4xLjE5Mg==)
+  by nl101.vfemail.net with ESMTPA; 6 Aug 2020 03:20:47 -0000
+Date:   Wed, 5 Aug 2020 23:20:38 -0400
+From:   David Niklas <Hgntkwis@vfemail.net>
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: Is anyone else getting a bad signature from kernel.org's 5.8
+ sources+Greg's sign?
+Message-ID: <20200805232038.7a1767cc@Phenom-II-x6.niklas.com>
+In-Reply-To: <5a943a1f-c5ef-937f-f67e-1c59c04d63fb@infradead.org>
+References: <20200805205924.1f646d45@Phenom-II-x6.niklas.com>
+        <5a943a1f-c5ef-937f-f67e-1c59c04d63fb@infradead.org>
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Wed, 5 Aug 2020 18:36:08 -0700
+Randy Dunlap <rdunlap@infradead.org> wrote:
+
+> On 8/5/20 5:59 PM, David Niklas wrote:
+> > Hello,
+> > I downloaded the kernel sources from kernel.org using curl, then
+> > opera, and finally lynx (to rule out an html parsing bug). I did the
+> > same with the sign and I keep getting:
+> > 
+> > %  gpg2 --verify linux-5.8.tar.sign linux-5.8.tar.xz
+> > gpg: Signature made Mon Aug  3 00:19:13 2020 EDT
+> > gpg:                using RSA key
+> > 647F28654894E3BD457199BE38DBBDC86092693E gpg: BAD signature from
+> > "Greg Kroah-Hartman <gregkh@linuxfoundation.org>" [unknown]
+> > 
+> > I did refresh all the keys just in case.
+> > I believe this is important so I'm addressing this to the signer and
+> > only CC'ing the list.
+> > 
+> > If I'm made some simple mistake, feel free to send SIG666 to my
+> > terminal. I did re-read the man page just in case.  
+> 
+> It works successfully for me.
+> 
+> 
+> from https://www.kernel.org/category/signatures.html::
+> 
+> 
+> If you get "BAD signature"
+> 
+> If at any time you see "BAD signature" output from "gpg2 --verify",
+> please first check the following first:
+> 
+>     Make sure that you are verifying the signature against the .tar
+> version of the archive, not the compressed (.tar.xz) version. Make sure
+> the the downloaded file is correct and not truncated or otherwise
+> corrupted.
+> 
+> If you repeatedly get the same "BAD signature" output, please email
+> helpdesk@kernel.org, so we can investigate the problem.
+> 
+> 
+> 
+
+Many thanks. I've never seen a signature done that way before, but I
+understand why you would do it that way.
+
+David

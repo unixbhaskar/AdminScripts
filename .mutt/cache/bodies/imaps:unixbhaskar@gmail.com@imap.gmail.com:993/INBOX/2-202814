@@ -1,0 +1,134 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1374492lfj;
+        Wed, 25 Sep 2019 17:02:59 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxdb51+Xwdmj2FEvzi4nLiphKpEBm4t0ZTVquMJkCPquczB09tJUCMZEJtNX3+60FYtSvyz
+X-Received: by 2002:a05:6402:a48:: with SMTP id bt8mr683131edb.298.1569456179621;
+        Wed, 25 Sep 2019 17:02:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569456179; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XxhgUZZDYsacAsdAT1ESLaIezi3uON430DQs9dE8eUKKsLlTwsvNMYE1GuYQsQUrwF
+         ymbD01qinP3sY9ZEWLyCEpNacWkdhHHOY4X/4r3hhzfM9n6H56A0Bdp+Fhs4qWDk8Wfm
+         s/QAonepeCY+pR2MVtoo1Coay0NtTA0LzglwHYQxiMM10cq6GxpFGS9R6bcglYGHkfbs
+         yKqPzYMRDi24xyl2mST3BYdBC9lnoVfRmgPK1pXpB2gh4rnfSdKJrKhlXZHQ8A03gevg
+         sUk8rlXaB5j5JUd7/aP9UUloue9oEpt/nbWvmILCJ0MCSKO4jao6kfHobL+ed7RwJvR9
+         sx1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=9rPInDrQugcHITDKVlAr25OdVNJWqsDyo3I0eQIcB8s=;
+        b=qJfP5unWQPq+vWE5Ib2807UqrwK/NoRXq4wAfmbpsgEJiteKfJhI/nU4PWm6iN066I
+         HXRIgiaTY1c4SVidnsfxvt5w+69Gz5j7mCOZoRBF8nEOpOGkqKnv4PMcmUGlP3Ku8Lpc
+         H2LTetu06zlgpZLeYzeoW/pPdAInNV/smzUZ5URmQ+GATfJtpeuZxQuYmBd72kugRkCG
+         HoKj5xeb7xXkgRA33eQgZqyO7R2qVzmYSHDTMrWXJEKNrwjjxr0ltXK6A0ZjRQkKFbIt
+         T8yMR8I9gUA7I1bQoHD9RSoCgsIoJalKFdosH5uaKln+l5YUlQOLLUY5+/9hsbzuwceG
+         M6YQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=QRQw9OiP;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id p20si180559ejg.30.2019.09.25.17.02.34;
+        Wed, 25 Sep 2019 17:02:59 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=QRQw9OiP;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2390598AbfIWVft (ORCPT <rfc822;tavery321@gmail.com> + 99 others);
+        Mon, 23 Sep 2019 17:35:49 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:41649 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729120AbfIWVfs (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 23 Sep 2019 17:35:48 -0400
+Received: by mail-lj1-f194.google.com with SMTP id f5so15205022ljg.8
+        for <linux-kernel@vger.kernel.org>; Mon, 23 Sep 2019 14:35:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9rPInDrQugcHITDKVlAr25OdVNJWqsDyo3I0eQIcB8s=;
+        b=QRQw9OiPKf3NL4+42cCQt9hdrKOKSwqrn7y+nD4tFRTZhdtc1rRPQE3KLj7T0ud8Nb
+         O4lyuCLSC6h7R9V0+6rlQYTgkDuHSM2x3HgaHrXIDvJa8n/IcSMtLHWVemU5M7jQVfQ1
+         K7zBB1/KHELfhnbpTOVxgWweyzfVmmjNrhRtE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9rPInDrQugcHITDKVlAr25OdVNJWqsDyo3I0eQIcB8s=;
+        b=mTrVzjak7RxGJTr8L+OSvmkyzwyPdEwdd2+fw75GMmyz5o2AeUeEthx7UbHhXc6/J8
+         W7Va+bcCCj0MLS25d+s9dFJlmUwDNGakq+eLxVh/civ9Oerz99KSkBfkCq0EsVVUXI7s
+         dF4IYjl/KMAQAbtov6vdKQXE4LN7fxtdq4d7HI41P8ZxiY3XRv2ytaPLcpVVfWBgX3el
+         2aTpJ3MyZSYDp+j4nJr1ODAg79wNFPTyby5Un6gvPMoCl/LL16WP3ujHRLKX4Dc1xIsu
+         zwTuISSsCL/8g3HVluhSFdI71QGw/GCH7OKbfn6TWsBKV/+WPZwhtn+aT2GekL/Pga8f
+         eu+A==
+X-Gm-Message-State: APjAAAWOSo3QATPpX51KOTkVwSVPYYhEv5liY9a7excQ0GwqvgC7FGSo
+        qRrA+Qly5mURuvJzToSiLfawwyXSvr4=
+X-Received: by 2002:a2e:761a:: with SMTP id r26mr824152ljc.137.1569274546195;
+        Mon, 23 Sep 2019 14:35:46 -0700 (PDT)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
+        by smtp.gmail.com with ESMTPSA id c4sm2472738lfm.4.2019.09.23.14.35.45
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Sep 2019 14:35:45 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id m13so15138887ljj.11
+        for <linux-kernel@vger.kernel.org>; Mon, 23 Sep 2019 14:35:45 -0700 (PDT)
+X-Received: by 2002:a2e:3015:: with SMTP id w21mr814171ljw.165.1569274544776;
+ Mon, 23 Sep 2019 14:35:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <745ac819-f2ae-4525-1855-535daf783638@schaufler-ca.com>
+In-Reply-To: <745ac819-f2ae-4525-1855-535daf783638@schaufler-ca.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Mon, 23 Sep 2019 14:35:28 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wg1zkUTdnx5pNVOf=uuSJiEywNiztQe4oRiPb1pfA399w@mail.gmail.com>
+Message-ID: <CAHk-=wg1zkUTdnx5pNVOf=uuSJiEywNiztQe4oRiPb1pfA399w@mail.gmail.com>
+Subject: Re: [GIT PULL] Smack patches for v5.4 - retry
+To:     Casey Schaufler <casey@schaufler-ca.com>
+Cc:     Linux Security Module list 
+        <linux-security-module@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Sep 23, 2019 at 1:14 PM Casey Schaufler <casey@schaufler-ca.com> wrote:
+>
+> Thank for the instruction. I think this is correct.
+
+Looks fine, pulled.
+
+That said, when I look closer:
+
+> Jia-Ju Bai (1):
+>       security: smack: Fix possible null-pointer dereferences in smack_socket_sock_rcv_skb()
+
+This one seems wrong.
+
+Not seriously so, but the quoting the logic from the commit:
+
+    In smack_socket_sock_rcv_skb(), there is an if statement
+    on line 3920 to check whether skb is NULL:
+
+        if (skb && skb->secmark != 0)
+
+    This check indicates skb can be NULL in some cases.
+
+and the fact is, skb _cannot_ be NULL, because when you test the
+security of receiving an skb, you by definition always have an skb.
+
+There is one single place that calls security_sock_rcv_skb(), and it
+very much has a real skb.
+
+So instead of adding a _new_ test for skb being NULL, the old test for
+a NULL skb should just have been removed. It really doesn't make any
+sense to have a NULL skb in that path - if some memory allocation had
+failed on the receive path, that just means that the receive is never
+done, it doesn't mean that you'd test a NULL skb for security policy
+violations.
+
+Anyway, it's pulled, but I think somebody should have checked and
+thought about the automated tool reports a bit more..
+
+               Linus

@@ -1,0 +1,261 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:4c88:0:0:0:0:0 with SMTP id z130csp3921206lfa;
+        Tue, 31 Mar 2020 08:25:36 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vucEfXKILq0ZEBZFpTpQopsQzbHRKfWv4/pZSsfTjuVU8iYAlvN1tg9CWiKCTuJ7CjlyCuq
+X-Received: by 2002:a17:906:2443:: with SMTP id a3mr15290558ejb.291.1585668335986;
+        Tue, 31 Mar 2020 08:25:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585668335; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ih9CgmHAbaWD3NURoNZJhfc9owTQGmWjh/zSj/LLA0pJhnYZBgUvlbVk4UHVn2CuKn
+         pXRqkGS4YRcDRKhROz1NfWG0klVEmJog9AtxB2BlCKy+KZwu0KgaHWejupFLodrTEp/w
+         nTiU6ojmutxjoAyXIB+/fkTs5c64vrkCqLDbYm4TKZm8gBRKpOavMuU9/dI/uO861heP
+         4Sk2pth6tKIo0RaWasMgCzA/86J926YYhwOC9xAh6w/fJLk9dBef7qkr2BwJtGHbRGJr
+         6kAdiHnmp4VWE6ibiCfyIvD9TBrRJP5aPe68gULpyn/VYrLRfHObRUaPktMICxMzCixE
+         vihg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:list-unsubscribe:feedback-id:precedence:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=3ZM/co6oU5fDKbxbSt5sIz2ObxftmYubcP97pnCPVvY=;
+        b=r1nsoJqdnW30NEDb0WlEazXuHp3rb8d1olXNuny1EUui4/hULSZIOWMcQW9OUcOJr/
+         ISn5H0rAmv2vM60sNj6fPSDXCBD7D0tgB01WVuqH+9fAiygXSXUKbZmZkaQcyZ/hxOMw
+         QxAAwlIKHK72qlcT8QLEhFkJvU+CQaBf77gerHH1qZxOmQzl8FPVfIp+vPzZefgU6iyq
+         jEFXM9tvvprCWtmjuj9R7rFd86IxKE9dbnjoQ6fvx9PXY44Z4cDz41pWvHrJukeCo2Fp
+         ahDtHk2K8aHM18PJITD8LLkAbGPFqn/rzRs8H5MFL0xA7KqYOKll5lUZ+1eJJsq7MBCq
+         r6kQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=H86W4VMp;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=hywnRKnf;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 168.245.93.138 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+Return-Path: <bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com>
+Received: from o10.ck.n.convertkit.com (o10.ck.n.convertkit.com. [168.245.93.138])
+        by mx.google.com with ESMTPS id dk12si10873939edb.554.2020.03.31.08.25.35
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Mar 2020 08:25:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 168.245.93.138 as permitted sender) client-ip=168.245.93.138;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=H86W4VMp;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=hywnRKnf;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 168.245.93.138 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=n.convertkit.com;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=s1; bh=3ZM/co6oU5fDKbxbSt5sIz2ObxftmYubcP97pnCPVvY=;
+	b=H86W4VMpUrZxBzI1Btal0O1tfZ+6T3aPzWYOv11Lmd5gWy+Shle6PGsF3C43uBcaGYcZ
+	sbH7mVFwMZV0QuNsu3MIKMAq+qMlbwOn798PDwTiyeVdkDSIqssG45nwFGy5+D1VUw5pXy
+	u5us2yIGAwaNjYcZ+yJsgzJC/jhChDo6Q=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=smtpapi; bh=3ZM/co6oU5fDKbxbSt5sIz2ObxftmYubcP97pnCPVvY=;
+	b=hywnRKnfNViqfk/e81DenDDooFjzjiXr47L9Eh3Vgc7nPwCXy1pJDITN+yuIwCui3vGf
+	EGl2ywdhyAhHD/Zi3gfXHnBp94b012PYgsuAoLj4CDU47Mvkykdm2qbfV14T7PxR176rem
+	CNyMpBWhMz4BAPPvgL+sMj+CvFK7ERfEg=
+Received: by filterdrecv-p3mdw1-6dbfd75bfd-s4r2z with SMTP id filterdrecv-p3mdw1-6dbfd75bfd-s4r2z-18-5E8360ED-3F
+        2020-03-31 15:25:33.734380638 +0000 UTC m=+483489.714893645
+Received: from ODc1MTQ5Mw (unknown)
+	by ismtpd0090p1mdw1.sendgrid.net (SG)
+	with HTTP
+	id zmDI7EBTT3qpuunCLrHwYw
+	Tue, 31 Mar 2020 15:25:33.734 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=8b855c0f4e84444edb32f2e0147ead1e65192404c5d963277ef78d64fadb
+Date: Tue, 31 Mar 2020 15:25:33 +0000 (UTC)
+From: Jovica <contact@jovicailic.org>
+Mime-Version: 1.0
+Message-ID: <wvu869rlgva6u34zl2h7@convertkit-mail.com>
+Subject: Mastering Vim Quickly #33
+Precedence: bulk
+Feedback-ID: 1714122:35692:emailtemplate:CK
+List-Unsubscribe: <https://el2.convertkit-mail.com/u/wvu869rlgva6u34zl2h7>
+X-Report-Spam: <abuse@convertkit.com>
+X-Report-Abuse: <abuse@convertkit.com>
+X-Feedback-ID: 8751493:SG
+X-SG-EID: 
+ =?us-ascii?Q?Z9YfueylEVxjF1sQk2=2Fm3hKaryiKObExs9bv2OnpmyOMnYytH=2FVZZIu+ZraDDs?=
+ =?us-ascii?Q?hn3FKIJFLMYch7V9FxPHe9XtI9bfFTdFUidUAm2?=
+ =?us-ascii?Q?8ZTp9+YkuGOZNBKBILRANOPXHdyKrQZ5V59enDE?=
+ =?us-ascii?Q?CZ97rbVBujcePKjz30UQ9dHcSqMOttTdB12qAEf?=
+ =?us-ascii?Q?cGkqB1wmHmfxXjQUIKBAd035aKaz8jFft7Mhh2l?=
+ =?us-ascii?Q?GLiPOYYVeKjMEQOvjbTc00unHmCG=2F4KIyDXSbZ?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FJuvNbq56rw8btU4e1FM1?=
+ =?us-ascii?Q?OTbCPkIYJUnoA7EYapFbML7b=2FRoGLz+ZikuqS=2FG?=
+ =?us-ascii?Q?zZskmuzS4Z5AvcHxwa8tIV=2FjsLBxkPfqP0qFBG3?=
+ =?us-ascii?Q?=2FUeJuxni=2FABD3nfcX2tctQ9NaoUXP04E8s+53JE?=
+ =?us-ascii?Q?ADsX+nyYnc5d5c8vyRgpm4tZL4J7GZlQsx77dzd?=
+ =?us-ascii?Q?aH2Yef6Wwrc0Bsltt6MA6Q4LcqYI71H6JcbzTXs?=
+ =?us-ascii?Q?YYOHgxD6qqCZIK6WkJMiy9yAeVqmgafEUjP9uvU?=
+ =?us-ascii?Q?9NchMS7hayNnqfk02fxL3wM9LdtTHuRGii7XsUS?=
+ =?us-ascii?Q?jq2yjpyWbfFbo6jK+X+wO8wjfd667DmNm+TyueG?=
+ =?us-ascii?Q?XqHk=2FumwLe?=
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+
+--8b855c0f4e84444edb32f2e0147ead1e65192404c5d963277ef78d64fadb
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0
+
+<br>  Hello Bhaskar Chowdhury,<br>
+
+Imagine you work in a big distributed team.
+There's a huge codebase.
+
+Sometimes you get stuck, with a piece of code that you don't
+quite understand.
+
+You'd like to ask someone in your team to help you.
+But who would be the right person to ask?
+
+Here's one idea.
+The following line in your .vimrc file:
+
+map :!git shortlog -s -n %
+
+would let you perform the "git shortlog" analysis on Vim's
+current opened file (in this case, mapped to F2).
+The output is a list of every git user that changed the file,
+sorted by the commit count.
+
+Btw, git shortlog is a nice way to summarize the git log output
+(more info: https://git-scm.com/docs/git-shortlog (
+https://el2.convertkit-mail.com/c/wvu869rlgva6u34zl2h7/08hwh9hv9287k/aHR0cH=
+M6Ly9naXQtc2NtLmNvbS9kb2NzL2dpdC1zaG9ydGxvZw=3D=3D )).
+Thanks Davi Marcondes Moreira for sharing this idea!
+
+Cheers,
+Jovica
+
+---
+
+P.S.
+Some of my best readers come from people just like you
+Bhaskar Chowdhury. People who are kind and
+helpful and with whom we could share a coffee/beer/etc.
+
+I would love to have a few more people join us on this MVQ
+journey.
+It would really be nice if you could tell just one friend about
+this newsletter.
+E-mail works best - so if you can, please send an e-mail one
+friend or colleague of yours.
+
+Here's a sample text you can use:
+
+---
+Hey,
+
+You might like this newsletter on Vim: https://masteringvim.com,
+( https://el2.convertkit-mail.com/c/wvu869rlgva6u34zl2h7/4zuvhehvpmo05/aHR0=
+cHM6Ly9tYXN0ZXJpbmd2aW0uY29t )It's pretty cool, and it gets
+published every week, by the author of Mastering Vim Quickly (
+https://el2.convertkit-mail.com/c/wvu869rlgva6u34zl2h7/78i7h8hq69g07/aHR0cH=
+M6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHkv ) book.
+
+Cheers!
+---
+
+Unsubscribe ( https://el2.convertkit-mail.com/u/wvu869rlgva6u34zl2h7 ) |
+Update your profile ( https://preferences.convertkit-mail.com/wvu869rlgva6u=
+34zl2h7 ) |
+113 Cherry St #92768, Seattle, WA 98104-2205
+--8b855c0f4e84444edb32f2e0147ead1e65192404c5d963277ef78d64fadb
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=us-ascii
+Mime-Version: 1.0
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+</head>
+<body>
+<div class=3D"message-content" style=3D"max-width:600px">
+<p style=3D"margin-bottom:1em"><br>  Hello Bhaskar Chowdhury,<br><br>
+</p>
+<p style=3D"margin-bottom:1em">Imagine you work in a big distributed team. =
+<br>There's a  huge codebase.
+</p>
+<p style=3D"margin-bottom:1em">Sometimes you get stuck, with a piece of cod=
+e that you don't quite understand.
+</p>
+<p style=3D"margin-bottom:1em">You'd like to ask someone in your team to he=
+lp you. <br>But who would be the right person to ask?
+</p>
+<p style=3D"margin-bottom:1em">Here's one idea.<br>The following line in yo=
+ur .vimrc file:
+</p>
+<p style=3D"margin-bottom:1em"><strong>map &lt;F2&gt; :!git shortlog -s -n =
+%&lt;cr&gt;
+	</strong>
+</p>
+<p style=3D"margin-bottom:1em">would let you perform the "git <span class=
+=3D"il">shortlog"</span> analysis on Vim's current opened file (in this cas=
+e, mapped to F2). <br>The output is a list of every <em>git</em> user that =
+changed the file, sorted by the commit count.<br>
+</p>
+<p style=3D"margin-bottom:1em">Btw, <em>git </em><span class=3D"m_-56513793=
+63233139314gmail-gr_ m_-5651379363233139314gmail-gr_792 m_-5651379363233139=
+314gmail-gr-alert m_-5651379363233139314gmail-gr_spell m_-56513793632331393=
+14gmail-gr_inline_cards m_-5651379363233139314gmail-gr_disable_anim_appear =
+m_-5651379363233139314gmail-ContextualSpelling"><span class=3D"il"><em>shor=
+tlog</em></span></span> is a nice way to summarize the <em>git log</em> out=
+put (more info: <a href=3D"https://el2.convertkit-mail.com/c/wvu869rlgva6u3=
+4zl2h7/08hwh9hv9287k/aHR0cHM6Ly9naXQtc2NtLmNvbS9kb2NzL2dpdC1zaG9ydGxvZw=3D=
+=3D" target=3D"_blank" style=3D"color: rgb(17, 85, 204);font-family: Arial,=
+ Helvetica, sans-serif;font-size: small;font-style: normal;font-weight: 400=
+;letter-spacing: normal;text-align: start;text-indent: 0px;white-space: nor=
+mal;background-color: rgb(255, 255, 255);" rel=3D"color: rgb(17, 85, 204);f=
+ont-family: Arial, Helvetica, sans-serif;font-size: small;font-style: norma=
+l;font-weight: 400;letter-spacing: normal;text-align: start;text-indent: 0p=
+x;white-space: normal;background-color: rgb(255, 255, 255);">https://git-sc=
+m.com/docs/git-<span class=3D"il">shortlog</span></a>).<br>Thanks Davi Marc=
+ondes Moreira<span class=3D"redactor-invisible-space"> for sharing this ide=
+a!</span>
+</p>
+<p style=3D"margin-bottom:1em">Cheers,<br>Jovica
+</p>
+<p style=3D"margin-bottom:1em">---
+</p>
+<p style=3D"margin-bottom:1em">P.S. <br>Some of my best readers come from p=
+eople just like you Bhaskar Chowdhury. People who are kind and helpful and =
+with whom we could share a coffee/beer/etc. <br>
+</p>
+<p style=3D"margin-bottom:1em">I would love to have a few more people join =
+us on this MVQ journey.
+It would really be nice if you could tell just one friend about this newsle=
+tter.
+E-mail works best - so if you can, please send an e-mail one friend or coll=
+eague of yours.
+</p>
+<p style=3D"margin-bottom:1em">Here's a sample text you can use:
+</p>
+<p style=3D"margin-bottom:1em">---<br>Hey,
+</p>
+<p style=3D"margin-bottom:1em">You might like this newsletter on Vim: <a hr=
+ef=3D"https://el2.convertkit-mail.com/c/wvu869rlgva6u34zl2h7/4zuvhehvpmo05/=
+aHR0cHM6Ly9tYXN0ZXJpbmd2aW0uY29t">https://masteringvim.com,<br></a>It's pre=
+tty cool, and it gets published every week, by the author of <a href=3D"htt=
+ps://el2.convertkit-mail.com/c/wvu869rlgva6u34zl2h7/78i7h8hq69g07/aHR0cHM6L=
+y9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHkv">Mastering Vim Quickly<=
+/a> book.
+</p>
+<p style=3D"margin-bottom:1em">Cheers!<br>---
+</p>
+<br>
+<br>
+<small>
+<a href=3D'https://el2.convertkit-mail.com/u/wvu869rlgva6u34zl2h7'>Unsubscr=
+ibe</a> | <a href=3D'https://preferences.convertkit-mail.com/wvu869rlgva6u3=
+4zl2h7'>Update your profile</a> | 113 Cherry St #92768, Seattle, WA 98104-2=
+205
+<br>
+</small>
+</div>
+
+<!-- -->
+  <img src=3D"https://el2.convertkit-mail.com/o/wvu869rlgva6u34zl2h7" alt=
+=3D"">
+</body>
+</html>
+
+--8b855c0f4e84444edb32f2e0147ead1e65192404c5d963277ef78d64fadb--

@@ -1,0 +1,188 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5999:0:0:0:0:0 with SMTP id w25csp1839581lfn;
+        Tue, 25 Feb 2020 08:26:49 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwg2p+V0SQeLi42BZI+gFFRTBRtKSAbif3yPJzL3wA73h+UPFrXAXerq0RqaUxkEp1h5Vte
+X-Received: by 2002:a05:6402:b3a:: with SMTP id bo26mr51195882edb.242.1582648009717;
+        Tue, 25 Feb 2020 08:26:49 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1582648009; cv=none;
+        d=google.com; s=arc-20160816;
+        b=v6/9uzfx1yZrM3+GiNyemM3IO3B0keXkJihT9I4J7Ji0bpfDsIwVoXUlkysf37w2t1
+         JGB+TVERBwYR7DLj0X+9mGTclYnAHOclnHZ56cRDukW4rolV+QdH37HtrVERza5aluLS
+         OCydZmmEcTGGrlSE7sFkUNNPpWgkhE65vNCFJpm/nfbUFzc1rPAZZsokcGc+Nw/0SeSB
+         jqoyRECO/dbPEcGRIJP3MikQwVzcgK2DkmDiGdqAML6zw8Ly5JJF+cUZGn1a0L8BRE2u
+         1i7n/PWzEhQTxTXUAa5sNqElYvHkcCQIscDu6L69UzRfu+yRcz+SDIMM40QoKh9nTkR0
+         e7Gg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:feedback-id:precedence:list-unsubscribe:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=7q+NPgIYJsAietAPJc+1VAo5zqeilrALb8yiAul692A=;
+        b=ZFUEcXS9WyQR8iFqSzT9iKwOupkeVU2phgBvNXbXs/0IbVq+RubB//Hn81Fjk/TL5j
+         KCrGGZrpbLKdnM8bI06yuTcu/Ydk648u0Lu52nmuBjQxJGPenKVR4vX7KgtxqEh4Ygdy
+         /4uUZWb2YCeIeDu1CSkdBt9z86Sqo+7fGGFMGjPARugBqRBwPGiPDNUpGLJ77QRIh13M
+         PQKqE6SI5N3LFHlQ0zvQ3LJoo7G/Qasjikwt7r77M5Bn6nc9IJAxc18+MStVc7CMzxVd
+         U70e3k443IXHYTWM2pCOkMtZ5WIh0xz9585HkvKKEdAlNST0Fw3J78MVEcJLHjAWViE7
+         xlIw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=F19kqnmg;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=RD9h0DQ3;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.80.39 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+Return-Path: <bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com>
+Received: from o9.ck.n.convertkit.com (o9.ck.n.convertkit.com. [167.89.80.39])
+        by mx.google.com with ESMTPS id u26si9721759edq.502.2020.02.25.08.26.49
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 25 Feb 2020 08:26:49 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.80.39 as permitted sender) client-ip=167.89.80.39;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=F19kqnmg;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=RD9h0DQ3;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.80.39 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=n.convertkit.com;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=s1; bh=7q+NPgIYJsAietAPJc+1VAo5zqeilrALb8yiAul692A=;
+	b=F19kqnmgbvG3cTM1PR9fAoDt7GggfO0L+XpKdYwUVRvlrq3I7DBCqwgqW79Bh9lcwYAj
+	OKWpMoXv1z9lmpYGH24o6da3k5zurhY/eKqH729dhwQ84fNn2KlRsRpXFDo69kXCAPG0Oj
+	LMC/pzPfjR/ltI2uSwjry2BYPy7gI84C8=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=smtpapi; bh=7q+NPgIYJsAietAPJc+1VAo5zqeilrALb8yiAul692A=;
+	b=RD9h0DQ3xlxRH/MxpPprXfgvrf/9ZmmuDnryXOuBVps4TVi3Fy6XLQ2JpYR5bx5nBMDN
+	3ohxd82ir+mEyQLHkteDkp7Bbo09sFtbo2Od1O2zotptz2t+J3J/zwXhfCeMabCMrWrtZZ
+	gTEAzug2wXR/fDstswsBM+T7AhwuvR9Oo=
+Received: by filterdrecv-p3las1-9564bb6d7-748rj with SMTP id filterdrecv-p3las1-9564bb6d7-748rj-19-5E554AC7-B3
+        2020-02-25 16:26:47.910340788 +0000 UTC m=+1633459.892879130
+Received: from ODc1MTQ5Mw (unknown [18.220.10.221])
+	by ismtpd0007p1iad2.sendgrid.net (SG) with HTTP id b0L2D4KiS5Oy2OSZdzHRlg
+	Tue, 25 Feb 2020 16:26:47.754 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=1188916a46678b1903a4b3aaf7e2ff5697b0f9de8d0b918140c161774652
+Date: Tue, 25 Feb 2020 16:26:48 +0000 (UTC)
+From: Jovica <contact@jovicailic.org>
+Mime-Version: 1.0
+Message-ID: <4zuqzmrokwu7uqolp4tx@convertkit-mail.com>
+Subject: Mastering Vim Quickly #28
+List-Unsubscribe: <https://el2.convertkit-mail.com/u/4zuqzmrokwu7uqolp4tx>
+X-Report-Spam: <abuse@convertkit.com>
+X-Report-Abuse: <abuse@convertkit.com>
+Precedence: bulk
+Feedback-ID: 1653763:35692:emailtemplate:CK
+X-Feedback-ID: 8751493:SG
+X-SG-EID: 
+ =?us-ascii?Q?Z9YfueylEVxjF1sQk2=2Fm3hKaryiKObExs9bv2OnpmyOMnYytH=2FVZZIu+ZraDDs?=
+ =?us-ascii?Q?hn3FKIJFLMYch7V9FxPHe9Xi6fetb7uaHIFS+XH?=
+ =?us-ascii?Q?QwSpO=2F323a5wXQF8cbpgmW5C8Yh6bRJvvsT0u9v?=
+ =?us-ascii?Q?1gbOfUumOtUi9haWRVBhy6RECax8GKsYxu+MI5l?=
+ =?us-ascii?Q?As24D9=2FmmlNpSYVWHyB48KM5jVoy4=2F1OmwYYxVQ?=
+ =?us-ascii?Q?U75K4i9qqlo5Iaf1SWH5Ev7ZcyOFN4yHq0xVwM?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FJuvNbq56rw8btU4e1FM1?=
+ =?us-ascii?Q?OTbCPkIYJUnoA7EYapFbML7VYV9wQyIUOlAzCQT?=
+ =?us-ascii?Q?Ybw2lpsL15p19WJVgPiGNdnt1c7=2FpU77BFGatNU?=
+ =?us-ascii?Q?AO=2F8EjRzOjSqraNO7KBkvb=2FrOoEQhj90HMQkHFt?=
+ =?us-ascii?Q?oA0Y+k0AruIldiU+YKISx2uSpqDpudPCJmruohR?=
+ =?us-ascii?Q?FFLeMM5ldxSidoQLB07CIwVEudji=2FdvR+vJqZ9e?=
+ =?us-ascii?Q?CRdnCz+MzJlUSh53sDWNqiwHR+ZvgmhEz3pTZfR?=
+ =?us-ascii?Q?J2n3X84X5bS4FmnXmVTMojVGDKJy3CfMN228mo8?=
+ =?us-ascii?Q?Bgjgm23F2Ie6oI7DXQWezRC7KK7zftUKve1puUE?=
+ =?us-ascii?Q?WvZjB6DWNN?=
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+
+--1188916a46678b1903a4b3aaf7e2ff5697b0f9de8d0b918140c161774652
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0
+
+<br>Hello Bhaskar Chowdhury,<br>
+
+I've got many tips to my inbox after the last email.
+For today, I picked only one which you might find interesting.
+It's a tip by Eivar ( https://el2.convertkit-mail.com/c/4zuqzmrokwu7uqolp4t=
+x/48hvhehrr0o40/aHR0cHM6Ly90d2l0dGVyLmNvbS9laXZhcg=3D=3D ).
+
+He loves vim-plug plugin manager, because (among other features)
+it has the ability to activate plugins on demand.
+
+First, you would need to install the plugin:
+https://github.com/junegunn/vim-plug (
+https://el2.convertkit-mail.com/c/4zuqzmrokwu7uqolp4tx/mvu7h5h88ord2/aHR0cH=
+M6Ly9naXRodWIuY29tL2p1bmVndW5uL3ZpbS1wbHVn )
+
+Then, in your .vimrc you can load your plugins on-demand, like:
+
+call plug#begin('~/.vim/vimplug')
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+call plug#end()
+This way you can keep loaded plugins to the minimum, loading only
+what you need for the actual project of yours.
+
+Cheers,
+Jovica
+
+P.S. People are sending me pictures of my book from all around
+the world, it's so great :) =3D> MVQ on Twitter (
+https://el2.convertkit-mail.com/c/4zuqzmrokwu7uqolp4tx/o2ikhqhrr4z2d/aHR0cH=
+M6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHktb24tdHdpdHRlci8=3D )
+
+Unsubscribe ( https://el2.convertkit-mail.com/u/4zuqzmrokwu7uqolp4tx ) |
+Update your profile ( https://el2.convertkit-mail.com/preferences/4zuqzmrok=
+wu7uqolp4tx ) |
+113 Cherry St #92768, Seattle, WA 98104-2205
+--1188916a46678b1903a4b3aaf7e2ff5697b0f9de8d0b918140c161774652
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=us-ascii
+Mime-Version: 1.0
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+</head>
+<body>
+<div class=3D"message-content" style=3D"max-width:600px">
+<p style=3D"margin-bottom:1em"><br>Hello Bhaskar Chowdhury,<br></p>
+<p style=3D"margin-bottom:1em">I've got many tips to my inbox after the las=
+t email. <br>For today, I picked only one which you might find interesting.=
+ It's a tip by <a href=3D"https://el2.convertkit-mail.com/c/4zuqzmrokwu7uqo=
+lp4tx/48hvhehrr0o40/aHR0cHM6Ly90d2l0dGVyLmNvbS9laXZhcg=3D=3D" target=3D"_bl=
+ank">Eivar</a>.</p>
+<p style=3D"margin-bottom:1em">He loves <em>vim-plug</em> plugin manager, b=
+ecause (among other features) it has the ability to activate plugins on dem=
+and.</p>
+<p style=3D"margin-bottom:1em">First, you would need to install the plugin:=
+ <a href=3D"https://el2.convertkit-mail.com/c/4zuqzmrokwu7uqolp4tx/mvu7h5h8=
+8ord2/aHR0cHM6Ly9naXRodWIuY29tL2p1bmVndW5uL3ZpbS1wbHVn">https://github.com/=
+junegunn/vim-plug</a></p>
+<p style=3D"margin-bottom:1em">Then, in your .vimrc you can load your plugi=
+ns on-demand, like:</p>
+<pre>call plug#begin('~/.vim/vimplug')
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+call plug#end()</pre>
+<p style=3D"margin-bottom:1em">This way you can keep loaded plugins to the =
+minimum, loading only what you need for the actual project of yours.</p>
+<p style=3D"margin-bottom:1em">Cheers,<br>Jovica</p>
+<p style=3D"margin-bottom:1em">P.S. People are sending me pictures of my bo=
+ok from all around the world, it's so great :) =3D&gt; <a href=3D"https://e=
+l2.convertkit-mail.com/c/4zuqzmrokwu7uqolp4tx/o2ikhqhrr4z2d/aHR0cHM6Ly9qb3Z=
+pY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHktb24tdHdpdHRlci8=3D" target=3D"=
+_blank">MVQ on Twitter</a></p>
+<br>
+<br>
+<small>
+<a href=3D'https://el2.convertkit-mail.com/u/4zuqzmrokwu7uqolp4tx'>Unsubscr=
+ibe</a> | <a href=3D'https://el2.convertkit-mail.com/preferences/4zuqzmrokw=
+u7uqolp4tx'>Update your profile</a> | 113 Cherry St #92768, Seattle, WA 981=
+04-2205
+<br>
+</small>
+</div>
+
+<!-- -->
+  <img src=3D"https://el2.convertkit-mail.com/o/4zuqzmrokwu7uqolp4tx" alt=
+=3D"">
+</body>
+</html>
+
+--1188916a46678b1903a4b3aaf7e2ff5697b0f9de8d0b918140c161774652--

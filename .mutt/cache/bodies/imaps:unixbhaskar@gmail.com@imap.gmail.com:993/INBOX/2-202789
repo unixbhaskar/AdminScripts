@@ -1,0 +1,120 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1325555lfj;
+        Wed, 25 Sep 2019 16:08:31 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyCv5nnrhxn6yw9fQyDNsGnwuNfgdjz5rASrHMkqHxvQroXcfUTMC4jU4xA1zoNsYszKy+P
+X-Received: by 2002:a50:ac0d:: with SMTP id v13mr456530edc.189.1569452911479;
+        Wed, 25 Sep 2019 16:08:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569452911; cv=none;
+        d=google.com; s=arc-20160816;
+        b=CN9MVa2J2JYC37aVmmH7HBGvIEG9fVqruLOz7P9R90chBCQ258PUvWDWMAVUvsLL/B
+         fqHH9sDWltv+LTZXZbuv53BqGBQzMWdSsGKie7QEqP7XE6n7tEmqVMYFC1dOHB2LtPMF
+         Q3hOHyIU6UaXJG5YTfP4CKxBy1Cly8CfLuuAz36UxaM3PnQKNGXbudW9JDVc0+ZOK8XI
+         B+w7aYsXhZBOP8vwGLMs10LGcUzLf1pKALOxY+5wtdasIyBo225+0hVgtJKQ68xeY7lJ
+         tCzCfwGkk4ZhnaIADK+/3B5oNNQ7kDMoCIkx9JMjbJbuQBzts2jBB2JpxA63rfxxCV7f
+         5i6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=vrRLQn3RzqvLOL/i6mhPpJ10+RmKd1euOe+YMl2OYp0=;
+        b=kthHJo360lHPTCvtEwu2iIcLjpW7PzKM49+mA1RVNWo2HsLySvGgp9GVVGw/EkpWTo
+         a0ht0XEjto/xYYCWtw+TmspTB3fCOPvKJwY+jQH83fwq8l2szP7vuFBQaIAf7c6yQgQF
+         6VBrIcFyiGOXAN9quQuWvzwPBSiHZNJV9u5nxXRXJVIuF+S7v4rq49ww/151KTAHwctA
+         jvDAfI1eAZntOYVRkKyTZx+7Np9s52iP1IAZfWTXYXJlTjQeBTP5YLLc1LXZ94pkuvKY
+         aSQyd2bKn7RoqJwD9iJ+WKGe8BUDwwdBkYOffS3xCsv0Ml0k5Ij/iqDC+uHjzqL3JXRy
+         igGw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=f1ffZU2s;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id b16si288048edb.341.2019.09.25.16.08.06;
+        Wed, 25 Sep 2019 16:08:31 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=f1ffZU2s;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1733283AbfIWTRm (ORCPT <rfc822;tavery321@gmail.com> + 99 others);
+        Mon, 23 Sep 2019 15:17:42 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:36754 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727327AbfIWTRm (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 23 Sep 2019 15:17:42 -0400
+Received: by mail-lf1-f65.google.com with SMTP id x80so11034292lff.3
+        for <linux-kernel@vger.kernel.org>; Mon, 23 Sep 2019 12:17:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vrRLQn3RzqvLOL/i6mhPpJ10+RmKd1euOe+YMl2OYp0=;
+        b=f1ffZU2sPanOCuHiBceitjTlbhQE9vji8lZ1iD711xp+ldw6uJgEuKLN8+GC7Byalb
+         nwAAiPg7+uP3R5SZCV+80m9S4HOJl9DPeuyxvFQv5NWy9NXmONOgY1hB9hDLeuHfYCdW
+         +1/jkugNzglnZ4KwGRBl0e6c1DD4gcxsNkFuY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vrRLQn3RzqvLOL/i6mhPpJ10+RmKd1euOe+YMl2OYp0=;
+        b=P50pUsPBVUbvVP4vltgwVfqNlGzY6seXAnoiAt4CmdhbSqX3F9jNz8UtRD+y+7IkB6
+         RFXMYLc+8KJ3/3EfSUAyoklmyakFzQJ3t05vP/SQd6xgfOSwRLln0KElW8s7k9gS1pig
+         gAnEusKWDkYqvktbWVooji//5KWOmWdoHA5Ok3bSnXJXr7YIX7lS1T6kHVPsizKsr3J+
+         2KhQVs3OaMdK18yOwP//878lwYb/h756v8wJ9pdljqA9V/sQmi9ZnvRJ5viW8zqwizQY
+         fKTxuAxYTaUYUW3LujaehrEhMPAdRjY9bmOL5hwB6FIYLkU9f9tS7daP7HWe9usHKlXw
+         eCNg==
+X-Gm-Message-State: APjAAAX+4WRrc6Yl8BH+FGRJ4r2oRjF41pbnA2Z+nwPZr8NffDHTICev
+        e67c7rFJ+lsw27fuitb6Kju96jKjO/E=
+X-Received: by 2002:ac2:568c:: with SMTP id 12mr644601lfr.133.1569266259990;
+        Mon, 23 Sep 2019 12:17:39 -0700 (PDT)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com. [209.85.167.47])
+        by smtp.gmail.com with ESMTPSA id k23sm2525253ljc.13.2019.09.23.12.17.38
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Sep 2019 12:17:39 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id t8so10968116lfc.13
+        for <linux-kernel@vger.kernel.org>; Mon, 23 Sep 2019 12:17:38 -0700 (PDT)
+X-Received: by 2002:ac2:47f8:: with SMTP id b24mr684575lfp.134.1569266258665;
+ Mon, 23 Sep 2019 12:17:38 -0700 (PDT)
+MIME-Version: 1.0
+References: <d2418da0-056b-2e6f-ae40-acdfa842e341@schaufler-ca.com>
+In-Reply-To: <d2418da0-056b-2e6f-ae40-acdfa842e341@schaufler-ca.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Mon, 23 Sep 2019 12:17:22 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whNEGetrwyShSLP_5nCA2+YTR9kdNFw7aLua9jaR-YvJg@mail.gmail.com>
+Message-ID: <CAHk-=whNEGetrwyShSLP_5nCA2+YTR9kdNFw7aLua9jaR-YvJg@mail.gmail.com>
+Subject: Re: [GIT PULL] Smack patches for v5.4
+To:     Casey Schaufler <casey@schaufler-ca.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Linux Security Module list 
+        <linux-security-module@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Sep 23, 2019 at 10:24 AM Casey Schaufler <casey@schaufler-ca.com> wrote:
+>
+> This is my first direct pull request. I think I have followed process
+> correctly, but if not I will attend to my error as required.
+
+The contents look fine.
+
+However, it's from an open hosting site - github. Which is fine, I
+take pull requests from github all the time.  But I require that they
+be sent using a signed tag, so that I can verify that yes, it's really
+from you.
+
+And no, I don't do pgp email, even t hough I see that there's a
+signature on your email itself.
+
+git uses pgp too, but unlike pgp email signatures, the git support for
+pgp signing is useful and user-friendly and just _works_, rather than
+the complete and useless disaster that is pgp email [1].
+
+So please make it a signed tag with "git tag -s" and ask me to pull
+that tag instead.
+
+                        Linus
+
+[1] https://www.vice.com/en_us/article/vvbw9a/even-the-inventor-of-pgp-doesnt-use-pgp

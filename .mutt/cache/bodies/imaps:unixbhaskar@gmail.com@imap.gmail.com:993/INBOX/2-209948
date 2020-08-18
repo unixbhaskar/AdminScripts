@@ -1,0 +1,154 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:57c1:0:0:0:0:0 with SMTP id k1csp8233739lfo;
+        Tue, 12 Nov 2019 09:25:33 -0800 (PST)
+X-Google-Smtp-Source: APXvYqz+G1SRmVxmlshKASFKMgIM5WI9Oas9Zh4KUHW3PmeV7wvFiLhx1NJYZrQRfdHugqrDzGzt
+X-Received: by 2002:a17:906:948a:: with SMTP id t10mr29415966ejx.110.1573579533298;
+        Tue, 12 Nov 2019 09:25:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1573579533; cv=none;
+        d=google.com; s=arc-20160816;
+        b=0qvslMykMrqoPHVtbiBWlg/ISQxz68Oai9Wx3YP+dBWWGzOxQYPm3iUQsjaMaQZQAJ
+         kpDEyM/124a2TSlRxFOx3RA3+U+IAHSCvFGJFMrDHY6zAewNPwQOy+1n5HHX/nsIUAuZ
+         M9R7lHMCtY9jkujo0IjIHuijutgVZTW2SIqDPx4kh0gfVNIMLnhziVfxzLP5AA8Q0UWX
+         qDiCaZPn4ggztpvSZMiAPJ0pG7xLlDhOs6h7pXvHLuRNHzQYuTv3bVPowvGBa8+DwOha
+         UUMu3DuYpKwFSxYjPvgXj9+6ndRWBcdEVjZ0GRz6R3wKATby0qRUq9JpbPQdm812lQ37
+         SreQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=XShByMLu//cYaYZBKvqGtxFWH4UjDRbybOVR95jGz/I=;
+        b=J1zXVt6yKRuZz3Z0zKuIPkFm3r5QntAU0+l07OTPFnHfyngvujfOMrbiCeTDAbIEmu
+         83jgypei1XBVXlc+Ridv+8ABLxxUG0lqECCB8EYPpI1xRpUy7hDsxqw2ZrpLB9gTCidu
+         DTibFhy7yaqQ2piaNjPp3IkKnnMRNvIE7zY1zApO56jBFUMA0PCuwdkkHPJGgwFRHu5X
+         kRn4O458Nwk3rUkpD1hrsk8pq357iNjBssscqoaJedLKs/iuvK6SCm8U54VmbnOZOvUz
+         MtMCnD8/2Lpr7zOEz2wD7PfPvQIfwfjW2rCRTITQJnOgcu+d84NMC5mUnCuaFZJoPOPZ
+         xmjA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=MNvkK6ga;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id i3si372153ejv.41.2019.11.12.09.25.15;
+        Tue, 12 Nov 2019 09:25:33 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=MNvkK6ga;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727481AbfKLRX4 (ORCPT <rfc822;chaos.chenix@gmail.com>
+        + 69 others); Tue, 12 Nov 2019 12:23:56 -0500
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:37992 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726912AbfKLRXz (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 12 Nov 2019 12:23:55 -0500
+Received: by mail-lj1-f195.google.com with SMTP id v8so18725293ljh.5
+        for <linux-kernel@vger.kernel.org>; Tue, 12 Nov 2019 09:23:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XShByMLu//cYaYZBKvqGtxFWH4UjDRbybOVR95jGz/I=;
+        b=MNvkK6gaA2ornBJfgB8lmMgtKjS5hIKoXiHCGGLj7vU0zf0dCWiBna4ovnMMdHCGhH
+         HsHFPAgdTnHSJhls7WKv0HtJ6tf4Mdstu5O/Ru9eMp90WQkrRwW9bX+/zXWgLjTgzkr9
+         iQksID0zMw01OIpz2Z4X0yD1w6oNJb3f8ASss=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XShByMLu//cYaYZBKvqGtxFWH4UjDRbybOVR95jGz/I=;
+        b=md4x/OcU8H9fflUT6SbBhu2Xh9Ce5sULoOahzCRIfUsd95DEXt31PfQBjC5Qs/iBJJ
+         Th4vzuVzVIL7FrK7eP2k8j9Gu9oP1Xo6FnW3Vqbd5trARjJOdUUOxXYEArUed45Ssu3h
+         Qcnj79HD7vTzPxNwRFzAWOc+9DIhJcE3F6ZZ9Q8UcrnE4VtnuEL8Y3+P3lKNxHxNlc4S
+         88kKJOgYay1G9ykcCGBMji2N42a3qS2Casp5w5IIff5kW5OcfigI0ttd57G4ijDoSzHE
+         7FEW0F3BnA58mjLFHtL/w4nVd7qJ43XVyr9frjhm6QgvMhl68iQCzZ/mMYuLugRmg+bC
+         RE3w==
+X-Gm-Message-State: APjAAAV4/Rs8nZ9VGX7k4lCUerZ2nndcfiOuivvTf6Emcgu9B5stJQgl
+        /Rc+gxa4v/UXRt8pLGb9BCFRd912LgE=
+X-Received: by 2002:a2e:9b89:: with SMTP id z9mr21487668lji.185.1573579432613;
+        Tue, 12 Nov 2019 09:23:52 -0800 (PST)
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com. [209.85.167.52])
+        by smtp.gmail.com with ESMTPSA id m20sm2700607lfj.35.2019.11.12.09.23.51
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Nov 2019 09:23:51 -0800 (PST)
+Received: by mail-lf1-f52.google.com with SMTP id j14so4912394lfk.6
+        for <linux-kernel@vger.kernel.org>; Tue, 12 Nov 2019 09:23:51 -0800 (PST)
+X-Received: by 2002:a19:4949:: with SMTP id l9mr6614232lfj.52.1573579430925;
+ Tue, 12 Nov 2019 09:23:50 -0800 (PST)
+MIME-Version: 1.0
+References: <CANpmjNMvTbMJa+NmfD286vGVNQrxAnsujQZqaodw0VVUYdNjPw@mail.gmail.com>
+ <Pine.LNX.4.44L0.1911111030410.12295-100000@netrider.rowland.org>
+ <CAHk-=wjp6yR-gBNYXPzrHQHq+wX_t6WfwrF_S3EEUq9ccz3vng@mail.gmail.com>
+ <CANn89i+OBZOq-q4GWAxKVRau6nHYMo3v4y-c1vUb_O8nvra1RQ@mail.gmail.com>
+ <CAHk-=wg6Zaf09i0XNgCmOzKKWnoAPMfA7WX9OY1Ow1YtF0ZP3A@mail.gmail.com>
+ <CANn89i+hRhweL2N=r1chMpWKU2ue8fiQO=dLxGs9sgLFbgHEWQ@mail.gmail.com>
+ <CANn89iJiuOkKc2AVmccM8z9e_d4zbV61K-3z49ao1UwRDdFiHw@mail.gmail.com>
+ <CAHk-=wgkwBjQWyDQi8mu06DXr_v_4zui+33fk3eK89rPof5b+A@mail.gmail.com>
+ <CAHk-=whFejio0dC3T3a-5wuy9aum45unqacxkFpt5yo+-J502w@mail.gmail.com> <20191112165033.GA7905@deco.navytux.spb.ru>
+In-Reply-To: <20191112165033.GA7905@deco.navytux.spb.ru>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Tue, 12 Nov 2019 09:23:34 -0800
+X-Gmail-Original-Message-ID: <CAHk-=witx+fY-no_UTNhsxXvZnOaFLM80Q8so6Mvm6hUTjZdGg@mail.gmail.com>
+Message-ID: <CAHk-=witx+fY-no_UTNhsxXvZnOaFLM80Q8so6Mvm6hUTjZdGg@mail.gmail.com>
+Subject: Re: KCSAN: data-race in __alloc_file / __alloc_file
+To:     Kirill Smelkov <kirr@nexedi.com>
+Cc:     Eric Dumazet <edumazet@google.com>,
+        Al Viro <viro@zeniv.linux.org.uk>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Marco Elver <elver@google.com>,
+        Eric Dumazet <eric.dumazet@gmail.com>,
+        syzbot <syzbot+3ef049d50587836c0606@syzkaller.appspotmail.com>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
+        Andrea Parri <parri.andrea@gmail.com>,
+        "Paul E. McKenney" <paulmck@kernel.org>,
+        LKMM Maintainers -- Akira Yokosawa <akiyks@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Nov 12, 2019 at 8:50 AM Kirill Smelkov <kirr@nexedi.com> wrote:
+>
+> The same logic applies if it is not 2 processes, but 2 threads:
+> thread T2 adjusts file position racily to thread T1 while T1 is doing
+> read syscall with the end result that T1 read could access file range
+> that it should not be allowed to access.
+
+Well, I think we actually always copy the file position before we pass
+it down. So everybody always _uses_ their own private pointer, and the
+race is only in the "read original value" vs "write new value back".
+
+You had a patch that passed the address of file->f_pos down in your
+original series iirc, but I NAK'ed that one. Exactly because it made
+me nervous.
+
+> By the way on "1" topic I suspect there is a race of how
+> `N(file-users) > 1` check is done: file_count(file) is
+> atomic_long_read(&file->f_count), but let's think on how that atomic
+> read is positioned wrt another process creation: I did not studied in
+> detail, so I might be wrong here, but offhand it looks like there is no
+> synchronization.
+
+Well, that's one reason to add the test for threads - it also gets rid
+of that race. Because without threads, there's nothing else that could
+access - or fork - a "N(file-users) == 1" file but us.
+
+> So talking about the kernel I would also review the possibility of
+> file_count wrt clone race once again.
+
+See above. That goes away with the test for FDPUT_FPUT.
+
+> About "2": I generally agree with the direction, but I think the kernel
+> is not yet ready for this switch. Let me quote myself:
+
+Hmm. I thought we already then applied all the patches that marked
+things that didn't use f_pos as FMODE_STREAM. Including pipes and
+sockets etc.
+
+But if we didn't - and no, I didn't double-check now either - then
+obviously that part of the patch can't be applied now.
+
+             Linus

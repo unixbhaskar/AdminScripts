@@ -1,0 +1,93 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:54b0:0:0:0:0:0 with SMTP id w16csp2885535lfk;
+        Sat, 19 Oct 2019 20:20:24 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqz/myG7ugPT1gCp1FmV1S4QwpudUQB/aKLU1SoPsQlAcOQheBLRpfMgb3ESVk65P51ftton
+X-Received: by 2002:a05:6402:6c6:: with SMTP id n6mr18073295edy.292.1571541624827;
+        Sat, 19 Oct 2019 20:20:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1571541624; cv=none;
+        d=google.com; s=arc-20160816;
+        b=sNO4ZL+B+TOI4xGmXrO2dDEL9FcKxEsCe7LC/k1JpIU9uA3s0zOCEeRMHelYlzp0DR
+         DhcS16tKITwh8VEaaq8E+VkaSLOKThPp44irrFobdOO5fkWW7WX0kjmbVCjh3LjFrbai
+         zgMg7ut8lT/Ds6RUbyqLp+KVZajLVuB98iSaxwZ7GG8Y7t0aT+ZAFsyuBjCvf0/mrw8t
+         lmC7LzPhDKbpBY2o4jrU85oBkRZwop8BIUiCaI4PLNuaPorj4fU2LxaC4D0EmU9hCNP8
+         aAsH7iptBllvSqGPx1ZDXQiwjLhGLLgsdWwWNT3vfrYgAmg1v1uHGfaiR7F4/Kl7cQGt
+         LWRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date;
+        bh=lLsIYPWotkAXrziYVSKNmTe49KZanAh+xSUn+rN5CVw=;
+        b=UZVFQT3xJuayyLGlyxAAe81JXqTXum500pWS7OaqAA4RbZosvgZR7c8CUvlN2ODBwP
+         jRb9U98uBeL97wWmGERwGXL9n8RB1fXM+hR+6vzjYx2Zgxqapn/ibMG1OKOPS24cgoUd
+         ldtgWITcUaSrYl5Tz3Xnu+bZXFiHsHzU5M+6ccP/0MQY1AKYi7z+FBWvdgfv22Nz5faw
+         bKJCT9S39SNWT6kuLmgElWmptB2enAziZ73+lBOgtJsmliHpxLctEwZzhdzRH+LEYw0c
+         z2MmUjsXh9qXkSTXAVfHYqpPWGHp0lMhojJq21f6vR25/YhuQFmDc21PTbTpPlUdini9
+         ijCw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id a30si7315394eda.39.2019.10.19.20.19.36;
+        Sat, 19 Oct 2019 20:20:24 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726246AbfJTDRd (ORCPT <rfc822;lizhiguo.at@gmail.com>
+        + 99 others); Sat, 19 Oct 2019 23:17:33 -0400
+Received: from wtarreau.pck.nerim.net ([62.212.114.60]:64605 "EHLO 1wt.eu"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726125AbfJTDRd (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 19 Oct 2019 23:17:33 -0400
+Received: (from willy@localhost)
+        by pcw.home.local (8.15.2/8.15.2/Submit) id x9K3HGFR017485;
+        Sun, 20 Oct 2019 05:17:16 +0200
+Date:   Sun, 20 Oct 2019 05:17:16 +0200
+From:   Willy Tarreau <w@1wt.eu>
+To:     "Theodore Y. Ts'o" <tytso@mit.edu>
+Cc:     Vegard Nossum <vegard.nossum@oracle.com>,
+        Santiago Torres Arias <santiago@nyu.edu>,
+        workflows@vger.kernel.org, Git Mailing List <git@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
+        Eric Wong <e@80x24.org>
+Subject: Re: email as a bona fide git transport
+Message-ID: <20191020031716.GA17475@1wt.eu>
+References: <b9fb52b8-8168-6bf0-9a72-1e6c44a281a5@oracle.com>
+ <20191016111009.GE13154@1wt.eu>
+ <20191016144517.giwip4yuaxtcd64g@LykOS.localdomain>
+ <56664222-6c29-09dc-ef78-7b380b113c4a@oracle.com>
+ <20191018161547.GG21137@mit.edu>
+ <de49fe5e-85cb-9fb0-f9f4-c294d72e356c@oracle.com>
+ <20191018191456.GI21137@mit.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191018191456.GI21137@mit.edu>
+User-Agent: Mutt/1.6.1 (2016-04-27)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Oct 18, 2019 at 03:14:56PM -0400, Theodore Y. Ts'o wrote:
+> On Fri, Oct 18, 2019 at 06:50:51PM +0200, Vegard Nossum wrote:
+> > The problem I ran into with putting the metadata at the end was
+> > detecting where the diff ends. A comment in 'git apply' suggested that
+> > detecting the difference between "--" as a diff/signature separator and
+> > as part of the diff is nontrivial in the sense that you need to actually
+> > do some parsing and keep track of hunk sizes.
+> 
+> Could we cheat by having "git format-patch" add a "Diff-size" in the
+> header which gives the number of lines in the diff so git am can just
+> count lines to find the Trailer section?
+
+Be careful with this, it starts like this and ends up with non-editable
+patches. I'd rather have git-am use best-effort detection of the end.
+Also when dealing with stable backports, I've done a lot of
+"cat foo.diff >> bar.patch" to fixup some patches in which I just had
+to move some parts around. Having to count lines and edit a counter
+somewhere is going to become really painful.
+
+Just my two cents,
+Willy

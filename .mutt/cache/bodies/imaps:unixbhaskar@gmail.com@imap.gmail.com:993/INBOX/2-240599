@@ -1,0 +1,104 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp939905lfk;
+        Sat, 23 May 2020 07:06:41 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzfLUUTw/25YDXJM2Tf/G7Mv2G4jTvVvPZf5ZV0pIEV+sfT+yyXQdkPZJdHq4w1rqlkcQvU
+X-Received: by 2002:a05:6402:22a6:: with SMTP id cx6mr7257209edb.76.1590242801300;
+        Sat, 23 May 2020 07:06:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590242801; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wpky+PQ0AYFkPWt1/vEWdDntrN/nwaZp7B7qu/Iyku7qwtocDE3SdMjVVvzKrOcYD2
+         /RrJ4ULDGlj8s8419J6iYnjNdpL7QJ3uBBn5nWtcMx7oCrm55CqSQil7//YLgg1aFa1c
+         HBJaGQknEUrHGfEuHWzFHG2iDvi87yMuKm4K9MHftWF1TKUwiPlyEvQ+HT4SPzEkfokw
+         En8NiNFq3oUhAaVHqJJGpAU0uTXAGnrL64oZ/TZmbIR/EshKR6CZQ0Gnjkq9LLL+dV6C
+         0BKOe2VEV8Qxf3kjOLNbceF4MpRFD6P0IMTK9PqzFZMYveSYBFPS6hZKkF2zFYlKWNts
+         o9/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=a10v4U+F4Kc6bnspkR5vc/B/pqAZFoiN0SAsHxxoyUg=;
+        b=cnQjyBVVA+29mWjNl1Z0EnozvWC/tVya7++N5syzjZ7kms12csP0B6QDoApY38jKU5
+         TpLvs1DvEYInr9f+J9W1oUv10GR39PlPBluYAxfZtjc39u7W5fuosM0gClz26gwW7n+l
+         uJjYSsGrsC+HxkFZd7qCeDOCCEdsnIh+jvzr1oe8qbcMYYbnT2qPGdLW2KW9xYi6Y1qO
+         ZxAJP5KMtSTP2/j+lUAl+X5KNaj3RW2Amozzje7diLE+SDoVf196fm1g5uMKtBto5CvL
+         UX7XXksJ7c2kjJP7VpbF+71bzdQCb1y7R8I0nP27i4QFZUBhuJr9nDClykOoGUzNnany
+         tENg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=JFJPBOGp;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id m16si6245244edq.126.2020.05.23.07.06.17;
+        Sat, 23 May 2020 07:06:41 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=JFJPBOGp;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2387871AbgEWOFJ (ORCPT <rfc822;mattkilgore12@gmail.com>
+        + 99 others); Sat, 23 May 2020 10:05:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36646 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387529AbgEWOFJ (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 23 May 2020 10:05:09 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6F7842072C;
+        Sat, 23 May 2020 14:05:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1590242707;
+        bh=t8EOi/+FRcIQN8xz8j2kTaxVW8mQa3mV2jwc7/rtK/k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JFJPBOGpTork96FxBEvOU0Cf5WzBYFjxTcUgQH0axEByYEehrw9p1Gt7n2EFKkVxV
+         JzP65rInJCzSIuHhvHeDje/wY6lMAOPWRZESkmFsJ4mooR9gU76dw2/3TfSCqIYwqk
+         4Xzwp5DGzakiBYXhscrtVfJ/MeBsT3NMU+R8B98c=
+Date:   Sat, 23 May 2020 16:05:05 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Stephen Rothwell <sfr@canb.auug.org.au>
+Subject: Re: [GIT PULL] Driver core fixes for 5.7-rc7
+Message-ID: <20200523140505.GB114366@kroah.com>
+References: <20200523131759.GA55886@kroah.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200523131759.GA55886@kroah.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sat, May 23, 2020 at 03:17:59PM +0200, Greg KH wrote:
+> The following changes since commit 2ef96a5bb12be62ef75b5828c0aab838ebb29cb8:
+> 
+>   Linux 5.7-rc5 (2020-05-10 15:16:58 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core.git tags/driver-core-5.7-rc7
+> 
+> for you to fetch changes up to 4ef12f7198023c09ad6d25b652bd8748c965c7fa:
+> 
+>   kobject: Make sure the parent does not get released before its children (2020-05-21 11:01:27 +0200)
+> 
+> ----------------------------------------------------------------
+> Driver core / kobject fixes for 5.7-rc7
+> 
+> Here are 3 small driver core and kobject fixes for 5.7-rc7
+> 
+> The kobject fix resolves a bug that the should not normally ever be hit,
+> but the kunit tests were hitting pretty regularly.  It's been reviewed
+> and tested by a bunch of people and stared at by me for a long time, so
+> it should be good.
+
+Nope, it isn't, Guenter reports runtime failures with this patch
+applied.
+
+So please don't pull this just yet...
+
+thanks,
+
+greg k-h

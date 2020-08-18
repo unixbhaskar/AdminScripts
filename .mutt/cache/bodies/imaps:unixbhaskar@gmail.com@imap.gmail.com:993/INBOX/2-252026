@@ -1,0 +1,113 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp781702lfj;
+        Wed, 5 Aug 2020 11:18:07 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz9uLTuYN4NcqX/sWKXBHQ7zy8wN7PQUrNYM9qOTQEfekXcpHmbkb18slHhLOlLYVOy36zO
+X-Received: by 2002:aa7:dc02:: with SMTP id b2mr519274edu.260.1596651487113;
+        Wed, 05 Aug 2020 11:18:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596651487; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LIB/AXIzsGx1EApGV7gU0c1lkLWkV/phAfwiAnJl4o1sVpCAhnZAkAZ0HTldgQKd+u
+         TMCjg0N8693nrjZA2/fr6diCCqfOrVYYTrZaIFDiXvzUaFC9/kSG4nltDM3rRFMRYfIb
+         XVEXRTI0iSRTa8UJY4wj03jF8bAfbvs3tELbT+HVXVMZlSkwHR9VBca4rQ/TlxcRUSF4
+         Tn8MsLf7fupgQosSIUZRLIyTt0S8VihMgWgaOQCbjblB9hZFDnlCxMRM3AYU5GJdfTRm
+         GOLZc3gfj1EsEBwj5ArNSU1uUNXKv46Yb1gMShvl82yH85uV42GRb2URZ6DAEmZniKbr
+         bORA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=SJLLgIEjQbsi/SjTfRAATLA+9JTrjXUP0jdNW6WmMgI=;
+        b=O4GhwiK8R7nZinJFLd9tHG8u/viB9A5cAeQmecPSWiwgJUrTk2WEZzsoI454pDx2zc
+         Zftd2QJhCREA3cIhE/g+1yYnP9B8Ap+2udPpbtU47Ouy+XwbU5OooP/qt/oaVqk9C4tc
+         hCrgtoGOJH6vZ4JuKoikH1ztMcLzQ+tHodMQPYsfxn4nNEcmZC/J7B6In0BVz4myYsCi
+         sKLE0/JWeLDwXjtQ/MhICpvhhYMS72XOKjpUxAhRG2bXSVZnTaivUkkaTyHEJFHd9ZzT
+         Q8RRZD/qFNmnpG3RvBdhk4+bS62zjxLHMgi2UG3Qv+LunIz8KxUbOaDhq2VM5i3rvUvc
+         hIFA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=eaY7Ntzo;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id j17si1712119ejk.360.2020.08.05.11.17.58;
+        Wed, 05 Aug 2020 11:18:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=eaY7Ntzo;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729034AbgHESIn (ORCPT <rfc822;guilhem.herail@gmail.com>
+        + 35 others); Wed, 5 Aug 2020 14:08:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59148 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729070AbgHESFl (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 5 Aug 2020 14:05:41 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A086FC061756
+        for <linux-kernel@vger.kernel.org>; Wed,  5 Aug 2020 11:05:27 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id v9so14261348ljk.6
+        for <linux-kernel@vger.kernel.org>; Wed, 05 Aug 2020 11:05:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SJLLgIEjQbsi/SjTfRAATLA+9JTrjXUP0jdNW6WmMgI=;
+        b=eaY7NtzotzWV/MnsZjfDao9T2g2eCy+3wm499kvwu1wBI+Vd7me0Jx1vxfPwpDDz2e
+         +1s5SmJEh1SEzTbjd/vRaoC7ncNiNL4Lkyg2YumYQ4UA7w+AEcfjLokkCNp9gUuGZSuL
+         cWA3tsPtGDQzsow/KN0TSz2gkofo5VDhkb9Kk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SJLLgIEjQbsi/SjTfRAATLA+9JTrjXUP0jdNW6WmMgI=;
+        b=l36RRZ0Tr7noRgEjxe7zP3GJilceKenoNL9FFecDqV27oYrAkXryk7Bhp9zFGSrbrF
+         mR56NdULvcqdvj4pkVcYPSnCv3dBvYErfpJjGuQeG2ovPVXsB0Lrbkg+ozF/sjIGZZR+
+         f8tOFsbfbZXU+eky9iItPNHi7rsv+L7tLi0XWE4jxtIqBBInFXjcBnPn7Xu1k989ighU
+         TlGWsf3aIZyhf7/YlvTopKER3admGbeHIKZO/AJpdapnnAS2bWphXd6CjdeuPNlzgco5
+         ulGEhh4cT+5OEtaAs85RXrMZbOWhgO+FRbDDTdZQEN0eL24ovYYAKcRZgnnIoSkWsmiw
+         SZbg==
+X-Gm-Message-State: AOAM5334DzwbpWEEuk0QMuFbluUIA5nJyjQwV9IwWsH8GrH4xr49OOKp
+        L7cA9zzv9u0U8mr2phMTVW8+CoZj8dE=
+X-Received: by 2002:a2e:96d9:: with SMTP id d25mr2162879ljj.408.1596650725832;
+        Wed, 05 Aug 2020 11:05:25 -0700 (PDT)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
+        by smtp.gmail.com with ESMTPSA id t10sm1189266ljg.60.2020.08.05.11.05.24
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Aug 2020 11:05:24 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id v9so14261243ljk.6
+        for <linux-kernel@vger.kernel.org>; Wed, 05 Aug 2020 11:05:24 -0700 (PDT)
+X-Received: by 2002:a2e:9252:: with SMTP id v18mr1872739ljg.70.1596650724308;
+ Wed, 05 Aug 2020 11:05:24 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200805090653.GI23458@shao2-debian>
+In-Reply-To: <20200805090653.GI23458@shao2-debian>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Wed, 5 Aug 2020 11:05:08 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wiuF-0JSmiDe-A--+Z4UbEWQxQ40ftm88aKwSi0FLvM+g@mail.gmail.com>
+Message-ID: <CAHk-=wiuF-0JSmiDe-A--+Z4UbEWQxQ40ftm88aKwSi0FLvM+g@mail.gmail.com>
+Subject: Re: [mm] 2a9127fcf2: vm-scalability.throughput 130.0% improvement
+To:     kernel test robot <rong.a.chen@intel.com>
+Cc:     Oleg Nesterov <oleg@redhat.com>, Hugh Dickins <hughd@google.com>,
+        Michal Hocko <mhocko@suse.com>,
+        LKML <linux-kernel@vger.kernel.org>, lkp@lists.01.org
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+W00t!
+
+Usually I think these kinds of big changes are likely outright bugs,
+but this time I'll take it, because that improvement was the point and
+aim of the change even if I didn't have numbers to back up my BS.
+
+              Linus
+
+On Wed, Aug 5, 2020 at 2:07 AM kernel test robot <rong.a.chen@intel.com> wrote:
+>
+> Greeting,
+>
+> FYI, we noticed a 130.0% improvement of vm-scalability.throughput due to commit:
+>
+> commit: 2a9127fcf2296674d58024f83981f40b128fffea ("mm: rewrite wait_on_page_bit_common() logic")

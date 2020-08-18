@@ -1,0 +1,118 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp3879029lfj;
+        Fri, 27 Sep 2019 11:37:07 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqylghkz6n+s44LCnoGw5AtfaW6/uyyMvrcSzR6Pa+Cn0/zbWXqwvaltONnhLoxn5FzDs/4t
+X-Received: by 2002:a50:ccd3:: with SMTP id b19mr6019436edj.257.1569609427170;
+        Fri, 27 Sep 2019 11:37:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569609427; cv=none;
+        d=google.com; s=arc-20160816;
+        b=x3YhUMJ73yerM9ggKuhi661Eq0iq1eTngQs2DDczJ82CUiIpmaY8VT/IAhK77FV4Vk
+         uv5Tlywm7VF2eiD3ULJoWgdxhDsjTIOW0aSAatuHbb+pdSbCIQEGHFp/hm+AJ0hvqrVZ
+         lhDFMN5soy++thV2492fbFI8Sel663SM7u0uG5iQqrliY8VzzgHlkxhRNaBMbs9b3aMr
+         XFBPqbOD2Z9wYAGzG6OH6JrAsavDX4NVl7sFWt8avL/Aa95q1imW51V15ZP+9dmshKIe
+         UUX+ZPtfHrQKnjcYMnDpUmBKxl28uhiWMmhVZw18o9InF9uLoILOK19zvkfnPK6yUEik
+         NAEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=vfo/aCWS6InNpF6+CbMoDQhZTwhAvaIIzwPXAG1ON2k=;
+        b=F//sR9o1OQodemVk/XGNK0UhIUg+skl2km9c9AiD2xL6AYB3zSBDtJPW4ti2G877Ll
+         XT2geVOTQGaiTwxo50ze6auHFxFdDd31QQWBUBn/PHHg7ei1yLR+uLubyGIlalbEyyw/
+         DQwkE7kbkponn2ldcSuCLxDUmWzpI3n60DHr3hT3eN/udMjsdYE3cIGGbeurCssl4vSb
+         ulnzgbdca77FB780pvzwG8tzggiKevO769QcanYA415b9H0g+JCLl68tkwzscBgi5NBL
+         tXO79gQm114w8+A2HEe4uHdlrQOgyXeMiq4Rf3Z4c2ObTJGHDBPcRduzcPXarJFWqsiH
+         ZDAg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=PmjiZGWI;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id w6si2164007eda.336.2019.09.27.11.36.43;
+        Fri, 27 Sep 2019 11:37:07 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=PmjiZGWI;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728523AbfI0SfS (ORCPT <rfc822;bharatsingh.aitpune@gmail.com>
+        + 99 others); Fri, 27 Sep 2019 14:35:18 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:36383 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728487AbfI0SfQ (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 27 Sep 2019 14:35:16 -0400
+Received: by mail-lj1-f194.google.com with SMTP id v24so3465036ljj.3
+        for <linux-kernel@vger.kernel.org>; Fri, 27 Sep 2019 11:35:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vfo/aCWS6InNpF6+CbMoDQhZTwhAvaIIzwPXAG1ON2k=;
+        b=PmjiZGWIuux93oBdsbKTUcDUjOwRzdmDhCW+izQNooViyiY5zi7nNI8gmKybNudXez
+         mSBXzQfHIJMk7J54/kR1Q0FTZiLQo2TdURWv9EPGoNG5dafe9qzlnG0ZSVDkNphLEhzj
+         OpxYIyiGR1+Yl9vS9XQTRr2D9CYcY+0rTw3LI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vfo/aCWS6InNpF6+CbMoDQhZTwhAvaIIzwPXAG1ON2k=;
+        b=srw4PIvCPZ5J1OE7+pwDa2Fwt1Sr7JUPUaaYrV2650Is/QUt4beqJCj7157cio8Bet
+         9ZqAGHA7so7xM8yoL6gHxkwmVxpZKhe6vTDJ2X0AMIDh4t3hG6sLK+c7tDL7OEw1E8Wt
+         ZlGnQRjs7u466t8SSkS5VNtci6xAmEB7RDvvjlbB6dMEPxH+SoDX2h3JcVmitWbiHbOH
+         L8pE3JC1fhSUI8A3oLKrTOts6wtDpEF4eWAJEjBXp7FdQmwwouE+X+oENjTaagjsdQFV
+         DWl0t9b3WUHavGhtehPNyuW+ar9MsY260L+bpSh+H/bixVHRL3LaChjCk0sUc4k6N8jk
+         ADvg==
+X-Gm-Message-State: APjAAAUQ1kSFzrSOW4JEdoXTolIlrhBYPDMFHthvF45HmPsWAD1icbgz
+        p9wYyFkXgCmBFakETjdcEavcLlAYIWk=
+X-Received: by 2002:a05:651c:150:: with SMTP id c16mr3857777ljd.224.1569609313937;
+        Fri, 27 Sep 2019 11:35:13 -0700 (PDT)
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com. [209.85.167.54])
+        by smtp.gmail.com with ESMTPSA id c18sm721280ljd.27.2019.09.27.11.35.12
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Sep 2019 11:35:12 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 72so2636248lfh.6
+        for <linux-kernel@vger.kernel.org>; Fri, 27 Sep 2019 11:35:12 -0700 (PDT)
+X-Received: by 2002:a19:2489:: with SMTP id k131mr3700375lfk.52.1569609312334;
+ Fri, 27 Sep 2019 11:35:12 -0700 (PDT)
+MIME-Version: 1.0
+References: <a9e8e68f34139d5a9abb7f8b7d3fe64ff82c6d96.camel@intel.com>
+In-Reply-To: <a9e8e68f34139d5a9abb7f8b7d3fe64ff82c6d96.camel@intel.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Fri, 27 Sep 2019 11:34:56 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whua2XSTLd3gtqVHfq5HtGnjhRUv7vA6SUfkbVUebqWJQ@mail.gmail.com>
+Message-ID: <CAHk-=whua2XSTLd3gtqVHfq5HtGnjhRUv7vA6SUfkbVUebqWJQ@mail.gmail.com>
+Subject: Re: [GIT PULL] Thermal management updates for v5.4-rc1
+To:     Zhang Rui <rui.zhang@intel.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Sep 27, 2019 at 6:08 AM Zhang Rui <rui.zhang@intel.com> wrote:
+>
+> One thing to mention is that, all the patches have been tested in
+> linux-next for weeks, but there is a conflict detected, because
+> upstream has took commit eaf7b46083a7e34 ("docs: thermal: add it to the
+> driver API") from jc-docs tree while I'm keeping a wrong version of the
+> patch, so I just rebased my tree to fix this.
+
+Why do I have to say this EVERY single release?
+
+A conflict is not a reason to rebase. Conflicts happen. They happen a
+lot. I deal with them, and it's usually trivial.
+
+If you feel it's not trivial, just describe what the resolution is,
+rather than rebasing. Really.
+
+Rebasing for a random conflict (particularly in documentation, for
+chrissake!) is like using an atomic bomb to swat a fly.  You have all
+those downsides, and there are basically _no_ upsides. It only makes
+for more work for me because I have to re-write this email for the
+millionth time, and that takes longer and is more aggravating than the
+conflict would have taken to just sort out.
+
+                   Linus

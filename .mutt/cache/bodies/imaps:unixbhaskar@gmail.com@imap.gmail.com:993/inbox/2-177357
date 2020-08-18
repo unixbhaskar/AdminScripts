@@ -1,0 +1,110 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp919940lfb;
+        Wed, 24 Apr 2019 10:50:35 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxEKAjNJ3VhbplZQvKT5o8MpdUCpN2LezQcHkUKZpEjvP8ISW9xAWZolBj1H8NYMTXjQPYq
+X-Received: by 2002:a17:902:525:: with SMTP id 34mr34228984plf.138.1556128235408;
+        Wed, 24 Apr 2019 10:50:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1556128235; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Rn8jssiX0iKhb3d0LjAhK0viIvrgTBzhKfoMHRIyeapDt3NVp2ArN2n/3X2iZTVYon
+         FA0EzFV9KA0SN2UG1qnaSnGEBaCFNcffbsqo8KIrZ0kdWTcE2VHHsn34vxvmb3e4DZiO
+         vmbADcChUizrZ0EAlTZhkCkbLqLf6/7rw8buqHBQ9GoCJZhV52J/VA762kw1mYgKpO9p
+         9uKPoSq0nElUJAkK6bkqjs2hp2uf2ssXKN8fn/Nqum9dM5se9D5Gp3SD8ng0VdCtZhDN
+         hJJrn/Z47vb4P3VLePLc+gIOJCr/M6y6Z1neq/RacMBmeEA41olw+84Ru5wvlfexwmhN
+         ShUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:cc:to:subject
+         :message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=WHhfLu4wuVkD8pobkkPo2fIc8av3brC/CMmAV15vS3I=;
+        b=UaVKRi14k8C1vL71KskJbp0yL4yGMQ68xaYkDV+G3MI8WR6+LMilErOb9mdKdLQjLj
+         3RjkBDU2Y4wx01o1VvFBYfcrshTl2Ny+VrwfSzrkI6Qq3WUW8Utk8NYcjPrOoY3RD55H
+         s+DCTiJAnG6+69ntJwuH3QNG+7stKkfn1Akotwv+M1TI4oT5+WqvlooRMWwytXJd7WY6
+         ce1on4giVu61CINrVuRpPFviOs5o6fWlaFt3dOBd1PSbpNyzIWC0oBIsB2tSA3ksroaM
+         lLJ9PE8h4hXPDBQcTzhywE82J1BWaNWn3RTMb40meu8LpN0C32nSChuOjcid4vhU1IiD
+         kZjQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=AjtwjemJ;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id d3si18798465pgh.238.2019.04.24.10.50.20;
+        Wed, 24 Apr 2019 10:50:35 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=AjtwjemJ;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2391319AbfDXRth (ORCPT <rfc822;tavery321@gmail.com> + 99 others);
+        Wed, 24 Apr 2019 13:49:37 -0400
+Received: from mail-it1-f194.google.com ([209.85.166.194]:39645 "EHLO
+        mail-it1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390964AbfDXRaS (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 24 Apr 2019 13:30:18 -0400
+Received: by mail-it1-f194.google.com with SMTP id e13so7587066itk.4
+        for <linux-kernel@vger.kernel.org>; Wed, 24 Apr 2019 10:30:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=WHhfLu4wuVkD8pobkkPo2fIc8av3brC/CMmAV15vS3I=;
+        b=AjtwjemJWW4bdhAM8ETVn5kyELe01ISf2iOLJRElsXF+0a6lwH7DGig+CCUgCEyw4P
+         MKw/WJdkJ9c2FoSknYFVtjkwkODWJPgUFU42Aa8Nz9cg/8rDw+anCH+3tn1ryGisye4s
+         mtGIeh+sWhpBxqiCYSYT4t2KzzTNOq3ds0vZpeFQ/sk02ubY/R/b3z6vArc4ChfFp1Xn
+         ZK9wKJ5DhYu94VyafrYu96LPYMpSYeVJ3fkd/MlrhMA2HwXrSdXwnCQ0MJx8HpJmJJQi
+         YDedoLBLcpzOzQfrOdrXU1TrKrHKSv9h2F6oZVA3rp5uW1wpsROejEzCHVy5mQZcfGgG
+         h9Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=WHhfLu4wuVkD8pobkkPo2fIc8av3brC/CMmAV15vS3I=;
+        b=hMjdm+Ked5wrhdVZAnZi60BXzsA02HBN5q7X8gngXCRNgqBh7eoznvX+MQgXOXPQNt
+         a3lqBi78em1+oWZHNOok3dXEtLcSc4QtL18ssBDQxnF7dqNZuNKnaexI3VKnvwxL/lBK
+         QU8GZdLxdbfWxTMZpuc6wT3QAUuejEbEFOFfbmWIWgEq7R+Y/r05UjW90KLyKJ9N+9mq
+         SGGoQXTiZEmx0TLDdtQoYbx6iZprVnvUWU7fckfjgFvVn/w73Q0wIL/CPGhrQ0sf/4pu
+         +UhL1+CCo27GK+rAez9yAD+oe3VAU8gCzrDSZoaO/yK/USFcjiEhRKvfbpOQp11RdfLf
+         B5dQ==
+X-Gm-Message-State: APjAAAUilfpeqZD9vUMgXunBS4ymmLIspd6gpxeHTT3REBcacOIxUuMp
+        q/YOkd1tBirE5/eUaBVIJz3oB/MxcyNvt7wqNDMeNw==
+X-Received: by 2002:a02:ccb0:: with SMTP id t16mr23615766jap.137.1556127017979;
+ Wed, 24 Apr 2019 10:30:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAJ4FQ9AczEXM27=Pn_5iaaAXZ=nA+6FQu7_TRdcC=5RHpDFx4g@mail.gmail.com>
+ <20190424170418.GB4253@kroah.com>
+In-Reply-To: <20190424170418.GB4253@kroah.com>
+From:   =?UTF-8?Q?Ambro=C5=BE_Bizjak?= <abizjak.pro@gmail.com>
+Date:   Wed, 24 Apr 2019 19:30:06 +0200
+Message-ID: <CAJ4FQ9AQO0=_A5ueWt41JxUcLoa8-4JSGiD3_fOHQqJwKH6gRQ@mail.gmail.com>
+Subject: Re: Oops in current tree in i2c
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Thanks! I just tested the patch with 4.19.36 and it works for me.
+
+On Wed, Apr 24, 2019 at 7:04 PM Greg KH <gregkh@linuxfoundation.org> wrote:
+>
+> On Wed, Apr 24, 2019 at 06:59:09PM +0200, Ambro=C5=BE Bizjak wrote:
+> > Hi everyone,
+> >
+> > This buggy i2c patch (see https://lkml.org/lkml/2018/10/27/248) has
+> > just landed in stable 4.19.36 without the appropriate fix, causing
+> > oops on boot on many machines. For example we're experiencing this
+> > issue with the NixOS distribution
+> > (https://github.com/NixOS/nixpkgs/issues/60126). I am currently trying
+> > the fix (https://github.com/torvalds/linux/commit/b59dfdaef173677b0b7e1=
+0f375226c0a1114fd20)
+> > and will report if fixes the crash.
+>
+> Good catch, that fix is needed, will go queue that up now, thanks!
+>
+> greg k-h

@@ -1,0 +1,119 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp787177lfg;
+        Wed, 1 Apr 2020 10:58:40 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vu0c1r/jtt028K9A7Hmx6rvUk/jlsffFed+9B8w7hkgLzSJJhUhn9IGq0ebUTmnI+g3Jv/n
+X-Received: by 2002:ac8:312e:: with SMTP id g43mr12140490qtb.360.1585763920228;
+        Wed, 01 Apr 2020 10:58:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585763920; cv=none;
+        d=google.com; s=arc-20160816;
+        b=S4zmt8uYQsWRdiDlnW46MXFngvXHOLb4+1/gF+Ju6OQaHS2oM1/eA37qXisRZAFEpf
+         i5qB1K+vSg2g5u87U8YGAVC/1NVdtYwPRAs6qtkZ9vIE2Jb2iSgIYAkyWAn9cffpUzAN
+         h+u3L9Q66CEP2GM5MeFiPq7AJJQo1Z7Pk0BtkTectWTTtqvGSsvYlrHHdgP25iz8Cd0O
+         PqER1lU/NgW466mvH1jAT8Kypu/KU+0sKqfrrunSZYRFzM0XuqfoYE3KbNAIez3Okl+k
+         1fqp2LAR+wulx37cX7mlC69qjXnYDidW33+Vl6b+q1+x5nyqx/VMhQS6Rsd6Blum1ctt
+         px3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-post:list-archive:list-id:precedence
+         :content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:cc:to:reply-to:from:date:dkim-signature:message-id;
+        bh=69C/uC+udbQe3UA9/qBnenOopanEWgOat2EyucV/4yA=;
+        b=Ssx1Yas/QxZ2VPDUoR1cSoEkVeMvUwJZGGxlAJqpJpU/16D4HXaxb0qQemaKbe5gw2
+         GPrFuvSNC31AUi+q4P161pIKR8TLWdrLD8pnIWYgpI9IBPYEs/Pv0xu5gJdJThVhqCdN
+         +oEv5ws01OtYHzE/eLVROfyT9GPgNfSQv/XjJxEGawRe/dYxvP97ePAw3e1ST2E5dAPl
+         iINPYe1Nfr5VDZ1r3RNIctLsJKS509rW5GG9CtMNsq3Priox6aAoez4dFwwarp8argje
+         EBp9K7pm5+NJL6f9MkiQnjCy16m0pGoP1FggeTXGeP9BfHmjicPUJyviQT95UH2VG3Nj
+         1rTA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=GgRMivYF;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.254.198 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-15.smtp.github.com (out-15.smtp.github.com. [192.30.254.198])
+        by mx.google.com with ESMTPS id 11si1722958qkd.276.2020.04.01.10.58.39
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 01 Apr 2020 10:58:40 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.254.198 as permitted sender) client-ip=192.30.254.198;
+Authentication-Results: mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=GgRMivYF;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.254.198 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Message-ID: <5e84d650.1c69fb81.740ca.8e72SMTPIN_ADDED_BROKEN@mx.google.com>
+X-Google-Original-Message-ID: <Lukewh/i3blocks config/comments/3236478@github.com>
+Received: from github-lowworker-a6a2749.va3-iad.github.net (github-lowworker-a6a2749.va3-iad.github.net [10.48.16.62])
+	by smtp.github.com (Postfix) with ESMTP id 582B82615A5
+	for <unixbhaskar@gmail.com>; Wed,  1 Apr 2020 10:58:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2014; t=1585763919;
+	bh=69C/uC+udbQe3UA9/qBnenOopanEWgOat2EyucV/4yA=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:From;
+	b=GgRMivYFm8QR3TDAk26+F+POdbsgqPt8DioMlOkEPSO1bS5mu5QE3uEGkBiLmL8wL
+	 c10ug6TJRxBYYdnVoi+6MMG/MnmKi3KKuhDLrKVI1auGHqFVQTziV64RckTB+3C4FA
+	 uu4HjDHLpX5fkcVuoXzSbLcVVOWPxLPAbU5qeE/k=
+Date: Wed, 01 Apr 2020 10:58:39 -0700
+From: Dan Habot <notifications@github.com>
+Reply-To: Lukewh <reply+AAA3X22NMT3NK4DOM522TBV4SC3U7EVBM7HAMFPVB4@reply.github.com>
+To: Lukewh <Lukewh@noreply.github.com>
+Cc: Bhaskar Chowdhury <unixbhaskar@gmail.com>, 
+ Comment <comment@noreply.github.com>
+In-Reply-To: <Lukewh/i3blocks config@github.com>
+References: <Lukewh/i3blocks config@github.com>
+Subject: Re: Lukewh/i3blocks config
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5e84d64f13814_6a7e3fd95e2cd9641871aa";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: danhab99
+X-GitHub-Recipient: unixbhaskar
+X-GitHub-Reason: comment
+List-ID: Lukewh <Lukewh.Lukewh.github.com>
+List-Archive: https://github.com/Lukewh
+List-Post: <mailto:reply+AAA3X22NMT3NK4DOM522TBV4SC3U7EVBM7HAMFPVB4@reply.github.com>
+List-Unsubscribe: <mailto:unsub+AAA3X22NMT3NK4DOM522TBV4SC3U7EVBM7HAMFPVB4@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/AAA3X2357NCVCDKLZTTFCVTRKN6E7ANCNFSM4LXUSGYA>
+X-Auto-Response-Suppress: All
+X-GitHub-Recipient-Address: unixbhaskar@gmail.com
+
+
+----==_mimepart_5e84d64f13814_6a7e3fd95e2cd9641871aa
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+`YOU'RE NOT A KARDASHIAN. FUCKING WORK.` I feel so motivated!!
+
+-- 
+You are receiving this because you commented.
+Reply to this email directly or view it on GitHub:
+https://gist.github.com/384b58fd99081179443df73400ff1f85#gistcomment-3236478
+----==_mimepart_5e84d64f13814_6a7e3fd95e2cd9641871aa
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<strong>@danhab99</strong> commented on this gist.<hr />
+<p><code>YOU'RE NOT A KARDASHIAN. FUCKING WORK.</code> I feel so motivated!!</p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />You are receiving this because you commented.<br />Reply to this email directly, <a href="https://gist.github.com/384b58fd99081179443df73400ff1f85#gistcomment-3236478">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/AAA3X2YU7YRNIRSEJF5A5ETRKN6E7ANCNFSM4LXUSGYA">unsubscribe</a>.<img src="https://github.com/notifications/beacon/AAA3X253TQTXSQ3OBJUL6MDRKN6E7A5CNFSM4LXUSGYKYY3PNVWWK3TUL52HS4DFVNDWS43UINXW23LFNZ2KUY3PNVWWK3TUL5UWJTQAGFRH4.gif" height="1" width="1" alt="" /></p>
+<script type="application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://gist.github.com/384b58fd99081179443df73400ff1f85#gistcomment-3236478",
+"url": "https://gist.github.com/384b58fd99081179443df73400ff1f85#gistcomment-3236478",
+"name": "View Gist"
+},
+"description": "View this Gist on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>
+----==_mimepart_5e84d64f13814_6a7e3fd95e2cd9641871aa--

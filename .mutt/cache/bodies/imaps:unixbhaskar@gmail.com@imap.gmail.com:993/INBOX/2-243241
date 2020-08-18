@@ -1,0 +1,88 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp2600643lfk;
+        Fri, 5 Jun 2020 13:37:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzvVsI6U7hoEPSVdKvwKnlA1Wp1urbdRc7T+Wi4jhv5XaSSEY891FIJvybUt7KuGSHZimMW
+X-Received: by 2002:a17:906:ce2f:: with SMTP id sd15mr10246693ejb.445.1591389439560;
+        Fri, 05 Jun 2020 13:37:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591389439; cv=none;
+        d=google.com; s=arc-20160816;
+        b=DljwPWq570NQIrpwyym2LIC6ccQDbz/fRMe8dz7K0Kf03WZ1JB936Ke58QaqlyYaJV
+         A/ERJLCrn8ZzWrYLwAspY2PRxvVExIeBT46Oj1RUQDJLpDosjZ068f3dM9Z3SD2IUVwZ
+         jZ3jNyntpJZu9J5DQA6DE+xMawi7QkwNgqKRtB6k/nECnlm7mC3ljGL2wDJFCa0xrc6l
+         RpoxMV9xYXF1t+LsHaXmGq0S5emb8aKsHda9nV7LSn7+j0VqcSGn7YtNCaJT8LdOpxAz
+         o8zZPU5v4Eh5+cLksjhPUFemLWrms1oMxQfCHIZbG9KT/5Fx7pGOv5uiP54dbevQyjlJ
+         YHCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :organization:references:in-reply-to:message-id:subject:cc:to:from
+         :date;
+        bh=QbcnRuP1XM69yXcB9afYjukYz3UyOqYZNr705wGj+Fg=;
+        b=n9jCB3vIzBnSkIjWoDPPBdNmjzbC4z/a17lUGSZ3RrzTY6D27eHlPyQvTlijA3WwP0
+         B+a7pO7TgJplpslktIfV7a2IweO5POV4r0QLYGGo3AtndnxaVAjXARhmiOTIn2j487Rl
+         NsYbxctEdaG/B7UfozeCW3ubVx4tOfnIIH7u6rO4CP/JWaYwgsAJeut6vhDb/GTlhA/j
+         GG42TXnAzPnJ6w0TJ9ElwMh/ykAVsMezPfHthqJpTHLY4EMFXAjxoz/sM7uirII+qU2l
+         Of01LfSwJDCdPJnvf8DmeCjpXmPVWEt07MFbmWvZjx4t19Oa5Dn2Pr9Rii2g3ytXrfMo
+         Awag==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id dm20si3994740edb.457.2020.06.05.13.36.56;
+        Fri, 05 Jun 2020 13:37:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728206AbgFEUeh (ORCPT <rfc822;nullstelllensatz@gmail.com>
+        + 99 others); Fri, 5 Jun 2020 16:34:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51522 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727888AbgFEUeg (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 5 Jun 2020 16:34:36 -0400
+Received: from ms.lwn.net (ms.lwn.net [IPv6:2600:3c01:e000:3a1::42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 417CBC08C5C2
+        for <linux-kernel@vger.kernel.org>; Fri,  5 Jun 2020 13:34:36 -0700 (PDT)
+Received: from lwn.net (localhost [127.0.0.1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id D2C0160B;
+        Fri,  5 Jun 2020 20:34:34 +0000 (UTC)
+Date:   Fri, 5 Jun 2020 14:34:33 -0600
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     "Alexander A. Klimov" <grandmaster@al2klimov.de>
+Cc:     Stephen Rothwell <sfr@canb.auug.org.au>,
+        Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: linux-next: Signed-off-by missing for commit in the jc_docs
+ tree
+Message-ID: <20200605143433.578aaaf5@lwn.net>
+In-Reply-To: <ba5ca7c6-bdf9-b568-b58e-d6d466dc668f@al2klimov.de>
+References: <20200526080122.5a91c78a@canb.auug.org.au>
+        <20200526084451.69a3bd45@lwn.net>
+        <ba5ca7c6-bdf9-b568-b58e-d6d466dc668f@al2klimov.de>
+Organization: LWN.net
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, 5 Jun 2020 22:28:54 +0200
+"Alexander A. Klimov" <grandmaster@al2klimov.de> wrote:
+
+> Am I completely blind or did the patch completely disappear?
+> 
+> $ git log v5.0..docs-5.8 |grep -Fwe 'Alexander A. Klimov'
+> $ git log v5.0..lwn/docs-next |grep -Fwe 'Alexander A. Klimov'
+> $ git log v5.0..lwn/docs-next-merge |grep -Fwe 'Alexander A. Klimov'
+> $ git log v5.0..torvalds/master |grep -Fwe 'Alexander A. Klimov'
+
+I pulled the original version since it wasn't properly signed off.  I have
+your replacement, and may yet get it in during the merge window.
+
+(Please don't top-post).
+
+jon

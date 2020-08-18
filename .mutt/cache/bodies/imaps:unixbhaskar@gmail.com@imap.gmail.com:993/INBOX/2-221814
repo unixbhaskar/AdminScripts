@@ -1,0 +1,116 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp5741234lfc;
+        Tue, 4 Feb 2020 14:05:39 -0800 (PST)
+X-Google-Smtp-Source: APXvYqweI/Fp1H9739x7FmrFA2yWD+Md3KdZPZHXDgs27ibPIM5bwoftxVEoXznlOYbeGLS/NXJf
+X-Received: by 2002:a05:6830:9a:: with SMTP id a26mr23952599oto.273.1580853939247;
+        Tue, 04 Feb 2020 14:05:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580853939; cv=none;
+        d=google.com; s=arc-20160816;
+        b=zOfXqVKDzVSV8ipgCklKdAW2vJEdELamKz++dAcaFcDgt+ta/IFu6VBDbxP69mZZYL
+         a2isAulpcaOFvpVStZiqKs854IOFh+3EN3/r3O32hj0nqYss5x88w6aFo6SBjw6BIj1g
+         gF71K7btZJZ8AX8hQdcUPM9MZhqHwnHF1zjmHTsz8jK5EgESOapujHzYxkl3idWXWeBT
+         m2BqFcSmNl5Xh1clLokHE8TrZ+ojmP/NvRASme4gLByd6OLnU2rDeWvUucLHGx4OJLfU
+         D2FXGHZOObnhiVPjClRZRCQdeDdwhQQJgmTv59zJGSWJaIXxpL46hMBODsexqMb1OPvv
+         zv1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=/k4/izTBIN3XubGza81OgicfYFOfcnjIp86foPKa92I=;
+        b=vCtzrD6ggHE/GvD6ufDLx+qACzgGSxBok1m24i2faaeLnahL6j3/xEoShzRQnk+r9g
+         33dDsNCjvgeb9+gm7oD0GQqdHZwzvuivFH/aD1+4HR7UW/LWhZbbkiw/0YXdqm6Lvw02
+         lQYYDNGylhW6yenOleQRjdd49kREKOW0uxBMs4/AzlyzQ0dbW7A9/xSF4CBHNMAyieTq
+         lCtf0/lU4mZxQiKErhWWK8CMN9CXGlOONMU7O0pFtuT8Dd3HUOsEqe1aO1oMz1UuIa/M
+         ziG6oo3gELhtKsWPNWTiFVMY4+/vaGGKmzTgNzxOFDTH+mpliWZPCsR8m0yMoWgKHJh9
+         amHw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=aaOOUcqf;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id y205si11531077oig.137.2020.02.04.14.05.27;
+        Tue, 04 Feb 2020 14:05:39 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=aaOOUcqf;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727563AbgBDWEr (ORCPT <rfc822;rfried.dev@gmail.com>
+        + 99 others); Tue, 4 Feb 2020 17:04:47 -0500
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:43277 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727412AbgBDWEr (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 4 Feb 2020 17:04:47 -0500
+Received: by mail-lj1-f194.google.com with SMTP id a13so237852ljm.10
+        for <linux-kernel@vger.kernel.org>; Tue, 04 Feb 2020 14:04:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/k4/izTBIN3XubGza81OgicfYFOfcnjIp86foPKa92I=;
+        b=aaOOUcqfut7eU8H+ATmPs2jGibggkqecvvvmXPHkxy9BQ9m9YPPYw3XEQjThsHPJ3d
+         c5Frbx+FNmz5Kq+dXXXLUYIzq0ri5aV4sP71szy0VWxgN43j0ur0iy9Z+ZCXK2zWh48M
+         iCb5LPkLM+dn5an3vw7p914L3L8K3/EUormq0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/k4/izTBIN3XubGza81OgicfYFOfcnjIp86foPKa92I=;
+        b=Zuy5G8uaN2xNrfQqCeVaYJ6ar4H1F+fJKaP8DlHDF/DbRO7t7fSQdk+x9YgNsfbbta
+         45qnWI+7GjLYYDG7U8E19dTM3mafiKEnu/wrQNQQY/jAIpfiEDWIUEMtFKRhM6JXLvVM
+         Wg3OuQUbbapj2RvoV+kARx8pt1V4vKCKp5hu71l/9YluDrFuvLJ/lXGcrPLHNpa2JOft
+         irbHmbKWgzfifC6tSC4xOz6UJ5SwRxPNyAo3DGvhLBHWbZRETZMsAFJcKPb6ZFYFbi/Y
+         i6XdqKywXhU+VTykGAfVPdL0U7aMCCnFTDTDo4WxiPBw7SiNdNmM5IaKKbM/9vjY7DOB
+         f6Qw==
+X-Gm-Message-State: APjAAAXBjT/10JUU3W0t3edrK8WFSBDSROhxJQqI0ox+uWo9sgtShOdS
+        I0dpAK/FKlhVy1Dw+Cnqc4tS4KgYU5pwtA==
+X-Received: by 2002:a2e:b5a5:: with SMTP id f5mr18063843ljn.162.1580853884565;
+        Tue, 04 Feb 2020 14:04:44 -0800 (PST)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com. [209.85.167.50])
+        by smtp.gmail.com with ESMTPSA id h24sm12212389ljc.84.2020.02.04.14.04.41
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Feb 2020 14:04:42 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id t23so13332955lfk.6
+        for <linux-kernel@vger.kernel.org>; Tue, 04 Feb 2020 14:04:41 -0800 (PST)
+X-Received: by 2002:a19:f514:: with SMTP id j20mr16008847lfb.31.1580853881597;
+ Tue, 04 Feb 2020 14:04:41 -0800 (PST)
+MIME-Version: 1.0
+References: <92cc6617-e2c3-e3b8-cf20-c8ccf748d37a@monstr.eu>
+ <CAHk-=wiFMsSnjERZno13XbTF6m3pk2beAH5R-9RGct7hXzG3ig@mail.gmail.com> <f2b951c9-f904-58d7-0634-0a0d42f71066@monstr.eu>
+In-Reply-To: <f2b951c9-f904-58d7-0634-0a0d42f71066@monstr.eu>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Tue, 4 Feb 2020 22:04:25 +0000
+X-Gmail-Original-Message-ID: <CAHk-=wj1xRXSKMPt-y=A6-nUqDQQwK2eHHfF96zdk0bWkfUCzQ@mail.gmail.com>
+Message-ID: <CAHk-=wj1xRXSKMPt-y=A6-nUqDQQwK2eHHfF96zdk0bWkfUCzQ@mail.gmail.com>
+Subject: Re: [GIT PULL] arch/microblaze patches for 5.6-rc1
+To:     Michal Simek <monstr@monstr.eu>
+Cc:     LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Feb 4, 2020 at 5:37 PM Michal Simek <monstr@monstr.eu> wrote:
+>
+> Sorry about it. All that patches has been sent and done till the mid of
+> January. Some of them even earlier.
+> I just needed to remove one patch from queue which we found is causing
+> the issue. That's why instead of revert I completely remove it and
+> rebase the rest of the tree.
+> I will handle that differently next time.
+
+Note that if this happens again, and you have a really good reason to
+rebase, please _mention_ that reason.
+
+The whole taking me by surprise when I notice after-the-fact that I've
+pulled something that was committed just hours before is about the
+worst thing that can happen (always excepting obviously untested code
+- me finding that the code doesn't even compile is even worse, of
+course, even if it wasn't recently committed).
+
+So if there's a good reason why something is very recent, and you
+mention it, and it's not a common pattern, I get much less upset.
+
+              Linus

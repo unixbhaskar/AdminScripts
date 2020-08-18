@@ -1,0 +1,96 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp2051371lfc;
+        Thu, 9 Jan 2020 03:55:23 -0800 (PST)
+X-Received: by 2002:adf:ef4e:: with SMTP id c14mr10725417wrp.142.1578570923879;
+        Thu, 09 Jan 2020 03:55:23 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1578570923; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ussfmo/XDVRmyCG3nXzvAjTgiDTL9SoUg44/NpzWlPNFX1bF8gDEtsF3F3YKSTCwok
+         p398hoJH+qZjn16I1IJGyMxiBF6ZyelmKAjYEOo4mWgNJJcx7x3nmCVaI5XX6DzbwxRB
+         4EqeXOKWqRSTwfafrkJ5RcpCDRbpbfhb7cUVyJdHdcgSC6r0c5b8/EQ1vAgr7M+rN2Nk
+         f2XMhgpqeQ59r49LRci/Rx4F7FqR8Ssk9d4AjkijiBL5Ayq3amI6DXxJAbzHisj0AaVf
+         a02qk+nDmVrmM8VEdvMyby0k+h2iZFJDniIjhzzYFGgmXBtNOlVNktEvxdMHzB8jdvDC
+         3YOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:sender:dkim-signature;
+        bh=mFkJFYkrFDlWwhK3VKXDGs8jHD7xXTyu7e9TssfROcw=;
+        b=Q7zbQLv3RtqjMTit6jeklfUTGGOEdcoejsDj6oHDKctzrB2+3Rd28TrCYVwXh+w5J3
+         n2euNg9TdaKfq99YG16vOiZCuJHt9Z7SGvmP7I4z8a4bl2g9VEyqNwfc8c1ihjbsCvu/
+         Xmwq2IkNQH6BsBshfw+Aiael6kmbWVMSMXEYBG5s1jKBG3k1z9fqv1qiEbEz7jX3rAu3
+         eKYc+Q/21kx++0sPjZ/qn1o0mRMmVF+zBW9OrCHQh4AqmykoamhWz4DRo1Qm2gm8jvOj
+         w9y9I4emQUy4RsippL1oYUILQ1TFg3SJBcAWdiSQ7JTpJZ1rDEkKZdYZ2/9SBljBWm7Q
+         p62w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=VupQPDUF;
+       spf=pass (google.com: domain of salvatore.bonaccorso@gmail.com designates 209.85.220.65 as permitted sender) smtp.mailfrom=salvatore.bonaccorso@gmail.com
+Return-Path: <salvatore.bonaccorso@gmail.com>
+Received: from mail-sor-f65.google.com (mail-sor-f65.google.com. [209.85.220.65])
+        by mx.google.com with SMTPS id x6sor4143310wrp.28.2020.01.09.03.55.23
+        for <unixbhaskar@gmail.com>
+        (Google Transport Security);
+        Thu, 09 Jan 2020 03:55:23 -0800 (PST)
+Received-SPF: pass (google.com: domain of salvatore.bonaccorso@gmail.com designates 209.85.220.65 as permitted sender) client-ip=209.85.220.65;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=VupQPDUF;
+       spf=pass (google.com: domain of salvatore.bonaccorso@gmail.com designates 209.85.220.65 as permitted sender) smtp.mailfrom=salvatore.bonaccorso@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=mFkJFYkrFDlWwhK3VKXDGs8jHD7xXTyu7e9TssfROcw=;
+        b=VupQPDUFRW6nGI/fzWa+ImG6XxRsc/hamERXHTC1dosaWxKNgdAbWQDk0HOMqzR66F
+         +2dhGR+dnG6oMn7gR22cxPsacp8CL5RP63fJFGXzFeQ+4apuOHZL+lHxNifRs8OQnJg1
+         E+otA/VR0s0acLtclp9GbEySjXdImnzLwESx+PL/+SoIpENiFYmczifnTPlZgwr9MYDc
+         SZC7aUgd7yxZif/HC4+zpmRUYOQMviQpQdqPK/fgF4hlQ5W7tl7ZCE5iOxkoOyWA01c1
+         s7/jp7cpF86j/jZ2mjNHNi8TPPegY78m8Q2gbP0afcYMGZZ05ADgKsoX1OtyxB4Bxkjg
+         gUZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mFkJFYkrFDlWwhK3VKXDGs8jHD7xXTyu7e9TssfROcw=;
+        b=UHQ0B/egyhRiZNR9MIKhpSLzzi4IOkG1K7ynjb9KWSNyu94iPJZyw1AfTwFAat6gzs
+         Xt1IrTza+GFPdqURrZ5AZgjgUP9a9QGUFaZA8Vmlke5bXH+iH6SFteTG2qxj91eZazkR
+         61O9rgyWafLkRdht9GlsuzXw17EqjkDOPL5PrI/9BiZVtc5F8oJxrMGdcRnHMO4gvQIa
+         zcggf1SiQ755d2hy87fsPtsRZFwPu7RsR2cZlklqDHYmmSGbF4vugkw/ansDTQ235m2+
+         mt9naRMu7tNMvKd8c9sZ1Ujv/ASFqS4WiyVpTO6dO4dMLKvtlQO6mGTb1qURUHLcgRqV
+         C1pw==
+X-Gm-Message-State: APjAAAUrF2MA4ATqlE3rvoWngKc7WavCRjaTmwb4ZcgVaZqL8DMNOZIa
+	q1y/d2je6aY/acAS9Xv+nGY=
+X-Google-Smtp-Source: APXvYqzZdiDmnWeIjKl6Zs3UBhHThSKFOQFbH9wX9X39v5aH1m8oz0pIqOBHZJxJHGAj4woPe0HMbQ==
+X-Received: by 2002:adf:d0c1:: with SMTP id z1mr10906394wrh.371.1578570923526;
+        Thu, 09 Jan 2020 03:55:23 -0800 (PST)
+Return-Path: <salvatore.bonaccorso@gmail.com>
+Received: from lorien (lorien.valinor.li. [2a01:4f8:192:61d5::2])
+        by smtp.gmail.com with ESMTPSA id g25sm3634075wmh.3.2020.01.09.03.55.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jan 2020 03:55:22 -0800 (PST)
+Sender: Salvatore Bonaccorso <salvatore.bonaccorso@gmail.com>
+Date: Thu, 9 Jan 2020 12:55:21 +0100
+From: Salvatore Bonaccorso <carnil@debian.org>
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Cc: StableKernel <stable@vger.kernel.org>, linux-kernel@vger.kernel.org,
+	Greg KH <gregkh@linuxfoundation.org>
+Subject: Re: What happend to 5.4.9??? Kernel.org showing 5.4.10!!
+Message-ID: <20200109115514.GA1270@lorien.valinor.li>
+References: <20200109114330.GC19235@Gentoo>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200109114330.GC19235@Gentoo>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+Hi,
+
+On Thu, Jan 09, 2020 at 05:13:32PM +0530, Bhaskar Chowdhury wrote:
+> I am wondering, it might be lack of morning coffee for Greg  :)
+
+5.4.10 contains one followup, backport of 6f4679b95674 ("powerpc/pmem:
+Fix kernel crash due to wrong range value usage in
+flush_dcache_range") which fixes a regression introduced in 5.4.9 via
+backport of 076265907cf9 ("powerpc: Chunk calls to flush_dcache_range
+in arch_*_memory").
+
+Regards,
+Salvatore

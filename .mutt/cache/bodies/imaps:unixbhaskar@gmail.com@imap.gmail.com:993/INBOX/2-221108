@@ -1,0 +1,125 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp2114156lfc;
+        Thu, 30 Jan 2020 10:08:58 -0800 (PST)
+X-Google-Smtp-Source: APXvYqz8DVsf/6yxvFtWa/I2kbn7dqj/h8QC8z4cmjzCYJsR2FtFHMkUctbMLUi78U4hgE0eOO3D
+X-Received: by 2002:a9d:6184:: with SMTP id g4mr4275421otk.223.1580407738151;
+        Thu, 30 Jan 2020 10:08:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580407738; cv=none;
+        d=google.com; s=arc-20160816;
+        b=dxK8IDbL68bF84brUdLfJd5a23HLy6j1jho7mTPdYN3qrSrtlBeAnIIZgEXlq91ooC
+         y3zUQBEUoV6ZuQuGwmeSL1EfLgZmHYVNscb+tfZt48nRNhJJZwb9RJtHa4BzlUfywm5o
+         PPcSDGsNps4fkhGwcsgAjcXAzvWbV9YdLJzjrIeLR3kTOWnvGgnrjI5nE8erUyg3Mheh
+         QvBBhK1hUE98mmv/nIPy67vwDxMlZE2jpaAWPZmnnrVWkLeKP9014/DyLEY0YHjh1Qrs
+         IEU0ceMc8TilBuMNAOf8BkxvEBouELhboRLEWH/P1JtG0++44fMzW9FRBpULidRqHIpM
+         4YuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:cc:to:subject
+         :message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=kL4rjiP0e48Y4A4F+RCnrqnSbJmlceS+HGmd0tES8pc=;
+        b=UZabcgTRxhiiu0r1C36OVyJ93sv1HnUPpIt47lHqjyaki/NkWvzFqHEKgV1vHNm+hy
+         Fpg0RmuoSQKZFkIkTMOc9KLLEqSe+T/68jdmxSX3Aay9y+jye8VvKjDIy+OeJlWVigmF
+         n/mDGq8cxyAdW0kGjtkjgQX+V/gtSCQSy7vT33k4ZhOlcaemgcuUHPOEVYWOkzy8sTg0
+         /TDxQxbl3wQEUxHqFOlLQ5ogFxI/CXdIKarvRid6sApcV/0BX2Bunxy4sP2Cp/ReJHH7
+         JXdWAP6shYglBwNm4FGxafOnzf5NUcZkbC8947mZHGqlqDqhPyIOO1wIvyoRnweRDm7j
+         t9/Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=C14FZFb+;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f5si3705097otp.129.2020.01.30.10.08.45;
+        Thu, 30 Jan 2020 10:08:58 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=C14FZFb+;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728130AbgA3SIA (ORCPT <rfc822;android.linux@gmail.com>
+        + 99 others); Thu, 30 Jan 2020 13:08:00 -0500
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:33578 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728119AbgA3SIA (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 30 Jan 2020 13:08:00 -0500
+Received: by mail-lf1-f66.google.com with SMTP id n25so2957555lfl.0
+        for <linux-kernel@vger.kernel.org>; Thu, 30 Jan 2020 10:07:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=kL4rjiP0e48Y4A4F+RCnrqnSbJmlceS+HGmd0tES8pc=;
+        b=C14FZFb+G7nVOgqeueIR9P8NCe2Pq3rf8p0yZcDJX9bKw01xzAWVqWSSiLVGdF1691
+         13mDU9QQpLjxx7aLKLnKUdyECKhjONzeJTNLCR99kWiPJ9dxOvLXFADfiMGaKf73PVO3
+         OpKqsMhNXJLnC5txzl7UPnzLbAdh4SfjFGPHM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=kL4rjiP0e48Y4A4F+RCnrqnSbJmlceS+HGmd0tES8pc=;
+        b=QI6nWwgzgRpkZ7APdBq3B6qrQrWnvlhEl+G4YKgJbcX2a8jw1pZc9zv12dMq98X7jm
+         LZxn9utkftrOYIKAikl+NlBEsKWafM5rIgbk/+Y9Yz0lbU2gO02txTNvB0O4p95jXHFv
+         YISV5Q+pqtNOE8EAhr1u9/kupO0EkBGRALHJPR3hDjPCi6TWLDroQiQqi2sF0wr81AVm
+         aN5bctx60YWIeRrM2EejZHdTCDCMw+g4TrFm2o/LdklHYOagNtbgYKnNp9g3/lSCWYaY
+         VtqFqfS9Twdz1NORnLtqPOF3vt9phDbor5UAViDBDWTH9GRs+FMnp44H8XI3nfV9e02I
+         gGcw==
+X-Gm-Message-State: APjAAAVDQJAl5Ckg8Du3eZAgxtPEt46SVAW1Nr4e/3DLCLKi7UF1eg4E
+        ZFeWpCdi1djjKvy6ZxXuposin7jIXJ0=
+X-Received: by 2002:ac2:4436:: with SMTP id w22mr3169189lfl.185.1580407677832;
+        Thu, 30 Jan 2020 10:07:57 -0800 (PST)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
+        by smtp.gmail.com with ESMTPSA id n3sm3327421ljc.100.2020.01.30.10.07.56
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jan 2020 10:07:57 -0800 (PST)
+Received: by mail-lj1-f173.google.com with SMTP id q8so4401564ljb.2
+        for <linux-kernel@vger.kernel.org>; Thu, 30 Jan 2020 10:07:56 -0800 (PST)
+X-Received: by 2002:a2e:580c:: with SMTP id m12mr3661876ljb.150.1580407676549;
+ Thu, 30 Jan 2020 10:07:56 -0800 (PST)
+MIME-Version: 1.0
+References: <CADDKRnANovPM5Xvme7Ywg8KEMUyP-gB0M-ufxKD8pw0gNwtFag@mail.gmail.com>
+In-Reply-To: <CADDKRnANovPM5Xvme7Ywg8KEMUyP-gB0M-ufxKD8pw0gNwtFag@mail.gmail.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Thu, 30 Jan 2020 10:07:40 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wjOXE4cqFOdtSymYnMMayZq8Lv7qDy-6BzCs=2=8HcoBA@mail.gmail.com>
+Message-ID: <CAHk-=wjOXE4cqFOdtSymYnMMayZq8Lv7qDy-6BzCs=2=8HcoBA@mail.gmail.com>
+Subject: Re: 5.6-### doesn't boot
+To:     =?UTF-8?Q?J=C3=B6rg_Otte?= <jrg.otte@gmail.com>,
+        Ingo Molnar <mingo@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "the arch/x86 maintainers" <x86@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Jan 30, 2020 at 9:32 AM J=C3=B6rg Otte <jrg.otte@gmail.com> wrote:
+>
+> my notebook doesn't boot with current kernel. Booting stops right after
+> displaying "loading initial ramdisk..". No further displays.
+> Also nothing is wriiten to the logs.
+>
+> last known good kernel is : vmlinuz-5.5.0-00849-gb0be0eff1a5a
+> first known bad kernel is : vmlinuz-5.5.0-01154-gc677124e631d
+
+It would be lovely if you can bisect a bit. But my merges in that
+range are all from Ingo:
+
+Ingo Molnar (7):
+    header cleanup
+    objtool updates
+    RCU updates
+    EFI updates
+    locking updates
+    perf updates
+    scheduler updates
+
+but not having any messages at all makes it hard to guess where it would be=
+.
+
+A few bisect runs would narrow it down a fair amount. Bisecting all
+the way would be even better, of course,
+
+            Linus

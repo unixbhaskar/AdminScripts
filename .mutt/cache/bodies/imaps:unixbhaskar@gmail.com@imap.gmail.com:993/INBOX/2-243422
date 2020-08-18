@@ -1,0 +1,129 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp4145153lfk;
+        Sun, 7 Jun 2020 13:02:10 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz9l/ysh6folzj0E3jNNjEhrLWKUl2HQZRgdckr7pHrOMAzzzMUUv/psMJ8jB/snClBrXSX
+X-Received: by 2002:a05:6402:7c3:: with SMTP id u3mr19132382edy.253.1591560130563;
+        Sun, 07 Jun 2020 13:02:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591560130; cv=none;
+        d=google.com; s=arc-20160816;
+        b=v0D2fAHC5gSpLXiYcxlndofN5+h0VvgG6P7x7d81tVzZgn1/zYJiSuJCV8YJYA3fuP
+         MQGLgFiovnO/lDlTQuruwaPsUeH2pdWHoeV+kzOhP+5GtkpJAVZsclqtBmi4wPsM2b2+
+         hf0ZWhFyyo2VgI7tMkI0+N8WkwR4WZE8g4aWEqlQA24Ug/4tJXYv6daoAyDOkU87Mjw1
+         1pLmc5FASAgHiabuXCN2wx5kVL+n3/T0Y8RjpPxALJ7HlD6vIJ3tAIj75Apha5rTNIuI
+         IQQRG9or0nZHvGiF6Y660cADE3IquCddX85dZN1Gj/M9+CA1MvheDi3mATJNjuhxinx+
+         8FpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=sfFkjoxj9fOIuKPRJb0FDkBxNdU4BLvuGT9ldDD2gzo=;
+        b=exbmgCmHliV1eEGKJKdsOanYvoBKQH/SCqLcLay8uUKqmBN8DvVk5g+BGITdfmtk93
+         uTIhAsWORdlu6KVVKmQea0zGtkhnpMuiL+slLlw0eTUX8onWC0bWZl5IOc8O7HwCKIXE
+         m3vP/Fh34DHgYABcSs7IZWBMhK0vTs0QxoHAlaZ62qE5ObD7egaxtmzSqaqOTEjIbWIn
+         LzB1qkHs9Kl+NwKCTApKOizuMc+hfhH0Ozftm8Y8J70daJsmWFR0JPtNumRTde6G8Ufx
+         wz33If+rlWtcK/t5LqqbRYnGahBegKfk72WJknicKEdsPufmbv3OkLZn6yWAKc5YVeY9
+         Te4g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b="Z/UxSQFS";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id qc28si7158984ejb.292.2020.06.07.13.01.36;
+        Sun, 07 Jun 2020 13:02:10 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b="Z/UxSQFS";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727069AbgFGT7X (ORCPT <rfc822;yxpengi686@gmail.com>
+        + 99 others); Sun, 7 Jun 2020 15:59:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38430 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726872AbgFGT7X (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 7 Jun 2020 15:59:23 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E4DC08C5C4
+        for <linux-kernel@vger.kernel.org>; Sun,  7 Jun 2020 12:59:21 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id i27so6922681ljb.12
+        for <linux-kernel@vger.kernel.org>; Sun, 07 Jun 2020 12:59:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sfFkjoxj9fOIuKPRJb0FDkBxNdU4BLvuGT9ldDD2gzo=;
+        b=Z/UxSQFSg3CDWwOVJuymkitl0NLXIOoRBih0s5v1TS0bvysDNE7rbLrJqwHBvcXhIc
+         lHvnCJXF/bTw/cJJkyXraQFWjE5VkIE4f7yumSh8zxnuOzwkU+uZYNxoNLZrPUU7QZWm
+         matRTgJ+GFJInbWVu4kDVi/ok+81m/ZgikWSw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sfFkjoxj9fOIuKPRJb0FDkBxNdU4BLvuGT9ldDD2gzo=;
+        b=UBYv73Nk5iAqlIpTIakRuDD/AWXp4lQzNLHMasWGkM7ddblWRJ+AaYjN7EAOM0vQ1L
+         89goNNu3vYgI6OUPtUGApq2zZzXx8YBWPQuWpgOwErtFAPzhdRFjI+it8ZsS1iiMUeQJ
+         K2LIgFUWljq7NI5PiFUQWfA7Ta0rURDlOkygpRc6v/AueZ4IshrfZJYDHAKQXDUgIIIA
+         EghfZ0xkOYbUbNi4uqNkXbecjuYHAQqE2K7CzsXfmmxyPzBEBobTvEhmHwq4SxG/5vFr
+         XyiTwlD/fFxnZaTuYdXXdlfBXzkJMzyinnB9bcWe5+gsubutPM0OwB28t2v64rntcaMg
+         +s2A==
+X-Gm-Message-State: AOAM533n5vetpPObpToeGKVTYLZhP4AewVfK+XDJS9OWJVJ8MZTSHQTw
+        5hUUAPKGV8rM+LjvTaT6pWy1GArYun8=
+X-Received: by 2002:a2e:4812:: with SMTP id v18mr9778822lja.353.1591559959612;
+        Sun, 07 Jun 2020 12:59:19 -0700 (PDT)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com. [209.85.208.169])
+        by smtp.gmail.com with ESMTPSA id a1sm3225873ljk.133.2020.06.07.12.59.18
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 Jun 2020 12:59:18 -0700 (PDT)
+Received: by mail-lj1-f169.google.com with SMTP id a25so17877396ljp.3
+        for <linux-kernel@vger.kernel.org>; Sun, 07 Jun 2020 12:59:18 -0700 (PDT)
+X-Received: by 2002:a2e:8991:: with SMTP id c17mr8444228lji.421.1591559957881;
+ Sun, 07 Jun 2020 12:59:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <1591376548.5816.14.camel@linux.ibm.com>
+In-Reply-To: <1591376548.5816.14.camel@linux.ibm.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 7 Jun 2020 12:59:01 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whV2B4fPSkHA1Z6qEbwRTcJF0gYWBfAuqSGG+p-05HtfQ@mail.gmail.com>
+Message-ID: <CAHk-=whV2B4fPSkHA1Z6qEbwRTcJF0gYWBfAuqSGG+p-05HtfQ@mail.gmail.com>
+Subject: Re: [GIT PULL] integrity subsystem updates for v5.8
+To:     Mimi Zohar <zohar@linux.ibm.com>
+Cc:     linux-integrity <linux-integrity@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Jun 5, 2020 at 10:03 AM Mimi Zohar <zohar@linux.ibm.com> wrote:
+>
+> The main changes are extending the TPM 2.0 PCR banks with bank
+> specific file hashes, calculating the "boot_aggregate" based on other
+> TPM PCR banks, using the default IMA hash algorithm, instead of SHA1,
+> as the basis for the cache hash table key, and preventing the mprotect
+> syscall to circumvent an IMA mmap appraise policy rule.
+
+I'm not sure why I didn't notice this during my test builds, but this
+results in a new warning:
+
+  WARNING: modpost: vmlinux.o(.text+0x496264): Section mismatch in
+reference from the function ima_calc_boot_aggregate() to the function
+.init.text:ima_pcrread()
+  The function ima_calc_boot_aggregate() references
+  the function __init ima_pcrread().
+  This is often because ima_calc_boot_aggregate lacks a __init
+  annotation or the annotation of ima_pcrread is wrong.
+
+and I think the warning is real - and the problem is real, not just a
+missing annotation.
+
+It looks like ima_calc_boot_aggregate() may be called not only at init
+time (ima_eventdigest_init() is referenced from "struct
+ima_template_field supported_fields[]", for example)
+
+So calling an __init function would be very wrong, because it might be
+gone by that time.
+
+Hmm?
+
+                Linus

@@ -1,0 +1,151 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp89335lfg;
+        Tue, 7 Apr 2020 20:16:28 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKbpb+VReh55czxh+coOvIYNIgYvWkQ1HtRVaNOz1MLnfYbuaFgDeBNVpS3OnwqaUGX1GlI
+X-Received: by 2002:a9d:58c9:: with SMTP id s9mr3723087oth.99.1586315788418;
+        Tue, 07 Apr 2020 20:16:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586315788; cv=none;
+        d=google.com; s=arc-20160816;
+        b=J/SVGq6jMQHaSUSvZh48ycnaQKx8w0BLReH+m6XaXSTfnN6w09Ta1ulwybKJEQYvQ0
+         cooBPlj8AMcjGs5rJTEqOuUQd8ImaPkV8Ye+xlQHHmIvUBkIZJGzglGYROvOz+YcWjqp
+         2lztEldsFnWtdOoo44s2DgtLJ7YkRIF1ygYTD8iZlWr1q3zYpI+iYjJkU1n4R4BOZ0CF
+         FSy7yGeU3lzmnZjQETjl7OoBISsGHRqio+E+1h+8ceLpnFA31d17RVCFD4JeuCH6ciHB
+         KUet7Jy9L7bEUBnsE1hvC9LlVjLiWpzKlz7Q2BRKzA5aJxhkT7cAdS7gyhxHEO3fe+JH
+         ORuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=az2sCBqHUEAw3ueI0a9zrJDzRaG8GZZBQbnmAG/MSZ4=;
+        b=Vq0eqXBF6XGFB6UF4xfTnL4OvkacQnzqFsVMLNpFnOd6lYkbFfiFcoGr2yg2od4rE+
+         D6X9FXzTCuBDcyE4y6GHAHrMvOYLBLbozOfp00np3ETMf8qvEYvUctmu2gtxNBUM9weo
+         ySCUL/839ibrImZb5CulhZtvMv3a2z0n0JqE22fZ59qaqZ8R9EAZBYtj1d5vGizMJxkn
+         xeFK3jyrkfoGLrm+tTKKb67knGNDm/Y/SyKqqITMcQD01yXFVD0VxKtvKP3/uchEh/yA
+         tFmoUChpkqplzn2FdSvdMJ0PKmhbcX/Zx6IFM0p8e6VLOY6de4KfWOue/sBiJqJEJ2NK
+         VgmA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=FglOBtsN;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id 26si1413142oiz.107.2020.04.07.20.16.13;
+        Tue, 07 Apr 2020 20:16:28 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=FglOBtsN;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726523AbgDHDPD (ORCPT <rfc822;srihari.unnikrishnan@gmail.com>
+        + 99 others); Tue, 7 Apr 2020 23:15:03 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:42581 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726453AbgDHDPD (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 7 Apr 2020 23:15:03 -0400
+Received: by mail-lf1-f66.google.com with SMTP id s13so3987008lfb.9
+        for <linux-kernel@vger.kernel.org>; Tue, 07 Apr 2020 20:15:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=az2sCBqHUEAw3ueI0a9zrJDzRaG8GZZBQbnmAG/MSZ4=;
+        b=FglOBtsNuLq+9GUpr/NY/r5GUPdDlvwYlg/tbeOzEec4q0XyXYKwy52RCXUcXpPDaf
+         uuZhdH9FQL3hZa384XMQhKS8IfoixmWL1SmoOyCkNNfdFHdekQDtOcGMtihZUM/E4b1+
+         sa0pwFzO9ISDjuBzkEVhtwRBTppJfMRC8j2C4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=az2sCBqHUEAw3ueI0a9zrJDzRaG8GZZBQbnmAG/MSZ4=;
+        b=MWBC9wlHYrM9IHoEqo3zJ2qyMOk08W2gwNhDtdfCiTqKOorHQtDlRt5Jsk9SM8mrsM
+         FVMT2Dxi47IRVEw065nF3Ljz/3ypdZTddt0ynsk8CwtYXfK8ePDFD+8aSgCy0AXDLxJN
+         FM3UdDolvYpsJpFMASS88hBJdjA60ZXbF+H8zPq8RE6/RmehMHDz6iZmHJ1pcrL0N7gw
+         /aZPxo8rUgFhgorzNtjYAd56ggdQ5g+JoVLB+8h0yRmaVwNg1i0jbK4KPIhs1/ip1b3/
+         IZtwGO29H96mWImtGx3PZFwogaGq9iQCc1imCESDFANsEwUz3z5ljUJ263jImMCgUNM3
+         DfNQ==
+X-Gm-Message-State: AGi0PuaQnuvLsWPXS+R0VUwEPSI+WZAdEpST0/JLvjQo1nmAmz9zM2Mp
+        9FQe9klCY2AVB41jE2TgY1CsoQ5vIP4=
+X-Received: by 2002:ac2:414f:: with SMTP id c15mr3201225lfi.2.1586315700146;
+        Tue, 07 Apr 2020 20:15:00 -0700 (PDT)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
+        by smtp.gmail.com with ESMTPSA id q30sm17589640lfn.18.2020.04.07.20.14.58
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Apr 2020 20:14:58 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id v16so6034909ljg.5
+        for <linux-kernel@vger.kernel.org>; Tue, 07 Apr 2020 20:14:58 -0700 (PDT)
+X-Received: by 2002:a2e:b4cb:: with SMTP id r11mr3602189ljm.201.1586315697874;
+ Tue, 07 Apr 2020 20:14:57 -0700 (PDT)
+MIME-Version: 1.0
+References: <49c5b834-362d-0569-32c5-76d366cb0a44@linaro.org>
+In-Reply-To: <49c5b834-362d-0569-32c5-76d366cb0a44@linaro.org>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Tue, 7 Apr 2020 20:14:41 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjkEYLViZ6zBLaWaiTXZ4RqcR4DHkkY_PKJZ2-0HAX_Pw@mail.gmail.com>
+Message-ID: <CAHk-=wjkEYLViZ6zBLaWaiTXZ4RqcR4DHkkY_PKJZ2-0HAX_Pw@mail.gmail.com>
+Subject: Re: [GIT PULL] thermal for v5.7-rc1
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Willy Wolff <willy.mh.wolff.ml@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>
+Cc:     Zhang Rui <rui.zhang@intel.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM mailing list <linux-pm@vger.kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Apr 7, 2020 at 4:26 AM Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
+>
+> git://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git
+> tags/thermal-v5.7-rc1
+
+Ho humm.
+
+This caused a conflict between commit
+
+  f12e4f66ab6a ("thermal/cpu-cooling: Update thermal pressure in case
+of a maximum frequency capping")
+
+that came in through the scheduler updates from Ingo Molnar, and commit
+
+  ff44f672d741 ("thermal/drivers/cpufreq_cooling: Fix return of
+cpufreq_set_cur_state")
+
+from the thermal tree.
+
+The conflict wasn't complicated, but the reason I mention it is that I
+resolved it in a way that neither of those commits had done.
+
+In particular, the thermal tree did
+
+  ret = freq_qos_update_request(..)
+  return ret < 0 ? ret : 0;
+
+where that whole "return negative or zero" logic is new (it used to
+return positive values, the fix was to return zero instead).
+
+The scheduler tree did
+
+  ret = freq_qos_update_request(..)
+  if (ret > 0) {.. do thermal pressure thing ..}
+  return ret;
+
+which obviously still returns that positive value.
+
+My resolution to the conflict was to not take that return with a
+conditional operation, but instead just add a
+
+  ret = 0;
+
+to inside that thermal pressure if-statement, and avoid returning a
+non-zero positive value that way.
+
+I just wanted both sides to be aware of my non-traditional merge
+resolution, and take a look.
+
+               Linus

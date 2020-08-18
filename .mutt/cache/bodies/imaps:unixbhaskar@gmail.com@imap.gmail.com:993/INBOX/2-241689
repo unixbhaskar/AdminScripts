@@ -1,0 +1,83 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp261140lfk;
+        Fri, 29 May 2020 01:45:14 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxeFVY8YyIGsrWidlX+hRqRZk/VnsHhOXt0GMHqSqbmRYc+0uNEsrbXsqwaOhT+W3PX8toI
+X-Received: by 2002:a17:907:10c2:: with SMTP id rv2mr6478092ejb.536.1590741914291;
+        Fri, 29 May 2020 01:45:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590741914; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Y7lfy2TWTfvgYOtxVpVayvFWq3PDWQMkrfzovWtEgKV8IhDKG47gWSuVvA2FywPr0d
+         BeQlTRrgtVlZiF2OTqhq875EbPiucltySRCmTRcc+u4ctSL1tVCht5gRZy4SLWHKwAhg
+         Map/7XgA6v/bLzSwsVQ4u0qj7l2J606gQyaBfPWQuyw8Jh82AUfxVYQInuvDQ3e6r+uz
+         ZHprjyrCI5IEqEcjH0nxmIKCT4ZnUslxD3kgtQDrInJviOZxjybTrtoilf+w+heoI5um
+         fpT991ex+wnpntkECbwmMwjPPFGg8inI/YRqN1wSSG7/HHyKW8jtRA5y0lppi+rkz0gJ
+         AgUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=hVhvR/E/IQ9+zjzMBo2SiUHKD+QiqkRVjstx4uZYl98=;
+        b=Nr/MIl6iVB5v+ME6QbqI7qiwk7Z0aD5UIj23g6G4HYi46qXsMEEixMdJzHEJNlgJo3
+         yGRnqq7rLzDW4pYhvn2TBy7BLluBXE37WcQmRdQ4JpMUtnzllpXpDafJQ3wtteJcajZ4
+         fPfEIiCR6IfJt7lMiJhqQsfCK6foklRtbZCpiM8YhrKuzrNXO4j3ggewo3IS56neUEXB
+         RB7sOFYzrE7x9IPdyOquhrsNYO8mFUw0526zKS2Xqarr8JIPXkdKg7FLmoUurttyFR39
+         7Y2PRB+EFzHYNXSI0/37nF782xPhUwa025an309DrQOnFXcLW+S9e/2RW5kQIcbLuWo3
+         xpSg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=k8NCpCv1;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id a13si2618993ejb.241.2020.05.29.01.44.50;
+        Fri, 29 May 2020 01:45:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=k8NCpCv1;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1725839AbgE2In0 (ORCPT <rfc822;ryodando@gmail.com> + 99 others);
+        Fri, 29 May 2020 04:43:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49638 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725306AbgE2InZ (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 29 May 2020 04:43:25 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E166A207F5;
+        Fri, 29 May 2020 08:43:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1590741804;
+        bh=WXicRjEV9+SwtPOR0p72vmHsLtEkefjIl0MeB7P2Oxw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=k8NCpCv1ynYu622W2ei3j0eZMTPaPzkG1WuE6hqEyd18fPypoDGS0rdsKRqxrHuRh
+         /ZgUfi0BdN/NT8iJfCZ9gSRKdjGir0auX6Sx/T4sioVFI8H0pCCZaxwzE91f0Yijky
+         Xe+dGSdg92ilKctSzFnefAr4MmlryojB5cOHVYvM=
+Date:   Fri, 29 May 2020 10:43:09 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     linux-kernel@vger.kernel.org
+Subject: Re: [GIT PULL] GNSS updates for 5.8-rc1
+Message-ID: <20200529084309.GA996343@kroah.com>
+References: <20200529074915.GA14457@localhost>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200529074915.GA14457@localhost>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, May 29, 2020 at 09:49:15AM +0200, Johan Hovold wrote:
+> The following changes since commit 2ef96a5bb12be62ef75b5828c0aab838ebb29cb8:
+> 
+>   Linux 5.7-rc5 (2020-05-10 15:16:58 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/johan/gnss.git tags/gnss-5.8-rc1
+
+Pulled and pushed out, thanks.
+
+greg k-h

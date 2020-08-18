@@ -1,0 +1,171 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp263765lfk;
+        Tue, 26 May 2020 09:15:02 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw7nttQVwHaJlmffhWP+Ovpgm8wZzYWqhTHk/fsu5zrnE61R4asUfMQVEgcW7A3BQydRhXz
+X-Received: by 2002:a50:8d57:: with SMTP id t23mr21017292edt.168.1590509701868;
+        Tue, 26 May 2020 09:15:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590509701; cv=none;
+        d=google.com; s=arc-20160816;
+        b=PJsSBjVmePASPwT+IBDUv/R3KwNzyn8W4YnotDeQs+8BncoN9TkcmM/uuryu1VPp7S
+         DSHktjsg4y2R1h9+EaNNhM22CQPg5tKHU9QswuFw2J3SGf9KyN1e0FVzU9V//ROuc1f2
+         YQUmzXfqtTvm3F9ChwZ8cd2njcOuBq+dRukOkGDHMHGAowUdorcnHMGhEEm5sgdCroOV
+         L0nCRwn5AwkDSuVRcjP+dHiOT7+sIXi28g6Dx5dOkbscSRHjrVBYChpNPmh+2GLALf3o
+         vw1C7tqV+PLIlgHi7+Woz8b8bRTkalbCAcWJ5nJG70X66FAkijtPdZboGhLZxJzP9mN/
+         +DAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:reply-to:message-id
+         :subject:cc:to:from:date:dkim-signature;
+        bh=rPI9PcwN5XCG517O6jY1mXPY7Ri7nzX82H/acCwkTi8=;
+        b=XS9kPf60u6f3rmGjBrDLl1fUwYAofmoiE7Qy//soAS5UP69+Ex6jxe6HgpNcAJ+3x/
+         hPuDKsVs+COO0xGuuau53mWxcd7fl3+Nkd5k3WkZQu2N7Tjp5344oUhl+1wrxOopeCSq
+         aUR+jTjZeFkdCbFziFdIe5Eh7GLNgse/uifBaMLPaVOI8sQsDrXPrt+2TzyEKsB67AB4
+         KKV9hkKoZjW6W91g9REayvCKUZoPOZzwF9ka1vdTlErcuEzzeNBhtkr6kaVESVQIdc6v
+         qFH5DzUbqTIL3ojyZCXImAPKBTQU8tL0H3Zwrl111GRvtLHnvh6LuamgGXV3RRZpO4f4
+         trRg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=p0LgAOh6;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id h3si133861edz.291.2020.05.26.09.14.26;
+        Tue, 26 May 2020 09:15:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=p0LgAOh6;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2388238AbgEZQLS (ORCPT <rfc822;bongjoon.hyun@gmail.com>
+        + 99 others); Tue, 26 May 2020 12:11:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48286 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727968AbgEZQLR (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 26 May 2020 12:11:17 -0400
+Received: from paulmck-ThinkPad-P72.home (50-39-105-78.bvtn.or.frontiernet.net [50.39.105.78])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 66F1320776;
+        Tue, 26 May 2020 16:11:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1590509477;
+        bh=AFObFPiEU5l68FJxSKAVBork4rbzTfO2UBXUfARqMxI=;
+        h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
+        b=p0LgAOh6RnqSfh2zGcWW90/l/3LTg8MS3of25fxYbVIAnyq6J2oouqe+XgLu1TeKo
+         1MfsxBQ4L0W0560RavbPdeG0g/XfQtkdW2nNC3zDHcMLCrBYR7wVX/t7Xt/Yj8B8YV
+         EDDNCT13f1Ytj8JeXrGvRAjpEM+UXMndNrTSqSuI=
+Received: by paulmck-ThinkPad-P72.home (Postfix, from userid 1000)
+        id 48C113522A8B; Tue, 26 May 2020 09:11:17 -0700 (PDT)
+Date:   Tue, 26 May 2020 09:11:17 -0700
+From:   "Paul E. McKenney" <paulmck@kernel.org>
+To:     kbuild test robot <lkp@intel.com>
+Cc:     "Joel Fernandes (Google)" <joel@joelfernandes.org>,
+        kbuild-all@lists.01.org, clang-built-linux@googlegroups.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [rcu:dev.2020.05.25a 51/63] kernel/rcu/refperf.c:298:6: warning:
+ no previous prototype for function 'reset_readers'
+Message-ID: <20200526161117.GH2869@paulmck-ThinkPad-P72>
+Reply-To: paulmck@kernel.org
+References: <202005262032.uaSJI5NU%lkp@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202005262032.uaSJI5NU%lkp@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, May 26, 2020 at 08:07:35PM +0800, kbuild test robot wrote:
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu.git dev.2020.05.25a
+> head:   1e9451642683146552713c5ce6d269ae378eacd5
+> commit: 786a25497743696d79592b864cafbfe48787e6e1 [51/63] refperf: Add a test to measure performance of read-side synchronization
+> config: x86_64-allyesconfig (attached as .config)
+> compiler: clang version 11.0.0 (https://github.com/llvm/llvm-project 3393cc4cebf9969db94dc424b7a2b6195589c33b)
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # install x86_64 cross compiling tool for clang build
+>         # apt-get install binutils-x86-64-linux-gnu
+>         git checkout 786a25497743696d79592b864cafbfe48787e6e1
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=x86_64 
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kbuild test robot <lkp@intel.com>
+> 
+> All warnings (new ones prefixed by >>, old ones prefixed by <<):
+> 
+> >> kernel/rcu/refperf.c:298:6: warning: no previous prototype for function 'reset_readers' [-Wmissing-prototypes]
+> void reset_readers(int n)
+> ^
+> kernel/rcu/refperf.c:298:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+> void reset_readers(int n)
+> ^
+> static
+> >> kernel/rcu/refperf.c:311:5: warning: no previous prototype for function 'process_durations' [-Wmissing-prototypes]
+> u64 process_durations(int n)
+> ^
+> kernel/rcu/refperf.c:311:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+> u64 process_durations(int n)
+> ^
+> static
+> 2 warnings generated.
+
+Good catches, fixing!
+
+							Thanx, Paul
+
+> vim +/reset_readers +298 kernel/rcu/refperf.c
+> 
+>    297	
+>  > 298	void reset_readers(int n)
+>    299	{
+>    300		int i;
+>    301		struct reader_task *rt;
+>    302	
+>    303		for (i = 0; i < n; i++) {
+>    304			rt = &(reader_tasks[i]);
+>    305	
+>    306			rt->last_duration_ns = 0;
+>    307		}
+>    308	}
+>    309	
+>    310	// Print the results of each reader and return the sum of all their durations.
+>  > 311	u64 process_durations(int n)
+>    312	{
+>    313		int i;
+>    314		struct reader_task *rt;
+>    315		char buf1[64];
+>    316		char buf[512];
+>    317		u64 sum = 0;
+>    318	
+>    319		buf[0] = 0;
+>    320		sprintf(buf, "Experiment #%d (Format: <THREAD-NUM>:<Total loop time in ns>)",
+>    321			exp_idx);
+>    322	
+>    323		for (i = 0; i <= n && !torture_must_stop(); i++) {
+>    324			rt = &(reader_tasks[i]);
+>    325			sprintf(buf1, "%d: %llu\t", i, rt->last_duration_ns);
+>    326	
+>    327			if (i % 5 == 0)
+>    328				strcat(buf, "\n");
+>    329			strcat(buf, buf1);
+>    330	
+>    331			sum += rt->last_duration_ns;
+>    332		}
+>    333		strcat(buf, "\n");
+>    334	
+>    335		PERFOUT("%s\n", buf);
+>    336	
+>    337		return sum;
+>    338	}
+>    339	
+> 
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+
+

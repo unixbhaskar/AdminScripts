@@ -1,0 +1,137 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp4539864lfc;
+        Tue, 21 Jan 2020 18:26:24 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzV4mBgpL9sY9wX2jJb3a1Lu3HhAe9XfmULgMphF/wC6DZgYorE64fwh2KfjNkpOHePwlQt
+X-Received: by 2002:a05:6830:1e67:: with SMTP id m7mr5800212otr.262.1579659984371;
+        Tue, 21 Jan 2020 18:26:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579659984; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xmqJDo6rVyht1v4gw9NEVZWL8uc9A6GgPs3XdyFOGsup8ooHHSoC34H/LtqdZhn8L+
+         tfV5AVCnEacRvwEWWnc4IUjfO3wvYkjkyOkFk1JL0esVl9lo1j8qLMFxnUaS6GglKvAJ
+         3zGCvge1W3bFWr9NLMue3350g9QPxpH6e5xydIqTNGgKax/b0T2pTvaAZgrTEtQdUXCp
+         428YmuvG30yXEFxRrjV+B60KnWlRFrxPVts7zaolgPz4pWr1YBNT+qvXIiecxlZnNA19
+         s9h9Z8dyyBP9CH6zC+cHGAo+J9Hp5F2CSOBuR5EIPN/LnO3/VB6EPzKPqLwLXMUmQFPQ
+         LErQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:to:subject:dkim-signature;
+        bh=9ZOGsttRmOTfzjL1ECAYcpfTSZoQqHHRoblxH4x0j4M=;
+        b=m4YoZVLgSZVAXqQaCR7+JgwGKePYklYvZ/QsBkj3gMYR5pKk/sw+fYSA2sZFiaDddP
+         Kefm2gYYZ9pIVHywaijPo17bCrI/XUuUXCdI11cNjR45AEODv/MidfNN9Lo9mjEtn+vY
+         aQ1nGiUUMiA4CnySNKw3UPMTWj1yn3cfqHFvirXYzAtfTwukLmV3VCv51tf0+tlD8EX3
+         c5MkGMzZK2+HELLnyjMmlQ//2BW8gih8D7URsuycetb2JWvaoOA8Wo/khOTtHYQxofxx
+         dvdNFlVEcWeizg9ljIiFMEJo82VrjZ0NcYuoBi7xRU0KcAPFwYn+u0aeP2VOizyQ1L6K
+         5FFQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=XhszVteo;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id v10si20006807ote.97.2020.01.21.18.26.12;
+        Tue, 21 Jan 2020 18:26:24 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=XhszVteo;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728916AbgAVCZi (ORCPT <rfc822;auslij@gmail.com> + 99 others);
+        Tue, 21 Jan 2020 21:25:38 -0500
+Received: from bombadil.infradead.org ([198.137.202.133]:44410 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726396AbgAVCZi (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 21 Jan 2020 21:25:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:
+        Subject:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=9ZOGsttRmOTfzjL1ECAYcpfTSZoQqHHRoblxH4x0j4M=; b=XhszVteo70FgyKJG9DtA7o+hV
+        lGwkANDHq2wJhjn1MqGcqwTJUma+irli294AufHU/9wJByJWODQdSMqejTOSp7RhswG4C+IA43k1S
+        n09gLgOqssnByXkE/bCGX/JzPVZsdlMUPKHehIk88YKYk4VXLYMdJyxJwOE2zjMK15HrO0MeKnpLP
+        R+ZH2c8rygQO5+8BKLrSfTwDNDrSlx35LEV6aBqhpnDwMSq93IYl/wDvEvmsBvo0kQ94ttkqvnI64
+        xqMCl2/SxHizEC8XYpRFJLxl9ufloOdrpXp3/aypAorvYDZGa7ybSY5N6rtXqrTT8zNwI+0rslWc4
+        tU4Da/UJg==;
+Received: from [2601:1c0:6280:3f0::ed68]
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1iu5i4-0001Bw-5r; Wed, 22 Jan 2020 02:25:36 +0000
+Subject: Re: mmotm 2020-01-21-13-28 uploaded (convert everything to struct
+ proc_ops)
+To:     akpm@linux-foundation.org, broonie@kernel.org, mhocko@suse.cz,
+        sfr@canb.auug.org.au, linux-next@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+        linux-kernel@vger.kernel.org, mm-commits@vger.kernel.org,
+        Alexey Dobriyan <adobriyan@gmail.com>
+References: <20200121212915.APuBK%akpm@linux-foundation.org>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <5a81ab98-4f02-f415-4da5-3d5685915a0e@infradead.org>
+Date:   Tue, 21 Jan 2020 18:25:34 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
+MIME-Version: 1.0
+In-Reply-To: <20200121212915.APuBK%akpm@linux-foundation.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 1/21/20 1:29 PM, akpm@linux-foundation.org wrote:
+> The mm-of-the-moment snapshot 2020-01-21-13-28 has been uploaded to
+> 
+>    http://www.ozlabs.org/~akpm/mmotm/
+> 
+> mmotm-readme.txt says
+> 
+> README for mm-of-the-moment:
+> 
+> http://www.ozlabs.org/~akpm/mmotm/
+> 
+> This is a snapshot of my -mm patch queue.  Uploaded at random hopefully
+> more than once a week.
+
+NULL seems to be misspelled as NUL in the proc-convert-everything-to-struct-proc_ops.patch
+patch for kernel/sched/psi.c:
+
+ static int __init psi_proc_init(void)
+ {
+ 	if (psi_enable) {
+ 		proc_mkdir("pressure", NULL);
+-		proc_create("pressure/io", 0, NULL, &psi_io_fops);
+-		proc_create("pressure/memory", 0, NULL, &psi_memory_fops);
+-		proc_create("pressure/cpu", 0, NULL, &psi_cpu_fops);
++		proc_create("pressure/io", 0, NULL, &psi_io_proc_ops);
++		proc_create("pressure/memory", 0, NUL, &psi_memory_proc_ops); <<<<<<<<<<
++		proc_create("pressure/cpu", 0, NULL &psi_cpu_proc_ops);
+
+also missing a comma above...
+
+ 	}
+ 	return 0;
+
+
+../kernel/sched/psi.c: In function ‘psi_proc_init’:
+../kernel/sched/psi.c:1286:37: error: ‘NUL’ undeclared (first use in this function); did you mean ‘_UL’?
+   proc_create("pressure/memory", 0, NUL, &psi_memory_proc_ops);
+                                     ^~~
+                                     _UL
+../kernel/sched/psi.c:1286:37: note: each undeclared identifier is reported only once for each function it appears in
+../kernel/sched/psi.c:1287:39: error: invalid operands to binary & (have ‘void *’ and ‘const struct proc_ops’)
+   proc_create("pressure/cpu", 0, NULL &psi_cpu_proc_ops);
+                                       ^
+../kernel/sched/psi.c:1287:3: error: too few arguments to function ‘proc_create’
+   proc_create("pressure/cpu", 0, NULL &psi_cpu_proc_ops);
+   ^~~~~~~~~~~
+In file included from ../kernel/sched/psi.c:133:0:
+../include/linux/proc_fs.h:64:24: note: declared here
+ struct proc_dir_entry *proc_create(const char *name, umode_t mode, struct proc_dir_entry *parent, const struct proc_ops *proc_ops);
+                        ^~~~~~~~~~~
+
+
+-- 
+~Randy
+Reported-by: Randy Dunlap <rdunlap@infradead.org>

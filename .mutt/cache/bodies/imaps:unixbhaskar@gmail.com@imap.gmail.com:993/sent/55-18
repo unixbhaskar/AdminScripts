@@ -1,0 +1,119 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from [10.68.10.6] ([103.231.91.34])
+        by smtp.gmail.com with ESMTPSA id l124sm9246908pgl.54.2019.07.05.23.15.59
+        for <beng@bengold.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 05 Jul 2019 23:16:00 -0700 (PDT)
+To: beng@bengold.org
+References: <CAFjJ==Do5cG0zD9fbG5bPdMuyEfTr+3MOZdtWw08qWJ1XThwyg@mail.gmail.com>
+Subject: Re: "mailbox externally modified. flags may be wrong"
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=unixbhaskar@gmail.com; prefer-encrypt=mutual; keydata=
+ mQENBFdtMWUBCADcg5hz3Ry1hucVfzBbltx5vlAFi/LAj1BhWnq2lCbrbBehMRJgZjXIvHwa
+ 6IfNRqBDbq40soT1atmVX4gzZx4Nzspdmj/J2JjoHbPqo8tadNpKN4DkXuWI68S4JQabyDce
+ /87VOnlnmAprN8RyrE+g4HmahqXs4b3HsDpsVDhiwc7BgqQJLcP/CJrnIPXNObAG5IZWWaex
+ P+KuiN3ddspAS+yRwYqSd+5Mp2kY2HTT1Pphttq2AZUYK804KtEQ24MN9V75P9rjBgqUoa2B
+ 9RskgB3x5B7KWwVjXIjSiolI23eM5xIZoZ1r0P+YU+HWmodKQ2vid/o4USu45JdLGSoLABEB
+ AAG0Q0JoYXNrYXIgQ2hvd2RodXJ5IChNdXNpbmdfd2l0aF9HTlUvTGludXghISkgPHVuaXhi
+ aGFza2FyQGdtYWlsLmNvbT6JATcEEwEIACEFAldtMWUCGwMFCwkIBwIGFQgJCgsCBBYCAwEC
+ HgECF4AACgkQsjqdtxFLKRWOIAgArUlozmvzTjTJsofSJtGncqYw2ynk1TjBbs9XEpiXvAIR
+ 0M6gXNOYfwaiYLA6QlSO1rYhyQdT+KKq2FUwXQG8DFKDRD2Ps+ta9LDR+m4yWBke7CoPeLGn
+ V+/cUn7FSH+qtOBxNnWv6jTnoy8f3s0peNBi+iK++DmIyZhCVRwY67h0vtIYXcE4p1RhlU8N
+ Sgkh1FfQMkrDej2y9kE/nV65OL6aWt3ldM73oGzhVC9SMKvyTiRnkUMGlDzaQUjt/jECgDZw
+ o/YkQcVTqVJV61QOQt+oepf8ACRbUZ6qlQJ9HjPfiyYiJxCq/mkSIYi4ikuMYAefRl23BKVt
+ 8eJQc6ZqGbkBDQRXbTFlAQgAuCGQ+5n6DPyyTcYDK272sutcaqEchOrsrQ8Yy2AIV/6ol+l5
+ idAAPvcB8gBkCamHHWuTILXnLSttpOuzJC0+0anzUkG/swMXNm90a8eff3uO560ipZ2HjGkN
+ MCcP9kO4UiMNNoj0DdcAnBkgSiELcEHmlvQ6TyxrztUWhQZV0LUlnlekr+YKlDjsNC8C86mr
+ hI+/l1iNb0ZpOzvQj/0QJt5rM4S+WmpWjG7AHFZQ8IDCqDWveYFrJeQplYoij4OoZDJ017zI
+ NJpoOTODTzT17lD56pAlhP56WjP3nvb11PPF16y/yi3lCJct5XhLv/5bjTAH/fGLgwuOb4ZE
+ F2UP+wARAQABiQEfBBgBCAAJBQJXbTFlAhsMAAoJELI6nbcRSykVIs4H/RQyi4w5zqugSyKh
+ 5b1z1F7ow/QgfUZg/ZRMm5K0gM+jUwrmSN2g5K2UYp0+L3bCJ8HMbEB9GL4ffKZOT91obfNU
+ 97nAcV4+g+biQlusLPKlw4q8eVWtoqJB1HdrrUMtxd4T0fUrw2SozkZznRbZb5ovytt/dlVj
+ ZXp3ockdcTQHp54jpPDVYVtyk8L+gFJGJ6asWJtoN05FxVb08CJ/mZJRHOsCWZWjXLIWZ5ml
+ jySL/S62rS3YykbOM1mfuHzz0uDDSRLiuM2FjMg/9+fV5WYb+kwymLir+ruNoE/Lv8ubwYFp
+ D5IZdyIz6OapumFfxps7uqDzJhIFiwaPHW7I0Io=
+Message-ID: <936975a5-9c88-3c19-e52f-69b55369a85d@gmail.com>
+Date: Sat, 6 Jul 2019 11:45:50 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <CAFjJ==Do5cG0zD9fbG5bPdMuyEfTr+3MOZdtWw08qWJ1XThwyg@mail.gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="OPC0VvZ2peoIPhjAUQd0V22KRMNUCprnr"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--OPC0VvZ2peoIPhjAUQd0V22KRMNUCprnr
+Content-Type: multipart/mixed; boundary="YeX5HYZ0oX4BOcxmo7HEWF4ejuR82Cq2r";
+ protected-headers="v1"
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: beng@bengold.org
+Message-ID: <936975a5-9c88-3c19-e52f-69b55369a85d@gmail.com>
+Subject: Re: "mailbox externally modified. flags may be wrong"
+References: <CAFjJ==Do5cG0zD9fbG5bPdMuyEfTr+3MOZdtWw08qWJ1XThwyg@mail.gmail.com>
+In-Reply-To: <CAFjJ==Do5cG0zD9fbG5bPdMuyEfTr+3MOZdtWw08qWJ1XThwyg@mail.gmail.com>
+
+--YeX5HYZ0oX4BOcxmo7HEWF4ejuR82Cq2r
+Content-Type: multipart/alternative;
+ boundary="------------9457CEFA677FED0FA339384F"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------9457CEFA677FED0FA339384F
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+"
+
+I check email on Chrome on two different macs, and on an android phone.
+And on mutt."
+
+I believe on of the places out of 4 has made some changes to inbox items.=
+=20
+
+
+--------------9457CEFA677FED0FA339384F
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    "
+    <pre>I check email on Chrome on two different macs, and on an android=
+ phone.
+And on mutt."
+
+I believe on of the places out of 4 has made some changes to inbox items.=
+=20
+</pre>
+  </body>
+</html>
+
+--------------9457CEFA677FED0FA339384F--
+
+--YeX5HYZ0oX4BOcxmo7HEWF4ejuR82Cq2r--
+
+--OPC0VvZ2peoIPhjAUQd0V22KRMNUCprnr
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl0gPJcACgkQsjqdtxFL
+KRWrGAf/ZBuRM8lOgpxslXkz5AfEGVYqgMrFuC306Lu6lIo5zPJx3YGlgBIJ1wrU
+pvNmixZl8wW5jWVstuFqSVnvY9FLKRqdHSUtcf9n6i3FWK8iJFz+HU7mggqbafM5
+fkUP5EU6AJueqheArUIEEjeWe2IZxfahyqKZO6AwJfjB/gTFRMJlX1IsTJN2N6+T
+0Md/n2hQ6z9G9ppuSDyncgv24eZmByv7qoH1JndgvOmRvsG9JIecgRVR/Ir7vyMU
+OXHgCcX9uikl37oPuk6f0AN+0Ekm0SNb3HiE1VjEGDBLq+p7hSn5PUIvakzSPCUD
+MR1o0zdzH0cSA1YwS85qe/J+Ba/hTA==
+=mU6z
+-----END PGP SIGNATURE-----
+
+--OPC0VvZ2peoIPhjAUQd0V22KRMNUCprnr--

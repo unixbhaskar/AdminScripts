@@ -1,0 +1,108 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2848602lfj;
+        Sun, 15 Sep 2019 01:47:36 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqw6dzJ7VV9uEzBkgfTQXR2CZhV1JWq8Zf3Nl3FXVpvbFhVTZGwEhvfErAQdacGb4fIRC/20
+X-Received: by 2002:a17:906:a3d1:: with SMTP id ca17mr16465768ejb.57.1568537256824;
+        Sun, 15 Sep 2019 01:47:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568537256; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ktxm4hQpM/zyOoZLiluw1Doovx3KFI96MjQqIbEILzEeIsdNNSmeC5WQte6seQ8sFL
+         56+rv5tQnKodsCpXL8tHHyZFxmhIaLmcPtkRjK9Z5xgUdu21Qfsea+hrdyKONC9C43BI
+         W9rwg0DqwZu6Cx9bdOvRXYjthByKRtvVUeITg7tEaBfvDzQYPVQ1wVF0XxhiOHQAOw9k
+         qF5/Je0HRR3qtxyfwwoZrG9F76QOAoeJU79FUHkLXzDDYxLWEllJmAeErEAxq45ejh3m
+         IjTf/6HquPTzN3vqvxeEiaLmih3f+71oVaAs1jXayc5NekKC1N0lYIl0AbFhaLhsoWqu
+         rZ0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=BMkAWLyRivEb/9NYxGbWjuJ2ihsl3aA8+A/0KuVS9n4=;
+        b=mMbNXNTo9+AKR5NZoxr1VI9A/smiAFkChYlV0ISs2p9spY/0NyFdFp8pYKB+91onWT
+         9s7Y6Sv1AyMeY3ghQjhTTz3Ae81UMvw1lMfC8D2HCPQBCyhwWnrl1uDVlcfbasIn5Zny
+         iIdswVyeTzEbWVoNQz17DQA5v6znmqZoBe0inLHsXUNWC9bxdRjFiG98d2oIxgFHkDUa
+         LOlKxWOfzviLzSmndp1ebd3AcZtqdiRWUkDLrKgYMU0A4Y43P5m51f+1y3rCoqlM+MZK
+         OGscjOo/+FRrcMgxunbBzEoJT+UWSd9Y9PxaT7AphG3tmlJsgyJXnmmr3EgcNlXvsDot
+         UTuQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f22si1795654ejc.373.2019.09.15.01.47.10;
+        Sun, 15 Sep 2019 01:47:36 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727339AbfIOIeU (ORCPT <rfc822;sheriffesseson@gmail.com>
+        + 99 others); Sun, 15 Sep 2019 04:34:20 -0400
+Received: from gardel.0pointer.net ([85.214.157.71]:38350 "EHLO
+        gardel.0pointer.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725865AbfIOIeT (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 15 Sep 2019 04:34:19 -0400
+Received: from gardel-login.0pointer.net (gardel.0pointer.net [IPv6:2a01:238:43ed:c300:10c3:bcf3:3266:da74])
+        by gardel.0pointer.net (Postfix) with ESMTP id 00E66E81176;
+        Sun, 15 Sep 2019 10:34:16 +0200 (CEST)
+Received: by gardel-login.0pointer.net (Postfix, from userid 1000)
+        id 90BA6160ADC; Sun, 15 Sep 2019 10:34:16 +0200 (CEST)
+Date:   Sun, 15 Sep 2019 10:34:16 +0200
+From:   Lennart Poettering <mzxreary@0pointer.de>
+To:     Willy Tarreau <w@1wt.eu>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        "Alexander E. Patrakov" <patrakov@gmail.com>,
+        "Ahmed S. Darwish" <darwish.07@gmail.com>,
+        "Theodore Y. Ts'o" <tytso@mit.edu>,
+        Andreas Dilger <adilger.kernel@dilger.ca>,
+        Jan Kara <jack@suse.cz>, Ray Strode <rstrode@redhat.com>,
+        William Jon McCann <mccann@jhu.edu>,
+        zhangjs <zachary@baishancloud.com>, linux-ext4@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: Linux 5.3-rc8
+Message-ID: <20190915083416.GA29771@gardel-login>
+References: <20190912082530.GA27365@mit.edu>
+ <CAHk-=wjyH910+JRBdZf_Y9G54c1M=LBF8NKXB6vJcm9XjLnRfg@mail.gmail.com>
+ <20190914150206.GA2270@darwi-home-pc>
+ <CAHk-=wjuVT+2oj_U2V94MBVaJdWsbo1RWzy0qXQSMAUnSaQzxw@mail.gmail.com>
+ <214fed0e-6659-def9-b5f8-a9d7a8cb72af@gmail.com>
+ <CAHk-=wiB0e_uGpidYHf+dV4eeT+XmG-+rQBx=JJ110R48QFFWw@mail.gmail.com>
+ <20190915065655.GB29681@gardel-login>
+ <20190915070103.GC20811@1wt.eu>
+ <20190915070541.GC29681@gardel-login>
+ <20190915070722.GD20811@1wt.eu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190915070722.GD20811@1wt.eu>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On So, 15.09.19 09:07, Willy Tarreau (w@1wt.eu) wrote:
+
+> > That code can finish 5h after boot, it's entirely fine with this
+> > specific usecase.
+> >
+> > Again: we don't delay "the boot" for this. We just delay "writing a
+> > new seed to disk" for this. And if that is 5h later, then that's
+> > totally fine, because in the meantime it's just one bg process more that
+> > hangs around waiting to do what it needs to do.
+>
+> Didn't you say it could also happen when using encrypted swap ? If so
+> I suspect this could happen very early during boot, before any services
+> may be started ?
+
+Depends on the deps, and what options are used in /etc/crypttab. If
+people hard rely on swap to be enabled for boot to proceed and also
+use one-time passwords from /dev/urandom they better provide some form
+of hw rng, too. Otherwise the boot will block, yes.
+
+Basically, just add "nofail" to a line in /etc/crypttab, and the entry
+will be activated at boot, but we won't delay boot for it. It's going
+to be activated as soon as the deps are fulfilled (and thus the pool
+initialized), but that may well be 5h after boot, and that's totally
+OK as long as nothing else hard depends on it.
+
+Lennart
+
+--
+Lennart Poettering, Berlin

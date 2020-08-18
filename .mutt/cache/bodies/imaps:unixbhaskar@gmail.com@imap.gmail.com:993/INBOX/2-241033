@@ -1,0 +1,192 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp222258lfk;
+        Tue, 26 May 2020 08:23:05 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyR3Nzmvj6itNkk7Zb8fIuwrrRLdcCdmidoR+5POiCfKRf1E2aAoxoDVfahgBPMOptH2l3i
+X-Received: by 2002:a17:906:aecc:: with SMTP id me12mr1655246ejb.525.1590506585241;
+        Tue, 26 May 2020 08:23:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590506585; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LFaae9LS7y7RDIwHPLPWjAoVSfhr42+mV9B3YqemsLKH3+H8we9pv5wlk66ZGi9MEZ
+         2I5c8efx2SRJGtrKYisoRaixtZw73dWvv2XmWtO5pA4qb20MpGWX2j0H19aIbGAnUM3T
+         fyxdAjPRT54eYwZIbOSJvsga6+uGJNoj/OoF+aWehrje/XwwHbaAprShxzepNEzP3sFe
+         +SrWeZM/DbgoogtgV9ZyLxZyFCve8dUwiuDDfIeRCgGzOB/zgQG+ZzRo00LUNDRZ+kBC
+         ZyRmtvEVKGZ33bA8hi3WO8NKY5CWYZLwNlrRDlwuCUFkBKIdnED0E68W91U2ACpnLTGj
+         W/NQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:precedence:list-unsubscribe:feedback-id:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=wjQccTMjOiJf+ksZWIh4ymPUXs/wcNx6AnxOCn+Yy/s=;
+        b=jZXEGqW93WXbdWxU2CB6nNUY7oJi05YSJRP9r0gDgrQ8Ew5i/BgOwoYf/8Sn8g35Ir
+         Us06V58GYBh/Cd/Fmdgzc9cyW5lCPjE8iw1SWCCVwnXublffljbfWLWxiD+n2b7KQVGx
+         gfK7pmPSrK2UpDboGFn9PJSgGyBBgaH0eY39yxC0syHYetF7GqY1UCoVXXnebzCZBuxq
+         ksNaxHr89hdfCOI0m/jPp2InEbY78Xb1Z3uwzwbWydwr6Ulj36F0JCk9sfhK040z/VOG
+         YqXEuhq4l6OUIoOFagqNnH2c1GhJqNUthuwtm2r6MnqoJUw8NPjUPyqsyVAP255msTpJ
+         MbpA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=D5+APfu0;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=A62TOFfB;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.80.39 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+Return-Path: <bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com>
+Received: from o9.ck.n.convertkit.com (o9.ck.n.convertkit.com. [167.89.80.39])
+        by mx.google.com with ESMTPS id p21si73527ejw.285.2020.05.26.08.23.04
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 May 2020 08:23:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.80.39 as permitted sender) client-ip=167.89.80.39;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=D5+APfu0;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=A62TOFfB;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.80.39 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=n.convertkit.com;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=s1; bh=wjQccTMjOiJf+ksZWIh4ymPUXs/wcNx6AnxOCn+Yy/s=;
+	b=D5+APfu0I+Q76DzESMJnZ3xpGNggxJRZ1Vmsw0POi3CRm2pWfP2C/+IPkj2cZjm7eyI1
+	vvx/Jr5dLRuslWhuRgi/f/TETA2gL0W44qVzBu4ccsK1RkIORkSrA+4p+QcvF1ie8yTwct
+	kM86omPNRNL9IFm6WBToUrsFYWO1sjnOs=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=smtpapi; bh=wjQccTMjOiJf+ksZWIh4ymPUXs/wcNx6AnxOCn+Yy/s=;
+	b=A62TOFfBn4dmDASogiNx+Q3eI/rbHhEhQnZKAyhRI2RJY+HOKJm3iYvP2nXx8pQYNXKS
+	Ue4oTJjhZgkQCaclWp1aOFZ0wnIwMjkStc+lIUCxex8yZF0n5b2cA/uJNzqFUQp16K7nM8
+	l7P/QeJpnmizYX5sYHXS8fuJ8AghDYN9c=
+Received: by filterdrecv-p3mdw1-6dbfd75bfd-7nsbp with SMTP id filterdrecv-p3mdw1-6dbfd75bfd-7nsbp-19-5ECD3457-85
+        2020-05-26 15:23:03.950641205 +0000 UTC m=+5321739.985071931
+Received: from ODc1MTQ5Mw (unknown)
+	by ismtpd0109p1mdw1.sendgrid.net (SG)
+	with HTTP
+	id V8c3IMR7SjagR-Y9szlZew
+	Tue, 26 May 2020 15:23:03.911 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=95601e0384268bb08809798e988077520d68ab17d35d3bf22770144c28f7
+Date: Tue, 26 May 2020 15:23:04 +0000 (UTC)
+From: Jovica <contact@jovicailic.org>
+Mime-Version: 1.0
+Message-ID: <75uv69mxpra2umzvekaz@convertkit-mail.com>
+Subject: Mastering Vim Quickly #41
+Feedback-ID: 1811473:35692:emailtemplate:CK
+List-Unsubscribe: 
+ <https://unsubscribe.convertkit-mail.com/75uv69mxpra2umzvekaz>
+X-Report-Spam: <abuse@convertkit.com>
+X-Report-Abuse: <abuse@convertkit.com>
+Precedence: bulk
+X-Feedback-ID: 8751493:SG
+X-SG-EID: 
+ =?us-ascii?Q?Z9YfueylEVxjF1sQk2=2Fm3hKaryiKObExs9bv2OnpmyOMnYytH=2FVZZIu+ZraDDs?=
+ =?us-ascii?Q?hn3FKIJFLMYch7V9FxPHe9XiodLw85c4MvMvLfh?=
+ =?us-ascii?Q?jaJrEryhXLWKJxCnAph8DztMdxehbQB4q4my9HQ?=
+ =?us-ascii?Q?vUPEhVJ5lIUL8NALx3zuIc8B0cmZadrsnW2x2p=2F?=
+ =?us-ascii?Q?zXoWG3A=2Fg+Rlt6HRd5vZMFkb7mJT5PO994u1g9k?=
+ =?us-ascii?Q?JqfPAIFSD=2FO6iklMyS9f=2FHOSfDRICAtFwnWOUN?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FJuvNbq56rw8btU4e1FM1?=
+ =?us-ascii?Q?OTbCPkIYJUnoA7EYapFbML7Y89g2a72ulAZCaNa?=
+ =?us-ascii?Q?CSciBgNiumxWsaiPTSOdRFrJ9IvQG0hgQmi+Uq0?=
+ =?us-ascii?Q?i7FXj2bDbhfa6oxGa+rSLSFhRTX460lol63+Okx?=
+ =?us-ascii?Q?LB0IlMtMZPo2jqH769pn5dKhkfO5RwwWD2EdDzp?=
+ =?us-ascii?Q?DRNHi3ibfVah9uFb51ibxLRmCZ8hPrcuEm2oDrk?=
+ =?us-ascii?Q?pB9=2FOi7N5UlOzaQIlVpS5ekmr2BWA22VgoY3li5?=
+ =?us-ascii?Q?aFSELM3knEMOUA5rs2hPkBA+Yy+ROIh3x08HPUX?=
+ =?us-ascii?Q?cfzQTQivdYdP8qXI1GLxZ9rrhjfRoy1nWw1jD1k?=
+ =?us-ascii?Q?17KaTlBYT2?=
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+
+--95601e0384268bb08809798e988077520d68ab17d35d3bf22770144c28f7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0
+
+<br>  Hello Bhaskar Chowdhury,<br>
+
+I have some exciting news to share! I'm about to move from being
+a sysadmin to the infosec role!
+That's why, as a side work of mine, I plan to build a small
+security-related project.
+
+My idea is to build a SaaS using mostly vim + bash + html :)
+The solution would provide everything need to keep your
+website/business safe, up, and running.
+
+It will inform you in a timely manner about your:
+
+- website(s) downtime
+
+- domain name expiry
+
+- ssl cert expiry
+
+- email/password leaks
+- available updates for software you use
+- SPF/DKIM/DMARC checks and email spoofing protection
+
+and much more.
+
+If you're interested in this, click here to sign up for the
+updates ( https://el2.convertkit-mail.com/c/75uv69mxpra2umzvekaz/g3hnh5hd76=
+pq95/aHR0cHM6Ly9wYWdlcy5jb252ZXJ0a2l0LmNvbS84ZWM4ODY3ZDFhL2MxMzRkODdiZTE=3D=
+ ).
+
+That's all for today. Next issue will be dedicated to vim tips,
+as usual.
+
+Cheers,
+Jovica
+
+Unsubscribe ( https://unsubscribe.convertkit-mail.com/75uv69mxpra2umzvekaz =
+) |
+Update your profile ( https://preferences.convertkit-mail.com/75uv69mxpra2u=
+mzvekaz ) |
+113 Cherry St #92768, Seattle, WA 98104-2205
+--95601e0384268bb08809798e988077520d68ab17d35d3bf22770144c28f7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=us-ascii
+Mime-Version: 1.0
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+</head>
+<body>
+<div class=3D"message-content" style=3D"max-width:600px">
+<p style=3D"margin-bottom:1em"><br>  Hello Bhaskar Chowdhury,<br></p>
+<p style=3D"margin-bottom:1em">I have some exciting news to share! I'm abou=
+t to move from being a sysadmin to the infosec role! <br>That's why, as a s=
+ide work of mine, I plan to build a small security-related project.</p>
+<p style=3D"margin-bottom:1em">My idea is to build a SaaS using mostly vim =
++ bash + html :) <br>The solution would provide everything need to keep you=
+r website/business safe, up, and running.</p>
+<p style=3D"margin-bottom:1em">It will inform you in a timely manner about =
+your:
+<br>
+- website(s) downtime
+<br>- domain name expiry
+<br>- ssl cert expiry
+<br>- email/password leaks<br>- available updates for software you use <br>=
+- SPF/DKIM/DMARC checks and email spoofing protection</p>
+<p style=3D"margin-bottom:1em">and much more.</p>
+<p style=3D"margin-bottom:1em">If you're interested in this, <a href=3D"htt=
+ps://el2.convertkit-mail.com/c/75uv69mxpra2umzvekaz/g3hnh5hd76pq95/aHR0cHM6=
+Ly9wYWdlcy5jb252ZXJ0a2l0LmNvbS84ZWM4ODY3ZDFhL2MxMzRkODdiZTE=3D" target=3D"_=
+blank">click here to sign up for the updates</a>.</p>
+<p style=3D"margin-bottom:1em">That's all for today. Next issue will be ded=
+icated to vim tips, as usual.</p>
+<p style=3D"margin-bottom:1em">Cheers,<br>Jovica</p>
+<br>
+<br>
+<small>
+<a href=3D'https://unsubscribe.convertkit-mail.com/75uv69mxpra2umzvekaz'>Un=
+subscribe</a> | <a href=3D'https://preferences.convertkit-mail.com/75uv69mx=
+pra2umzvekaz'>Update your profile</a> | 113 Cherry St #92768, Seattle, WA 9=
+8104-2205
+<br>
+</small>
+</div>
+
+<!-- -->
+  <img src=3D"https://el2.convertkit-mail.com/o/75uv69mxpra2umzvekaz" alt=
+=3D"">
+</body>
+</html>
+
+--95601e0384268bb08809798e988077520d68ab17d35d3bf22770144c28f7--

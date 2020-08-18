@@ -1,0 +1,82 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1525242lfj;
+        Wed, 9 Oct 2019 19:57:36 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzIoAazrHjYHtUtM9YoVEKcLqUjmMfkvnM1FkiQDfynZzxG5H4v05YqpCgZmVIhu0ALvSqO
+X-Received: by 2002:a05:6402:703:: with SMTP id w3mr5869780edx.95.1570676256221;
+        Wed, 09 Oct 2019 19:57:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1570676256; cv=none;
+        d=google.com; s=arc-20160816;
+        b=JIRmS3I01VjyPfMAv3z+e4SlYJeU70rQcEVzVBfHb1F9USp/g512hhVN9qoq/m5lqZ
+         1iJCZj3QcFNdLhTUbksJqDtpvXj5eU5Hb4QNZdtpjkB4aGy2vLOuEa7i1yyXq/HuKCpu
+         gEg9TxG3kf05SA+9frqr0QR1wHsKHKHqZZDlmy2ALkB0lF9JH2Vvl9vjyyiB5sXokdzG
+         ZiDGFjwUIex8CxUfDxjJ2fPBzV2COO0K8dkustSWxlUTI2fe29ZOvJ7oWIThphCELGR5
+         vLCO2F4N9+g9hp3FDDTORSVeJ+194Oy8Y7Jzoxk/fsvzliocI3FqDsDNmauSg0u9NbEA
+         jfTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date;
+        bh=1tGDwitdKTEdODurrPXnRrbBa0+YBUW0xP9iYH8c/1U=;
+        b=CFqiLRNt3F4FJCtUQes+CkTgfOqMF29vslG213YPRZzGg4cHwpM8X/Hyc/GTVTxSxe
+         to1P1Wwb+478O3uJLbulN2CzYX3iPI1KNrykybQx6+4m5PYeIbnlTyIU9qgMsbxVFy+a
+         n0pZ60l9m1MSN3hR0Y9AcqEdrG/t3pMsA6MEYe0O5pThQWC96emJwLdyrNCc3aWayX90
+         JV7NUEShbLzgQB0GEvO4kYBDbzhHU1+cUQaAVQD6GrZmlW5NGgi2ltj6MqMtQVp5JjAK
+         oVHl9cKN+gSCW4tydJejrJsZEJGn8R3ZIv1A8C14GZbCEouSkqaVLxP3dK+D6n4ZkIVr
+         /9pw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id b3si2276907eju.357.2019.10.09.19.57.12;
+        Wed, 09 Oct 2019 19:57:36 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1732616AbfJJC4T (ORCPT <rfc822;mintybayleaf@gmail.com>
+        + 99 others); Wed, 9 Oct 2019 22:56:19 -0400
+Received: from zeniv.linux.org.uk ([195.92.253.2]:57082 "EHLO
+        ZenIV.linux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726465AbfJJC4T (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 9 Oct 2019 22:56:19 -0400
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.2 #3 (Red Hat Linux))
+        id 1iIOcj-0003mo-Dr; Thu, 10 Oct 2019 02:56:17 +0000
+Date:   Thu, 10 Oct 2019 03:56:17 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [git pull] a couple of mount fixes
+Message-ID: <20191010025617.GE26530@ZenIV.linux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+	A couple of regressions from work.mount series.
+
+The following changes since commit a3bc18a48e2e678efe62f1f9989902f9cd19e0ff:
+
+  jffs2: Fix mounting under new mount API (2019-09-26 10:26:55 -0400)
+
+are available in the git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs.git work.mount3
+
+for you to fetch changes up to 6fcf0c72e4b9360768cf5ef543c4f14c34800ee8:
+
+  vfs: add missing blkdev_put() in get_tree_bdev() (2019-10-09 22:53:57 -0400)
+
+----------------------------------------------------------------
+Al Viro (1):
+      shmem: fix LSM options parsing
+
+Ian Kent (1):
+      vfs: add missing blkdev_put() in get_tree_bdev()
+
+ fs/super.c | 5 ++++-
+ mm/shmem.c | 6 ++++++
+ 2 files changed, 10 insertions(+), 1 deletion(-)

@@ -1,0 +1,131 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:4c88:0:0:0:0:0 with SMTP id z130csp3575893lfa;
+        Tue, 31 Mar 2020 02:16:53 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vvrinqtwPES6yNaOOgn28WyuX2kXQL7+67tIK/lbeyqTA/cm3oYWJ42NGjxRRRHhkAHhGlo
+X-Received: by 2002:aca:4d86:: with SMTP id a128mr1443663oib.96.1585646212896;
+        Tue, 31 Mar 2020 02:16:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585646212; cv=none;
+        d=google.com; s=arc-20160816;
+        b=dlII8Qua3CadrA5NzvyYoB+CLNINwqTxJF4INgWca1OoRxEGZiSNDrTEHxwgM8DnmC
+         bAorSxmVnsxdTXZiHv9pUqWLX0qI+Tf/UTX7gL65oHjrjE+WXkaej2CRGYkgOOFQQ5pk
+         IzMClim7Yr7va2+aukchlMb7d4NluKN0RoNaM4k8jo8MczcmvE9H9DkmCo1rdhh9JHbk
+         VWCqeFvDvIT4ATHA+27GfKQlWtjQjhQVVN/3Lb3rIEuPFOkenwD2Fifuo2Ta94NWTTGS
+         od9rzmzhUhqZqTS4tOgqNba3SnEPtNhfdwG2gNkJhNF7fspQWRHmtN7fSNCFqUvjNgd5
+         Q+ig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:mime-version:user-agent:date:message-id:subject:cc
+         :to:from:dkim-signature;
+        bh=soT205CLbo3pSZEAx9AVjNKeXiqZkOzPFfSpgHTqh+M=;
+        b=m0w2B2Mv0aP4EuRJ5g48IwLfCy99IIKuajKI57ON5kMTzBDtElNKbJGC/uS642qv+X
+         MrdzhUCx4oSRHGRqXcnvTLK2sfHGe3FA77w7M+W4MKpwGu3pz6OuESKn+oTljIKdYzfu
+         b3LVMZpcMUoCJUdP7UUE7tDnwMsyfMHItE/xE3iGGqexU1mhe3G2hh8hXfQ1B2t1VZJL
+         GChNjOGSO5DkKY3q0zKHZUbc6XAzlZuFbQ/9JFBg1LiAFoBnRvhpcWSPEqtFrESKh/g3
+         NEnNmwjAXRmsQe5dNUbrkMK/vUFLqVKov4h0IR0tN8R4XkwbxK3nKqsFL+RcEizcythi
+         jbhQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=KKKuEq4Z;
+       spf=pass (google.com: best guess record for domain of linux-kbuild-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kbuild-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Return-Path: <linux-kbuild-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id w9si8035949oti.216.2020.03.31.02.16.45;
+        Tue, 31 Mar 2020 02:16:52 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kbuild-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@oracle.com header.s=corp-2020-01-29 header.b=KKKuEq4Z;
+       spf=pass (google.com: best guess record for domain of linux-kbuild-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kbuild-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=oracle.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1731913AbgCaJQk (ORCPT <rfc822;df7729@gmail.com> + 35 others);
+        Tue, 31 Mar 2020 05:16:40 -0400
+Received: from userp2130.oracle.com ([156.151.31.86]:52490 "EHLO
+        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730328AbgCaJQi (ORCPT
+        <rfc822;linux-kbuild@vger.kernel.org>);
+        Tue, 31 Mar 2020 05:16:38 -0400
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02V9BPwH080439;
+        Tue, 31 Mar 2020 09:16:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
+ subject : message-id : date : mime-version : content-type :
+ content-transfer-encoding; s=corp-2020-01-29;
+ bh=soT205CLbo3pSZEAx9AVjNKeXiqZkOzPFfSpgHTqh+M=;
+ b=KKKuEq4ZbL21qiOck4SWuo0lJ4mO0T+NNuoZZdFAcdVJtohEC/BLrX0w9NUhzRiLNoOh
+ G6O+gw140niz57E14RFYNOVpM8oyF9+tHiH47ejsxspUucqxPQgsX+KPiEX0v80B2gvm
+ G2Zuu0c6Bb4BLcMPfuXvSlBC2N2aJ6rRxZOO6OdECLNnh0GS2rS3Z3jP+jk5POszxnLE
+ 4pijWU5bcmpShEn1rnX3W/UdV/upHH3sMu8QhdkxFNh0Xwcru6yuwITXesDvGZxcZqtw
+ lcMBf8iV8RmTVDeRoI3HJDEnjo/NN6esFWteR280KbCugmc75XHcTnPUpdQ9s4s4EBaT +g== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+        by userp2130.oracle.com with ESMTP id 303ceuxeg2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 31 Mar 2020 09:16:35 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+        by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02V96ubU002205;
+        Tue, 31 Mar 2020 09:16:34 GMT
+Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
+        by userp3030.oracle.com with ESMTP id 302g2dq5kj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 31 Mar 2020 09:16:34 +0000
+Received: from abhmp0004.oracle.com (abhmp0004.oracle.com [141.146.116.10])
+        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 02V9GXDA017837;
+        Tue, 31 Mar 2020 09:16:33 GMT
+Received: from [10.175.15.184] (/10.175.15.184)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Tue, 31 Mar 2020 02:16:33 -0700
+From:   Vegard Nossum <vegard.nossum@oracle.com>
+To:     Masahiro Yamada <yamada.masahiro@socionext.com>
+Cc:     Jens Axboe <axboe@kernel.dk>, LKML <linux-kernel@vger.kernel.org>,
+        linux-kbuild@vger.kernel.org
+Subject: single target builds are broken
+Message-ID: <a5ce79eb-be9d-df97-0b58-5aee5a48f4d3@oracle.com>
+Date:   Tue, 31 Mar 2020 11:16:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9576 signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 spamscore=0 mlxscore=0
+ adultscore=0 phishscore=0 bulkscore=0 suspectscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
+ definitions=main-2003310082
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9576 signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 adultscore=0
+ clxscore=1011 phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
+ suspectscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
+ definitions=main-2003310082
+Sender: linux-kbuild-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kbuild.vger.kernel.org>
+X-Mailing-List: linux-kbuild@vger.kernel.org
+
+
+Hi,
+
+I often run 'make foo/bar.o' as part of my workflow, even when bar.o is
+not specified in any kernel makefile, and this has worked just fine for
+years.
+
+This is broken after commit 394053f4a4b3e3eeeaa67b67fc886a9a75bd9e4d
+(kbuild: make single targets work more correctly) and just gives an error:
+
+$ make kernel/test.o
+   CALL    scripts/checksyscalls.sh
+   CALL    scripts/atomic/check-atomics.sh
+   DESCEND  objtool
+make[2]: *** No rule to make target 'kernel/test.o'.  Stop.
+scripts/Makefile.build:502: recipe for target '__build' failed
+make[1]: *** [__build] Error 2
+Makefile:1670: recipe for target 'kernel' failed
+make: *** [kernel] Error 2
+
+For top-level objects (e.g. 'make bar.o') the situation is even worse,
+since make exits with status 0 without building anything :-/
+
+Is there any chance we can get this back? It was super useful for me.
+
+
+Vegard

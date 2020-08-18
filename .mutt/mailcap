@@ -1,0 +1,10 @@
+# use "lynx" to render HTML files:
+#   # text/html; w3m -dump %s; nametemplate=%s.html; copiousoutput
+text/html       ; lynx -dump -force_html %s ; copiousoutput
+text/htm        ; lynx -dump -force_html %s ; copiousoutput
+message/html    ; lynx -dump -force_html %s ; copiousoutput
+message/htm     ; lynx -dump -force_html %s ; copiousoutput
+text/*;                           LESSQUIET=1 lesspipe.sh '%s'; copiousoutput
+application/*;                    LESSQUIET=1 lesspipe.sh '%s'; copiousoutput
+image/*;                          LESSQUIET=1 lesspipe.sh '%s'; copiousoutput
+audio/*;                          LESSQUIET=1 lesspipe.sh '%s'; copiousoutput

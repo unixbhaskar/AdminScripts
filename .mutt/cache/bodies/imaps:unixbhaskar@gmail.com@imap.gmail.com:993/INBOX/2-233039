@@ -1,0 +1,146 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp1449319lfg;
+        Thu, 9 Apr 2020 00:49:11 -0700 (PDT)
+X-Google-Smtp-Source: APiQypI8inOwsRfcQQi//RTb8/2zEI7J+c1KHVCwAeSM/ulJH2CRUVlrPLCnjzcOzEUfaIwmPEM+
+X-Received: by 2002:ac8:1628:: with SMTP id p37mr10820266qtj.277.1586418551006;
+        Thu, 09 Apr 2020 00:49:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586418551; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ds0Sp9jOHN5upSaYXxULBmEHM6T4fbHwugP6bI7yv28EU+WxRWkGg5r6kGLYjiGGsv
+         2K40yaZAB2Md3iQT1Rx4OqaW5Fjt7r38IwoygJwSL/VhqIEef+C8TA7Evtm58vZrM7nk
+         cXt816ZcMlOjQAFgUZpzzyM9nSxRwk5VaTpFBK1a0ZnsXP+/BuJqR3o8Nju8VlM1EIhO
+         aZKggLIXkVTq8zJTKVpCxVoTlRmMYulScDdNr3mN3jKeX+kDmYlRMMAnRvN3nhgoH5US
+         AmJRV/Wkb6dhPnFU3cFL6ajGb7lEcANLIP7kdYf7XDSs2AHY75yc0rBvkS367/T4g7Jn
+         X2vQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:mime-version:feedback-id:list-unsubscribe:message-id:subject
+         :reply-to:from:to:dkim-signature:dkim-signature;
+        bh=MOZqOAbT0cA4HhQKyfDewzA0Z5IWmBznMHFjAVe/U44=;
+        b=DtXAXF95MnL92DEuqUmYSN97+8pLsCgxLyuHpXlOC1sQL4H7BMQ0K1sgpbp4WtJ9yH
+         k1ANDcsRa+mk1Zt7G2ROdUHCjRVMsVAMmO5c+uvnOl1ybllkXuB9jFo2VW5f/U0EuA/U
+         42co5bxGQ4n55wKMZ4WBtc6Nhm110TovItq7mHEC9sWZUJJhddP8r/WqVOekrEVzxijg
+         xsni+zg5xQLLPxf2IZc2eC5+WlI0JjeefDU2fb8gQOpvlEbakLA6KqafYWF1QZPxOFq6
+         WLXNhvSecUHIhZQmjlI76xogAgee2PApoVbuKkciA3725qECzZGLJZDZOaP2zQ+E2GzC
+         vU7w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@custcomm.icicibank.com header.s=fnc header.b="kE9nLyB/";
+       dkim=pass header.i=@icicibank.com header.s=fnc header.b=ERSX5HT5;
+       spf=pass (google.com: domain of campaign-icicibanksmartech-54938-183045-13223898-unixbhaskar=gmail.com@delivery.custcomm.icicibank.com designates 175.158.64.22 as permitted sender) smtp.mailfrom="campaign-icicibanksmartech-54938-183045-13223898-unixbhaskar=gmail.com@delivery.custcomm.icicibank.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=custcomm.icicibank.com
+Return-Path: <campaign-icicibanksmartech-54938-183045-13223898-unixbhaskar=gmail.com@delivery.custcomm.icicibank.com>
+Received: from ncmail22.custcomm.icicibank.com (ncmail22.custcomm.icicibank.com. [175.158.64.22])
+        by mx.google.com with ESMTP id q27si3192813qtq.2.2020.04.09.00.49.10
+        for <unixbhaskar@gmail.com>;
+        Thu, 09 Apr 2020 00:49:10 -0700 (PDT)
+Received-SPF: pass (google.com: domain of campaign-icicibanksmartech-54938-183045-13223898-unixbhaskar=gmail.com@delivery.custcomm.icicibank.com designates 175.158.64.22 as permitted sender) client-ip=175.158.64.22;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@custcomm.icicibank.com header.s=fnc header.b="kE9nLyB/";
+       dkim=pass header.i=@icicibank.com header.s=fnc header.b=ERSX5HT5;
+       spf=pass (google.com: domain of campaign-icicibanksmartech-54938-183045-13223898-unixbhaskar=gmail.com@delivery.custcomm.icicibank.com designates 175.158.64.22 as permitted sender) smtp.mailfrom="campaign-icicibanksmartech-54938-183045-13223898-unixbhaskar=gmail.com@delivery.custcomm.icicibank.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=custcomm.icicibank.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=fnc; d=custcomm.icicibank.com;
+ h=To:From:Reply-To:Subject:Message-ID:List-Unsubscribe:MIME-Version:Content-Type:Date;
+ bh=9jAP4+1pUqQUD/rIvlnSnJd32g8=;
+ b=kE9nLyB/8BKI/WT9bvMwXAPcPa1FKJ2vmGptQmtylPVBb3GgCAt8PjTCEytODbQ1qt9FXHDAwfya
+   LRL6P5ATd7MdxEz/FfNiFp7XhUW2C+uBeLQ5rdDc/CP/jDvTVPOSmqtuO3Dp/DgooRCdl9G1OaEb
+   +0/9R+HJRiaDy+IaaAA=
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=fnc; d=icicibank.com;
+ h=To:From:Reply-To:Subject:Message-ID:List-Unsubscribe:MIME-Version:Content-Type:Date;
+ bh=9jAP4+1pUqQUD/rIvlnSnJd32g8=;
+ b=ERSX5HT59AR8xmPCBNAuIZOsHqkYk4WeuDpa0rJkH2k5Lrg3OKVaTwyvSlHEug5eYeY6/IEQIQ2e
+   VsRteYZMBnvQZoz6wxtx7UIJzWtkVO7LQBMpi/dMG4q6tMOv7dbS4+XU8D3WKG8nAm7n1cTuQ1jS
+   JmuwR1+GkKHUe17qcC8=
+To: unixbhaskar@gmail.com
+From: "ICICI Bank" <services@custcomm.icicibank.com>
+Reply-To: "ICICI Bank" <services@custcomm.icicibank.com>
+Subject: Important information regarding your ICICI Bank Credit Card
+Message-ID: <698592136313223898@mailmx1.forcemail.in>
+X-Abuse-Reports-To: abuse@bosemail.com
+List-Unsubscribe: <mailto:icicibanksmartech-54938-183045-13223898-0074aadd82444617a0fc314be4c0c73c@usub.forcemail.in?subject=Unsubscribe>, <http://lnk.custmail.icicibank.com/jtrack?d=1&id=K04AVQILDAUOAUkIAFQKUFYDURpVXF0eV0ZKEVoHC14aCAdcUg1SAlZYHFpWWkQ=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938&c=>
+Feedback-ID: 183045:54938:20200409130617:nczc
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="b1_c598aa038d7ff8d91ceeb3e513333258"
+Date: Thu, 9 Apr 2020 13:19:09 +0530
+
+
+
+
+--b1_c598aa038d7ff8d91ceeb3e513333258
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+ICICI Bank Online 
+
+ Dear Customer, 
+ 
+ Hope this e-mail finds you and your
+family safe. Due to prevalent conditions, as a preventive measure, we
+are temporarily limiting cash withdrawals up to a maximum of 10,000 on
+your ICICI Bank Credit Card. 
+ 
+ We thank you for your loyalty and trust towards ICICI Bank. We assure
+you that our team is taking all steps to continue servicing your
+financial needs without any disruption. 
+ 
+ We urge you to use mobile banking for all your financial
+needs. 
+
+ Go cardless! Withdraw cash from any ICICI Bank ATM by using iMobile.
+For details, click here
+<http://lnk.custmail.icicibank.com/jtrack?d=1&id=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938>
+ . If you are yet to download
+iMobile, you can download at 
+
+ <http://lnk.custmail.icicibank.com/jtrack?d=1&id=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938>
+ <http://lnk.custmail.icicibank.com/jtrack?d=1&id=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938>
+
+ Sincerely, 
+ 
+ Amarjit Singh Walia 
+ Head - Consumer & Commercial Cards 
+
+ #StayHomeStaySafe 
+
+ <http://lnk.custmail.icicibank.com/jtrack?d=1&id=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938>
+ <http://lnk.custmail.icicibank.com/jtrack?d=1&id=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938>
+ <http://lnk.custmail.icicibank.com/jtrack?d=1&id=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938>
+ <http://lnk.custmail.icicibank.com/jtrack?d=1&id=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938>
+
+ Click here
+<http://lnk.custmail.icicibank.com/jtrack?d=1&id=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938>
+ for disclaimer 
+
+
+
+--b1_c598aa038d7ff8d91ceeb3e513333258
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" /> <title>ICICI Bank Online</title> <style type="text/css"> html { width: 100%; margin: 0; padding: 0; } ::-moz-selection { background: #b40202; color: #fff } ::selection { background: #b40202; color: #fff } body { background: #ffffff; margin: 0;
+padding: 0 } .ExternalClass, .ReadMsgBody { width: 100%; background-color: #ffffff } a { color: #b40202; text-decoration: underline; font-style: normal } a:hover { color: #b40202; text-decoration: none; font-style: normal } div, p { margin: 0!important } @media only screen and (max-width: 650px) { table table, td[class=main_body_width] { width: 100%!important } table[class=mobile_width] { width: 650px!important; margin: 0 auto!important } table[class=featured_area] { width: 650px!important; margin: 0 auto!important } img[class=mobile_img_width] { width: 100%!important; height: auto!important }
+table[class=hide_content], td[class=hide_content] { display: none!important } td[class=center] { text-align: center!important } table[class=main_body] { width: 400px!important; margin-left: 20px!important; margin-right: 20px!important } } @media only screen and (max-width: 479px) { table table, td[class=main_body_width] { width: 100%!important } table[class=mobile_width] { width: 324px!important; margin: 0 auto!important } table[class=featured_area] { width: 290px!important; margin: 0 auto!important } img[class=mobile_img_width] { width: 100%!important; height: auto!important }
+table[class=hide_content], td[class=hide_content] { display: none!important } td[class=center] { text-align: left!important; padding-left: 10px; } table[class=main_body] { width: 240px!important; margin-left: 20px!important; margin-right: 20px!important } td[class=maniabox] { padding-top: 10px; !important } table[class=container], td[class=DDSresponsiveCell] { width: 100% !important; } td[class=DDSresponsiveCell] { display: block !important; } } </style></head><body style="background:#f1f1f1"> <!-- START MAIN BANNER BODY --> <table width="100%" bgcolor="#f1f1f1" align="center" cellpadding="0"
+cellspacing="0" border="0"> <tbody> <tr> <td width="100%"> <!-- START OF HEADER BLOCK--> <table width="100%" align="center" bgcolor="#f1f1f1" cellpadding="0" cellspacing="0" border="0" style="font-size:0px;"> <tbody> <tr> <td width="100%"> <table bgcolor="#ffffff" class="mobile_width" width="650" align="center" cellpadding="0" cellspacing="0" border="0"> <tbody> <tr> <td width="100%" height="25"> <table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td style="border-left:#e56e2e solid 1px; border-right:#e56e2e solid 1px; font-size:0px;"> <table width="100%" border="0"
+align="center" cellpadding="0" cellspacing="0" class="mobile_width"> <tbody> <!-- START MAIN BANNER IMAGE --> <tr> <td width="100%" align="center" valign="bottom"> <table align="center" cellpadding="0" cellspacing="0" border="0" class="mobile_width" style="font-size:0;"> <tbody> <tr> <td width="100%" align="center" valign="bottom"> <img src="https://www.icicibank.com/campaigns/mailers/april-2020/cash-limitation/GB/images/toplogo.gif" width="648" height="100" class="mobile_img_width" style="display:block;" /> </td> </tr> <tr> <td width="100%" align="center" valign="bottom"> <img
+src="https://www.icicibank.com/campaigns/mailers/april-2020/cash-limitation/GB/images/topimg.jpg" alt="main_banner" width="648" height="453" border="0" class="mobile_img_width" editable="true" label="image" style="display:block;" /> </td> </tr> </tbody> </table> </td> </tr> <tr> <td align="center" style="padding:20px;"> <table width="580" border="0" align="center" cellpadding="0" cellspacing="0"> <tr> <td align="left" style="text-align:justify;"> <font face="Zurich BT, Zurich Cn BT, Arial" color="#000000" style="font-size:15px"> Dear Customer, <br /> <br /> Hope this e-mail finds you and your
+family safe. Due to prevalent conditions, as a preventive measure, we are temporarily limiting <strong style="color:#a41c2b;"> cash withdrawals up to a maximum of <img src="https://www.icicibank.com/campaigns/mailers/april-2020/cash-limitation/GB/images/rspng.png" width="9" height="12" /> 10,000 </strong> on your ICICI Bank Credit Card. <br /> <br /> We thank you for your loyalty and trust towards ICICI Bank. We assure you that our team is taking all steps to continue servicing your financial needs without any disruption. <br /> <br /> We urge you to use mobile banking for all your financial
+needs. </font> </td> </tr> <tr> <td height="20" align="left">&nbsp;</td> </tr> <tr> <td height="20" align="left"> <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"> <tr> <td height="20" align="left" style="text-align:justify;"> <font face="Zurich BT, Zurich Cn BT, Arial" color="#000000" style="font-size:15px">Go cardless! Withdraw cash from any ICICI Bank ATM by using iMobile. For details, <a href='http://lnk.custmail.icicibank.com/jtrack?d=1&id=K04AVQILCwADAUkIAFQKUFYDURpVXF0eV0ZKEVoHC14aCAdcUg1SAlZYHFpWWkQ=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938'  target="_blank"
+style="color:#a41c2b;">click here</a>. If you are yet to download
+iMobile, you can download at </font> </td> </tr> <tr> <td height="5" align="left">&nbsp;</td> </tr> <tr> <td height="20" align="left"> <table width="250" border="0" cellspacing="0" cellpadding="0"> <tr> <td width="125" height="20" align="center"> <a href='http://lnk.custmail.icicibank.com/jtrack?d=1&id=K04AVQILCwADDkkIAFQKUFYDURpVXF0eV0ZKEVoHC14aCAdcUg1SAlZYHFpWWkQ=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938'  target="_blank"> <img src="https://www.icicibank.com/campaigns/mailers/april-2020/cash-limitation/GB/images/googleplay.png" width="120" height="35" /> </a> </td> <td width="125" height="20"
+align="center"> <a
+href='http://lnk.custmail.icicibank.com/jtrack?d=1&id=K04AVQILCwADD0kIAFQKUFYDURpVXF0eV0ZKEVoHC14aCAdcUg1SAlZYHFpWWkQ=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938'  target="_blank"> <img src="https://www.icicibank.com/campaigns/mailers/april-2020/cash-limitation/GB/images/appsote.png" width="120" height="35" /> </a> </td> </tr> </table> </td> </tr> </table> </td> </tr> <tr> <td height="20" align="left">&nbsp;</td> </tr> <tr> <td height="20" align="left"> <font face="Zurich BT, Zurich Cn BT, Arial" color="#000000" style="font-size:15px"> Sincerely, <br /> <br /> Amarjit Singh Walia <br /> Head - Consumer
+&amp; Commercial Cards </font> </td> </tr> <tr> <td height="15"
+align="left">&nbsp;</td> </tr> <tr> <td height="20" align="center"> <font face="Zurich BT, Zurich Cn BT, Arial" color="#e77817" style="font-size:17px"><strong>#StayHomeStaySafe</strong></font> </td> </tr> </table> </td> </tr> <tr> <td align="center" bgcolor="#e77817"> <table border="0" align="right" cellpadding="0" cellspacing="0"> <tr> <td width="50" height="35" align="center" style="border-right:#ffffff solid 1px;"> <a href='http://lnk.custmail.icicibank.com/jtrack?d=1&id=K04AVQILCwACBkkIAFQKUFYDURpVXF0eV0ZKEVoHC14aCAdcUg1SAlZYHFpWWkQ=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938'  target="_blank"> <img
+src="https://www.icicibank.com/campaigns/mailers/april-2020/cash-limitation/GB/images/icon-facebook.jpg" alt="" width="24" height="24" border="0" /> </a> </td> <td width="50" height="35" align="center" style="border-right:#ffffff solid 1px;"> <a href='http://lnk.custmail.icicibank.com/jtrack?d=1&id=K04AVQILCwACB0kIAFQKUFYDURpVXF0eV0ZKEVoHC14aCAdcUg1SAlZYHFpWWkQ=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938'  target="_blank"> <img src="https://www.icicibank.com/campaigns/mailers/april-2020/cash-limitation/GB/images/icon-twitter.jpg" alt="" width="24" height="24" border="0" /> </a> </td> <td width="50"
+height="35" align="center" style="border-right:#ffffff solid
+1px;"> <a href='http://lnk.custmail.icicibank.com/jtrack?d=1&id=K04AVQILCwACBEkIAFQKUFYDURpVXF0eV0ZKEVoHC14aCAdcUg1SAlZYHFpWWkQ=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938'  target="_blank"> <img src="https://www.icicibank.com/campaigns/mailers/april-2020/cash-limitation/GB/images/icon-youtube.png" alt="" width="25" height="24" border="0" /> </a> </td> <td width="50" height="35" align="center"> <a href='http://lnk.custmail.icicibank.com/jtrack?d=1&id=K04AVQILCwACBUkIAFQKUFYDURpVXF0eV0ZKEVoHC14aCAdcUg1SAlZYHFpWWkQ=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938'  target="_blank"> <img
+src="https://www.icicibank.com/campaigns/mailers/april-2020/cash-limitation/GB/images/icon-linkdin.jpg" alt="" width="24" height="24" border="0" /> </a>
+</td> </tr> </table> </td> </tr> <!-- END MAIN BANNER IMAGE --> </tbody> </table> </td> </tr> </table> </td> </tr> </tbody> </table> <table class="mobile_width" align="center" width="650" cellpadding="0" cellspacing="0" border="0" bgcolor="#e77817"> <tr bgcolor="#ffffff"> <td align="right" style="padding:5px 10px; text-align:justify;"> <font face="Zurich BT, Zurich Cn BT, Arial" color="#000000" style="font-size:10px;"><a href='http://lnk.custmail.icicibank.com/jtrack?d=1&id=K04AVQILCwACAkkIAFQKUFYDURpVXF0eV0ZKEVoHC14aCAdcUg1SAlZYHFpWWkQ=UFZXCgJeXFlIQVlcTQBZUxEIU0IlVF9ZXVsYVldd&client=54938'  target="_blank">Click
+here</a> for disclaimer</font> </td> </tr> </table>
+</td> </tr> </tbody> </table> </td> </tr> </tbody> </table><br/><div></div><img border="0" src="http://lnk.custmail.icicibank.com/jtrack?d=1&m=183045&eu=UwIBVgEACwwODg==&u=0074aadd82444617a0fc314be4c0c73c&client=54938&c=0000" ></body></html>
+
+
+
+--b1_c598aa038d7ff8d91ceeb3e513333258--
+

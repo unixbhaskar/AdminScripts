@@ -1,0 +1,94 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1235661lfj;
+        Wed, 9 Oct 2019 14:38:30 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwcSTfIBhZYiJO0S428ZfUwrPaMjJ4/3rQrgvtWTA7tiIAqVgG9b3vcN1IbvW1pAZcY+WyU
+X-Received: by 2002:a17:906:6b99:: with SMTP id l25mr4797316ejr.233.1570657110760;
+        Wed, 09 Oct 2019 14:38:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1570657110; cv=none;
+        d=google.com; s=arc-20160816;
+        b=pl8yW4EOLp+3V5Df1xAshPBRy3X3qa287sWkSwOc8BnkDZrcqKeLQrCuTqR40UrzCg
+         qqrlYe1sPhOqlAEBk+ttmrHFrRI0/OQ6pAuBtN2BnrTsCx0rl1EOCzRl0vxXK80nto0d
+         cw1lzDfkbopnug4FUJR6iqme3GcBceijNcZO46yMPUrIVMeYTcYK+9vvz6dSYQH7IR6o
+         Z95h5bvuIExSbk+4+6tJRVuaFOv91uugNhEjtR07qyQENaHdatLHYXFzHosefidGW1oQ
+         9Ahgr/sBHpsHb1BP12gScxR3gs2xVkCb5ZZBTz1jwMXT1eE4iEuys1iMjUfrE/QXiRfT
+         tUYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:mime-version:user-agent:date:message-id:subject
+         :from:cc:to:dkim-signature;
+        bh=MhyxE9zBIIhY8OiSfA4AvqqI7W7cYlVr3qfwPxHgOW8=;
+        b=0QnAZ0UPmedJew47l9w9UK/QQZ3Oww0YcCdac7SbjBNVl2ghky7//UWqH8U6/U5bC6
+         pzRAjbMQqvZWAmG+tTH6VCry5rt2Xuxn/Mp8QQf8mtpaItep0WFK+55iwNM9BwB1H0wt
+         5RJ2CM1PMhp/fXjEBB8/Q3JhpEZNDASNzuJv7DHJb24xCHfeVcFooDbTXjjcn/8H8MQZ
+         vTjeCiSV6mbRXaXcV4djMYYDkiFoCeJovhzfi/r9SLh0n6OR6KKjmGsQSCS25HPSCbYr
+         PZe2eCC3Ku9A5b/GgA1qJI+Sut7FpRLpyEACoO7ySXyAwD3CjmZJn3UP7AJ2L934CvWH
+         yRyA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=F9EWuJeT;
+       spf=pass (google.com: best guess record for domain of linux-doc-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Return-Path: <linux-doc-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id br24si1876918ejb.101.2019.10.09.14.37.59;
+        Wed, 09 Oct 2019 14:38:30 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-doc-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=F9EWuJeT;
+       spf=pass (google.com: best guess record for domain of linux-doc-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1730955AbfJIVhx (ORCPT <rfc822;unixbhaskar@gmail.com>
+        + 99 others); Wed, 9 Oct 2019 17:37:53 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:49744 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728804AbfJIVhx (ORCPT
+        <rfc822;linux-doc@vger.kernel.org>); Wed, 9 Oct 2019 17:37:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:MIME-Version:Date:Message-ID:Subject:From:Cc:To:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=MhyxE9zBIIhY8OiSfA4AvqqI7W7cYlVr3qfwPxHgOW8=; b=F9EWuJeTiYZA2rHH9YbjclEUF
+        Q3IyphguSrQA1f31AZkJj1UXRVjclkntzyu3wbpr7CKL202hrtZiaF6uriusuK4iuymYvLTrE+quE
+        UxgIb1Y/dpGH4UJMGdF8ki+33g6yF48kdODwvnIdIitrl9VjBCI0zFbkd+yzLalZ+j/PJ7YlIh2EG
+        XytEOPwe0JdgIcLGJkNJunSqOA9i+0E29kFeAZYLf/mQGfanIG9/QMX0n2raourfDm4UjiuWEtULM
+        JMCE4wo+E/H01lZ+Tixbu3J+k6wT07YtC7ezRzInuyLXbTcUFIxYN9wuQcNQ5Af21AqvIU9Mp4KD6
+        VdlmGyT1A==;
+Received: from [2601:1c0:6280:3f0::9ef4]
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.2 #3 (Red Hat Linux))
+        id 1iIJeZ-0000RD-Sw; Wed, 09 Oct 2019 21:37:51 +0000
+To:     "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     Kees Cook <keescook@chromium.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Subject: Sphinx parallel build errors
+Message-ID: <dc19a670-7e8e-04e5-667d-578c2dd3754e@infradead.org>
+Date:   Wed, 9 Oct 2019 14:37:51 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Sender: linux-doc-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-doc.vger.kernel.org>
+X-Mailing-List: linux-doc@vger.kernel.org
+
+
+Sphinx parallel build error:
+OSError: [Errno 12] Cannot allocate memory
+
+I have had this error 4 times in the last 3 days.
+
+The first time it oom-killed Thunderbird.  No big deal.
+The second time it oom-killed gimp, which had 24 photos open.
+Still no big deal.  Just a nuisance.
+
+My little laptop has only 8 GB of RAM.
+
+Is there a way that I can limit the amount of parallelism?
+
+thanks.
+-- 
+~Randy

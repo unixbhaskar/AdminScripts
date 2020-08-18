@@ -1,0 +1,109 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp51307lfj;
+        Tue, 4 Aug 2020 15:21:10 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyOTSE/03ruBF7+WYEeb1jBPng6YC4SIkA1lZU9gS+57QYcPpgBIiW8+fVGNODtI2ZmHuba
+X-Received: by 2002:a17:906:2e51:: with SMTP id r17mr290011eji.308.1596579670149;
+        Tue, 04 Aug 2020 15:21:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596579670; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Zr9Ae25005G7a/uNWokTA6u8BdVtd+zrh9WnakjxJHBBvQHBf5D7ttwPA0fUjlNtmb
+         Ivi1BlwWnQR2v7Es2HIk5vBaDD+uwkY5ecKZuw6xfqYvMrOMr9jz3AC7aBrhn895oksb
+         NAcUsHRPhcjjPmdsYkSv7+CQTK58vsRwCMYuAD8Q4caKuJi40jOGg+NVjm0b1DHFuZUy
+         br8kvXGBVKCf5bOnz9QUSoNHqwtvnib0ptGZjBEdrMqSjPR63ralU4Mh7irUwy6+QnQD
+         fCcrM9XbhnojG16S9AoGoueE30Kd7i+ONcU4N2SRT7JjvDUIsHDC++vZUKff+8WPKQp/
+         MJOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=M7NKZj1R78/D57WU2J4CvrtRn4wBXaNE6KwcqvJ/JXc=;
+        b=OPiLyXQWjsWmjhgW6ZQXCvTabH2fuemZgFX5oLm4ni+inIxFMKdOXQEic4PPXUnGQL
+         +pmCxHQcQyJIqZ/eVn2YWWwJNxQkJ2lpz1r7PRSCFK9L084yhCH9BCn+2IYSkvI3eLqG
+         MK6o2ARQ2wcqO0mFOPP6PY4PImOvgYsYA05FrPUgAj5WAAKOe0JKeLW0vBwg1aquHVVx
+         9JBTYmz/kBT1zFZ6FpUUqP+9ByXsNorOjlQCsSaghxpuKG4Y0VF2ez3TzicM+/wHisIc
+         aSQlGANd7QcoD5XAb+1Ti5T3cdzo3g4iUxfK49Xml8hE0DII1byHhKHfd8xIsdrNlznP
+         4zqw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=F7DrzR6K;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id j23si51624edp.162.2020.08.04.15.21.02;
+        Tue, 04 Aug 2020 15:21:10 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=F7DrzR6K;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727929AbgHDV0t (ORCPT <rfc822;garykrige@gmail.com> + 34 others);
+        Tue, 4 Aug 2020 17:26:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36984 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725922AbgHDV0s (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 4 Aug 2020 17:26:48 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5BFC06174A
+        for <linux-kernel@vger.kernel.org>; Tue,  4 Aug 2020 14:26:48 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id w14so15427164ljj.4
+        for <linux-kernel@vger.kernel.org>; Tue, 04 Aug 2020 14:26:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=M7NKZj1R78/D57WU2J4CvrtRn4wBXaNE6KwcqvJ/JXc=;
+        b=F7DrzR6KC5lRwPOTJ5+7Vnit32BCitYx1s0qEr4ic3BJyt7CSrbsV5eHcR3dWnXNqs
+         kvOTvETu6noM9tj2MwB4kxeKxidzTbTaHuPnWa0BNWEYLv2GU/YQ6k197BDadKCH0f82
+         mwPlbiZ2qYYroHX4XXsiG5UzHXhWy8XEKumRY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=M7NKZj1R78/D57WU2J4CvrtRn4wBXaNE6KwcqvJ/JXc=;
+        b=l0l1j4e/u/JBR+UjeAXRgDgcdIP7kD3RIMsv46atLjydYb88CrF3ptepH9LASvHwst
+         eoCJWXm1RazwPMOhIDdkSFTskipIwiibgKHwyPUtI7VatMf7lTyQj8K15UQcweMeWqf9
+         BYoLX339dY+ja1WErkpjHzPRMMz98u/nJqXhIz7pMxsJeWyaT1UeFdacY7oKws4Cx218
+         4mGhILuoMzhwQoqkEq82Ug06mTG8w6os1yYRxpCYxJDkvIQGaTdV/U4rUHVgEIkV7plU
+         o9h8BYvRfSCOIVNuJEUsihPR4bE81xvW1bml1PxVwjRK7/C7po5A7n44XIsDqH4FgF5U
+         JVFw==
+X-Gm-Message-State: AOAM530GCfsdxs3L04Vd2/cw0nKj+iRu9WtbXbRzWGURJ31X3PwpCmt+
+        MpwCy7Tzj5mC0WDhcUg2hpy9eJBc5+k=
+X-Received: by 2002:a2e:958b:: with SMTP id w11mr7890156ljh.370.1596576405924;
+        Tue, 04 Aug 2020 14:26:45 -0700 (PDT)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com. [209.85.208.175])
+        by smtp.gmail.com with ESMTPSA id 29sm6696249ljv.72.2020.08.04.14.26.44
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Aug 2020 14:26:45 -0700 (PDT)
+Received: by mail-lj1-f175.google.com with SMTP id 185so35037252ljj.7
+        for <linux-kernel@vger.kernel.org>; Tue, 04 Aug 2020 14:26:44 -0700 (PDT)
+X-Received: by 2002:a2e:545:: with SMTP id 66mr11503214ljf.285.1596576404472;
+ Tue, 04 Aug 2020 14:26:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <8ce85723-5656-0ee8-67a7-35597d9df0dd.ref@schaufler-ca.com> <8ce85723-5656-0ee8-67a7-35597d9df0dd@schaufler-ca.com>
+In-Reply-To: <8ce85723-5656-0ee8-67a7-35597d9df0dd@schaufler-ca.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Tue, 4 Aug 2020 14:26:28 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjkuGCCk7DCNP6836FYeOaKZR9KLOBzr21fPOVNnOZiKA@mail.gmail.com>
+Message-ID: <CAHk-=wjkuGCCk7DCNP6836FYeOaKZR9KLOBzr21fPOVNnOZiKA@mail.gmail.com>
+Subject: Re: [GIT PULL] Smack patches for v5.9
+To:     Casey Schaufler <casey@schaufler-ca.com>
+Cc:     Linux Security Module list 
+        <linux-security-module@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Aug 4, 2020 at 10:49 AM Casey Schaufler <casey@schaufler-ca.com> wrote:
+>
+> Here are three minor fixes to Smack for the v5.9 release.
+
+I can't pull this: that's not a signed tag, and I don't pull unsigned
+stuff from open hosting sites, no matter how obvious they may seem.
+
+You typically have a capitalized signed tag, but I'm not seeing that
+this time. Hmm?
+
+             Linus

@@ -1,0 +1,111 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp1306995lfk;
+        Wed, 27 May 2020 12:14:37 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzNuY+1hpEmVGK00RaAMwG07wSKSXYQbTDZkz6gZEVlpptp9/qAnyLFteaK8yZMrjHWxPVu
+X-Received: by 2002:a05:6402:719:: with SMTP id w25mr20507945edx.179.1590606876836;
+        Wed, 27 May 2020 12:14:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590606876; cv=none;
+        d=google.com; s=arc-20160816;
+        b=MoRb7nMpiXdel0G2w6AroUcOWcXjPLqK2H4ou6B1o71cZIOobEmg+SE1oZuUcrjavv
+         gGUhyw7Tpyn9cmutAvrtDmqagxwGOYz9SS8PxnIBwVSs+tMa1xxupd/2NwJ6YWakMtb1
+         BuhzHRSJjt8+4uiwKs/EMs90AgRMuXi2xd7Rg53z6INzNOcdkDFoQmBDCP1ZU0klGAjJ
+         ckp8X0U+/uPREIiQn0aOcSWHEtgeK8qkhdxV5cYkcvR09Q0cl7HdomjybPFnM7emzwPf
+         H5tYS7D8SyNBZA1eKTdSCUjS3JvZwFz8XWRq1YtRdlvcD7BMFtDyU3aIn5LmsqXK8OnN
+         h2AA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :user-agent:message-id:in-reply-to:date:references:subject:cc:to
+         :from:domainkey-signature:dkim-signature;
+        bh=QS/KlU8TDT36ASp0S7Ok0BGge5cSeHqajv/FST+C4TA=;
+        b=NpBjjYS6dWeVY0wU3ZCYG1zVTSLCzBNsJgbMaZz4em+YVpSRm9TX+2C+xLPXVHYRiY
+         BIm57MrSzgF+AP2ReuLTnKtZB67lcZeFeiHgR8+YXyREX6F/qOytICImvEptOID1u3se
+         6iTJZSFlfnQRdh5LLLSzvhm3akrLAIqIFwkJKnoNs78eMewFVREe2FVPTQ+ZQL5OzFb5
+         u33/Uqj+jDFKiN4uTnENt3q6Hw6CqMMGxHvPosZmwHeq+v7vuXwsC/XZ9GxQGWD9zdha
+         ofKRapcH0fnbn49ZML6hbfxGUSck4kkpRnEBGWWH59zQxg4+rV0El9M7R8wobrEyiwHb
+         JjYg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@pobox.com header.s=sasl header.b=sOubI6sm;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=pobox.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id 63si2291081edj.314.2020.05.27.12.14.13;
+        Wed, 27 May 2020 12:14:36 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@pobox.com header.s=sasl header.b=sOubI6sm;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=pobox.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2391711AbgE0Qrg (ORCPT <rfc822;alvinliu630@gmail.com>
+        + 99 others); Wed, 27 May 2020 12:47:36 -0400
+Received: from pb-smtp21.pobox.com ([173.228.157.53]:51788 "EHLO
+        pb-smtp21.pobox.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391655AbgE0Qrd (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 27 May 2020 12:47:33 -0400
+Received: from pb-smtp21.pobox.com (unknown [127.0.0.1])
+        by pb-smtp21.pobox.com (Postfix) with ESMTP id 969F2CA397;
+        Wed, 27 May 2020 12:47:31 -0400 (EDT)
+        (envelope-from junio@pobox.com)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=from:to:cc
+        :subject:references:date:in-reply-to:message-id:mime-version
+        :content-type:content-transfer-encoding; s=sasl; bh=EBt5bUpJqsID
+        0RnNEkCLJsx64Iw=; b=sOubI6smGwbgKZQzWgG4VoPVIShNz6T1tNp1L7v5+ex4
+        qrzeEWoKF4KqWC/NYmobK903OZujBl5JMW1V3gLX1CrBs+2dq81Yp9l4Fu7YXiRI
+        3H8j+TEBhTgNByUWR03ZYeqnsashTMjeB0n57D+qpaQasmMIoHbytxkSYtmkzf4=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=pobox.com; h=from:to:cc
+        :subject:references:date:in-reply-to:message-id:mime-version
+        :content-type:content-transfer-encoding; q=dns; s=sasl; b=W3qYqT
+        i8MFyS3Dct7W5UyDesHF/Zylxan6yTxTzxlZyGrPk9nOSPFLTm7TrmVjj2y9CRmi
+        enwa7HdC8yDsOIc0iWEW67Yr53Ox17Cj3iLEd1uAIDcsNXSqu38b9rbF10PdJY9c
+        vif5+xVGqiM41Kdlp9GALxklKE1z3V0/ea3Zk=
+Received: from pb-smtp21.sea.icgroup.com (unknown [127.0.0.1])
+        by pb-smtp21.pobox.com (Postfix) with ESMTP id 8E68DCA396;
+        Wed, 27 May 2020 12:47:31 -0400 (EDT)
+        (envelope-from junio@pobox.com)
+Received: from pobox.com (unknown [35.231.104.69])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by pb-smtp21.pobox.com (Postfix) with ESMTPSA id D5525CA395;
+        Wed, 27 May 2020 12:47:28 -0400 (EDT)
+        (envelope-from junio@pobox.com)
+From:   Junio C Hamano <gitster@pobox.com>
+To:     Pratyush Yadav <me@yadavpratyush.com>
+Cc:     git@vger.kernel.org, Linux Kernel <linux-kernel@vger.kernel.org>,
+        git-packagers@googlegroups.com
+Subject: Re: [ANNOUNCE] Git v2.27.0-rc2
+References: <xmqqtv02mt2m.fsf@gitster.c.googlers.com>
+        <20200527101820.rprpjhtmkiu7gadg@yadavpratyush.com>
+Date:   Wed, 27 May 2020 09:47:27 -0700
+In-Reply-To: <20200527101820.rprpjhtmkiu7gadg@yadavpratyush.com> (Pratyush
+        Yadav's message of "Wed, 27 May 2020 15:48:20 +0530")
+Message-ID: <xmqq5zchmijk.fsf@gitster.c.googlers.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+X-Pobox-Relay-ID: C0599648-A039-11EA-9A92-8D86F504CC47-77302942!pb-smtp21.pobox.com
+Content-Transfer-Encoding: quoted-printable
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Pratyush Yadav <me@yadavpratyush.com> writes:
+
+> On 26/05/20 11:47AM, Junio C Hamano wrote:
+>> A release candidate Git v2.27.0-rc2 is now available for testing
+>> at the usual places.  It is comprised of 509 non-merge commits
+>> since v2.26.0, contributed by 59 people, 17 of which are new faces.
+>>=20
+>> Changes since v2.26.0 are as follows:
+>>=20
+>> Ansgar R=C3=B6ber (1):
+>>       Subject: git-gui: fix syntax error because of missing semicolon
+>
+> Looks like I messed up somewhere and left the "Subject: " in there. Its=
+=20
+> too late to do anything about it now I guess...
+
+Yup, indeed you did ;-)  But we all make mistakes and learn from the
+ones we or others make, so...

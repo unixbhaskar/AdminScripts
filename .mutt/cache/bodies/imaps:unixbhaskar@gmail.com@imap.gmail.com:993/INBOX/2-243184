@@ -1,0 +1,85 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp2304291lfk;
+        Fri, 5 Jun 2020 07:05:54 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw5QCU8SyykSEfMBb1jHX52qPDsxnAWGh42Ym5AxFc526A4uWzGzZLIahMGCfPM4OonUvxj
+X-Received: by 2002:a17:906:f74a:: with SMTP id jp10mr8833899ejb.43.1591365954070;
+        Fri, 05 Jun 2020 07:05:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591365954; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LLLRQzymxjgbA0YCfGl9EcTVGvMUZWTaaxn8UMCjl9qkJvzu3a4vjF++s6r7CrKWrm
+         4CffyXz+56H2wloeEdgifymx057cvUZhep2QDbWXhVBhURJ49yTY9ohqSlcZfWtpYthM
+         y94qHvgajeLliAP8yAKQTfYU16tOrR+xXYlnQwTT+Y0vlO3ziB7nQ0C8gv6gBATvbA89
+         s6jef2qo2QkdV8feUfSXowvRadhA5zyySGCeKM5iYpGhY3uvpP41s8EeFWS+P7FFRFDT
+         32WTztfJZSgWJI9Gwnkueo53H93QJnxqsf0qJMNLfpVwvsYMYiz4Kub3gmCg5GfiOZe6
+         tI6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=rgD0bIihPTqjFhUdSYLbxxKC3290b+mbIS0qLj//F+Y=;
+        b=bxcBWCLrmUz+k9xeQnTKYvpFTz6ipLb3Vdf2pvFRc9FMH+VZ5yd6ZqQ6JN6o08/sh0
+         rM+PZnhqD8wVPZzjOSJjOv4pyE/wYGWPsVIjNDMUcuac6W3Rys19We/cwuP64x82bdkG
+         iTDk0BnvUYClV0iO9l1BsLdPxr4wOhQ5zQs5GcW65a6GZxWM8oVdcQfyGb919ZYL7c7/
+         N2BWSLgfhXtP3Yuou29CEdfVtvzff4Wwm4GZEN16H9sTauciM1YCFDc9kAD2GjsAlVEl
+         O/R18+VhhI3dnEAHN+YSGl8OVdjWQ+x21H9aoFEXmw4VFugBKRMfPLoMr4oM+79Uc0lS
+         jUFw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id w15si4261114edi.136.2020.06.05.07.05.30;
+        Fri, 05 Jun 2020 07:05:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728016AbgFEOCk (ORCPT <rfc822;nullstelllensatz@gmail.com>
+        + 99 others); Fri, 5 Jun 2020 10:02:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46150 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727085AbgFEOCi (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 5 Jun 2020 10:02:38 -0400
+Received: from ZenIV.linux.org.uk (zeniv.linux.org.uk [IPv6:2002:c35c:fd02::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E0C5C08C5C2;
+        Fri,  5 Jun 2020 07:02:38 -0700 (PDT)
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.93 #3 (Red Hat Linux))
+        id 1jhCvV-003aum-2W; Fri, 05 Jun 2020 14:02:29 +0000
+Date:   Fri, 5 Jun 2020 15:02:29 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     David Howells <dhowells@redhat.com>
+Cc:     torvalds@linux-foundation.org,
+        Konstantin Khlebnikov <khlebnikov@yandex-team.ru>,
+        linux-afs@lists.infradead.org, linux-ext4@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [GIT PULL] afs: Improvements for v5.8
+Message-ID: <20200605140229.GI23230@ZenIV.linux.org.uk>
+References: <2240660.1591289899@warthog.procyon.org.uk>
+ <20200605135003.GH23230@ZenIV.linux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200605135003.GH23230@ZenIV.linux.org.uk>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Jun 05, 2020 at 02:50:03PM +0100, Al Viro wrote:
+> On Thu, Jun 04, 2020 at 05:58:19PM +0100, David Howells wrote:
+> > Hi Linus,
+> > 
+> > Is it too late to put in a pull request for AFS changes?  Apologies - I was
+> > holding off and hoping that I could get Al to review the changes I made to
+> > the core VFS change commit (first in the series) in response to his earlier
+> > review comments.  I have an ack for the Ext4 changes made, though.  If you
+> > would prefer it to be held off at this point, fair enough.
+> > 
+> > Note that the series also got rebased to -rc7 to remove the dependency on
+> > fix patches that got merged through the net tree.
+> 
+> FWIW, I can live with fs/inode.c part in its current form
+
+Which is to say,
+ACKed-by: Al Viro <viro@zeniv.linux.org.uk> (fs/inode.c part)
+I have not checked the AFS part of the series and AFAICS
+ext4 one at least doesn't make things any worse there.

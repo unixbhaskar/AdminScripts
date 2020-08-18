@@ -1,0 +1,72 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.194.93.100 with SMTP id ct4csp2356579wjb;
+        Tue, 9 Feb 2016 22:51:14 -0800 (PST)
+X-Received: by 10.25.163.76 with SMTP id m73mr12724176lfe.39.1455087074441;
+        Tue, 09 Feb 2016 22:51:14 -0800 (PST)
+Return-Path: <ranjanray.chaudhuri1@heymath.com>
+Received: from mail-lb0-x22a.google.com (mail-lb0-x22a.google.com. [2a00:1450:4010:c04::22a])
+        by mx.google.com with ESMTPS id jj10si755409lbc.48.2016.02.09.22.51.14
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 09 Feb 2016 22:51:14 -0800 (PST)
+Received-SPF: softfail (google.com: domain of transitioning ranjanray.chaudhuri1@heymath.com does not designate 2a00:1450:4010:c04::22a as permitted sender) client-ip=2a00:1450:4010:c04::22a;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning ranjanray.chaudhuri1@heymath.com does not designate 2a00:1450:4010:c04::22a as permitted sender) smtp.mailfrom=ranjanray.chaudhuri1@heymath.com;
+       dkim=pass header.i=@heymath-com.20150623.gappssmtp.com
+Received: by mail-lb0-x22a.google.com with SMTP id bc4so4329252lbc.2
+        for <unixbhaskar@gmail.com>; Tue, 09 Feb 2016 22:51:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=heymath-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:sender:in-reply-to:references:date:message-id:subject
+         :from:to:content-type;
+        bh=oW1VtOJXIkWeY6K2JFEXhNdhc7GM6Fuep8Bfn/rDTaA=;
+        b=BVysW/s2aLiT626x2fGWTXgfxmUNUH6HwXGwJ2opLgpT9+k5OmOulhRhyCLR6yWybg
+         HW0oTsLNGMOBiIr6PiKR3ydlUFvJHnuUsxaGNdil4dr0XIy8iwZWq9soaHZ3vxpqGtf8
+         6knceL5aa0YuQtzpJvHsDe/VGJE6KNGI0AcKxvHzrWlnzvJEy2uAmLlG54L4ybchUpQq
+         VluskG3YzyFsDdDYLpBaPT3DM5hMyaSjunmBTFzbF6Okhb6rjYEZlRgw6hJXaBbp4FmV
+         2Wb/3Lf1dpj3L3qWWlqvR6LNNreHz0Z8CEQ+W0yYw8Htg9d2KTt5RqwCTeqo3FVdRKDq
+         0zeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:sender:in-reply-to:references:date
+         :message-id:subject:from:to:content-type;
+        bh=oW1VtOJXIkWeY6K2JFEXhNdhc7GM6Fuep8Bfn/rDTaA=;
+        b=D11nl18nMCNM7m8hMQN8FjkN9DluPJ0AgyyvinKQrgUNGZwwfXaFixM4PvmuphWzCt
+         4c3EUMnmmT4evaq9KSHR2zp73S+daXB7uSaUQJYJd/SEdZc0h4jYkpHS0ta88QtrrvoX
+         4RDeNTgM4Cdu+6bpXyGHHieJXeS7CNFL6f39h7k8vRjrSDNFt2gmy4ixaowvr3FG/5TV
+         YngrpM4azlpu4yDir5AvypSAGkz8KL7A6zyaIxQmcyn/amREXSiubXpOSmGW/qd9LlE2
+         8asyXXMlwJAt2x/hFwEUrxzNQVlS0OxQkIuKGnY2pqTNBn6NIV50kDMCWjJPKJzVz3Rf
+         OpPA==
+X-Gm-Message-State: AG10YOSTfDK77+ooX1kzA07Xwl9PBTC5cszIN7TEXcpAEuMJ45V6TJJfO+TR9PIwNeAqW923H5c/pSRI97MmvQ==
+MIME-Version: 1.0
+X-Received: by 10.112.150.133 with SMTP id ui5mr5567686lbb.12.1455087074047;
+ Tue, 09 Feb 2016 22:51:14 -0800 (PST)
+Sender: ranjanray.chaudhuri1@heymath.com
+Received: by 10.112.20.201 with HTTP; Tue, 9 Feb 2016 22:51:14 -0800 (PST)
+In-Reply-To: <CAOkYk0hxUp2h8dRQbmuw=jPgKB+gn3Ls-+Msm0Epigh2tSnZqw@mail.gmail.com>
+References: <CAOkYk0hxUp2h8dRQbmuw=jPgKB+gn3Ls-+Msm0Epigh2tSnZqw@mail.gmail.com>
+Date: Wed, 10 Feb 2016 12:21:14 +0530
+X-Google-Sender-Auth: cor4UqVi82R1uQd-r-LknzRUC8M
+Message-ID: <CAPV+=dBJ=t-Dz0kr-ui244cRAvB8QgegoWZ9quSr2fdwHxkUmQ@mail.gmail.com>
+Subject: Re: Hi..please process the outstanding amount
+From: Ranjan Ray Chaudhuri <ranjanray.chaudhuri@heymath.com>
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+
+You need to send an invoice to Alok/Siva for the balance days, only
+then we can process.
+
+Regards,
+Ranjan
+
+On Wed, Feb 10, 2016 at 11:54 AM, Bhaskar Chowdhury
+<unixbhaskar@gmail.com> wrote:
+> Hey  Ranjan,
+>
+> Just a reminder.Kindly process the remaining amount .
+>
+> Thanks,
+> Bhaskar
+>
+> --
+> http://about.me/unixbhaskar

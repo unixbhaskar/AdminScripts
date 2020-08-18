@@ -1,0 +1,116 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:41c8:0:0:0:0:0 with SMTP id o191csp2832855lfa;
+        Mon, 9 Mar 2020 13:21:30 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vskDE+kw07xNnevAOrIKAbQOSrvAFxUlOCMV2nin5Qms7JSu2D11If7sKbaRWRRVlVUrphO
+X-Received: by 2002:a9d:6251:: with SMTP id i17mr14838401otk.14.1583785290197;
+        Mon, 09 Mar 2020 13:21:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1583785290; cv=none;
+        d=google.com; s=arc-20160816;
+        b=EVGoprWzh0IaU8KJQ77phwOkUSE45kCyc1EVAut/S4vniuvFE0m8Nz85ZFKK0jPvyn
+         lFPzy8mtx70bPSxnMcarYXrl3ZawhD8/R9LiTGI5Bgb9Cw0nkCVo1jSoNJKH1YF0j8yK
+         qNk3aNbxqudFpzxnC+rmUWN8U+ESqFDvtxN4pdF6zzEkpQmfj9MV8xoFJXhvga9XTQbP
+         kIq54TJCLBEPUz7IwOsAvpGK3PQ4LsR6PIcPREtVlu9yBuuu/LRzbrODNqTSGY0WvLH9
+         FLW0fLnguRGxf02Co/ceRsy+33OYlNj7qRL9N2FgiHcOhzm+k1Ltl73YsH6l/5r0H/d5
+         8eyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=TWIHUDy3jBW0cS7WR3QKj5Hh4Aa7h7NpiybbLVlDwD8=;
+        b=RVqJyOMqqe36P8bZTZc86O0vXjbkDBqxlYzUpAyRa0SRkOna+xXmIDIUxljAnBWaEr
+         o0gIXjfRJ5R0Z/Dbb53vX4SBzK14euoAOVi1JD7oEeIj2FQH88KZTvtAKJueqC4oI2eT
+         +Jso1H4SxH1UqGgsJmpiYVnq4XHyhNen2K56Q8BskV6/y2szdVrp0twKUfejA5UAGS3V
+         +tJzkZVdRa/faq00D/6OF+33dxS4EDZmMAPDY57yqd+jArZ96eKQu/Qx3XjZFm8JMCZG
+         fMHRnonfYTdraCBS9sPKAyaCHKLnGtMjNhIT7r4HnYQHTT6PXYd9htpFldh5sghWZbT0
+         +YmA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=btPRRmqp;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id j65si6436347otc.308.2020.03.09.13.21.21;
+        Mon, 09 Mar 2020 13:21:30 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=btPRRmqp;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726636AbgCIUS4 (ORCPT <rfc822;beyondssmith@gmail.com>
+        + 68 others); Mon, 9 Mar 2020 16:18:56 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:43046 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726157AbgCIUS4 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 9 Mar 2020 16:18:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=TWIHUDy3jBW0cS7WR3QKj5Hh4Aa7h7NpiybbLVlDwD8=; b=btPRRmqpXB8zYUKvCBAnCYqbS8
+        zLOXODaCWXirdkuGQEu+x4UaVagtE/ql7+eji0mE0GDDQ1xci4BGXfnEFd+Gfy2+36YLHUc8HMQVm
+        Ku9dVwcwbcpsPaPHTm258mG5vuJmzZBrwXUSIDVLOrZm2pEH5FD8iOKze/wwGZpRURxjTeUeC2YKJ
+        3JBswWTz3orI/X4b6M8iAfLCn2llhLew6McPjYx8E/T4K1EvuRNAVgoRL5zwf52uEALeq6TarclTd
+        ERovtuTRXMakFf1nmoY3XQcmRz+mYMhFRJ9WByAtVbqMeSaP3WLdEod56mrUi8j/pVeX0IuT7lM3i
+        vPMaa0xQ==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100] helo=noisy.programming.kicks-ass.net)
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1jBOrN-0001up-J9; Mon, 09 Mar 2020 20:18:45 +0000
+Received: from hirez.programming.kicks-ass.net (hirez.programming.kicks-ass.net [192.168.1.225])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 2F8C23011E0;
+        Mon,  9 Mar 2020 21:18:42 +0100 (CET)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+        id DF2BF214344E6; Mon,  9 Mar 2020 21:18:42 +0100 (CET)
+Date:   Mon, 9 Mar 2020 21:18:42 +0100
+From:   Peter Zijlstra <peterz@infradead.org>
+To:     Thomas Gleixner <tglx@linutronix.de>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+        "Paul E. McKenney" <paulmck@kernel.org>,
+        Joel Fernandes <joel@joelfernandes.org>,
+        Frederic Weisbecker <frederic@kernel.org>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Josh Poimboeuf <jpoimboe@redhat.com>
+Subject: Re: Instrumentation and RCU
+Message-ID: <20200309201842.GL12561@hirez.programming.kicks-ass.net>
+References: <87mu8p797b.fsf@nanos.tec.linutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87mu8p797b.fsf@nanos.tec.linutronix.de>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Mar 09, 2020 at 06:02:32PM +0100, Thomas Gleixner wrote:
+> #4 Protecting call chains
+> 
+>    Our current approach of annotating functions with notrace/noprobe is
+>    pretty much broken.
+> 
+>    Functions which are marked NOPROBE or notrace call out into functions
+>    which are not marked and while this might be ok, there are enough
+>    places where it is not. But we have no way to verify that.
+> 
+>    That's just a recipe for disaster. We really cannot request from
+>    sysadmins who want to use instrumentation to stare at the code first
+>    whether they can place/enable an instrumentation point somewhere.
+>    That'd be just a bad joke.
+> 
+>    I really think we need to have proper text sections which are off
+>    limit for any form of instrumentation and have tooling to analyze the
+>    calls into other sections. These calls need to be annotated as safe
+>    and intentional.
+
+So the only tool I know of that does full callchains is smatch. And in
+one of my series I did prod Dan about this.
+
+The alternative is that we bite the bullet and add a vmlinux objtool
+pass. This keeps getting mentioned, so maybe it is time :/ I'd hate it,
+because it will increase build time at the slowest point, but it'd get
+us the coverage we need here.

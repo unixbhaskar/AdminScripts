@@ -1,0 +1,317 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp3556691lfb;
+        Mon, 8 Apr 2019 05:33:04 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwP7xVLEZBJEkOcxeprobqwgg7fur0Gbqa29IWecdlOlzVZpfNLEMkuPYZ4pNyp03s8fKAE
+X-Received: by 2002:a0d:e1d4:: with SMTP id k203mr23220338ywe.34.1554726784394;
+        Mon, 08 Apr 2019 05:33:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1554726784; cv=none;
+        d=google.com; s=arc-20160816;
+        b=rKpZrbDBO2EKW5UFWeQo1v6aZGgEpZY9sYuVgLMiFEFORLA1ikUGt9vB9tKV8dDqgE
+         SdPx7GktIl/lYllHKvzfzaw8QgqUCCMgjSqyI9qrQl5EFcPotcwS1L/sgx9SGAx1GeqB
+         K4FYQQ6KTy7/le9QMy85p8dtmNYfYO99FLKiyEWwh2IgDLWGYD0FJUZNDUD0qNG8mrqd
+         DS3R7YpjnYh3cJD6ArTDb96Yy362Jmtj537Fm4S5JcIMlUtx474cct66rc0dr3VId+TR
+         beYrvyBKc1BxvYNTTH3hu72igDIoff9xxx4CjikeJi5ge/8iS1P5zUAeHV+tK+4TZaZc
+         8fRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:message-id:list-id:reply-to:mime-version
+         :list-unsubscribe:date:subject:to:from:dkim-signature;
+        bh=uhSHlq6iCkPITKg7TL6FOyUSodGEd3sjO3g7kzW62eU=;
+        b=ztN4oQwg1/at8xqPOXKJr8SPVl2GWXYlnV4DxY0lFtkRY83s1DoZ4nYz1TeBD5HYT8
+         GR01H8n5GmyxCrt9k5anDn2PvuN0vK+O4X4fif9UpYGhRw0AysHSXxGjifeNu/If19Kd
+         1DMY+BVknzZzRA6VcJJ759b2D76lsURWqq4vCGe0POpaNLfz6aTZZCSOEe2hoeZ+R3hO
+         xe20hITwElEksYsk8CN2es3uuzWLiTkDvqkIbxQtj91jxJESo959nJoQGPOg13f+27fK
+         JbPgVSF3eGHTVHQcIx7luzfzU9n4+k3TqsgnTQjyH4va4gblhe9G0uoUVXJQsPQjQVBV
+         Cl3w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@et.oreilly.com header.s=200608 header.b=XpA0FtyK;
+       spf=pass (google.com: domain of bounce-89_html-35220001-2156970-7200351-220@bounce.et.oreilly.com designates 136.147.130.5 as permitted sender) smtp.mailfrom=bounce-89_HTML-35220001-2156970-7200351-220@bounce.et.oreilly.com
+Return-Path: <bounce-89_HTML-35220001-2156970-7200351-220@bounce.et.oreilly.com>
+Received: from mta.et.oreilly.com (mta.et.oreilly.com. [136.147.130.5])
+        by mx.google.com with ESMTPS id g4si19624618ywe.174.2019.04.08.05.33.03
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Apr 2019 05:33:04 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-89_html-35220001-2156970-7200351-220@bounce.et.oreilly.com designates 136.147.130.5 as permitted sender) client-ip=136.147.130.5;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@et.oreilly.com header.s=200608 header.b=XpA0FtyK;
+       spf=pass (google.com: domain of bounce-89_html-35220001-2156970-7200351-220@bounce.et.oreilly.com designates 136.147.130.5 as permitted sender) smtp.mailfrom=bounce-89_HTML-35220001-2156970-7200351-220@bounce.et.oreilly.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=200608; d=et.oreilly.com;
+ h=From:To:Subject:Date:List-Unsubscribe:MIME-Version:Reply-To:List-ID:
+ Message-ID:Content-Type; i=reply@et.oreilly.com;
+ bh=uhSHlq6iCkPITKg7TL6FOyUSodGEd3sjO3g7kzW62eU=;
+ b=XpA0FtyKJL0ArtpMIiP6Zi8LjdA9H5OH08lYLDllDXORuYowwrcTF9K9KmkwxzxnBasd2LlPSSur
+   hGKfBW67wBjNRO5HChX9eK7WqYPKHpFZcgzeHqpT9waXk7BimnpHZxGd2LegeuiWRbLNiVaQykkP
+   WwvOYGRq/o5X7Lj+l30=
+Received: by mta.et.oreilly.com id hlcvo02fmd4t for <unixbhaskar@gmail.com>; Mon, 8 Apr 2019 12:31:47 +0000 (envelope-from <bounce-89_HTML-35220001-2156970-7200351-220@bounce.et.oreilly.com>)
+From: "O'Reilly" <reply@et.oreilly.com>
+To: <unixbhaskar@gmail.com>
+Subject: =?UTF-8?B?RnV0dXJlLXByb29mIHlvdXIgY2FyZWVy4oCUZm9yICQyMDAgbGVz?=
+ =?UTF-8?B?cw==?=
+Date: Mon, 08 Apr 2019 06:31:47 -0600
+List-Unsubscribe: <mailto:leave-fd7a1c791a3c402029-fe7217757766047d7515-fe91167170620d7a75-fe9d13727564077874-ff6b167275@leave.et.oreilly.com>
+MIME-Version: 1.0
+Reply-To: "O'Reilly" <reply-fe91167170620d7a75-89_HTML-35220001-7200351-220@reply.et.oreilly.com>
+List-ID: <7200351.xt.local>
+X-CSA-Complaints: whitelistcomplaints@eco.de
+x-job: 7200351_2156970
+Message-ID: <654abae8-83e6-406a-971f-2a57ddd55b10@atl1s07mta737.xt.local>
+Feedback-ID: 7200351:2156970:136.147.130.5:sfmktgcld
+Content-Type: multipart/alternative;
+	boundary="UgnwNHTtICkO=_?:"
+
+This is a multi-part message in MIME format.
+
+--UgnwNHTtICkO=_?:
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+O'REILLY
+Online Learning  -  Conferences  -  Ideas 
+
+Hi Bhaskar, 
+
+Making the decision to invest in your future pays off--and right now, that investment is even more attainable. Purchase a year-long membership by April 12 and you'll save $200. Get unlimited access to fresh and relevant content for just $199.
+
+According to a recent workplace learning report(1), nearly 60% of employees are spending their own money and time to build skills. Since the average shelf life of a skill is less than five years(2), it's critical to make continuous learning a priority.
+
+Invest in your success that will pay off for the rest of the year and for years to come. Hurry--this sale ends this Friday April 12, 2019.
+
+Learn More: http://click.et.oreilly.com/?qs=c09513e5d2844ff44c659b67b6dd4adb41343b8b4cfe886db176575ac4240f4ae5dcd0ca1471a923632d98d924c54030444d68324d1ba7e8 
+
+Hope to see you soon,
+
+The O'Reilly Team
+
+*Use promo code AETSS199. Expires April 12, 2019
+
+This offer is non-transferable and expires on April 12, 2019 at 11:59pm Pacific. This offer is for individual memberships only. Team (multi-user) or enterprise accounts are not eligible. The $199/year offer is valid for the first year of your membership. Memberships renew at $399/year unless you cancel in accordance with our Membership Agreement.
+
+1CapGemini and LinkedIn. (2017). 
+The Digital Talent Gap: http://click.et.oreilly.com/?qs=c09513e5d2844ff4bcc29b0f11aed7b410142368317168f558a923091dc2f30c435064de4d8d07558fed56307dee17e55cb743ec0abd6568 
+
+2LinkedIn. (2017).  
+2017 Workplace Learning Report: http://click.et.oreilly.com/?qs=c09513e5d2844ff4ff8411696089548e0c71e37316683799d136df31940a9008fb7947d8234ddb301139b75a8a6ef945b1dc94de838ae1ae
+
+------------------------------------------------------------
+
+This message was sent to unixbhaskar@gmail.com. You are receiving this because you're an O'Reilly online learning member, or you've signed up to receive email from us. We hope you found this message to be useful. However, if you'd rather not receive future emails of this type from O'Reilly, please manage your preferences or unsubscribe here: http://click.et.oreilly.com/profile_center.aspx?qs=0dd57ea4b163a1a34c34a2164a011f320ec2f78c31df2b6485b4fb24cf8b0d215daf1256864ad5e97a32651371949d73c97ef3053a8ba6c5965f3c5230d0625c 
+
+Please read our Privacy Policy: http://click.et.oreilly.com/?qs=c09513e5d2844ff407c41dd715dc580708653a7204667cb4f87913498bd28c61cf474b2383f47db310d169966716e1fbad23ca7ee10e399f 
+
+O'Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA, 95472 (707) 827-7000
+
+--UgnwNHTtICkO=_?:
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <title></title>
+  <style type="text/css">
+  @media only screen and (max-width:655px) {
+    .fullwidth {
+      width: 100% !important;
+    }
+  }
+
+  @media only screen and (max-width:475px) {
+    .mobile {
+      width: 100% !important;
+      text-align: left !important;
+      padding-top: 15px !important;
+    }
+  }
+  </style>
+</head>
+
+<body style="padding:0; margin:0;"><style type="text/css">
+div.preheader 
+{ display: none !important; } 
+</style>
+<div class="preheader" style="font-size: 1px; display: none !important;">Become a member for only $199</div>
+  <!-- background wrapper -->
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" role="presentation" style="font-family:'Open Sans',Arial,sans-serif; font-size:16px; font-weight:400; color:#222222; line-height:24px; margin:0; padding:0; background-color:#ffffff;">
+    <tr>
+      <td>
+        <!-- email wrapper -->
+        <table border="0" class="fullwidth" cellpadding="0" cellspacing="0" width="640" align="center" role="presentation" style="padding:0 20px 0 20px;">
+          <tr>
+            <td height="40" style="font-size:40px; line-height:40px;">&nbsp;</td><!-- spacer -->
+          </tr>
+          <tr>
+            <td>
+              <!-- email header -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
+                <tr>
+                  <td>
+                    <!-- logo -->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:176px; height:32px; margin:0; padding:0;">
+                      <tr>
+                        <td style="width:176px; height:40px; padding:0; margin:0;"><a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff41821307bde0f30b8f2962fa6dbb20a6952c4d4bf92dbe9746a533e3ae95f93a6bed0a50b3460eece7f93a7dfffb38841" target="_blank"><img src="https://cdn.oreillystatic.com/oreilly/email/odot-template/em_oreilly_logo.png" alt="O'Reilly Media Logo" width="176" height="32" border="0"></a>
+                        </td>
+                      </tr>
+                    </table><!-- end logo -->
+                    <!-- nav -->
+                    <table align="right" border="0" cellpadding="0" cellspacing="0" width="60%" class="mobile" role="presentation" style="width:60%; max-width:420px; height:40px; vertical-align:center; padding:0; margin:0; font-size:14px; line-height:16px; text-align:right; font-family:'Open Sans',Arial,sans-serif;">
+                      <tr>
+                        <td style="font-family:'Open Sans',Arial,sans-serif;">
+                          <a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff46c4af7aadc38f650889b882e6ab537bd6456e36bb25e22bed667a2b7fbabbcc86ce96e714cd8e601e07f92473d67f41e" target="_blank" style="text-decoration:none; color:#222222;">Online Learning</a> &bull; <a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff4f79d13041aa67bb05100f99681b49455d3ee801bd81a63871d1b29afc48dc6d25a8af93a2aabdeb2e9ef6ca5808ab92c" target="_blank" style="text-decoration:none; color:#222222;">Conferences</a> &bull; <a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff4705bddf58af6b889f2058239b2811c75c6660c609c31b260ba3ee438c48cae0cd359a9692da4593d155f3220b6eaa8bf" target="_blank" style="text-decoration:none; color:#222222;">Ideas</a>
+                        </td>
+                      </tr>
+                    </table><!-- end nav -->
+                  </td>
+                </tr>
+                <tr>
+                  <td height="24" style="font-size:24px; line-height:24px;">&nbsp;</td><!-- spacer -->
+                </tr>
+                <!-- blueline -->
+                <tr>
+                  <td>
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">
+                      <tr>
+                        <td><img style="display:block; width:100%; max-width:600px; height:4px; min-height:4px; padding:0; margin:0;" src="https://cdn.oreillystatic.com/oreilly/email/odot-template/em_gradient_line_ocean_600x4.png" alt="" />
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr><!-- end blueline -->
+                <tr>
+                  <td height="34" style="font-size:34px; line-height:34px;">&nbsp;</td><!-- spacer -->
+                </tr>
+              </table><!-- end email header -->
+              <!-- main section -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation" style="padding:0; margin:0; width:100%; line-height:24px; font-size:16px; font-weight:400; color:#222222; text-align:left; font-family:'Open Sans',Arial,sans-serif;">
+
+                <!-- 1st content table row -->
+                <tr>
+                  <td style="font-family:'Open Sans',Arial,sans-serif;">
+                    <!-- 
+                    
+                    -->
+                    
+
+                    <p style="padding:0; margin:0 0 20px 0;">Hi Bhaskar, </p>
+
+                    <p style="padding:0; margin:0 0 20px 0;">Making the decision to invest in your future pays off&mdash;and right now, that investment is even more attainable. Purchase a year-long membership by April 12 and <strong>you'll save $200</strong>. Get unlimited access to fresh and relevant content <strong>for just $199</strong>.
+</p>
+
+                    <p style="padding:0; margin:0 0 20px 0;">According to a recent workplace learning report<span style="font-weight:600; font-size:11px;"><sup>1</sup></span>, nearly 60% of employees are spending their own money and time to build skills. Since the average shelf life of a skill is less than five years<span style="font-weight:600; font-size:11px;"><sup>2</sup></span>, it's critical to make continuous learning a priority.
+
+
+
+                    </p>
+
+                    <p style="padding:0; margin:0 0 20px 0;">Invest in your success that will pay off for the rest of the year and for years to come. <strong>Hurry&mdash;this sale ends this Friday April 12, 2019</strong>.</p>
+
+                   
+
+                  </td>
+                </tr><!-- end 1st content table row -->
+
+                <!-- CTA (left aligned)-->
+                <tr>
+                  <td height="16" style="font-size:16px; line-height:16px;">&nbsp;</td> <!-- spacer -->
+                </tr>
+                <tr>
+                  <td>
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin:0; padding:0; text-align:center;">
+                      <tr>
+                        <td>
+                          <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin:0; padding:0; display:inline-block; font-family:'Open Sans',Arial,sans-serif;">
+                            <tr>
+                              <td style="font-family:'Open Sans',Arial,sans-serif;"><a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff44c659b67b6dd4adb41343b8b4cfe886db176575ac4240f4ae5dcd0ca1471a923632d98d924c54030444d68324d1ba7e8" target="_blank" style="padding:5px 16px 5px 20px; border-radius:2px; font-size:16px; line-height:24px; background-color:#ee0000; color:#ffffff; text-decoration:none; font-weight:700; display:inline-block;"><span style="background-image:url(https://cdn.oreillystatic.com/images/icons/icon_right_arrow_white.png); background-position:right center; background-repeat:no-repeat; display:block; padding:5px 19px 5px 0; text-transform:uppercase;">learn more</span></a></td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td height="36" style="font-size:36px; line-height:36px;">&nbsp;</td> <!-- spacer -->
+                </tr><!-- end CTA -->
+
+                <!-- 2nd content table row (if needed) -->
+                <tr>
+                  <td style="font-family:'Open Sans',Arial,sans-serif;">
+
+                    <p style="padding:0; margin:0 0 5px 0;">Hope to see you soon,</p>
+
+                    <p style="padding:0; margin:0 0 20px 0;">The O'Reilly Team</p>
+
+                    <p style="padding:0; margin:0 0 20px 0; font-size: 14px;">*Use promo code AETSS199. Expires April 12, 2019</p>
+
+                    <p style="padding:0; margin:0 0 20px 0; font-size: 14px;">This offer is non-transferable and expires on April 12, 2019 at 11:59pm Pacific. This offer is for individual memberships only. Team (multi-user) or enterprise accounts are not eligible. The $199/year offer is valid for the first year of your membership. Memberships renew at $399/year unless you cancel in accordance with our Membership Agreement.</p>
+
+                    <p style="padding:0; margin:0 0 20px 0; font-size: 14px;"><sup>1</sup> <em>CapGemini and LinkedIn. (2017). <a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff4bcc29b0f11aed7b410142368317168f558a923091dc2f30c435064de4d8d07558fed56307dee17e55cb743ec0abd6568" target="_blank" style="text-decoration:underline; color:#ee0000;">The Digital Talent Gap.</a></em></p>
+
+                    <p style="padding:0; margin:0 0 20px 0; font-size: 14px;"><sup>2</sup> <em>LinkedIn. (2017). <a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff4ff8411696089548e0c71e37316683799d136df31940a9008fb7947d8234ddb301139b75a8a6ef945b1dc94de838ae1ae" target="_blank" style="text-decoration:underline; color:#ee0000;">2017 Workplace Learning Report.</a></em></p>
+
+                  </td>
+                </tr><!-- end 2nd content table row -->
+
+                <tr> <!-- NOTE: if a CTA comes right before this spacer delete the bottom CTA spacer and make this spacer 60px -->
+                  <td height="40" style="font-size:40px; line-height:40px;">&nbsp;</td><!-- spacer -->
+                </tr>
+              </table><!-- end main section -->
+              <!-- footer (exactTarget) -->
+              <table class="fullwidth" border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation" style="margin:0; padding:0; font-size:14px; line-height:22px; font-weight:400; color:#666666; text-align:left; font-family:'Open Sans',Arial,sans-serif;">
+                <tr>
+                  <td height="40" style="border-top:1px solid #dddddd; font-size:40px; line-height:40px;">&nbsp;</td><!-- spacer w/ line -->
+                </tr>
+                <!-- social btns -->
+                <tr>
+                  <td style="text-align:center;">
+                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin:0; padding:0; height:30px; display:inline-block; vertical-align:middle;">
+                      <tr>
+                        <td><a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff4c7a8a9db8bf35ac26f9046803f52c04acd0ad38fcd00a00beeb9cd1dcabf9d3df7f1de85373a197201424c16b59e8f78" target="_blank"><img src="https://cdn.oreillystatic.com/oreilly/email/odot-template/em_icon_twitter.png" alt="Twitter Logo" width="24" border="0"></a>
+                        </td>
+                        <td style="padding-left:20px;"><a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff4017901b9cf461152971b11bfc52420e0eb9dcd63a669cd6f1c0aaf6d2bb8fafc3c3c92c9d85db288342f713a6074bbdf" target="_blank"><img src="https://cdn.oreillystatic.com/oreilly/email/odot-template/em_icon_facebook.png" alt="Facebook Logo" width="24" border="0"></a>
+                        </td>
+                        <td style="padding-left:20px;"><a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff4e90b552afd03fa7e4bbc9cf50f5a436796e90d9f6171918c81d0dee2b1ffae9306849404e0f565d2c4566ef9f523ec28" target="_blank"><img src="https://cdn.oreillystatic.com/oreilly/email/odot-template/em_icon_linkedIn.png" alt="LinkedIn Logo" width="24" border="0"></a>
+                        </td>
+                        <td style="padding-left:20px;"><a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff4fb96ca232bed5139e22d87f8f06aaca9c57dab1b04f34bb5bdd0b5551fbbaf427964cb41d6f1f90e17e8e5281dcb92f7" target="_blank"><img src="https://cdn.oreillystatic.com/oreilly/email/odot-template/em_icon_youtube.png" alt="YouTube Logo" width="24" border="0"></a>
+                        </td>
+                        <td style="padding-left:20px;"><a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff446c1bff29f5e855fa80632103ca3bcd25daa1e069cec654ba50576edefe88ced4d9499646c1c61af7c34eec8ff47f6ba" target="_blank"><img src="https://cdn.oreillystatic.com/oreilly/email/odot-template/em_icon_email.png" alt="Email Logo" width="24" border="0"></a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr><!-- end social btns -->
+                <tr>
+                  <td height="25" style="font-size:25px; line-height:25px;">&nbsp;</td><!-- spacer -->
+                </tr>
+                <!-- insert promo info here (if needed) -->
+                <!-- required text and links -->
+                <tr>
+                  <td style="font-family:'Open Sans',Arial,sans-serif;">
+                    <p style="padding:0; margin:0 0 15px 0;">This message was sent to unixbhaskar@gmail.com. You are receiving this because you're an O'Reilly online learning member, or you've signed up to receive email from us. We hope you found this message to be useful. However, if you'd rather not receive future emails of this type from O'Reilly, please <a href="http://click.et.oreilly.com/profile_center.aspx?qs=0dd57ea4b163a1a34c34a2164a011f320ec2f78c31df2b6485b4fb24cf8b0d215daf1256864ad5e97a32651371949d73c97ef3053a8ba6c5965f3c5230d0625c" target="_blank" style="color:#666666; text-decoration:underline;">manage your preferences or unsubscribe here</a>.
+                    </p>
+                    <p style="padding:0; margin:0 0 15px 0;">Please read our <a href="http://click.et.oreilly.com/?qs=c09513e5d2844ff407c41dd715dc580708653a7204667cb4f87913498bd28c61cf474b2383f47db310d169966716e1fbad23ca7ee10e399f" target="_blank" style="color:#666666; text-decoration:underline;">Privacy Policy</a>.
+                    </p>
+                    <p style="padding:0; margin:0;">O'Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA, 95472 (707) 827-7000
+                    </p>
+                  </td>
+                </tr><!-- end required text and links -->
+              </table><!-- end footer-->
+            </td>
+          </tr>
+          <tr>
+            <td height="40" style="font-size:40px; line-height:40px;">&nbsp;</td><!-- spacer -->
+          </tr>
+        </table><!-- end email wrapper -->
+      </td>
+    </tr>
+  </table> <!-- end background wrapper -->
+  <img src="http://click.et.oreilly.com/open.aspx?ffcb10-fe91167170620d7a75-fe3c16777562047d771670-fe9d13727564077874-ff8e1c79-fe7217757766047d7515-ff6b167275" width="1" height="1">
+</body>
+
+</html>
+
+--UgnwNHTtICkO=_?:--
+

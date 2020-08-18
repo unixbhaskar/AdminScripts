@@ -1,0 +1,80 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:4c88:0:0:0:0:0 with SMTP id z130csp1806211lfa;
+        Sun, 29 Mar 2020 11:07:56 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vv7dWIe5I2X1ff5TbNaGpGu21EuE0rzOUhG2viWiDNgk4eOk6GeO2FjxLB0gIvidd29a8Su
+X-Received: by 2002:a9d:65c4:: with SMTP id z4mr6431150oth.51.1585505276501;
+        Sun, 29 Mar 2020 11:07:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585505276; cv=none;
+        d=google.com; s=arc-20160816;
+        b=KEMBZ1Fs0ZKD07B8wMJM+0GqrrwCC4L0fGh3TRkWVLdqCky68Rih2jWXCA7oowTwre
+         4qOCuVxCBiimIylm5sR2WAD2330Zk5Uzfk/Mrb+yndA89d+0YtYO78Ce+w/y4tZwB0U3
+         S3WUMTli8B+TlU7ewVP0TLN66F7VfPlFXvzUKRwA8md957S96aDB68/L7ii9aaqQtkq9
+         3l10YVJ5CwReHF8jaaExIT9iJs65E3OEHVrx+j8Q93SzW1ZSsplSwE8BKlZGuOpDBznQ
+         eThI/jUU/MZqVNHTrGSWBxM/dgv/W+GDGoUHVWwYtI0ylTtSzTXqKWmcIbBttPdExIFM
+         WHrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from;
+        bh=i4tgLOfx9BLvcCJ90jx7+MeP68cTRebJZ7rkvWx/HBM=;
+        b=GwAhR/1lPREHLszHxmcNsJWJWqGLWDKieQiw8JqbsfI8lMuOqrYVMZTVo2KakuVCW2
+         dG6DdS15uOb1I6c35nsIV/v5NHP+bXLFqgNhPKpe4PRKCoPs5suPJo2hem81bpKvmOMc
+         Ui7QcVoFhPYR6JSpm39Qfmw8hgSpQHuOIy/zk5/o+Lyltbg0BO49VBZNXFxxwXX3/Y5u
+         18S5tbs+vb1lRPvjemeSeCPxBaFpojQwLj/9ftvKBGesMM6Yjg6PFHnh5mF66csmGOTU
+         EOKUNLONibxjFcH1RMgH3PGMGKuFGa8fVpJHRUkzq9DHntHPAWNRfkCMICD1CuP4vETH
+         mxiw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id a1si4747979oie.70.2020.03.29.11.07.44;
+        Sun, 29 Mar 2020 11:07:56 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728349AbgC2SGk (ORCPT <rfc822;davidalro.kernel@gmail.com>
+        + 99 others); Sun, 29 Mar 2020 14:06:40 -0400
+Received: from Galois.linutronix.de ([193.142.43.55]:56765 "EHLO
+        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727506AbgC2SGk (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 29 Mar 2020 14:06:40 -0400
+Received: from p5de0bf0b.dip0.t-ipconnect.de ([93.224.191.11] helo=nanos.tec.linutronix.de)
+        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
+        (Exim 4.80)
+        (envelope-from <tglx@linutronix.de>)
+        id 1jIcKT-0000EF-Hn; Sun, 29 Mar 2020 20:06:37 +0200
+Received: by nanos.tec.linutronix.de (Postfix, from userid 1000)
+        id DFFEC101175; Sun, 29 Mar 2020 20:06:36 +0200 (CEST)
+From:   Thomas Gleixner <tglx@linutronix.de>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        the arch/x86 maintainers <x86@kernel.org>
+Subject: Re: [GIT pull] x86/urgent for v5.6
+In-Reply-To: <CAHk-=whTDGWiaBcUfx2UhffL8FAPZ2Qy4dzmAcVoB+_=0vvx3w@mail.gmail.com>
+References: <158549780513.2870.9873806112977909523.tglx@nanos.tec.linutronix.de> <158549780514.2870.1236107824707197925.tglx@nanos.tec.linutronix.de> <CAHk-=whTDGWiaBcUfx2UhffL8FAPZ2Qy4dzmAcVoB+_=0vvx3w@mail.gmail.com>
+Date:   Sun, 29 Mar 2020 20:06:36 +0200
+Message-ID: <87iminvxw3.fsf@nanos.tec.linutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Linutronix-Spam-Score: -1.0
+X-Linutronix-Spam-Level: -
+X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Linus Torvalds <torvalds@linux-foundation.org> writes:
+> On Sun, Mar 29, 2020 at 9:03 AM Thomas Gleixner <tglx@linutronix.de> wrote:
+>>
+>> please pull the latest x86/urgent branch from:
+>>
+>>    git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git x86-urgent-2020-03-29
+>
+> Heh. I already got this from Ingo, where it was "x86-urgent-for-linus"
+> and merged on Tuesday: commit 3f3ee43a4623 ("Merge branch
+> 'x86-urgent-for-linus' of
+> git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip")
+
+Stupid me forgot to update the linus branch...

@@ -1,0 +1,102 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from Gentoo.localdomain ([103.231.91.66])
+        by smtp.gmail.com with ESMTPSA id v1sm3232155pjd.22.2019.10.09.05.27.27
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 09 Oct 2019 05:27:30 -0700 (PDT)
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: yamada.masahiro@socionext.com
+Cc: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Subject: [PATCH] Change backquote to modern bash dollar-parenthesis
+Date: Wed,  9 Oct 2019 17:57:03 +0530
+Message-Id: <20191009122703.8234-1-unixbhaskar@gmail.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <linux-kbuild@vger.kernel.org>
+References: <linux-kbuild@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+---
+ scripts/setlocalversion | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/scripts/setlocalversion b/scripts/setlocalversion
+index 220dae0db3f1..a1d9046dd715 100755
+--- a/scripts/setlocalversion
++++ b/scripts/setlocalversion
+@@ -45,11 +45,11 @@ scm_version()
+ 
+ 	# Check for git and a git repo.
+ 	if test -z "$(git rev-parse --show-cdup 2>/dev/null)" &&
+-	   head=`git rev-parse --verify --short HEAD 2>/dev/null`; then
++		head=$(git rev-parse --verify --short HEAD 2>/dev/null); then
+ 
+ 		# If we are at a tagged commit (like "v2.6.30-rc6"), we ignore
+ 		# it, because this version is defined in the top level Makefile.
+-		if [ -z "`git describe --exact-match 2>/dev/null`" ]; then
++		if [ -z "$(git describe --exact-match 2>/dev/null)" ]; then
+ 
+ 			# If only the short version is requested, don't bother
+ 			# running further git commands
+@@ -59,7 +59,7 @@ scm_version()
+ 			fi
+ 			# If we are past a tagged commit (like
+ 			# "v2.6.30-rc5-302-g72357d5"), we pretty print it.
+-			if atag="`git describe 2>/dev/null`"; then
++			if atag="$(git describe 2>/dev/null)"; then
+ 				echo "$atag" | awk -F- '{printf("-%05d-%s", $(NF-1),$(NF))}'
+ 
+ 			# If we don't have a tag at all we print -g{commitish}.
+@@ -70,7 +70,7 @@ scm_version()
+ 
+ 		# Is this git on svn?
+ 		if git config --get svn-remote.svn.url >/dev/null; then
+-			printf -- '-svn%s' "`git svn find-rev $head`"
++			printf -- '-svn%s' "$(git svn find-rev $head)"
+ 		fi
+ 
+ 		# Check for uncommitted changes.
+@@ -91,15 +91,15 @@ scm_version()
+ 	fi
+ 
+ 	# Check for mercurial and a mercurial repo.
+-	if test -d .hg && hgid=`hg id 2>/dev/null`; then
++	if test -d .hg && hgid=$(hg id 2>/dev/null); then
+ 		# Do we have an tagged version?  If so, latesttagdistance == 1
+-		if [ "`hg log -r . --template '{latesttagdistance}'`" == "1" ]; then
+-			id=`hg log -r . --template '{latesttag}'`
++		if [ "$(hg log -r . --template '{latesttagdistance}')" == "1" ]; then
++			id=$(hg log -r . --template '{latesttag}')
+ 			printf '%s%s' -hg "$id"
+ 		else
+-			tag=`printf '%s' "$hgid" | cut -d' ' -f2`
++			tag=$(printf '%s' "$hgid" | cut -d' ' -f2)
+ 			if [ -z "$tag" -o "$tag" = tip ]; then
+-				id=`printf '%s' "$hgid" | sed 's/[+ ].*//'`
++				id=$(printf '%s' "$hgid" | sed 's/[+ ].*//')
+ 				printf '%s%s' -hg "$id"
+ 			fi
+ 		fi
+@@ -115,8 +115,8 @@ scm_version()
+ 	fi
+ 
+ 	# Check for svn and a svn repo.
+-	if rev=`LANG= LC_ALL= LC_MESSAGES=C svn info 2>/dev/null | grep '^Last Changed Rev'`; then
+-		rev=`echo $rev | awk '{print $NF}'`
++	if rev=$(LANG= LC_ALL= LC_MESSAGES=C svn info 2>/dev/null | grep '^Last Changed Rev'); then
++		rev=$(echo $rev | awk '{print $NF}')
+ 		printf -- '-svn%s' "$rev"
+ 
+ 		# All done with svn
+@@ -169,7 +169,7 @@ res="${res}${CONFIG_LOCALVERSION}${LOCALVERSION}"
+ if test "$CONFIG_LOCALVERSION_AUTO" = "y"; then
+ 	# full scm version string
+ 	res="$res$(scm_version)"
+-else
++else:
+ 	# append a plus sign if the repository is not in a clean
+ 	# annotated or signed tagged state (as git describe only
+ 	# looks at signed or annotated tags - git tag -a/-s) and
+-- 
+2.21.0
+

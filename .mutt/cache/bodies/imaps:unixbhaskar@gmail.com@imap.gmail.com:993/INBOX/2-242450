@@ -1,0 +1,108 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp4243189lfk;
+        Tue, 2 Jun 2020 16:16:29 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJye43Ydx9AXG4i6Max1MVG30eGx7MK1ZZqfQivV00G6veISfw41bAqOyhIAbBCiIngw2vRS
+X-Received: by 2002:a17:906:a402:: with SMTP id l2mr26850372ejz.14.1591139789196;
+        Tue, 02 Jun 2020 16:16:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591139789; cv=none;
+        d=google.com; s=arc-20160816;
+        b=dQsZyc6emqhoGAxAxRC08D9URG4RrY3N/UZbt7z/iKNOpBxPww8nyrnZ5m6mOqAmWA
+         ci+oxkfGkce1WVrHJFxBsD+DeS62KFb8ojxN73EdT4ZLTEomChTlx+VPHAPP0NX1+8g9
+         zWszC+xmrBn6QK1DBtoYruxgL/LcemIaVrFlsmls3HBL0FGchsLA/OHjM0sMEJqMT3LT
+         hZ5ba+LquiVLmYJYn94li2qhI+cZoyHqu/QIE9yx7T7t+FhsLHQJcyFdYYP5KfCf6ZBV
+         WS+yZ1xd+EQ3zH3YYm64qP1jCRWncg7VqFSNTVdIOdXLMKw1l5vpuN1D9oKnbS45UVqs
+         PQ8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=HuqADZlz/+ixMviXEQWbebgF++rl4PnbtyN63wR082U=;
+        b=nT0/VrWNkmGf48K+6TNT/WNMEVy0oJoy5R9IAj5fRjyUhlIb3p5Oafqyk6j1aEHb4l
+         xA43ZSbztNsvlKhEh0+FrVbvt4MNwgXMJs+viLSXbaA10FsMqgStUH5/mbrydc/UUX4b
+         CjDdXBkTsrkUbGGBcB0BIHq8wg2cE9wgJpLU5B6JPj8Yx+MRFHNVjgiUSlQe99cv5Hg+
+         0PwGh1wK2ZaQFkQPD8WgXPEfkhcAPsWBo4xp75veGK6EnHpEThLXu+8Idei7ptJkMgpx
+         +Aj+OU6m09sls6AS/T0kFHR6GB6EYT64SrBPhA8cLFtXE6AoAftlWnwIhS/eVXLoUXdw
+         LZ7g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=ciuG9bpz;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id s15si188841ejq.486.2020.06.02.16.16.00;
+        Tue, 02 Jun 2020 16:16:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=ciuG9bpz;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729001AbgFBXDV (ORCPT <rfc822;petrus.archlinux@gmail.com>
+        + 99 others); Tue, 2 Jun 2020 19:03:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54180 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728128AbgFBXDV (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 2 Jun 2020 19:03:21 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC41DC08C5C1
+        for <linux-kernel@vger.kernel.org>; Tue,  2 Jun 2020 16:03:20 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id j12so102292lfh.0
+        for <linux-kernel@vger.kernel.org>; Tue, 02 Jun 2020 16:03:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HuqADZlz/+ixMviXEQWbebgF++rl4PnbtyN63wR082U=;
+        b=ciuG9bpzQMkWDQSS32g0Sqw8ILsZfGGanf0utolyh2ANFc5qoInQK+kbfJwaZfxGgE
+         GwkzwW/qj3PCIcDNDPxrH8YH8NBu0BUg5bpaCawy2gYyFz9U9rT99tIsJn+O/fH1RPWK
+         ICrq+w9hKSk2+OKzKMDcxzJJeWXsBmpyynYrI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HuqADZlz/+ixMviXEQWbebgF++rl4PnbtyN63wR082U=;
+        b=Ck7izk3pXrdSHs8k6UmQ8kEJx29YLQSCHXgHlcym5rqSk2bkEohv5i2fZQRns5w52d
+         HlDW01FBxRddvJCAsAvbgDpAhTvqyah9OEXwClb1K3KUaJEDBZ8lLwVfeu2NFQxES67h
+         lTVldSiMAGvQrUbKET0h9VJBtkXSMFdyucjYitYIJKD2Xk5iqL4hL92jr8NUAzwnDesh
+         c2hdQbP3zhZP97rrSMWwy68MHyzuEGriobCasb9ncf2r0mHta7rVAtDcwAUCMkqP3uUd
+         5Nt4e9ltLHjc2QemXLgAmtDJ3jYqs7FQZTnUPQlt92A4MAxI0InLdtiTZkPllCbu5R/l
+         4iQg==
+X-Gm-Message-State: AOAM532keMIYOQqnyEfcYbwCqzvJx4Skyutjx6Yq3C3xjv0/MTE9FZHL
+        n3IMoelKfZsj1vxkjQf6W5oCF39PIuI=
+X-Received: by 2002:ac2:5de1:: with SMTP id z1mr802791lfq.183.1591138998486;
+        Tue, 02 Jun 2020 16:03:18 -0700 (PDT)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com. [209.85.167.53])
+        by smtp.gmail.com with ESMTPSA id f27sm58638ljp.65.2020.06.02.16.03.17
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Jun 2020 16:03:17 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id e125so101697lfd.1
+        for <linux-kernel@vger.kernel.org>; Tue, 02 Jun 2020 16:03:17 -0700 (PDT)
+X-Received: by 2002:a19:d52:: with SMTP id 79mr829373lfn.125.1591138997106;
+ Tue, 02 Jun 2020 16:03:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <dacd50ff-f674-956b-18cd-9d30e2221b09@kernel.dk>
+In-Reply-To: <dacd50ff-f674-956b-18cd-9d30e2221b09@kernel.dk>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Tue, 2 Jun 2020 16:03:01 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjuAN_vgUN_TiPtzSpz2NX9XQq7-nJ1u=gHG=EKdRdrkA@mail.gmail.com>
+Message-ID: <CAHk-=wjuAN_vgUN_TiPtzSpz2NX9XQq7-nJ1u=gHG=EKdRdrkA@mail.gmail.com>
+Subject: Re: [GIT PULL] io_uring updates for 5.8-rc1
+To:     Jens Axboe <axboe@kernel.dk>
+Cc:     io-uring <io-uring@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Jun 1, 2020 at 10:55 AM Jens Axboe <axboe@kernel.dk> wrote:
+>
+>   git://git.kernel.dk/linux-block.git for-5.8/io_uring-2020-06-01
+
+I'm not sure why pr-tracker-bot didn't like your io_uring pull request.
+
+It replied to your two other pull requests, but not to this one. I'm
+not seeing any hugely fundamental differences between this and the two
+others..
+
+               Linus

@@ -1,0 +1,125 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.107.32.135 with SMTP id g129csp72553iog;
+        Thu, 7 Aug 2014 04:07:34 -0700 (PDT)
+X-Received: by 10.69.17.230 with SMTP id gh6mr17240852pbd.0.1407409654104;
+        Thu, 07 Aug 2014 04:07:34 -0700 (PDT)
+Return-Path: <noreply@makemytrip.com>
+Received: from nsmail4.makemytrip.com (nsmail4.makemytrip.com. [115.114.52.90])
+        by mx.google.com with ESMTP id qx4si3203257pbb.147.2014.08.07.04.07.33
+        for <unixbhaskar@gmail.com>;
+        Thu, 07 Aug 2014 04:07:34 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@makemytrip.com designates 115.114.52.90 as permitted sender) client-ip=115.114.52.90;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@makemytrip.com designates 115.114.52.90 as permitted sender) smtp.mail=noreply@makemytrip.com
+Received: from nsmail9.makemytrip.com (unknown [172.16.37.67])
+	by nsmail4.makemytrip.com (Postfix) with ESMTP id A065DCE9EB
+	for <unixbhaskar@gmail.com>; Thu,  7 Aug 2014 16:37:32 +0530 (IST)
+Received: from mmt-nav-websrvs (unknown [172.16.8.225])
+	by nsmail9.makemytrip.com (Postfix) with ESMTP id 3FE4E87034C
+	for <unixbhaskar@gmail.com>; Thu,  7 Aug 2014 16:37:32 +0530 (IST)
+MIME-Version: 1.0
+From: MakeMyTrip <noreply@makemytrip.com>
+To: unixbhaskar@gmail.com
+Date: 7 Aug 2014 16:37:31 +0530
+Subject: Payment Received Booking Reference Number NR2151115473640
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <20140807110732.3FE4E87034C@nsmail9.makemytrip.com>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">=
+=0D=0A<html xmlns=3D"http://www.w3.org/1999/xhtml">=0D=0A<head>=0D=0A<meta=
+ http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-1"=
+ />=0D=0A<title>:: Make My Trip ::</title>=0D=0A<link href=3D"http://railways.makemytrip.com/railways/css/mail-1.0-min.css"=
+ rel=3D"stylesheet" type=3D"text/css" media=3D"all" />=0D=0A</head>=0D=0A=
+=0D=0A<body>=0D=0A<table border=3D"0" align=3D"center" cellpadding=3D"0"=
+ cellspacing=3D"0" class=3D"table1">=0D=0A  <tr>=0D=0A    <td height=3D"72"=
+ align=3D"left" valign=3D"top"><table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0">=0D=0A      <tr>=0D=0A        <td height=3D"76" align=3D"left"=
+ valign=3D"top"><img src=3D"http://railways.makemytrip.com/railways/images/logo-email.jpg"=
+ width=3D"170" height=3D"72" /></td>=0D=0A        <td align=3D"center" valign=3D"middle">&nbsp;</td>=
+=0D=0A		<td align=3D"right" valign=3D"top"><img src=3D"http://railways.makemytrip.com/railways/images/irctc.jpg"=
+ width=3D"179" height=3D"72" alt=3D"IRCTC" /></td>=0D=0A      </tr>=0D=0A=
+    </table></td>=0D=0A  </tr>=0D=0A  <tr>=0D=0A    <td align=3D"left" valign=3D"top"=
+ bgcolor=3D"#17349c"><table width=3D"513" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0">=0D=0A      <tr>=0D=0A        <td width=3D"4">&nbsp;</td>=
+=0D=0A        <td width=3D"50" class=3D"menu"><a href=3D"http://www.makemytrip.com/"=
+ target=3D"_blank" class=3D"linkmenu">Home</a></td>=0D=0A        <td width=3D"10"=
+ class=3D"divider">&nbsp;</td>=0D=0A        <td width=3D"56" class=3D"menu"><a=
+ href=3D"http://www.makemytrip.com/flights/" target=3D"_blank" class=3D"linkmenu">Flights</a></td>=
+=0D=0A        <td width=3D"10" class=3D"divider">&nbsp;</td>=0D=0A     =
+   <td width=3D"55" class=3D"menu"><a href=3D"http://www.makemytrip.com/hotels/"=
+ target=3D"_blank" class=3D"linkmenu">Hotels</a></td>=0D=0A        <td width=3D"10"=
+ class=3D"divider">&nbsp;</td>=0D=0A        <td width=3D"37" class=3D"menu"><a=
+ href=3D"http://www.makemytrip.com/bus-tickets/" target=3D"_blank" class=3D"linkmenu">Bus</a></td>=
+=0D=0A        <td width=3D"10" class=3D"divider">&nbsp;</td>=0D=0A     =
+   <td width=3D"40" class=3D"menu"><a href=3D"http://www.makemytrip.com/railways/"=
+ target=3D"_blank" class=3D"linksel">Rail</a></td>=0D=0A        <td width=3D"10"=
+ class=3D"divider">&nbsp;</td>=0D=0A        <td width=3D"71" class=3D"menu"><a=
+ href=3D"http://www.makemytrip.com/holiday-packages/" target=3D"_blank"=
+ class=3D"linkmenu">Holidays</a></td>=0D=0A        <td width=3D"10" class=3D"divider">&nbsp;</td>=
+=0D=0A        <td width=3D"163" class=3D"menu"><a href=3D"http://www.makemytrip.com/travel-guides/"=
+ target=3D"_blank" class=3D"linkmenu">Travel Guides</a> </td>=0D=0A    =
+    <td width=3D"21">&nbsp;</td>=0D=0A        <td width=3D"42">&nbsp;</td>=
+=0D=0A      </tr>=0D=0A    </table></td>=0D=0A  </tr>=0D=0A  <tr>=0D=0A=
+    <td height=3D"30" align=3D"right" valign=3D"bottom" class=3D"link1"><a=
+ href=3D"http://www.makemytrip.com/support/customersupport.html">Log In</a></td>=
+=0D=0A  </tr>  =0D=0A  <tr>=0D=0A    <td class=3D"td1"><p>Dear Customer,=
+=0D=0A	<br /><br />=0D=0AGreetings from MakeMyTrip.com.<br /><br />=0D=0AWe=
+ wish to acknowledge  the receipt of Rs. 1,689.77 towards the payment for=
+ your train tickets booking.  Please find the detailed payment charges below.=
+ Your Booking Confirmation Number is NR2151115473640. We request you to=
+ quote this number for all further communication with  us. <br /><br />=
+=0D=0APayment Charges for  NR2151115473640</p>=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A=
+	<table width=3D"75%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"td1-table">=
+=0D=0A		<tr>=0D=0A			<td><strong>Route</strong></td>=0D=0A			<td>=0D=0A=
+    		Bangalore Cy Jn=0D=0A      	  (SBC)=0D=0A     	 to =0D=0A        &nbsp;Chennai=
+ Central=0D=0A	        (MAS)=0D=0A	    </td>=0D=0A		</tr>=0D=0A		=0D=0A=
+=0D=0A		<tr>=0D=0A			<td>Fare &ndash; =0D=0A				Adult=0D=0A			</td>=0D=0A=
+			<td>Rs. 785&nbsp;(Rs. 785 X 1)</td>=0D=0A		</tr>=0D=0A		<tr>=0D=0A		=
+    <td>IRCTC Service Fee:</td>=0D=0A		    <td>Rs. 22.47</td>=0D=0A		</tr>=
+=0D=0A		<tr>=0D=0A		    <td>MakeMyTrip Service  Fee:</td>=0D=0A		    <td>Rs.=
+ 20</td>=0D=0A		</tr>=0D=0A		<tr>=0D=0A		    <td>Total:</td>=0D=0A		   =
+ <td>Rs. 827.47</td>=0D=0A		</tr>=0D=0A		<tr>=0D=0A		    <td>PG charges:</td>=
+=0D=0A		    <td>Rs. 14.87</td>=0D=0A		</tr>=0D=0A		<tr>=0D=0A		    <td colspan=3D"2"><em>(Chargeable=
+ by Payment Gateway)</em></td>=0D=0A		    </tr>=0D=0A		<tr>=0D=0A		<tr>=
+=0D=0A    		<td>&nbsp;</td>=0D=0A    		<td>&nbsp;</td>=0D=0A  		</tr>=0D=0A=
+		=0D=0A		</table>=0D=0A		=0D=0A	<table width=3D"75%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"td1-table">=0D=0A		<tr>=0D=0A			<td><strong>Route</strong></td>=
+=0D=0A			<td>=0D=0A    		Chennai Central=0D=0A      	  (MAS)=0D=0A     =
+	 to =0D=0A        &nbsp;Bangalore Cy Jn=0D=0A	        (SBC)=0D=0A	    </td>=
+=0D=0A		</tr>=0D=0A		=0D=0A=0D=0A		<tr>=0D=0A			<td>Fare &ndash; =0D=0A=
+				Adult=0D=0A			</td>=0D=0A			<td>Rs. 790&nbsp;(Rs. 790 X 1)</td>=0D=0A=
+		</tr>=0D=0A		<tr>=0D=0A		    <td>IRCTC Service Fee:</td>=0D=0A		    <td>Rs.=
+ 22.47</td>=0D=0A		</tr>=0D=0A		<tr>=0D=0A		    <td>MakeMyTrip Service =
+ Fee:</td>=0D=0A		    <td>Rs. 20</td>=0D=0A		</tr>=0D=0A		<tr>=0D=0A		 =
+   <td>Total:</td>=0D=0A		    <td>Rs. 832.47</td>=0D=0A		</tr>=0D=0A		<tr>=
+=0D=0A		    <td>PG charges:</td>=0D=0A		    <td>Rs. 14.96</td>=0D=0A		</tr>=
+=0D=0A		<tr>=0D=0A		    <td colspan=3D"2"><em>(Chargeable by Payment Gateway)</em></td>=
+=0D=0A		    </tr>=0D=0A		<tr>=0D=0A		<tr>=0D=0A    		<td>&nbsp;</td>=0D=0A=
+    		<td>&nbsp;</td>=0D=0A  		</tr>=0D=0A		=0D=0A		</table>=0D=0A		=0D=0A=
+=0D=0A=0D=0A=0D=0A=0D=0A=0D=0A      <p>For your  information, please review=
+ our <a href=3D"http://www.makemytrip.com/railways/cancel.html" target=3D"_blank"=
+ >Cancellation Policy</a> and <u><a href=3D"http://www.makemytrip.com/railways/rules.html"=
+ target=3D"_blank" >Terms and Conditions</a></u>. Please note that these=
+ rules and T&C are subject to change and please visit IRCTC or Indian Railways=
+ website for the latest rules related to Railways Booking , Cancellation=
+ or Refund.</p>=0D=0A        <p>Regards,<br />=0D=0A          <br />=0D=0A=
+        <b>Team MakeMyTrip</b><br />=0D=0A        India Phone: 0124-4628765=
+ (Standard Charges Apply)<br/>India Toll Free: 1800-103-8765 (all major=
+ operators) =0D=0A=0D=0A</p>=0D=0A      <br /><br /><br /><p>P.S.: This=
+ is a system generated email. Please do not reply to this email.</p>   =
+ </td>=0D=0A  </tr>=0D=0A  =0D=0A  <tr>=0D=0A    <td class=3D"footer" align=3D"center"=
+ style=3D"text-align:center">=0D=0A	<a href=3D"http://www.makemytrip.com/"=
+ target=3D"_blank">Home</a> | =0D=0A	<a href=3D"http://www.makemytrip.com/flights/"=
+ target=3D"_blank">Flights</a> | =0D=0A	<a href=3D"http://www.makemytrip.com/hotels/"=
+ target=3D"_blank">Hotels</a> | =0D=0A	<a href=3D"http://www.makemytrip.com/bus-tickets/"=
+ target=3D"_blank">Bus</a> | =0D=0A	<a href=3D"http://www.makemytrip.com/railways/"=
+ target=3D"_blank">Rail</a> | =0D=0A	<a href=3D"http://www.makemytrip.com/holiday-packages/"=
+ target=3D"_blank">Holidays</a> | =0D=0A	<a href=3D"http://www.makemytrip.com/travel-guides/"=
+ target=3D"_blank">Travel Guides</a> | =0D=0A	<a href=3D"http://m.makemytrip.com/"=
+ target=3D"_blank">Mobile</a> | =0D=0A	<a href=3D"http://www.oktatabyebye.com/"=
+ target=3D"_blank">Travel Community</a><br />=0D=0A	<a href=3D"http://www.makemytrip.com/legal/user_agreement.html"=
+ target=3D"_blank">User Agreement</a> | <a href=3D"http://www.makemytrip.com/legal/privacy_policy.html"=
+ target=3D"_blank">Privacy Policy</a>	=0D=0A  </tr>=0D=0A</table>=0D=0A=
+=0D=0A</body>=0D=0A</html>
+

@@ -1,0 +1,93 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp14039930lfc;
+        Sun, 29 Dec 2019 05:04:43 -0800 (PST)
+X-Google-Smtp-Source: APXvYqw/vzXNKBBtLRUrJUGruHlPsOL3R2WcoNO2Pv6T3d39l62NWSpm9wwnTAsVisyKWcrAdy45
+X-Received: by 2002:a9d:74c4:: with SMTP id a4mr69247438otl.119.1577624683672;
+        Sun, 29 Dec 2019 05:04:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1577624683; cv=none;
+        d=google.com; s=arc-20160816;
+        b=0CCKqSefVhp0HhyxorVoWQ7Ba0bvOR1Z2dG9YvE+lmB1A0wpMmE5on9pwBglIVA+kR
+         v97EcVDLD4FGK9fMB3JU07i1gn0r7Y15NdzoNSoC1iRTWUG9UP/zaIzgAMb2MIuVAos2
+         X257pB0/9THyqgr9JWxh6SgBLdSRyPboEjyzA/n8gU1J5k9owRrcWtC1hrGia7nijGu8
+         VpJ3ByH8D9vfLzXKFoTeqKz2dDpzqyzONfs2lRPX1wPB0SYKcj6stYLMDqur3F0KpOyf
+         G/UsrHA913Ks0oM7kc8biaeWD5jHTAI+LklELwsYiO7ZIrXyGsJQFyvE5cSGWmv1PGlH
+         /5Fw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:dkim-signature;
+        bh=tOws+CItYW7rDPaCKZ1kWQiWuGwcFLhxSs7GXVX85sc=;
+        b=b488mu6/ebmlBvL+85Ib+BIivEMy+er/7mXfZvi0xN7dhQlHJ+h0RxAImSwd4QDER8
+         qZoGw4cGrxdJkuXGOi6Gm0c9MsBRmylHOlnymc4tULhiB+omVGF/ITCqeZ8idahrUTpS
+         ImnskP0v62D4rLdWK6E087mByqHEEE02xHudzi0jur8Fr0hZ/kleLJKJnKeOdWvHXXcV
+         jltwHPDJNzS9AJIhZ+/6UWYu9C97Zt73qcoED6gM4Be+JT/Y9u9nXe7KtYWWQaRayrpS
+         Cq9nl/U6Igd/s7NRtgW8r1dhEpskltxrWV7e9WfbFEN4AMHbDpD3RrfhqmamQOrZTHb/
+         ZavA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b="2p/S+ioD";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id n8si19560919otr.102.2019.12.29.05.04.31;
+        Sun, 29 Dec 2019 05:04:43 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b="2p/S+ioD";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726479AbfL2NCs (ORCPT <rfc822;dongsheng081251@gmail.com>
+        + 99 others); Sun, 29 Dec 2019 08:02:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60904 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726189AbfL2NCr (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 29 Dec 2019 08:02:47 -0500
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BF938207FD;
+        Sun, 29 Dec 2019 13:02:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1577624567;
+        bh=MLl8udGdOmbEWmqPwM88Z3x+HeHspaQqIow+p9hDDPc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=2p/S+ioDdgb2PVa5C/ctTX2J3HIqi+ZadIOR2Pxbz7ObOU8IZvXdRF9pgtp3PqHYh
+         86CS02vXDATqUj7fk4G2Pc2WU9/oEzC07Czp3MZVmtmyYeAT3D3t9Rw+GwF+iFFhlH
+         qu4hRKi+RVZI1xZAUS1nldY6YskB2H2f9XHoXW54=
+Date:   Sun, 29 Dec 2019 14:02:41 +0100
+From:   "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+To:     "Getz, Robin" <Robin.Getz@analog.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: Drivers for obsolete devices
+Message-ID: <20191229130241.GA2614@kroah.com>
+References: <1B3D4336-F843-463A-9E90-5783E0FD6D4A@analog.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1B3D4336-F843-463A-9E90-5783E0FD6D4A@analog.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sat, Dec 28, 2019 at 11:37:24PM +0000, Getz, Robin wrote:
+> Greg:
+> 
+> I was using some of the holidays quiet time to go through the list of
+> drivers for ADI peripherals in the kernel, and was trying to note the
+> ones that were based on “obsolete” or “not recommended for new design”
+> devices.
+> 
+> I understand supporting old hardware is a goal, but it should be clear
+> to users that they shouldn’t be designing in old/obsolete hardware
+> just because a driver exists...
+
+That sounds like something the hardware company that makes the chips
+does, not selling them to companies for new devices, not something that
+the operating system should be worried about :)
+
+Go yell at your salespeople.
+
+good luck!
+
+greg k-h

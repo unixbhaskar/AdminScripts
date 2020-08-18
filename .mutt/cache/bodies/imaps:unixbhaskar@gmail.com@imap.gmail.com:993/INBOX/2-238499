@@ -1,0 +1,53 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:f20e:0:0:0:0:0 with SMTP id q14csp920897lfh;
+        Tue, 12 May 2020 00:50:27 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJ9S17Yf6zxIWPwh1xKipb+1AajKWdRG4vrgNo+rT0cms0scDSnvjPdMTdHHfWHavG3cL51
+X-Received: by 2002:aca:170b:: with SMTP id j11mr18755548oii.96.1589269827605;
+        Tue, 12 May 2020 00:50:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1589269827; cv=none;
+        d=google.com; s=arc-20160816;
+        b=zPfXTygz5m4u06OhAKlTa0LFdGJfDNtaOA84Mykp/LQPxUBsJDJcEKFJVg9IWdvatw
+         BLp2vC8B5/b6SQKWKPL267D14//jWchWAejMWiJpxMuVgc+E4z4PKUevhKjCcGhu0aOV
+         Y9AUSpCKyL5bwm4WWrGm6D5BDyDOmiWGjyPhWfYpUjvYWi0Cq7tsPCMIQGZfcwkhxEJQ
+         jJxbwnnpsierUVVRNn57NT1pzR9BcprZzCP5jeeWmGlrGV857DOWkdYTEHoFjgaWVMTO
+         k2bnt06isZlcJDCRMRvBbsvU3pYFPlDApZn/eTagAo+o7ex2+mdf6101GeVl4zDD7bZ8
+         WoIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:content-transfer-encoding:mime-version:subject:to:from
+         :message-id;
+        bh=Zkc2lKbbyrJH6U2ju3hDbedMjKErSXOmOj02QSsIJrs=;
+        b=0DHoK5KN8UElvw0poS78IG/Zbw1KbmO0URZVD4q7lPGCsYlCvRuQSXjMsqH2Ilhhnx
+         s5+vEui6gGK1yOBCcDfUtW73zw336eL65ip69ZOY208r3SkyGxKeVrsNPFMrkNY6u3z5
+         Hyw/TqOn6YwBrzezNLf6cvKWRSSGBusH21CCfPiH1Na52sSa2YHeEuDi+v3zJoNs59dQ
+         wM9F+cDin9L1E9mVhH3o9uXLGNq4A6V9lDjHjjfiEjEPOaL34m7QTKXDahSgGz4gsYOw
+         1GpFXhpD8P/OavsVZ+uwhMad8mKzSJtaXJB32x5BC4TQZ1v85fb57/vbc20PsM7iZKbJ
+         c5cA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning webmaster@kmcgov.in does not designate 210.212.29.168 as permitted sender) smtp.mailfrom=webmaster@kmcgov.in
+Return-Path: <webmaster@kmcgov.in>
+Received: from kmcmail.kmcgov.in ([210.212.29.168])
+        by mx.google.com with ESMTP id w203si8903978oia.61.2020.05.12.00.50.26
+        for <unixbhaskar@gmail.com>;
+        Tue, 12 May 2020 00:50:27 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning webmaster@kmcgov.in does not designate 210.212.29.168 as permitted sender) client-ip=210.212.29.168;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning webmaster@kmcgov.in does not designate 210.212.29.168 as permitted sender) smtp.mailfrom=webmaster@kmcgov.in
+Return-Path: <webmaster@kmcgov.in>
+Received: from 172.16.160.76 by kmcmail.kmcgov.in
+	with ESMTP id 833809541589265651; Tue, 12 May 2020 12:10:51 +0530
+Message-ID: <1000913.1589265303882.JavaMail.oracle@kmccapp2>
+From: webmaster@kmcgov.in
+To: unixbhaskar@gmail.com
+Subject: Communication From KMC
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Date: Tue, 12 May 2020 12:10:51 +0530
+
+Dear Sir / Madam,
+
+Your payment amount Rs. 1938.00 dt. 11-MAY-2020 by txn_id 0120200000061562 has been successful for Assessee No 311110404110.
+
+Regards.
+
+<This is a computer generated message and does not require a signature>

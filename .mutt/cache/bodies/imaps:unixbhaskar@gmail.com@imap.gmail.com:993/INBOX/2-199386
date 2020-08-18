@@ -1,0 +1,96 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp6329267lfj;
+        Tue, 3 Sep 2019 12:56:41 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwvn3HmSg/QQw6g8HbKVUS6FdJ+QDPyYQy0nUIri7FKzTDLP7fa9a3Kr66S5GnYjQrxxoy1
+X-Received: by 2002:aa7:9112:: with SMTP id 18mr5275233pfh.127.1567540601790;
+        Tue, 03 Sep 2019 12:56:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1567540601; cv=none;
+        d=google.com; s=arc-20160816;
+        b=hKPQb4OcY7DvQE0sSaWgGwnNkTfxsqWU006S7hAfsmW3/VegLSU9IIQnKeiGQ4MOeW
+         FZiJyY6rje5JkVm2XYltHNEJB9Egu2hSjW6CCnrgaFPJlAojjgOIa400HniWhkaPwH3a
+         0lgbR1JeVhVKwnqtJHExL0Kxdp77oKnx4oo6uyl0TClco6/Eg3TE+RIQPOnCSt8/+WZd
+         tX90z/3vmQMedvUZ1EkhltUmubMFqYZM08O6kpnAsLLA8F2SaBu2brfs1QC04hhFGuK1
+         9cXmV3utNfErJTf6Sl6PZ26jWw1qB8wxh69Xtae3HAp/j/izd2jruc1XnMB+wLhRyWe4
+         9/nw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:dkim-signature;
+        bh=Iyf7+1X8HGq/WSS7skHwmUhh38ue5xsBHtTQkv6jQGo=;
+        b=SD/JuRDIoKCRoXesAkXRiFS2Glsa6F0O5goGlah9ifSh2iIijrsfM7MZJUhFuUyRSS
+         f/cRrFpuzNaFKoq0kM3GMzQJwkjszvBaVSrjpd5G99UMTEbylXny4htuSU1KOtv4a+0d
+         L2o+1HfYzBH5HiURJwV66SlDYMt8iYg4Jjo1EWAVaw6ukkruAB/Lk1XitpEXMWDVG4dB
+         yXmrihFCSPmv3q7V1nGIyFccbNzrgXqbO6ttr08rS2Ml7Yf2LDJIaPpZNOZUyv+nUvhr
+         LkAbgFmCjkI2Insyv9ccGeT3LsQrHHZqCE6ZjYScd0Rg2arf0D3mRBGmZlYZ4V/nEpAr
+         sJyA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=fLHb0PNZ;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id o185si18909819pfb.206.2019.09.03.12.56.26;
+        Tue, 03 Sep 2019 12:56:41 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=fLHb0PNZ;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726567AbfICTz6 (ORCPT <rfc822;snailbinich@gmail.com>
+        + 99 others); Tue, 3 Sep 2019 15:55:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46412 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725990AbfICTz5 (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 3 Sep 2019 15:55:57 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7722F207E0;
+        Tue,  3 Sep 2019 19:55:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567540557;
+        bh=KY2H9VpXE6kr61OlJCGJzH4WMTvDUw5OjA9w4XBfBZw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fLHb0PNZJbBuqC8JrwpmReAsKXUIwkuFty7WXOZC411DqQLhiHdmNAJpAhNfF34v5
+         KpuSxcWczhY/zUKGU7q1tkZ7umgfezzRfOijLzlqOjBi0oMTFZMuDHvpV0KFFJHACL
+         phkskVh6b7AUnM48mL6wtMdcYw8C4pVEbaiDK+Do=
+Date:   Tue, 3 Sep 2019 21:54:59 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     linux-kernel@vger.kernel.org
+Subject: Re: [GIT PULL] PHY: For 5.4
+Message-ID: <20190903195459.GC13390@kroah.com>
+References: <20190827145146.4735-1-kishon@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190827145146.4735-1-kishon@ti.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Aug 27, 2019 at 08:21:46PM +0530, Kishon Vijay Abraham I wrote:
+> Hi Greg,
+> 
+> Please find the pull request for 5.4 merge window below. Most of the
+> updates here are in Marvell's Armada CP110 COMPHY. It also adds a new
+> PHY driver for Lantiq (now Intel) VRX200/ARX300 PCIe PHY. Please see
+> the tag message for all the changes.
+> 
+> Let me know If I have to change something.
+> 
+> Thanks
+> Kishon
+> 
+> The following changes since commit 609488bc979f99f805f34e9a32c1e3b71179d10b:
+> 
+>   Linux 5.3-rc2 (2019-07-28 12:47:02 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/kishon/linux-phy.git tags/phy-for-5.4
+
+Pulled and pushed out, thanks.
+
+greg k-h

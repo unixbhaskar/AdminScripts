@@ -1,0 +1,101 @@
+Date: Tue, 28 Apr 2020 03:09:23 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: Eric Sandeen <sandeen@sandeen.net>
+Subject: Re: xfs superblock corrupt,how to find next one!
+Message-ID: <20200427213913.GA15010@Slackware>
+References: <20200427033023.GA30304@Slackware>
+ <df26e3c0-fab7-7a24-f72b-7bb5bc55ce40@sandeen.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="0F1p//8PRICkK4MW"
+Content-Disposition: inline
+In-Reply-To: <df26e3c0-fab7-7a24-f72b-7bb5bc55ce40@sandeen.net>
+
+
+--0F1p//8PRICkK4MW
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 08:30 Mon 27 Apr 2020, Eric Sandeen wrote:
+>On 4/26/20 10:30 PM, Bhaskar Chowdhury wrote:
+>> =A0Hey Dave/Darrick,
+>>=20
+>> =A0I was stumbled over this last week and ended up recreating(huh!) the
+>> =A0fs from the scratch . Internet was littered with the information which
+>> =A0I hardly could use. Oh, btw, I did stumble also in old google group
+>> =A0where you suggested few stuff to do .
+>> =A0But alas, none come to handy. I have tried xfs_db and it spit out lots
+>> =A0of info including AGS ,but..I had=A0 a simple requirement , just to
+>> =A0replace the corrupted super block with another good one. Which,
+>> =A0everyone including you know it very well that can done in ext in a bl=
+ink of an
+>> =A0eye(my lack of understanding and exposure are pardonable I believe).
+>>=20
+>> =A0But I couldn't find an easy way to recover the fs.I followed the
+>> =A0repair ..get into db as I said ...
+>>=20
+>> =A0Is it lurking somewhere which I failed to discover or it has been
+>> =A0implemented in different way , which is not easily decipherable by
+>> =A0ordinary users...not sure though.
+>>=20
+>> =A0Kindly ,point out ,which route should one take , when they encounter
+>> =A0that kind of a situation. Recreating the fs is not an or probably the
+>> =A0least option to opt for.
+
+Thanks, you are not doing it either. Your respose has nothing to ponder
+about. You haven't read my mail properly...could you do it again??
+Sometimes reading twice helps.=20
+
+I am not looking here for a "copu-paste" answer...I know what I am doing
+=2E.people I have addressed are much aware of me than you.=20
+
+Don't you think I have given enough details to visualize the situation,
+it is quite commin though.=20
+
+Anyway, I understand where you come from...one little
+suggestion...before you pass your wise suggestion kindly search and
+understand where peoplae came from and what they do.
+
+
+~Bhaskar
+
+>
+>(dropping LKML & personal emails from cc:)
+>
+>You've provided a lot of general narrative here, but you have not provided=
+ any
+>particularly useful or detailed info about the problem you've run into.
+>
+>I don't think anyone can help you yet, as you have not clearly stated the =
+problem
+>you have encountered.
+>
+>From your narrative, I assume that repair tells you the primary superblock=
+ is bad.
+>
+>xfs_repair automatically scans for backup superblocks, though it can be sl=
+ow.
+>
+>-Eric
+>
+
+
+
+
+--0F1p//8PRICkK4MW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl6nUP0ACgkQsjqdtxFL
+KRV8/wf9E/Cv9HPztP9/AtLmNvqg/vYPUaRGpCLmoGTat0c2uSMJ44vmmMvRUrEK
+Lg0e5Jsqf2UBR6Z0XB+G0nbuEpKczRWLC13tyl3cbiAy8G+liifUhLhpaAWy/i18
+BdZF7iZvKtCTFXF0GgEGvKR2jHjqksotseSuwPfEb4pqpDtmW27GOOnE1KioqgZF
+cQJGyMom8781oz2ZzsHxOApUAwE1rmdO6PI+q3lIvffkW/+henWmnHJ21VEwXo96
+nMWV5EdTO3XAhluZAX5B7GLRf6FEV2kQVZITkHXdWvhDVfzdTjgldKNc4fCKW4b+
+uV5Sn1x34olhZAB4gOdgP8WkxXvrTw==
+=m4ru
+-----END PGP SIGNATURE-----
+
+--0F1p//8PRICkK4MW--

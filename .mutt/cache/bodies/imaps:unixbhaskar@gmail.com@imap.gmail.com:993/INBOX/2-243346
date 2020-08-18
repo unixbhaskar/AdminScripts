@@ -1,0 +1,125 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp3326887lfk;
+        Sat, 6 Jun 2020 11:11:30 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzZbqEgiH5dIaEHdF6R74LEZ7pry91fySatE+q/Ds0YSbHN7mrbUqLF8XjajSRZvheTk/8n
+X-Received: by 2002:a17:906:5203:: with SMTP id g3mr13710136ejm.58.1591467089959;
+        Sat, 06 Jun 2020 11:11:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591467089; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Pv/eP11Hu3T7aoCaQzbCiB9HszQPxW57tMEvZPjYER8k1t4i7amDtV7SCc7uMJ1iuS
+         seF377NI/gw2T2FTMAjF4BNo2Z7sjyJ3zf7oTmUJ4DJm/VVn/o11D4hObvWc2u7di7es
+         u1HWkyWyfvWstqEv3IURTP+mZMvi1bkEZEBjOq54aEsZC4QoyMfh+AMDSFExpeRbkzQc
+         2GDIDJjnX3fxw+m9TAlaUCFgBXIZsW36aHHNxhCW++HEyN8wgQ4lNkDRDeMUHfFwhU+P
+         wnkpM9FHxIwNZuksnlVZPbjP9cxUDt0UA34oQEvtozXB1ttON+5pDufAlq3i9l4r+HR+
+         S4hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=rfZS6FD3PVKTeFod390EA9OFYChxy7azm74/xGOYsC8=;
+        b=XzRqU+fgGHVUS/Ax5uw4fLvWt6nY14DQzOkyYRK/G4xf1A/nhyaL2SwxVRo9YoCAFE
+         IahWhpRSN8I3Y9EXVn3oLkcmi2lyVAebGjMKsIXqodrQ7ZPKlCyHrbmY3/7KKeHfDmku
+         ri17nEYEfRh1VUHXyvxpo+AhDjfKYPaZzx9IoJblVSWrnLhwL3sqKg+8hJpW6gmtttZG
+         4vQygoEqHDAn+Qu0NeNRz4rbzWAjSWkSdHZc+tSYuBFCX+UBQ6WKKS65S96fcR+TYLhz
+         QZ9N9Fnah+LxCZpT0u4/jLuq+EXlEqvj7cT2hc3I2LClqrWPmjqdjLmedEIK9e2pyoxZ
+         0nbA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=DgKPeLGS;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id u14si5701063ejf.226.2020.06.06.11.11.06;
+        Sat, 06 Jun 2020 11:11:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=DgKPeLGS;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728842AbgFFSJs (ORCPT <rfc822;nullstelllensatz@gmail.com>
+        + 99 others); Sat, 6 Jun 2020 14:09:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54266 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728788AbgFFSJr (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 6 Jun 2020 14:09:47 -0400
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E16DC08C5C2
+        for <linux-kernel@vger.kernel.org>; Sat,  6 Jun 2020 11:09:47 -0700 (PDT)
+Received: by mail-lj1-x243.google.com with SMTP id a25so15656079ljp.3
+        for <linux-kernel@vger.kernel.org>; Sat, 06 Jun 2020 11:09:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rfZS6FD3PVKTeFod390EA9OFYChxy7azm74/xGOYsC8=;
+        b=DgKPeLGSSTDInt10KbPCgP/rEDD+SgAJgEOpT14iuC7S68iv3fc74iAjfj9WZwuQ+d
+         IqXb0HmIOILsKK7OCe3VsJaTzPGBsuOsqIQmnh5yznNkRCCilV2PA6SxzfGNjIy9nRZj
+         S+Nb/3+/qsy0PuBAn7+aTt/7b4XFUNq/GACwQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rfZS6FD3PVKTeFod390EA9OFYChxy7azm74/xGOYsC8=;
+        b=N2unQ3Dhp9FA5XZ/+FpUDXAXql/PfnplgKwpw0qtWojXPlFRDwuxb8D/OVC+EfYDhw
+         WYe6KtllfIMxqFopCeXmFgEeer19g0NgarSuTFfGwOB/3JH7aLAynavksSWUvhT3/XEm
+         NAWJ9wh5FAGMecnxAmQTd4eV1ng7An1EL49MMwao88wPqRBQoNx7wmYtR8B8HGI5noh9
+         U6i4FMvKsYkSiYX1itlhFRKikFk9Mks938Ax5dlrkLwfaEG6BNS+DMaxM8DLCtJiApKR
+         sn4Ln77g/3Mmqpb6Zj4cjNAphbOuFzCOXtgFZdyraW/PIdwO5mZbOUzAy8hwkE1RGmVw
+         KWyA==
+X-Gm-Message-State: AOAM5323swQ7khqHaL9XrcPr65F9t44WVscChFiCzx+7YAW1VZRhJhH2
+        8dS/ot696o92UuTSH1qfCFhpCLDrD+o=
+X-Received: by 2002:a2e:b8d4:: with SMTP id s20mr7570282ljp.177.1591466984700;
+        Sat, 06 Jun 2020 11:09:44 -0700 (PDT)
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com. [209.85.208.177])
+        by smtp.gmail.com with ESMTPSA id k27sm2411528lfe.88.2020.06.06.11.09.43
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 06 Jun 2020 11:09:43 -0700 (PDT)
+Received: by mail-lj1-f177.google.com with SMTP id c17so15610415lji.11
+        for <linux-kernel@vger.kernel.org>; Sat, 06 Jun 2020 11:09:43 -0700 (PDT)
+X-Received: by 2002:a2e:97c3:: with SMTP id m3mr7519625ljj.312.1591466982709;
+ Sat, 06 Jun 2020 11:09:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200605202257.GA1152522@bjorn-Precision-5520>
+In-Reply-To: <20200605202257.GA1152522@bjorn-Precision-5520>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sat, 6 Jun 2020 11:09:26 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wien36zOp4aqf6XULz+7uM5rtxUb21xh8PGbTa-gL06aQ@mail.gmail.com>
+Message-ID: <CAHk-=wien36zOp4aqf6XULz+7uM5rtxUb21xh8PGbTa-gL06aQ@mail.gmail.com>
+Subject: Re: [GIT PULL] PCI changes for v5.8
+To:     Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     linux-pci@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Jun 5, 2020 at 1:23 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> You should see two conflicts:
+>
+>   2) Documentation/devicetree/bindings/pci/cdns-pcie.yaml: conflict
+>   between Rob's 3d21a4609335 ("dt-bindings: Remove cases of 'allOf'
+>   containing a '$ref'") and Kishon's fb5f8f3ca5f8 ("dt-bindings: PCI:
+>   cadence: Deprecate inbound/outbound specific bindings").
+>
+>   Kishon moved a hunk from cdns-pcie.yaml to cdns-pcie-ep.yaml and
+>   cdns-pcie-host.yaml, so I think the new homes need Rob's change:
+>
+>     Documentation/devicetree/bindings/pci/cdns-pcie-ep.yaml
+>     Documentation/devicetree/bindings/pci/cdns-pcie-host.yaml
+
+I decided not to touch those two files, because the AllOf rules seem
+strange, and not all were updated anyway, so I'm going to leave it to
+others (ie Rob) to decide how they want to handle it.
+
+I suspect your resolution is correct, but I also suspect it doesn't
+_matter_, and since I don't understand the yaml rules I'll leave it
+alone.
+
+Rob?
+
+              Linus

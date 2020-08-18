@@ -1,0 +1,1042 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.80.161.230 with SMTP id 93csp1784528edk;
+        Mon, 13 Nov 2017 22:05:05 -0800 (PST)
+X-Google-Smtp-Source: AGs4zMYrkSvfGlGkfspRWLC7l1DtlDgnSKY0T2jBcETyMubM7VtswVvD/eLANdbweK+9BEQYOigW
+X-Received: by 10.80.244.141 with SMTP id s13mr8960890edm.222.1510639505042;
+        Mon, 13 Nov 2017 22:05:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1510639504; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WhEIv/oUcJFmcxafHsZ4iRSzNEcA7tNU0j0nEbKgMpG92oYqHXx+4qe0hBcqYTYRFp
+         jsowAroqa77UxodcZ13ePPlehdKgRepE6kjE6GkljRV9SCmEDJQKnC7xmPFGKltnmoF+
+         zKgCJswjId9fPYG3d+Z5fkqJdtZ0IOai53WYvOs34aloB/oZXrRlkF5j17FL1m6w51m2
+         WlPaKakZZvsiJVLVAKjq5roH9XEOYyvf0OAdI+TX4wlaQfbS4m8npsAGfr7Sy0WL3D2R
+         0aPyscdFmBf9v8VeWZqvSJol7DYyqrpaqYOix1EhwXHQdNDiz4/3vIytzf1xIeC3Zqht
+         VXWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=from:subject:reply-to:mime-version:date:message-id:to
+         :content-transfer-encoding:dkim-signature:arc-authentication-results;
+        bh=jpyDQv8D9uZV3NcsZgFWK8a7Pv6VqIUtsP8G105M8h0=;
+        b=SeqbSQN3RfCEx0ZcDwxxI9EL57+vzzUQVgbjxqbk6JvbEeYysV4vVu/QXl9xtZuggA
+         T+DDIcjZwCc/gWlphb6ufXz3LJ+eIVYEOA31kk1tGRCvQ8laKnBH2zutMV7kV7m/nCeR
+         7J7pOvMA1lurwS6sq7WKsepvnO/svRCHd6s9dZIqY8PA5Cw/6ei2NQ1BD+4MD8GeX7C9
+         nJfPtuIeYonGEQZsZqiIlAc1bLEzWMRLGOAEbU+CCpv39XgIR8NEWFnhbpNKPAH7kB9q
+         VkCrKFA0tnleR2HjhIxHBF2eW2cBon+3OiVNgwJsPSWSRntPidERq2AwRe/TQHSKdSbZ
+         Mx9g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@azureemail.microsoft.com header.s=scph0916 header.b=MtoV0IF5;
+       spf=pass (google.com: domain of bounces@azureemail.microsoft.com designates 52.43.201.247 as permitted sender) smtp.mailfrom=bounces@azureemail.microsoft.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=microsoft.com
+Return-Path: <bounces@azureemail.microsoft.com>
+Received: from mta834a.sparkpostmail.com (mta834a.sparkpostmail.com. [52.43.201.247])
+        by mx.google.com with ESMTPS id 10si429184edw.364.2017.11.13.22.05.04
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 13 Nov 2017 22:05:04 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces@azureemail.microsoft.com designates 52.43.201.247 as permitted sender) client-ip=52.43.201.247;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@azureemail.microsoft.com header.s=scph0916 header.b=MtoV0IF5;
+       spf=pass (google.com: domain of bounces@azureemail.microsoft.com designates 52.43.201.247 as permitted sender) smtp.mailfrom=bounces@azureemail.microsoft.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=microsoft.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=azureemail.microsoft.com; s=scph0916; t=1510639501;
+	i=@azureemail.microsoft.com;
+	bh=jpyDQv8D9uZV3NcsZgFWK8a7Pv6VqIUtsP8G105M8h0=;
+	h=Content-Type:To:Message-ID:Date:Subject:From;
+	b=MtoV0IF5U4b/nnkeBb+byMgwBcjRTETR+1YJe5RrQq8qM5KfrEvUWhz8X8wCagdUb
+	 EAV9/hQouK17UFg4Ok9w5NhSeeyy8gWbnwrYdUczQV3FtT7zX0RFWTAAL/VH5gMSdv
+	 02mjCGd4f4WFFdaYZ9prvIGTlM8MtFizaTKrHvpQ=
+X-MSFBL: mwY37TzYNbONcn58TWf6eJAehWinzgMs8Xw5CcQZcpE=|eyJ0ZW1wbGF0ZV9pZCI
+	6InRlbXBsYXRlXzQ4Njk3MDY1ODQyMjc1MDgwIiwicmNwdF90YWdzIjpbIF0sInJ
+	jcHRfbWV0YSI6eyAiVGVtcGxhdGVJZCI6ICJ0ZW1fd0VLb290NWZ6OVhNNmdOZUF
+	ia253RCIsICJiaW5kaW5nIjogIm5ld2RlZGljYXRlZCIsICJFbWFpbElkIjogImF
+	jOWU0NWQzLTgyODktNDgzNC1hM2EyLTZiN2UzNzBlZTkwNyIsICJTZW50RGF0ZUt
+	leSI6ICIyMDE3MTExNDA2MDUwMSIsICJCYXRjaElkIjogIjk5MDNiNjhjLTdiNDU
+	tNDI5Yi05NTdmLTE0ODc1MmI5OWIyNSIgfSwiY3VzdG9tZXJfaWQiOiIxIiwiZnJ
+	pZW5kbHlfZnJvbSI6Im5vLXJlcGx5QGF6dXJlZW1haWwubWljcm9zb2Z0LmNvbSI
+	sImIiOiJpcF81Mi40My4yMDEuMjQ3IiwiZyI6Im5ld2RlZGljYXRlZCIsInRlbmF
+	udF9pZCI6Im1zZnQiLCJyIjoidW5peGJoYXNrYXJAZ21haWwuY29tIiwidHJhbnN
+	hY3Rpb25hbCI6IjEiLCJzdWJhY2NvdW50X2lkIjoiMCIsInRyYW5zbWlzc2lvbl9
+	pZCI6IjQ4Njk3MDY1ODQyMjc1MDgwIiwidGVtcGxhdGVfdmVyc2lvbiI6IjAiLCJ
+	tZXNzYWdlX2lkIjoiMDAwMjhkODcwYTVhNmMxMzhkYzEifQ==
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+To: unixbhaskar@gmail.com
+Message-ID: <D8.1C.04972.D878A0A5@b.plat1.msft.prd.sparkpost>
+Date: Tue, 14 Nov 2017 06:05:01 +0000
+MIME-Version: 1.0
+Reply-To: no-reply@azureemail.microsoft.com
+Subject: Your Azure Billing Statement for Free Trial
+From: "Microsoft Azure" <no-reply@azureemail.microsoft.com>
+
+<!DOCTYPE html PUBLIC"-//w3c//dtd xhtml 1.0 transitional //en" "http://www.=
+w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd">=0D=0A<html xmlns=3D"http://w=
+ww.w3.org/1999/xhtml">=0D=0A=0D=0A<head>=0D=0A  <!--[if gte mso 9]><xml>=0D=
+=0A     <o:OfficeDocumentSettings>=0D=0A      <o:AllowPNG/>=0D=0A      <o:P=
+ixelsPerInch>96</o:PixelsPerInch>=0D=0A     </o:OfficeDocumentSettings>=0D=
+=0A    </xml><![endif]-->=0D=0A  <meta http-equiv=3D"Content-Type" content=
+=3D"text/html; charset=3Dutf-8"/>=0D=0A  <meta name=3D"viewport" content=3D=
+"width=3Ddevice-width"/>=0D=0A  <meta http-equiv=3D"X-UA-Compatible" conten=
+t=3D"IE=3D9; IE=3D8; IE=3D7; IE=3DEDGE"/>=0D=0A  <meta name=3D=E2=80=9Cform=
+at-detection=E2=80=9D content=3D=E2=80=9Ctelephone=3Dno=E2=80=9D>=0D=0A  <t=
+itle>Billing Statement</title>=0D=0A=0D=0A</head>=0D=0A=0D=0A<body style=3D=
+"width: 100% !important;min-width: 100%;-webkit-text-size-adjust: 100%;-ms-=
+text-size-adjust: 100% !important;margin: 0;padding: 0;background-color: #F=
+FFFFF">=0D=0A <style type=3D"text/css">=0D=0Adiv.preheader =0D=0A{ display:=
+ none !important; visibility:hidden !important; opacity:0; color:transparen=
+t; height:0; width:0;} =0D=0A</style>=0D=0A<div class=3D"preheader" style=
+=3D"font-size: 1px; display: none !important;visibility: hidden; opacity: 0=
+; color: transparent; line-height:1px; height: 0; width: 0;">Subscription I=
+D: 7afea711-296b-43a2-ba87-28052fb8a0cc Billing Period: October 13, 2017-No=
+vember 12, 2017 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;</div>=0D=0A=0D=0A=0D=0A  <style id=3D"media-query">=0D=
+=0A    /* Client-specific Styles &amp; Reset */=0D=0A=0D=0A    #outlook a {=
+=0D=0A      padding: 0;=0D=0A    }=0D=0A    /* .ExternalClass applies to Ou=
+tlook.com*/=0D=0A=0D=0A    .ExternalClass {=0D=0A      width: 100%;=0D=0A  =
+  }=0D=0A=0D=0A    .ExternalClass,=0D=0A    .ExternalClass p,=0D=0A    .Ext=
+ernalClass span,=0D=0A    .ExternalClass font,=0D=0A    .ExternalClass td,=
+=0D=0A    .ExternalClass div {=0D=0A      line-height: 100%;=0D=0A    }=0D=
+=0A    * {-webkit-text-size-adjust: none}=0D=0A    =0D=0A    #backgroundTab=
+le {=0D=0A      margin: 0;=0D=0A      padding: 0;=0D=0A      width: 100% !i=
+mportant;=0D=0A      line-height: 100% !important;=0D=0A    }=0D=0A    /* B=
+uttons */=0D=0A=0D=0A    .button a {=0D=0A      display: inline-block;=0D=
+=0A      text-decoration: none;=0D=0A      -webkit-text-size-adjust: none;=
+=0D=0A      text-align: center;=0D=0A    }=0D=0A=0D=0A    .button a div {=
+=0D=0A      text-align: center !important;=0D=0A    }=0D=0A    /* Outlook F=
+irst */=0D=0A=0D=0A    body.outlook p {=0D=0A      display: inline !importa=
+nt;=0D=0A    }=0D=0A</style>=0D=0A=0D=0A=0D=0A<style media=3D"screen" type=
+=3D"text/css">=0D=0A=0D=0A=0D=0A      table[class=3D"container"] {=0D=0A   =
+     width: 500px !important;=0D=0A      }=0D=0A=0D=0A      table[class=3D"=
+side-columns"] {=0D=0A        width: 600px !important;=0D=0A      }=0D=0A  =
+  =0D=0A      table[class=3D"button-table"] {=0D=0A        width: 200px;=0D=
+=0A      }=0D=0A      =0D=0A</style>=0D=0A=0D=0A<style media=3D"only screen=
+ and (max-device-width: 1024px)" type=3D"text/css">=0D=0A=0D=0A=0D=0A    @m=
+edia only screen and (max-device-width: 1024px) {=0D=0A     =0D=0A      div=
+[class=3D"Logo"] {=0D=0A        width: 480px !important;=0D=0A        text-=
+align: left !important;=0D=0A      }=0D=0A      =0D=0A      div[class=3D"cr=
+edits"] {=0D=0A        width: 120px !important;=0D=0A        text-align: ce=
+nter !important;=0D=0A      }=0D=0A      =0D=0A      img[class=3D"video"] {=
+=0D=0A        width: 180px !important;=0D=0A        max-width: 180px !impor=
+tant;=0D=0A        text-align: left !important;=0D=0A      }=0D=0A      =0D=
+=0A      div[class=3D"video-img"] {=0D=0A        width: 180px !important;=
+=0D=0A        text-align: left !important;=0D=0A      }=0D=0A      =0D=0A  =
+    td[class=3D"video-img"]{=0D=0A        padding-left: 20px;=0D=0A      }=
+=0D=0A      =0D=0A      div[class=3D"address"] {=0D=0A        width: 380px =
+!important;=0D=0A        text-align: left !important;=0D=0A      }=0D=0A   =
+   div[class=3D"microsoft"] {=0D=0A        width: 100px !important;=0D=0A  =
+      text-align: right !important;=0D=0A      }=0D=0A      div[class=3D"ct=
+a"] {=0D=0A        width: 480px !important;=0D=0A        text-align: left !=
+important;=0D=0A      }=0D=0A     =0D=0A    }=0D=0A=0D=0A=0D=0A=0D=0A</styl=
+e>=0D=0A=0D=0A<style media=3D"only screen and (max-device-width: 480px)" ty=
+pe=3D"text/css">=0D=0A    @media only screen and (max-device-width: 480px) =
+{=0D=0A=0D=0A      table[class=3D"body"] .container {=0D=0A        width: 4=
+80px !important;=0D=0A      }=0D=0A      table[class=3D"block-grid two-up"]=
+ {=0D=0A        width: 480px !important;=0D=0A      }=0D=0A      =0D=0A    =
+  table[class=3D"block-grid"] {=0D=0A        width: 480px !important;=0D=0A=
+      }=0D=0A      =0D=0A      table[class=3D"block-grid four-up"] {=0D=0A =
+       width: 480px !important;=0D=0A      }=0D=0A      =0D=0A      =0D=0A =
+     div[class=3D"icon"] {=0D=0A        width: 100px !important;=0D=0A     =
+   padding-top: 5px !important;=0D=0A        text-align: center !important;=
+=0D=0A      }=0D=0A      =0D=0A      div[class=3D"icon2"] {=0D=0A        wi=
+dth: 100px !important;=0D=0A        padding-top: 10px !important;=0D=0A    =
+    text-align: center !important;=0D=0A      }=0D=0A      =0D=0A      div[=
+class=3D"icon3"] {=0D=0A        width: 100px !important;=0D=0A        paddi=
+ng-top: 20px !important;=0D=0A        text-align: center !important;=0D=0A =
+     }=0D=0A      =0D=0A      img[class=3D"video"] {=0D=0A        width: 40=
+0px !important;=0D=0A        max-width: 400px !important;=0D=0A        text=
+-align: left !important;=0D=0A        display: none !important;=0D=0A      =
+}=0D=0A      =0D=0A      div[class=3D"video-img"] {=0D=0A        width: 400=
+px !important;=0D=0A        text-align: left !important;=0D=0A      }=0D=0A=
+      =0D=0A      td[class=3D"video-img"]{=0D=0A        padding-left: 0px;=
+=0D=0A      }=0D=0A      =0D=0A      div[class=3D"cta"] {=0D=0A        widt=
+h: 480px !important;=0D=0A        text-align: left !important;=0D=0A      }=
+=0D=0A      =0D=0A      div[class=3D"icon text"] {=0D=0A        width: 360p=
+x !important;=0D=0A        text-align: left !important;=0D=0A      }=0D=0A =
+     div[class=3D"Logo"] {=0D=0A        width: 480px !important;=0D=0A     =
+ }=0D=0A      div[class=3D"address"] {=0D=0A        width: 380px !important=
+;=0D=0A        text-align: left !important;=0D=0A      }=0D=0A      div[cla=
+ss=3D"microsoft"] {=0D=0A        width: 100px !important;=0D=0A        text=
+-align: right !important;=0D=0A      }=0D=0A      div[class=3D"credits"] {=
+=0D=0A        width: 230px !important;=0D=0A        text-align: center !imp=
+ortant;=0D=0A      }=0D=0A      =0D=0A      p[class=3D"body-text"] {=0D=0A =
+       font-size:20px !important;=0D=0A        line-height:24px !important;=
+=0D=0A        font-family: Helvetica,Verdana,sans-serif;=0D=0A        text-=
+align: justify !important;=0D=0A      }=0D=0A      =0D=0A      span[class=
+=3D"button-text"] {=0D=0A        font-size: 22px !important;=0D=0A        f=
+ont-family: Helvetica,Verdana,sans-serif;=0D=0A        text-align: center !=
+important;=0D=0A      }=0D=0A      =0D=0A      a[class=3D"button_link"] {=
+=0D=0A        line-height: 36px !important;=0D=0A      }=0D=0A            =
+=0D=0A      span[class=3D"title-text"] {=0D=0A        font-size:30px !impor=
+tant;=0D=0A        line-height:36px !important;=0D=0A        font-family: H=
+elvetica,Verdana,sans-serif;=0D=0A        text-align: left !important;=0D=
+=0A      }=0D=0A      =0D=0A      p[class=3D"amount-title"] {=0D=0A        =
+font-size:20px !important;=0D=0A        line-height:28px !important;=0D=0A =
+       font-family: Helvetica,Verdana,sans-serif;=0D=0A        text-align: =
+center !important;=0D=0A      }=0D=0A      =0D=0A      p[class=3D"amount"] =
+{=0D=0A        font-size:20px !important;=0D=0A        line-height:38px !im=
+portant;=0D=0A        font-family: Helvetica,Verdana,sans-serif;=0D=0A     =
+   text-align: center !important;=0D=0A      }=0D=0A      span[class=3D"hea=
+der-text"] {=0D=0A        font-size:36px !important;=0D=0A        line-heig=
+ht:42px !important;=0D=0A        font-family: Helvetica,Verdana,sans-serif;=
+=0D=0A        text-align: left !important;=0D=0A      }=0D=0A      =0D=0A  =
+    span[class=3D"Logo"] {=0D=0A        font-size:30px !important;=0D=0A   =
+     line-height:54px !important;=0D=0A        font-family: 'Segoe UI',Verd=
+ana,sans-serif;=0D=0A        text-align: left !important;=0D=0A      }=0D=
+=0A      =0D=0A      table[class=3D"button-table"] {=0D=0A        width: 44=
+0px !important;=0D=0A        text-align: center !important;=0D=0A      }=0D=
+=0A=0D=0A      a[class=3D"button-link"] {=0D=0A        width: 400px !import=
+ant;=0D=0A        font-size: 24px !important;=0D=0A        line-height: 30p=
+x !important;=0D=0A        font-family: 'Segoe UI',Verdana,sans-serif;=0D=
+=0A        text-align: center !important;=0D=0A      }=0D=0A    }=0D=0A</st=
+yle>=0D=0A=0D=0A=0D=0A   <table class=3D"body" style=3D"border-spacing: 0;b=
+order-collapse: collapse;vertical-align: top;height: 100%;width: 100%;table=
+-layout: fixed" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=
+=3D"0">=0D=0A    <tbody>=0D=0A=0D=0A      <tr style=3D"vertical-align: top"=
+>=0D=0A        <td class=3D"center" style=3D"word-break: break-word;border-=
+collapse: collapse !important;vertical-align: top;text-align: center;backgr=
+ound-color: #FFFFFF" align=3D"center" valign=3D"top">=0D=0A=0D=0A=0D=0A    =
+      <!--[if (IE)]>=0D=0A                    <table width=3D"600" align=3D=
+"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">=0D=0A           =
+             <tr>=0D=0A                            <td>=0D=0A              =
+      <![endif]-->=0D=0A                    =0D=0A                    <!--[=
+if gte mso 9]>=0D=0A                    <table id=3D"outlookholder" width =
+=3D "600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center"=
+ background-color=3D"#1A1A1A"><tr><td>=0D=0A                    <![endif]--=
+>=0D=0A          <table class=3D"side-columns" style=3D"border-spacing: 0;b=
+order-collapse: collapse;vertical-align: top;background-color: #ffffff; max=
+-width: 600px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" width=
+=3D"100%" border=3D"0">=0D=0A            <tbody>=0D=0A              <tr sty=
+le=3D"vertical-align: top">=0D=0A=0D=0A                <td style=3D"word-br=
+eak: break-word;border-collapse: collapse !important;vertical-align: top" w=
+idth=3D"100%">=0D=0A                  <!--[if gte mso 9]>=0D=0A            =
+        <table id=3D"outlookholder" width =3D "600" border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0" align=3D"center" background-color=3D"#1A1A1A"><tr=
+><td>=0D=0A                    <![endif]-->=0D=0A                  <!--[if =
+gte mso 9]>=0D=0A                    <table id=3D"outlookholder" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center"><tr><td>=0D=0A     =
+               <![endif]-->=0D=0A                  <!--[if (IE)]>=0D=0A    =
+                <table width=3D"500" align=3D"center" cellpadding=3D"0" cel=
+lspacing=3D"0" border=3D"0">=0D=0A                        <tr>=0D=0A       =
+                     <td>=0D=0A                    <![endif]-->=0D=0A      =
+            <table class=3D"container" style=3D"border-spacing: 0;border-co=
+llapse: collapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-a=
+lign: inherit; border-bottom: solid 1px #999;" cellpadding=3D"0" cellspacin=
+g=3D"0" align=3D"center" width=3D"100%" border=3D"0">=0D=0A                =
+    <tbody>=0D=0A                      <tr style=3D"vertical-align: top">=
+=0D=0A                        <td style=3D"word-break: break-word;border-co=
+llapse: collapse !important;vertical-align: top" width=3D"100%">=0D=0A     =
+                     <table class=3D"block-grid two-up" style=3D"border-spa=
+cing: 0;border-collapse: collapse;vertical-align: top;width: 100%;max-width=
+: 500px;color: #333;background-color: transparent;" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"100%" bgcolor=3D"transparent">=0D=0A                 =
+           <tbody>=0D=0A                              <tr style=3D"vertical=
+-align: top">=0D=0A                                <td style=3D"word-break:=
+ break-word;border-collapse: collapse !important;vertical-align: top;text-a=
+lign: center;font-size: 0;">=0D=0A                                  <!--[if=
+ (gte mso 9)|(IE)]><table width=3D"100%" align=3D"center" bgcolor=3D"transp=
+arent" cellpadding=3D"0" cellspacing=3D"0" border=3D"0"><tr><![endif]-->=0D=
+=0A                                  <!--[if (gte mso 9)|(IE)]><td valign=
+=3D"top" width=3D"500"><![endif]-->=0D=0A                                  =
+<div class=3D"Logo" style=3D"display: inline-block;vertical-align: top;text=
+-align: left;width:500px;">=0D=0A                                    <table=
+ style=3D"border-spacing: 0;border-collapse: collapse;vertical-align: top;"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0">=0D=0A    =
+                                  <tbody>=0D=0A                            =
+            <tr style=3D"vertical-align: top">=0D=0A                       =
+                   <td style=3D"word-break: break-word;border-collapse: col=
+lapse !important;vertical-align: top;background-color: transparent;padding-=
+top: 15px;padding-right: 0px;padding-bottom: 20px;padding-left: 0px;">=0D=
+=0A                                            <table style=3D"border-spaci=
+ng: 0;border-collapse: collapse;vertical-align: top" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"120">=0D=0A                                         =
+     <tbody>=0D=0A                                                <tr>=0D=
+=0A                                                  <td style=3D"word-brea=
+k: break-word;border-collapse: collapse !important;vertical-align: top;widt=
+h: 100%" align=3D"left">=0D=0A                                             =
+       <div align=3D"left">=0D=0A                                          =
+            <img class=3D"center" style=3D"outline: none;text-decoration: n=
+one;-ms-interpolation-mode: bicubic;clear: both;display: block;border: 0;ma=
+rgin: 0 auto;float: none;width: auto;max-width: 250px" align=3D"left" borde=
+r=3D"0" src=3D"https://info.microsoft.com/rs/157-GQE-382/images/EN-BASICE-L=
+ogo-MSFTLogo.png"=0D=0A                                                    =
+    alt=3D"Image" title=3D"Image">=0D=0A                                   =
+                 </div>=0D=0A                                              =
+    </td>=0D=0A                                                </tr>=0D=0A =
+                                               <tr style=3D"vertical-align:=
+ top">=0D=0A                                                  <td style=3D"=
+word-break: break-word;border-collapse: collapse !important;vertical-align:=
+ top;padding-top: 10px;padding-right: 10px;padding-bottom: 2px;padding-left=
+: 10px">=0D=0A                                                    <div styl=
+e=3D"color:#555555;line-height:120%;font-family:'Segoe UI', Verdana, Arial,=
+ sans-serif;">=0D=0A                                                      <=
+div style=3D"line-height:28px;text-align:left;color:#555555;font-family:'Se=
+goe UI Light', 'Segoe UI', Verdana, Arial, sans-serif;">=0D=0A             =
+                                           <p style=3D"margin: 0; line-heig=
+ht: 26px;text-align: left">=0D=0A                                          =
+                <span class=3D"Logo" style=3D"font-size:24px; line-height: =
+28px; color: #555555;">Azure</span>=0D=0A                                  =
+                        </p>=0D=0A                                         =
+             </div>=0D=0A                                                  =
+  </div>=0D=0A                                                  </td>=0D=0A=
+                                                </tr>=0D=0A                =
+                              </tbody>=0D=0A                               =
+             </table>=0D=0A                                          </td>=
+=0D=0A                                        </tr>=0D=0A                  =
+                    </tbody>=0D=0A                                    </tab=
+le>=0D=0A                                  </div>=0D=0A                    =
+              <!--[if (gte mso 9)|(IE)]></td><![endif]-->=0D=0A            =
+                      =0D=0A                                  <!--[if (gte =
+mso 9)|(IE)]></td></tr></table><![endif]-->=0D=0A                          =
+      </td>=0D=0A                              </tr>=0D=0A                 =
+           </tbody>=0D=0A                          </table>=0D=0A          =
+              </td>=0D=0A                      </tr>=0D=0A                 =
+   </tbody>=0D=0A                  </table>=0D=0A                  <!--[if =
+mso]>=0D=0A                    </td></tr></table>=0D=0A                    =
+<![endif]-->=0D=0A                  <!--[if (IE)]>=0D=0A                   =
+ </td></tr></table>=0D=0A                    <![endif]-->=0D=0A            =
+    </td>=0D=0A              </tr>=0D=0A            </tbody>=0D=0A         =
+ </table>=0D=0A          =0D=0A          <!--[if mso]>=0D=0A            </t=
+d></tr></table>=0D=0A            <![endif]-->=0D=0A          <!--[if mso]>=
+=0D=0A            </td></tr></table>=0D=0A            <![endif]-->=0D=0A   =
+       <!--[if (IE)]>=0D=0A            </td></tr></table>=0D=0A            =
+<![endif]-->=0D=0A          <!--[if (IE)]>=0D=0A                    <table =
+width=3D"600" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0">=0D=0A                        <tr>=0D=0A                            =
+<td>=0D=0A                    <![endif]-->=0D=0A                =0D=0A     =
+               <!--[if gte mso 9]>=0D=0A                    <table id=3D"ou=
+tlookholder" width =3D "600" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
+0" align=3D"center" background-color=3D"#29A5DE"><tr><td>=0D=0A            =
+        <![endif]-->=0D=0A          <table class=3D"side-columns" style=3D"=
+border-spacing: 0;border-collapse: collapse;vertical-align: top;background-=
+color: #ffffff; max-width: 600px;" cellpadding=3D"0" cellspacing=3D"0" alig=
+n=3D"center" width=3D"100%" border=3D"0">=0D=0A=0D=0A            <tbody>=0D=
+=0A              <tr style=3D"vertical-align: top">=0D=0A                <t=
+d style=3D"word-break: break-word;border-collapse: collapse !important;vert=
+ical-align: top" width=3D"100%">=0D=0A                  =0D=0A          <!-=
+-[if gte mso 9]>=0D=0A                    <table id=3D"outlookholder" width=
+ =3D "600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center=
+"><tr><td>=0D=0A                    <![endif]-->=0D=0A                  <!-=
+-[if gte mso 9]>=0D=0A                    <table id=3D"outlookholder" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center"><tr><td>=0D=0A=
+                    <![endif]-->=0D=0A                  <!--[if (IE)]>=0D=
+=0A                    <table width=3D"500" align=3D"center" cellpadding=3D=
+"0" cellspacing=3D"0" border=3D"0">=0D=0A                        <tr>=0D=0A=
+                            <td>=0D=0A                    <![endif]-->=0D=
+=0A                  <table class=3D"container" style=3D"border-spacing: 0;=
+border-collapse: collapse;vertical-align: top;max-width: 500px;margin: 0 au=
+to;text-align: inherit;" cellpadding=3D"0" cellspacing=3D"0" align=3D"cente=
+r" width=3D"100%" border=3D"0">=0D=0A                    <tbody>=0D=0A     =
+                 <tr style=3D"vertical-align: top">=0D=0A                  =
+      <td style=3D"word-break: break-word;border-collapse: collapse !import=
+ant;vertical-align: top" width=3D"100%">=0D=0A                          <ta=
+ble class=3D"block-grid" style=3D"border-spacing: 0;border-collapse: collap=
+se;vertical-align: top;width: 100%;color: #000000;background-color: transpa=
+rent" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" bgcolor=3D"transpa=
+rent">=0D=0A                            <tbody>=0D=0A                      =
+        <tr style=3D"vertical-align: top">=0D=0A                           =
+     <td style=3D"word-break: break-word;border-collapse: collapse !importa=
+nt;vertical-align: top;text-align: center;font-size: 0">=0D=0A             =
+                     <!--[if (gte mso 9)|(IE)]><table width=3D"100%" align=
+=3D"center" bgcolor=3D"transparent" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0"><tr><![endif]-->=0D=0A                                  <!--[if (=
+gte mso 9)|(IE)]><td valign=3D"top" width=3D"500"><![endif]-->=0D=0A       =
+                           <div class=3D"col num12" style=3D"display: inlin=
+e-block;vertical-align: top;width: 100%">=0D=0A                            =
+        <table style=3D"border-spacing: 0;border-collapse: collapse;vertica=
+l-align: top" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" width=3D=
+"100%" border=3D"0">=0D=0A                                      <tbody>=0D=
+=0A                                        <tr style=3D"vertical-align: top=
+">=0D=0A                                          <td style=3D"word-break: =
+break-word;border-collapse: collapse !important;vertical-align: top;backgro=
+und-color: transparent;padding-top: 5px;padding-right: 0px;padding-bottom: =
+5px;padding-left: 0px;border-top: 0px solid transparent;border-right: 0px s=
+olid transparent;border-bottom: 0px solid transparent;border-left: 0px soli=
+d transparent">=0D=0A                                            <table sty=
+le=3D"border-spacing: 0;border-collapse: collapse;vertical-align: top" cell=
+padding=3D"0" cellspacing=3D"0" width=3D"100%">=0D=0A                      =
+                        <tbody>=0D=0A                                      =
+          <tr style=3D"vertical-align: top">=0D=0A                         =
+                         <td style=3D"word-break: break-word;border-collaps=
+e: collapse !important;vertical-align: top;padding-top: 20px;padding-right:=
+ 10px;padding-bottom: 5px;padding-left: 10px">=0D=0A                       =
+                             <div style=3D"color:#ffffff;line-height:120%;f=
+ont-family:'Segoe UI', Verdana, Arial, sans-serif;">=0D=0A                 =
+                                     <div style=3D"font-size:18px;line-heig=
+ht:21px;text-align:left;color:#555555;font-family:'Segoe UI', Verdana, Aria=
+l, sans-serif;">=0D=0A                                                     =
+   <p style=3D"margin: 0;font-size: 18px;line-height: 20px;text-align: left=
+"><span class=3D"header-text" style=3D"font-size: 18px; line-height: 21px;"=
+>Your billing statement is ready&zwnj;</span></p>=0D=0A                    =
+                                  </div>=0D=0A                             =
+                       </div>=0D=0A                                        =
+          </td>=0D=0A                                                </tr>=
+=0D=0A                                              </tbody>=0D=0A         =
+                                   </table>=0D=0A                          =
+                </td>=0D=0A                                        </tr>=0D=
+=0A                                      </tbody>=0D=0A                    =
+                </table>=0D=0A                                    <table st=
+yle=3D"border-spacing: 0;border-collapse: collapse;vertical-align: top" cel=
+lpadding=3D"0" cellspacing=3D"0" align=3D"center" width=3D"100%" border=3D"=
+0">=0D=0A                                      <tbody>=0D=0A               =
+                         <tr style=3D"vertical-align: top">=0D=0A          =
+                                <td style=3D"word-break: break-word;border-=
+collapse: collapse !important;vertical-align: top;background-color: transpa=
+rent;padding-top: 0px;padding-right: 0px;padding-bottom: 5px;padding-left: =
+0px;border-top: 0px solid transparent;border-right: 0px solid transparent;b=
+order-bottom: 0px solid transparent;border-left: 0px solid transparent">=0D=
+=0A                                            <table style=3D"border-spaci=
+ng: 0;border-collapse: collapse;vertical-align: top" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%">=0D=0A                                        =
+      <tbody>=0D=0A                                                <tr styl=
+e=3D"vertical-align: top">=0D=0A                                           =
+       <td style=3D"word-break: break-word;border-collapse: collapse !impor=
+tant;vertical-align: top;padding-top: 10px;padding-right: 10px;padding-bott=
+om: 5px;padding-left: 10px">=0D=0A                                         =
+           <div style=3D"color:#555555;line-height:120%;font-family:'Segoe =
+UI', Verdana, Arial, sans-serif;">=0D=0A                                   =
+                   <div style=3D"font-size:12px;line-height:14px;text-align=
+:left;color:#555555;font-family:'Segoe UI', Verdana, Arial, sans-serif;">=
+=0D=0A                                                        <p style=3D"m=
+argin: 0;font-size: 12px;line-height: 14px;text-align: left">Subscription n=
+ame: Free Trial</p>=0D=0A                                                  =
+    </div>=0D=0A                                                    </div>=
+=0D=0A                                                  </td>=0D=0A        =
+                                        </tr>=0D=0A                        =
+                        <tr style=3D"vertical-align: top">=0D=0A           =
+                                       <td style=3D"word-break: break-word;=
+border-collapse: collapse !important;vertical-align: top;padding-top: 5px;p=
+adding-right: 10px;padding-bottom: 5px;padding-left: 10px">=0D=0A          =
+                                          <div style=3D"color:#555555;line-=
+height:120%;font-family:'Segoe UI', Verdana, Arial, sans-serif;">=0D=0A    =
+                                                  <div style=3D"font-size:1=
+2px;line-height:14px;text-align:left;color:#555555;font-family:'Segoe UI', =
+Verdana, Arial, sans-serif;">=0D=0A                                        =
+                <p style=3D"margin: 0;font-size: 12px;line-height: 14px;tex=
+t-align: left">Subscription ID: 7afea711-296b-43a2-ba87-28052fb8a0cc</p>=0D=
+=0A                                                      </div>=0D=0A      =
+                                              </div>=0D=0A                 =
+                                 </td>=0D=0A                               =
+                 </tr>=0D=0A                                               =
+ <tr style=3D"vertical-align: top">=0D=0A                                  =
+                <td style=3D"word-break: break-word;border-collapse: collap=
+se !important;vertical-align: top;padding-top: 5px;padding-right: 10px;padd=
+ing-bottom: 5px;padding-left: 10px">=0D=0A                                 =
+                   <div style=3D"color:#555555;line-height:120%;font-family=
+:'Segoe UI', Verdana, Arial, sans-serif;">=0D=0A                           =
+                           <div style=3D"font-size:12px;line-height:14px;te=
+xt-align:left;color:#555555;font-family:'Segoe UI', Verdana, Arial, sans-se=
+rif;">=0D=0A                                                        <p styl=
+e=3D"margin: 0;font-size: 12px;line-height: 14px;text-align: left">Offer na=
+me: Free Trial</p>=0D=0A                                                   =
+   </div>=0D=0A                                                    </div>=
+=0D=0A                                                  </td>=0D=0A        =
+                                        </tr>=0D=0A                        =
+                        <tr style=3D"vertical-align: top">=0D=0A           =
+                                       <td style=3D"word-break: break-word;=
+border-collapse: collapse !important;vertical-align: top;padding-top: 5px;p=
+adding-right: 10px;padding-bottom: 0px;padding-left: 10px">=0D=0A          =
+                                          <div style=3D"color:#555555;line-=
+height:120%;font-family:'Segoe UI', Verdana, Arial, sans-serif;">=0D=0A    =
+                                                  <div style=3D"font-size:1=
+2px;line-height:14px;text-align:left;color:#555555;font-family:'Segoe UI', =
+Verdana, Arial, sans-serif;">=0D=0A                                        =
+                <p style=3D"margin: 0;font-size: 12px;line-height: 14px;tex=
+t-align: left">Billing Period: October 13, 2017-November 12, 2017</p>=0D=0A=
+                                                      </div>=0D=0A         =
+                                           </div>=0D=0A                    =
+                              </td>=0D=0A                                  =
+              </tr>=0D=0A                                              </tb=
+ody>=0D=0A                                            </table>=0D=0A       =
+                                   </td>=0D=0A                             =
+           </tr>=0D=0A                                      </tbody>=0D=0A =
+                                   </table>=0D=0A                          =
+        </div>=0D=0A                                  <!--[if (gte mso 9)|(=
+IE)]></td><![endif]-->=0D=0A                                  <!--[if (gte =
+mso 9)|(IE)]></td></tr></table><![endif]-->=0D=0A                          =
+      </td>=0D=0A                              </tr>=0D=0A                 =
+           </tbody>=0D=0A                          </table>=0D=0A          =
+              </td>=0D=0A                      </tr>=0D=0A                 =
+   </tbody>=0D=0A                  </table>=0D=0A                  <!--[if =
+mso]>=0D=0A                    </td></tr></table>=0D=0A                    =
+<![endif]-->=0D=0A                  <!--[if (IE)]>=0D=0A                   =
+ </td></tr></table>=0D=0A                    <![endif]-->=0D=0A            =
+   =0D=0A                  <!--[if gte mso 9]>=0D=0A                    <ta=
+ble id=3D"outlookholder" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" a=
+lign=3D"center"><tr><td>=0D=0A                    <![endif]-->=0D=0A       =
+           <!--[if (IE)]>=0D=0A                    <table width=3D"500" ali=
+gn=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">=0D=0A      =
+                  <tr>=0D=0A                            <td>=0D=0A         =
+           <![endif]-->=0D=0A                  <table class=3D"container" s=
+tyle=3D"border-spacing: 0;border-collapse: collapse;vertical-align: top;max=
+-width: 500px;margin: 0 auto;text-align: inherit; border-bottom: solid 1px =
+#999;" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" width=3D"100%" =
+border=3D"0">=0D=0A                    <tbody>=0D=0A                      <=
+tr style=3D"vertical-align: top">=0D=0A                        <td style=3D=
+"word-break: break-word;border-collapse: collapse !important;vertical-align=
+: top" width=3D"100%">=0D=0A                          <table class=3D"block=
+-grid" style=3D"border-spacing: 0;border-collapse: collapse;vertical-align:=
+ top;width: 100%;color: #333;background-color: transparent" cellpadding=3D"=
+0" cellspacing=3D"0" width=3D"100%" bgcolor=3D"transparent">=0D=0A         =
+                   <tbody>=0D=0A                              <tr style=3D"=
+vertical-align: top">=0D=0A                                <td style=3D"wor=
+d-break: break-word;border-collapse: collapse !important;vertical-align: to=
+p;text-align: center;font-size: 0">=0D=0A                                  =
+<!--[if (gte mso 9)|(IE)]><table width=3D"100%" align=3D"center" bgcolor=3D=
+"transparent" cellpadding=3D"0" cellspacing=3D"0" border=3D"0"><tr><![endif=
+]-->=0D=0A                                  <!--[if (gte mso 9)|(IE)]><td v=
+align=3D"top" width=3D"500" align=3D"left"><![endif]-->=0D=0A              =
+                    <div class=3D"cta" style=3D"display: inline-block;verti=
+cal-align: top;text-align: center;width: 500px">=0D=0A                     =
+               <table style=3D"border-spacing: 0;border-collapse: collapse;=
+vertical-align: top" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" w=
+idth=3D"100%" border=3D"0">=0D=0A                                      <tbo=
+dy>=0D=0A                                        <tr style=3D"vertical-alig=
+n: top">=0D=0A                                          <td style=3D"word-b=
+reak: break-word;border-collapse: collapse !important;vertical-align: top;b=
+ackground-color: transparent;padding-top: 5px;padding-right: 0px;padding-bo=
+ttom: 5px;padding-left: 0px;border-top: 0px solid transparent;border-right:=
+ 0px solid transparent;border-bottom: 0px solid transparent;border-left: 0p=
+x solid transparent">=0D=0A                                            <tab=
+le style=3D"border-spacing: 0;border-collapse: collapse;vertical-align: top=
+" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">=0D=0A                =
+                              <tbody>=0D=0A                                =
+                <tr style=3D"vertical-align: top">=0D=0A                   =
+                               <td style=3D"word-break: break-word;border-c=
+ollapse: collapse !important;vertical-align: top;padding-top: 2px;padding-r=
+ight: 10px;padding-bottom: 10px;padding-left: 10px">=0D=0A                 =
+                                   <div style=3D"color:#555555;line-height:=
+120%;font-family:'Segoe UI', Verdana, Arial, sans-serif;">=0D=0A           =
+                                           <div style=3D"font-size:14px;lin=
+e-height:17px;color:#555555;font-family:'Segoe UI', Verdana, Arial, sans-se=
+rif;text-align:left;">=0D=0A                                               =
+         <p class=3D"body-text" style=3D"margin: 0;font-size: 12px;line-hei=
+ght: 14px"></p>=0D=0A                                                      =
+</div>=0D=0A                                                    </div>=0D=
+=0A                                                  </td>=0D=0A           =
+                                     </tr>=0D=0A                           =
+                   </tbody>=0D=0A                                          =
+  </table>=0D=0A                                            <table style=3D=
+"border-spacing: 0;border-collapse: collapse;vertical-align: top" width=3D"=
+100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">=0D=0A              =
+                                <tbody>=0D=0A                              =
+                  <tr style=3D"vertical-align: top">=0D=0A                 =
+                                 <td class=3D"button-container" style=3D"wo=
+rd-break: break-word;border-collapse: collapse !important;vertical-align: t=
+op;padding-top: 10px;padding-right: 10px;padding-bottom: 5px;padding-left: =
+5px" align=3D"center">=0D=0A                                               =
+     <table style=3D"border-spacing: 0;border-collapse: collapse;vertical-a=
+lign: top" width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+align=3D"center">=0D=0A                                                    =
+  <tbody>=0D=0A                                                        <tr =
+style=3D"vertical-align: top">=0D=0A                                       =
+                   <td class=3D"button" style=3D"word-break: break-word;bor=
+der-collapse: collapse !important;vertical-align: top" width=3D"100%" align=
+=3D"center" valign=3D"middle">=0D=0A                                       =
+                     <!-- START LEFT BUTTON -->=0D=0A  <table width=3D"100%=
+">=0D=0A    <tr>=0D=0A      <td width=3D"100%">=0D=0A        <table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0">=0D=0A          <tr>=0D=0A      =
+      <td height=3D"2" width=3D"100%" style=3D"font-size: 0px; line-height:=
+ 2px;">=0D=0A            &nbsp;=0D=0A            </td>=0D=0A          </tr>=
+=0D=0A        </table>=0D=0A        <table width=3D"100%" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0">=0D=0A          <tbody>=0D=0A          <tr>=
+=0D=0A            <td width=3D"100%">=0D=0A              <table width=3D"10=
+0%" class=3D"button-table" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+>=0D=0A                <tr>=0D=0A                  <td align=3D"center" bgc=
+olor=3D"#49B700" style=3D"-moz-border-radius: 4px; -webkit-border-radius: 4=
+px; border-radius: 4px; width: 440px;">=0D=0A                    =0D=0A    =
+                <a href=3D"https://track.azure.com/f/a/nik5Q7vAXAkdLUPsmZsT=
+2g~~/AAAAAQA~/RgRb7QyNP0TIaHR0cHM6Ly9wb3J0YWwuYXp1cmUuY29tLyNibGFkZS9IdWJzR=
+Xh0ZW5zaW9uL1Jlc291cmNlTWVudUJsYWRlL2ludm9pY2VzL2lkLyUyRnN1YnNjcmlwdGlvbnMl=
+MkY3YWZlYTcxMS0yOTZiLTQzYTItYmE4Ny0yODA1MmZiOGEwY2MvcmVmZXJyZXJJbmZvLyUyRnN=
+1YnNjcmlwdGlvbnMlMkY3YWZlYTcxMS0yOTZiLTQzYTItYmE4Ny0yODA1MmZiOGEwY2NXBG1zZn=
+RYBAAAAABCCgACjYcKWmwTjcFBCACtAbkvIfMIUhV1bml4Ymhhc2thckBnbWFpbC5jb20JUQQAA=
+AAAR8V7IkJhdGNoSWQiOiI5OTAzYjY4Yy03YjQ1LTQyOWItOTU3Zi0xNDg3NTJiOTliMjUiLCJF=
+bWFpbElkIjoiYWM5ZTQ1ZDMtODI4OS00ODM0LWEzYTItNmI3ZTM3MGVlOTA3IiwiU2VudERhdGV=
+LZXkiOiIyMDE3MTExNDA2MDUwMSIsImJpbmRpbmciOiJuZXdkZWRpY2F0ZWQiLCJUZW1wbGF0ZU=
+lkIjoidGVtX3dFS29vdDVmejlYTTZnTmVBYmtud0QifRM~" style=3D"padding: 10px;disp=
+lay: block;text-decoration: none;  border:0;text-align: center;font-size: 1=
+2px;font-family:'Segoe UI', Verdana, Arial, sans-serif;color: #ffffff;backg=
+round: #49B700;border: 1px solid #49B700;-moz-border-radius: 0px; -webkit-b=
+order-radius: 0px; border-radius: 0px;line-height:14px;" class=3D"button_li=
+nk">=0D=0A                    <!--[if !mso]><!-- -->=0D=0A <span class=3D"b=
+utton-text" style=3D"color:#fff; margin: 0px; font-size: 12px;">=0D=0A<!--<=
+![endif]-->=0D=0A                    Access my statement<!--[if !mso]><!-- =
+-->=0D=0A </span>=0D=0A<!--<![endif]-->=0D=0A                    </a>=0D=0A=
+                  </td>=0D=0A                </tr>=0D=0A              </tab=
+le>=0D=0A            </td>=0D=0A          </tr>=0D=0A          </tbody>=0D=
+=0A        </table>=0D=0A        <table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0">=0D=0A          <tr>=0D=0A            <td height=3D"20" width=
+=3D"100%" style=3D"font-size: 20px; line-height: 20px;">=0D=0A            &=
+nbsp;=0D=0A            </td>=0D=0A          </tr>=0D=0A        </table>=0D=
+=0A      </td>=0D=0A    </tr>=0D=0A  </table>=0D=0A<!-- END LEFT BUTTON -->=
+=0D=0A                                                          </td>=0D=0A=
+                                                        </tr>=0D=0A        =
+                                              </tbody>=0D=0A               =
+                                     </table>=0D=0A                        =
+                          </td>=0D=0A                                      =
+          </tr>=0D=0A                                              </tbody>=
+=0D=0A                                            </table>=0D=0A           =
+                               </td>=0D=0A                                 =
+       </tr>=0D=0A                                      </tbody>=0D=0A     =
+                               </table>=0D=0A                              =
+      =0D=0A                                  </div>=0D=0A                 =
+                 <!--[if (gte mso 9)|(IE)]></td><![endif]-->=0D=0A         =
+                         <!--[if (gte mso 9)|(IE)]></td></tr></table><![end=
+if]-->=0D=0A                                </td>=0D=0A                    =
+          </tr>=0D=0A                            </tbody>=0D=0A            =
+              </table>=0D=0A                        </td>=0D=0A            =
+          </tr>=0D=0A                    </tbody>=0D=0A                  </=
+table>=0D=0A                  <!--[if mso]>=0D=0A                    </td><=
+/tr></table>=0D=0A                    <![endif]-->=0D=0A                  <=
+!--[if (IE)]>=0D=0A                    </td></tr></table>=0D=0A            =
+        <![endif]-->=0D=0A                </td>=0D=0A              </tr>=0D=
+=0A            </tbody>=0D=0A          </table>=0D=0A          =0D=0A      =
+    <!--[if mso]>=0D=0A            </td></tr></table>=0D=0A            <![e=
+ndif]-->=0D=0A          <!--[if mso]>=0D=0A            </td></tr></table>=
+=0D=0A            <![endif]-->=0D=0A          <!--[if (IE)]>=0D=0A         =
+   </td></tr></table>=0D=0A            <![endif]-->=0D=0A          <!--[if =
+(IE)]>=0D=0A                    <table width=3D"600" align=3D"center" cellp=
+adding=3D"0" cellspacing=3D"0" border=3D"0">=0D=0A                        <=
+tr>=0D=0A                            <td>=0D=0A                    <![endif=
+]-->=0D=0A          <table class=3D"side-columns" style=3D"border-spacing: =
+0;border-collapse: collapse;vertical-align: top;background-color: transpare=
+nt; max-width: 600px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"center"=
+ width=3D"100%" border=3D"0">=0D=0A            <tbody>=0D=0A              <=
+tr style=3D"vertical-align: top">=0D=0A                <td style=3D"word-br=
+eak: break-word;border-collapse: collapse !important;vertical-align: top" w=
+idth=3D"100%">=0D=0A                  =0D=0A          <!--[if gte mso 9]>=
+=0D=0A                    <table id=3D"outlookholder" width =3D "600" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center"><tr><td>=0D=0A=
+                    <![endif]-->=0D=0A                  <!--[if gte mso 9]>=
+=0D=0A                    <table id=3D"outlookholder" border=3D"0" cellspac=
+ing=3D"0" cellpadding=3D"0" align=3D"center"><tr><td>=0D=0A                =
+    <![endif]-->=0D=0A                  <!--[if (IE)]>=0D=0A               =
+     <table width=3D"500" align=3D"center" cellpadding=3D"0" cellspacing=3D=
+"0" border=3D"0">=0D=0A                        <tr>=0D=0A                  =
+          <td>=0D=0A                    <![endif]-->=0D=0A                 =
+ <table class=3D"container" style=3D"border-spacing: 0;border-collapse: col=
+lapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inher=
+it; border-bottom: solid 1px #ddd;" cellpadding=3D"0" cellspacing=3D"0" ali=
+gn=3D"center" width=3D"100%" border=3D"0">=0D=0A                    <tbody>=
+=0D=0A                      <tr style=3D"vertical-align: top">=0D=0A       =
+                 <td style=3D"word-break: break-word;border-collapse: colla=
+pse !important;vertical-align: top" width=3D"100%">=0D=0A                  =
+         <table class=3D"block-grid two-up" style=3D"border-spacing: 0;bord=
+er-collapse: collapse;vertical-align: top;width: 100%;max-width: 500px;colo=
+r: #333;background-color: transparent" cellpadding=3D"0" cellspacing=3D"0" =
+width=3D"100%" bgcolor=3D"transparent">=0D=0A                            <t=
+body>=0D=0A                              <tr style=3D"vertical-align: top">=
+=0D=0A                                <td style=3D"word-break: break-word;b=
+order-collapse: collapse !important;vertical-align: top;text-align: left;fo=
+nt-size: 0">=0D=0A                                  <!--[if (gte mso 9)|(IE=
+)]><table width=3D"100%" align=3D"center" bgcolor=3D"transparent" cellpaddi=
+ng=3D"0" cellspacing=3D"0" border=3D"0"><tr><![endif]-->=0D=0A             =
+                     <!--[if (gte mso 9)|(IE)]><td valign=3D"top" width=3D"=
+80"><![endif]-->=0D=0A                                <div style=3D"display=
+:table-row">=0D=0A                                 <div class=3D"icon" styl=
+e=3D"display: table-cell;vertical-align: top;text-align: center;width: 40px=
+">=0D=0A                                   <table style=3D"border-spacing: =
+0;border-collapse: collapse;vertical-align: top" cellpadding=3D"0" cellspac=
+ing=3D"0" align=3D"center" width=3D"100%" border=3D"0">=0D=0A              =
+                       <tbody>=0D=0A                                       =
+<tr style=3D"vertical-align: top">=0D=0A                                   =
+      <td class=3D"icon" style=3D"word-break: break-word;border-collapse: c=
+ollapse !important;vertical-align: top;background-color: transparent;paddin=
+g-top: 12px;padding-right: 0px;padding-bottom: 5px;padding-left: 0px;border=
+-top: 0px solid transparent;border-right: 0px solid transparent;border-bott=
+om: 0px solid transparent;border-left: 0px solid transparent">=0D=0A       =
+                                    <table style=3D"border-spacing: 0;borde=
+r-collapse: collapse;vertical-align: top" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" border=3D"0">=0D=0A                                      =
+       <tbody>=0D=0A                                               <tr styl=
+e=3D"vertical-align: top">=0D=0A                                           =
+      <td style=3D"word-break: break-word;border-collapse: collapse !import=
+ant;vertical-align:top;width: 100%" align=3D"center">=0D=0A                =
+                                   <div style=3D"font-size:12px" align=3D"c=
+enter">=0D=0A                                                     <img clas=
+s=3D"center" style=3D"outline: none;text-decoration: none;-ms-interpolation=
+-mode: bicubic;clear: both;display: block;border: 0;height: auto;line-heigh=
+t: 100%;margin: 0 auto;float: none;width: 40px;max-width: 40px" align=3D"mi=
+ddle" border=3D"0" src=3D'https://d1pgqke3goo8l6.cloudfront.net/7SClrehNRNW=
+WvtjbrOo3_bullet.PNG' alt=3D'bullet.PNG' title=3D"Image" width=3D"40"/>=0D=
+=0A                                                   </div>=0D=0A         =
+                                        </td>=0D=0A                        =
+                       </tr>=0D=0A                                         =
+    </tbody>=0D=0A                                           </table>=0D=0A=
+                                         </td>=0D=0A                       =
+                </tr>=0D=0A                                     </tbody>=0D=
+=0A                                   </table>=0D=0A                       =
+          </div>=0D=0A                                 <!--[if (gte mso 9)|=
+(IE)]></td><![endif]-->=0D=0A                                  <!--[if (gte=
+ mso 9)|(IE)]><td valign=3D"top" width=3D"460"><![endif]-->=0D=0A          =
+                        <div class=3D"icon text" style=3D"display: table-ce=
+ll;vertical-align: top;text-align: center;max-width: 460px">=0D=0A         =
+                           <table style=3D"border-spacing: 0;border-collaps=
+e: collapse;vertical-align: top" cellpadding=3D"0" cellspacing=3D"0" align=
+=3D"center" width=3D"100%" border=3D"0">=0D=0A                             =
+         <tbody>=0D=0A                                        <tr style=3D"=
+vertical-align: top">=0D=0A                                          <td st=
+yle=3D"word-break: break-word;border-collapse: collapse !important;vertical=
+-align: top;background-color: transparent;padding-top: 5px;padding-right: 0=
+px;padding-bottom: 5px;padding-left: 0px;border-top: 0px solid transparent;=
+border-right: 0px solid transparent;border-bottom: 0px solid transparent;bo=
+rder-left: 0px solid transparent">=0D=0A                                   =
+         <table style=3D"border-spacing: 0;border-collapse: collapse;vertic=
+al-align: top" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">=0D=0A   =
+                                           <tbody>=0D=0A                   =
+                             <tr style=3D"vertical-align: top">=0D=0A      =
+                                            <td style=3D"word-break: break-=
+word;border-collapse: collapse !important;vertical-align: top;padding-top: =
+8px;padding-right: 15px;padding-bottom: 10px;padding-left: 10px">=0D=0A    =
+                                                <div style=3D"color:#555555=
+;line-height:120%;font-family:'Segoe UI', Verdana, Arial, sans-serif;">=0D=
+=0A                                                      <div style=3D"font=
+-size:12px;line-height:14px;color:#555555;font-family:'Segoe UI', Verdana, =
+Arial, sans-serif;text-align:left;">=0D=0A                                 =
+                       <p class=3D"body-text" style=3D"margin: 0;font-size:=
+ 12px;line-height: 20px">We can attach your statement to this email with yo=
+ur permission. You can also specify additional recipients. <a style=3D"text=
+-decoration: none; color: #00ABEC;" href=3D"https://track.azure.com/f/a/M2W=
+bAKFpRwoQtVOW_bJuEg~~/AAAAAQA~/RgRb7QyNP0SGaHR0cHM6Ly9wb3J0YWwuYXp1cmUuY29t=
+LyNibGFkZS9NaWNyb3NvZnRfQXp1cmVfQmlsbGluZy9PcHRJblRvRW1haWxTdGF0ZW1lbnRCbGF=
+kZS9zdWJzY3JpcHRpb25JZC83YWZlYTcxMS0yOTZiLTQzYTItYmE4Ny0yODA1MmZiOGEwY2NXBG=
+1zZnRYBAAAAABCCgACjYcKWmwTjcFBCACtAbkvIfMIUhV1bml4Ymhhc2thckBnbWFpbC5jb20JU=
+QQAAAAAR8V7IkJhdGNoSWQiOiI5OTAzYjY4Yy03YjQ1LTQyOWItOTU3Zi0xNDg3NTJiOTliMjUi=
+LCJFbWFpbElkIjoiYWM5ZTQ1ZDMtODI4OS00ODM0LWEzYTItNmI3ZTM3MGVlOTA3IiwiU2VudER=
+hdGVLZXkiOiIyMDE3MTExNDA2MDUwMSIsImJpbmRpbmciOiJuZXdkZWRpY2F0ZWQiLCJUZW1wbG=
+F0ZUlkIjoidGVtX3dFS29vdDVmejlYTTZnTmVBYmtud0QifRM~">Sign up here</a>.</p>=
+=0D=0A                                                      </div>=0D=0A   =
+                                                 </div>=0D=0A              =
+                                    </td>=0D=0A                            =
+                    </tr>=0D=0A                                            =
+  </tbody>=0D=0A                                            </table>=0D=0A =
+                                         </td>=0D=0A                       =
+                 </tr>=0D=0A                                      </tbody>=
+=0D=0A                                    </table>=0D=0A                   =
+               </div>=0D=0A                                </div>=0D=0A    =
+                              <!--[if (gte mso 9)|(IE)]></td><![endif]-->=
+=0D=0A                                  <!--[if (gte mso 9)|(IE)]></td></tr=
+></table><![endif]-->=0D=0A                                </td>=0D=0A     =
+                         </tr>=0D=0A                            </tbody>=0D=
+=0A                          </table>=0D=0A =0D=0A                         =
+ <table class=3D"block-grid two-up" style=3D"border-spacing: 0;border-colla=
+pse: collapse;vertical-align: top;width: 100%;max-width: 500px;color: #333;=
+background-color: transparent" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" bgcolor=3D"transparent">=0D=0A                            <tbody>=0D=
+=0A                              <tr style=3D"vertical-align: top">=0D=0A  =
+                              <td style=3D"word-break: break-word;border-co=
+llapse: collapse !important;vertical-align: top;text-align: left;font-size:=
+ 0">=0D=0A                                  <!--[if (gte mso 9)|(IE)]><tabl=
+e width=3D"100%" align=3D"center" bgcolor=3D"transparent" cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0"><tr><![endif]-->=0D=0A                     =
+             <!--[if (gte mso 9)|(IE)]><td valign=3D"top" width=3D"80"><![e=
+ndif]-->=0D=0A                                <div style=3D"display:table-r=
+ow;">=0D=0A                                 <div class=3D"icon3" style=3D"d=
+isplay: table-cell;vertical-align: top;text-align: center;width: 40px">=0D=
+=0A                                   <table style=3D"border-spacing: 0;bor=
+der-collapse: collapse;vertical-align: top" cellpadding=3D"0" cellspacing=
+=3D"0" align=3D"center" width=3D"100%" border=3D"0">=0D=0A                 =
+                    <tbody>=0D=0A                                       <tr=
+ style=3D"vertical-align: top">=0D=0A                                      =
+   <td class=3D"icon" style=3D"word-break: break-word;border-collapse: coll=
+apse !important;vertical-align: top;background-color: transparent;padding-t=
+op: 8px;padding-right: 0px;padding-bottom: 5px;padding-left: 0px;border-top=
+: 0px solid transparent;border-right: 0px solid transparent;border-bottom: =
+0px solid transparent;border-left: 0px solid transparent">=0D=0A           =
+                                <table style=3D"border-spacing: 0;border-co=
+llapse: collapse;vertical-align: top" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%" border=3D"0">=0D=0A                                          =
+   <tbody>=0D=0A                                               <tr style=3D=
+"vertical-align: top">=0D=0A                                               =
+  <td style=3D"word-break: break-word;border-collapse: collapse !important;=
+vertical-align:top;width: 100%" align=3D"center">=0D=0A                    =
+                               <div style=3D"font-size:12px" align=3D"cente=
+r">=0D=0A                                                     <img class=3D=
+"center" style=3D"outline: none;text-decoration: none;-ms-interpolation-mod=
+e: bicubic;clear: both;display: block;border: 0;height: auto;line-height: 1=
+00%;margin: 0 auto;float: none;width: 40px;max-width: 40px" align=3D"middle=
+" border=3D"0" src=3D'https://d1pgqke3goo8l6.cloudfront.net/7SClrehNRNWWvtj=
+brOo3_bullet.PNG' alt=3D'bullet.PNG' title=3D"Image" width=3D"40"/>=0D=0A  =
+                                                 </div>=0D=0A              =
+                                   </td>=0D=0A                             =
+                  </tr>=0D=0A                                             <=
+/tbody>=0D=0A                                           </table>=0D=0A     =
+                                    </td>=0D=0A                            =
+           </tr>=0D=0A                                     </tbody>=0D=0A  =
+                                 </table>=0D=0A                            =
+     </div>=0D=0A                                 <!--[if (gte mso 9)|(IE)]=
+></td><![endif]-->=0D=0A                                  <!--[if (gte mso =
+9)|(IE)]><td valign=3D"top" width=3D"460"><![endif]-->=0D=0A               =
+                   <div class=3D"icon text" style=3D"display: table-cell;ve=
+rtical-align: top;text-align: center;max-width: 460px">=0D=0A              =
+                      <table style=3D"border-spacing: 0;border-collapse: co=
+llapse;vertical-align: top" cellpadding=3D"0" cellspacing=3D"0" align=3D"ce=
+nter" width=3D"100%" border=3D"0">=0D=0A                                   =
+   <tbody>=0D=0A                                        <tr style=3D"vertic=
+al-align: top">=0D=0A                                          <td style=3D=
+"word-break: break-word;border-collapse: collapse !important;vertical-align=
+: top;background-color: transparent;padding-top: 5px;padding-right: 0px;pad=
+ding-bottom: 25px;padding-left: 0px;border-top: 0px solid transparent;borde=
+r-right: 0px solid transparent;border-bottom: 0px solid transparent;border-=
+left: 0px solid transparent">=0D=0A                                        =
+    <table style=3D"border-spacing: 0;border-collapse: collapse;vertical-al=
+ign: top" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">=0D=0A        =
+                                      <tbody>=0D=0A                        =
+                        <tr style=3D"vertical-align: top">=0D=0A           =
+                                       <td style=3D"word-break: break-word;=
+border-collapse: collapse !important;vertical-align: top;padding-top: 10px;=
+padding-right: 10px;padding-bottom: 10px;padding-left: 10px">=0D=0A        =
+                                            <div style=3D"color:#555555;lin=
+e-height:120%;font-family:'Segoe UI', Verdana, Arial, sans-serif;">=0D=0A  =
+                                                    <div style=3D"font-size=
+:12px;line-height:14px;color:#555555;font-family:'Segoe UI', Verdana, Arial=
+, sans-serif;text-align:left;">=0D=0A                                      =
+                  <p class=3D"body-text" style=3D"margin: 0;font-size: 12px=
+;line-height: 18px">If you need non-visual support, see our <a style=3D"tex=
+t-decoration: none; color: #00ABEC;" href=3D"https://track.azure.com/f/a/kQ=
+N06Zh3hJtOPpLE47rqTA~~/AAAAAQA~/RgRb7QyNP0QfaHR0cHM6Ly9nLm1zbi5jb20vMEJBTTA=
+wZW4tVVMvM1cEbXNmdFgEAAAAAEIKAAKNhwpabBONwUEIAK0BuS8h8whSFXVuaXhiaGFza2FyQG=
+dtYWlsLmNvbQlRBAAAAABHxXsiRW1haWxJZCI6ImFjOWU0NWQzLTgyODktNDgzNC1hM2EyLTZiN=
+2UzNzBlZTkwNyIsIkJhdGNoSWQiOiI5OTAzYjY4Yy03YjQ1LTQyOWItOTU3Zi0xNDg3NTJiOTli=
+MjUiLCJUZW1wbGF0ZUlkIjoidGVtX3dFS29vdDVmejlYTTZnTmVBYmtud0QiLCJiaW5kaW5nIjo=
+ibmV3ZGVkaWNhdGVkIiwiU2VudERhdGVLZXkiOiIyMDE3MTExNDA2MDUwMSJ9Ew~~"> PDF ins=
+tructions</a> for NonVisual Desktop Access.</p>=0D=0A                      =
+                                </div>=0D=0A                               =
+                     </div>=0D=0A                                          =
+        </td>=0D=0A                                                </tr>=0D=
+=0A                                              </tbody>=0D=0A            =
+                                </table>=0D=0A                             =
+             </td>=0D=0A                                        </tr>=0D=0A=
+                                      </tbody>=0D=0A                       =
+             </table>=0D=0A                                  </div>=0D=0A  =
+                              </div>=0D=0A                                 =
+ <!--[if (gte mso 9)|(IE)]></td><![endif]-->=0D=0A                         =
+         <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->=0D=0A    =
+                            </td>=0D=0A                              </tr>=
+=0D=0A                            </tbody>=0D=0A                          <=
+/table>=0D=0A                        </td>=0D=0A                      </tr>=
+=0D=0A                    </tbody>=0D=0A                  </table>=0D=0A   =
+               <!--[if mso]>=0D=0A                    </td></tr></table>=0D=
+=0A                    <![endif]-->=0D=0A                  <!--[if (IE)]>=
+=0D=0A                    </td></tr></table>=0D=0A                    <![en=
+dif]-->=0D=0A                </td>=0D=0A              </tr>=0D=0A          =
+  </tbody>=0D=0A          </table>=0D=0A          <!--[if mso]>=0D=0A      =
+      </td></tr></table>=0D=0A            <![endif]-->=0D=0A          <!--[=
+if (IE)]>=0D=0A            </td></tr></table>=0D=0A            <![endif]-->=
+=0D=0A      =0D=0A          <!--[if (IE)]>=0D=0A                    <table =
+width=3D"600" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0">=0D=0A                        <tr>=0D=0A                            =
+<td>=0D=0A                    <![endif]-->=0D=0A                         <!=
+--[if gte mso 9]>=0D=0A                    <table id=3D"outlookholder" widt=
+h =3D "600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"cente=
+r"><tr><td>=0D=0A                    <![endif]-->=0D=0A          <table cla=
+ss=3D"side-columns" style=3D"border-spacing: 0;border-collapse: collapse;ve=
+rtical-align: top;background-color: #dddddd; max-width: 600px" cellpadding=
+=3D"0" cellspacing=3D"0" align=3D"center" width=3D"100%" border=3D"0">=0D=
+=0A            <tbody>=0D=0A              <tr style=3D"vertical-align: top"=
+>=0D=0A                <td style=3D"word-break: break-word;border-collapse:=
+ collapse !important;vertical-align: top" width=3D"100%">=0D=0A            =
+      =0D=0A          <!--[if gte mso 9]>=0D=0A                    <table i=
+d=3D"outlookholder" width =3D "600" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" align=3D"center"><tr><td>=0D=0A                    <![endif]-->=
+=0D=0A                  <!--[if gte mso 9]>=0D=0A                    <table=
+ id=3D"outlookholder" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center"><tr><td>=0D=0A                    <![endif]-->=0D=0A          =
+        <!--[if (IE)]>=0D=0A                    <table width=3D"500" align=
+=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">=0D=0A        =
+                <tr>=0D=0A                            <td>=0D=0A           =
+         <![endif]-->=0D=0A=0D=0A                  <table class=3D"containe=
+r" style=3D"border-spacing: 0;border-collapse: collapse;vertical-align: top=
+;max-width: 500px;margin: 0 auto;text-align: inherit" cellpadding=3D"0" cel=
+lspacing=3D"0" align=3D"center" width=3D"100%" border=3D"0">=0D=0A         =
+           <tbody>=0D=0A                      <tr style=3D"vertical-align: =
+top">=0D=0A                        <td style=3D"word-break: break-word;bord=
+er-collapse: collapse !important;vertical-align: top" width=3D"100%">=0D=0A=
+                          <table class=3D"block-grid" style=3D"border-spaci=
+ng: 0;border-collapse: collapse;vertical-align: top;width: 100%;max-width: =
+500px;color: #333;background-color: #dddddd" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" bgcolor=3D"transparent">=0D=0A                       =
+     <tbody>=0D=0A                              <tr style=3D"vertical-align=
+: top">=0D=0A                                <td style=3D"word-break: break=
+-word;border-collapse: collapse !important;vertical-align: top;text-align: =
+center;font-size: 0">=0D=0A                                  <!--[if (gte m=
+so 9)|(IE)]><table width=3D"100%" align=3D"center" bgcolor=3D"transparent" =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0"><tr><![endif]-->=0D=0A    =
+                              <!--[if (gte mso 9)|(IE)]><td valign=3D"top" =
+width=3D"500"><![endif]-->=0D=0A                                  <div clas=
+s=3D"col num12" style=3D"display: inline-block;vertical-align: top;width: 1=
+00%">=0D=0A                                    <table style=3D"border-spaci=
+ng: 0;border-collapse: collapse;vertical-align: top" cellpadding=3D"0" cell=
+spacing=3D"0" align=3D"center" width=3D"100%" border=3D"0">=0D=0A          =
+                            <tbody>=0D=0A                                  =
+      <tr style=3D"vertical-align: top">=0D=0A                             =
+             <td style=3D"word-break: break-word;border-collapse: collapse =
+!important;vertical-align: top;background-color: transparent;padding-top: 5=
+px;padding-right: 0px;padding-bottom: 5px;padding-left: 0px;border-top: 0px=
+ solid transparent;border-right: 0px solid transparent;border-bottom: 0px s=
+olid transparent;border-left: 0px solid transparent">=0D=0A                =
+                            <table style=3D"border-spacing: 0;border-collap=
+se: collapse;vertical-align: top" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">=0D=0A                                              <tbody>=0D=0A=
+                                                <tr style=3D"vertical-align=
+: top">=0D=0A                                                  <td style=3D=
+"word-break: break-word;border-collapse: collapse !important;vertical-align=
+: top;padding-top: 15px;padding-right: 10px;padding-bottom: 2px;padding-lef=
+t: 10px">=0D=0A                                                    <div sty=
+le=3D"line-height:120%;font-family:'Segoe UI', Verdana, Arial, sans-serif;"=
+>=0D=0A                                                      <div style=3D"=
+font-size:12px;line-height:14px;color:#555555;font-family:'Segoe UI', Verda=
+na, Arial, sans-serif;text-align:left;">=0D=0A                             =
+                           <p style=3D"margin: 0;font-size: 10px;line-heigh=
+t: 12px">This message from Microsoft is an important part of a program, ser=
+vice, or product that you or your company purchased or participates in. Mic=
+rosoft respects your privacy. Please read our<a style=3D"text-decoration: n=
+one; color: #00ABEC;"href=3D"https://track.azure.com/f/a/6E29va7p6KHKMSFMwz=
+4Xpw~~/AAAAAQA~/RgRb7QyNP0QzaHR0cDovL2VtYWlscy5taWNyb3NvZnQuY29tL0hHMDAwM2M=
+wVzk4aGlFNzBxM1EwMFJFVwRtc2Z0WAQAAAAAQgoAAo2HClpsE43BQQgArQG5LyHzCFIVdW5peG=
+JoYXNrYXJAZ21haWwuY29tCVEEAAAAAEfFeyJTZW50RGF0ZUtleSI6IjIwMTcxMTE0MDYwNTAxI=
+iwiQmF0Y2hJZCI6Ijk5MDNiNjhjLTdiNDUtNDI5Yi05NTdmLTE0ODc1MmI5OWIyNSIsIlRlbXBs=
+YXRlSWQiOiJ0ZW1fd0VLb290NWZ6OVhNNmdOZUFia253RCIsIkVtYWlsSWQiOiJhYzllNDVkMy0=
+4Mjg5LTQ4MzQtYTNhMi02YjdlMzcwZWU5MDciLCJiaW5kaW5nIjoibmV3ZGVkaWNhdGVkIn0T">=
+ Privacy Statement</a>.</p>=0D=0A                                          =
+            </div>=0D=0A                                                   =
+ </div>=0D=0A                                                  </td>=0D=0A =
+                                               </tr>=0D=0A                 =
+                             </tbody>=0D=0A                                =
+            </table>=0D=0A                                          </td>=
+=0D=0A                                        </tr>=0D=0A                  =
+                    </tbody>=0D=0A                                    </tab=
+le>=0D=0A                                  </div>=0D=0A                    =
+              <!--[if (gte mso 9)|(IE)]></td><![endif]-->=0D=0A            =
+                      <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]=
+-->=0D=0A                                </td>=0D=0A                       =
+       </tr>=0D=0A                            </tbody>=0D=0A               =
+           </table>=0D=0A                        </td>=0D=0A               =
+       </tr>=0D=0A                    </tbody>=0D=0A                  </tab=
+le>=0D=0A                  <!--[if mso]>=0D=0A                    </td></tr=
+></table>=0D=0A                    <![endif]-->=0D=0A                  <!--=
+[if (IE)]>=0D=0A                    </td></tr></table>=0D=0A               =
+     <![endif]-->=0D=0A                </td>=0D=0A              </tr>=0D=0A=
+              <tr style=3D"vertical-align: top">=0D=0A                <td s=
+tyle=3D"word-break: break-word;border-collapse: collapse !important;vertica=
+l-align: top" width=3D"100%">=0D=0A                  <!--[if gte mso 9]>=0D=
+=0A                    <table id=3D"outlookholder" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" align=3D"center"><tr><td>=0D=0A                   =
+ <![endif]-->=0D=0A                  <!--[if (IE)]>=0D=0A                  =
+  <table width=3D"500" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0">=0D=0A                        <tr>=0D=0A                     =
+       <td>=0D=0A                    <![endif]-->=0D=0A                  <t=
+able class=3D"container" style=3D"border-spacing: 0;border-collapse: collap=
+se;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inherit"=
+ cellpadding=3D"0" cellspacing=3D"0" align=3D"center" width=3D"100%" border=
+=3D"0">=0D=0A                    <tbody>=0D=0A                      <tr sty=
+le=3D"vertical-align: top">=0D=0A                        <td style=3D"word-=
+break: break-word;border-collapse: collapse !important;vertical-align: top"=
+ width=3D"100%">=0D=0A                          <table class=3D"block-grid =
+four-up" style=3D"border-spacing: 0;border-collapse: collapse;vertical-alig=
+n: top;width: 100%;max-width: 500px;color: #333;background-color: #dddddd" =
+cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" bgcolor=3D"transparent">=
+=0D=0A                            <tbody>=0D=0A                            =
+  <tr style=3D"vertical-align: top">=0D=0A                                <=
+td style=3D"word-break: break-word;border-collapse: collapse !important;ver=
+tical-align: top;text-align: center;font-size: 0">=0D=0A                   =
+               <!--[if (gte mso 9)|(IE)]><table width=3D"100%" align=3D"cen=
+ter" bgcolor=3D"transparent" cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0"><tr><![endif]-->=0D=0A                                  <!--[if (gte mso=
+ 9)|(IE)]><td valign=3D"top" width=3D"250"><![endif]-->=0D=0A              =
+                    <div class=3D"address" style=3D"display: inline-block;v=
+ertical-align: center;text-align: center;width: 250px">=0D=0A              =
+                      <table style=3D"border-spacing: 0;border-collapse: co=
+llapse;vertical-align: top" cellpadding=3D"0" cellspacing=3D"0" align=3D"ce=
+nter" width=3D"100%" border=3D"0">=0D=0A                                   =
+   <tbody>=0D=0A                                        <tr style=3D"vertic=
+al-align: top">=0D=0A                                          <td style=3D=
+"word-break: break-word;border-collapse: collapse !important;vertical-align=
+: top;background-color: transparent;padding-top: 0px;padding-right: 0px;pad=
+ding-bottom: 0px;padding-left: 0px;border-top: 0px solid transparent;border=
+-right: 0px solid transparent;border-bottom: 0px solid transparent;border-l=
+eft: 0px solid transparent">=0D=0A                                         =
+   <table style=3D"border-spacing: 0;border-collapse: collapse;vertical-ali=
+gn: top" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">=0D=0A         =
+                                     <tbody>=0D=0A                         =
+                       <tr style=3D"vertical-align: top">=0D=0A            =
+                                      <td style=3D"word-break: break-word;b=
+order-collapse: collapse !important;vertical-align: top;padding-top: 10px;p=
+adding-right: 10px;padding-bottom: 10px;padding-left: 10px">=0D=0A         =
+                                           <div style=3D"color:#555555;line=
+-height:120%;font-family:'Segoe UI', Verdana, Arial, sans-serif;">=0D=0A   =
+                                                   <div style=3D"font-size:=
+10px;line-height:10px;color:#555555;font-family:'Segoe UI', Verdana, Arial,=
+ sans-serif;text-align:left;">=0D=0A                                       =
+                 <p style=3D"margin: 0;font-size: 10px;line-height: 10px">O=
+ne Microsoft Way Redmond WA, 98052 USA</p>=0D=0A                           =
+                           </div>=0D=0A                                    =
+                </div>=0D=0A                                               =
+   </td>=0D=0A                                                </tr>=0D=0A  =
+                                            </tbody>=0D=0A                 =
+                           </table>=0D=0A                                  =
+        </td>=0D=0A                                        </tr>=0D=0A     =
+                                 </tbody>=0D=0A                            =
+        </table>=0D=0A                                  </div>=0D=0A       =
+                           <!--[if (gte mso 9)|(IE)]></td><![endif]-->=0D=
+=0A=0D=0A                                  <!--[if (gte mso 9)|(IE)]><td va=
+lign=3D"top" width=3D"250"><![endif]-->=0D=0A                              =
+    <div class=3D"microsoft" style=3D"display: inline-block;vertical-align:=
+ top;text-align: center;width: 250px">=0D=0A                               =
+     <table style=3D"border-spacing: 0;border-collapse: collapse;vertical-a=
+lign: top" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" width=3D"10=
+0%" border=3D"0">=0D=0A                                      <tbody>=0D=0A =
+                                       <tr style=3D"vertical-align: top">=
+=0D=0A                                          <td style=3D"word-break: br=
+eak-word;border-collapse: collapse !important;vertical-align: top;backgroun=
+d-color: transparent;padding-top: 5px;padding-right: 0px;padding-bottom: 5p=
+x;padding-left: 0px;border-top: 0px solid transparent;border-right: 0px sol=
+id transparent;border-bottom: 0px solid transparent;border-left: 0px solid =
+transparent">=0D=0A                                            <table style=
+=3D"border-spacing: 0;border-collapse: collapse;vertical-align: top" cellpa=
+dding=3D"0" cellspacing=3D"0" width=3D"100%">=0D=0A                        =
+                      <tbody>=0D=0A                                        =
+        <tr style=3D"vertical-align: top">=0D=0A                           =
+                       <td style=3D"word-break: break-word;border-collapse:=
+ collapse !important;vertical-align: top;padding-top: 10px;padding-right: 1=
+0px;padding-bottom: 10px;padding-left: 10px">=0D=0A                        =
+                            <div style=3D"color:#555555;line-height:120%;fo=
+nt-family:'Segoe UI', Verdana, Arial, sans-serif;">=0D=0A                  =
+                                    <div style=3D"font-size:12px;line-heigh=
+t:14px;color:#555555;font-family:'Segoe UI', Verdana, Arial, sans-serif;tex=
+t-align:right;">=0D=0A                                                     =
+   <p style=3D"margin: 0;font-size: 12px;line-height: 14px">Microsoft</p>=
+=0D=0A                                                      </div>=0D=0A   =
+                                                 </div>=0D=0A              =
+                                    </td>=0D=0A                            =
+                    </tr>=0D=0A                                            =
+  </tbody>=0D=0A                                            </table>=0D=0A =
+                                         </td>=0D=0A                       =
+                 </tr>=0D=0A                                      </tbody>=
+=0D=0A                                    </table>=0D=0A                   =
+               </div>=0D=0A                                  <!--[if (gte m=
+so 9)|(IE)]></td><![endif]-->=0D=0A                                  <!--[i=
+f (gte mso 9)|(IE)]></td></tr></table><![endif]-->=0D=0A                   =
+             </td>=0D=0A                              </tr>=0D=0A          =
+                  </tbody>=0D=0A                          </table>=0D=0A   =
+                     </td>=0D=0A                      </tr>=0D=0A          =
+          </tbody>=0D=0A                  </table>=0D=0A                  <=
+!--[if mso]>=0D=0A                    </td></tr></table>=0D=0A             =
+       <![endif]-->=0D=0A                    =0D=0A          <!--[if mso]>=
+=0D=0A            </td></tr></table>=0D=0A            <![endif]-->=0D=0A   =
+               <!--[if (IE)]>=0D=0A                    </td></tr></table>=
+=0D=0A                    <![endif]-->=0D=0A                </td>=0D=0A    =
+          </tr>=0D=0A            </tbody>=0D=0A          </table>=0D=0A    =
+      <!--[if mso]>=0D=0A            </td></tr></table>=0D=0A            <!=
+[endif]-->=0D=0A          <!--[if (IE)]>=0D=0A            </td></tr></table=
+>=0D=0A            <![endif]-->=0D=0A        </td>=0D=0A      </tr>=0D=0A  =
+  </tbody>=0D=0A  </table>=0D=0A=0D=0A=0D=0A=0D=0A<img border=3D"0" width=
+=3D"1" height=3D"1" alt=3D"" src=3D"https://track.azure.com/q/iRFSA4FqM3hY-=
+K5Xa071nQ~~/AAAAAQA~/RgRb7QyNPlcEbXNmdFgEAAAAAEIKAAKNhwpabBONwUEIAK0BuS8h8w=
+hSFXVuaXhiaGFza2FyQGdtYWlsLmNvbQlRBAAAAABHxXsiYmluZGluZyI6Im5ld2RlZGljYXRlZ=
+CIsIlNlbnREYXRlS2V5IjoiMjAxNzExMTQwNjA1MDEiLCJCYXRjaElkIjoiOTkwM2I2OGMtN2I0=
+NS00MjliLTk1N2YtMTQ4NzUyYjk5YjI1IiwiVGVtcGxhdGVJZCI6InRlbV93RUtvb3Q1Zno5WE0=
+2Z05lQWJrbndEIiwiRW1haWxJZCI6ImFjOWU0NWQzLTgyODktNDgzNC1hM2EyLTZiN2UzNzBlZT=
+kwNyJ9Ew~~">=0D=0A</body>=0D=0A=0D=0A</html>
+

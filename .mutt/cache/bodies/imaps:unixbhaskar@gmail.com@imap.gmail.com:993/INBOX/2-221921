@@ -1,0 +1,81 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp298798lfc;
+        Wed, 5 Feb 2020 08:27:17 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwxsaLGhqzr3exjlmcaqevLISD8oa9DJjQD8LOkeYrArbiRo3Q6+ltu+35rVYPkATGssYMK
+X-Received: by 2002:a9d:472:: with SMTP id 105mr24824172otc.150.1580920037381;
+        Wed, 05 Feb 2020 08:27:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580920037; cv=none;
+        d=google.com; s=arc-20160816;
+        b=uPux/eBgJXsEMaei+DiCsbLUiiKbKSiMLmVu4t478+qyIvxmhEi2voID5HvDMkGGHK
+         frWg6HLAw77934FROekVApVXlTxnXFpwZsHAXZtBiZf/CKt80hnXZ6K0AXUtwbyOI96m
+         bzHS16XtawmD/wP5ri75jo/tT772nyoe/Q1WEFW0n1F3e6PYx6uDwzk+9sen/NOK8v9Y
+         GhRppnQHaJ250GsyvwN5q1bhhAmwmxAaiMsbOrQCIvMzXwFCM6z3O3lG+IL474YDbgEx
+         vxzKIfOkYQctlXVi0mBilkuKJAVEWBCQt/S88TgwG4nzGhLQ+MzQ/ytSoSxfmi/lK2+6
+         vHww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:to:from:date;
+        bh=IaVBACN1HgLSxsVaCmtd+gEXN5mFTs6IS9141WAQGgA=;
+        b=uWjRpAwjgONF5TgnosI/EGoefYCEkvnIE/g7gxv3Gk+N4TpBXEbZCDugMVSHaJ2SN5
+         TCq2k1hHKM1djCNvGEoetTqixJNaWuo8kyQci7X/GDJ86ZkOkur5+ZrJYVhV5c6yaJMf
+         xkfrDUO6Od1fNv6lAklQ5LNkN7XW2J+9vpwO4lt7YQ9aZXVg07Dgo9bH1rnRS5IbX9rY
+         opre9ICCtXkq8Z3F6LiBMqQyTwY9gL1M+HwZvXLimR5nJ168hP44gGYbl2oGAVPeA6L7
+         KzXeZsBJQH76i7rX8jXEyvjRWpKvijq7TYxKDqOhtRkHZ7KI3YXx1LNULZjUjQGWoSme
+         Za2A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f187si267266oia.218.2020.02.05.08.27.06;
+        Wed, 05 Feb 2020 08:27:17 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727441AbgBEQZN (ORCPT <rfc822;l814699480@gmail.com>
+        + 99 others); Wed, 5 Feb 2020 11:25:13 -0500
+Received: from zeniv.linux.org.uk ([195.92.253.2]:42556 "EHLO
+        ZenIV.linux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726534AbgBEQZM (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 5 Feb 2020 11:25:12 -0500
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1izNUE-007rET-L5; Wed, 05 Feb 2020 16:25:10 +0000
+Date:   Wed, 5 Feb 2020 16:25:10 +0000
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Linus Torvalds <torvalds@linux-foundation.org>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [put pull] timestamp stuff
+Message-ID: <20200205162510.GW23230@ZenIV.linux.org.uk>
+References: <20200204150015.GR23230@ZenIV.linux.org.uk>
+ <CAHk-=wivZdF6tNERQp+CXyz7zeN4uG9O4d7mZhCrp3anJ29Arg@mail.gmail.com>
+ <20200205160801.x3hr3ziwz2ffxltt@chatter.i7.local>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200205160801.x3hr3ziwz2ffxltt@chatter.i7.local>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Wed, Feb 05, 2020 at 11:08:01AM -0500, Konstantin Ryabitsev wrote:
+
+> >   To: Linus Torvalds <torvalds@linux-foundation.org>
+> >   Cc: fsdevel.@zeniv.linux.org.uk, linux-kernel@vger.kernel.org
+> >   Subject: [git pull] kernel-initiated rm -rf on ramfs-style filesystems
+> >   Message-ID: <20200204150912.GS23230@ZenIV.linux.org.uk>
+> > 
+> > on that other message in my mailbox, but I don't see it on lore. Odd.
+> > Is it because the "fsdevel" address is mis-spelled on the Cc line?
+> > Strange.
+> 
+> That message-id doesn't appear to have traversed the mail system, so my 
+> guess would be that it didn't make it past some upstream MTA -- either 
+> vger or the one before it. The fact that this messages is not on 
+> lkml.org either seems to confirm that theory.
+
+At a guess, bogus address in Cc (mistyped mutt alias - "fsdevel" would've
+become "linux-fsdevel@vger.kernel.org", "fsdevel." got interpreted as
+local address) got something spooked enough to filter it out...

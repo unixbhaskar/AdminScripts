@@ -1,0 +1,223 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.194.16.198 with SMTP id i6csp483807wjd;
+        Tue, 15 Mar 2016 05:30:05 -0700 (PDT)
+X-Received: by 10.66.90.199 with SMTP id by7mr45894833pab.113.1458045005863;
+        Tue, 15 Mar 2016 05:30:05 -0700 (PDT)
+Return-Path: <kavitha.anandanb2JqZWN0LWZyb250aWVyLmNvbQ==@naukri.com>
+Received: from nmail182.naukri.com (nmail182.naukri.com. [180.179.180.182])
+        by mx.google.com with ESMTPS id 16si6803448pfo.244.2016.03.15.05.30.04
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 15 Mar 2016 05:30:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of kavitha.anandanb2JqZWN0LWZyb250aWVyLmNvbQ==@naukri.com designates 180.179.180.182 as permitted sender) client-ip=180.179.180.182;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of kavitha.anandanb2JqZWN0LWZyb250aWVyLmNvbQ==@naukri.com designates 180.179.180.182 as permitted sender) smtp.mailfrom=kavitha.anandanb2JqZWN0LWZyb250aWVyLmNvbQ==@naukri.com;
+       dkim=pass header.i=@naukri.com
+Return-Path: <kavitha.anandanb2JqZWN0LWZyb250aWVyLmNvbQ==@naukri.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=naukri.com; s=2015;
+	t=1458045001; bh=xDBvZF1kfopT+IjnXzvz/Z35WG4oDKFckL66uTZAz2M=;
+	h=Date:Subject:From:Reply-To:To;
+	b=Ojlmwa8BxQ3nCczi0OllfDHK7E2oqV9ZIe6S1u2pMCKLATzDR/CT+v+glrJBFDs8l
+	 zlkWWUN7V05qlAzMkEVf3csb8MalnEDrFzvLtRE+Azu0+2kjnh2VkD5wedeS5bj3hy
+	 LfXscsB1BldullS9DZF9k3y+uGWz19t+EHeNS+7Y=
+Received: from [198.64.149.197] ([198.64.149.197:40856] helo=lrsxfcp10117.dn.net)
+	by nplimla13.ieil.net (envelope-from <kavitha.anandanb2JqZWN0LWZyb250aWVyLmNvbQ==@naukri.com>)
+	(ecelerity 3.6.13.50539 r(Core:3.6.13.0)) with ESMTP
+	id DF/86-35161-84008E65; Tue, 15 Mar 2016 18:00:01 +0530
+Received: from [127.0.0.1] (unknown [10.208.66.202])
+	by lrsxfcp10117.dn.net (Postfix) with ESMTP id ED0EA1A12FA
+	for <unixbhaskar@gmail.com>; Tue, 15 Mar 2016 17:59:59 +0530 (IST)
+Message-ID: <c8f38b4b205cc437a03bae6e2fcc6619@swift.generated>
+Date: Tue, 15 Mar 2016 17:59:59 +0530
+Subject: Job | Exhilarating Job Opportunity for Devos Engineer @ OFS, Chennai
+From: Object Frontier Sofware P Ltd
+ <kavitha.anandanb2JqZWN0LWZyb250aWVyLmNvbQ==@naukri.com>
+Reply-To: kavitha.anandan@object-frontier.com
+To: unixbhaskar@gmail.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<table width=3D"600" cellspacing=3D"1" cellpadding=3D"5" align=3D"center" b=
+order=3D"0"> <tr> <td height=3D"30" bgcolor=3D"#ffffff" align=3D"center"><s=
+pan style=3D"font-size:11px; font-family:Arial, Helvetica, sans-serif; colo=
+r:#888">The sender of this email is registered with Naukri.com as Object Fr=
+ontier Sofware P Ltd. To respond back directly to the Employer, please clic=
+k on Reply button, or send an email to <a href=3D"mailto:kavitha.anandan@ob=
+ject-frontier.com">kavitha.anandan@object-frontier.com</a></span></td></tr>=
+<tr><td bgcolor=3D"#fafafa" style=3D"border:1px solid #eeeeee;padding:0;"><=
+/td></tr><tr><td style=3D"border:1px solid #f1f1f1;border-top:none;"><table=
+><tr><td bgcolor=3D"#FFFFFF" valign=3D"top"><font face=3D"Arial, Helvetica,=
+ sans-serif" color=3D"#000000"><span style=3D'font-size:14px;'><div style=
+=3D'margin:0px; padding:3px 0px;'><strong>Experience required for the Job:<=
+/strong>&nbsp;3&nbsp;-&nbsp;10 years</div><div style=3D'margin:0px; padding=
+:3px 0px;'><strong>Annual Salary of the Job:</strong>&nbsp;Not a constraint=
+ for the right resource</div><div style=3D'margin:0px; padding:3px 0px;'><s=
+trong>Job Location:</strong>&nbsp;Chennai</div></span><br/><a title=3D'Send=
+ your Naukri profile to the recruiter in one click' href=3D'http://apply.na=
+ukri.com/apply/processRmj?applytype=3Dsingle&ApplyMode=3D1&src=3Drmj&applyS=
+rc=3Drmj&messageId=3De9637a5e867078127399c39142e9617b3b5c0c534211081806021a=
+091b5015124217405d401f0c0c57211541534450555c0e1f560f0e4a5c531d421e054e00564=
+a146&reqId=3D' style=3D'margin-right: 5px; background:#3c98ed; font-size:17=
+px; font-weight:bold;color:#fff; padding:7px 10px;font-family:Arial, Helvet=
+ica, sans-serif; text-decoration:none;'>Apply Now</a>&nbsp;&nbsp; <a title=
+=3D'Reply with additional details sought by the recruiter' href=3D'http://m=
+y.naukri.com/Reply/view/?src=3Drmj&messageId=3De9637a5e867078127399c39142e9=
+617b3b5c0c534211081806021a091b5015124217405d401f0c0c57211541534450555c0e1f5=
+60f0e4a5c531d421e054e00564a146&reqId=3D' style=3D'background:#3c98ed; font-=
+size:17px; font-weight:bold;color:#fff; padding:7px 10px;font-family:Arial,=
+ Helvetica, sans-serif; text-decoration:none;'>Reply</a><!--RMJBODYSTART-->=
+<!-- VNAME=3D--><!--VPHOTO=3D--><!--DESIGNATION=3D--><!--COMPID=3D--><!--LO=
+CATION=3D--><!--VSLUG=3D--><!--PROFILEHEADING=3D--><!--DOMAINEXP=3D--><!--A=
+PPLYURL=3Dhttp%3A%2F%2Fapply.naukri.com%2Fapply%2FprocessRmj%3Fapplytype%3D=
+single%26ApplyMode%3D1%26src%3Drmj%26applySrc%3Drmj%26messageId%3De9637a5e8=
+67078127399c39142e9617b3b5c0c534211081806021a091b5015124217405d401f0c0c5721=
+1541534450555c0e1f560f0e4a5c531d421e054e00564a146%26reqId%3D--><!--REPLYURL=
+=3Dhttp%3A%2F%2Fmy.naukri.com%2FReply%2Fview%2F%3Fsrc%3Drmj%26messageId%3De=
+9637a5e867078127399c39142e9617b3b5c0c534211081806021a091b5015124217405d401f=
+0c0c57211541534450555c0e1f560f0e4a5c531d421e054e00564a146%26reqId%3D--><p s=
+tyle=3D"clear:both; font-size: 12px;"><br/><strong>Dear Candidate,</strong>=
+</p><blockquote style=3D'margin:0px; padding:10px 0px; font-size: 12px;'>Ob=
+ject Frontier has been in the forefront of software development, developing=
+ inimitable products in different verticals. Object Frontier has surpassed =
+all frontiers of technology keeping abreast with all the latest trends in t=
+he market. The foundation for the company was laid in the year 1997 at Atla=
+nta with a very special mission to pursue - '' Conquer the future much fast=
+er than ever and the same mission applies to the Offshore development, Cons=
+ulting and Global Support Center in Chennai. <br />
+<br />
+www.object-frontier.com <br />
+<br />
+Currently we are looking for Devops Engineer for our Chennai facility. We h=
+appened to view your profile in our database and felt your profile is suita=
+ble for the requirement. <br />
+<br />
+Primary Responsibilities and Job description:<br />
+*Linux System Administration, DevOps Experience, Automation/Scripting Skill=
+s and Amazon Web Services (AWS) Experience <br />
+* Linux administration experience (e.g. Ubuntu, RedHat/CentOS) with a focus=
+ on web (Apache/Nginx)<br />
+*Design and develop DevOps based solutions using Chef, Puppet, Ansible, GoC=
+D, Jenkins, and similar products.<br />
+*Coordinate activities with other team members using agile methodologies fo=
+r peer review and automated testing.<br />
+*Develop automation and repeatable processes/scripts to enable solutions th=
+at deploy, manage, configure, scale and monitor Client applications.<br />
+*Streamline the development lifecycle with automated provisioning and testi=
+ng of resources.<br />
+*Ability to gather customer requirements and translate those requirements i=
+nto short and long term deliverables.<br />
+*Support application deployments, building new systems and upgrading and pa=
+tching existing ones.<br />
+*Develop automation to rapidly deploy instances from hardened AMIs<br />
+*Use monitoring tools to find problems, resolve and ensure that we exceed o=
+ur SLAs ; Detects, diagnoses, and reports related problems.<br />
+*Build and manage development and testing environments, assist application =
+owners in debugging application issues<br />
+*Analyzes and resolves problems associated with the operating system's serv=
+ers, hardware, applications, and software.<br />
+*Good written and verbal communication skills.<br />
+*Good analytic, organization, presentation, customer service and facilitati=
+on skills.<br />
+<br />
+Desired Skills and Experience<br />
+*An expert in one or more automation frameworks (Chef, Puppet, Ansible) wit=
+h 3 or more years' experience.<br />
+*Comfortable with Software Development Life Cycles, Test Driven Development=
+, Continuous Integration and Continuous Delivery.<br />
+*Experience with CI/CD testing and deployment tools such Jenkins, Stash, an=
+d Bamboo.<br />
+*Amazon Web Services (AWS) experience highly preferred<br />
+*Experience working with Nagios monitoring tools  <br />
+*Network administration/engineering<br />
+*Understands various Firewall architectures and Network\Cloud Security conc=
+epts<br />
+*Exposure to Federal Security requirements e.g. FISMA and FedRAMP<br />
+*Experience with various CDNs e.g. Akamai, Limelight, EdgeCast etc.<br />
+*Knowledge of Heroku or other PaaS platform<br />
+*Exposure\Experience with SQL, MySQL, No SQL Data Stores, Hadoop, EMR, Reds=
+hift<br />
+*Prior Experience with Software Development (Experience with Perl / Ruby / =
+Python / Powershell (or similar) expertise) and Web<br />
+*Exposure to ITIL processes and practices preferably with at least an ITIL =
+Foundation certification<br />
+<br />
+Open for travel as per client requirements <br />
+<br />
+*Work location: Chennai<br />
+<br />
+If you are interested, kindly forward your resume enclosing the following d=
+etails.<br />
+<br />
+Years of Experience - <br />
+<br />
+Current CTC -<br />
+<br />
+Expected CTC -<br />
+<br />
+Notice period -<br />
+<br />
+Regards,<br />
+Kavitha Anandan<br />
+TALENT ACQUISITION<br />
+Object-Frontier Software (p) Ltd,<br />
+kavitha.anandan@object-frontier.com<br />
+www.object-frontier.com</blockquote><!--RMJBODYSTOP--><br /><blockquote sty=
+le=3D'margin:0px; padding:10px 0px; font-size: 12px;'></blockquote><!--RMJB=
+ODYSTOP--><div style=3D"clear:both;"></div><table align=3D"center" width=3D=
+"280" cellpadding=3D"0" cellspacing=3D"0"><tr><td width=3D"275" bgcolor=3D"=
+#f4f8fe" style=3D"border:1px solid #e7f0fe; font:bold 13px Arial, Helvetica=
+, sans-serif;color:#5d6f8a; padding:10px; margin:0 auto;">Is this job relev=
+ant to you? <a href=3D"http://jobsearch.naukri.com/mynaukri/jobs_feedback.p=
+hp?response=3Dyes&mid=3DS15282195" style=3D"background:#5d6f8a; padding:5px=
+; text-align:center;color:#fff !important; text-decoration:none; margin:0 5=
+px;cursor:pointer;">Yes</a> <a href=3D"http://jobsearch.naukri.com/mynaukri=
+/jobs_feedback.php?response=3Dno&mid=3DS15282195" style=3D"background:#5d6f=
+8a; padding:5px; text-align:center;color:#fff !important; text-decoration:n=
+one;cursor:pointer;">No</a></td></tr></table></font></td></tr> <tr><td bgco=
+lor=3D"#FFFFFF" style=3D'font-size:11px;border-bottom:1px solid #f1f1f1;' a=
+lign=3D'center'> <font face=3D"Arial, Helvetica, sans-serif" color=3D"#3131=
+31">Your feedback would help us in sending you the most relevant job opport=
+unities</font></td><td height=3D'30'></td></tr><tr> <td valign=3D'top' bgco=
+lor=3D'#FFFFFF'> <font face=3D'Arial, Helvetica, sans-serif' color=3D'#3131=
+31'><div style=3D'border-bottom:1px solid #888888; line-height:16px; font-s=
+ize:10px; font-weight:bold;'>Disclaimer:</div> <div style=3D'padding-top:5p=
+x; font-size:10px;'>The sender of this email is registered with naukri.com =
+as <strong>Object Frontier Sofware P Ltd</strong> (<a href=3D'mailto:naveen=
+kumarb@object-frontier.com' style=3D'cursor:pointer;'>naveenkumarb@object-f=
+rontier.com</a>, Unit No: 2, 4th Floor, Taramani Road, Taramani, Chennai, T=
+amilnadu - 600113) using Naukri.com services. The responsibility of checkin=
+g the authenticity of offers/correspondence lies with you. If you consider =
+the content of this email inappropriate or spam, you may: Forward this emai=
+l to: <a href=3D'mailto:compliance@naukri.com' style=3D'cursor:pointer;'>co=
+mpliance@naukri.com</a> or you can <a href=3D'http://my.naukri.com/BlockCom=
+pany/blockOneCompany?companyIdStr=3D4498' style=3D'cursor:pointer;'>Block t=
+his Company</a> from searching your resume in the database.<br /><strong>Ad=
+visory</strong>: Please do not pay any money to anyone who promises to find=
+ you a job. This could be in the form of a registration fee, or document pr=
+ocessing fee or visa charges or any other pretext. The money could be asked=
+ for upfront or it could be asked after trust has been built after some cor=
+respondence has been exchanged. Also please note that in case you get a job=
+ offer or a letter of intent without having been through an interview proce=
+ss it is probably a scam and you should contact <a href=3D'mailto:complianc=
+e@naukri.com' style=3D'cursor:pointer;'>compliance@naukri.com</a> for advis=
+e.</div></font><table width=3D'100%' border=3D'0' cellspacing=3D'0' cellpad=
+ding=3D'0'><tr><td height=3D'5'></td></tr><tr><td style=3D'font-family:Aria=
+l, Helvetica, sans-serif;font-size:14px;border:1px solid #d1f1fe; line-heig=
+ht:30px; background:#f4fcff' align=3D'center'><a href=3D'http://my.naukri.c=
+om/HomePage/view' style=3D'cursor:pointer; font-weight:bold; font-family:Ar=
+ial, Helvetica, sans-serif; font-size:14px' title=3D'Update Your Resume Now=
+'>Update Your Resume Now</a> to be on the top of Employer's Resume Search</=
+td></tr><tr><td height=3D'5'></td></tr><tr><td style=3D'border:1px solid #d=
+1f1fe; line-height:30px; background:#f4fcff;font-family:Arial, Helvetica, s=
+ans-serif; text-align: center; font-size: 14px; '><a href=3D'http://jobsear=
+ch.naukri.com/mynaukri/js_msngr.php?xz=3D0_0_5&ma=3DC' style=3D'font-size:1=
+4px;font-weight:bold;'>Create your own job alert</a> to receive similar job=
+s directly in your inbox.</td></tr></table><table width=3D"100%" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0"><tr> <td height=3D"5"></td> </tr> <t=
+r> <td bgcolor=3D"#e9e9e9" align=3D"center"><font face=3D"Arial, Helvetica,=
+ sans-serif" style=3D"font-size:11px;"><strong>Your Resume has only 30 seco=
+nds to impress a Recruiter. <a href=3D"http://resume.naukri.com/resume-writ=
+ing-services?fftid=3D700003" style=3D"cursor:pointer;">Get your resume writ=
+ten by Experts.</a> <br /> Call 1800-102-5557 now! (Toll-Free)</strong></fo=
+nt></td></tr></table></td></tr></table></td></tr></table>

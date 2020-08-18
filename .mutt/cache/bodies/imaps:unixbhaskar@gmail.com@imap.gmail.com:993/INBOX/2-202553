@@ -1,0 +1,130 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2971683lfj;
+        Mon, 23 Sep 2019 11:28:06 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxsU1pZzJ5brfOUqqMD89bIyJNtjoMqOjnQmorhiYF6FwyE8CkJPJ9clXvF2d5fIr/f4uQ4
+X-Received: by 2002:a50:c052:: with SMTP id u18mr1592134edd.88.1569263286078;
+        Mon, 23 Sep 2019 11:28:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569263286; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wTbGDs6dbJ5URDbEsYaxGUrvRigfueNGdVwTevJNz7M15vlwNZhUpxz+oN77a2ciTW
+         nSk6SgFuZRA197Bfj1Ot7p4E6QtWA/V/tnEcou6uzX6sW5P2gKQBjNfAWF8ltdxIeBOm
+         Q1zGXkLvQrbSmnSDkSJIMtlmqaqbI0avHnEqP59Ns1rb8FLAmwLe7+JWFNYIfGJ8dxPH
+         v19OqG79k84AV2OArckbkJQoJuB8Jaq5kIteorpbQ6A9gTedtujOD0fS0fTSCDIyDlbC
+         f0eKmx/1gzQG+b83oioUvZidNIWHNBTTsOBk3g8tpvhYwM8YWH4iiUVnk25hlNREYibf
+         B/dg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date;
+        bh=c+SWQepKAmtxZRG0oKghdy8ggMdYQm7k9bR6NuB3hh8=;
+        b=JoM5Ba1zWVRcSDyWlGc5XMJzppVS9cbmJ5M/qLl+eLtt4jwno29ctVIfW5nYHYE1AM
+         3T666wRfCrHFLS8v+gENxWHIWxahDKa++/sAZ1EaifJHSfdNc05SYMt0Kar2pgtCKi/G
+         L0rPu0e46iC/ZI6Bg6s2moFiJfTn9cpyiT81usWF+MB588EIfFgFssunNHv4k2ysQO/6
+         RTpw8RNzZFKDGWh0aVEBKeHVIzxu+ZhzN7PpVnY9Kt13rw5Q9655IyhRfO+7NnLwjAI5
+         oQy6ZosyQYAVdk8wBE1nFrKUT4W3fr+Bzmj1hg3KjCHfLuuBna46dlkoa/bnviLqFLt5
+         WePw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id h14si8188696edk.315.2019.09.23.11.27.42;
+        Mon, 23 Sep 2019 11:28:06 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726826AbfIUWiv (ORCPT <rfc822;hari.prasath50250@gmail.com>
+        + 99 others); Sat, 21 Sep 2019 18:38:51 -0400
+Received: from zeniv.linux.org.uk ([195.92.253.2]:32848 "EHLO
+        ZenIV.linux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726768AbfIUWiv (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 21 Sep 2019 18:38:51 -0400
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.2 #3 (Red Hat Linux))
+        id 1iBo1f-0006TZ-OP; Sat, 21 Sep 2019 22:38:47 +0000
+Date:   Sat, 21 Sep 2019 23:38:47 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Pavel Shilovsky <piastryyy@gmail.com>
+Cc:     Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>,
+        Steve French <stfrench@microsoft.com>,
+        Ronnie Sahlberg <lsahlber@redhat.com>,
+        linux-cifs <linux-cifs@vger.kernel.org>,
+        Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: build_path_from_dentry_optional_prefix() may schedule from
+ invalid context
+Message-ID: <20190921223847.GB29065@ZenIV.linux.org.uk>
+References: <20190829050237.GA5161@jagdpanzerIV>
+ <CAKywueRd4d_fojGL+n4BisoibhgkYfN9Wyc_+0=-1sarz4-HZw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKywueRd4d_fojGL+n4BisoibhgkYfN9Wyc_+0=-1sarz4-HZw@mail.gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Sep 19, 2019 at 05:11:54PM -0700, Pavel Shilovsky wrote:
+
+> Good catch. I think we should have another version of
+> build_path_from_dentry() which takes pre-allocated (probably on stack)
+> full_path as an argument. This would allow us to avoid allocations
+> under the spin lock.
+
+On _stack_?  For relative pathname?  Er...  You do realize that
+kernel stack is small, right?  And said relative pathname can
+bloody well be up to 4Kb (i.e. the half of said stack already,
+on top of whatever the call chain has already eaten up)...
+
+BTW, looking at build_path_from_dentry()...  WTF is this?
+                temp = temp->d_parent;
+                if (temp == NULL) {
+                        cifs_dbg(VFS, "corrupt dentry\n");
+                        rcu_read_unlock();
+                        return NULL;
+                }
+Why not check for any number of other forms of memory corruption?
+Like, say it, if (temp == (void *)0xf0adf0adf0adf0ad)?
+
+IOW, kindly lose that nonsense.  More importantly, why bother
+with that kmalloc()?  Just __getname() in the very beginning
+and __putname() on failure (and for freeing the result afterwards).
+
+What's more, you are open-coding dentry_path_raw(), badly.
+The only differences are
+	* use of dirsep instead of '/' and
+	* a prefix slapped in the beginning.
+
+I'm fairly sure that
+	char *buf = __getname();
+	char *s;
+
+	*to_free = NULL;
+	if (unlikely(!buf))
+		return NULL;
+
+	s = dentry_path_raw(dentry, buf, PATH_MAX);
+	if (IS_ERR(s) || s < buf + prefix_len)
+		__putname(buf);
+		return NULL; // assuming that you don't care about details
+	}
+
+	if (dirsep != '/') {
+		char *p = s;
+		while ((p = strchr(p, '/')) != NULL)
+			*p++ = dirsep;
+	}
+
+	s -= prefix_len;
+	memcpy(s, prefix, prefix_len);
+	
+	*to_free = buf;
+	return s;
+
+would end up being faster, not to mention much easier to understand.
+With the caller expected to pass &to_free among the arguments and
+__putname() it once it's done.
+
+Or just do __getname() in the caller and pass it to the function -
+in that case freeing (in all cases) would be up to the caller.

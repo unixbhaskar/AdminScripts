@@ -1,0 +1,109 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp1750645lfk;
+        Sun, 24 May 2020 08:40:17 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxuKm8a/0percS1UGACvAM77QfdnK8YBKduvJktsn4DHwIQYRa+zWg3CcK30Sl2jtXN3i7Y
+X-Received: by 2002:a05:6402:7ca:: with SMTP id u10mr11016234edy.322.1590334817826;
+        Sun, 24 May 2020 08:40:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590334817; cv=none;
+        d=google.com; s=arc-20160816;
+        b=mTIHjDQU4auT+6+pWTpjZBtvMzJpk2mrxwyO7kSvbxvaNqpxTzfDjWcu0ziiuwXrik
+         8eQELp84dYh1yrpo5aJM72uFNAFAGtYccPqWs1FTzaY/8aAUXfQH+IB8oL9pTXovfkui
+         PQXWIgASICSUEQQfo0xBhsfSGFuMVp/hBSUKaEZzV1a//WB0Pp3dCJRIcZ8iRFKc0MwL
+         +1VoLOPBvAuasOQ63M2a/3fG8OmFx0hFXE9pxTyO+1DtXfn8T6mUzQL9ptbD5H15ZMBw
+         RYiLrKJMFu+JTRrhNtYclb2VBBOd9cziICd4/5oaxIaPf4Amluk4ceFn1Kjl9ZqUBsno
+         pR0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=udfENvnflsI3CGrGe+uWV+8OQ15a+sbH1w7gJl38fpQ=;
+        b=0oG6+KpYD4R5qt9EOB/7UwHKVk5nmIb7iZiQODfELLaXzVA2ZS4oGi1/pWofWueDfo
+         Lk/4iASigBBqzEgsZFRdXfbBN6ewK4NveoA5ZeWyUqAWET7/2zjuW4m8Js75VnM/Wg/Y
+         5tO/ZvgNVqrUENOktx4hsDxeQwm0BzVxSowEvBJglW3slvt1d9yLDgVceeYXCxZfqkkR
+         goH3LBk0OC7jNUM7cQqK+J0xAip82L2TPUiFcv0nfDL03ONQG12BBUQC5ldexgthQoMX
+         MrrOx8lWIn1ew2DDA9v9i6/92oHKdzvGmHdscWBt9QaKef9+MwPzjZRnIZWG7QYMacpl
+         vwzQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=QgprcXwq;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id u12si8010243ejz.22.2020.05.24.08.39.54;
+        Sun, 24 May 2020 08:40:17 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=QgprcXwq;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726932AbgEXPi5 (ORCPT <rfc822;tome01forkernel@gmail.com>
+        + 99 others); Sun, 24 May 2020 11:38:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39076 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726506AbgEXPi4 (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 24 May 2020 11:38:56 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DC85520787;
+        Sun, 24 May 2020 15:38:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1590334736;
+        bh=FoydNPDHm8qaVR+FtRDqDSa8qSbQgfYOf6vh0Y6IBhE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QgprcXwq0iv1tzjJUWjhCXd6iSnF9cnQDHiKse1W9RzCLswUJusFGLIH3P0i09s/e
+         C6Ke/WCLnee74Ee/27UQUAeZnvSc0pAmCgw6vjsQgdMFWmh+C0Y4F2vW9oiFyUF7Wz
+         1xt8FMe4AgQVYiqL2Ib6ykX+KlRhtRAugDFkTY4U=
+Date:   Sun, 24 May 2020 17:38:54 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>
+Subject: Re: [GIT PULL] Driver core fixes for 5.7-rc7 - take 2
+Message-ID: <20200524153854.GA5120@kroah.com>
+References: <20200523131759.GA55886@kroah.com>
+ <20200523152922.GA224858@kroah.com>
+ <CAHk-=wih_B_8a48Au=6B+gwFcYnM7qF02dGX3R0QN_2bzVcjVA@mail.gmail.com>
+ <20200524150018.GB11262@kroah.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200524150018.GB11262@kroah.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, May 24, 2020 at 05:00:18PM +0200, Greg KH wrote:
+> On Sat, May 23, 2020 at 11:14:28AM -0700, Linus Torvalds wrote:
+> > On Sat, May 23, 2020 at 8:29 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+> > >
+> > > The kobject patch that was originally in here has now been reverted, as
+> > > Guenter reported boot problems with it on some of his systems.
+> > 
+> > Hmm. That original patch looks obviously buggy: in kobject_cleanup()
+> > it would end up doing "kobject_put(parent)" regardless of whether it
+> > had actually done __kobject_del() or not.
+> > 
+> > That _could_ have been intentional, but considering the commit
+> > message, it clearly wasn't in this case.  It might be worth re-trying
+> > to the commit, just with that fixed.
+> 
+> Turns out that wasn't the real problem here, the culprit is the
+> lib/test_printf.c code trying to tear down a kobject tree from the
+> parent down to the children (i.e. in the backwards order).
+
+The fix for this is now posted here:
+	https://lore.kernel.org/lkml/20200524153041.2361-1-gregkh@linuxfoundation.org/
+
+along with a kobject change to emit the remove uevent when the object is
+removed from sysfs (and still has a valid parent pointer), and not some
+unspecified time in the future.
+
+Let's see if people find this a better solution, and if so, I'll send it
+to you later in the week.
+
+thanks,
+
+greg k-h

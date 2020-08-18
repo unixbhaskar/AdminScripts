@@ -1,0 +1,307 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp330842lfc;
+        Thu, 5 Dec 2019 22:19:39 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxhaMFNY569AyqIQfZD9bHhEaj1pWF92SztvuBw6tZQsYv/9wCJmmlHJjkswJAT4JU7m6Cf
+X-Received: by 2002:aa7:87c7:: with SMTP id i7mr12633246pfo.114.1575613179788;
+        Thu, 05 Dec 2019 22:19:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1575613179; cv=none;
+        d=google.com; s=arc-20160816;
+        b=kUEmACZ7C6rrC6LCA2r8FBo4TUf9lePidz9QGcMNSmZdNUlDcVmgYpAemgduf1LMf0
+         NPYVPCyDSnOnpgKymx+Q6m/3fbzhkQ3I20pwviHkci4jVM4xUnz8TFoHbLqo3bTteyFN
+         7pA5Duyvp9gakVKayKYWTLk0vOZDCACdu8hEvNOJaJzmDZa+LX/gBycjoKVl9IRFlsb5
+         Qk+3yjkBPQuqRwjigHBNbVZrESf8pc9XdJxD6hY1CMAdJxhdpDhS4Gk5zOt9xAIH/4Nb
+         itwEmL60FKN16MNFNdoV6Fhab5KDERYeFPAFSDXYNed0vvvW8R2EZ4wA7vzLww7imqs9
+         nEAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:sender:message-id:subject
+         :reply-to:from:to:date:dkim-signature;
+        bh=kDlAKzK3PDFVy7FQ4BOM+TVJT0hlirufgEo+cjUfMqA=;
+        b=fXOP4suts17ZeTW3WyXeldImDJW3TvKk9NrxzL5/gVguvCBAAaEyAgOotA3cTSCQOX
+         oTWh2zOr0KLhql8KF37NU5Gqng+D/SR42zU8ZFOt0rlRiRi2cTIsjoCfLKYFrBNCWHEi
+         F0C+DhcQfKLBxmQ3llofVAeGI+vZcvxX2Py2hLXJdmlA8pg8JVnW/luID856jxcT931s
+         +Mg2+x/ZTYMyaMSwKCgNlpdgkL3LfYX6AwFNkORK15K40PgErO9IrJLr4rG2bDqNPHbc
+         ZEIOVcJ3DOCY8IcgzJSdua6MB5zEGj0wJdOvMgYXn+DcKQr/pFKzYqIBWMyFxTpG7cNv
+         DGbQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@naukri.com header.s=2015 header.b=hrsNgrkH;
+       spf=pass (google.com: domain of sudha.deepakcgfsdgfszw50lm5lda==@naukri.com designates 103.214.115.142 as permitted sender) smtp.mailfrom="sudha.deepakcGFsdGFsZW50Lm5ldA==@naukri.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=naukri.com
+Return-Path: <sudha.deepakcGFsdGFsZW50Lm5ldA==@naukri.com>
+Received: from nmail-one03-two14-one15-one42.naukri.com (nmail-one03-two14-one15-one42.naukri.com. [103.214.115.142])
+        by mx.google.com with ESMTPS id b127si10898965pfg.272.2019.12.05.22.19.38
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 05 Dec 2019 22:19:39 -0800 (PST)
+Received-SPF: pass (google.com: domain of sudha.deepakcgfsdgfszw50lm5lda==@naukri.com designates 103.214.115.142 as permitted sender) client-ip=103.214.115.142;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@naukri.com header.s=2015 header.b=hrsNgrkH;
+       spf=pass (google.com: domain of sudha.deepakcgfsdgfszw50lm5lda==@naukri.com designates 103.214.115.142 as permitted sender) smtp.mailfrom="sudha.deepakcGFsdGFsZW50Lm5ldA==@naukri.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=naukri.com
+Return-Path: <sudha.deepakcGFsdGFsZW50Lm5ldA==@naukri.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=naukri.com; s=2015;
+	t=1575613174; bh=HUyYp2iyaixUIhj109Cziue4E6pn2rjWzA4nGk7rRxo=;
+	h=Date:To:From:Reply-To:Subject;
+	b=hrsNgrkHDgZ45q9CYPx8DGAKc7X6ja2DqekpiA8VaY/5tYN/sM6anjf5yQlIkmNmH
+	 bZGf4XtwHhVcnXx/tmThLMXmOr7TKZJBe2wsRnAoPC+XS/XcuJzqyhhzkvxaBI3Aiv
+	 Dv+vNCNolFF5qRfWboVa2Jjig1VupDkC+ipGDgLw=
+Received: from [172.10.115.133] ([172.10.115.133:37606] helo=n5plnjobdb15.ieil.net)
+	by n5plimla02.ieil.net (envelope-from <sudha.deepakcGFsdGFsZW50Lm5ldA==@naukri.com>)
+	(ecelerity 3.6.13.50539 r(Core:3.6.13.0)) with ESMTP
+	id EB/46-51681-6F2F9ED5; Fri, 06 Dec 2019 11:49:34 +0530
+Date: Fri, 6 Dec 2019 11:49:34 +0530
+To: unixbhaskar@gmail.com
+From: "PAL TALENT SERVICES LLP." <sudha.deepakcGFsdGFsZW50Lm5ldA==@naukri.com>
+Reply-To: sudha.deepakcgfsdgfszw50lm5lda==90okw-rd@rmsg.naukri.com
+Subject: Job | DevOps Architect (Linux Administration) - Permanent position with Perfios Software Solutions, Bangalore (Prod Comp)
+Message-ID: <ef26c36fc960a136fedd209461cd7861@n5plnjobdb15.ieil.net>
+X-Priority: 3
+X-Mailer: Naukri Mailer
+Sender: resdex@naukri.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+     <div class=3D"emailBody er0"> <table width=3D"600" cellspacing=3D"1" c=
+ellpadding=3D"5" align=3D"center" border=3D"0"><tr> <td style=3D"word-break=
+:normal;margin-bottom:5px;line-height:16px;" height=3D"30" bgcolor=3D"#ffff=
+ff" align=3D"center"><span style=3D"font-size:11px; font-family:Arial, Helv=
+etica, sans-serif; color:#888"> <!--RMJHEADERSTART--> The sender of this em=
+ail is registered with Naukri.com as PAL TALENT SERVICES LLP.  company. To =
+respond back directly to the Employer, please click on Reply button, or sen=
+d an email to <a href=3D"mailto:sudha.deepak@paltalent.net" title=3D"sudha.=
+deepak@paltalent.net">sudha.deepak@paltalent.net</a> <!--RMJHEADEREND--> <!=
+--ALERTMESSAGESTART--><div style=3D"font-size:11px; font-family:Arial, Helv=
+etica, sans-serif; color:#333">Do Not forward this email, it contains links=
+ which allow direct login to your Naukri account.</div><!--ALERTMESSAGEEND-=
+-></span></td></tr><td bgcolor=3D"#fafafa" style=3D"border:1px solid #eeeee=
+e;padding:0;"><table width=3D'100%'><tr><td width=3D'10%' style=3D'font-fam=
+ily:Arial; font-size:12px; color:#666; padding:3px 8px 0 0;' valign=3D'top'=
+><img src=3D"https://naukrirecruiter.naukri.com/profilePic/getpic?pid=3D150=
+7556244rp3391864_medium4" width=3D'100' height=3D'100'/></td><td width=3D'4=
+0%' style=3D'font-family:Arial; font-size:12px; color:#333' valign=3D'top'>=
+<strong style=3D'font-size:18px;'>Sudha</strong><br /><br /><span>Recruitme=
+nt Consultant</span> <br /><span>PAL TALENT SERVICES LLP.<br /><small style=
+=3D'color:#04A414;font-size:12px;'>Bengaluru / Bangalore</small></span><br =
+/><a href=3D"https://recruiters.naukri.com/profile/sudha-3391864" target=3D=
+'_blank' style=3D'color:#008ed7; text-decoration:none;margin-top:8px;float:=
+left'><strong style=3D"color:#3c98ed">Follow my job updates</strong></a></t=
+d><td width=3D'40%' valign=3D'top' style=3D'font-family:Arial; font-size:12=
+px;'><p style=3D'padding-bottom:5px;line-height:16px;margin-top:5px;margin-=
+bottom:10px;font-size: 12px;'></p></td></tr></table> </td></tr><tr style=3D=
+"background:#fff"><td style=3D"border:1px solid #f1f1f1;border-top:none;pad=
+ding-left:6px; padding-right:6pxpadding-top:0px;padding-bottom:0px;"><table=
+><tr><td style=3D"word-break:break-word" bgcolor=3D"#FFFFFF" valign=3D"top"=
+><font face=3D"Arial, Helvetica, sans-serif" color=3D"#000000"> <span style=
+=3D'font-size:14px;'>   <div style=3D'margin:0px; padding:3px 0px;'><strong=
+>Experience required for the Job:</strong>&nbsp;8&nbsp;-&nbsp;25 years</div=
+>   <div style=3D"word-break:break-word">  </div> <div style=3D'margin:0px;=
+ padding:3px 0px;word-break:break-word'><strong>Job Location:</strong>&nbsp=
+;Bengaluru/Bangalore</div>   </span>   <br>  <br/><a class=3D"mainPrevColor=
+" title=3D"Send your Naukri profile to the recruiter in one click" href=3D"=
+ http://my.naukri.com/AL/ResdexRMJMail/alid/{}/redirectParam/applyProcessRM=
+J?applytype=3Dsingle&amp;ApplyMode=3D1&amp;src=3Drmj &reqId=3D37521&message=
+Id=3DMjAxOTEyI0FOamQrdGQ0YWpVPV8xNTc1NjEzMTU0&logstr=3DER0" style=3D'margin=
+-right: 5px; background:#3c98ed; font-size:17px; font-weight:bold;color:#ff=
+f; padding:7px 10px;font-family:Arial, Helvetica, sans-serif; text-decorati=
+on:none;'>Apply Now</a>   &nbsp;&nbsp;  <a class=3D"mainPrevColor" title=3D=
+'Reply with additional details sought by the recruiter' href=3D' http://my.=
+naukri.com/AL/ResdexRMJMail/alid/{}/redirectParam/replyView?applytype=3Dsin=
+gle&amp;ApplyMode=3D1&amp;src=3Drmj  &reqId=3D37521&messageId=3DMjAxOTEyI0F=
+OamQrdGQ0YWpVPV8xNTc1NjEzMTU0' style=3D'background:#3c98ed; font-size:17px;=
+ font-weight:bold;color:#fff; padding:7px 10px;font-family:Arial, Helvetica=
+, sans-serif; text-decoration:none;'>Reply</a>   <!--RMJBODYSTART--><!-- VN=
+AME=3DSudha--><!--VPHOTO=3Dhttps://naukrirecruiter.naukri.com/profilePic/ge=
+tpic?pid=3D1507556244rp3391864_medium4--><!--JOBMAXEXPERIENCE=3D25--><!--JO=
+BTITLE=3D--><!--JOBKEYSKILLS=3D--><!--JOBMINEXPERIENCE=3D8--><!--JOBLOCATIO=
+N=3DBengaluru/Bangalore--><!--JOBMESSAGEID=3DMjAxOTEyI0FOamQrdGQ0YWpVPV8xNT=
+c1NjEzMTU0--><!--DESIGNATION=3DRecruitment Consultant--><!--COMPID=3DPAL TA=
+LENT SERVICES LLP.--><!--LOCATION=3DBengaluru / Bangalore--><!--VSLUG=3Dhtt=
+ps://recruiters.naukri.com/profile/sudha-3391864--><!--PROFILEHEADING=3D-->=
+<!--DOMAINEXP=3D--><!--APPLYURL=3Dhttp%3A%2F%2Fapply.naukri.com%2Fapply%2Fp=
+rocessRmj%3Fapplytype%3Dsingle%26ApplyMode%3D1%26src%3Drmj%26applySrc%3Drmj=
+&reqId=3D37521%26messageId=3DMjAxOTEyI0FOamQrdGQ0YWpVPV8xNTc1NjEzMTU0--><!-=
+-REPLYURL=3Dhttps%3A%2F%2Fwww.naukri.com%2Fmyapply%2Fsavermj%3Fsrc%3Drmj%26=
+reqId=3D37521%26msgId=3DMjAxOTEyI0FOamQrdGQ0YWpVPV8xNTc1NjEzMTU0--><p style=
+=3D"clear:both; font-size:12px;padding:0 0 10px 0"><br/><strong>Dear Bhaska=
+r Chowdhury,</strong></p>  <blockquote style=3D'margin:0px; padding:10px 0p=
+x; font-size: 12px;font-family:Arial, Helvetica, sans-serif;word-break:brea=
+k-word'> <div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margi=
+n-top:0">Hi</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right=
+:0;margin-top:0">&nbsp;Greetings!! </div><div style=3D"margin-bottom:7px;ma=
+rgin-left:0;margin-right:0;margin-top:0">&nbsp;Found your profile apt for <=
+b>DevOps Architect (Linux Administration)</b> - Position with a leading PRO=
+DUCT COMPANY,<b> PERFIOS SOFTWARE SOLUTIONS, BANGALORE:</b></div>Senior Pos=
+ition with a leading <b>PRODUCT COMPANY,PERFIOS SOFTWARE SOLUTIONS, BANGALO=
+RE</b><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-t=
+op:0"><b>Comp URL -www.perfios.com </b></div><div style=3D"margin-bottom:7p=
+x;margin-left:0;margin-right:0;margin-top:0"><b>Position - Senior Linux Sys=
+tem Administrator &amp; Devops Architect</b></div><div style=3D"margin-bott=
+om:7px;margin-left:0;margin-right:0;margin-top:0"><b>Work Location - Bangal=
+ore</b></div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;m=
+argin-top:0"><b>Job Profile:</b></div><div style=3D"margin-bottom:7px;margi=
+n-left:0;margin-right:0;margin-top:0"><b>Requirements:&nbsp;</b><br></div><=
+div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=
+=EF=82=B7 5-8 years Linux administration experience. Ubuntu experience is p=
+referable.</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:=
+0;margin-top:0">=EF=82=B7 Work with a team and mentor them.</div><div style=
+=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=EF=82=
+=B7 Experienced in supporting a company=E2=80=99s web environment, server i=
+nfrastructure, understand</div><div style=3D"margin-bottom:7px;margin-left:=
+0;margin-right:0;margin-top:0">network topology and load balancing.</div><d=
+iv style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=
+=EF=82=B7 Experience of cloud environments like AWS, Azure, GCP, Digital Oc=
+ean etc would be an</div><div style=3D"margin-bottom:7px;margin-left:0;marg=
+in-right:0;margin-top:0">added advantage.</div><div style=3D"margin-bottom:=
+7px;margin-left:0;margin-right:0;margin-top:0">=EF=82=B7 Experience with we=
+b applications, Apache web servers, Ubuntu Linux, MySQL, Shell</div><div st=
+yle=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">scripti=
+ng required.</div><div style=3D"margin-bottom:7px;margin-left:0;margin-righ=
+t:0;margin-top:0">=EF=82=B7 Understanding of agile methodology and experien=
+ce with tools such as Jenkins, Ansible, and</div><div style=3D"margin-botto=
+m:7px;margin-left:0;margin-right:0;margin-top:0">GitLab/GitHub</div><div st=
+yle=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=
+=EF=82=B7 Experience with Virtualization Technologies (VMWare, Docker, Kube=
+rnetes) a strong plus</div><div style=3D"margin-bottom:7px;margin-left:0;ma=
+rgin-right:0;margin-top:0">=EF=82=B7 Ability to setup best of breed infrast=
+ructure and application monitoring tools.</div><div style=3D"margin-bottom:=
+7px;margin-left:0;margin-right:0;margin-top:0">=EF=82=B7 Ability to evaluat=
+e and configure information security tools.</div><div style=3D"margin-botto=
+m:7px;margin-left:0;margin-right:0;margin-top:0">=EF=82=B7 Keenness to auto=
+mate frequent infrastructure tasks and bring in best practices into the</di=
+v><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0=
+">organization.</div><div style=3D"margin-bottom:7px;margin-left:0;margin-r=
+ight:0;margin-top:0">=EF=82=B7 Must be able to quickly understand technical=
+ requirements, and manage the input and</div><div style=3D"margin-bottom:7p=
+x;margin-left:0;margin-right:0;margin-top:0">opinions from a diverse group =
+of users, peers and managers</div><div style=3D"margin-bottom:7px;margin-le=
+ft:0;margin-right:0;margin-top:0">=EF=82=B7 Must be able to communicate (wr=
+itten and verbal) and work effectively with multiple</div><div style=3D"mar=
+gin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">application teams=
+ and cross platform teams</div><div style=3D"margin-bottom:7px;margin-left:=
+0;margin-right:0;margin-top:0">=EF=82=B7 Ability to function well in a fast=
+-paced, team oriented environment</div><div style=3D"margin-bottom:7px;marg=
+in-left:0;margin-right:0;margin-top:0">=EF=82=B7 Be a self-starter</div><di=
+v style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=
+=EF=82=B7 Have a demonstrated track record of delivering quality work under=
+ tight deadlines</div><div style=3D"margin-bottom:7px;margin-left:0;margin-=
+right:0;margin-top:0">=EF=82=B7 Open to exploring and gaining expertise on =
+new technologies</div><div style=3D"margin-bottom:7px;margin-left:0;margin-=
+right:0;margin-top:0">=EF=82=B7 Ability to generate and communicate reports=
+ to upper management.</div><div style=3D"margin-bottom:7px;margin-left:0;ma=
+rgin-right:0;margin-top:0"></div><div style=3D"margin-bottom:7px;margin-lef=
+t:0;margin-right:0;margin-top:0">If the above profile interests you, plz sh=
+are profile to sudha@techbrew.co.in with below details:</div><div style=3D"=
+margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">Total Exp:</di=
+v><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0=
+">Relevant into Linux Administration:</div><div style=3D"margin-bottom:7px;=
+margin-left:0;margin-right:0;margin-top:0">DevOps relevant exp -&nbsp;</div=
+><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0"=
+>CTC-</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;mar=
+gin-top:0">Exp CTC:</div><div style=3D"margin-bottom:7px;margin-left:0;marg=
+in-right:0;margin-top:0">NP to join:</div></blockquote><!--RMJBODYSTOP--> <=
+br> <!--RMJSIGNATURESTART--> <blockquote style=3D'margin:0px; padding:10px =
+0px; font-size: 12px;font-weight:normal;font-family: Arial, Helvetica, sans=
+-serif;word-break:break-word'>Thanks with Warm Regds<div style=3D"margin-bo=
+ttom:7px;margin-left:0;margin-right:0;margin-top:0">Sudha - Lead Consultant=
+ &nbsp;</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;m=
+argin-top:0">Email =E2=80=93sudha@techbrew.co.in</div><div style=3D"margin-=
+bottom:7px;margin-left:0;margin-right:0;margin-top:0">TechBrew Consultants =
+| Today=E2=80=99s Talent, Tomorrow=E2=80=99s Success</div><div style=3D"mar=
+gin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">Bangalore =
+=E2=80=93 79</div> </blockquote> <!--RMJSIGNATUREEND--> <div style=3D"clear=
+:both;"></div> <!--RMJFOOTERSTART-->  <p style=3D'color:#444444; font-size:=
+12px; font-family:Arial, Helvetica, sans-serif; border:#d1f1fe solid 1px; b=
+ackground:#f4fcff;padding:0 10px;line-height:15px'><br />You are receiving =
+this e-mail because your profile contained one or more of the following wor=
+ds that the recruiter searched on: " <em style=3D'font-weight:700;font-styl=
+e: normal;font-size:10px'>&quot;Linux Admin&quot;</em> ", " <em style=3D'fo=
+nt-weight:700;font-style: normal;font-size:10px'>&quot;Linux Administration=
+&quot;</em> ", " <em style=3D'font-weight:700;font-style: normal;font-size:=
+10px'>&quot;Linux Administrator&quot;</em> ", " <em style=3D'font-weight:70=
+0;font-style: normal;font-size:10px'>Kubernetes</em> ", " <em style=3D'font=
+-weight:700;font-style: normal;font-size:10px'>architect</em> "<br /><br />=
+</p>     <table align=3D"center" width=3D"280" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"margin-left:auto; margin-right:auto; margin-top:10px; marg=
+in-bottom:0px;"><tr><td width=3D"275" bgcolor=3D"#f4f8fe" style=3D"border:1=
+px solid #e7f0fe; font:bold 13px Arial, Helvetica, sans-serif;color:#5d6f8a=
+; padding:10px; margin:0 auto;">Is this job relevant to you? <a href=3D"htt=
+p://jobsearch.naukri.com/mynaukri/jobs_feedback.php?response=3Dyes&mid=3D49=
+341342" style=3D"background:#5d6f8a; padding:5px; text-align:center;color:#=
+fff !important; text-decoration:none; margin:0 5px;cursor:pointer;font-weig=
+ht:bold">Yes</a> <a href=3D"http://jobsearch.naukri.com/mynaukri/jobs_feedb=
+ack.php?response=3Dno&mid=3D49341342" style=3D"background:#5d6f8a; padding:=
+5px; text-align:center;color:#fff !important; text-decoration:none;cursor:p=
+ointer;font-weight:bold;">No</a></td></tr></table>  </font></td></tr> <tr><=
+td bgcolor=3D"#FFFFFF" style=3D'font-size:11px;border-bottom:1px solid #f1f=
+1f1;' align=3D'center'> <font face=3D"Arial, Helvetica, sans-serif" color=
+=3D"#313131" style=3D"font-weight:0;font-family:Arial, Helvetica, sans-seri=
+f;">Your feedback would help us in sending you the most relevant job opport=
+unities</font></td><td height=3D'30'></td></tr> <tr> <td valign=3D'top' bgc=
+olor=3D'#FFFFFF'> <font face=3D'Arial, Helvetica, sans-serif' color=3D'#313=
+131'><div style=3D'border-bottom:1px solid #888888; line-height:16px; font-=
+size:10px; font-weight:bold;'>Disclaimer:</div> <div style=3D'padding-top:5=
+px; font-size:10px;font-family:Arial, Helvetica, sans-serif;word-break:brea=
+k-word'>The sender of this email is registered with naukri.com as <strong>P=
+AL TALENT SERVICES LLP. </strong> (<a href=3D'mailto:sudha.deepak@paltalent=
+.net' style=3D'cursor:pointer;' title=3D"sudha.deepak@paltalent.net">sudha.=
+deepak@paltalent.net</a>, 41, 1st cross VGNSS Layout, 3rd stage, 4th block,=
+ Basaveshwaranagar, BANGALORE, Karnataka - 560079) using Naukri.com service=
+s. The responsibility of checking the authenticity of offers/correspondence=
+ lies with you. If you consider the content of this email inappropriate or =
+spam, you may: Forward this email to: <a href=3D'mailto:compliance@naukri.c=
+om' style=3D'cursor:pointer;'>compliance@naukri.com</a> or you can <a href=
+=3D'http://my.naukri.com/BlockCompany/blockOneCompany?companyIdStr=3D29301'=
+ style=3D'cursor:pointer;'>Block this Company</a> from searching your resum=
+e in the database.<br /><strong>Please Note:</strong> This mail is a privat=
+e message from the recruiter. We have enabled auto login for your convenien=
+ce, you are strongly advised not to forward this email to protect your acco=
+unt from unauthorized access.<br /><strong>Advisory</strong>: Please do not=
+ pay any money to anyone who promises to find you a job. This could be in t=
+he form of a registration fee or document processing fee or visa charges or=
+ any other pretext. The money could be asked for upfront or it could be ask=
+ed after trust has been built after some correspondence has been exchanged.=
+ Also please note that in case you get a job offer or a letter of intent wi=
+thout having been through an interview process it is probably a scam and yo=
+u should contact <a href=3D'mailto:compliance@naukri.com' style=3D'cursor:p=
+ointer;'>compliance@naukri.com</a> for advise.</div></font> <table width=3D=
+'100%' border=3D'0' cellspacing=3D'0' cellpadding=3D'0'><tr><td height=3D'5=
+'></td></tr><tr><td style=3D'font-family:Arial, Helvetica, sans-serif;font-=
+size:14px;border:1px solid #d1f1fe; line-height:30px; background:#f4fcff' a=
+lign=3D'center'><a class=3D"linkMainColor" href=3D'http://my.naukri.com/Hom=
+ePage/view' style=3D'cursor:pointer; font-weight:bold; font-family:Arial, H=
+elvetica, sans-serif; font-size:14px;color:#3c98ed' title=3D'Update Your Re=
+sume Now'>Update Your Resume Now</a> to be on the top of Employer's Resume =
+Search</td></tr><tr><td height=3D'5'></td></tr><tr><td style=3D'border:1px =
+solid #d1f1fe; line-height:30px; background:#f4fcff;font-family:Arial, Helv=
+etica, sans-serif; text-align: center; font-size: 14px; '><a class=3D"linkM=
+ainColor" href=3D"http://jobsearch.naukri.com/mynaukri/js_msngr.php?xz=3D0_=
+0_5&amp;ma=3DC" style=3D'font-size:14px;font-weight:bold;font-family:Arial,=
+ Helvetica, sans-serif;color:#3c98ed'>Create your own job alert</a> to rece=
+ive similar jobs directly in your inbox.</td></tr></table> <table width=3D"=
+100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"><tr> <td height=3D"5=
+"></td> </tr> <tr> <td bgcolor=3D"#e9e9e9" align=3D"center"><font face=3D"A=
+rial, Helvetica, sans-serif" style=3D"font-size:11px;word-break:break-word"=
+><strong>Your Resume has only 30 seconds to impress a Recruiter. <a class=
+=3D"linkMainColor" href=3D"http://resume.naukri.com/resume-writing-services=
+?fftid=3D700003" style=3D"cursor:pointer;font-weight:bold;color:#3c98ed">Ge=
+t your resume written by Experts.</a> <br /> Call 1800-3010-5557 now! (Toll=
+-Free)</strong></font></td></tr></table></td></tr></table></td></tr> <tr><t=
+d> <img width=3D"0px" height=3D"0px" src=3D"http://jatracking.naukri.com/Fi=
+nale/tracking_resdex.php?data=3DeyJtYWlsS2V5IjoiNTU1YmYxNjY3YTkyMGM2OGZlMzc=
+3ODRkYTYxMTZlNTgiLCJjbGllbnQiOiJSTUpNYWlsIiwiYXBwX2lkIjoxMTIsIm1haWxlcl9pZC=
+I6IjQ5MzQxMzQyIiwibWFpbHNlbnR0aW1lc3RhbXAiOjE1NzU2MTMxNTQ3MTUsInNvdXJjZSI6I=
+lJNSiIsInN0eWxlIjoiRVIwIiwicmR4dXNlcmlkIjoiMzM5MTg2NCIsImNvbXBhbnlpZCI6OTA3=
+MzEsImRvY19pZCI6IjhlZWE3OGEwNTVlZmE2M2NhYzQyZWQzMjA5YzU4NzNmIiwianN1bmlxaWQ=
+iOiIzYWNjMGViNDY5MDI1MGY0OTgifQ=3D=3D" style=3D"display:none !important"/><=
+img width=3D"0px" height=3D"0px" src=3D"https://logs.naukri.com/collectorap=
+i/v1/uba?data=3D%7B%22tenantId%22%3A1%2C%22deviceType%22%3A%22WEB%22%2C%22e=
+ventName%22%3A%22communicationOpen%22%2C%22alertId%22%3A%22anjali_2019-12-0=
+6%22%2C%22communicationType%22%3A%22MAIL%22%2C%22mailerId%22%3A%2249341342%=
+22%2C%22mailType%22%3A%22RMJ%22%2C%22communicationId%22%3A%2249341342%22%2C=
+%22appId%22%3A112%2C%22userId%22%3A%223391864%22%2C%22companyId%22%3A90731%=
+2C%22encEmail%22%3A%227f67428e7a4d0854226fc18ca8438c206bd8de1cf0e75953386ac=
+7ac6481fd6892d2d6ac5f21f68f%22%7D" style=3D"display:none !important"/> <img=
+ width=3D"0px" height=3D"0px" src=3D"http://mailtracking.naukri.com/Finale/=
+mmm_main/resdex_record_response.php?src=3DRMJ&messageId=3D49341342&style=3D=
+ER0" style=3D"display:none !important"/> </td></tr> </table> </div>  <!--RM=
+JFOOTEREND-->  

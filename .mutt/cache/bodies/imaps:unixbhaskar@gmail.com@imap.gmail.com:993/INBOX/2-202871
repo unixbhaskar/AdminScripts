@@ -1,0 +1,96 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1501281lfj;
+        Wed, 25 Sep 2019 19:38:27 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqw/yyCOd2ClUg70caYz4235dIhfzCkNIcE8duSfXF6IQr89rIRMdRJM91m8zHDWM9XVDdV9
+X-Received: by 2002:a17:906:409b:: with SMTP id u27mr1131700ejj.295.1569465506956;
+        Wed, 25 Sep 2019 19:38:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569465506; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wRcMluw26SS3KFwPHqJk4xSlca5ckeeJvi5i1b+tXf7SXPcl34iP6Z1D3WFgT4msZe
+         UXXpqa+YLXlHyyS3v+Cd0rl8yW5BWg0FOVKZw/JnQHiQ4mPVwkArW0jABCoKRO0vO8u3
+         7AecJXNPOOOgtYK31GRdtFRmMta5weLxZ4N/lV3A0IIqFbmqsllaa8R3HGdMg/LNBdT2
+         JnWLBQkC8bSfQIK44VF8JTAa9QbDsQ9cLHuUzab6SfTZP01XGpDKMlCQ+yZiOfIlIL65
+         eJkR+NFksoazUCu3XgDIjI07QUxnGRT03CMzhQfd4IqEBPQMlacAAqc7dzz7yPHdeuMi
+         g3VA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date;
+        bh=h2E6QISAKGN9OKr2ThO8scF4/bERYLlrwFxHaIocs7A=;
+        b=zKo3qSLgRKtMIHW0yLOjI/aXFG+pIL47UzQqQ2hO53pYfYNLV0qiAafZEX9CLeCDZW
+         whX10KYRWDqj5ThdPufjKpeR8/DZmH6GlWWBZCYCL4P7CVrCjktAIm0fZmu0ELyZc8Om
+         SD79liPvjWxV/fNzmYg5dnG1BpRlU7fGuLpRIKmV1U8VDzidR1GYWkYYVIaf2QJceuLD
+         qqeoGL1qxwR6EU4dxD6iD+q5zs2qcklrg/Aqop5NPch5dAmRhdpyFCB+12lWw8YpZ9uh
+         LrWx/Qrcpq1DfM09wBcqBxq24SiJid7TNprQZbYPdzw63ZTqJvxcE3Ftb9tSc+K7SFcO
+         KIww==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id k9si341354ejc.310.2019.09.25.19.38.02;
+        Wed, 25 Sep 2019 19:38:26 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728135AbfIWTVt (ORCPT <rfc822;tavery321@gmail.com> + 99 others);
+        Mon, 23 Sep 2019 15:21:49 -0400
+Received: from zeniv.linux.org.uk ([195.92.253.2]:36248 "EHLO
+        ZenIV.linux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727981AbfIWTVt (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 23 Sep 2019 15:21:49 -0400
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.2 #3 (Red Hat Linux))
+        id 1iCTu7-0000C1-H5; Mon, 23 Sep 2019 19:21:47 +0000
+Date:   Mon, 23 Sep 2019 20:21:47 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org
+Subject: [git pull] several more mount API conversions
+Message-ID: <20190923192147.GC26530@ZenIV.linux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+	Assorted conversions of options parsing to new API.
+gfs2 is probably the most serious one here; the rest is
+trivial stuff.  Other things in what used to be #work.mount
+are going to wait for the next cycle (and preferably go via
+git trees of the filesystems involved).
+
+The following changes since commit 74983ac20aeafc88d9ceed64a8bf2a9024c488d5:
+
+  vfs: Make fs_parse() handle fs_param_is_fd-type params better (2019-09-12 21:06:14 -0400)
+
+are available in the git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs.git work.mount3
+
+for you to fetch changes up to 1f52aa08d12f8d359e71b4bfd73ca9d5d668e4da:
+
+  gfs2: Convert gfs2 to fs_context (2019-09-18 22:47:05 -0400)
+
+----------------------------------------------------------------
+Andrew Price (1):
+      gfs2: Convert gfs2 to fs_context
+
+David Howells (5):
+      vfs: Convert bpf to use the new mount API
+      vfs: Convert functionfs to use the new mount API
+      hypfs: Fix error number left in struct pointer member
+      vfs: Convert hypfs to use the new mount API
+      vfs: Convert spufs to use the new mount API
+
+ arch/powerpc/platforms/cell/spufs/inode.c | 207 +++++++------
+ arch/s390/hypfs/inode.c                   | 137 +++++----
+ drivers/usb/gadget/function/f_fs.c        | 233 +++++++-------
+ fs/gfs2/incore.h                          |   8 +-
+ fs/gfs2/ops_fstype.c                      | 495 ++++++++++++++++++++++--------
+ fs/gfs2/super.c                           | 333 +-------------------
+ fs/gfs2/super.h                           |   3 +-
+ kernel/bpf/inode.c                        |  92 ++++--
+ 8 files changed, 749 insertions(+), 759 deletions(-)

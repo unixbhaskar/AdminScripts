@@ -1,0 +1,48 @@
+Date: Sat, 12 Oct 2019 10:03:19 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Subject: Checkpatch.pl output for your eyes ...please
+Message-ID: <20191012043319.GA29394@Gentoo>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tKW2IUtsqtDRztdT"
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+
+--tKW2IUtsqtDRztdT
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Randy ,=20
+
+ Here is what I am getting..
+=E2=9C=94 ~/git-linux/linux-kbuild [master =E2=86=91=C2=B71|=E2=9C=94]
+ 10:00 $ ./scripts/checkpatch.pl scripts/0001-fix-shell-syntax.patch=20
+ total: 0 errors, 0 warnings, 59 lines checked
+
+ scripts/0001-fix-shell-syntax.patch has no obvious style problems and
+ is ready for submission.
+
+ Please let me know.
+
+ Thanks,
+ Bhaskar
+
+--tKW2IUtsqtDRztdT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl2hV4sACgkQsjqdtxFL
+KRXlJAf/QZ7l3nxh9pxeF93gcqrSUpoQCgNO/oboBH4cxPIqpfrdEs+nVSE/cf14
+mAojpg+0Ht+D05vqNrGgoLS0HvHqaP4Z+GDdXdkoQeJB3kBFU9RtMlXZC8l1ZhpT
+1WzXtObdGz21BWUvMH9hNpDYLFgzGATh33ar0sFfHqxcmxetxWA3hpDfoeTQ4fki
+1JbZW5vlo2eIieXjnJTZA/GnfhDj3YdjjIYPMXLnZlApPzwHFgx6nCddBhwrEjby
+D+v4Uv/gVUazP+/YCZty4ravXIfyY4BTP2q2IVXysY2VaFS2bUcWf5XiNb1ERXbk
+JLbCO7Mq6YghBHo6oUvpGJJD9XBIeQ==
+=4J6r
+-----END PGP SIGNATURE-----
+
+--tKW2IUtsqtDRztdT--

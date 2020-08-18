@@ -1,0 +1,195 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp2608042lfc;
+        Mon, 20 Jan 2020 05:46:48 -0800 (PST)
+X-Google-Smtp-Source: APXvYqyUBnKp4BcgVXHlm5tiR3AmujjuRZ3OzOwofZVVyKYOU5UcKL5RIISnyO7HPlA83rCWdxRB
+X-Received: by 2002:a92:d80f:: with SMTP id y15mr11188119ilm.225.1579528007929;
+        Mon, 20 Jan 2020 05:46:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579528007; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ztYZqlAWV5AjVE9ZHPb3LSk6PFGrT8TAjVNlxDc9M/MoxNL2pC0DFAZ/mwPKcnLtRH
+         RWskgfhinIF48rTNOkaV1qcvnsnlHavgAGTfSBD9CT8HP6SGSY5m8NoPErG6S5KAFuG9
+         9xRIkUHtvKOYC5KFfflx/0f4Xsv+0gzV+apJ2ZWXh8lpoPs8PkDYV2cDVXsyEcGBgcIA
+         FjBnpstiYdBoJetqcMj2F3S+PKeEudUE+gxzwjfKJB2Hd/wGkc3WOCWqHwtL8nSYXnPR
+         qx71NHKkoUjUaC5L4zoh/OUeHAQ8/KxvqqYvz+tx/bMkmSlAYiPDXhtRfDrSxBIeX/ph
+         S1gg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-archive:list-post:list-owner:list-subscribe:list-id
+         :list-software:list-unsubscribe:list-help:reply-to:precedence
+         :errors-to:sender:content-transfer-encoding:date:importance:subject
+         :to:from:message-id:mime-version:delivered-to:dkim-signature
+         :dkim-signature;
+        bh=Ev8u8em18dVl+FiMkngtJTkMZvlN9mLPb+qsV2ULSKg=;
+        b=nHpKDMH4svm2y2d/4qLO8vPJ9P1leqoFPX8joZJycsb2gM0gALwGMQTGHiypWHkmdf
+         jv+h09/gKSNhTfGebOk5sDAitRdom+iRFQdASnMFHRwd9t4RSLu2BZLWQjJKxhm50M48
+         ylMhYZo7Tv0AXupOGY35DqMxQKJ+1732rUKxQnfyNVTfay94rt5RA6KsehBfSEeED+of
+         htkWkv3DnO6OzFfRkCIkrZoHaL8J8+adfjTeXmPgBwMuB/xJxgpJmamgQS/UcgrZ+VQY
+         y4sMUL3vD/u+jJkLMSPCYBLG7LBwDqrqcew9YEJBwCT3MUE4F3ftp71NY3+XnThoNxi2
+         ZRaQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=Je4xL16t;
+       dkim=pass header.i=@freelists.org header.s=turing header.b="w/GJeHjY";
+       spf=pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) smtp.mailfrom=i3-discuss-bounce@freelists.org
+Return-Path: <i3-discuss-bounce@freelists.org>
+Received: from turing.freelists.org (turing.freelists.org. [206.53.239.180])
+        by mx.google.com with ESMTPS id q13si18596779iod.93.2020.01.20.05.46.47
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 20 Jan 2020 05:46:47 -0800 (PST)
+Received-SPF: pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) client-ip=206.53.239.180;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=Je4xL16t;
+       dkim=pass header.i=@freelists.org header.s=turing header.b="w/GJeHjY";
+       spf=pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) smtp.mailfrom=i3-discuss-bounce@freelists.org
+Received: from localhost (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id 470DB253B5;
+	Mon, 20 Jan 2020 08:46:46 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=freelists.org;
+	s=turing; t=1579528006;
+	bh=aOZhy4/S/+YXUVDqZa8AZepsqQt8O1k1SdAcJrQXWX4=;
+	h=From:Sender:Sender:From;
+	b=Je4xL16to7ozv2OYJUwHjqFCtnWcXB8T3Ygl+YwiLRR+UsSHOsh08Az86ZIw0j61q
+	 XXjEN6xHJQ/YJgvLSE891fuQ09ZyX6qjOmvYm5hH9DQ/4CCh7ET38VtaAPRijgZjtz
+	 NafmgfDpF7Bha+CqVe9J8rI00ZnUDX2N93ShmQ6Q=
+X-Virus-Scanned: Debian amavisd-new at turing.freelists.org
+Received: from turing.freelists.org ([127.0.0.1])
+	by localhost (turing.freelists.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Om9YTsYdmAzr; Mon, 20 Jan 2020 08:46:45 -0500 (EST)
+Received: from turing.freelists.org (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id B867C2290F;
+	Mon, 20 Jan 2020 08:46:26 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=freelists.org;
+	s=turing; t=1579528004;
+	bh=aOZhy4/S/+YXUVDqZa8AZepsqQt8O1k1SdAcJrQXWX4=;
+	h=From:Sender:Sender:From;
+	b=w/GJeHjY59Wy6oyRESFx6QjHoHyvcbHRiAimnZKH3CuO4uWGzEr/QhBihPVPF6DXX
+	 h2/mrCiW8IIdBIX9qVXkFMUFxNS+PYmo81+p+oLRNJdPu0gz5KEBk3G5ba4NnqER9A
+	 1CieiJC0rq2nlKAjXZ5q9/48qoFCMS3PUBxdqGoU=
+Received: with ECARTIS (v1.0.0; list i3-discuss); Mon, 20 Jan 2020 08:46:26 -0500 (EST)
+X-Original-To: i3-discuss@freelists.org
+Delivered-To: i3-discuss@freelists.org
+Received: from localhost (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id 471E62492D
+	for <i3-discuss@freelists.org>; Mon, 20 Jan 2020 08:46:26 -0500 (EST)
+Authentication-Results: turing.freelists.org;
+	dkim=pass (1024-bit key; secure) header.d=gmx.net header.i=@gmx.net header.b="KwQz81Fm";
+	dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at turing.freelists.org
+Received: from turing.freelists.org ([127.0.0.1])
+	by localhost (turing.freelists.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id DmXsr5AQi2xH for <i3-discuss@freelists.org>;
+	Mon, 20 Jan 2020 08:46:26 -0500 (EST)
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTPS id B0AB52290F
+	for <i3-discuss@freelists.org>; Mon, 20 Jan 2020 08:46:25 -0500 (EST)
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [195.230.41.240] ([195.230.41.240]) by
+ msvc-mesg-gmx023.server.lan (via HTTP); Mon, 20 Jan 2020 14:46:24 +0100
+MIME-Version: 1.0
+Message-ID: <trinity-2f5e3b7b-9390-46ba-8013-6ec63af49924-1579527984359@msvc-mesg-gmx023>
+From: "Anna Simon" <simonanna@gmx.net>
+To: i3-discuss@freelists.org
+Subject: [i3-discuss] Aw: Re: splitting entire workspace
+Content-Type: text/html; charset=UTF-8
+Importance: normal
+Date: Mon, 20 Jan 2020 14:46:24 +0100
+X-Priority: 3
+X-Provags-ID: V03:K1:Dgl2umVt0gL7kEF6pCXA5lBB3lEqo+WXnW3tnTRAtMcIWJKgzBKYA1GFkErl+Jl7wyheZ
+ /WS/LOK+0aepY8UhURL6qyjl1e9mbDfYHX1sTdkqJbsbJ0P5za8lecrZ7ZzbMkotANBrXKkOsDBs
+ YZzk1+WmNqwJe5fU4ocfW9QcfMarNC348YKsO9dEEPlHTJJZyvEPZ2qFXaDjRKqzjNDorGsgb2dD
+ Fv7TOL+oPD6OQtEZLq73IEs1xxPFB8nEXKktTT8StVNo8kVThjMIDMTJZ22VyoOGpwnqhK+yCUjX
+ uE=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:QVbJU9337nc=:q1OwHLArDB0qQJ+ddJVYJt
+ UPTjX2Hq/4ezl2l3lOxbB373Cvnv5QF0axuk5Dhzok9C6h6Jh9X8QU/ZGcAeGE/D6TLGeA13g
+ qaoY/G6DC0A27Pf5xY3b+IFMXkgxXyiC66waCdMkitimtA51tEqwW6wMpD50jYiHTee8xj2J/
+ iLudC0At0r2etnJ6bzVVroH5nX3HnXutGGcM3mSjWIJGIDjI5QAhgYjLD+MHzWstrLg/N9xIW
+ 0HX9X1vmmM1BIDqlER+dH1QClct7sorW0CI47OHds4/kNJdqe+zKPHJl9AzNvADNWpl6BDHDX
+ 3mZfO7eZ2xCJPE18Cllc1MvS5AQolH9SBcmLiWTpxeCBPqq01IoCaB2oLUjfHiQGq9r7gmUfg
+ 0BhXfS3tB9uEEx6lsaCCfUbx1LeZFpv1UmMdnf0S6CjzF2ep9NhrfJ6J5hNYCaeuZyi0O0Qeu
+ mZWDV+nIqclVls63SNmuMUYqpqyWBqjHzguSVm2KryZCK88r2oiJnipL4uV98amUhixpJBfzE
+ HfdgsOTQTKNYdTMO1mdT23pvi22AmWuJZ4ZS8Wnvwl8+ZuRtY9KahqlnFKT0D/JRuYrYZR6UC
+ ocevfg/uLgFuKXBl/9i2LkttrtWcppw276omB5/3pXYc7cok7Wd2+S6uifF8mAnOpkuGPq6Js
+ dr70M5CUpVRJZtxXMzIEzkzSHpLi6+VuzjjRpdQljs+H7J0YuSpnC8cexkJWjgLhPZ0LB2MCX
+ dGHKBu+lzO4NulfQKYu4xde8AxMmP6MoY/1CcvThLGIAI+JZibQfWFhDGy9TFBW5EzFhao1U1
+ 9VPbcpa
+Content-Transfer-Encoding: quoted-printable
+X-archive-position: 549
+X-ecartis-version: Ecartis v1.0.0
+Sender: i3-discuss-bounce@freelists.org
+Errors-to: i3-discuss-bounce@freelists.org
+X-original-sender: simonanna@gmx.net
+Precedence: normal
+Reply-To: i3-discuss@freelists.org
+List-Help: <mailto:ecartis@freelists.org?Subject=help>
+List-Unsubscribe: <mailto:i3-discuss-request@freelists.org?Subject=unsubscribe>
+List-software: Ecartis version 1.0.0
+List-Id: i3-discuss <i3-discuss.freelists.org>
+X-List-ID: i3-discuss <i3-discuss.freelists.org>
+List-Subscribe: <mailto:i3-discuss-request@freelists.org?Subject=subscribe>
+List-Owner: <mailto:>
+List-post: <mailto:i3-discuss@freelists.org>
+List-Archive: <http://www.freelists.org/archives/i3-discuss>
+X-list: i3-discuss
+
+<html><body>
+<html>
+ <head>
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width">
+  <meta http-equiv=3D"Content-Type" content=3D"text/vnd.ui.insecure+html;c=
+harset=3Dutf-8">
+ </head>
+ <body style=3D"overflow-wrap:break-word; word-break: break-word;"><div cl=
+ass=3D"mail_android_message" style=3D"line-height: 1; padding: 0.5em">Than=
+k you! So mod4+a etc.<br>
+=2D- <br>
+Diese Nachricht wurde von meinem Android Mobiltelefon mit GMX Mail gesende=
+t.</div><div class=3D"mail_android_quote" style=3D"line-height: 1; padding=
+: 0.3em">Am 20.01.20, 14:35 schrieb &quot;Guillaume Maudoux (Layus)&quot; =
+&lt;layus.on@gmail.com&gt;:<blockquote class=3D"gmail_quote" style=3D"marg=
+in: 0.8ex 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); paddin=
+g-left: 1ex;">
+
+  Hi,
+  <br>
+  <br> To do that, you should [focus the parent] container as many times a=
+s
+  <br> needed to reach the top-level container.
+  <br> Then you can [split] as usual, and the window will be placed as exp=
+ected.
+  <br>
+  <br> There may be a shortcut to select the toplevel container (not sure)=
+, or
+  <br> you can use some large number of hard-coded "focus parent" commands=
+.
+  <br>
+  <br> [focus the parent]:
+  <a href=3D"https://i3wm.org/docs/userguide.html#_focus_parent">https://i=
+3wm.org/docs/userguide.html#_focus_parent</a>
+  <br> [split]:
+  <a href=3D"https://i3wm.org/docs/userguide.html#OrientationSplit">https:=
+//i3wm.org/docs/userguide.html#OrientationSplit</a>
+  <br>
+  <br> -- Layus.
+  <br>
+  <br> On 20/01/20 13:33, Anna Simon wrote:
+  <br> &gt; Hi,
+  <br> &gt;
+  <br> &gt; I&nbsp; did not find any info about this in the documentation.=
+ Is it possible
+  <br> &gt; to split an entire workspace, i.e. the entire screen horizonta=
+lly or
+  <br> &gt; vertically, so the next opened window occupies the bottom or r=
+ight half
+  <br> &gt; of the workspace?
+  <br> &gt;
+  <br> &gt; Thanks in advance for the help.
+  <br> &gt;
+  <br> &gt; Anna
+  <br> &gt;
+  <br> &gt;
+  <br>
+  <br>
+ </blockquote></div></body>
+</html></body></html>
+

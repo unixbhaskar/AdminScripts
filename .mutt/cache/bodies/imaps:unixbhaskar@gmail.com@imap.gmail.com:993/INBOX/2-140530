@@ -1,0 +1,583 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.194.151.167 with SMTP id ur7csp394141wjb;
+        Tue, 12 Jul 2016 05:03:44 -0700 (PDT)
+X-Received: by 10.129.152.134 with SMTP id p128mr1132943ywg.86.1468325024101;
+        Tue, 12 Jul 2016 05:03:44 -0700 (PDT)
+Return-Path: <centos-devel-bounces@centos.org>
+Received: from mail.centos.org (mail.centos.org. [72.26.200.203])
+        by mx.google.com with ESMTPS id s88si3296251qki.87.2016.07.12.05.03.42
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 12 Jul 2016 05:03:44 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of centos-devel-bounces@centos.org designates 72.26.200.203 as permitted sender) client-ip=72.26.200.203;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of centos-devel-bounces@centos.org designates 72.26.200.203 as permitted sender) smtp.mailfrom=centos-devel-bounces@centos.org
+Received: from mail.centos.org (localhost [127.0.0.1])
+	by mail.centos.org (Postfix) with ESMTP id E5A13A00D71;
+	Tue, 12 Jul 2016 12:00:05 +0000 (UTC)
+From: centos-devel-request@centos.org
+Subject: CentOS-devel Digest, Vol 137, Issue 10
+To: centos-devel@centos.org
+Reply-To: centos-devel@centos.org
+Date: Tue, 12 Jul 2016 12:00:02 +0000
+Message-ID: <mailman.25.1468324802.11728.centos-devel@centos.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+X-BeenThere: centos-devel@centos.org
+X-Mailman-Version: 2.1.12
+Precedence: list
+List-Id: "The CentOS developers mailing list." <centos-devel.centos.org>
+List-Unsubscribe: <https://lists.centos.org/mailman/options/centos-devel>,
+	<mailto:centos-devel-request@centos.org?subject=unsubscribe>
+List-Archive: <http://lists.centos.org/pipermail/centos-devel/>
+List-Post: <mailto:centos-devel@centos.org>
+List-Help: <mailto:centos-devel-request@centos.org?subject=help>
+List-Subscribe: <https://lists.centos.org/mailman/listinfo/centos-devel>,
+	<mailto:centos-devel-request@centos.org?subject=subscribe>
+Sender: centos-devel-bounces@centos.org
+Errors-To: centos-devel-bounces@centos.org
+
+Send CentOS-devel mailing list submissions to
+	centos-devel@centos.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+	https://lists.centos.org/mailman/listinfo/centos-devel
+or, via email, send a message with subject or body 'help' to
+	centos-devel-request@centos.org
+
+You can reach the person managing the list at
+	centos-devel-owner@centos.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of CentOS-devel digest..."
+
+
+Today's Topics:
+
+   1. AltArch on buildlogs.centos.org (Karanbir Singh)
+   2. Re: Feedback needed: ideas for the Vagrant images
+      (Laurentiu Pancescu)
+   3. Re: AltArch on buildlogs.centos.org (Karanbir Singh)
+   4. Re: ConfigMgmt SIG Status (Fabian Arrotin)
+   5. Question about authoritative SIG for specific pkg[s] (wrt
+      ConfigMgmt SIG) (Fabian Arrotin)
+   6. Re: Interest in a SIG for logging and monitoring? (Earl A Ramirez)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Mon, 11 Jul 2016 13:23:55 +0100
+From: Karanbir Singh <kbsingh@centos.org>
+To: "The CentOS developers mailing list." <centos-devel@centos.org>
+Subject: [CentOS-devel] AltArch on buildlogs.centos.org
+Message-ID: <ed8ad9c2-34f6-77dc-a77d-cda814f80a4b@centos.org>
+Content-Type: text/plain; charset=windows-1252
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hi
+
+Last week I finished the work to get altarch content pushed via
+cbs.centos.org to buildlogs as a first step towards wider release
+options opening up. Today the scripts are in production and I've
+incldued the list below to indicate content currently in that push
+queue. It should be publicly visible in a few minutes time.
+
+What this means is that for any tag, where the SIG has requested push
+- - we can now support aarch64, ppc64, ppc64le, armhfp and i386 content
+built, tested and delivered via the public community services (
+cbs.centos.org / ci.centos.org / buildlogs.centos.org ) and then
+signed released via whatever delivery mechanism is already in place (
+isos, disk media, cloud images, containers, livemedia, rpm repos,
+vagrant boxs etc ).
+
+There are still a few considerations to work through on the build side
+however. There is no clear path within our existing buildsystem ( koji
+) to work with similar content, only different by the intendant target
+architecture and how the relationships work between build's and
+status'. Thomas, Brian and I spent an evening last week working
+through some of these options, and I believe Thomas is going to
+re-iterate the options in the coming days and we'll need to work
+through those and arrive at whatever makes most sense in the immediate
+future - and work on a bigger/better plan longer term.
+
+What I do recommend is going through the previous threads on this
+subject on the centos-devel list ( and there have been a few ), so as
+to update yourself on the concerns ( they remain largely unchanged,
+just a lot more thought and understanding now exists for some of them,
+atleast from my side ).
+
+Regards,
+
+
+- -------- Forwarded Message --------
+Subject: AltArch Buildlogs Push
+Date: Mon, 11 Jul 2016 12:13:08 +0000
+
+N:  7/cloud/x86_64/openstack-liberty/common/
+openstack-utils-2016.1-1.el7.noarch.rpm
+N:  7/cloud/x86_64/openstack-kilo/common/
+openstack-utils-2016.1-1.el7.noarch.rpm
+N:  7/cloud/x86_64/openstack-mitaka/common/
+openstack-utils-2016.1-1.el7.noarch.rpm
+N:  7/cloud/x86_64/openstack-newton/common/
+openstack-utils-2016.1-1.el7.noarch.rpm
+N:  7/storage/aarch64/gluster-3.7/ glusterfs-3.7.13-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/ glusterfs-api-3.7.13-1.el7.aarch64.rp
+m
+N:  7/storage/aarch64/gluster-3.7/
+glusterfs-api-devel-3.7.13-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/ glusterfs-cli-3.7.13-1.el7.aarch64.rp
+m
+N:  7/storage/aarch64/gluster-3.7/
+glusterfs-client-xlators-3.7.13-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/
+glusterfs-devel-3.7.13-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/
+glusterfs-extra-xlators-3.7.13-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/ glusterfs-fuse-3.7.13-1.el7.aarch64.r
+pm
+N:  7/storage/aarch64/gluster-3.7/
+glusterfs-ganesha-3.7.13-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/
+glusterfs-geo-replication-3.7.13-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/ glusterfs-libs-3.7.13-1.el7.aarch64.r
+pm
+N:  7/storage/aarch64/gluster-3.7/ glusterfs-rdma-3.7.13-1.el7.aarch64.r
+pm
+N:  7/storage/aarch64/gluster-3.7/
+glusterfs-resource-agents-3.7.13-1.el7.noarch.rpm
+N:  7/storage/aarch64/gluster-3.7/
+glusterfs-server-3.7.13-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/ nfs-ganesha-2.3.2-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/
+nfs-ganesha-gluster-2.3.2-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/
+nfs-ganesha-mount-9P-2.3.2-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/
+nfs-ganesha-nullfs-2.3.2-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/
+nfs-ganesha-proxy-2.3.2-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.7/ nfs-ganesha-vfs-2.3.2-1.el7.aarch64.r
+pm
+N:  7/storage/aarch64/gluster-3.7/ nfs-ganesha-xfs-2.3.2-1.el7.aarch64.r
+pm
+N:  7/storage/aarch64/gluster-3.7/ python-gluster-3.7.13-1.el7.noarch.rp
+m
+N:  7/storage/aarch64/gluster-3.7/ userspace-rcu-0.7.16-2.el7.aarch64.rp
+m
+N:  7/storage/aarch64/gluster-3.7/
+userspace-rcu-devel-0.7.16-2.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.6/
+glusterfs-resource-agents-3.6.9-1.el7.noarch.rpm
+N:  7/storage/aarch64/gluster-3.8/ glusterfs-3.8.1-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.8/ glusterfs-api-3.8.1-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.8/
+glusterfs-api-devel-3.8.1-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.8/ glusterfs-cli-3.8.1-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.8/
+glusterfs-client-xlators-3.8.1-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.8/
+glusterfs-coreutils-0.0.1-0.1.git259f269.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.8/ glusterfs-devel-3.8.1-1.el7.aarch64.r
+pm
+N:  7/storage/aarch64/gluster-3.8/
+glusterfs-extra-xlators-3.8.1-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.8/ glusterfs-fuse-3.8.1-1.el7.aarch64.rp
+m
+N:  7/storage/aarch64/gluster-3.8/
+glusterfs-ganesha-3.8.1-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.8/
+glusterfs-geo-replication-3.8.1-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.8/ glusterfs-libs-3.8.1-1.el7.aarch64.rp
+m
+N:  7/storage/aarch64/gluster-3.8/ glusterfs-rdma-3.8.1-1.el7.aarch64.rp
+m
+N:  7/storage/aarch64/gluster-3.8/
+glusterfs-resource-agents-3.8.1-1.el7.noarch.rpm
+N:  7/storage/aarch64/gluster-3.8/
+glusterfs-server-3.8.1-1.el7.aarch64.rpm
+N:  7/storage/aarch64/gluster-3.8/ python-gluster-3.8.1-1.el7.noarch.rpm
+N:  7/storage/aarch64/gluster-3.8/ userspace-rcu-0.7.16-1.el7.aarch64.rp
+m
+N:  7/storage/aarch64/gluster-3.8/
+userspace-rcu-devel-0.7.16-1.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ babeltrace-1.2.4-3.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ ceph-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ ceph-base-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ ceph-common-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/
+ceph-devel-compat-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ cephfs-java-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ ceph-fuse-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/
+ceph-libs-compat-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ ceph-mds-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ ceph-mon-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ ceph-osd-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ ceph-radosgw-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ ceph-selinux-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ ceph-test-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ fcgi-2.4.0-25.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ fcgi-devel-2.4.0-25.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ leveldb-1.12.0-5.el7.1.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ leveldb-devel-1.12.0-5.el7.1.aarch64.r
+pm
+N:  7/storage/aarch64/ceph-jewel/ libbabeltrace-1.2.4-3.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/
+libbabeltrace-devel-1.2.4-3.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ libcephfs1-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/
+libcephfs1-devel-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ libcephfs_jni1-10.2.2-0.el7.aarch64.rp
+m
+N:  7/storage/aarch64/ceph-jewel/
+libcephfs_jni1-devel-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ librados2-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ librados2-devel-10.2.2-0.el7.aarch64.r
+pm
+N:  7/storage/aarch64/ceph-jewel/
+libradosstriper1-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/
+libradosstriper1-devel-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ librbd1-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ librbd1-devel-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ librgw2-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ librgw2-devel-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ libunwind-1.1-10.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ libunwind-devel-1.1-10.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ lttng-ust-2.4.1-1.el7.1.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/
+lttng-ust-devel-2.4.1-1.el7.1.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/
+python-ceph-compat-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ python-cephfs-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ python-mock-1.0.1-7.1.el7.noarch.rpm
+N:  7/storage/aarch64/ceph-jewel/ python-rados-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ python-rbd-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ python-tox-1.4.2-8.el7.noarch.rpm
+N:  7/storage/aarch64/ceph-jewel/ rbd-fuse-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ rbd-mirror-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ rbd-nbd-10.2.2-0.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ userspace-rcu-0.7.16-1.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/
+userspace-rcu-devel-0.7.16-1.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ xmlstarlet-1.6.1-1.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ yasm-1.2.0-4.el7.aarch64.rpm
+N:  7/storage/aarch64/ceph-jewel/ yasm-devel-1.2.0-4.el7.aarch64.rpm
+N:  7/paas/aarch64/openshift-future/ ansible-2.1.0.0-1.el7.noarch.rpm
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
+
+iQEcBAEBAgAGBQJXg4/bAAoJEI3Oi2Mx7xbtCjkIANHy6FKFtWWCocNJZD1WA1Ap
+WJsX4Un1dvLSv/Sa/f7JXt/0bA6wnueMzY2uZZyAjxrpup4UN8sjNW0D/3QrDf9o
+8o3+YQz7hp/Wy/CoYXTQSXvjR6Iflzsx9FX/CqHpqUbHB2LaHi9fKG+d2ZsOaFiS
+SCe809NnCxbM1RMoLMdFvsC1GO8SfZlEb3P9JMCVaPzJqj+zhkSodvHIHIvO6Z8z
+m7kgktznRo29FkUYHl/nnU1t4v2+xYxNhTqFTEe90jlIOordrePsdHlZzaWb/3JW
+kwqLnYQs1k7OphUno2lqd9lNfN0uCZ1PAKOUoQuuavGp9drfIhu44LMg/4kep90=
+=/QJh
+-----END PGP SIGNATURE-----
+
+
+------------------------------
+
+Message: 2
+Date: Mon, 11 Jul 2016 14:50:39 +0200
+From: Laurentiu Pancescu <lpancescu@gmail.com>
+To: "The CentOS developers mailing list." <centos-devel@centos.org>
+Subject: Re: [CentOS-devel] Feedback needed: ideas for the Vagrant
+	images
+Message-ID: <892c24fc-d10a-4717-b80a-dd539f5144ce@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+
+Hello Nico,
+
+many thanks for your detailed feedback.
+
+On 09/07/16 16:38, Nico Kadel-Garcia wrote:
+> On Thu, Jul 7, 2016 at 8:53 AM, Laurentiu Pancescu <lpancescu@gmail.com> wrote:
+>> III. "UseDNS no" in sshd_config: this would make connections via ssh faster
+>
+> this is an old feature, and the "fix" is incomplete. What you really
+> want is "-u0" for sshd set in /etc/sysconfig/sshd.
+
+I assume only the first connection would be affected by the reverse DNS 
+delay, since it would probably be cached afterwards?  Based on this 
+assumption, and since Vagrant connects to the VM each time it boots, I 
+performed some measurements with "time vagrant up" (from a powered-off 
+state, after "vagrant halt").  Here are the stats from 10 measurements 
+for each configuration, "UseDNS no" in both cases, but default 
+parameters for sshd, and with -u0 enabled:
+
+               mean       variance       median
+default       76.7526    8.44587        75.4725
+with -u0      75.3307    0.353426       75.3235
+
+The values are in seconds.  The big variance in the default case is due 
+to two outliers, 84.559s and 78.41s.  The boot time is more predictable 
+with -u0, and we seem to save about 150ms from the boot time.
+
+>> IV. disable requiretty in /etc/sudoers
+
+I am aware of the security trade-off.  As Ken wrote, Ansible apparently 
+doesn't need requiretty to be disabled any more, although their 
+documentation hasn't been updated yet to reflect this.  I'm going to 
+leave requiretty as it is, enabled by default.
+
+>> V. set GRUB_TIMEOUT to 1 or 0
+> For vagrant images, I can see this. For any system where a developer
+> might need to control grub and select a kernel to roll back to, or
+> switch to single user mode, I'd see it as making the grub selections
+> unavailable.
+> But for Vagrant images? Yeah, makes sense.
+>
+
+At least with the VirtualBox provider, you can have a visible VM by 
+setting v.gui=true in the Vagrantfile.  I reduced the grub timeout to 1, 
+instead of 0, to allow for manual intervention if necessary, when 
+debugging boot problems.
+
+Best regards,
+Lauren?iu
+
+
+------------------------------
+
+Message: 3
+Date: Mon, 11 Jul 2016 15:58:23 +0100
+From: Karanbir Singh <mail-lists@karan.org>
+To: centos-devel@centos.org
+Subject: Re: [CentOS-devel] AltArch on buildlogs.centos.org
+Message-ID: <60899a68-bb59-f8ef-5c3d-581a25379f9d@karan.org>
+Content-Type: text/plain; charset=windows-1252
+
+On 11/07/16 13:23, Karanbir Singh wrote:
+> Hi
+> 
+> Last week I finished the work to get altarch content pushed via
+> cbs.centos.org to buildlogs as a first step towards wider release
+> options opening up. Today the scripts are in production and I've
+> incldued the list below to indicate content currently in that push
+> queue. It should be publicly visible in a few minutes time.
+
+
+now visible
+
+
+-- 
+Karanbir Singh
++44-207-0999389 | http://www.karan.org/ | twitter.com/kbsingh
+GnuPG Key : http://www.karan.org/publickey.asc
+
+
+------------------------------
+
+Message: 4
+Date: Tue, 12 Jul 2016 08:36:58 +0200
+From: Fabian Arrotin <arrfab@centos.org>
+To: centos-devel@centos.org
+Subject: Re: [CentOS-devel] ConfigMgmt SIG Status
+Message-ID: <5784900A.8080808@centos.org>
+Content-Type: text/plain; charset="windows-1252"
+
+On 23/06/16 09:17, Julien Pivotto wrote:
+> On 22 Jun 21:00, Ben Hosmer wrote:
+>> I'm having a hard time getting my bearings. Where can I help out?
+> 
+> 
+> Hello Ben,
+> 
+> The current status of the SIG is the following:
+> 
+> 1. Puppet and Ansible: we do have built tags on CBS, which means that we
+> can start building RPM packages.
+> 
+> 
+> 2. Salt, Rudder, Chef: No build tags have been asked. Please fill a ticket
+> on bugs.centos.org to get the tags for your project.
+> 
+> 3. Any member of the sig can create git repositories on
+> https://github.com/centos-sig-configmanagement
+> 
+> 
+> I will have some time tomorrow to work on all of this.
+> 
+
+Just trying to resurrect that thread :-)
+
+We have a new OpsTools SIG (see
+http://www.karan.org/blog/2016/07/11/welcoming-the-opstool-sig/) that
+will probably depend on pkgs coming from configmgmt SIG soon, so we
+should build those pkgs in our tags, and then they'll be able to
+tag/import those builds in their repositories
+
+The tags in CBS/Koji are indeed created for Puppet and Ansible (see
+https://cbs.centos.org/koji/search?match=glob&type=tag&terms=config*)
+but it seems nobody tried to build a pkg (yet).
+What is needed to start building pkgs through cbs ?
+
+People representing the Salt/Rudder/Chef communities can create a bug
+report like this one : https://bugs.centos.org/view.php?id=10604 to also
+have their tags created.
+
+I'd like at least to have feedback from everybody in the SIG to confirm
+that their cbs access works fine (so basically `cbs moshimoshi` at
+minimum) (see https://wiki.centos.org/HowTos/CommunityBuildSystem)
+
+If a member listed on
+https://wiki.centos.org/SpecialInterestGroup/ConfigManagementSIG has
+trouble accessing CBS/Koji, or troubles with his ACO
+(https://accounts.centos.org), feel free to reach Julien or me to help you.
+
+As a reminder, the ConfigMgmt SIG has actually no irc meeting, as it
+seems it was impossible to find a common time slot that suited
+everybody. So we have then to use intensively the centos-devel list for
+this.
+
+Let us know how we can help you
+
+-- 
+Fabian Arrotin
+The CentOS Project | http://www.centos.org
+gpg key: 56BEC54E | twitter: @arrfab
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: OpenPGP digital signature
+URL: <http://lists.centos.org/pipermail/centos-devel/attachments/20160712/a1215072/attachment-0001.sig>
+
+------------------------------
+
+Message: 5
+Date: Tue, 12 Jul 2016 09:10:52 +0200
+From: Fabian Arrotin <arrfab@centos.org>
+To: "The CentOS developers mailing list." <centos-devel@centos.org>
+Subject: [CentOS-devel] Question about authoritative SIG for specific
+	pkg[s] (wrt ConfigMgmt SIG)
+Message-ID: <578497FC.30407@centos.org>
+Content-Type: text/plain; charset="utf-8"
+
+I  just had a look at CBS and was wondering how one SIG (so not
+ConfigMgmt SIG specific, but let's use that as an example) can interact
+with other SIGs.
+
+One example is Ansible : it seems some other SIGs are relying on it and
+so actually the ConfigMgmgt SIG isn't able to build it as it's already
+built with the same ENVR but in a different target/tag :
+https://cbs.centos.org/koji/packageinfo?packageID=1947
+
+What would be the option for this ?
+Actually the direct option is for the ConfigMgmt SIG to just tag that
+build (for example for ansible-2.1.0.0-1.el7) so that it will appear in
+the correct repositories, but I'm wondering if such SIG wouldn't have to
+be considered "authoritative" and so having to discuss/bump/build new
+releases, and then other SIGs can just consume/tag a specific build/ENVR
+they want in their own repositories.
+
+-- 
+Fabian Arrotin
+The CentOS Project | http://www.centos.org
+gpg key: 56BEC54E | twitter: @arrfab
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: OpenPGP digital signature
+URL: <http://lists.centos.org/pipermail/centos-devel/attachments/20160712/e0d72780/attachment-0001.sig>
+
+------------------------------
+
+Message: 6
+Date: Tue, 12 Jul 2016 13:30:16 +0200
+From: Earl A Ramirez <earlaramirez@gmail.com>
+To: "The CentOS developers mailing list." <centos-devel@centos.org>
+Subject: Re: [CentOS-devel] Interest in a SIG for logging and
+	monitoring?
+Message-ID:
+	<CAP6-ctR3nwpE-sp2i2kNiGmhuzf58UO6J_xyskWDkrr7+pwP7A@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+
+On 4 May 2016 at 17:17, Brian Stinson <brian@bstinson.com> wrote:
+
+> On May 05 02:55, Xiandong Meng wrote:
+> > Hi Mattias,
+> >
+> >      With enough people raising their hands, shall we meet and discuss
+> the
+> > SIG "charter"?
+> >
+> > Regards,
+> >
+> > Alex Meng <mengxiandong@gmail.com>
+> > mengxiandong@gmail.com
+> >
+> > On Thu, May 5, 2016 at 2:29 AM, Matthias Runge <mrunge@matthias-runge.de
+> >
+> > wrote:
+> >
+> > > On 04/05/16 16:20, Steve Huston wrote:
+> > > > Apologies for not being able to use a proper reply, since I only just
+> > > > joined the list today; came here to say that I too would be
+> interested
+> > > > in such a SIG.
+> > > >
+> > > Thank you, noted.
+> > >
+> > > It's good to see so many interested folks here joining.
+> > >
+> > > Remaining question for me is: how to continue from here? It seems like
+> > > we have enough people to get a SIG going?
+> > >
+> > > Best,
+> > > Matthias
+> > > _______________________________________________
+> > > CentOS-devel mailing list
+> > > CentOS-devel@centos.org
+> > > https://lists.centos.org/mailman/listinfo/centos-devel
+> > >
+>
+> If some interested folks want to have a short discussion in
+> #centos-devel on Freenode to divide up tasks that might be a good start.
+> The main thing would be finding one of the CentOS Board members to
+> sponsor.
+>
+> There's a description of the proposal process in this guide:
+> https://wiki.centos.org/SIGGuide
+>
+> If people bring other general questions to the meeting, we can be sure
+> the SIGGuide gets updated with some answers.
+>
+> Cheers!
+>
+> --
+> Brian Stinson
+>
+
+Are there any update regarding this SIG?
+
+-- 
+Kind Regards
+Earl Ramirez
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <http://lists.centos.org/pipermail/centos-devel/attachments/20160712/daf3b4f3/attachment-0001.html>
+
+------------------------------
+
+_______________________________________________
+CentOS-devel mailing list
+CentOS-devel@centos.org
+https://lists.centos.org/mailman/listinfo/centos-devel
+
+
+End of CentOS-devel Digest, Vol 137, Issue 10
+*********************************************

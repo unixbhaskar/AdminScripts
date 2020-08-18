@@ -1,0 +1,84 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:c3c5:0:0:0:0:0 with SMTP id t188csp2555878lff;
+        Fri, 3 Jul 2020 11:41:10 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz/Z6k6NCumU4sxSZswGHwDfgzrvwzitEk1C/fMBCyb2Wd6jEuUOyhXfDEfL53zo0Svc6Ue
+X-Received: by 2002:a17:907:4420:: with SMTP id om24mr23951380ejb.10.1593801670293;
+        Fri, 03 Jul 2020 11:41:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1593801670; cv=none;
+        d=google.com; s=arc-20160816;
+        b=VzKF8I11tgB+F2k/GApp+73oIEFNRjIOM2k93OWYs3I5Vb+3GlNkUKgxiE8ezqBQQK
+         4GxlXJyGTJ0DcW3Ga7LTbV11eeCokVH4sXzXCqFgmLb/02mcWyNibGar5x0BkvEtubnQ
+         oEVAOdYNfzgiz6caeX4jTnrXr1pqk8p70RqC3CCVoGUd+KJA+IEVHKBl2NNLuHC0sWjo
+         6yYfBZkgLgj/By6RPJb4h1nhff69RGkUCAQ7g29ymkUaX416ncjThOz33vMQMnwvxV0n
+         DFDOAAuexhESTgVKIjQJnjNrxuzGjXP3TATeSXSt8lAJt1UO1CWtBroILoiFJcRJc8YB
+         epcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :user-agent:date:cc:to:from:subject:message-id;
+        bh=hPxPbv7PMUyk2cRlJvn3TOW7rsoljw8/4mek1ZdUNQU=;
+        b=t3yLDAgsTyplxkVqWM6UU1J6o2cw1JggqvvEFoVoYW//vUpPt0X4CDaXXUjg7qTpfx
+         MfhTX6KNMW4Uc1nCGb0iv8vkI1i0CDG2aYGKDVhX3joO5K8n1R7XEhUPVQXXnCNvCnmn
+         6jLXNwcoDxES+DRnd8xf6umoDn5YnDqnsOsDFnjQS+rjE53amKz2lndnzyaJMS5ys9YM
+         wggDfanSr6MkSUgnOHWeqEh5RcfzAlQ1MoCZo9i1WjvO0rZLp+0ioytHMSEamEnjmALl
+         N/tdJPX9LAffOvIpniJwvsWd2Rb/OKxobFtZTCdeSqypnwP2m+brHxXZAs2IM6ino/3A
+         LCxg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id g22si9439462edr.336.2020.07.03.11.40.47;
+        Fri, 03 Jul 2020 11:41:10 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726660AbgGCSiF (ORCPT <rfc822;2014014876lha@gmail.com>
+        + 99 others); Fri, 3 Jul 2020 14:38:05 -0400
+Received: from smtprelay0175.hostedemail.com ([216.40.44.175]:33204 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726147AbgGCSiF (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 3 Jul 2020 14:38:05 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay04.hostedemail.com (Postfix) with ESMTP id 4DED118019D2D;
+        Fri,  3 Jul 2020 18:38:04 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:968:988:989:1260:1277:1311:1313:1314:1345:1437:1515:1516:1518:1534:1537:1561:1593:1594:1711:1714:1730:1747:1777:1792:2393:2559:2562:2693:2828:3138:3139:3140:3141:3142:3690:3865:3868:3871:3872:3874:4250:5007:7901:7903:7974:9389:10004:10400:10848:11658:11914:12048:12297:12760:13069:13161:13229:13311:13357:13439:14659:14721:21080:21627:30012:30054,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:1,LUA_SUMMARY:none
+X-HE-Tag: brake39_4f0b1a926e94
+X-Filterd-Recvd-Size: 1193
+Received: from XPS-9350.home (unknown [47.151.133.149])
+        (Authenticated sender: joe@perches.com)
+        by omf01.hostedemail.com (Postfix) with ESMTPA;
+        Fri,  3 Jul 2020 18:38:02 +0000 (UTC)
+Message-ID: <62c65ee8328ec544bdb33220e4ef21d1e39d87ac.camel@perches.com>
+Subject: ACPICA and lindent vs Lindent removal
+From:   Joe Perches <joe@perches.com>
+To:     Robert Moore <robert.moore@intel.com>,
+        Erik Kaneda <erik.kaneda@intel.com>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Len Brown <lenb@kernel.org>
+Cc:     linux-acpi@vger.kernel.org, devel@acpica.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
+        Zong Li <zong.li@sifive.com>,
+        Andrew Morton <akpm@linux-foundation.org>
+Date:   Fri, 03 Jul 2020 11:38:01 -0700
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.36.3-0ubuntu1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+There's a thought that Lindent should be removed from the
+linux kernel and replaced by clang-format.
+
+Will Lindent removal impact ACPICA?
+
+Is Linux's ACPICA code base still being modified using lindent?
+
+What and where is lindent?  How does it differ from Lindent?
+
+

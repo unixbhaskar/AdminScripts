@@ -1,0 +1,168 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp6610431lfc;
+        Wed, 12 Feb 2020 12:03:24 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwxsd2XYGd/UqwF0Q0XT7AFhG/sQsjIaSyfrrKA26Roywh9YP3kH3DX/imJYeOkwJtvCsis
+X-Received: by 2002:a05:6830:4cd:: with SMTP id s13mr10306349otd.181.1581537804723;
+        Wed, 12 Feb 2020 12:03:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1581537804; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Ofh/wLmkMBme+U51RzUPdBY12YtI5Aogwg6gkeRl5VWmJTIoJxCPf3wSpDZr5emUlZ
+         2HLLWbYb0A7L/aVAnhbudt0WFW3vkuQRqSzX1iUMjvc1QeWmoGuoLujF870C6nNi0O8G
+         wKTiGdpPXXfg3yBeM/VaF06NeRN33gv0mPwVpEiAIZRFdIK8A/MDA8dTPmJ4mjyD4wjO
+         1Eq6J0zlekAdxa3qyEmG481TnlHcmoBAIsodqXHYS04zo7ifCh54WsCreziDxeihTD5g
+         f9IDL9FLwJqHUWKC01a3OyKMncx8qM/PzFRuONkp9X75w/NLLTO1+/jk01D93ylqAQO9
+         Tt3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=xACQJzdDDlbOWzGGCryoyeWskqYfJq+P7a8dbWxnMZg=;
+        b=LTn+p1Q6PG6Fx+P2tD1ht65CfMEjEB4zL3lSwEXNLA3CvbsFi6eJ1OqykfzTxtZHX0
+         VSaIzwoiSXCqeUIPs5ccmtMqzyBFYtbsZD4/By17miEHXoqYtcX+WW1vW/If5jYd3eB+
+         O1BoHm0tQ0vbSMtfpNEYgPzfO50jtk0TSsWlZ5u2rHI/Knx5cIPLMYtz8QtTVBQb/xRL
+         Ajs9/cadb7Ri8GRcpwQupB3nbYy04cncfllJXh+nzfBBZiY/Hpn4nIAD2CKigJJUu/IR
+         icvuahL4KTXioM1dR7kcp0UAyb0kXZ5bbaqqF2v3vq0+3GYAGAq9JDnxWgHSQ7QyJArX
+         CHRA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=EaXusB6f;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id r6si664596otn.216.2020.02.12.12.03.10;
+        Wed, 12 Feb 2020 12:03:24 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=EaXusB6f;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729013AbgBLUCG (ORCPT <rfc822;l814699480@gmail.com>
+        + 99 others); Wed, 12 Feb 2020 15:02:06 -0500
+Received: from us-smtp-2.mimecast.com ([207.211.31.81]:60165 "EHLO
+        us-smtp-delivery-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727600AbgBLUCF (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 12 Feb 2020 15:02:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1581537724;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=xACQJzdDDlbOWzGGCryoyeWskqYfJq+P7a8dbWxnMZg=;
+        b=EaXusB6fxxGR0qZaqZr8nVMssqse3H0+S1yYgDuim2BZfomOvQPQ5adUouehb7O9xf4IS3
+        eC6vlqo7Fsddv0mC4gwuYQtXK5FWEVUL+Pz+ThzewEILmzzAINDytZWMJpiUeqzNxLyVV4
+        Ak5MwmRrHo03jv33LCTnAamEFK3sH6s=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-425-RmmUsNWMNiyLqUdBOgPXhQ-1; Wed, 12 Feb 2020 15:02:02 -0500
+X-MC-Unique: RmmUsNWMNiyLqUdBOgPXhQ-1
+Received: by mail-wm1-f70.google.com with SMTP id a189so1184599wme.2
+        for <linux-kernel@vger.kernel.org>; Wed, 12 Feb 2020 12:02:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=xACQJzdDDlbOWzGGCryoyeWskqYfJq+P7a8dbWxnMZg=;
+        b=Q9HBFZ65c80lTTJYjGCxlh7LuC1bIM69Hm5cSywxq5Ffepg2EIhE59lKivGlIV5nbF
+         04DrZUBGs5vVw8QdTTRLC6+rw2F5aaOYR1mhTk9x1vxToWWqgvll8cd04w0FpbSebz1O
+         AKU8ypdi3S91OlBmTPjXyz5A6w4hnpZIxDkBfYGnPDpmYcawUG3+/fT/+LXCUBV5rbkg
+         u6EqaEeVBWu+K6hdErfFxcTHv6/NTctgKr096/rSn3Y4wIgwzhXNc/o9uYh+29QjnX/9
+         klySl7Vr/q6qRG7PqcngYK6EcHlJ5yvUqdkkmkoZ5ya0M/Jv+bVpdVpRBac/Yksbklmk
+         tB6w==
+X-Gm-Message-State: APjAAAW+Yr8Fs/siq6WoZeVLl5tfLX/aPvlBKqGocBGkHXpFmar5krKY
+        EVqEF8i28t9E23TxrYQ35vmoUrCtShuk1rEdGqah2jPxTPpcViMehTUI7piB3f+1//o6KgZ6/ye
+        dIox836lTt3E76hbrwXJI9W36
+X-Received: by 2002:adf:e2c5:: with SMTP id d5mr16732615wrj.165.1581537720864;
+        Wed, 12 Feb 2020 12:02:00 -0800 (PST)
+X-Received: by 2002:adf:e2c5:: with SMTP id d5mr16732593wrj.165.1581537720554;
+        Wed, 12 Feb 2020 12:02:00 -0800 (PST)
+Received: from ?IPv6:2001:b07:6468:f312:652c:29a6:517b:66d9? ([2001:b07:6468:f312:652c:29a6:517b:66d9])
+        by smtp.gmail.com with ESMTPSA id e16sm1954758wrs.73.2020.02.12.12.01.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Feb 2020 12:02:00 -0800 (PST)
+Subject: Re: [GIT PULL] KVM changes for Linux 5.6-rc2
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        KVM list <kvm@vger.kernel.org>,
+        Oliver Upton <oupton@google.com>
+References: <20200212164714.7733-1-pbonzini@redhat.com>
+ <CAHk-=wh6KEgPz_7TFqSgg3T29SrCBU+h64t=BWyCKwJOrk3RLQ@mail.gmail.com>
+ <b90a886e-b320-43d3-b2b6-7032aac57abe@redhat.com>
+ <CAHk-=wh8eYt9b8SrP0+L=obHWKU0=vXj8BxBNZ3DYd=6wZTKqw@mail.gmail.com>
+From:   Paolo Bonzini <pbonzini@redhat.com>
+Message-ID: <23585515-73a9-596e-21f1-cbbcc9d7e7f9@redhat.com>
+Date:   Wed, 12 Feb 2020 21:01:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
+MIME-Version: 1.0
+In-Reply-To: <CAHk-=wh8eYt9b8SrP0+L=obHWKU0=vXj8BxBNZ3DYd=6wZTKqw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 12/02/20 20:38, Linus Torvalds wrote:
+> On Wed, Feb 12, 2020 at 11:19 AM Paolo Bonzini <pbonzini@redhat.com> wrote:
+>>
+>>> So this clearly never even got a _whiff_ of build-testing.
+>>
+>> Oh come on.
+> 
+> Seriously - if you don't even _look_ at the warnings the build
+> generates, then it hasn't been build-tested.
+>
+> I don't want to hear "Oh come on". I'm 100% serious.
+
+I know, but still I consider it.  There is no reason why the "build
+test" should be anything more than "make && echo yes i am build-tested".
+ It shouldn't involve any grep or script magic, it's already hard enough
+to script all the functional part of the testing.
+
+My "Oh come on" was because "it never got a whiff of build-testing"
+hides how "the default build testing configuration is crap".  Of course
+I don't want warnings either, but unless there is -Werror somewhere
+mistakes _will_ happen.  Get new commits from you, or make mrproper to
+build another architecture? Everything gets rebuilt and the warnings
+scroll by.  During next-release development I will catch it of course,
+but for rc I usually don't even need to build more than once before
+applying a pull request.  I am surprised it took a few years for the
+wrong set of factors to occur at the same time.
+
+Did I screw up?  Yes.  Could we do better to avoid someone else doing
+the same mistake?  Hell yes.
+
+I'm not making excuses.  I'm just saying that the *root* cause is not my
+mistake or even Oliver's.  The root cause is that our (shared!)
+definition of "good" does not match the exit code of "make".  We all
+want zero warnings, but we don't enable -Werror.  Let's add at least a
+Kconfig to enable it for every architecture you build-test (is it only
+x86 or anything else?).
+
+Paolo
+
+> Build-testing is not just "building". It's the "testing" of the build
+> too. You clearly never did _any_ testing of the build, since the build
+> had huge warnings.
+> 
+> Without the checking of the result, "build-testing" is just
+> "building", and completely irrelevant.
+> 
+> If you have problems seeing the warnings, add a "-Werror" to your scripts.
+>
+> I do not want to see a _single_ warning in the kernel build. Yes, we
+> have one in the samples code, and even that annoys the hell out of me.
+> 
+> And exactly because we don't have any warnings in the default build,
+> it should be really really easy to check for new ones - it's not like
+> you have to wade through pages of warnings to see if any of them are
+> your new ones.
+> 
+> So no "Oh come on". You did *zero* testing of this crap, and you need
+> to own that fact instead of making excuses about it.
+

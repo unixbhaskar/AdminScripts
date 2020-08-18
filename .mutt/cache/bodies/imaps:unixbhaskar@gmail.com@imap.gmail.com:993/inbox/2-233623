@@ -1,0 +1,2167 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp4747422lfg;
+        Tue, 14 Apr 2020 04:53:51 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJWvd2TjhnhESmANov+12kxfRaLz1Rk6qB2MX5vPtsm5W4S6etq9HCbWNE2H8vhfv8f7sqJ
+X-Received: by 2002:a25:be83:: with SMTP id i3mr36290961ybk.70.1586865231596;
+        Tue, 14 Apr 2020 04:53:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586865231; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Ybsn+Eqyh49xdhWrMy2I7FRVUcHROO39UhIRrWD+N3OLPJaMbV1nn2zoYXCpd9n/w+
+         V0Yvbj4y4N84vdNz1RV4WDFKbvBF0zoQoNkSTo4S+MYU02L/R0lPv/32yPYXRxnRXKCm
+         ifteN1IXxY/jgPrlaykhXBfwZYxm4a9xh3/ev74NX7YPg/kkRuIrtcvwW7oP9rjrzbXu
+         FhSKkjn+Bx5ZrH3+MQBXOzVdJ3HVx+eo4pzp+jAZz2ZkdGawpBbgW7zoa76i+/4B/uMR
+         SUh5uXQVYwiFVQPIxdOP5t/QrOn1dVW9W/7vx0vd0wPeILgzNHEXHaL9P7sMsUHfsVnW
+         /IVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:list-unsubscribe-post:list-unsubscribe:list-id
+         :feedback-id:message-id:date:to:reply-to:from:subject:dkim-signature
+         :dkim-signature;
+        bh=+v8ICsuTCBbRpinOsJjVNHGiDKDPZpJv5F0kz83Xh7Y=;
+        b=h1wJuFJ7rMjD2f6WZ56H8khL39PDzkBhVE4PP6j6Rb0fwUa3h0Y3ikpDA6m3xqEQV8
+         hvK8UuazDuAtasC67akOvXI8gqpQJNFD7MZp6oHOJB4//bRImh6swiKgJu+tjfvEJyhS
+         2wjubETHTzajSvN+jUSlGH4DfmAByQJnTJXsMOVq9iyJmDyWryfYBi6xPJSzbvbcQ9CJ
+         EXvdky1tKm4++3xBYUr8IQQbKWLqmvlJecKp38C5tMT8nNNyl0GZfyzRg2MC5Jg5OcbR
+         mkxUcZVlJkNioRkTJ+5RMtB1nPdivLVxUAZ8wvC5V5rPHpuw3pgOESDFOMiqfYkGki4A
+         OX6A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.mcsv.net header.s=k1 header.b="Si80W/p9";
+       dkim=pass header.i=@technologyreview.com header.s=k1 header.b=egni103Y;
+       spf=pass (google.com: domain of bounce-mc.us11_44406561.780197-db760db8f2@mail27.suw111.mcdlv.net designates 198.2.185.27 as permitted sender) smtp.mailfrom=bounce-mc.us11_44406561.780197-db760db8f2@mail27.suw111.mcdlv.net;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=technologyreview.com
+Return-Path: <bounce-mc.us11_44406561.780197-db760db8f2@mail27.suw111.mcdlv.net>
+Received: from mail27.suw111.mcdlv.net (mail27.suw111.mcdlv.net. [198.2.185.27])
+        by mx.google.com with ESMTPS id y70si12759428ybe.496.2020.04.14.04.53.51
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 14 Apr 2020 04:53:51 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-mc.us11_44406561.780197-db760db8f2@mail27.suw111.mcdlv.net designates 198.2.185.27 as permitted sender) client-ip=198.2.185.27;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.mcsv.net header.s=k1 header.b="Si80W/p9";
+       dkim=pass header.i=@technologyreview.com header.s=k1 header.b=egni103Y;
+       spf=pass (google.com: domain of bounce-mc.us11_44406561.780197-db760db8f2@mail27.suw111.mcdlv.net designates 198.2.185.27 as permitted sender) smtp.mailfrom=bounce-mc.us11_44406561.780197-db760db8f2@mail27.suw111.mcdlv.net;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=technologyreview.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.mcsv.net;
+	s=k1; t=1586865164; bh=+v8ICsuTCBbRpinOsJjVNHGiDKDPZpJv5F0kz83Xh7Y=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:Feedback-ID:List-ID:
+	 List-Unsubscribe:Content-Type:MIME-Version;
+	b=Si80W/p9Txdk2y99hDWj1Smy6d4fyFcjAO5fz0Nf8JsOk+nlXlmiCQ7GaljGc3vhr
+	 XlbCWFYkt8ckqzxmhFXSmWar+2Ls9KJT3MfDgjPm5aQsYHPneys2V0aqP8kRce4RHY
+	 jw7O/aYuvvueQ0s2dWA0Ag5Cur1fnWWDtuCOMwaE=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=technologyreview.com; s=k1; t=1586865164;
+	i=newsletters@technologyreview.com;
+	bh=+v8ICsuTCBbRpinOsJjVNHGiDKDPZpJv5F0kz83Xh7Y=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:List-ID:List-Unsubscribe:
+	 Content-Type:MIME-Version;
+	b=egni103Y+KMn5L9qbCBLDCdE2lUqmfTnkvzNIylyb2svk7PJOrrR0L7PAmFuebBEY
+	 0LRKmgk6S8Ii98luCmSI8XTjBkg+FafkQFLV4nhxVDxvpcdBiCgwZzt1l52liWRddX
+	 Oba4HmOu65oL3HcWsVJJoPrTFXBk4lKwKiN/Ee1U=
+Received: from localhost (localhost [127.0.0.1])
+	by mail27.suw111.mcdlv.net (Mailchimp) with ESMTP id 491kPm14Bkz4S8YHL
+	for <unixbhaskar@gmail.com>; Tue, 14 Apr 2020 11:52:44 +0000 (GMT)
+Subject: =?utf-8?Q?How=20to=20manage=20a=20pandemic?=
+From: =?utf-8?Q?The=20Download=20from=20MIT=20Technology=20Review?= <newsletters@technologyreview.com>
+Reply-To: =?utf-8?Q?The=20Download=20from=20MIT=20Technology=20Review?= <newsletters@technologyreview.com>
+To: <unixbhaskar@gmail.com>
+Date: Tue, 14 Apr 2020 11:52:38 +0000
+Message-ID: <47c1a9cec9749a8f8cbc83e78.db760db8f2.20200414115226.b2c4bea05b.2e6a0a1c@mail27.suw111.mcdlv.net>
+X-Mailer: MailChimp Mailer - **CIDb2c4bea05bdb760db8f2**
+X-Campaign: mailchimp47c1a9cec9749a8f8cbc83e78.b2c4bea05b
+X-campaignid: mailchimp47c1a9cec9749a8f8cbc83e78.b2c4bea05b
+X-Report-Abuse: Please report abuse for this campaign here: https://mailchimp.com/contact/abuse/?u=47c1a9cec9749a8f8cbc83e78&id=b2c4bea05b&e=db760db8f2
+X-MC-User: 47c1a9cec9749a8f8cbc83e78
+Feedback-ID: 44406561:44406561.780197:us11:mc
+List-ID: 47c1a9cec9749a8f8cbc83e78mc list <47c1a9cec9749a8f8cbc83e78.310113.list-id.mcsv.net>
+X-Accounttype: pr
+List-Unsubscribe: <https://technologyreview.us11.list-manage.com/unsubscribe?u=47c1a9cec9749a8f8cbc83e78&id=e2349bbf6b&e=db760db8f2&c=b2c4bea05b>, <mailto:unsubscribe-mc.us11_47c1a9cec9749a8f8cbc83e78.b2c4bea05b-db760db8f2@mailin.mcsv.net?subject=unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Content-Type: multipart/alternative; boundary="_----------=_MCPart_197459809"
+MIME-Version: 1.0
+
+This is a multi-part message in MIME format
+
+--_----------=_MCPart_197459809
+Content-Type: text/plain; charset="utf-8"; format="fixed"
+Content-Transfer-Encoding: quoted-printable
+
+The lonely reality of grieving online during social isolation=C2=A0
+
+https://www.technologyreview.com/
+The Download
+Your daily dose of what=E2=80=99s up
+in emerging technology
+04.14.20
+Good morning! Today: what we can learn from how Singapore is managing the=
+ pandemic=2C how people are managing grief online during lockdown=2C and w=
+hat it will take to get us back outside. Get your friends to sign up here=
+ (https://forms.technologyreview.com/the-download/) to get The Download ev=
+ery day.
+
+How to manage a pandemic
+
+My first taste of coronavirus panic came early one morning in January. An=
+ email with the heading =E2=80=98Important Information: Please Read=E2=80=
+=99 arrived from our son=E2=80=99s elementary school. The parents of one o=
+f his teachers=2C who had recently returned from China=2C had been infecte=
+d=E2=80=94Singapore=E2=80=99s cases 8 and 9=2C as it turned out=E2=80=94an=
+d the teacher in question was being quarantined.
+
+Singapore was among the first countries to suffer an outbreak (https://www=
+=2Etechnologyreview.com/?_thumbnail_id=3D999272&p=3D999117&preview=3Dtrue&tr=
+uid=3De1c81eff8f508ac58ea6e03b0cf524e0&utm_source=3Dthe_download&utm_medium=3Demail&utm_ca=
+mpaign=3Dthe_download.unpaid.engagement&utm_content=3D04-14-2020) . In the=
+ months since=2C it has been at once reassuring and unnerving to watch its=
+ journey from an early hotspot to a kind of haven state=2C holding out dog=
+gedly against an invader that has infiltrated so many others.
+
+Early commentary in the West focused on the failings of China=E2=80=99s au=
+tocratic system=2C which hid the severity of Wuhan=E2=80=99s outbreak=E2=
+=80=94at what we now know to be catastrophic cost. The more the epidemic h=
+as spread=2C the more it has become clear that Western liberal democracies=
+ have badly mishandled it too=2C ending up with severe outbreaks that coul=
+d=E2=80=94perhaps=E2=80=94have been avoided.
+
+Yet it makes little sense to view the coronavirus as some kind of perverse=
+ vitality test for liberal and authoritarian regimes. Instead we should le=
+arn from the countries that responded more effectively=E2=80=94namely=2C A=
+sia=E2=80=99s advanced technocratic democracies. In the West the virus exp=
+osed creaking public services and political division. But Hong Kong=2C Jap=
+an=2C and South Korea have managed better=2C while Singapore and Taiwan ha=
+ve kept the disease almost entirely under control=2C at least for now. Rea=
+d the full story by James Crabtree (https://www.technologyreview.com/?_thu=
+mbnail_id=3D999272&p=3D999117&preview=3Dtrue&truid=3De1c81eff8f508ac58ea6e03b0cf524e0&utm_=
+source=3Dthe_download&utm_medium=3Demail&utm_campaign=3Dthe_download.unpai=
+d.engagement&utm_content=3D04-14-2020) .
+
+The lonely reality of grieving online during social isolation
+
+A grim trend: The global coronavirus pandemic has forced people to think a=
+bout death=2C while simultaneously upending the ways in which we are used=
+ to experiencing grief and loss. The only option is to grieve online (http=
+s://www.technologyreview.com/2020/04/13/999348/covid-19-grief-zoom-funeral=
+s/?truid=3De1c81eff8f508ac58ea6e03b0cf524e0&utm_source=3Dthe_download&utm_medium=3Demail&u=
+tm_campaign=3Dthe_download.unpaid.engagement&utm_content=3D04-14-2020) .
+
+Not new: The coronavirus pandemic didn=E2=80=99t create online mourning an=
+d grief. Facebook groups already connect mothers grieving young children t=
+o each other=2C and social-media profiles often become memorials. Live-str=
+eaming=2C too=2Cis already a part of how people grieve. (https://www.wired=
+=2Ecom/story/funerals-livestreamed-families-grateful/) Well before coronavir=
+us sent billions of people into lockdown=2C there were reasons not everybo=
+dy could make it to a funeral.
+
+An added pain: The covid-19 pandemic has forced all those dealing with dea=
+th to confront the possibility that they won=E2=80=99t be able to access w=
+hat mourners may need most: human touch=2C connection=2C and community sup=
+port. Read the full story (https://www.technologyreview.com/2020/04/13/999=
+348/covid-19-grief-zoom-funerals/?truid=3De1c81eff8f508ac58ea6e03b0cf524e0&utm_source=3Dth=
+e_download&utm_medium=3Demail&utm_campaign=3Dthe_download.unpaid.engagemen=
+t&utm_content=3D04-14-2020) .
+
+=E2=80=94Abby Ohlheiser
+
+This is what it will take to get us back outside
+
+We have to prepare for a world in which there is no cure and no vaccine fo=
+r a long time.
+
+There is a way to live in this world without staying permanently shut indo=
+ors. But it won=E2=80=99t be a return to normal; this will be=2C for Weste=
+rners at any rate=2C a new normal.
+
+It will entail a considerable degree of surveillance and social controls.=
+ It will also create or exacerbate divisions between haves and have-nots.
+
+This new social order will seem unthinkable to most people in so-called fr=
+ee countries. But any change can quickly become normal if people accept it=
+=2E Getting to normal=2C therefore=2C is not so much about getting back the=
+ old normality as it is about getting back the ability to know what is goi=
+ng to happen tomorrow. MIT Technology Review=E2=80=99s editor in chief Gid=
+eon Lichfield=2C has the full story (https://technologyreview.us11.list-ma=
+nage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3Df77bb4e1de&e=3D488=
+c2c6a6b) on what a post-coronavirus future might look like.
+
+Tune into a new episode of Radio Corona (https://slack-redir.net/link?url=
+=3Dhttps%3A%2F%2Fforms.technologyreview.com%2Fradio-corona%2F) at 2pm ET t=
+oday.
+Jennifer Strong=2C our audio and live journalism editor=2C will speak with=
+ economist John Van Reenen about how to make effective policy to salvage t=
+he global economy. It will also be available on our Facebook page (https:/=
+/slack-redir.net/link?url=3Dhttps%3A%2F%2Fwww.facebook.com%2Ftechnologyrev=
+iew) and YouTube channel (https://slack-redir.net/link?url=3Dhttps%3A%2F%2=
+Fwww.youtube.com%2Fuser%2FTechnologyReview%2Fvideos) .
+
+We can still have nice things
+
+A place for comfort=2C fun and distraction in these weird times. (Got any=
+ ideas? Drop me a line (mailto:charlotte.jee@technologyreview.com) or twee=
+t 'em at me (https://technologyreview.us11.list-manage.com/track/click?u=
+=3D47c1a9cec9749a8f8cbc83e78&id=3D0942fe7f9c&e=3D488c2c6a6b) .)
+
++ The ultimate quarantine guide to grooming (https://www.wired.com/story/h=
+ow-to-groom-yourself) .
++ Seventh grader (and multi-instrumentalist) Chloe Langford wrote a song (=
+https://www.wbez.org/stories/rhymes-with-euphonium-in-teens-hit-quarantine=
+-song-stuck-at-home-ium-will-do-just-fine/bad480e0-e837-4ad5-8b3c-8f593f2d=
+ac20) describing the monotony of being stuck at home.
++ Fancy a trip to Sweden=E2=80=99s forests? This =E2=80=9Cslow=E2=80=9D TV=
+ show (https://www.svtplay.se/video/26326774/den-stora-algvandringen/den-s=
+tora-algvandringen-sasong-2-slow-tv-dag-3) will provide.
++ Surgeons at Columbia Surgery hosted a concert (https://twitter.com/Colum=
+biaSurgery/status/1247267094154096640) for their patients.
++ A BBC Sport commentator decided to work his magic on dogs fighting over=
+ a toy (https://www.facebook.com/183533118366522/posts/2856907264362414/)=
+ .
++ Pink Floyd=2C the Grateful Dead=2C Radiohead and Metallica are releasing=
+ previously-unseen material (https://www.forbes.com/sites/markbeech/2020/0=
+4/09/pink-floyd-grateful-dead-release-unseen-and-rare-footage-on-youtube-a=
+mid-covid-19-lockdown/) during the coronavirus lockdown.
++ Don=E2=80=99t leave chocolate Easter bunnies in the car for too long or=
+ they=E2=80=99ll KILL YOU (https://twitter.com/JThomasReese/status/1249020=
+459192070150) .
+
+The top ten must-reads
+
+I=E2=80=99ve combed the internet to find you today=E2=80=99s most fun/impo=
+rtant/scary/fascinating stories about technology.
+1 What the world can learn from Kerala about how to fight covid-19
+The Indian state is flattening the curve through epic levels of contact tr=
+acing and social assistance. (TR (https://www.technologyreview.com/2020/04=
+/13/999313/kerala-fight-covid-19-india-coronavirus/?truid=3De1c81eff8f508ac58ea6e03b0cf524e0&utm_source=3Dthe_download&utm_medium=3Demail&utm_campaign=3Dthe_downloa=
+d.unpaid.engagement&utm_content=3D04-14-2020) )
+
+2 Apple and Google are building contact tracing into iOS and Android
+The app=2C slated to launch next month=2C uses Bluetooth to check who=E2=
+=80=99s been near you. (TR (https://www.technologyreview.com/2020/04/10/99=
+9213/apple-and-google-are-building-coronavirus-tracking-into-ios-and-andro=
+id/?truid=3De1c81eff8f508ac58ea6e03b0cf524e0&utm_source=3Dthe_download&utm_medium=3Demail&=
+utm_campaign=3Dthe_download.unpaid.engagement&utm_content=3D04-14-2020) )
++ They answered questions about it on a call with journalists yesterday. (=
+TechCrunch (https://techcrunch.com/2020/04/13/apple-google-coronavirus-tra=
+cing/) )
++ The UK government is building a similar app. (BBC (https://www.bbc.com/n=
+ews/technology-52263244) )
+
+3 This is what the global pandemic picture looks like=2C in charts
+The number of cases in the US is still accelerating rapidly. (FT (https://=
+www.ft.com/coronavirus-latest) )
+
+4 Amazon is hiring another 75=2C000 warehouse workers
+That=E2=80=99s on top of the 100=2C000 people it=E2=80=99s hired since mid=
+-March. (CNN (https://edition.cnn.com/2020/04/13/tech/amazon-hiring-corona=
+virus/index.html) )
++ Amazon is putting new grocery customers on a waitlist to cope with surgi=
+ng demand. (Reuters (https://www.reuters.com/article/us-health-coronavirus=
+-amazon-com-grocery/amazon-stops-accepting-new-online-grocery-customers-am=
+id-surging-demand-idUSKCN21V0CO) )
++ Amazon workers describe what it=E2=80=99s like to work there right now.=
+ (Wired (https://www.wired.com/story/amazon-workers-pandemic-risks-own-wor=
+ds) $)
++ Workers who=E2=80=99ve been quarantined say Amazon hasn=E2=80=99t paid t=
+hem. (Buzzfeed (https://www.buzzfeednews.com/article/carolineodonovan/amaz=
+on-workers-not-getting-quarantine-pay) )
++ Amazon was already powerful. Once this is over=2C it=E2=80=99ll be unass=
+ailable. (Recode (https://www.vox.com/recode/2020/4/10/21215953/amazon-fre=
+sh-walmart-grocery-delivery-coronavirus-retail-store-closures) )
+
+5 Surveillance may be here to stay =F0=9F=91=81=EF=B8=8F
+Governments in at least 25 countries are deploying enhanced monitoring. (T=
+he Guardian (https://www.theguardian.com/world/2020/apr/14/growth-in-surve=
+illance-may-be-hard-to-scale-back-after-coronavirus-pandemic-experts-say)=
+ )
++ This is what each country is doing. (OneZero (https://onezero.medium.com=
+/the-pandemic-is-a-trojan-horse-for-surveillance-programs-around-the-world=
+-887fa6f12ec9) $)
+
+6 The unholy alliance of covid-19=2C nationalism=2C and climate change
+When the pandemic wanes=2C a poorer=2C more divided world will still face=
+ the rapidly rising threat of global warming. (TR (https://www.technologyr=
+eview.com/2020/04/10/998969/the-unholy-alliance-of-covid-19-nationalism-an=
+d-climate-change/?truid=3De1c81eff8f508ac58ea6e03b0cf524e0&utm_source=3Dthe_download&utm_m=
+edium=3Demail&utm_campaign=3Dthe_download.unpaid.engagement&utm_content=3D=
+04-14-2020) )
++ We halted the global economy=2C and emissions still may only fall 4% thi=
+s year. (TR (https://www.technologyreview.com/2020/04/10/999230/we-halted-=
+the-global-economy-and-emissions-still-wont-decline-as-much-as-we-need/?tr=
+uid=3De1c81eff8f508ac58ea6e03b0cf524e0&utm_source=3Dthe_download&utm_medium=3Demail&utm_ca=
+mpaign=3Dthe_download.unpaid.engagement&utm_content=3D04-14-2020) )
+
+7 The race to find a covid-19 drug in the blood of survivors
+One problem is that there=E2=80=99s still so much we don=E2=80=99t know ab=
+out the coronavirus. (TR (https://www.technologyreview.com/2020/04/10/9988=
+97/the-race-to-make-a-covid-19-drug-from-the-blood-of-survivors/?truid=3De1c81eff8f508ac58ea6e03b0cf524e0&utm_source=3Dthe_download&utm_medium=3Demail&utm_campaign=
+=3Dthe_download.unpaid.engagement&utm_content=3D04-14-2020) )
+
+8 Okay that=E2=80=99s enough remote meetings now
+You=E2=80=99d think being online would reduce the number of meetings we ha=
+ve. Nope. (Quartz (https://qz.com/work/1837095/remote-meetings-in-the-covi=
+d-19-era-are-relentless/) )
++ Boomers are enthusiastic Zoomers. (Axios (https://www.axios.com/coronavi=
+rus-zoom-video-chat-1b8fd154-a9b2-4ca2-9fa1-0499bb8a023c.html) )
++ People are using Zoom to break up. (The Guardian (https://www.theguardia=
+n.com/lifeandstyle/shortcuts/2020/apr/13/zumping-the-rise-of-zoom-breakups=
+) )
++ Never mind video conferencing. Host your next meeting in VR. (IEEE Spect=
+rum (https://spectrum.ieee.org/tech-talk/consumer-electronics/audiovideo/f=
+orget-video-conferencinghost-your-next-meeting-in-vr) )
+
+9 Coronavirus is screwing up our sleep =F0=9F=98=B4
+It=E2=80=99s mostly down to stress. (Wired UK (https://www.wired.co.uk/art=
+icle/coronavirus-sleep) )
++ Having weird dreams? You're not alone. (Wired UK (https://www.wired.co.u=
+k/article/coronavirus-dreams-sleep) )
+
+10 The ups and downs of virtual haircuts =F0=9F=92=87
+I can=E2=80=99t be the only person starting to panic about my split ends.=
+ (NYT (https://www.nytimes.com/2020/04/13/technology/coronavirus-virtual-h=
+aircut.html) $)
+
+Plan for the future of business
+
+EmTech Next is a must-attend virtual conference for thought leaders=2C esp=
+ecially those who need to maximize employee retention and upskilling in a=
+ time of evolving technologies and robot/machine integration in the workpl=
+ace. Learn more about the conference program here (https://emtech.technolo=
+gyreview.com/emtech-next-2020?utm_source=3Dthe_download&utm_medium=3Demail=
+&utm_campaign=3Demtech_next_2020.unpaid.acquisition&discount=3DDOWNLOADPRO=
+MO) .
+Quote of the day
+
+=E2=80=9CYou don=E2=80=99t know anyone who has made as much money out of t=
+his as I have.=E2=80=9D
+
+=E2=80=94An Australian investor tells the New Yorker (https://www.newyorke=
+r.com/magazine/2020/04/20/the-price-of-the-coronavirus-pandemic) he=E2=80=
+=99s earning a lot more thanks to predicting the current pandemic.
+Charlotte Jee
+
+Top image credit: FRANZISKA BARCZYK
+
+Please send any leftover chocolate Easter bunnies to hi@technologyreview.c=
+om (mailto:hi@technologyreview.com) .
+
+Follow me on Twitter at @charlottejee (https://twitter.com/charlottejee) .=
+ Thanks for reading!
+
+=E2=80=94Charlotte
+Was this newsletter forwarded to you=2C and you=E2=80=99d like to see more=
+?
+Sign up for free (https://www.technologyreview.com/newsletters/)
+
+Get unlimited access to online stories.
+
+Subscribe to MIT Technology Review today.
+
+https://forms.technologyreview.com/subscriptions/?utm_source=3Dthe_downloa=
+d&utm_medium=3Demail&utm_campaign=3Dtr_subscription.unpaid.acquisition&utm=
+_content=3DnewsletterCTA
+View this in a browser (https://mailchi.mp/6a97d05c0e14/xi7kezgj74?e=3Ddb760db8f2)
+You received this newsletter because you subscribed with the email address=
+ unixbhaskar@gmail.com (mailto:unixbhaskar@gmail.com)
+Edit email preferences (https://technologyreview.us11.list-manage.com/prof=
+ile?u=3D47c1a9cec9749a8f8cbc83e78&id=3De2349bbf6b&e=3Ddb760db8f2)   |   Unsu=
+bscribe from all emails (https://technologyreview.us11.list-manage.com/uns=
+ubscribe?u=3D47c1a9cec9749a8f8cbc83e78&id=3De2349bbf6b&e=3Ddb760db8f2&c=3Db2=
+c4bea05b)
+Follow us:
+https://www.facebook.com/technologyreview      https://twitter.com/techrev=
+iew      https://www.instagram.com/technologyreview/
+MIT Technology Review
+One Main Street
+Cambridge=2C MA 02142
+https://www.technologyreview.com/
+--_----------=_MCPart_197459809
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www=
+=2Ew3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang=3D"en" xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:sc=
+hemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:offic=
+e">
+  <head>
+    <!--[if gte mso 15]>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:AllowPNG />
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF-=
+8">
+    <meta http-equiv=3D"x-ua-compatible" content=3D"IE=3Dedge">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width=2C initial-sca=
+le=3D1">
+    <meta property=3D"og:title" content=3D"How to manage a pandemic">
+    <title>How to manage a pandemic</title>
+
+  <style type=3D"text/css">
+=09=09body{
+=09=09=09background-color:#ffffff;
+=09=09}
+=09=09.mcnPreviewText{
+=09=09=09display:none !important;
+=09=09}
+=09=09.totalTable{
+=09=09=09background-color:#ffffff;
+=09=09}
+=09=09.wrapper{
+=09=09=09width:640px;
+=09=09=09min-width:640px;
+=09=09}
+=09=09a{
+=09=09=09color:#f90e1e;
+=09=09=09text-decoration:underline;
+=09=09}
+=09=09.headerSponsorTable{
+=09=09=09padding-top:10px;
+=09=09=09padding-bottom:10px;
+=09=09}
+=09=09.sponsorHeader{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-size:14px;
+=09=09=09line-height:16px;
+=09=09}
+=09=09.sponsorHeader a{
+=09=09=09color:#000000;
+=09=09=09text-decoration:none;
+=09=09}
+=09=09.sponsorHeader a:hover{
+=09=09=09text-decoration:underline;
+=09=09}
+=09=09.headerBackgroundTable{
+=09=09=09background-color:#4a4a4a;
+=09=09=09color:#000000;
+=09=09=09padding-top:15px;
+=09=09=09padding-bottom:40px;
+=09=09=09padding-left:20px;
+=09=09=09padding-right:20px;
+=09=09}
+=09=09.titleWrapperTable{
+=09=09=09padding-top:60px;
+=09=09}
+=09=09.titleLogoTable{
+=09=09=09padding-bottom:45px;
+=09=09}
+=09=09.taglineTable{
+=09=09=09padding-bottom:70px;
+=09=09}
+=09=09.title{
+=09=09=09color:#ffffff;
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:bold;
+=09=09=09font-size:63px;
+=09=09=09line-height:63px;
+=09=09}
+=09=09.tagline{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:300;
+=09=09=09font-size:30px;
+=09=09=09line-height:33px;
+=09=09=09color:#ffffff;
+=09=09}
+=09=09.titleRuleTable{
+=09=09=09width:80px;
+=09=09=09border-top:7px solid #ffffff;
+=09=09=09padding-bottom:15px;
+=09=09}
+=09=09.emailTitle div=2C.date div{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:normal;
+=09=09=09font-size:20px;
+=09=09=09line-height:26px;
+=09=09=09color:#ffffff;
+=09=09}
+=09=09.sectionHeadWrapperTable{
+=09=09=09padding-bottom:15px;
+=09=09}
+=09=09.sectionHeadTable{
+=09=09=09border-bottom:3px solid #f90e1e;
+=09=09=09color:#f90e1e;
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-size:12px;
+=09=09=09font-weight:bold;
+=09=09=09line-height:12px;
+=09=09=09letter-spacing:1px;
+=09=09=09text-transform:uppercase;
+=09=09}
+=09=09p.storyHeadline{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:bold;
+=09=09=09font-size:30px;
+=09=09=09line-height:33px;
+=09=09=09color:#000000;
+=09=09}
+=09=09.standardText p.storyHeadline{
+=09=09=09margin-bottom:10px;
+=09=09}
+=09=09p.storySubHeadline{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:bold;
+=09=09=09font-size:23px;
+=09=09=09line-height:26px;
+=09=09=09color:#000000;
+=09=09}
+=09=09.standardText p.storySubHeadline{
+=09=09=09margin-top:5px;
+=09=09=09margin-bottom:5px;
+=09=09}
+=09=09p.inHousePromoHeadline{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:bold;
+=09=09=09font-size:20px;
+=09=09=09line-height:26px;
+=09=09}
+=09=09.standardText p.inHousePromoHeadline{
+=09=09=09margin-bottom:0;
+=09=09}
+=09=09p.quote{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:300;
+=09=09=09font-size:26px;
+=09=09=09line-height:34px;
+=09=09}
+=09=09.standardText p.quote{
+=09=09=09margin-bottom:20px;
+=09=09}
+=09=09p.attribution{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:normal;
+=09=09=09font-size:17px;
+=09=09=09line-height:24px;
+=09=09}
+=09=09.standardText p.attribution{
+=09=09=09margin-bottom:0;
+=09=09}
+=09=09p.inHousePromoBody{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:normal;
+=09=09=09font-size:20px;
+=09=09=09line-height:26px;
+=09=09}
+=09=09.standardText p.inHousePromoBody{
+=09=09=09margin-bottom:0;
+=09=09}
+=09=09.standardText div{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:normal;
+=09=09=09font-size:17px;
+=09=09=09line-height:24px;
+=09=09=09color:#000000;
+=09=09}
+=09=09.standardText p{
+=09=09=09padding-top:0;
+=09=09=09padding-bottom:0;
+=09=09=09margin-top:0;
+=09=09=09margin-bottom:20px;
+=09=09}
+=09=09.standardText ul=2C.standardText ol{
+=09=09=09padding-top:0;
+=09=09=09padding-bottom:0;
+=09=09=09margin-top:0;
+=09=09=09margin-bottom:20px;
+=09=09}
+=09=09.standardText li{
+=09=09=09padding-top:0;
+=09=09=09padding-bottom:0;
+=09=09=09margin-top:0;
+=09=09=09margin-bottom:10px;
+=09=09}
+=09=09.standardText hr{
+=09=09=09border:0;
+=09=09=09border-bottom:1px solid #000000;
+=09=09=09padding-top:0;
+=09=09=09padding-bottom:0;
+=09=09=09margin-top:0;
+=09=09=09margin-bottom:30px;
+=09=09}
+=09=09.standardText p+hr=2C.standardText ul+hr=2C.standardText ol+hr{
+=09=09=09margin-top:40px;
+=09=09}
+=09=09.standardText p:last-child=2C.standardText ul:last-child=2C.standard=
+Text ol:last-child=2C.standardText li:last-child=2C.standardText hr:last-c=
+hild{
+=09=09=09margin-bottom:0;
+=09=09}
+=09=09.bodyWrapper{
+=09=09=09padding-top:30px;
+=09=09}
+=09=09.introTable{
+=09=09=09padding-bottom:50px;
+=09=09}
+=09=09.storyTable{
+=09=09=09border-top:1px solid #000000;
+=09=09=09padding-top:30px;
+=09=09=09padding-bottom:50px;
+=09=09}
+=09=09.storyTable.no-rule{
+=09=09=09border-top:0;
+=09=09=09padding-top:0;
+=09=09}
+=09=09.storyImageTable{
+=09=09=09padding-bottom:25px;
+=09=09}
+=09=09.moduleWrapperTable{
+=09=09=09padding-bottom:50px;
+=09=09}
+=09=09.moduleTable{
+=09=09=09background-color:#ebebeb;
+=09=09=09padding-top:30px;
+=09=09=09padding-bottom:25px;
+=09=09=09padding-left:30px;
+=09=09=09padding-right:30px;
+=09=09}
+=09=09.inHousePromoTable{
+=09=09=09padding-bottom:50px;
+=09=09}
+=09=09.inHousePromoBodyTable{
+=09=09=09border-top:4px solid #000000;
+=09=09=09padding-top:15px;
+=09=09}
+=09=09.stackableStoryTable{
+=09=09=09border-top:1px solid #000000;
+=09=09=09padding-top:30px;
+=09=09=09padding-bottom:30px;
+=09=09}
+=09=09.stackableStoryTable.no-rule{
+=09=09=09border-top:0;
+=09=09=09padding-top:0;
+=09=09}
+=09=09.stackableStoryHeaderTable{
+=09=09=09padding-bottom:20px;
+=09=09}
+=09=09.stackableStoryWrapperTable{
+=09=09=09padding-bottom:20px;
+=09=09}
+=09=09.stackableStoryBodyTable{
+=09=09=09padding-top:25px;
+=09=09=09padding-left:30px;
+=09=09}
+=09=09.prefooterTable{
+=09=09=09border-top:7px solid #f90e1e;
+=09=09=09padding-top:20px;
+=09=09=09padding-bottom:30px;
+=09=09}
+=09=09.authorTable{
+=09=09=09padding-bottom:15px;
+=09=09}
+=09=09.authorAvatarTable{
+=09=09=09padding-right:20px;
+=09=09}
+=09=09.prefooterText div{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:normal;
+=09=09=09font-size:14px;
+=09=09=09line-height:18px;
+=09=09=09color:#000000;
+=09=09}
+=09=09.prefooterText p{
+=09=09=09padding-top:0;
+=09=09=09padding-bottom:0;
+=09=09=09margin-top:0;
+=09=09=09margin-bottom:10px;
+=09=09}
+=09=09.prefooterText p:last-of-type{
+=09=09=09margin-bottom:0;
+=09=09}
+=09=09.ctaTable{
+=09=09=09padding-top:12px;
+=09=09}
+=09=09.singleCtaTable{
+=09=09=09padding-bottom:15px;
+=09=09}
+=09=09.singleCtaText{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:normal;
+=09=09=09font-size:14px;
+=09=09=09line-height:18px;
+=09=09=09color:#000000;
+=09=09}
+=09=09.singleCtaButtonTable{
+=09=09=09padding-left:20px;
+=09=09}
+=09=09.singleCtaButton{
+=09=09=09padding-top:10px;
+=09=09=09padding-right:20px;
+=09=09=09padding-bottom:10px;
+=09=09=09padding-left:20px;
+=09=09=09background:#4a4a4a;
+=09=09}
+=09=09.ctaButton{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:600;
+=09=09=09font-size:14px;
+=09=09=09line-height:18px;
+=09=09=09text-decoration:none;
+=09=09=09color:#FFFFFF;
+=09=09}
+=09=09.closingCtaWrapper{
+=09=09=09padding-top:15px;
+=09=09}
+=09=09.closingCtaTable{
+=09=09=09padding-top:30px;
+=09=09=09padding-bottom:25px;
+=09=09=09padding-right:10px;
+=09=09=09padding-left:20px;
+=09=09}
+=09=09.closingCtaTableSubscribe{
+=09=09=09background-color:#CCCCCC;
+=09=09=09color:#000000;
+=09=09}
+=09=09.closingCtaTableEvent{
+=09=09=09background-color:#9B9B9B;
+=09=09=09color:#ffffff;
+=09=09}
+=09=09.closingCtaTableEvent .altColor{
+=09=09=09color:#000000;
+=09=09}
+=09=09.closingCtaTableEmtechMit{
+=09=09=09background-color:#ffffff;
+=09=09=09color:#000000;
+=09=09=09border:2px solid #f90e1e;
+=09=09}
+=09=09.closingCtaTableEmtechMit .altColor{
+=09=09=09color:#f90e1e;
+=09=09}
+=09=09.closingCtaTableEmtechDigital{
+=09=09=09background-color:#ffffff;
+=09=09=09color:#000000;
+=09=09=09border:2px solid #ec9e23;
+=09=09}
+=09=09.closingCtaTableEmtechDigital .altColor{
+=09=09=09color:#ec9e23;
+=09=09}
+=09=09.closingCtaTableEmtechNext{
+=09=09=09background-color:#ffffff;
+=09=09=09color:#000000;
+=09=09=09border:2px solid #00a3d8;
+=09=09}
+=09=09.closingCtaTableEmtechNext .altColor{
+=09=09=09color:#00a3d8;
+=09=09}
+=09=09.closingCtaTableFutureCompute{
+=09=09=09background-color:#000000;
+=09=09=09color:#ffffff;
+=09=09}
+=09=09.closingCtaTableFutureCompute .altColor{
+=09=09=09color:#d7df23;
+=09=09}
+=09=09.closingCtaDeepTech{
+=09=09=09color:#ffffff;
+=09=09}
+=09=09.closingCtaDeepTech p.closingCtaTitle{
+=09=09=09margin-bottom:10px;
+=09=09}
+=09=09.closingCtaDeepTech p.closingCtaTitle{
+=09=09=09margin-bottom:10px;
+=09=09}
+=09=09.closingCtaDeepTech p.closingCtaButton{
+=09=09=09margin-top:15px;
+=09=09}
+=09=09.closingCtaDeepTech p.subTitle{
+=09=09=09font-weight:bold;
+=09=09}
+=09=09.closingCtaDeepTech .closingCtaTitle{
+=09=09=09font-size:60px;
+=09=09=09line-height:60px;
+=09=09}
+=09=09.closingCyberSecure{
+=09=09=09color:#ffffff;
+=09=09}
+=09=09.closingCyberSecure .closingCtaLogo{
+=09=09=09margin-bottom:20px;
+=09=09}
+=09=09.closingCyberSecure .closingCtaBody.subTitle{
+=09=09=09font-size:34px;
+=09=09=09line-height:40px;
+=09=09=09font-weight:bold;
+=09=09=09margin-bottom:40px;
+=09=09}
+=09=09.closingCtaTableBreakthroughTech{
+=09=09=09background-color:#000000;
+=09=09=09color:#FFFFFF;
+=09=09}
+=09=09.closingCtaTableBreakthroughTech .closingCtaBody{
+=09=09=09font-weight:bold;
+=09=09}
+=09=09.closingCtaTable p{
+=09=09=09padding-top:0;
+=09=09=09padding-bottom:0;
+=09=09=09margin-top:0;
+=09=09=09margin-bottom:25px;
+=09=09}
+=09=09p.closingCtaLogo{
+=09=09=09margin-bottom:40px;
+=09=09}
+=09=09p.closingCtaTitle{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:bold;
+=09=09=09font-size:40px;
+=09=09=09line-height:40px;
+=09=09=09letter-spacing:-.5px;
+=09=09=09margin-bottom:30px;
+=09=09}
+=09=09.closingCtaTableSubscribe p.closingCtaTitle{
+=09=09=09margin-bottom:0;
+=09=09}
+=09=09p.closingCtaBody{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:normal;
+=09=09=09font-size:28px;
+=09=09=09line-height:30px;
+=09=09=09letter-spacing:-1px;
+=09=09=09margin-bottom:10px;
+=09=09}
+=09=09p.closingCtaButton{
+=09=09=09display:inline-block;
+=09=09=09margin-bottom:0;
+=09=09}
+=09=09.closingCtaButton table{
+=09=09=09background-color:#8A60AE;
+=09=09=09padding-top:20px;
+=09=09=09padding-bottom:20px;
+=09=09=09padding-right:60px;
+=09=09=09padding-left:60px;
+=09=09}
+=09=09.closingCtaButton td{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:bold;
+=09=09=09font-size:18px;
+=09=09=09line-height:18px;
+=09=09=09color:#ffffff;
+=09=09}
+=09=09.footerTable{
+=09=09=09padding-top:40px;
+=09=09=09padding-bottom:10px;
+=09=09=09background-color:#f0f0f0;
+=09=09}
+=09=09.footerWrapper{
+=09=09=09width:640px;
+=09=09=09min-width:640px;
+=09=09=09padding-left:20px;
+=09=09=09padding-right:20px;
+=09=09}
+=09=09.prefsTable{
+=09=09=09padding-bottom:20px;
+=09=09}
+=09=09.prefsTable div a{
+=09=09=09color:#000000;
+=09=09}
+=09=09.smallText div{
+=09=09=09color:#000000;
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-size:14px;
+=09=09=09line-height:18px;
+=09=09}
+=09=09.prefsLinksTable{
+=09=09=09padding-bottom:10px;
+=09=09}
+=09=09.prefsLinksTable div a{
+=09=09=09color:#000000;
+=09=09}
+=09=09.prefsFollowTable{
+=09=09=09padding-bottom:10px;
+=09=09}
+=09=09.prefsFollowTable table{
+=09=09=09display:inline-block;
+=09=09}
+=09=09.addressTable{
+=09=09=09padding-top:15px;
+=09=09=09padding-bottom:15px;
+=09=09}
+=09=09.glyphTable{
+=09=09=09padding-bottom:10px;
+=09=09}
+=09=09.sponsorWrapperWrapperTable=2C.sponsorImageWrapperWrapperTable{
+=09=09=09padding-bottom:50px;
+=09=09}
+=09=09.sponsorWrapperTable{
+=09=09=09background-color:#EAEAEA;
+=09=09=09padding-top:25px;
+=09=09=09padding-bottom:30px;
+=09=09=09padding-left:20px;
+=09=09=09padding-right:20px;
+=09=09}
+=09=09.sponsorImageWrapperTable{
+=09=09=09border:1px solid #979797;
+=09=09=09border-collapse:collapse;
+=09=09}
+=09=09.sponsorWrapperTable .standardText div=2C.sponsorImageWrapperTable .=
+standardText div{
+=09=09=09font-size:17px;
+=09=09=09line-height:24px;
+=09=09}
+=09=09.sponsorWrapperTable .standardText a=2C.sponsorImageWrapperTable .st=
+andardText a{
+=09=09=09color:#000000;
+=09=09}
+=09=09.sponsorImageTable{
+=09=09=09background-color:#979797;
+=09=09}
+=09=09.sponsorImage{
+=09=09=09width:100%;
+=09=09=09height:auto;
+=09=09}
+=09=09.sponsorImageCopyTable{
+=09=09=09padding-top:20px;
+=09=09=09padding-bottom:30px;
+=09=09=09padding-left:20px;
+=09=09=09padding-right:20px;
+=09=09=09border-collapse:separate;
+=09=09}
+=09=09.sponsorLabelTable{
+=09=09=09padding-bottom:20px;
+=09=09}
+=09=09.standardText p.sponsorSlug{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-size:10px;
+=09=09=09line-height:14px;
+=09=09=09text-transform:uppercase;
+=09=09=09letter-spacing:1px;
+=09=09=09margin-top:0;
+=09=09=09margin-bottom:5px;
+=09=09=09padding-top:0;
+=09=09=09padding-bottom:0;
+=09=09}
+=09=09p.sponsorTitle{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-weight:bold;
+=09=09=09font-size:20px;
+=09=09=09line-height:26px;
+=09=09}
+=09=09.standardText p.sponsorTitle{
+=09=09=09margin-bottom:0;
+=09=09}
+=09=09.sponsorLogoTable{
+=09=09=09padding-left:30px;
+=09=09}
+=09@media (max-width:665px){
+=09=09.wrapper=2C.footerWrapper=2C.bodyWrapper{
+=09=09=09width:100% !important;
+=09=09=09min-width:350px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09img.imgMax{
+=09=09=09width:100% !important;
+=09=09=09height:auto !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.standardText img{
+=09=09=09max-width:100% !important;
+=09=09=09height:auto !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.standardText hr{
+=09=09=09margin-bottom:20px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.standardText p+hr=2C.standardText ul+hr=2C.standardText ol+hr{
+=09=09=09margin-top:30px;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.headerBackgroundTable{
+=09=09=09padding-bottom:22px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.titleLogoTable{
+=09=09=09padding-top:30px !important;
+=09=09=09padding-bottom:20px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.titleLogoTable img{
+=09=09=09width:auto !important;
+=09=09=09height:90px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.titleTable{
+=09=09=09padding-bottom:2px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.title{
+=09=09=09font-size:32px !important;
+=09=09=09line-height:32px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.taglineTable{
+=09=09=09padding-bottom:30px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.tagline{
+=09=09=09font-size:18px !important;
+=09=09=09line-height:18px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.titleRuleTable{
+=09=09=09padding-bottom:10px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.emailTitleTable{
+=09=09=09padding-bottom:5px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.emailTitle div{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-size:14px !important;
+=09=09=09line-height:16px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.date div{
+=09=09=09font-family:Helvetica=2CArial=2Csans-serif;
+=09=09=09font-size:12px !important;
+=09=09=09line-height:16px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.bodyWrapper{
+=09=09=09padding-left:20px !important;
+=09=09=09padding-right:20px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.moduleWrapperTable{
+=09=09=09padding-bottom:30px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.inHousePromoTable{
+=09=09=09padding-bottom:40px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.storyTable{
+=09=09=09padding-bottom:30px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09table.stackableStoryTable=2Ctable.stackableStoryTable tbody=2Ctable.=
+stackableStoryTable tr=2Ctable.stackableStoryTable td{
+=09=09=09display:block !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.stackableStoryBodyTable{
+=09=09=09padding-top:15px !important;
+=09=09=09padding-left:0 !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09p.storySubHeadline{
+=09=09=09font-size:20px !important;
+=09=09=09line-height:26px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.standardText div{
+=09=09=09font-size:16px !important;
+=09=09=09line-height:22px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.prefooterTable{
+=09=09=09padding-top:15px !important;
+=09=09=09padding-bottom:25px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09table.authorTable=2Ctable.authorTable tbody=2Ctable.authorTable tr=
+=2Ctable.authorTable td{
+=09=09=09display:block !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.authorTable{
+=09=09=09padding-bottom:20px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.authorAvatarTable{
+=09=09=09width:100% !important;
+=09=09=09padding-right:0 !important;
+=09=09=09padding-bottom:10px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.authorAvatarTable td{
+=09=09=09text-align:center !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.authorAvatar{
+=09=09=09width:145px !important;
+=09=09=09height:145px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.ctaTable{
+=09=09=09padding-top:0 !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.closingCtaTable{
+=09=09=09padding-top:20px !important;
+=09=09=09padding-bottom:20px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.closingCtaTable p{
+=09=09=09margin-bottom:15px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.closingCtaTableSubscribe p.closingCtaTitle{
+=09=09=09margin-bottom:0 !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09p.closingCtaTitle{
+=09=09=09font-size:26px !important;
+=09=09=09line-height:24px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09p.closingCtaBody{
+=09=09=09font-size:18px !important;
+=09=09=09line-height:20px !important;
+=09=09}
+
+}=09@media (max-width:665px){
+=09=09.closingCtaButton img{
+=09=09=09width:180px !important;
+=09=09=09height:auto !important;
+=09=09}
+
+}=09@media (max-width:425px){
+=09=09.footerWrapper{
+=09=09=09padding-left:0 !important;
+=09=09=09padding-right:0 !important;
+=09=09}
+
+}=09@media (max-width:425px){
+=09=09.footerTable{
+=09=09=09padding-left:20px !important;
+=09=09=09padding-right:20px !important;
+=09=09}
+
+}</style></head>
+  <body leftmargin=3D"0" marginwidth=3D"0" topmargin=3D"0" marginheight=3D=
+"0" offset=3D"0" style=3D"background-color: #ffffff;">
+    <span class=3D"mcnPreviewText" style=3D"display: none !important;">The=
+ lonely reality of grieving online during social isolation=C2=A0</span>
+    <center>
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%" class=3D"totalTable" style=3D"height: 100%;background-color: #ffffff;">
+        <tr>
+          <td align=3D"center" valign=3D"top">
+
+            <!-- /.headerSponsorTable -->
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"640" class=3D"wrapper" style=3D"width: 640px;min-width: 640px;">
+              <tr>
+                <td valign=3D"top" align=3D"center">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" class=3D"headerBackgroundTable" style=3D"background-color:=
+ #4a4a4a;color: #000000;padding-top: 15px;padding-bottom: 40px;padding-lef=
+t: 20px;padding-right: 20px;">
+                    <tr>
+                      <td valign=3D"top" align=3D"center">
+                        <table mc:repeatable=3D"repeat_1" mc:variant=3D"TR=
+ logo -- white" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" class=3D"headerAlignWrapperTable" mc:repeatindex=3D"0" mc:hideable=
+=3D"hideable_repeat_1_1" mchideable=3D"hideable_repeat_1_1">
+                          <tr>
+                            <td valign=3D"top" align=3D"center">
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" align=3D"center" class=3D"desktopHeaderLogoTable">
+                                <tr>
+                                  <td valign=3D"top" align=3D"left">
+                                    <a href=3D"https://technologyreview.us=
+11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D2c92668d=
+54&e=3Ddb760db8f2" target=3D"_blank" style=3D"color: #f90e1e;text-decorat=
+ion: underline;"><img src=3D"https://gallery.mailchimp.com/47c1a9cec9749a8=
+f8cbc83e78/images/23381c08-5b93-421d-a22a-9194a24fcbda.png" width=3D"172"=
+ height=3D"16" border=3D"0" alt=3D"MIT Technology Review"></a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+
+                        <!-- /.headerAlignWrapperTable -->
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" class=3D"titleWrapperTable" style=3D"padding-top: 60=
+px;">
+                          <tr>
+                            <td valign=3D"top" align=3D"center">
+
+
+
+                              <table mc:hideable=3D"hideable_repeat_2_1" m=
+c:repeatable=3D"repeat_2" mc:variant=3D"The Download" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"titleLogoTable" mc:re=
+peatindex=3D"0" mchideable=3D"hideable_repeat_2_1" style=3D"padding-bottom=
+: 45px;">
+                                <tr>
+                                  <td valign=3D"middle" align=3D"center">
+                                    <img src=3D"https://gallery.mailchimp.=
+com/47c1a9cec9749a8f8cbc83e78/images/e4cf1169-5fc2-45c0-8bc8-cad73c63c777.=
+png" width=3D"71" height=3D"90" border=3D"0" alt=3D"">
+                                  </td>
+                                </tr>
+                              </table>
+
+
+
+                              <!-- /.titleLogoTable -->
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"100%" class=3D"titleTable">
+                                <tr>
+                                  <td valign=3D"top" align=3D"center" nowr=
+ap=3D"nowrap">
+                                    <div class=3D"title" style=3D"color: #=
+ffffff;font-family: Helvetica=2CArial=2Csans-serif;font-weight: bold;font-=
+size: 63px;line-height: 63px;">The Download</div>
+                                  </td>
+                                </tr>
+                              </table>
+                              <!-- /.titleTable -->
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"100%" class=3D"taglineTable" style=3D"padding-bottom:=
+ 70px;">
+                                <tr>
+                                  <td valign=3D"top" align=3D"center">
+                                    <div class=3D"tagline" style=3D"font-f=
+amily: Helvetica=2CArial=2Csans-serif;font-weight: 300;font-size: 30px;lin=
+e-height: 33px;color: #ffffff;">Your daily dose of what&rsquo;s up<br>
+in emerging technology</div>
+                                  </td>
+                                </tr>
+                              </table>
+                              <!-- /.taglineTable -->
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"80" class=3D"titleRuleTable" style=3D"width: 80px;bor=
+der-top: 7px solid #ffffff;padding-bottom: 15px;">
+                                <tr>
+                                  <td></td>
+                                </tr>
+                              </table>
+                              <!-- /.titleRuleTable -->
+                              <table mc:hideable=3D"hideable_2" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"emailTitleT=
+able" mchideable=3D"hideable_2">
+                                <tr>
+                                  <td valign=3D"top" align=3D"center" clas=
+s=3D"emailTitle">
+                                    <div style=3D"font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: normal;font-size: 20px;line-height: 26p=
+x;color: #ffffff;"></div>
+                                  </td>
+                                </tr>
+                              </table>
+                              <!-- /.emailTitleTable -->
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"100%" class=3D"dateTable">
+                                <tr>
+                                  <td valign=3D"top" align=3D"center" clas=
+s=3D"date">
+                                    <div style=3D"font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: normal;font-size: 20px;line-height: 26p=
+x;color: #ffffff;">04.14.20</div>
+                                  </td>
+                                </tr>
+                              </table>
+                              <!-- /.dateTable -->
+                            </td>
+                          </tr>
+                        </table>
+                        <!-- /.titleWrapperTable -->
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- /.headerBackgroundTable -->
+                </td>
+              </tr>
+            </table>
+            <!-- /.wrapper -->
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"640" class=3D"wrapper" style=3D"width: 640px;min-width: 640px;">
+              <tr>
+                <td valign=3D"top" align=3D"center">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"600" class=3D"bodyWrapper" style=3D"padding-top: 30px;">
+                    <tr>
+                      <td valign=3D"top" align=3D"left">
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" class=3D"introTable" mc:repeatable=3D"repeat_3" mc:v=
+ariant=3D"Intro" mc:repeatindex=3D"0" style=3D"padding-bottom: 50px;">
+                          <tr>
+                            <td valign=3D"top" align=3D"left" class=3D"sta=
+ndardText">
+                              <div style=3D"font-family: Helvetica=2CArial=
+=2Csans-serif;font-weight: normal;font-size: 17px;line-height: 24px;color:=
+ #000000;"><em>Good morning! Today: what we can learn from how Singapore i=
+s managing the pandemic=2C how people are managing grief online during loc=
+kdown=2C and what it will take to get us back outside. Get your friends to=
+ sign up <a href=3D"https://technologyreview.us11.list-manage.com/track/cl=
+ick?u=3D47c1a9cec9749a8f8cbc83e78&id=3D8e4265e6a4&e=3Ddb760db8f2" target=
+=3D"_blank" style=3D"color: #f90e1e;text-decoration: underline;">here</a>=
+ to get The Download every day.</em></div>
+                            </td>
+                          </tr>
+                        </table><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%" class=3D"storyTable" mc:repeatable=3D"repeat_=
+3" mc:variant=3D"Story" mc:repeatindex=3D"1" style=3D"border-top: 1px soli=
+d #000000;padding-top: 30px;padding-bottom: 50px;">
+                          <tr>
+                            <td valign=3D"top" align=3D"left">
+
+
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"100%" class=3D"storyBodyTable">
+                                <tr>
+                                  <td valign=3D"top" class=3D"standardText=
+">
+                                    <div style=3D"font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: normal;font-size: 17px;line-height: 24p=
+x;color: #000000;"><p class=3D"storyHeadline" dir=3D"ltr" style=3D"font-fa=
+mily: Helvetica=2CArial=2Csans-serif;font-weight: bold;font-size: 30px;lin=
+e-height: 33px;color: #000000;padding-top: 0;padding-bottom: 0;margin-top:=
+ 0;margin-bottom: 10px;">How to manage a pandemic<br>
+&nbsp;</p>
+
+<p class=3D"storyHeadline" dir=3D"ltr" style=3D"font-family: Helvetica=2CA=
+rial=2Csans-serif;font-weight: bold;font-size: 30px;line-height: 33px;colo=
+r: #000000;padding-top: 0;padding-bottom: 0;margin-top: 0;margin-bottom: 1=
+0px;"><strong id=3D"docs-internal-guid-3a99f037-7fff-636b-9beb-690d0a61402=
+d"><img height=3D"370" src=3D"https://lh4.googleusercontent.com/Qs6o2npuZz=
+811vvEt9v-LMhDEiYMmY_HEpY-xyaC21iFgsX4sx3WtBzyUciiQwRRpvJkz84W35Q6E_1lSbE-=
+demwzT9T0qWYD5Qsq8BjFzhFYbB0ly5x6QUj7uEI5YGLJQdjxviH" style=3D"border: 0px=
+ initial ; width: 600px; height: 370px; margin: 0px;" width=3D"600"></stro=
+ng></p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;">My first taste of coronavirus panic came early one morn=
+ing in January. An email with the heading &lsquo;Important Information: Pl=
+ease Read&rsquo; arrived from our son&rsquo;s elementary school. The paren=
+ts of one of his teachers=2C who had recently returned from China=2C had b=
+een infected&mdash;Singapore&rsquo;s cases 8 and 9=2C as it turned out&mda=
+sh;and the teacher in question was being quarantined.</p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;"><a href=3D"https://technologyreview.us11.list-manage.co=
+m/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D0c47f8cc9e&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">Singapore was amon=
+g the first countries to suffer an outbreak</a>. In the months since=2C it=
+ has been at once reassuring and unnerving to watch its journey from an ea=
+rly hotspot to a kind of haven state=2C holding out doggedly against an in=
+vader that has infiltrated so many others.</p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;">Early commentary in the West focused on the failings of=
+ China&rsquo;s autocratic system=2C which hid the severity of Wuhan&rsquo;=
+s outbreak&mdash;at what we now know to be catastrophic cost. The more the=
+ epidemic has spread=2C the more it has become clear that Western liberal=
+ democracies have badly mishandled it too=2C ending up with severe outbrea=
+ks that could&mdash;perhaps&mdash;have been avoided.</p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 0;">Yet it makes little sense to view the coronavirus as some=
+ kind of perverse vitality test for liberal and authoritarian regimes. Ins=
+tead we should learn from the countries that responded more effectively&md=
+ash;namely=2C Asia&rsquo;s advanced technocratic democracies. In the West=
+ the virus exposed creaking public services and political division. But Ho=
+ng Kong=2C Japan=2C and South Korea have managed better=2C while Singapore=
+ and Taiwan have kept the disease almost entirely under control=2C at leas=
+t for now. <a href=3D"https://technologyreview.us11.list-manage.com/track/=
+click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D0f9b93c8b8&e=3Ddb760db8f2" style=
+=3D"color: #f90e1e;text-decoration: underline;">Read the full story by Jam=
+es Crabtree</a>.</p>
+</div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%" class=3D"storyTable" mc:repeatable=3D"repeat_=
+3" mc:variant=3D"Story" mc:repeatindex=3D"2" style=3D"border-top: 1px soli=
+d #000000;padding-top: 30px;padding-bottom: 50px;">
+                          <tr>
+                            <td valign=3D"top" align=3D"left">
+
+
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"100%" class=3D"storyBodyTable">
+                                <tr>
+                                  <td valign=3D"top" class=3D"standardText=
+">
+                                    <div style=3D"font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: normal;font-size: 17px;line-height: 24p=
+x;color: #000000;"><p class=3D"storySubHeadline" style=3D"font-family: Hel=
+vetica=2CArial=2Csans-serif;font-weight: bold;font-size: 23px;line-height:=
+ 26px;color: #000000;padding-top: 0;padding-bottom: 0;margin-top: 5px;marg=
+in-bottom: 5px;">The lonely reality of grieving online during social isola=
+tion</p>
+
+<p class=3D"storySubHeadline" style=3D"font-family: Helvetica=2CArial=2Csa=
+ns-serif;font-weight: bold;font-size: 23px;line-height: 26px;color: #00000=
+0;padding-top: 0;padding-bottom: 0;margin-top: 5px;margin-bottom: 5px;"><m=
+eta charset=3D"utf-8"></p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;"><strong>A grim trend: </strong>The global coronavirus p=
+andemic has forced people to think about death=2C while simultaneously upe=
+nding the ways in which we are used to experiencing grief and loss. <a hre=
+f=3D"https://technologyreview.us11.list-manage.com/track/click?u=3D47c1a9c=
+ec9749a8f8cbc83e78&id=3D55dc6145f1&e=3Ddb760db8f2" style=3D"color: #f90e1=
+e;text-decoration: underline;">The only option is to grieve online</a>.&nb=
+sp;</p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;"><strong>Not new: </strong>The coronavirus pandemic didn=
+&rsquo;t create online mourning and grief. Facebook groups already connect=
+ mothers grieving young children to each other=2C and social-media profile=
+s often become memorials. Live-streaming=2C too=2C<a href=3D"https://techn=
+ologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78=
+&id=3Dcd809a3bcd&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration:=
+ underline;"> is already a part of how people grieve.</a> Well before coro=
+navirus sent billions of people into lockdown=2C there were reasons not ev=
+erybody could make it to a funeral.</p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;"><strong>An added pain:</strong> The covid-19 pandemic h=
+as forced all those dealing with death to confront the possibility that th=
+ey won&rsquo;t be able to access what mourners may need most: human touch=
+=2C connection=2C and community support. <a href=3D"https://technologyrevi=
+ew.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D3ec=
+56ffa30&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underlin=
+e;">Read the full story</a>.</p>
+
+<p dir=3D"ltr" style=3D"text-align: right;padding-top: 0;padding-bottom: 0=
+;margin-top: 0;margin-bottom: 0;"><span style=3D"color:#696969"><em>&mdash=
+;Abby Ohlheiser</em></span></p>
+</div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%" class=3D"storyTable" mc:repeatable=3D"repeat_=
+3" mc:variant=3D"Story" mc:repeatindex=3D"3" style=3D"border-top: 1px soli=
+d #000000;padding-top: 30px;padding-bottom: 50px;">
+                          <tr>
+                            <td valign=3D"top" align=3D"left">
+
+
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"100%" class=3D"storyBodyTable">
+                                <tr>
+                                  <td valign=3D"top" class=3D"standardText=
+">
+                                    <div style=3D"font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: normal;font-size: 17px;line-height: 24p=
+x;color: #000000;"><p class=3D"storySubHeadline" style=3D"font-family: Hel=
+vetica=2CArial=2Csans-serif;font-weight: bold;font-size: 23px;line-height:=
+ 26px;color: #000000;padding-top: 0;padding-bottom: 0;margin-top: 5px;marg=
+in-bottom: 5px;">This is what it will take to get us back outside</p>
+
+<p class=3D"storySubHeadline" style=3D"font-family: Helvetica=2CArial=2Csa=
+ns-serif;font-weight: bold;font-size: 23px;line-height: 26px;color: #00000=
+0;padding-top: 0;padding-bottom: 0;margin-top: 5px;margin-bottom: 5px;"><m=
+eta charset=3D"utf-8"></p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;">We have to prepare for a world in which there is no cur=
+e and no vaccine for a long time.&nbsp;</p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;">There is a way to live in this world without staying pe=
+rmanently shut indoors. But it won&rsquo;t be a return to normal; this wil=
+l be=2C for Westerners at any rate=2C a new normal.&nbsp;</p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;">It will entail a considerable degree of surveillance an=
+d social controls. It will also create or exacerbate divisions between hav=
+es and have-nots.</p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;">This new social order will seem unthinkable to most peo=
+ple in so-called free countries. But any change can quickly become normal=
+ if people accept it. Getting to normal=2C therefore=2C is not so much abo=
+ut getting back the old normality as it is about getting back the ability=
+ to know what is going to happen tomorrow. MIT Technology Review&rsquo;s e=
+ditor in chief Gideon Lichfield=2C <a href=3D"https://technologyreview.us1=
+1.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D62273830f=
+d&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">ha=
+s the full story</a> on what a post-coronavirus future might look like.</p=
+>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 0;"><strong>Tune into a new episode of <a href=3D"https://tech=
+nologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e7=
+8&id=3Dc3f9f44848&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration=
+: underline;">Radio Corona</a> at 2pm ET today. </strong><br>
+Jennifer Strong=2C our audio and live journalism editor=2C will speak with=
+ economist John Van Reenen about how to make effective policy to salvage t=
+he global economy. It will also be available on our <a href=3D"https://tec=
+hnologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e=
+78&id=3Dbbb329cd7f&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoratio=
+n: underline;">Facebook page</a> and <a href=3D"https://technologyreview.u=
+s11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D6054cb1=
+442&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">=
+YouTube channel</a>.</p>
+</div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%" class=3D"storyTable" mc:repeatable=3D"repeat_=
+3" mc:variant=3D"Story" mc:repeatindex=3D"4" style=3D"border-top: 1px soli=
+d #000000;padding-top: 30px;padding-bottom: 50px;">
+                          <tr>
+                            <td valign=3D"top" align=3D"left">
+
+
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"100%" class=3D"storyBodyTable">
+                                <tr>
+                                  <td valign=3D"top" class=3D"standardText=
+">
+                                    <div style=3D"font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: normal;font-size: 17px;line-height: 24p=
+x;color: #000000;"><p class=3D"storyHeadline" style=3D"font-family: Helvet=
+ica=2CArial=2Csans-serif;font-weight: bold;font-size: 30px;line-height: 33=
+px;color: #000000;padding-top: 0;padding-bottom: 0;margin-top: 0;margin-bo=
+ttom: 10px;"><meta charset=3D"utf-8"></p>
+
+<p class=3D"storySubHeadline" dir=3D"ltr" style=3D"font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: bold;font-size: 23px;line-height: 26px;=
+color: #000000;padding-top: 0;padding-bottom: 0;margin-top: 5px;margin-bot=
+tom: 5px;">We can still have nice things</p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 20px;"><em>A place for comfort=2C fun and distraction in these=
+ weird times. (Got any ideas? <a data-auth=3D"NotApplicable" href=3D"mailt=
+o:charlotte.jee@technologyreview.com" rel=3D"noopener noreferrer" target=
+=3D"_blank" style=3D"color: #f90e1e;text-decoration: underline;">Drop me a=
+ line</a> or <a href=3D"https://technologyreview.us11.list-manage.com/trac=
+k/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D001fafe6e6&e=3Ddb760db8f2" sty=
+le=3D"color: #f90e1e;text-decoration: underline;">tweet &#39;em at me</a>.=
+)</em></p>
+
+<p dir=3D"ltr" role=3D"presentation" style=3D"padding-top: 0;padding-botto=
+m: 0;margin-top: 0;margin-bottom: 0;">&nbsp; + The ultimate quarantine <a=
+ href=3D"https://technologyreview.us11.list-manage.com/track/click?u=3D47c=
+1a9cec9749a8f8cbc83e78&id=3D16f2847a9e&e=3Ddb760db8f2" style=3D"color: #f=
+90e1e;text-decoration: underline;">guide to grooming</a>.<br>
+&nbsp; + Seventh grader (and multi-instrumentalist) Chloe Langford <a href=
+=3D"https://technologyreview.us11.list-manage.com/track/click?u=3D47c1a9ce=
+c9749a8f8cbc83e78&id=3D25536738f9&e=3Ddb760db8f2" style=3D"color: #f90e1e=
+;text-decoration: underline;">wrote a song</a> describing the monotony of=
+ being stuck at home.&nbsp;<br>
+&nbsp; +&nbsp;Fancy a trip to Sweden&rsquo;s forests? <a href=3D"https://t=
+echnologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc8=
+3e78&id=3Dcc888861e5&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decorat=
+ion: underline;">This &ldquo;slow&rdquo; TV show</a> will provide.<br>
+&nbsp; + Surgeons at Columbia Surgery <a href=3D"https://technologyreview.=
+us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3De2d95e=
+6158&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;"=
+>hosted a concert</a> for their patients.<br>
+&nbsp; + A BBC Sport commentator decided to work his magic on <a href=3D"h=
+ttps://technologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749=
+a8f8cbc83e78&id=3Dd59bc9d6f8&e=3Ddb760db8f2" style=3D"color: #f90e1e;text=
+-decoration: underline;">dogs fighting over a toy</a>.<br>
+&nbsp; + Pink Floyd=2C the Grateful Dead=2C Radiohead and Metallica <a hre=
+f=3D"https://technologyreview.us11.list-manage.com/track/click?u=3D47c1a9c=
+ec9749a8f8cbc83e78&id=3D3f7c23a795&e=3Ddb760db8f2" style=3D"color: #f90e1=
+e;text-decoration: underline;">are releasing previously-unseen material</a=
+> during the coronavirus lockdown.&nbsp;<br>
+&nbsp; + Don&rsquo;t leave chocolate Easter bunnies in the car for too lon=
+g <a href=3D"https://technologyreview.us11.list-manage.com/track/click?u=
+=3D47c1a9cec9749a8f8cbc83e78&id=3Dded28c1e45&e=3Ddb760db8f2" style=3D"col=
+or: #f90e1e;text-decoration: underline;">or they&rsquo;ll KILL YOU</a>.</p=
+>
+</div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%" class=3D"storyTable" mc:repeatable=3D"repeat_=
+3" mc:variant=3D"Story" mc:repeatindex=3D"5" style=3D"border-top: 1px soli=
+d #000000;padding-top: 30px;padding-bottom: 50px;">
+                          <tr>
+                            <td valign=3D"top" align=3D"left">
+
+
+                              <table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"100%" class=3D"storyBodyTable">
+                                <tr>
+                                  <td valign=3D"top" class=3D"standardText=
+">
+                                    <div style=3D"font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: normal;font-size: 17px;line-height: 24p=
+x;color: #000000;"><p class=3D"storyHeadline" style=3D"font-family: Helvet=
+ica=2CArial=2Csans-serif;font-weight: bold;font-size: 30px;line-height: 33=
+px;color: #000000;padding-top: 0;padding-bottom: 0;margin-top: 0;margin-bo=
+ttom: 10px;">The top ten must-reads</p>
+
+<p style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;margin-bottom:=
+ 20px;"><em>I&rsquo;ve combed the internet to find you today&rsquo;s most=
+ fun/important/scary/fascinating stories about technology.</em></p>
+<strong>1 What the world can learn from Kerala about how to fight covid-19=
+</strong><br>
+The Indian state is flattening the curve through epic levels of contact tr=
+acing and social assistance. (<a href=3D"https://technologyreview.us11.lis=
+t-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D9b2d344ba0&e=
+=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">TR</a=
+>)<br>
+&nbsp;<br>
+<strong>2 Apple and Google are building contact tracing into iOS and Andro=
+id</strong><br>
+The app=2C slated to launch next month=2C uses Bluetooth to check who&rsqu=
+o;s been near you. (<a href=3D"https://technologyreview.us11.list-manage.c=
+om/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D854de89810&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">TR</a>)<br>
+<em>&nbsp; + They answered questions about it on a call with journalists y=
+esterday. </em>(<a href=3D"https://technologyreview.us11.list-manage.com/t=
+rack/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3Dd57bb2bded&e=3Ddb760db8f2"=
+ style=3D"color: #f90e1e;text-decoration: underline;">TechCrunch</a>)&nbsp=
+;<br>
+<em>&nbsp; + The UK government is building a similar app.</em> (<a href=3D=
+"https://technologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec97=
+49a8f8cbc83e78&id=3Db646ed5594&e=3Ddb760db8f2" style=3D"color: #f90e1e;te=
+xt-decoration: underline;">BBC</a>)&nbsp;<br>
+<br>
+<strong>3 This is what the global pandemic picture looks like=2C in charts=
+&nbsp;</strong><br>
+The number of cases in the US is still accelerating rapidly. (<a href=3D"h=
+ttps://technologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749=
+a8f8cbc83e78&id=3Db1a5d52061&e=3Ddb760db8f2" style=3D"color: #f90e1e;text=
+-decoration: underline;">FT</a>)<br>
+&nbsp;<br>
+<strong>4 Amazon is hiring another 75=2C000 warehouse workers&nbsp;</stron=
+g><br>
+That&rsquo;s on top of the 100=2C000 people it&rsquo;s hired since mid-Mar=
+ch. (<a href=3D"https://technologyreview.us11.list-manage.com/track/click?=
+u=3D47c1a9cec9749a8f8cbc83e78&id=3Dfbcb57e518&e=3Ddb760db8f2" style=3D"co=
+lor: #f90e1e;text-decoration: underline;">CNN</a>)<br>
+<em>&nbsp; + Amazon is putting new grocery customers on a waitlist to cope=
+ with surging demand.</em> (<a href=3D"https://technologyreview.us11.list-=
+manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3Db2f3c1c94b&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">Reuters</=
+a>)<br>
+<em>&nbsp; + Amazon workers describe what it&rsquo;s like to work there ri=
+ght now</em>. (<a href=3D"https://technologyreview.us11.list-manage.com/tr=
+ack/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D8689184e84&e=3Ddb760db8f2" s=
+tyle=3D"color: #f90e1e;text-decoration: underline;">Wired</a> $)<br>
+<em>&nbsp; + Workers who&rsquo;ve been quarantined say Amazon hasn&rsquo;t=
+ paid them. </em>(<a href=3D"https://technologyreview.us11.list-manage.com=
+/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D987a024038&e=3Ddb760db8f2=
+" style=3D"color: #f90e1e;text-decoration: underline;">Buzzfeed</a>)<br>
+<em>&nbsp; + Amazon was already powerful. Once this is over=2C it&rsquo;ll=
+ be unassailable.</em> (<a href=3D"https://technologyreview.us11.list-mana=
+ge.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D9a898cdba0&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">Recode</a>)&n=
+bsp;<br>
+<br>
+<strong>5 Surveillance may be here to stay&nbsp;=F0=9F=91=81=EF=B8=8F</str=
+ong><br>
+Governments in at least 25 countries are deploying enhanced monitoring. (<=
+a href=3D"https://technologyreview.us11.list-manage.com/track/click?u=3D47=
+c1a9cec9749a8f8cbc83e78&id=3D1ef34b72de&e=3Ddb760db8f2" style=3D"color: #=
+f90e1e;text-decoration: underline;">The Guardian</a>)<br>
+<em>&nbsp; + This is what each country is doing.</em> (<a href=3D"https://=
+technologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc=
+83e78&id=3D2c5f0c2ce9&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decora=
+tion: underline;">OneZero</a> $)&nbsp;<br>
+<br>
+<strong>6 The unholy alliance of covid-19=2C nationalism=2C and climate ch=
+ange</strong><br>
+When the pandemic wanes=2C a poorer=2C more divided world will still face=
+ the rapidly rising threat of global warming. (<a href=3D"https://technolo=
+gyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=
+=3D46beb04fba&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: un=
+derline;">TR</a>)&nbsp;<br>
+<em>&nbsp; + We halted the global economy=2C and emissions still may only=
+ fall 4% this year.</em> (<a href=3D"https://technologyreview.us11.list-ma=
+nage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D4860c98094&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">TR</a>)&nbs=
+p;<br>
+<br>
+<strong>7 The race to find a covid-19 drug in the blood of survivors</stro=
+ng><br>
+One problem is that there&rsquo;s still so much we don&rsquo;t know about=
+ the coronavirus. (<a href=3D"https://technologyreview.us11.list-manage.co=
+m/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D838ed11556&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">TR</a>)<br>
+&nbsp;<br>
+<strong>8 Okay that&rsquo;s enough remote meetings now</strong><br>
+You&rsquo;d think being online would reduce the number of meetings we have=
+=2E Nope. (<a href=3D"https://technologyreview.us11.list-manage.com/track/cl=
+ick?u=3D47c1a9cec9749a8f8cbc83e78&id=3D63800bf19c&e=3Ddb760db8f2" style=
+=3D"color: #f90e1e;text-decoration: underline;">Quartz</a>)<br>
+<em>&nbsp; + Boomers are enthusiastic Zoomers.</em> (<a href=3D"https://te=
+chnologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83=
+e78&id=3D4fb62befa8&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decorati=
+on: underline;">Axios</a>)<br>
+<em>&nbsp; + People are using Zoom to break up</em>. (<a href=3D"https://t=
+echnologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc8=
+3e78&id=3Dac2c3ad77d&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decorat=
+ion: underline;">The Guardian</a>)<br>
+<em>&nbsp; + Never mind video conferencing. Host your next meeting in VR.<=
+/em> (<a href=3D"https://technologyreview.us11.list-manage.com/track/click=
+?u=3D47c1a9cec9749a8f8cbc83e78&id=3D66cc9b6e45&e=3Ddb760db8f2" style=3D"c=
+olor: #f90e1e;text-decoration: underline;">IEEE Spectrum</a>)&nbsp;<br>
+<br>
+<strong>9 Coronavirus is screwing up our sleep&nbsp;=F0=9F=98=B4</strong><=
+br>
+It&rsquo;s mostly down to stress. (<a href=3D"https://technologyreview.us1=
+1.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3Dc24d3e233=
+6&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">Wi=
+red UK</a>)<br>
+&nbsp; + <em>Having weird dreams? You&#39;re not alone.</em> (<a href=3D"h=
+ttps://technologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749=
+a8f8cbc83e78&id=3D692539c3e3&e=3Ddb760db8f2" target=3D"_blank" style=3D"c=
+olor: #f90e1e;text-decoration: underline;">Wired UK</a>)<br>
+&nbsp;<br>
+<strong>10 The ups and downs of virtual haircuts&nbsp;=F0=9F=92=87</strong=
+><br>
+I can&rsquo;t be the only person starting to panic about my split ends. (<=
+a href=3D"https://technologyreview.us11.list-manage.com/track/click?u=3D47=
+c1a9cec9749a8f8cbc83e78&id=3D469acb4a5d&e=3Ddb760db8f2" style=3D"color: #=
+f90e1e;text-decoration: underline;">NYT</a> $)</div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%" class=3D"inHousePromoTable" mc:repeatable=3D"=
+repeat_3" mc:variant=3D"In-House Promotion" mc:repeatindex=3D"6" style=3D"=
+padding-bottom: 50px;">
+                      <tr>
+                        <td valign=3D"top" align=3D"left">
+                          <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" class=3D"inHousePromoBodyTable" style=3D"border-top=
+: 4px solid #000000;padding-top: 15px;">
+                            <tr>
+                              <td valign=3D"top" align=3D"left" class=3D"s=
+tandardText">
+                                <div style=3D"font-family: Helvetica=2CAri=
+al=2Csans-serif;font-weight: normal;font-size: 17px;line-height: 24px;colo=
+r: #000000;"><p class=3D"inHousePromoHeadline" style=3D"font-family: Helve=
+tica=2CArial=2Csans-serif;font-weight: bold;font-size: 20px;line-height: 2=
+6px;padding-top: 0;padding-bottom: 0;margin-top: 0;margin-bottom: 0;">Plan=
+ for the future of business&nbsp;</p>
+
+<p class=3D"inHousePromoHeadline" style=3D"font-family: Helvetica=2CArial=
+=2Csans-serif;font-weight: bold;font-size: 20px;line-height: 26px;padding-=
+top: 0;padding-bottom: 0;margin-top: 0;margin-bottom: 0;"><meta charset=3D=
+"utf-8"></p>
+
+<p class=3D"inHousePromoBody" dir=3D"ltr" style=3D"font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: normal;font-size: 20px;line-height: 26p=
+x;padding-top: 0;padding-bottom: 0;margin-top: 0;margin-bottom: 0;">EmTech=
+ Next is a must-attend virtual conference for thought leaders=2C especiall=
+y those who need to maximize employee retention and upskilling in a time o=
+f evolving technologies and robot/machine integration in the workplace. <a=
+ href=3D"https://technologyreview.us11.list-manage.com/track/click?u=3D47c=
+1a9cec9749a8f8cbc83e78&id=3D5758e8c5f4&e=3Ddb760db8f2" style=3D"color: #f=
+90e1e;text-decoration: underline;">Learn more about the conference program=
+ here</a>.</p>
+</div>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table><table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" class=3D"moduleWrapperTable" mc:repeatable=3D"repea=
+t_3" mc:variant=3D"Quote" mc:repeatindex=3D"7" style=3D"padding-bottom: 50=
+px;">
+                      <tr>
+                        <td valign=3D"top" align=3D"left">
+                          <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" class=3D"moduleTable" style=3D"background-color: #e=
+bebeb;padding-top: 30px;padding-bottom: 25px;padding-left: 30px;padding-ri=
+ght: 30px;">
+                            <tr>
+                              <td valign=3D"top" align=3D"left">
+                                <table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%" class=3D"sectionHeadWrapperTable" style=3D"pa=
+dding-bottom: 15px;">
+                                  <tr>
+                                    <td>
+                                      <table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" class=3D"sectionHeadTable" style=3D"border-bottom: 3px=
+ solid #f90e1e;color: #f90e1e;font-family: Helvetica=2CArial=2Csans-serif;=
+font-size: 12px;font-weight: bold;line-height: 12px;letter-spacing: 1px;te=
+xt-transform: uppercase;">
+                                        <tr>
+                                          <td>
+                                            <div class=3D"sectionHead">Quo=
+te of the day</div>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </table>
+                                <table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%">
+                                  <tr>
+                                    <td valign=3D"top" align=3D"left" clas=
+s=3D"standardText">
+                                      <div style=3D"font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: normal;font-size: 17px;line-height: 24p=
+x;color: #000000;"><p class=3D"quote" style=3D"font-family: Helvetica=2CAr=
+ial=2Csans-serif;font-weight: 300;font-size: 26px;line-height: 34px;paddin=
+g-top: 0;padding-bottom: 0;margin-top: 0;margin-bottom: 20px;">&ldquo;You=
+ don&rsquo;t know anyone who has made as much money out of this as I have.=
+&rdquo;</p>
+
+<p class=3D"quote" style=3D"font-family: Helvetica=2CArial=2Csans-serif;fo=
+nt-weight: 300;font-size: 26px;line-height: 34px;padding-top: 0;padding-bo=
+ttom: 0;margin-top: 0;margin-bottom: 20px;"><meta charset=3D"utf-8"></p>
+
+<p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top: 0;mar=
+gin-bottom: 0;">&mdash;An Australian investor tells the <a href=3D"https:/=
+/technologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8cb=
+c83e78&id=3D5d40550686&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decor=
+ation: underline;">New Yorker</a> he&rsquo;s earning a lot more thanks to=
+ predicting the current pandemic.&nbsp;</p>
+</div>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                          <!-- /.moduleTable -->
+                        </td>
+                      </tr>
+                    </table>
+                        <!-- /.introTable -->
+
+                        <!-- /.storyTable -->
+
+                    <!-- /.moduleWrapperTable -->
+
+                    <!-- /.moduleWrapperTable -->
+
+                  <!-- /.inHousePromoTable -->
+
+                <!-- /.sponsorWrapperWrapperTable -->
+
+              <!-- /.sponsorImageWrapperWrapperTable -->
+
+              <!-- /.stackableStoryTable -->
+
+              <!-- /.stackableStoryTable -->
+              <!-- /sections -->
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" class=3D"prefooterTable" style=3D"border-top: 7px solid #f90e1e=
+;padding-top: 20px;padding-bottom: 30px;">
+                <tr>
+                  <td valign=3D"top" align=3D"center">
+                    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%" class=3D"authorTable" style=3D"padding-bottom: 15px;">
+                      <tr>
+                        <td valign=3D"middle" align=3D"left">
+                          <table mc:repeatable=3D"repeat_4" mc:variant=3D"=
+Charlotte Jee" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"a=
+uthorAvatarTable" mc:repeatindex=3D"0" mc:hideable=3D"hideable_repeat_4_1"=
+ mchideable=3D"hideable_repeat_4_1" style=3D"padding-right: 20px;">
+                            <tr>
+                              <td valign=3D"middle" align=3D"left">
+                                <img src=3D"https://gallery.mailchimp.com/=
+47c1a9cec9749a8f8cbc83e78/images/49d56552-0969-4dc5-bcf4-b68359903bb4.png"=
+ width=3D"110" height=3D"110" border=3D"0" alt=3D"Charlotte Jee" class=3D"=
+authorAvatar">
+                              </td>
+                            </tr>
+                          </table>
+
+
+
+
+
+
+
+
+                        </td>
+                        <td valign=3D"middle" align=3D"left" width=3D"100%=
+" class=3D"prefooterText">
+                          <div style=3D"font-family: Helvetica=2CArial=2Cs=
+ans-serif;font-weight: normal;font-size: 14px;line-height: 18px;color: #00=
+0000;"><p dir=3D"ltr" style=3D"padding-top: 0;padding-bottom: 0;margin-top=
+: 0;margin-bottom: 10px;">Top image credit: FRANZISKA BARCZYK<br>
+<br>
+Please send any leftover chocolate Easter bunnies to <a href=3D"mailto:hi@=
+technologyreview.com" style=3D"color: #f90e1e;text-decoration: underline;"=
+>hi@technologyreview.com</a>.<br>
+<br>
+Follow me on Twitter at <a href=3D"https://technologyreview.us11.list-mana=
+ge.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D3ef0ceedde&e=3Ddb760db8f2" target=3D"_blank" style=3D"color: #f90e1e;text-decoration: underli=
+ne;">@charlottejee</a>. Thanks for reading!<br>
+<br>
+&mdash;Charlotte</p>
+</div>
+                        </td>
+                      </tr>
+                    </table>
+                    <!-- /.authorTable -->
+                    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%" class=3D"ctaTable" style=3D"padding-top: 12px;">
+                      <tr>
+                        <td valign=3D"top" align=3D"left">
+                          <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" class=3D"singleCtaTable" style=3D"padding-bottom: 1=
+5px;">
+                            <tr>
+                              <td valign=3D"middle" align=3D"left" class=
+=3D"singleCtaText" style=3D"font-family: Helvetica=2CArial=2Csans-serif;fo=
+nt-weight: normal;font-size: 14px;line-height: 18px;color: #000000;">Was t=
+his newsletter forwarded to you=2C and you=E2=80=99d like to see more?</td=
+>
+                              <td valign=3D"middle" align=3D"left">
+                                <table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%" class=3D"singleCtaButtonTable" style=3D"paddi=
+ng-left: 20px;">
+                                  <tr>
+                                    <td valign=3D"middle" align=3D"center"=
+ class=3D"singleCtaButton" style=3D"padding-top: 10px;padding-right: 20px;=
+padding-bottom: 10px;padding-left: 20px;background: #4a4a4a;">
+                                      <a class=3D"ctaButton" href=3D"https=
+://technologyreview.us11.list-manage.com/track/click?u=3D47c1a9cec9749a8f8=
+cbc83e78&id=3D6ff38e134e&e=3Ddb760db8f2" target=3D"_blank" style=3D"white=
+-space: nowrap;color: #FFFFFF;text-decoration: none;font-family: Helvetica=
+=2CArial=2Csans-serif;font-weight: 600;font-size: 14px;line-height: 18px;"=
+>Sign up for free</a>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                          <!-- /.singleCtaTable -->
+                        </td>
+                      </tr>
+                    </table>
+                    <!-- /.ctaTable -->
+                    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%" class=3D"closingCtaWrapper" mc:repeatable=3D"repeat_5" mc=
+:variant=3D"Insider" mc:repeatindex=3D"0" mc:hideable=3D"hideable_repeat_5=
+_1" mchideable=3D"hideable_repeat_5_1" style=3D"padding-top: 15px;">
+                      <tr>
+                        <td valign=3D"top" align=3D"left">
+                          <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" class=3D"closingCtaTable closingCtaTableSubscribe"=
+ style=3D"padding-top: 30px;padding-bottom: 25px;padding-right: 10px;paddi=
+ng-left: 20px;background-color: #CCCCCC;color: #000000;">
+                            <tr>
+                              <td valign=3D"top" align=3D"left" class=3D"c=
+losingCta">
+                                <p class=3D"closingCtaTitle" style=3D"padd=
+ing-top: 0;padding-bottom: 0;margin-top: 0;margin-bottom: 0;font-family: H=
+elvetica=2CArial=2Csans-serif;font-weight: bold;font-size: 40px;line-heigh=
+t: 40px;letter-spacing: -.5px;">Get unlimited access to online stories.</p=
+>
+                                <p class=3D"closingCtaBody" style=3D"paddi=
+ng-top: 0;padding-bottom: 0;margin-top: 0;margin-bottom: 10px;font-family:=
+ Helvetica=2CArial=2Csans-serif;font-weight: normal;font-size: 28px;line-h=
+eight: 30px;letter-spacing: -1px;">Subscribe to MIT Technology Review toda=
+y.</p>
+                                <p class=3D"closingCtaButton" style=3D"pad=
+ding-top: 0;padding-bottom: 0;margin-top: 0;margin-bottom: 0;display: inli=
+ne-block;"><a href=3D"https://technologyreview.us11.list-manage.com/track/=
+click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D13e6d52f8d&e=3Ddb760db8f2" targe=
+t=3D"_blank" style=3D"color: #f90e1e;text-decoration: underline;"><img alt=
+=3D"Subscribe" border=3D"0" height=3D"62" src=3D"https://gallery.mailchimp=
+=2Ecom/47c1a9cec9749a8f8cbc83e78/images/69ea9290-9f91-4f05-ab97-bc2a7147147a=
+=2Epng" width=3D"232"></a></p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    <!-- /.closingCtaWrapper -->
+
+
+                    <!-- /.closingCtaWrapper -->
+
+
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- /.prefooterTable -->
+                </td>
+              </tr>
+            </table>
+            <!-- /.bodyWrapper -->
+          </td>
+        </tr>
+      </table>
+      <!-- /.wrapper -->
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%" class=3D"footerTable" style=3D"padding-top: 40px;padding-bottom: 10px;b=
+ackground-color: #f0f0f0;">
+        <tr>
+          <td align=3D"center" valign=3D"top">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"640" class=3D"footerWrapper" style=3D"width: 640px;min-width: 640px;pa=
+dding-left: 20px;padding-right: 20px;">
+              <tr>
+                <td valign=3D"top">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" class=3D"prefsTable" style=3D"padding-bottom: 20px;">
+                    <tr>
+                      <td valign=3D"top" align=3D"left" class=3D"smallText=
+">
+                        <div style=3D"color: #000000;font-family: Helvetic=
+a=2CArial=2Csans-serif;font-size: 14px;line-height: 18px;">
+                          <a href=3D"https://mailchi.mp/6a97d05c0e14/xi7ke=
+zgj74?e=3Ddb760db8f2" target=3D"_blank" style=3D"color: #000000;text-decorat=
+ion: underline;">View this in a browser</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" class=3D"prefsTable" style=3D"padding-bottom: 20px;">
+                    <tr>
+                      <td valign=3D"top" align=3D"left" class=3D"smallText=
+">
+                        <div style=3D"color: #000000;font-family: Helvetic=
+a=2CArial=2Csans-serif;font-size: 14px;line-height: 18px;">
+                          You received this newsletter because you subscri=
+bed with the email address
+                          <a href=3D"mailto:unixbhaskar@gmail.com" style=3D"col=
+or: #000000;text-decoration: underline;">unixbhaskar@gmail.com</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" class=3D"prefsLinksTable" style=3D"padding-bottom: 10px;">
+                    <tr>
+                      <td valign=3D"top" align=3D"left" class=3D"smallText=
+">
+                        <div style=3D"color: #000000;font-family: Helvetic=
+a=2CArial=2Csans-serif;font-size: 14px;line-height: 18px;">
+                          <a href=3D"https://technologyreview.us11.list-ma=
+nage.com/profile?u=3D47c1a9cec9749a8f8cbc83e78&id=3De2349bbf6b&e=3Ddb760db8f2" style=3D"color: #000000;text-decoration: underline;">Edit email prefere=
+nces</a>
+                          =C2=A0=C2=A0|=C2=A0=C2=A0
+                          <a href=3D"https://technologyreview.us11.list-ma=
+nage.com/unsubscribe?u=3D47c1a9cec9749a8f8cbc83e78&id=3De2349bbf6b&e=3Ddb760db8f2&c=3Db2c4bea05b" style=3D"color: #000000;text-decoration: underline;"=
+>Unsubscribe from all emails</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" class=3D"prefsFollowTable" style=3D"padding-bottom: 10px;"=
+>
+                    <tr>
+                      <td valign=3D"top" align=3D"left" class=3D"smallText=
+">
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" align=3D"left" style=3D"display: inline-block;">
+                          <tr>
+                            <td valign=3D"top" align=3D"left">
+                              <div style=3D"color: #000000;font-family: He=
+lvetica=2CArial=2Csans-serif;font-size: 14px;line-height: 18px;"><span cla=
+ss=3D"followLabel">Follow us:</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                      <table border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" align=3D"left" style=3D"display: inline-block;">
+                        <tr>
+                          <td valign=3D"top" align=3D"left">
+                            =C2=A0=C2=A0
+                            <a href=3D"https://technologyreview.us11.list-=
+manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3Dce823c6e1b&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;"><img src=
+=3D"https://gallery.mailchimp.com/47c1a9cec9749a8f8cbc83e78/images/c90138f=
+4-5690-450d-9c29-409a7e56facf.png" width=3D"16" height=3D"16" border=3D"0"=
+ alt=3D"Facebook" title=3D"Facebook" align=3D"top"></a>
+                            =C2=A0=C2=A0=C2=A0=C2=A0
+                            <a href=3D"https://technologyreview.us11.list-=
+manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D388659e7e9&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;"><img src=
+=3D"https://gallery.mailchimp.com/47c1a9cec9749a8f8cbc83e78/images/9095a7f=
+5-bd26-4351-9dd3-ae90e46af3d7.png" width=3D"20" height=3D"16" border=3D"0"=
+ alt=3D"Twitter" title=3D"Twitter" align=3D"top"></a>
+                            =C2=A0=C2=A0=C2=A0=C2=A0
+                            <a href=3D"https://technologyreview.us11.list-=
+manage.com/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3D367b980e25&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;"><img src=
+=3D"https://gallery.mailchimp.com/47c1a9cec9749a8f8cbc83e78/images/3ce53ad=
+0-2e54-4911-aa0b-0f001290777d.png" width=3D"16" height=3D"16" border=3D"0"=
+ alt=3D"Instagram" title=3D"Instagram" align=3D"top"></a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+                <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wi=
+dth=3D"100%" class=3D"addressTable" style=3D"padding-top: 15px;padding-bot=
+tom: 15px;">
+                  <tr>
+                    <td valign=3D"top" align=3D"left" class=3D"smallText">
+                      <div style=3D"color: #000000;font-family: Helvetica=
+=2CArial=2Csans-serif;font-size: 14px;line-height: 18px;">
+                        MIT Technology Review<br>
+                        One Main Street<br>
+                        Cambridge=2C MA 02142
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wi=
+dth=3D"100%" class=3D"glyphTable" style=3D"padding-bottom: 10px;">
+                  <tr>
+                    <td valign=3D"top" align=3D"left">
+                      <a href=3D"https://technologyreview.us11.list-manage=
+=2Ecom/track/click?u=3D47c1a9cec9749a8f8cbc83e78&id=3Da1482a4cbc&e=3Ddb760db8f2" style=3D"color: #f90e1e;text-decoration: underline;">
+                        <img src=3D"https://www.technologyreview.com/_/img=
+/tr-glyph-v2-black-100x100.png" width=3D"50" height=3D"50" border=3D"0" al=
+t=3D"TR"></a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <!-- /.footerWrapper -->
+          </td>
+        </tr>
+      </table>
+      <!-- /.footerTable -->
+    </td>
+  </tr>
+</table>
+<!-- /.totalTable -->
+</center>
+<img src=3D"https://technologyreview.us11.list-manage.com/track/open.php?u=
+=3D47c1a9cec9749a8f8cbc83e78&id=3Db2c4bea05b&e=3Ddb760db8f2" height=3D"1"=
+ width=3D"1"></body>
+</html>
+--_----------=_MCPart_197459809--

@@ -1,0 +1,83 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from [10.87.10.6] ([103.231.90.174])
+        by smtp.gmail.com with ESMTPSA id 4sm51908253pgx.68.2019.04.08.23.52.41
+        for <majordomo@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Apr 2019 23:52:43 -0700 (PDT)
+To: majordomo@vger.kernel.org
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=unixbhaskar@gmail.com; prefer-encrypt=mutual; keydata=
+ mQENBFdtMWUBCADcg5hz3Ry1hucVfzBbltx5vlAFi/LAj1BhWnq2lCbrbBehMRJgZjXIvHwa
+ 6IfNRqBDbq40soT1atmVX4gzZx4Nzspdmj/J2JjoHbPqo8tadNpKN4DkXuWI68S4JQabyDce
+ /87VOnlnmAprN8RyrE+g4HmahqXs4b3HsDpsVDhiwc7BgqQJLcP/CJrnIPXNObAG5IZWWaex
+ P+KuiN3ddspAS+yRwYqSd+5Mp2kY2HTT1Pphttq2AZUYK804KtEQ24MN9V75P9rjBgqUoa2B
+ 9RskgB3x5B7KWwVjXIjSiolI23eM5xIZoZ1r0P+YU+HWmodKQ2vid/o4USu45JdLGSoLABEB
+ AAG0Q0JoYXNrYXIgQ2hvd2RodXJ5IChNdXNpbmdfd2l0aF9HTlUvTGludXghISkgPHVuaXhi
+ aGFza2FyQGdtYWlsLmNvbT6JATcEEwEIACEFAldtMWUCGwMFCwkIBwIGFQgJCgsCBBYCAwEC
+ HgECF4AACgkQsjqdtxFLKRWOIAgArUlozmvzTjTJsofSJtGncqYw2ynk1TjBbs9XEpiXvAIR
+ 0M6gXNOYfwaiYLA6QlSO1rYhyQdT+KKq2FUwXQG8DFKDRD2Ps+ta9LDR+m4yWBke7CoPeLGn
+ V+/cUn7FSH+qtOBxNnWv6jTnoy8f3s0peNBi+iK++DmIyZhCVRwY67h0vtIYXcE4p1RhlU8N
+ Sgkh1FfQMkrDej2y9kE/nV65OL6aWt3ldM73oGzhVC9SMKvyTiRnkUMGlDzaQUjt/jECgDZw
+ o/YkQcVTqVJV61QOQt+oepf8ACRbUZ6qlQJ9HjPfiyYiJxCq/mkSIYi4ikuMYAefRl23BKVt
+ 8eJQc6ZqGbkBDQRXbTFlAQgAuCGQ+5n6DPyyTcYDK272sutcaqEchOrsrQ8Yy2AIV/6ol+l5
+ idAAPvcB8gBkCamHHWuTILXnLSttpOuzJC0+0anzUkG/swMXNm90a8eff3uO560ipZ2HjGkN
+ MCcP9kO4UiMNNoj0DdcAnBkgSiELcEHmlvQ6TyxrztUWhQZV0LUlnlekr+YKlDjsNC8C86mr
+ hI+/l1iNb0ZpOzvQj/0QJt5rM4S+WmpWjG7AHFZQ8IDCqDWveYFrJeQplYoij4OoZDJ017zI
+ NJpoOTODTzT17lD56pAlhP56WjP3nvb11PPF16y/yi3lCJct5XhLv/5bjTAH/fGLgwuOb4ZE
+ F2UP+wARAQABiQEfBBgBCAAJBQJXbTFlAhsMAAoJELI6nbcRSykVIs4H/RQyi4w5zqugSyKh
+ 5b1z1F7ow/QgfUZg/ZRMm5K0gM+jUwrmSN2g5K2UYp0+L3bCJ8HMbEB9GL4ffKZOT91obfNU
+ 97nAcV4+g+biQlusLPKlw4q8eVWtoqJB1HdrrUMtxd4T0fUrw2SozkZznRbZb5ovytt/dlVj
+ ZXp3ockdcTQHp54jpPDVYVtyk8L+gFJGJ6asWJtoN05FxVb08CJ/mZJRHOsCWZWjXLIWZ5ml
+ jySL/S62rS3YykbOM1mfuHzz0uDDSRLiuM2FjMg/9+fV5WYb+kwymLir+ruNoE/Lv8ubwYFp
+ D5IZdyIz6OapumFfxps7uqDzJhIFiwaPHW7I0Io=
+Message-ID: <69847c9d-96e5-797e-99fd-b40d05e87605@gmail.com>
+Date: Tue, 9 Apr 2019 12:22:35 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+Subject: ...
+Content-Type: multipart/encrypted;
+ protocol="application/pgp-encrypted";
+ boundary="eRpRGEaRdxevRZ9vKRM6UaXabFeSCbr2y"
+
+This is an OpenPGP/MIME encrypted message (RFC 4880 and 3156)
+--eRpRGEaRdxevRZ9vKRM6UaXabFeSCbr2y
+Content-Type: application/pgp-encrypted
+Content-Description: PGP/MIME version identification
+
+Version: 1
+
+--eRpRGEaRdxevRZ9vKRM6UaXabFeSCbr2y
+Content-Type: application/octet-stream; name="encrypted.asc"
+Content-Description: OpenPGP encrypted message
+Content-Disposition: inline; filename="encrypted.asc"
+
+-----BEGIN PGP MESSAGE-----
+
+hQEMAzfTwU0qIRUMAQf+P9NkZfl+gwGrNV3/vzk9oh0FyaKHcoF93HyJ8kK17zjk
+K/weP/hFZLF+l8HhWAQBeyMXtjdxSUq0TCUXggefIO4mGF50/OJV3rFJ+bjPC+Tk
+wyd5/ARt+NLt1YKrTS5W53B0aFJnvkPlE3ewdM0zGttYsywBj+t700nuv11YHgy8
+wUVVsmMerZ+nZbjrbkQKVOUxq8k1JTCACZd6cQwVhQdzuwP/MCvVxom+5yst4+8/
+kAmRXhxBxLIv8QqMoIoY3SpCnjwCPW94NOMs3zz3QMclYUbHixOEjGPqTv+YQfRY
+1N7ox7f7qc/1l8Te+VEzWh1O7td91qlAfZ597oDg0dLpAVR4zLY86BhVpBEV0R/I
+Kegz916iPX5fq+eGAFnVIh43juWdIfcf6qullvokhcK3KpbZtCO5xBd1QdAyppN8
+w7+7/3tf4nd4I82I06cqghJu1/cOpkGWxXgxRzDe8X2RyV9j8GFGJ1uHKf8U2e9k
+ObP+ae+6dABnAiEwkonSL74wZGR1zbPSog44WY1knM5ecEvQwRPMhQTLlxK7HOFN
+Kl/JAenM08vsm6/VIfiO6R1tBGmE/cpMy0tp+m7up5ngA34VWWWFo52U5GdHqS1z
+iCgnx+7YDEOKYHkIyIfSb/mkSkHzEMcUlOg42aEB9om6lYIGZkMhQuL3Pp1r0/HV
+ioyF3fJBDZ2AERHqy1t3q9weiuESzeeNeYjlBL5jP5NgQMMKFv4Coh4OOiPGHO0C
+GRs8bc1M7BjwufONqyGk2jNSKsohbgakKHoaT252A8UNVEtvER64LOveYjl3017Q
+oUdGSL12BeUbbeTTzcCTMpCwwe0hdUBUuVCizsXomAm37tpUSDUs23cCKzZYZfrT
+Ps/QDztljCXIzQbXFbMX6LF/eIKjVQOVIuC43MRB8sVqxwTMCYxHQID/aLY8m1Rk
+gabV6qcRg8959biKtYMrGooLSFKyIl3HF6AqvY0SfTUN63oGbwzFGTgxlbeiNMNv
+VtuloTxU9MQMXnQjMQOEK6HARYoDw9pkZHclxBkhTeh9H4jLi1pUGiC5OhzcRjPd
+nI/qRfTXQtx0Yq5kCHrSv7CVGS3aJE/XPg9QgYJBTkmi5Dyn/zphzIzLCs6gLy/8
+7eZzJLI1zcTvxYXwiBhS4sEvBN7E0yJOEARF1NggXo/TK0SRmEe7CAJHfWtyola2
+NPWBSXIRdQDvCbXGrYbn8+8bP0Cp7D6GeHCy7CFwS4SLUsdO2WurAIuynkuwbQWN
+2rqAOdNEw82Do5C8NzEUyFp5f/NsG+A5xlX1fvbDQru9tpueqsxlUDfZmUPGvYnq
+os4aY7gmH9kxIGWfCqZxsZREFzaiXoMnF5dKXerJoj2hCBFix9Xh0g==
+=Mt7S
+-----END PGP MESSAGE-----
+
+--eRpRGEaRdxevRZ9vKRM6UaXabFeSCbr2y--

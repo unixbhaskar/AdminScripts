@@ -1,0 +1,112 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp1409723lfj;
+        Sat, 15 Aug 2020 15:04:32 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwp/2LTwSAfZAz0Ny2o9Mm9U/w36vpS41vv3fYf971mh+Dd4FH67lZBuJzWRVKVyoQz9ftS
+X-Received: by 2002:aa7:c74f:: with SMTP id c15mr8565271eds.331.1597529072754;
+        Sat, 15 Aug 2020 15:04:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597529072; cv=none;
+        d=google.com; s=arc-20160816;
+        b=psPI5qYi8msHuyYD9Btkwivywd3q9NOalg7ef2+jHjmlhheM5c/lonO7y9SsYNSO7I
+         9fESzUzqSwMf8pgXH3ZwPeo+KE+Pvixqy3MPuhvSluECdfljqeG/ewmivwS4/1lz0gfL
+         IIHvQdkjjK9t7GCfTM7irvveIhS7JQnMk03tTwTwJLlJJnRkuBthVM2306lIzS8MXKwT
+         P/f5KDCYmMwF0mRRhM9Fl4smWna2SplBpactsBoPumE8xa8TitIriapwq3JXLboWJcq0
+         caEv0TauXc8X0k3EFnKe5rAGUqaAHEtLcQTqksvS27YrS/d8c16Zx7ZpadjkUYRMO3B9
+         LGBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=RootNd+uaIchwNuSjJ92KshSOxN5xr+c7UxFHHSLXrA=;
+        b=vmItzfVJcZktIRZ2aJJIKhnDFKvcKtMbnPGdDw8ssMKFpATg4BCF7ybLoZZIIsO5vb
+         U4ktB+dJ+2Ta3y+/GhHdrRJn6c3pAriqKU16eNmppxVVTrdaBHfkH34PzdQ/O0zBMLB7
+         q+Ks1tWSRSB920hidDvx7SZQPllJLSUQgLctPM7qB45bNVE6smw10d92DljmQvanOG/l
+         sIa8JUFxZLOwWAzSYcK0poR1Sl6+K1N8gNhw2V+WLQc28Qwo62qaaA3Ela/5omwezLnQ
+         2IDCaUHoCBcfZQU0jJ9bvdcIFXqwVu8Gk30ljyAcngUMHXdDra3WwvUKEjfmTWZ5avwz
+         DAjA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b="Rc/RXDOQ";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id f9si8148405ejt.242.2020.08.15.15.04.10;
+        Sat, 15 Aug 2020 15:04:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b="Rc/RXDOQ";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728911AbgHOWC6 (ORCPT <rfc822;mintybayleaf@gmail.com>
+        + 99 others); Sat, 15 Aug 2020 18:02:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45626 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728130AbgHOVvW (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 15 Aug 2020 17:51:22 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 039CEC06136A
+        for <linux-kernel@vger.kernel.org>; Fri, 14 Aug 2020 20:06:04 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id m22so11902477ljj.5
+        for <linux-kernel@vger.kernel.org>; Fri, 14 Aug 2020 20:06:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RootNd+uaIchwNuSjJ92KshSOxN5xr+c7UxFHHSLXrA=;
+        b=Rc/RXDOQJRu669+aRSylsloBjpy+Tv0xBR5VmuM+1kM7tD+64LA8AJReywNJdxUlep
+         dw15OB9ijcVZo4KncX20axh8A7Ur5PNpcsEphZxCAi3qIjMGKs+KUtpEvkSGzhaXrqgb
+         RwltEjb8UtxJu63+neyepOK1JgvhkTg3f5goY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RootNd+uaIchwNuSjJ92KshSOxN5xr+c7UxFHHSLXrA=;
+        b=bBqsgxnISNVUnOfM9KktUSY+jr/umFXUDe0Z25J9enV6N0RDEjZnKMYxxE1w6Wd/oR
+         hsnoOh+BGP9eNtK3Y6NrdqpXg4GZFrs0Fdq0Tx8CwP+k96Oky7kY30osDDBWhHz6IAvf
+         DqCjZ2G570LqW/HNGDqQyGIe2Dsd+hT4geVOc66cmq4imMdxqAXPE0gD9vxnplZhbs2j
+         uQuJzO2UHioEjaGj26vgwD+aLAon7y0g9oJYfDDYZmnXSQK3Hkmnc0AWdKjcBUIo6KOY
+         oNWlNjTZg62cBZ3OftRaV6TKGLdqBU9M7Hx1n4kkDFIRHtEbFbTcKamrQyYa9NA159Tl
+         CW8g==
+X-Gm-Message-State: AOAM532/6DsRLq8DVML0qiWmpL5XmLNHkh8LdZXO/AqB4Ps+anUzEtcF
+        yd8wGChgrpSf1tMQ8egIkRTTJcLIC19Ekw==
+X-Received: by 2002:a2e:6808:: with SMTP id c8mr2767662lja.13.1597460762166;
+        Fri, 14 Aug 2020 20:06:02 -0700 (PDT)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com. [209.85.208.170])
+        by smtp.gmail.com with ESMTPSA id l20sm2111070ljb.28.2020.08.14.20.06.00
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Aug 2020 20:06:01 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id y2so2904562ljc.1
+        for <linux-kernel@vger.kernel.org>; Fri, 14 Aug 2020 20:06:00 -0700 (PDT)
+X-Received: by 2002:a2e:92d0:: with SMTP id k16mr2375763ljh.70.1597460760539;
+ Fri, 14 Aug 2020 20:06:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <15f52e9b0e50296aba35871bc1575a684c4a258a.camel@perches.com> <CAKwvOd=8C94K-9VCqdCn9FXiyfDhKxMu=4AGem1bGgp8m6z0fw@mail.gmail.com>
+In-Reply-To: <CAKwvOd=8C94K-9VCqdCn9FXiyfDhKxMu=4AGem1bGgp8m6z0fw@mail.gmail.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Fri, 14 Aug 2020 20:05:44 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjjHN32BXdqu1iP8WSZoqdGPDDiqVLUbBgYG+=JO3MJCw@mail.gmail.com>
+Message-ID: <CAHk-=wjjHN32BXdqu1iP8WSZoqdGPDDiqVLUbBgYG+=JO3MJCw@mail.gmail.com>
+Subject: Re: [PATCH] genksyms: keywords: Use __restrict not _restrict
+To:     Nick Desaulniers <ndesaulniers@google.com>
+Cc:     Joe Perches <joe@perches.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Aug 14, 2020 at 7:14 PM Nick Desaulniers
+<ndesaulniers@google.com> wrote:
+>
+> What's KAO? Urban dictionary has no entry. :^P
+
+It goes back to 2003 and the original keywords.gperf file, see
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/tglx/history.git/commit/?id=46bd1da672d66ccd8a639d3c1f8a166048cca608
+
+from the BK history conversion.
+
+It might be Kai Germaschewski's tagger name?
+
+              Linus

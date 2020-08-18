@@ -1,0 +1,122 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp2195251lfb;
+        Fri, 19 Apr 2019 11:33:07 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqw7tQMw3cMnq//POyYgeNLZG/Txysyodt/IWkhDiW4xJo2mzcyXKGNoUdi8GzTDCzAMCURz
+X-Received: by 2002:a17:902:9a4c:: with SMTP id x12mr5322050plv.90.1555698787447;
+        Fri, 19 Apr 2019 11:33:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1555698787; cv=none;
+        d=google.com; s=arc-20160816;
+        b=N/hJUX0vV35lilwA+IVcE0/99VCddXlvZCrzjjsuza54erXwYEAd6aL2yTMwuMTjLO
+         VX/g+r9Ex+YPrUkdCuy05pykQ5Uw1Gm0I1Nt//I1zd6JpR2EPvhzF59d2jILGhhnQcRS
+         KvB21cdgf2fhG/4V1TOANoVrkZZrmGFAe6auFjyjKwDCTk4Fmk3ufOYrJV3R7y0VLMWA
+         BSHHnWUSTRoFgJ/0R57eQ4d9va8OKP+yXw09zLhDA6R7la5raaZo/s3o+cKsW8SJgwUI
+         OzXjNy95XZJ1sOf23e/PyM2GU0F3UfxtGPMMlyxuWrB1sR1y0+VtjbzZQHU8JFLYBNtn
+         GDHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:to:subject:dkim-signature;
+        bh=sM1dN+IJ5oPv/opLDj5La1Cfk0bm4KbWW/0by9woKnY=;
+        b=qmxj74GMeSqWvbisUqLAgDrbIDcRVN8YvlgNHiRscu0mLkqYNH5JRRabIO/D31FXla
+         fnIEkf6CdoDyVxC5d+Iuw8vIOka0dxQmrtMQDcq3ejj8mh66EPRvjFCwuKCUr+Y7U0iQ
+         c10Uk15AUS+mQEHKg/5e34/R/T/E1tmyKiv6Hao4Cvmlu6P8EPO/m4exWUuzxLVhdcpC
+         /BhscYPfkWN7Cp02ZZE2OgPcGcv4qIsRJyBUKTH4Yvsrff96T2Qx/eqJyts2uEvdx90z
+         wPwr1w83sq+AIK03F8HIP24+XqOEXFd7GblOvfLHJ/YeRlG3ixyE5cOjikItNJULyy40
+         wYXA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=SJyG3cob;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f24si5252617pgv.511.2019.04.19.11.33.04;
+        Fri, 19 Apr 2019 11:33:07 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=SJyG3cob;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728067AbfDSSbh (ORCPT <rfc822;snowfrs@gmail.com> + 22 others);
+        Fri, 19 Apr 2019 14:31:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53928 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727890AbfDSS3R (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 19 Apr 2019 14:29:17 -0400
+Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 88DCE222A1;
+        Fri, 19 Apr 2019 13:20:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1555680007;
+        bh=9EZTsllLlsdE9lck2TdP/bKYiYbB7SkWLK4Z7FhPoBo=;
+        h=Subject:To:References:From:Date:In-Reply-To:From;
+        b=SJyG3cobriifyKmFuvcR4EXqxD1/LSrmsa7MbmsDxfSUjc90y7fhkALBIvuORw+/Q
+         k+RabzCUyzQZ8RLKOiX8xaWI751AC2ur2jS3IfMnKRv1xi4v+fv2YAuDK4xHLLvVvs
+         n87Fy2CsNr7Vudl8aW3hgENTY48By/ffOdAsK7iU=
+Subject: Re: [PATCHv2] selftests/efivarfs: clean up test files from
+ test_create*()
+To:     Po-Hsu Lin <po-hsu.lin@canonical.com>,
+        linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
+        shuah <shuah@kernel.org>
+References: <20190419131221.28297-1-po-hsu.lin@canonical.com>
+From:   shuah <shuah@kernel.org>
+Message-ID: <03bdc88d-07cd-08ca-7d2f-ba93069eb41b@kernel.org>
+Date:   Fri, 19 Apr 2019 07:19:52 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190419131221.28297-1-po-hsu.lin@canonical.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 4/19/19 7:12 AM, Po-Hsu Lin wrote:
+> Test files created by test_create*() tests will stay in the
+> $efivarfs_mount directory unless the system was rebooted.
+> 
+> When the tester tries to run this efivarfs test again on the same
+> system, the immutable characteristics in that directory will cause some
+> "Operation not permitted" noises and a false-positve test result to the
+> test_create_read() test.
+> 
+>      --------------------
+>      running test_create
+>      --------------------
+>      ./efivarfs.sh: line 59: /sys/firmware/efi/efivars/test_create-210be57c-9849-4fc7-a635-e6382d1aec27: Operation not permitted
+>        [PASS]
+>      --------------------
+>      running test_create_empty
+>      --------------------
+>      ./efivarfs.sh: line 78: /sys/firmware/efi/efivars/test_create_empty-210be57c-9849-4fc7-a635-e6382d1aec27: Operation not permitted
+>       [PASS]
+>      --------------------
+>      running test_create_read
+>      --------------------
+>      open(O_WRONLY): Operation not permitted
+>       [FAIL]
+>      --------------------
+> 
+> Create a file_cleanup() to remove those test files in the end of each
+> test to solve this issue.
+> 
+> Also, use this function to replace the existing file removal code.
+> 
+> Link: https://bugs.launchpad.net/bugs/1809704
+> 
+> Signed-off-by: Po-Hsu Lin <po-hsu.lin@canonical.com>
+> ---
+
+Thanks for the patch. There is another patch that does the same in
+linux-kselftest next branch.
+
+Please check to see if that fixes the problem you are seeing.
+
+thanks,
+-- Shuah
+

@@ -1,0 +1,129 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp660521lfk;
+        Wed, 3 Jun 2020 10:49:58 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyUvTKIFBolWMQ1WxCEhW2N2lL9Rufc/LUDpil0XR6t2A7aZ+e/ENWYsK6Wv79g9Du0iYIl
+X-Received: by 2002:a17:906:49da:: with SMTP id w26mr401807ejv.548.1591206598129;
+        Wed, 03 Jun 2020 10:49:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591206598; cv=none;
+        d=google.com; s=arc-20160816;
+        b=o1IjU5ws2ddS7qf4AW1tyGKJrGUfGnhank3WIQCkJdDKp94Stay6Hyg0ompEF1vzsw
+         aDyW+eghw9rhAad5/00V9u9KM8uepmnhJ9CZU8MUGVtUZnBzgcr3uX3xlnemZHGOIGVH
+         qqRo0gL6CrCvF85aSbEEBL9t58n+3LWn2u1DEoG/cLsZMsfFEL7mwR5LON6Aw1KGyIOx
+         zyZwhBAkxokYNB6zXiHgO0v50wNiqhgAdz4uXN/yhUycDaiwg85LTOZFq7GNRO0oDNZY
+         Ib+cChsRd6pjhGt8XLF+J3YpjDmvItokrDIrbVCu/Jm4AntWIp6HanX3cMe0k5GvL1YM
+         UBYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=jmZLnge/JsJbbtstAv9yQbEIQ8yd6Uru632t/pS89cQ=;
+        b=PVAzD+VhkU7mvcW7uSqJB91zmFgS/oDU7yEERkR6CeIUVTdRHeWf8CLDheT1IiYSHd
+         0FuKk9WtJVZgZ92sa96Ovsfsti2J3Pm+r0mBVG6OKyh29fVFFbmuGaMDxf5vcJSQd3Zq
+         tAxxKwdh3GkRxZOkQH+BMhnDwxUav1Ic9Rj8Mlb3WKx2WEcNuyY8MHpXxyP0E3SDMyrz
+         7zgvOhAEfPfNUpd9JDENFHiqYJuNBTZldA55+FrGuQv9+g48dX0Re+judPvTGlt73urn
+         cFrF3kUmgepXYuJPtM8En2dKFFBfmNeGgfCg0uA12zRZYg+MOjIBJ/VSi5hmQZVqfbNT
+         dnCA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=NFxCY+bX;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id l16si122555ejn.716.2020.06.03.10.49.35;
+        Wed, 03 Jun 2020 10:49:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=NFxCY+bX;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726376AbgFCRrq (ORCPT <rfc822;wanli.li.dg@gmail.com>
+        + 99 others); Wed, 3 Jun 2020 13:47:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59010 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726103AbgFCRrq (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 3 Jun 2020 13:47:46 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D073C08C5C9
+        for <linux-kernel@vger.kernel.org>; Wed,  3 Jun 2020 10:38:06 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id x27so1841354lfg.9
+        for <linux-kernel@vger.kernel.org>; Wed, 03 Jun 2020 10:38:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jmZLnge/JsJbbtstAv9yQbEIQ8yd6Uru632t/pS89cQ=;
+        b=NFxCY+bXPLUGZdo7dT3SyTWmToxnyjr4RwN7Skl85wz7MjddHjn2AVfAy7MdqJtKKC
+         uXAje7NxrbVdIfpXaqXBBty29zjcQKBbI5aRDK6Ya5s3e7WblNy4BfS4+Mfuz6pzBafg
+         rVo3l+YqXE/um6wh4OJHcUO+5+Pm7Fiza4+jo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jmZLnge/JsJbbtstAv9yQbEIQ8yd6Uru632t/pS89cQ=;
+        b=szzT1YJchZEbR1RswqeZANvqmJTB2hF2DdRPETGECHFC0X6lnzEb8oXIUEPq5WjI2p
+         eTrXjXa9l4IswgBWjlx3tWtNcOYtFKEbYdwO+jEJfd8uGfW7TqcJomUicK9SHex4ngkW
+         +olqQLxdURWPr8Gw3yT6ckqmUZj2ibpFjfRERXgXqCCvVLKizLH++5g/rkQ9P8it9/Ou
+         uqbCPszlkpDY9scP7BFeWqJxBIwKiUcWFjB9zKArb0GOyK3HX0uzXtYqHZA+3oPTS6+k
+         +2UcDF7kmeL5CTb/Flq2TizoFqQ37YxdDVuuYatnV+1lztaZFlnhvYYrlpz72hvMG9vA
+         pNIA==
+X-Gm-Message-State: AOAM531BAXr2sLFy42fZc3nxWf9BxdaC+ot2JCXorsfXj7cX+BV0tT6T
+        ureVtwmepZfeBlv24269/6rPM9rzFVs=
+X-Received: by 2002:a05:6512:2023:: with SMTP id s3mr338993lfs.78.1591205884606;
+        Wed, 03 Jun 2020 10:38:04 -0700 (PDT)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
+        by smtp.gmail.com with ESMTPSA id n8sm816844lfb.20.2020.06.03.10.38.03
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Jun 2020 10:38:03 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id c11so3841517ljn.2
+        for <linux-kernel@vger.kernel.org>; Wed, 03 Jun 2020 10:38:03 -0700 (PDT)
+X-Received: by 2002:a2e:b5d9:: with SMTP id g25mr159019ljn.285.1591205882849;
+ Wed, 03 Jun 2020 10:38:02 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAHC9VhTX8gkUui6AiTJMJgcohXa=TOqdO==rEDk=Mquz9sCNKA@mail.gmail.com>
+ <CAHk-=wiAVfqtJbZ=Ti1oxSvunUvsQ_CsOL5oFJL3mwhqKTeoNw@mail.gmail.com> <290017a8-d943-570f-1f90-acecf1c075a1@schaufler-ca.com>
+In-Reply-To: <290017a8-d943-570f-1f90-acecf1c075a1@schaufler-ca.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Wed, 3 Jun 2020 10:37:47 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgkZROyMpBa8EKPDVK=SvurnrzJXgphQ8Fstx8rrfO6MQ@mail.gmail.com>
+Message-ID: <CAHk-=wgkZROyMpBa8EKPDVK=SvurnrzJXgphQ8Fstx8rrfO6MQ@mail.gmail.com>
+Subject: Re: [GIT PULL] SELinux patches for v5.8
+To:     Casey Schaufler <casey@schaufler-ca.com>
+Cc:     Paul Moore <paul@paul-moore.com>, selinux@vger.kernel.org,
+        LSM List <linux-security-module@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Wed, Jun 3, 2020 at 10:20 AM Casey Schaufler <casey@schaufler-ca.com> wrote:
+>
+> We could have inode->i_security be the blob, rather than a pointer to it.
+> That will have its own performance issues.
+
+It wouldn't actually really fix anything, because the inode is so big
+and sparsely accessed that it doesn't even really help the cache
+density issue. Yeah, it gets rid of the pointer access, but that's
+pretty much it. The fact that we randomize the order means that we
+can't even really try to aim for any cache density.
+
+And it would actually not be possible with the current layered
+security model anyway, since those blob sizes are dynamic at runtime.
+
+If we had _only_ SELinux, we could perhaps have hidden the
+sid/sclass/task_sid directly in the inode (it would be only slightly
+larger than the pointer is, anyway), but even that ship sailed long
+long ago due to the whole "no security person can ever agree with
+another one on fundamentals".
+
+So don't try to blame the rest of the system design. This is on the
+security people. We've been able to handle other layers fairly well
+because they generally agree on fundamentals (although it can take
+decades before they then end up merging their code - things like the
+filesystem people standardizing on iomap and other core concepts). And
+as mentioned, when there is agreed-upon security rules (ie "struct
+cred") we've been able to spend the effort to architect it so that it
+doesn't add unnecessary overheads.
+
+             Linus

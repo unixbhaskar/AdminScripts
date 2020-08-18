@@ -1,0 +1,96 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:c3c5:0:0:0:0:0 with SMTP id t188csp4206970lff;
+        Tue, 30 Jun 2020 14:11:48 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxyqtaVruAYKxRQhuAJ4B1KJG0o8Tdh2BoJ5GQp25/flyTJmopph77zqsTjUDiAb8YCyrJE
+X-Received: by 2002:a17:907:1051:: with SMTP id oy17mr20697410ejb.394.1593551159852;
+        Tue, 30 Jun 2020 14:05:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1593551159; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Wesx9R+x2I+r83Kh+aY12LgCagmZ81SFoDVq75NVZQeCynUL2+96Am+CTKKa9309GH
+         BugjfNQNnBW6WlhZlyjK2ZfovUI7bvd9MvTBXy9JfuDwxPs2/WxKUWkJs91PFEFhsk6J
+         VVRzHNnYHQCp6cMTlHaaf3h/grOthnP0uwKZCte3vqXEUWIghEAGZ1GvGCL6bni0ZRe8
+         cxsng6GAs4y/3fd/wwD8r8OCxjXPMUQ/Tk8PX60w4LoiOI1+OcC3sVPY7er6H/2AMMKm
+         y0IOJFT52G1s5SQdc4FaZgGX3sDQtH4JYtS1mPezrHzZJAO60m3Nyq19IBv7ZNfkaPeD
+         Gv7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :organization:references:in-reply-to:message-id:subject:cc:to:from
+         :date;
+        bh=EZdWCmj4aPkAE4Y38JoKYViaXlkuSbrc9SEcLi7S6BA=;
+        b=f806Ju6L6Ue5plYFwAVPfxCF5bSMeL/cSy59dRYLo04Nin8dl3HT+wtgDHJMeLJUzY
+         udE5fBwfpOy/tIe0dC0UplANSY3Jrj6goz5XczNPgbsdjM0ZCSNwDS3wgzZUzsSy8Y3b
+         jY2AWNrObQ1fNdi/92DwKfHTFYksvwtXndP+Ajq33WXd3XVSWH81oVIfxrQqPWeGidv1
+         kwmc/3h7NnxcMgqGDRGDYlR2XMFvfTMB8tuFe1sxz6gToPp9rbVkHvgiaDVjNbFwlQvD
+         Lef0Mpvn1U4CP1I5Pi+9wxm7iUuVLJFaWP5DzfUFeTZVr9fzLxxbDfy0Q3POnwXCkxf7
+         HMow==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Return-Path: <linux-doc-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id f14si2363801edm.269.2020.06.30.14.05.35;
+        Tue, 30 Jun 2020 14:05:59 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728820AbgF3UEU (ORCPT <rfc822;picto.kernel@gmail.com>
+        + 99 others); Tue, 30 Jun 2020 16:04:20 -0400
+Received: from ms.lwn.net ([45.79.88.28]:51968 "EHLO ms.lwn.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726875AbgF3UEU (ORCPT <rfc822;linux-doc@vger.kernel.org>);
+        Tue, 30 Jun 2020 16:04:20 -0400
+Received: from lwn.net (localhost [127.0.0.1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id 3C1F62B7;
+        Tue, 30 Jun 2020 20:04:18 +0000 (UTC)
+Date:   Tue, 30 Jun 2020 14:04:17 -0600
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        bhelgaas@google.com, robh+dt@kernel.org, tglx@linutronix.de,
+        mingo@redhat.com, bp@alien8.de, x86@kernel.org, hpa@zytor.com,
+        kishon@ti.com, lorenzo.pieralisi@arm.com, hongxing.zhu@nxp.com,
+        l.stach@pengutronix.de, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, m-karicheri2@ti.com, songxiaowei@hisilicon.com,
+        wangbinghui@hisilicon.com, amurray@thegoodpenguin.co.uk,
+        sathyanarayanan.kuppuswamy@linux.intel.com, hkallweit1@gmail.com,
+        rafael.j.wysocki@intel.com, rdunlap@infradead.org,
+        linux-pci@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: PCI: Replace lkml.org, spinics, gmane with lore.kernel.org
+Message-ID: <20200630140417.3a2dba67@lwn.net>
+In-Reply-To: <20200630180917.GA3455699@bjorn-Precision-5520>
+References: <20200627103050.71712-1-grandmaster@al2klimov.de>
+        <20200630180917.GA3455699@bjorn-Precision-5520>
+Organization: LWN.net
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
+Sender: linux-doc-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-doc.vger.kernel.org>
+X-Mailing-List: linux-doc@vger.kernel.org
+
+On Tue, 30 Jun 2020 13:09:17 -0500
+Bjorn Helgaas <helgaas@kernel.org> wrote:
+
+> PCI: Replace lkml.org, spinics, gmane with lore.kernel.org
+> 
+> The lkml.org, spinics.net, and gmane.org archives are not very reliable
+> and, in some cases, not even easily accessible.  Replace links to them with
+> links to lore.kernel.org, the archives hosted by kernel.org.
+> 
+> I found the gmane items via the Wayback Machine archive at
+> https://web.archive.org/.
+
+Heh...now *that* sounds like a project that could generate a lot of churn,
+and perhaps even be worth it.  Settling on a consistent (and working!)
+email archive would improve the docs quite a bit.  I'll add that to the
+list...
+
+Thanks,
+
+jon

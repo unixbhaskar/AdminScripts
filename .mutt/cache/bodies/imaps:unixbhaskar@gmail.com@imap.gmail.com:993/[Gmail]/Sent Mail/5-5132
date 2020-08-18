@@ -1,0 +1,80 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from ArchLinux ([103.231.90.172])
+        by smtp.gmail.com with ESMTPSA id d20sm3806250pfq.88.2019.09.27.07.44.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Sep 2019 07:44:23 -0700 (PDT)
+Date: Fri, 27 Sep 2019 20:14:11 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: corbet@lwn.net
+Cc: linux-kernel@vger.kernel.org
+Subject: [PATCH V2] Remove dead url and added active url .
+Message-ID: <20190927144411.GA167835@ArchLinux>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="IJpNTDwzlM2Ie8A6"
+Content-Disposition: inline
+User-Agent: Mutt/1.12.2 (2019-09-21)
+
+
+--IJpNTDwzlM2Ie8A6
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+The below links/urls leads to "server not found" error, that means ,
+those sites are not maintained anymore.
+
+
+We should induct these below urls to look for the config.
+
+Dead Url for Gmail Settings : http://dev.mutt.org/trac/wiki/UseCases/Gmail
+                          (we need to remove it)
+
+Active Url for Gmail Settings : https://gitlab.com/muttmua/mutt/wikis/UseCa=
+ses/Gmail
+                             (We need to induct it)
+
+Dead URL for Manual : http://dev.mutt.org/doc/manual.html
+                 (We need to remove it)
+
+Active URL for Manual : https://gitlab.com/muttmua/mutt/wikis/MuttGuide
+                             (We need to induct it)
+
+
+Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+---
+ Documentation/process/email-clients.rst | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/process/email-clients.rst b/Documentation/proces=
+s/email-clients.rst
+index 1f920d445a8b..15781bf10b8d 100644
+--- a/Documentation/process/email-clients.rst
++++ b/Documentation/process/email-clients.rst
+=20
++The Mutt docs have lots more information:
++
++ https://gitlab.com/muttmua/mutt/wikis/UseCases/Gmail
++
++  https://gitlab.com/muttmua/mutt/wikis/MuttGuide
++
+=20
+
+
+--IJpNTDwzlM2Ie8A6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl2OIDEACgkQsjqdtxFL
+KRVB0AgA1xoyjymkYpFrvCsxEB5ABxzcZUA+ED1vc4ATtGSnaAXuL5uXPs3pjl0B
+md2PhUsi8jecCAjI/a8sXJ+oLYuH2tD2x0r6j+aheKDCEnMcj6oBSbGioeRu3mby
+eBNf2H6y4UoMl1tQxafAQOudeKv8byei2apMZayteuatSRB2L49GbXvvHOSLiXpV
+HH74Th29RKDwRv5dzMQfaFFuDGDlrG0vc7Y8PeLglsIJvJhGqcjBb1RjKKQsgqtd
+2Y1QKiMysiQuTrlqstl1lVsAxC4JrMRczwct46+cA+XuSJz/x3rpfq4yHB+djnUY
+5CG//DRBAxfmDTlCKRcLOPmq8M1Xog==
+=7cbu
+-----END PGP SIGNATURE-----
+
+--IJpNTDwzlM2Ie8A6--

@@ -1,0 +1,79 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.194.170.35 with SMTP id aj3csp459099wjc;
+        Mon, 23 May 2016 22:02:53 -0700 (PDT)
+X-Received: by 10.202.62.215 with SMTP id l206mr11895763oia.19.1464066173061;
+        Mon, 23 May 2016 22:02:53 -0700 (PDT)
+Return-Path: <neependra.khare@gmail.com>
+Received: from mail-io0-x22d.google.com (mail-io0-x22d.google.com. [2607:f8b0:4001:c06::22d])
+        by mx.google.com with ESMTPS id w201si586882oia.176.2016.05.23.22.02.52
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 23 May 2016 22:02:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of neependra.khare@gmail.com designates 2607:f8b0:4001:c06::22d as permitted sender) client-ip=2607:f8b0:4001:c06::22d;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com;
+       spf=pass (google.com: domain of neependra.khare@gmail.com designates 2607:f8b0:4001:c06::22d as permitted sender) smtp.mailfrom=neependra.khare@gmail.com;
+       dmarc=pass (p=NONE dis=NONE) header.from=gmail.com
+Received: by mail-io0-x22d.google.com with SMTP id t40so4557518ioi.0
+        for <unixbhaskar@gmail.com>; Mon, 23 May 2016 22:02:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:date:message-id:subject:from:to;
+        bh=ol5ZNZy7Rr0wz8eBYM0CGK+PNIn71xa22oXueJ/ZWsU=;
+        b=UYEDogZ2Oa0VhK5c6hHkbF7W0lKdyjkJvpiIFvLUdisHxhMv7A02kMY97HvgikC3mu
+         xOo5zpn7VfJ9maNH2797iO6mTbGsZTxGqsHVK3eeA315RGQlVatT3z83ljBQouFF3GXT
+         Cz+NPAvJyDNlyPNdLTm7USVyvnrpDuHelxaFGLm+yn4Q5mk7+cyYgfCx1rbdelep+Snc
+         zCMGLLEdNOCP4JB1UOTT8VTjBWe9KTE8+IAuUfATdFO3B7oa88eJjyrdJMvtij9smiqv
+         vs05YFhSdkbUb4nIiI5+eaa+V1bjWRFLh/87vKLzRyYnsmvpKFOHSJczMuJkWBfMXZl4
+         +kyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+        bh=ol5ZNZy7Rr0wz8eBYM0CGK+PNIn71xa22oXueJ/ZWsU=;
+        b=JtmbfnjXjB0GaN2cnzCSBNIQohdCKz1JL7adZ+Den4lqs5sotCYlSrVJdkuRlspiXr
+         wJjNqh4NpXz+aGSic5mUsShvRd/6POco6DUPAKwwLrJ6t/EOv5CSUY3QdDsFtZt6s0FB
+         KWJFP6FO19kfjPOszfrfiF1PceUIiu81a4o3KjN+Shk32mFC9DpQ8E3RPHe5COcjFiR2
+         K2vogwCUuZFEFbtng5vVJCNXvdTTVLE5uDtfkS/SzWWrBbLzYulJP/2rDXRY/Lwwd5aw
+         D6aEym4KaU8jEUzn9enMoejOtc4nDuPTLYg6Y1uxp2MoLu3ZBwWUzCFmXwf5TrcMrczA
+         O5LA==
+X-Gm-Message-State: AOPr4FXfurfRgfsIsJVj1wFuCzbMzoiUG47ohT3qWEjdpTKWeDiw0nMtVltRUf5QYh6KXv7AO4lYeCLJL8veYQ==
+MIME-Version: 1.0
+X-Received: by 10.107.16.195 with SMTP id 64mr16473467ioq.194.1464066172755;
+ Mon, 23 May 2016 22:02:52 -0700 (PDT)
+Received: by 10.107.134.90 with HTTP; Mon, 23 May 2016 22:02:52 -0700 (PDT)
+Date: Tue, 24 May 2016 10:32:52 +0530
+Message-ID: <CAMZBPndvm9619Bk6vTEY_AYh8RCepnmqNL3c7ugKs5Zz_5jyVg@mail.gmail.com>
+Subject: Docker Meetup
+From: Neependra Khare <neependra.khare@gmail.com>
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Content-Type: multipart/alternative; boundary=001a113ed9dc27ad8205338f789e
+
+--001a113ed9dc27ad8205338f789e
+Content-Type: text/plain; charset=UTF-8
+
+Hi Bhaskar,
+
+Do sign up for next Bangalore Docker meetup on 4th June.
+http://www.meetup.com/Docker-Bangalore/
+
+I am  going to close the RSVP later today.
+
+-- 
+Regards,
+Neependra
+www.neependra.net
+
+--001a113ed9dc27ad8205338f789e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Bhaskar,=C2=A0<div><br></div><div>Do sign up for next B=
+angalore Docker meetup on 4th June.=C2=A0</div><div><a href=3D"http://www.m=
+eetup.com/Docker-Bangalore/">http://www.meetup.com/Docker-Bangalore/</a><br=
+></div><div><br></div><div>I am =C2=A0going to close the RSVP later today.<=
+/div><div><br>-- <br><div class=3D"gmail_signature">Regards,<br>Neependra <=
+br><a href=3D"http://www.neependra.net" target=3D"_blank">www.neependra.net=
+</a><br></div>
+</div></div>
+
+--001a113ed9dc27ad8205338f789e--

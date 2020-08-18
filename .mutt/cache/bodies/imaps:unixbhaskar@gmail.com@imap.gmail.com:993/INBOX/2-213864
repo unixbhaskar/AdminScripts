@@ -1,0 +1,140 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp2389877lfc;
+        Thu, 5 Dec 2019 10:49:24 -0800 (PST)
+X-Received: by 2002:ac8:1403:: with SMTP id k3mr8946266qtj.58.1575571763991;
+        Thu, 05 Dec 2019 10:49:23 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1575571763; cv=none;
+        d=google.com; s=arc-20160816;
+        b=qfLGnban/UnNn+32lSHomwZE8xKgWVknfeYzgNTex9Ew6+hVO5DS9HYv7OkswraAK6
+         Oe9PLhZEnEDiRqz1GgOHVenqIUGVyzpZF2r9HQT2/TV6K9An17QJD7Xm11K7cS/W3LWV
+         D64RnsCSgA1LiTBRjrE6bo2oHy6HZNOGYOfiD1zrgUPn6Q7bVIgd+RKucqshXdgJNhbS
+         N/s28CGYUhVZzfZX/xN+Xidd6Cgn9U2bo3SNj0Cc5VhIu/4+Wrh/Nq90VpnwiY916/f5
+         XltRQ+bM1SJyhcVXySed4aN/iiw1cW085tvL6mHJBMP+4pUAWvFhux3B0a16vYO1fhHq
+         hklA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:date:message-id:list-unsubscribe:mime-version
+         :dkim-signature;
+        bh=auMyk3xqEVmEnPe341O2zVgpwOjIweGkuk6FGMhEx7M=;
+        b=rRbIA5qhWiMjbTa8beOj/0Jkr4EMRrbIed+a82NeUACL1i6XkzOZvFDLL3lfVxHIW4
+         Tyti+dy37kpv0vKezI/Pa8bHR08nT705nk+cPF2Iu6QRFq1AxFrXt9uV58WB9wC2MQYj
+         M5vzuoBlLWLXyAB5h1W+3sfZMzI5muiJqRw5kpvK07S1KW5PlI5lsrAwhEaKbiDFNvZu
+         6+v2PQEmTeYaXq6grLkbMJXjJoayxX9bSes0dejZRVFEsDt0dsel28jm0ztfBxBRATnx
+         s1xauuGJ5XOTLl0xhRlRA8mL31Jr/i7Ej20eubr9giXhcdyDUyj0wMkV1+c0hdyuMnfO
+         TAgA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@blogger.com header.s=20161025 header.b=g8sOSEEt;
+       spf=pass (google.com: domain of 3m1hpxq8lc3abcfsdzm-qcaasbhpzcuusf.qcaibwlpvogyofuaowz.qca@blogger.bounces.google.com designates 209.85.220.73 as permitted sender) smtp.mailfrom=3M1HpXQ8LC3AbcfSdZm-QcaaSbhPZcUUSf.QcaibWlPVOgYOfUaOWZ.Qca@blogger.bounces.google.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=blogger.com
+Return-Path: <3M1HpXQ8LC3AbcfSdZm-QcaaSbhPZcUUSf.QcaibWlPVOgYOfUaOWZ.Qca@blogger.bounces.google.com>
+Received: from mail-sor-f73.google.com (mail-sor-f73.google.com. [209.85.220.73])
+        by mx.google.com with SMTPS id l4sor2252130qkj.31.2019.12.05.10.49.23
+        for <unixbhaskar@gmail.com>
+        (Google Transport Security);
+        Thu, 05 Dec 2019 10:49:23 -0800 (PST)
+Received-SPF: pass (google.com: domain of 3m1hpxq8lc3abcfsdzm-qcaasbhpzcuusf.qcaibwlpvogyofuaowz.qca@blogger.bounces.google.com designates 209.85.220.73 as permitted sender) client-ip=209.85.220.73;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@blogger.com header.s=20161025 header.b=g8sOSEEt;
+       spf=pass (google.com: domain of 3m1hpxq8lc3abcfsdzm-qcaasbhpzcuusf.qcaibwlpvogyofuaowz.qca@blogger.bounces.google.com designates 209.85.220.73 as permitted sender) smtp.mailfrom=3M1HpXQ8LC3AbcfSdZm-QcaaSbhPZcUUSf.QcaibWlPVOgYOfUaOWZ.Qca@blogger.bounces.google.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=blogger.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=blogger.com; s=20161025;
+        h=mime-version:list-unsubscribe:message-id:date:subject:from:to;
+        bh=auMyk3xqEVmEnPe341O2zVgpwOjIweGkuk6FGMhEx7M=;
+        b=g8sOSEEthOFlC8Zq0aiWLiu3f10Gvu3kg+8mIFrJeJLLrLs5qkP8Is0HqvGBuyrMkC
+         /NLOK7eOs5o+nEba+GbmNOjRaFn3r0NwjA0PpSOP86JdXm7AkoRfPgqr1QiWmXkxZICg
+         YIbUh9+wxeuOCyqXXjIrWBHPR/T2WWX2cv+7C1VKBf6qY9zZwQ9bYbfXTBvZg2ysg/33
+         fG/IdceGjiYFD2zB7ZnifGolMhIFHJIUJJw7Z+Qc4ziJ260rt5VqnW0orVWRqFfsQReQ
+         JpoNBRGQQgw5ATF6n2hy/EIiPKBiIna4UAv7xjt09EVjmEFgTRIPZVmbt4CofrBQ+/++
+         QgSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:list-unsubscribe:message-id:date
+         :subject:from:to;
+        bh=auMyk3xqEVmEnPe341O2zVgpwOjIweGkuk6FGMhEx7M=;
+        b=KCWysHJirlUVSQXo6tc4BKgHeuv2Qu4UIkqZnkH9vnIwbmYbfHJBdMfdB1ozM7Axgx
+         feTqZsgrl4avCtCxJSdnvNaeiPITsp6fqK+TyV04N/w6o86eUARKEsRQ1PMBgRASE7uo
+         ZdbzNy8i25mxBYhSuGVep3fKZfAnEfdiIpa1GW58ydDoVGDJmCmydjcvjK1AEscpYxyI
+         txAc+5KKGI8XMm19de+8lFUCJwS5Gp+2l5bqvRwSfrkiiXuJjlH5DdR4zlFz7Oy7CXHv
+         8ztFq9xKe+ZAQBmhQE461pwPnrGRCOvxLsLh+Tzc/jkQ1gq+TEYl9NdOYMwThEpXpYkX
+         omMg==
+X-Gm-Message-State: APjAAAVEKbsr2sKw1hyO/TXX3JxjgyAv74vumKvRMOOgDqTA2PUQuM2a
+	oo8qQWEVPS+XRaiceFIWXrKong6/4mlu1iR19A4MDFelVywxJofO0gtVTg==
+X-Google-Smtp-Source: APXvYqyYJSI5O/wijjoREasMk68+JbMz67KKYohSDbGsCHfLOJBzUOpGNoGffcPBf4Su+CC0RWSW8yAv+yK1rTPh9BpnGOt79xuqnVDEFGQoXZY+Hpm7t1k=
+MIME-Version: 1.0
+X-Received: by 2002:ae9:efc7:: with SMTP id d190mr10094697qkg.350.1575571763673;
+ Thu, 05 Dec 2019 10:49:23 -0800 (PST)
+List-Unsubscribe: https://www.blogger.com/email/action?token=APq4FmDBG8bxew2enmgmFptAnmwvkAdpV9jKJft2l8vOpepLIYZYFg7v1nGmbZsPvC4cpUSDVGQ0RLsy7YJFFGQNOSfhm_9r-woHlBbjqthcWqkr6Lb_Ug8
+Message-ID: <0000000000004abc030598f96313@google.com>
+Date: Thu, 05 Dec 2019 18:49:23 +0000
+Subject: [Musing with GNU/Linux!] New comment on Git is cool and awesome!!.
+From: Tusha Johnson <noreply-comment@blogger.com>
+To: unixbhaskar@gmail.com
+Content-Type: multipart/alternative; boundary="0000000000004abbd10598f96310"
+
+--0000000000004abbd10598f96310
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+
+Tusha Johnson has left a new comment on your post "Git is cool and  
+awesome!!":
+
+regulate melatonin 4. http://shjslo5gwv.dip.jp http://gd5f933a9b.dip.jp  
+http://akl2utjefh.dip.jp
+
+Publish
+Delete
+Mark as spam
+
+Moderate comments for this blog.
+
+Posted by Tusha Johnson to Musing with GNU/Linux! at December 6, 2019 at  
+12:19 AM
+
+Unsubscribe from moderation emails for this blog.
+
+--0000000000004abbd10598f96310
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><title></title></head>
+<body> <a href=3D"https://www.blogger.com/profile/01968160009366288284">Tus=
+ha Johnson</a>  has left a new comment on your post &quot;<a href=3D"https:=
+//unixbhaskar.blogspot.com/2013/03/git-is-cool-and-awesome.html">Git is coo=
+l and awesome!!</a>&quot;:
+<br><br>
+ regulate melatonin 4. <a href=3D"http://shjslo5gwv.dip.jp" rel=3D"nofollow=
+">http://shjslo5gwv.dip.jp</a> <a href=3D"http://gd5f933a9b.dip.jp" rel=3D"=
+nofollow">http://gd5f933a9b.dip.jp</a> <a href=3D"http://akl2utjefh.dip.jp"=
+ rel=3D"nofollow">http://akl2utjefh.dip.jp</a>
+<br><br>
+
+<a href=3D"https://www.blogger.com/comment-moderate-confirm.do?blogID=3D346=
+5511817000766788&postID=3D2021220856279168326&status=3DLIVE&token=3DAPq4FmB=
+EYdmFV8DG3pBl-AXguI9bC9g8aDyXRZC3QoojCOALK5Yxe7bb_gOKppJWh7LC6dHdTiYYhFhGb4=
+rVtgL_h5zG4w3Y6ZXt6nTSwfHAz-YYfFtYr1FZCxA-TSh9D6O9Nrmbl-61zismriP71_Sb7fshF=
+CpO9A">Publish</a>
+<br>
+<a href=3D"https://www.blogger.com/comment-moderate-confirm.do?blogID=3D346=
+5511817000766788&postID=3D2021220856279168326&status=3DTRASHED&token=3DAPq4=
+FmAKNJX1dgVFuq0nmQu1g7aohWceYEe4ILOXWt_pVtszEJ5IGicOblArIst08ZdwXA318ht3kKq=
+nkSGt5YySdBw7AbCs15VpDrfLg7GwDyDPIHFaSUyNn21aOQjWEXFtBlRiAAXcpcN5tz2LPX65Q9=
+F0_zNwHg">Delete</a>
+<br>
+<a href=3D"https://www.blogger.com/comment-moderate-confirm.do?blogID=3D346=
+5511817000766788&postID=3D2021220856279168326&status=3DSPAM&token=3DAPq4FmC=
+onggJq2yTciCWOfHIxZe5apaoWg23QIMfUOYtxqaYnlr5-UiTTWFQHIaayqAXDy2DUC0ITwNGZK=
+1BigRc7wZ5ehWQtNHL5DFhb2ulCAMjTKI84izYl2nYiI7UH9br07rPYguCWiQhsaJBTg05D9moh=
+2kyDw">Mark as spam</a>
+<br>
+<br>
+ <a href=3D"https://www.blogger.com/blogger.g?blogID=3D3465511817000766788#=
+pendingcomments">Moderate</a> comments for this blog.
+<font color=3D"gray" size=3D"2"><br>
+<br>
+Posted by  Tusha Johnson  to  <a href=3D"http://unixbhaskar.blogspot.com/">=
+Musing with GNU/Linux!</a> at  December 6, 2019 at 12:19 AM </font>
+<br><br>
+ <a href=3D"https://www.blogger.com/email/action?token=3DAPq4FmDBG8bxew2enm=
+gmFptAnmwvkAdpV9jKJft2l8vOpepLIYZYFg7v1nGmbZsPvC4cpUSDVGQ0RLsy7YJFFGQNOSfhm=
+_9r-woHlBbjqthcWqkr6Lb_Ug8">Unsubscribe</a> from moderation emails for this=
+ blog.</body></html>
+--0000000000004abbd10598f96310--

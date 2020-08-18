@@ -1,0 +1,249 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:860a:0:0:0:0:0 with SMTP id i10csp4218936lfd;
+        Fri, 30 Nov 2018 19:08:35 -0800 (PST)
+X-Received: by 2002:a5d:60cc:: with SMTP id x12mr6560625wrt.193.1543633715332;
+        Fri, 30 Nov 2018 19:08:35 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1543633715; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WRkXC4FaX6EJz9qU1nG1Yz199zv8uQhyfdl1kiMBlzsXa7zbYBiYdGVXjUQttbp6so
+         T2PFrfCr73iXbJhqZdnrKgJvQzlPlVQzxnuNCGVjZ9mWOvaIjbYxJ4bpKDXoZM/7WKl/
+         rsIwJ67i6FWMWQg2BBpO8wTxNx/jGgK/kAiBCGEyp4Xd6DjZPQFT3TbyajQ5J5RSdw54
+         tuWIJ5IkmzY0BZR8Ijvz8Fsl9dNvHnTV3qpgrZ/8Y+JqdaDZHzA6Y9RZdJM9i7AWzMlF
+         KVgHjYUKlLTo03SSLSqYOQZ0DJIDjrwZooJgOFzxbf42JpBQ++YftjCxjuK+9baBQinf
+         Id9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:date:message-id:subject:from:to
+         :mime-version:dkim-signature;
+        bh=+vlQKSFlVHKAHJxfO2UDMFzezFXSrSc28W90k/qNT5E=;
+        b=MzcomCKwkHE4bub0EVuLAhCKiN03cEC8kfSoDNyDeY9RBnPXUkYXy6plrwk3NKenWd
+         +BW5/egPAWD+nMMeJVwJQpr+yV2NSe02UJH1j/OOjcVOrbfd2735IpZBOqgx1Z68WdkT
+         Q2aJuQIOQMsoqGqWso8USjqw+pNEhrlfL5dBvdhHo0hC+aRF2Xr41lK+CqmMNDnO7SOw
+         VlfOCL6EMS4cGQ06uYUsi/WU6RNU+B8nzBOoX5D2kHLAN40VSg/o4MBjduhmYVt37ZJT
+         mpFUgqLOg9TqykpAs9tiduqApFq5TpHvLrRa5OyuZJb2cDIwwDPbp5ucB09W0rWx1K7U
+         tacg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@googlegroups.com header.s=20161025 header.b=R654nLcI;
+       spf=pass (google.com: domain of docker-dev+bncbdr7x4gnxylbbmhwq7qakgqe5nrc4ga@googlegroups.com designates 209.85.220.55 as permitted sender) smtp.mailfrom=docker-dev+bncBDR7X4GNXYLBBMHWQ7QAKGQE5NRC4GA@googlegroups.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=googlegroups.com
+Return-Path: <docker-dev+bncBDR7X4GNXYLBBMHWQ7QAKGQE5NRC4GA@googlegroups.com>
+Received: from mail-sor-f55.google.com (mail-sor-f55.google.com. [209.85.220.55])
+        by mx.google.com with SMTPS id o63sor585106wmo.10.2018.11.30.19.08.34
+        (Google Transport Security);
+        Fri, 30 Nov 2018 19:08:35 -0800 (PST)
+Received-SPF: pass (google.com: domain of docker-dev+bncbdr7x4gnxylbbmhwq7qakgqe5nrc4ga@googlegroups.com designates 209.85.220.55 as permitted sender) client-ip=209.85.220.55;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@googlegroups.com header.s=20161025 header.b=R654nLcI;
+       spf=pass (google.com: domain of docker-dev+bncbdr7x4gnxylbbmhwq7qakgqe5nrc4ga@googlegroups.com designates 209.85.220.55 as permitted sender) smtp.mailfrom=docker-dev+bncBDR7X4GNXYLBBMHWQ7QAKGQE5NRC4GA@googlegroups.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=googlegroups.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlegroups.com; s=20161025;
+        h=mime-version:to:from:subject:message-id:date:x-original-sender
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-subscribe:list-unsubscribe;
+        bh=+vlQKSFlVHKAHJxfO2UDMFzezFXSrSc28W90k/qNT5E=;
+        b=R654nLcIIr97izvZvPVtm4fO4kJkwH8L3aikiustDe9JWFl7qazJxEgZUIxxOqyqgA
+         q0/439t0+6j7ApK7P6we6Bw0/qrzYjAZd6nzECv/Z3DgpSS/rX33rCJW4PPMJE+Olyft
+         21ffL3+1GHdjAm9Ca/gWf6lDx7eDI/Q31UzjrR9HiWBGPpqna9eSJhhjotkfSwKwGD6d
+         9f1UhdAqO+5YDlv91a9ycf2AOovbU3JYRb/UXuFm0ci5EG/NM6ZamXF/IyA3U6ifwr42
+         hUkn/3+HLqMkELnz+yVdQK8sFZuISwZKFZbGA7kuh9NIYiv50Ka7FUuhfloWzDJ3vgm+
+         9mSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:to:from:subject:message-id:date
+         :x-original-sender:precedence:mailing-list:list-id:list-post
+         :list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=+vlQKSFlVHKAHJxfO2UDMFzezFXSrSc28W90k/qNT5E=;
+        b=NQJnTQtb9PdizAK2b4lN3vKh2gGhvhYNJVIM8yKyIPEmCVILSa9Q+El6oxEmWyiur3
+         lXrC18bHfaDGo4IL03Pp2UppEktJz6mrJ2w1XksSWorXBpUCeigevXvYyzyGvKHXaQQv
+         tC5mgSDTM7066WDy9cfQXVy5xQKALGUIxFMUlmkvEgEY8PZIjO1GFHy9C65rEt4OYxTh
+         YlKfYOsBkqBeO89AXkhI7YQz69Hm2GEke3KaVA+2+Qw9TDPACAmVS4+nH+eOmyihrq3s
+         H6w9XMYr6arg2/5SfgNvXsrZsXEN4YbvSbpfqXdtDMicFrTg0TcYnEMmRqCOA+r7f0nv
+         kLGw==
+X-Gm-Message-State: AA+aEWZVtUaqRU0LisvxJoQa7UVOTYBBzRsKjXUwYqop78VnBgjME0YF
+	Na593t8Ztv7r2WBw2vSin+M=
+X-Google-Smtp-Source: AFSGD/XWCMqgPzi7nG1vukQv72UodpSHOLB1f+b4m/O1yKswLuAf2+us96IoQyDsSXTJf8TgUPo0pw==
+X-Received: by 2002:a1c:558a:: with SMTP id j132mr10933wmb.1.1543633714574;
+        Fri, 30 Nov 2018 19:08:34 -0800 (PST)
+X-BeenThere: docker-dev@googlegroups.com
+Received: by 2002:a1c:6582:: with SMTP id z124ls389859wmb.10.gmail; Fri, 30
+ Nov 2018 19:08:32 -0800 (PST)
+X-Received: by 2002:a1c:1887:: with SMTP id 129-v6mr227459wmy.3.1543633712477;
+        Fri, 30 Nov 2018 19:08:32 -0800 (PST)
+MIME-Version: 1.0
+To: Abridged recipients <docker-dev@googlegroups.com>
+From: docker-dev@googlegroups.com
+Subject: [docker-dev] Abridged summary of docker-dev@googlegroups.com - 1
+ update in 1 topic
+Message-ID: <0000000000001872fe057bed3be5@google.com>
+Date: Sat, 01 Dec 2018 03:08:32 +0000
+Content-Type: multipart/alternative; boundary=0016367f94b4b30060474d22062
+X-Original-Sender: docker-dev@googlegroups.com
+Precedence: list
+Mailing-list: list docker-dev@googlegroups.com; contact docker-dev+owners@googlegroups.com
+List-ID: <docker-dev.googlegroups.com>
+X-Google-Group-Id: 772720573923
+List-Post: <https://groups.google.com/group/docker-dev/post>, <mailto:docker-dev@googlegroups.com>
+List-Help: <https://groups.google.com/support/>, <mailto:docker-dev+help@googlegroups.com>
+List-Archive: <https://groups.google.com/group/docker-dev
+List-Subscribe: <https://groups.google.com/group/docker-dev/subscribe>, <mailto:docker-dev+subscribe@googlegroups.com>
+List-Unsubscribe: <mailto:googlegroups-manage+772720573923+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/group/docker-dev/subscribe>
+
+--0016367f94b4b30060474d22062
+Content-Type: text/plain; charset=UTF-8
+
+=============================================================================
+Today's topic summary
+=============================================================================
+
+Group: docker-dev@googlegroups.com
+Url: 
+  https://groups.google.com/forum/?utm_source=digest&utm_medium=email#!forum/docker-dev/topics
+
+
+  - Windows docker container in a Linux Machine ? [1 Update]
+    http://groups.google.com/group/docker-dev/t/4cf3c31a275e2a7f
+
+
+=============================================================================
+Topic: Windows docker container in a Linux Machine ?
+Url: http://groups.google.com/group/docker-dev/t/4cf3c31a275e2a7f
+=============================================================================
+
+---------- 1 of 1 ----------
+From: thrinath@ionpath.com
+Date: Nov 30 03:53PM -0800
+Url: http://groups.google.com/group/docker-dev/msg/b3248d77dc7b0
+
+Hello all 
+
+I was looking if there's a way for spinning up a Windows docker container 
+in an Ubuntu server. Also, if we can pass through devices to windows 
+container. Google search doesn't seem
+
+
+
+
+
+--
+You received this digest because you're subscribed to updates for this group. You can change your settings on the group membership page: 
+  https://groups.google.com/forum/?utm_source=digest&utm_medium=email#!forum/docker-dev/join
+.
+To unsubscribe from this group and stop receiving emails from it send an email to docker-dev+unsubscribe@googlegroups.com.
+
+
+--0016367f94b4b30060474d22062
+Content-Type: text/html; charset=UTF-8
+
+
+<div style="border:1px solid #d3d3d3;max-width:850px;font-family:Arial,sans-serif;color:#000000;">
+  <div style="background-color:#f5f5f5;padding:10px 20px">
+    <table cellpadding="0" cellspacing="0" style="width:100%">
+      <tbody>
+        <tr>
+          <td style="width:70%">
+            <span style="font:18px/20px arial;color:#333333">
+              <a href="
+  https://groups.google.com/forum/?utm_source=digest&utm_medium=email#!forum/docker-dev/topics
+" style="text-decoration:none; color:#333333">
+              docker-dev@googlegroups.com</a>
+            </span>
+          </td>
+          <td style="text-align:right;width:30%">
+            <span style="font:20px/24px arial"><a style="color:#dd4b39; text-decoration:none;" href="https://groups.google.com/forum/?utm_source=digest&utm_medium=email/#!overview" target="_blank">Google Groups</a></span>
+          </td>
+          <td style="width:32px;">
+            <a href="https://groups.google.com/forum/?utm_source=digest&utm_medium=email/#!overview" target="_blank"><img style="border:0;vertical-align:middle"
+                src="http://www.google.com/images/icons/product/groups-32.png"></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="padding:20px; background-color: #f5f5f5;">
+
+
+<div style="font-family: arial; color: #222222; padding: 0px">
+  <a name="digest_top" style="font-size:21px;">
+  
+    Today's topic summary
+  
+  
+  </a><br>
+  <span style="font-size:11px">
+    <a style="color:#1155cc;text-decoration:none" href="
+  https://groups.google.com/forum/?utm_source=digest&utm_medium=email#!forum/docker-dev/topics
+">View all topics</a>
+  </span>
+</div>
+<div style="font: 13px/18px arial; color:#222222; padding: 0px; margin-bottom:30px">
+  <ul style="margin-left:3px; padding-left:0px">
+  
+    <li>
+      <a style="color:#1155cc;text-decoration:none" href="#group_thread_0">
+      Windows docker container in a Linux Machine ?</a> -
+      <span style="color:#777777">1 Update</span>
+    </li>
+  
+  </ul>
+</div>
+
+
+
+  
+  <a name="group_thread_0"></a>
+  <div style="display:inline-block; font-family: arial; padding: 4px 0 5px 0px;">
+  
+    <a target="_blank" href="http://groups.google.com/group/docker-dev/t/4cf3c31a275e2a7f?utm_source=digest&utm_medium=email" style="font-size:21px; color:#1155CC; text-decoration:none">
+      Windows docker container in a Linux Machine ?
+    </a>
+  
+  </div>
+
+  <table style="border-collapse: collapse; width: 100%">
+    
+    <tr><td style="background-color: #FFFFFF; color:#2E2E2E; font-family: arial; padding:10px 15px; border:1px solid #d3d3d3;">
+      <span style="color:#B1B0B0; font-size: 15px;">
+        thrinath@ionpath.com: Nov 30 03:53PM -0800
+      </span>
+      <br /><br />
+      Hello all <br />
+&nbsp;<br />
+I was looking if there&#39;s a way for spinning up a Windows docker container <br />
+in an Ubuntu server. Also, if we can pass through devices to windows <br />
+container. Google search doesn&#39;t seem
+      
+        <span style="font-size:11px;"><a style="color:#1155cc;text-decoration:none" href="http://groups.google.com/group/docker-dev/msg/b3248d77dc7b0?utm_source=digest&utm_medium=email">...more</a></span>
+        <br />
+      
+    </td></tr>
+    
+  </table>
+  <div style="align:right; font-size:11px; margin-bottom: 40px; margin-top:5px;">
+    <a style="color:#1155cc;text-decoration:none" href="#digest_top">Back to top</a>
+  </div>
+
+
+
+
+  </div>
+  <div style="background-color: #f5f5f5;padding: 5px 20px;">
+  <table cellpadding="0" cellspacing="0" style="width:100%">
+  <tbody><tr>
+    <td style="padding-top:4px;font-family:arial,sans-serif;color:#636363;font-size:11px">
+      
+      You received this digest because you're subscribed to updates for this group. You can change your settings on the <a href="
+  https://groups.google.com/forum/?utm_source=digest&utm_medium=email#!forum/docker-dev/join
+" style="color:#1155cc;text-decoration:none">group membership page</a>.<br/>
+      To unsubscribe from this group and stop receiving emails from it send an email to <a href="mailto:docker-dev+unsubscribe@googlegroups.com">docker-dev+unsubscribe@googlegroups.com</a>.
+    </td>
+  </tr></tbody>
+  </table>
+  </div>
+</div>
+
+
+--0016367f94b4b30060474d22062--
+
+

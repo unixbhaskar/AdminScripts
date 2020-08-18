@@ -1,0 +1,99 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp6382909lfc;
+        Tue, 18 Feb 2020 12:05:52 -0800 (PST)
+X-Google-Smtp-Source: APXvYqx4ytDee4g8dREOPAxwNOOeFDFMTgnDPIRFKQggyL7OMRw24dDXIxGAZlqtFAUT+JFjRb8S
+X-Received: by 2002:a9d:68da:: with SMTP id i26mr17527576oto.65.1582056351950;
+        Tue, 18 Feb 2020 12:05:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1582056351; cv=none;
+        d=google.com; s=arc-20160816;
+        b=g8d6bvDA9/mURNNBNpxjqkwH7e/yIBAv5+BnpOoXZLDdzmQoYwSfjTiEWAycuKtmV9
+         oQNcxEO0aC8Mexs/Eran/FrR7bVXEpxbYWPF9knLAs+FwWa6sCUnPSDTO3BgzF/AkLrT
+         bUPI4T3azZcJ2akoC9XmqUBuBTexbz/B/Nk9tdcSZhpMF+qb97xGrWY3X/fYfFy5qg0Y
+         VYYu0zE4ZsVSp0oRIPC7F8Ws4EcZ4TYdd90XX0uAkF6hRIfNOIdlkWDSD3sGcobnLSYD
+         7ETLL+Efiy0pyj88pqD9akov+zqaTnVcbq97I4/m/f8yUgz8FygTfSF9kE9pgW9OtVKS
+         yjtA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:dkim-signature;
+        bh=nflWPq7ESAKoZ8WQ7+riCNATlDHNhjAjlMMNmDflZoc=;
+        b=Dy6FczV8Lz3h5dKp58aGpZP5v/vYaTCp+2dSp0DvfyW4rxY+m0pN6du3Ef8AMXvJdQ
+         icmSYipRCf4aD8mFR8+3gbDmL70HAMni1Uo8R9DTeW9abs9+FLFSVaH8hpJ2c8njL1wG
+         NlnEY7CD4WGlxdOI1Dbp9qFVdAfKXum2JQQA3kb2vrxB59BXGVdWcNO9AyQHMnuKCoAz
+         6QUpP3U4Jo5SCri0sKssgi0Xo7Im60Hmy6K8exb/R3GC/xD1rg9UkkrP56FTfv990u8j
+         eWwaNnZehaI3JQWEwlH4c+kA8Pg02wAS38W0ycF3ms6qqF/+izCtcoXReWEG1dcKx2UN
+         37QQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=merlin.20170209 header.b=keBX26ap;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id w12si2177223otk.77.2020.02.18.12.05.40;
+        Tue, 18 Feb 2020 12:05:51 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=merlin.20170209 header.b=keBX26ap;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728514AbgBRUCT (ORCPT <rfc822;diweiguang88@gmail.com>
+        + 99 others); Tue, 18 Feb 2020 15:02:19 -0500
+Received: from merlin.infradead.org ([205.233.59.134]:33412 "EHLO
+        merlin.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728889AbgBRUCO (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 18 Feb 2020 15:02:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=merlin.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=nflWPq7ESAKoZ8WQ7+riCNATlDHNhjAjlMMNmDflZoc=; b=keBX26apztDdU/WjI1j5MVdoNG
+        y+VJeT25XRIJUA2ASCzPloyrTWWwXvuTkm6kaJa2MytIz2YT9Jv9WO1ov/qZ4BJlIUcpj0QpL9wOo
+        IXBUOh61TD6WULU4WzQcXP8ajtgSpfe41ZNUb7ZpmC1AAv9B+gnkIaHw2Zp5iv0KaaUsqbsoaXyEa
+        xSENlv8Jn8O9lCa0uZTsnY3lOalDE5XKm6AiE7qt9m1QzAO9hw0TWz9AdJHWeoX9YOiuBrjYBZu5k
+        s7qARYURK3u1zw9Ww3/isi6pUUCyBqatNg00vscFBeh1K+acCha0VUpjrLnpYlKyyasBNrUIXDRKQ
+        xPWbyAEA==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100] helo=worktop.programming.kicks-ass.net)
+        by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1j494C-0005MH-Nc; Tue, 18 Feb 2020 20:02:00 +0000
+Received: by worktop.programming.kicks-ass.net (Postfix, from userid 1000)
+        id 3B687980E53; Tue, 18 Feb 2020 21:02:00 +0100 (CET)
+Date:   Tue, 18 Feb 2020 21:02:00 +0100
+From:   Peter Zijlstra <peterz@infradead.org>
+To:     "Luck, Tony" <tony.luck@intel.com>
+Cc:     Borislav Petkov <bp@alien8.de>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Andy Lutomirski <luto@kernel.org>, x86-ml <x86@kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC] #MC mess
+Message-ID: <20200218200200.GE11457@worktop.programming.kicks-ass.net>
+References: <20200218173150.GK14449@zn.tnic>
+ <3908561D78D1C84285E8C5FCA982C28F7F57B937@ORSMSX115.amr.corp.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3908561D78D1C84285E8C5FCA982C28F7F57B937@ORSMSX115.amr.corp.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Feb 18, 2020 at 06:20:38PM +0000, Luck, Tony wrote:
+> > Anything else I'm missing? It is likely...
+> 
+> +	hw_breakpoint_disable();
+> +	static_key_disable(&__tracepoint_read_msr.key);
+> +	tracing_off();
+> +
+>  	ist_enter(regs);
+> 
+> How about some code to turn all those back on for a recoverable (where we actually recovered) #MC?
+
+Then please rewrite the #MC entry code to deal with nested exceptions
+unmasking the MCE, very similr to NMI.
+
+The moment you allow tracing, jump_labels or anything else you can
+expect #PF, #BP and probably #DB while inside #MC, those will then IRET
+and re-enable the #MC.
+
+The current situation is completely and utterly buggered.

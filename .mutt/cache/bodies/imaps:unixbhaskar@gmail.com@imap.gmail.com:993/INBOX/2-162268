@@ -1,0 +1,172 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.80.152.164 with SMTP id j33csp342726edb;
+        Wed, 28 Mar 2018 04:23:34 -0700 (PDT)
+X-Google-Smtp-Source: AIpwx48J0belYEaZc/KS3DN6MWZMnlgpvly8IneSPobjdHfH4xRrrR+vlvyM9o7qKTKKC5Fgu6Gj
+X-Received: by 10.101.100.24 with SMTP id a24mr2238031pgv.7.1522236214775;
+        Wed, 28 Mar 2018 04:23:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1522236214; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xb5jkYPMGDG1u7Yct+Siq8COhyFo7zQbV/BvZo+gKH5VHMzc+qntcgmYa7HUw+KWtZ
+         7Cmt95/yknpP6szTx+TcMqA9dDOSLIiPQL/O4ke7MTYC1AM3paO/0+6pfNVAvv0TH7hy
+         HjtWo2u8xX7PrREQ2pOPDEQ++TchRa5ZjDUbXk92++t/yYnKMZEKoPpbS7os+XMmzNde
+         zggmfSJk+FVXPtWqROrYkkFd0/3LcXhdj10g2eAhJxFCFyMuK7kkV8PH5km9+QQith38
+         VXyb4N7zrc7aTlvrODX+dQW7jVD1ujr/uSdfQGu8pxb4dt3Mgevs8Za0hjRiChLao3m7
+         V1+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=dkim-signature:dkim-signature:auto-submitted
+         :content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:to:reply-to:from:date
+         :arc-authentication-results;
+        bh=5hB3KP5iasC7M+kOJcMtDTLTgyhmbD3weqToAXpq3+M=;
+        b=lPzLwNZ3eVPIOiK6YPmy1qFwtwIRRcrnjCb5G5krLK1UIoB1XQENdfaF5Y65t7/ZnQ
+         H0wWVo2bFB2nu5a9rS9lj/X7qDjzbnuiKYW+rLxwXc85fsRqqs1OVzjh5qxAvMcMARA6
+         0z+T60lDOId+GeeVEXa0GaPVjOy7tlZQrfcdqPNX3WcxjGH+XxUBm+gnoB3tqcohyQDU
+         n+uUVBlz3K6bVHYUi81cfIW7cEmG+hTlvKfc5OlPHCQUICG/4RolNzVTluoYDqAubpR9
+         wKzl/rTS5Koe4NwgKcm0gdZAFi38kJMVpHKh3TJsWG0J4gXb3WZn0lwTW9Ey6dVQPh4I
+         E3CA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@zendesk.com header.s=zendesk1 header.b=FVZeJDjI;
+       dkim=pass header.i=@gmailmarkup.zendesk.com header.s=zendesk1 header.b=nMWQK0Ej;
+       spf=pass (google.com: domain of support@londontrustmedia.zendesk.com designates 192.161.146.103 as permitted sender) smtp.mailfrom=support@londontrustmedia.zendesk.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=zendesk.com
+Return-Path: <support@londontrustmedia.zendesk.com>
+Received: from out4.pod8.sac1.zdsys.com (out4.pod8.sac1.zdsys.com. [192.161.146.103])
+        by mx.google.com with ESMTPS id o17si2337679pge.765.2018.03.28.04.23.34
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 28 Mar 2018 04:23:34 -0700 (PDT)
+Received-SPF: pass (google.com: domain of support@londontrustmedia.zendesk.com designates 192.161.146.103 as permitted sender) client-ip=192.161.146.103;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@zendesk.com header.s=zendesk1 header.b=FVZeJDjI;
+       dkim=pass header.i=@gmailmarkup.zendesk.com header.s=zendesk1 header.b=nMWQK0Ej;
+       spf=pass (google.com: domain of support@londontrustmedia.zendesk.com designates 192.161.146.103 as permitted sender) smtp.mailfrom=support@londontrustmedia.zendesk.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=zendesk.com
+Received: from zendesk.com (work11.pod8.sac1.zdsys.com [10.100.102.33])
+	by out4.pod8.sac1.zdsys.com (Postfix) with ESMTP id 427A240C048A
+	for <unixbhaskar@gmail.com>; Wed, 28 Mar 2018 11:23:34 +0000 (UTC)
+Date: Wed, 28 Mar 2018 11:23:34 +0000
+From: Private Internet Access <support@londontrustmedia.zendesk.com>
+Reply-To: Private Internet Access <support+id604222@londontrustmedia.zendesk.com>
+To: Unixbhaskar <unixbhaskar@gmail.com>
+Message-ID: <5L3P8EKYDV_5abb7b36aad_10ddc3f819decb978683d2_sprut@zendesk.com>
+In-Reply-To: <20180328112322.4894801.6838.21206@gmail.com>
+References: <5L3P8EKYDV@zendesk.com>
+ <20180328112322.4894801.6838.21206@gmail.com>
+Subject: [Request received] Android VPN Permission Question
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5abb7b363c1bc_10ddc3f819decb9786853b";
+ charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+X-Mailer: Zendesk Mailer
+X-Delivery-Context: event-id-385389685523
+X-Zendesk-From-Account-Id: 43c200b
+DKIM-Signature:  v=1; a=rsa-sha256; c=relaxed/relaxed; d=zendesk.com;
+ q=dns/txt; s=zendesk1; t=1522236214;
+ bh=5hB3KP5iasC7M+kOJcMtDTLTgyhmbD3weqToAXpq3+M=;
+ h=date:from:reply-to:to:message-id:in-reply-to:references:subject:mime-version:content-type:content-transfer-encoding;
+ b=FVZeJDjIIppBZd0nkJBYOKeOK/pFqpEssoNzBjSMQ2WsnIo79QHETPFIAwl5w/mEM10PlRH6IJy+LJrbDywZnNSh1Sif746xAkp65/ea/m8pYEDW7FnrowNJWUry1oQqJi/IeyafdW/mdzG+Au/ZY7LXPSbGw28IkBLdD5qJmjg=
+DKIM-Signature:  v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmailmarkup.zendesk.com; q=dns/txt; s=zendesk1; t=1522236214;
+ bh=5hB3KP5iasC7M+kOJcMtDTLTgyhmbD3weqToAXpq3+M=;
+ h=date:from:reply-to:to:message-id:in-reply-to:references:subject:mime-version:content-type:content-transfer-encoding;
+ b=nMWQK0EjXby8GL7STEdMTROwxP0DqsFN+jf2t9k+6DN6foZoBPaq4NBBnjI+O/0d3XZlOKT5TokS7klO9h25hT8sBbmRpmhdU+ZghHshsnMuCo2jcDxcczN0snyRzot1QsBWdMWsikqzJMHfZP4XHFvj1xoNIheMqffS04vsyF0=
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=SfjZiMZu c=1 sm=1 tr=0
+	a=5CVbE+9mTMRv9JzXVfK+ig==:117 a=KiCxJD0x+Pe5VASQKmYoJrcyuOo=:19
+	a=IkcTkHD0fZMA:10 a=ZZnuYtJkoWoA:10 a=AQlsHgBnnjsYuXzrI8AA:9
+	a=QEXdDO2ut3YA:10 a=A-Ay9Xv3AAAA:8 a=TeuQqM9sAAAA:8 a=epJ0x0MCAAAA:8
+	a=SSmOFEACAAAA:8 a=9TiCOqs2P4ysbtUUcEZcEYoys8A=:19 a=S9XPi4reMDeV-6LW:21
+	a=_W_S_7VecoQA:10 a=frz4AuCg-hUA:10 a=KCwdk1UvyhDIxU6C1OQk:22
+
+
+----==_mimepart_5abb7b363c1bc_10ddc3f819decb9786853b
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+##- Please type your reply above this line -##
+
+Your request (604222) has been received and is being reviewed by our supp=
+ort staff.
+
+Our customer support is undergoing an unexpected support load so our resp=
+onse times will be longer than usual. We apologise for our delay in atten=
+ding to your issue in time and appreciate your patience while waiting unt=
+il one of our agents can get to your ticket.
+
+Please be aware that we will respond to your email as soon as possible an=
+d our support operates 24/7/365 so logging multiple tickets is not requir=
+ed. Any requests made within the 7 day refund period will be honoured.
+
+To add additional comments, reply to this email.
+
+--------------------------------
+This email is a service from Private Internet Access.
+
+
+
+
+
+
+
+
+
+[5L3P8E-KYDV]=
+
+----==_mimepart_5abb7b363c1bc_10ddc3f819decb9786853b
+Content-Type: text/html;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://ww=
+w.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+" />
+  <style type=3D"text/css">
+    table td {
+      border-collapse: collapse;
+    }
+    body[dir=3Drtl] .directional_text_wrapper { direction: rtl; unicode-b=
+idi: embed; }
+
+  </style>
+</head>
+<body  style=3D"width: 100%!important; margin: 0; padding: 0;">
+  <div style=3D"padding: 10px ; line-height: 18px; font-family: 'Lucida G=
+rande',Verdana,Arial,sans-serif; font-size: 12px; color:#444444;">
+    <div style=3D"color: #b5b5b5;">##- Please type your reply above this =
+line -##</div>
+    <p>Your request (604222) has been received and is being reviewed by o=
+ur support staff.</p><p>Our customer support is undergoing an unexpected =
+support load so our response times will be longer than usual. We apologis=
+e for our delay in attending to your issue in time and appreciate your pa=
+tience while waiting until one of our agents can get to your ticket.</p><=
+p>Please be aware that we will respond to your email as soon as possible =
+and our support operates 24/7/365 so logging multiple tickets is not requ=
+ired. Any requests made within the 7 day refund period will be honoured.<=
+/p><p>To add additional comments, reply to this email.</p>
+  </div>
+  <div style=3D"padding: 10px ; line-height: 18px; font-family: 'Lucida G=
+rande',Verdana,Arial,sans-serif; font-size: 12px; color: #aaaaaa;
+    margin: 10px 0 14px 0; padding-top: 10px; border-top: 1px solid #eeee=
+ee;">
+    This email is a service from Private Internet Access. Delivered by <a=
+ href=3D"https://www.zendesk.com/product/tour/?utm_campaign=3Dtext&amp;ut=
+m_content=3DPrivate+Internet+Access&amp;utm_medium=3Dpoweredbyzendesk&amp=
+;utm_source=3Demail-notification" style=3D"color: black;" target=3D"_blan=
+k">Zendesk</a>
+  </div>
+<span style=3D'color:#FFFFFF'>[5L3P8E-KYDV]</span></body>
+</html>
+<div itemscope itemtype=3D"http://schema.org/EmailMessage" style=3D"displ=
+ay:none">  <div itemprop=3D"action" itemscope itemtype=3D"http://schema.o=
+rg/ViewAction">    <link itemprop=3D"url" href=3D"https://helpdesk.privat=
+einternetaccess.com/hc/requests/604222" />    <meta itemprop=3D"name" con=
+tent=3D"View ticket"/>  </div></div>=
+
+----==_mimepart_5abb7b363c1bc_10ddc3f819decb9786853b--

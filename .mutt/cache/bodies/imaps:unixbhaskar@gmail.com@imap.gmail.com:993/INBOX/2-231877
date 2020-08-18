@@ -1,0 +1,114 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp2320665lfg;
+        Thu, 2 Apr 2020 15:52:13 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJbWElzgM1YPKIZjx4WVsy6arH6s2VHLizf2/2+c2uGn48r9mVYc/26OZecOSE7Ci7a5D05
+X-Received: by 2002:a37:4ed5:: with SMTP id c204mr5532409qkb.328.1585867932922;
+        Thu, 02 Apr 2020 15:52:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585867932; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wCfbu3NNwuG1PyR6I5aEuspP0yuicmnYZ5nC/FdWEsaPMsTzxSL7nIG5SBkme/jcqv
+         ro3wX56D7Tzcm+Yg4QDs5EoZ5t6WXljn3WzOlYkdBlg9TsUEguDX4QIq7JNlBMbjeDjH
+         jtYJpVoTw4qNAo5b/WLKfKZ51+OvR9A5TAmxyhVbU4pNI/ubyhqIAWZRAYkJ86vqqzHE
+         sRb1Qt7SG3N6E6jOFGfLR9i3lY6D9FZTca8ZxKEtO+3tUCKz0vd5J6CofXDIFv9mePRN
+         RHNCfvHIZV8KFo0CLG/SGjcf0a7p3YKCFjUwrtH6KQtjn6yUKMgtdQd7jUABGTDYp9PI
+         0fUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-post:list-archive:list-id:precedence
+         :content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:reply-to:from:dkim-signature:date;
+        bh=TiLSsdTjzB0X//j/ai7Ac7n8y2uOKKzR2P3LSznkxdQ=;
+        b=F0ARGFi7fRgwlvzi9vzF7z3rtmdyZDJFvCYR6EXDgmF8epTh8M3VfV8Y2e3wZmHkzA
+         tJiazlq9d+KGITrhmLNEEU24Qpp/nmWxxL9ms3G8qu5lUx807bfJwtRB44TV8ijfsEHN
+         defQQXHHkXsNs0HUftK4Uj9Io35cM7TTaF/DORB9oaZfnPLcMvo4fMCnVMZo+Jk6RH6H
+         cFLcD3jNcxFf/Y9VPej9WXAhhT7TZL9BWB8bctzJmnac6Zt1H2B9piOGyVYCO4r1q/8e
+         bicbQPgIZ1zVIxFmz57GpoZ71SuxBb6eTfwbAmBENPnlAxyeVBouhhVVD60VZWGnxKN8
+         adLg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=i5ZsyhEN;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.202 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-19.smtp.github.com (out-19.smtp.github.com. [192.30.252.202])
+        by mx.google.com with ESMTPS id o28si4295745qkj.331.2020.04.02.15.52.12
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 02 Apr 2020 15:52:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.202 as permitted sender) client-ip=192.30.252.202;
+Authentication-Results: mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=i5ZsyhEN;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.202 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Date: Thu, 02 Apr 2020 15:52:12 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2014; t=1585867932;
+	bh=TiLSsdTjzB0X//j/ai7Ac7n8y2uOKKzR2P3LSznkxdQ=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:From;
+	b=i5ZsyhEN3XoVRFHIM70CRb4pUfs4WoU8qQs9DpbPbG1N6/uLqK8a5fmRavfEQRXmt
+	 YKR5+fdsbx1o04giGL2UVxZasZOT9gPJquTzT/FVv/0DK2GPN2P9s8XtSLEmo+GVyl
+	 OAn/+AWRVAKwe0ksc3HPz2UO88e8/oJ0emq2u00U=
+From: Junio C Hamano <notifications@github.com>
+Reply-To: gitster/git <reply+AAA3X2YDP4N37TXRNMVVASV4SJGZZEVBNHHBUHJ6VU@reply.github.com>
+To: gitster/git <git@noreply.github.com>
+Cc: Subscribed <subscribed@noreply.github.com>
+Message-ID: <gitster/git/pull/39/issue_event/3194197496@github.com>
+In-Reply-To: <gitster/git/pull/39@github.com>
+References: <gitster/git/pull/39@github.com>
+Subject: Re: [gitster/git] Merge pull request #37 from ChrisADR/master (#39)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5e866c9c8af99_579b3f927becd96419028b";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: gitster
+X-GitHub-Recipient: unixbhaskar
+X-GitHub-Reason: subscribed
+List-ID: gitster/git <git.gitster.github.com>
+List-Archive: https://github.com/gitster/git
+List-Post: <mailto:reply+AAA3X2YDP4N37TXRNMVVASV4SJGZZEVBNHHBUHJ6VU@reply.github.com>
+List-Unsubscribe: <mailto:unsub+AAA3X2YDP4N37TXRNMVVASV4SJGZZEVBNHHBUHJ6VU@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/AAA3X2ZHXL2I4CRHOID5BATRKUJJZANCNFSM4HI73CEQ>
+X-Auto-Response-Suppress: All
+X-GitHub-Recipient-Address: unixbhaskar@gmail.com
+
+
+----==_mimepart_5e866c9c8af99_579b3f927becd96419028b
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Closed #39.
+
+-- 
+You are receiving this because you are subscribed to this thread.
+Reply to this email directly or view it on GitHub:
+https://github.com/gitster/git/pull/39#event-3194197496
+----==_mimepart_5e866c9c8af99_579b3f927becd96419028b
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p></p>
+<p>Closed <a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="438124205" data-permission-text="Title is private" data-url="https://github.com/gitster/git/issues/39" data-hovercard-type="pull_request" data-hovercard-url="/gitster/git/pull/39/hovercard" href="https://github.com/gitster/git/pull/39">#39</a>.</p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />You are receiving this because you are subscribed to this thread.<br />Reply to this email directly, <a href="https://github.com/gitster/git/pull/39#event-3194197496">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/AAA3X2342E5QFCU4FWFF2VTRKUJJZANCNFSM4HI73CEQ">unsubscribe</a>.<img src="https://github.com/notifications/beacon/AAA3X23Q2I7RMPBGPLJOIBLRKUJJZA5CNFSM4HI73CE2YY3PNVWWK3TUL52HS4DFWZEXG43VMVCXMZLOORHG65DJMZUWGYLUNFXW5KTDN5WW2ZLOORPWSZGOXZRZL6A.gif" height="1" width="1" alt="" /></p>
+<script type="application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/gitster/git/pull/39#event-3194197496",
+"url": "https://github.com/gitster/git/pull/39#event-3194197496",
+"name": "View Pull Request"
+},
+"description": "View this Pull Request on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>
+----==_mimepart_5e866c9c8af99_579b3f927becd96419028b--

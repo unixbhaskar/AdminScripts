@@ -1,0 +1,113 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:548e:0:0:0:0:0 with SMTP id t14csp3833801lfk;
+        Mon, 26 Aug 2019 01:01:19 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqy0QTOBYuL5Xp0ik6dF0YiEwtkFbkLLqxN08FLmC86zaXNHZuj0QvBvzcOpl6WImymQOz6/
+X-Received: by 2002:a17:906:6b0f:: with SMTP id q15mr15316567ejr.200.1566806479915;
+        Mon, 26 Aug 2019 01:01:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1566806479; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ShsOlldo76ZtjYFmSr3w9QwxBcB5l2aOKWQFtwvFMKIbUGJcQZuOAinMh1cdrMWaCI
+         z4C7L1l/hSjDqlwMoHvehMYIxyTEZkDx50iNU8VXwEehBU82eyL2G1jryPHuTJ4IExyu
+         15F+PSPU6vwPNu8Avih00u4+h7k57PAeJAkmveb6ZsxC6pn2M7mQSRuRASsRNMNZE2pI
+         GGuMQVuF1l6NB2lF8fEJ+LTQkK8xGIhHU34JKqdaQA4IBnSKhRMaA2ihPtdSkUCc/a7m
+         mvMjZvc/o+xc+GKk/t2oy3ZhD1gsnXN3Tb8d8OgLxjKyg/g85VwHcvW6Cq6/Jh5lH05N
+         /pLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:dkim-signature:dkim-signature;
+        bh=6R15M5gpXp6+t5ucxX5BenurBaniwk5iWP/DzbBg5DU=;
+        b=s8QAgLPFtuY7M4p1E6+c9xuMb8zLIFmj13raNlZi5G9Y4FCLuMoQlRoA3hAHaNTap2
+         GvHBFBR72SQcsXjHqsVrvvQz17ee7R3dk9lX1w+JFWs8VUaemr2JhEmnguzXb+BlAtYT
+         qq8yBQMrMdBSaszAkXi9bpnVGi2cZrW5gXi1TA+NfEBy1Jn89+rhnv4XTYkoOPbjINVJ
+         Sg5owJZmD5kofMl8uWdqWOMk+w9WJ5scE9ndcRpxOFy70+7pGpoUR/LzL0NkuEVsMsvP
+         eaKruK2Lh4w/NlzjORr4Fi4/a9rmX/8CZSmn9UQcC+FqXjeJdwZv3CVJjzYMJYUWal4v
+         HwFA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kroah.com header.s=fm1 header.b=N4ZkxriL;
+       dkim=pass header.i=@messagingengine.com header.s=fm3 header.b=jG6F4Rdh;
+       spf=pass (google.com: domain of greg@kroah.com designates 64.147.123.19 as permitted sender) smtp.mailfrom=greg@kroah.com
+Return-Path: <greg@kroah.com>
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com. [64.147.123.19])
+        by mx.google.com with ESMTPS id o10si5255594ejx.110.2019.08.26.01.01.19
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 26 Aug 2019 01:01:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of greg@kroah.com designates 64.147.123.19 as permitted sender) client-ip=64.147.123.19;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kroah.com header.s=fm1 header.b=N4ZkxriL;
+       dkim=pass header.i=@messagingengine.com header.s=fm3 header.b=jG6F4Rdh;
+       spf=pass (google.com: domain of greg@kroah.com designates 64.147.123.19 as permitted sender) smtp.mailfrom=greg@kroah.com
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+	by mailout.west.internal (Postfix) with ESMTP id A805C37B;
+	Mon, 26 Aug 2019 04:01:11 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 26 Aug 2019 04:01:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=fm1; bh=6R15M5gpXp6+t5ucxX5BenurBan
+	iwk5iWP/DzbBg5DU=; b=N4ZkxriL+KWtGKhMDq4zY7SZOQMCRHKmbWr7QXeS4ZC
+	7ccTC8mfuqMp0a/reeq66Rw5E30sFntXklfEIWeh+qIh6L4QJcYxiCQ6TAw0bS2e
+	PEuCtAL+QRa9//uKlzL+83G57ZmH26poWUZ6LC/VxVIqThR02SV5dBeEXjf3KLtK
+	iPhYegS2W290c1vwJdCh+I2Oe17lMURl3dM2LB6JW8OQNhGJEGHSKH60VTzjQiaN
+	SRP5UB77MI4Ru/XB4Hb0EkkvwQviHXkltmkawsbl4IBcEQWBFIJkevpFfiLZk/M9
+	X7ZK9bBKibKv3eQSI/cYSI5+sedM7IVCelFhfB7biyw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=6R15M5
+	gpXp6+t5ucxX5BenurBaniwk5iWP/DzbBg5DU=; b=jG6F4Rdh+XZIGvPnoktgO8
+	fFRYrtJsdap6E8xiPtwLLuyQy+0vgpJ/7BdSIRSNkh2wLjCnXrzAbaOyNMkaJv4k
+	8WFxWthRG+nuMiDE6Kbdnf1CjenFwAsFMB38I7DA5R+QGUShtJwMopJAXfV5X7UB
+	psioXqXoEFLP1CuRIMgZZnhqwzVGWibVlbo3eLWLMppu+pK843fW+UqJpd3lJikz
+	Nmt5JCfmMmPDQkUaRcWmtkAGEuerMZTRRXohI8YrXMO909vAtcgIJ/OI0gPWVJCy
+	nIuAjGnWgB3IRLD4RToOJ3PE6z7vLL5/Xdlz1pFCf55myFFo+Tr7fc28kv9MFOgw
+	==
+X-ME-Sender: <xms:xpFjXc4ZFbe6uLo-OA2gTsNCnPaZZqKk_QuozqFWkQd2Ecu06PRnJA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudehfedguddvjecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvuffkfhggtggujggfsehttdertddtredvnecuhfhrohhmpefirhgv
+    ghcumffjuceoghhrvghgsehkrhhorghhrdgtohhmqeenucffohhmrghinhepkhgvrhhnvg
+    hlrdhorhhgnecukfhppeekledrvddthedruddvkedrvdegieenucfrrghrrghmpehmrghi
+    lhhfrhhomhepghhrvghgsehkrhhorghhrdgtohhmnecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:xpFjXVhhblGQG1rhTevfJPff4HgH6zC_ocl8Vu6XbARUqhe3DVlIYA>
+    <xmx:xpFjXS2R7zQZgnIQOrdPPlDuslkxlSOhEJ2ThSUb93BsMytomEf46w>
+    <xmx:xpFjXborEjL1SENQrhNcCt_XcxnYEghJ_uexRgKLCQqZxWZgNpp0iA>
+    <xmx:x5FjXbrKkO73fUaGrV-LxbI-1VebKEomHXdVOnNBEyPUn2q0lfODtg>
+Received: from localhost (unknown [89.205.128.246])
+	by mail.messagingengine.com (Postfix) with ESMTPA id 2D32C8005C;
+	Mon, 26 Aug 2019 04:01:09 -0400 (EDT)
+Date: Mon, 26 Aug 2019 10:01:07 +0200
+From: Greg KH <greg@kroah.com>
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Cc: Sasha Levin <sashal@kernel.org>, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org, akpm@linux-foundation.org, jslaby@suse.cz,
+	Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Subject: Re: Linux 5.2.10
+Message-ID: <20190826080107.GB30396@kroah.com>
+References: <20190825144703.6518-1-sashal@kernel.org>
+ <20190826063834.GD31983@Gentoo>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190826063834.GD31983@Gentoo>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+
+On Mon, Aug 26, 2019 at 12:08:38PM +0530, Bhaskar Chowdhury wrote:
+
+<snip>
+
+Due, learn to properly trim emails...
+
+> For some unknown reason kernel.org still showing me 5.2.9 ..Please refer
+> to the attached screenshot.
+
+What mirror are you hitting here?  There is a way somehow to see that on
+your end, I thought it was at the bottom of the page.
+
+You are not seeing any of the releases that happened yesterday, which is
+really odd, it's not just a 5.2.10 issue.
+
+thanks,
+
+greg k-h

@@ -1,0 +1,866 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp3882225lfj;
+        Sun, 13 Oct 2019 17:25:12 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxgnOe/pNjqJrlWQSvP4io702Mdt4DH3EhLdlu8s5turokXFJi8OdmPdxVEyIRUsq9vvv9v
+X-Received: by 2002:a17:906:1390:: with SMTP id f16mr25545126ejc.295.1571012712149;
+        Sun, 13 Oct 2019 17:25:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1571012712; cv=none;
+        d=google.com; s=arc-20160816;
+        b=VHyFz+511lWNjkCaY7VJGjW4nA31cvGjn4z3A3CSp4gpx3nuMbl0ItceF0+3eMQthw
+         sOrUHjVhGIX0MlcfhgY1PIBmQRR6qoxYyrXXX3BGDjKscUIuQ6hjOoR780/IkgjLLwDL
+         ALNI9w1wHLB6xx40KvspDxEayqXwv3e/tqU086RgGW/aNJS3pODo3U86zxcWCWgZSKgn
+         dwynEGBTVsE2jW9VC398/SP82LOIwLCRNqEroPb0AUHAFMN/X4UGFeO6qBtFhDJf3xrc
+         HklF84L/aldBd42yIV2NTLc0kd1wf/428bDs+28iKFiWQNjcRplRUeFlZT3gHlSvd3eu
+         dsNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:to:subject
+         :message-id:date:from:mime-version:dkim-signature;
+        bh=1O4R6KI/xExKBwPIvPIow5nGDihUgbjle0D5aj7PMFE=;
+        b=Vszip5RBoYkoP6w/hNY+7HRqoZrsbGesxLdkj96uDQRyNuZlw9PXZu7NYgUnY5jk2J
+         NoRZMhNFBHQxqRJisRhxvWEEQjcZGL06VGvbl/Lhpazz1OhFIHtAjf4j6El4d6eHeLv5
+         zoqCqsYHihNL32T/dvRFNh4sHvbv6BY8QupLFb9T/VdpvRU+YKPh0WIilj8kztPUNcGH
+         R7SHdc8zupX/dpDhgPfdE7i685RTDqBH72um7eVwibkOAFwXHgsK8PlDwJTT/m+rTYeV
+         AgHEEbksAAtj/o1PUbdi31DS7W4uP0QIEV+1BLMRbndqLrEPWUih/XaIc8sIjx4ZURSl
+         TK1w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=ColIeC+G;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id n2si9678196edt.408.2019.10.13.17.24.47;
+        Sun, 13 Oct 2019 17:25:12 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=ColIeC+G;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729590AbfJNAXh (ORCPT <rfc822;linuxmails.chen@gmail.com>
+        + 99 others); Sun, 13 Oct 2019 20:23:37 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:44054 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729296AbfJNAXg (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 13 Oct 2019 20:23:36 -0400
+Received: by mail-lj1-f193.google.com with SMTP id m13so14802373ljj.11
+        for <linux-kernel@vger.kernel.org>; Sun, 13 Oct 2019 17:23:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=1O4R6KI/xExKBwPIvPIow5nGDihUgbjle0D5aj7PMFE=;
+        b=ColIeC+G6QVMtiOUcqFR2Hfjzf5vigpD5yrhQ3qwQUwEHI+GV+k9hCGlPixwqDBTa0
+         m8mNBeiRMQH3Yh+xboYzGr1GdbZ60OPkRQRZC2BxVMrPNF/hikQX6gAEvNfzKWnH/Xna
+         7gELBRqe2/qwthYPDiuGHjEP0qVSn+mdioAFI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=1O4R6KI/xExKBwPIvPIow5nGDihUgbjle0D5aj7PMFE=;
+        b=rPh1RpBXPUD1O7PZsBbv3bTtKIr1VkqoFwannLSwoTaGLMLFaDXiZD/w9p08O4k9Da
+         tJ24Yl1AjtM1rGp+0lZRFBPKA0OtHI5wnY+Iuvi1HEoeqlh9GRjkJrua12Ikts1pjB1h
+         Q8xxV6Ju6Oj7iFuQmePRMur3iob642I7DCIOpuW3oPmlL5apyv+/V8q+2feLwdgPmwAm
+         v07b82JICSl5ozeFUcnvrVTMMO5eW8WF1Wf936tI8c2cj+r5JfX7aQyu1I5AXv8WkHjF
+         OoHZDIdZ9/1qZvgs1Y60EgIEF9Ra1YCrXNb/4M4wS19m53XS2fuhXjBGXhnjYF2Gw+Yc
+         w0eg==
+X-Gm-Message-State: APjAAAUQov58iaH54414RjqphjRhFoLPaFuGOBGHoaPK34+3iZ6wcnUi
+        Or/9BOIZ1LuAjRu7asIVzxVHltz5MTc=
+X-Received: by 2002:a2e:97ca:: with SMTP id m10mr15172275ljj.168.1571012612071;
+        Sun, 13 Oct 2019 17:23:32 -0700 (PDT)
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com. [209.85.167.51])
+        by smtp.gmail.com with ESMTPSA id i142sm3796367lfi.5.2019.10.13.17.23.30
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 13 Oct 2019 17:23:30 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id u3so10529135lfl.10
+        for <linux-kernel@vger.kernel.org>; Sun, 13 Oct 2019 17:23:30 -0700 (PDT)
+X-Received: by 2002:ac2:5306:: with SMTP id c6mr15717674lfh.106.1571012610111;
+ Sun, 13 Oct 2019 17:23:30 -0700 (PDT)
+MIME-Version: 1.0
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 13 Oct 2019 17:23:14 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjOhveT=qrq8HHyL7gpA5fmBtDa2ue7sO5ZSEBrrcY6Vg@mail.gmail.com>
+Message-ID: <CAHk-=wjOhveT=qrq8HHyL7gpA5fmBtDa2ue7sO5ZSEBrrcY6Vg@mail.gmail.com>
+Subject: Linux 5.4-rc3
+To:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Things continue to look fairly normal, with rc3 being larger than rc2,
+as people are starting to find more regressions, but 5.4 so far
+remains on the smaller side of recent releases.
+
+The diffstat looks fairly flat too, although we had a couple of
+staging drivers being removed here that show up as spikes. Drivers in
+general account for about two thirds of the diff, and it's not just
+those staging drivers, it's other small noise all over the place: usb,
+drm, iio, rdma..
+
+Outside of drivers, filesystems pop up more than perhaps usual, but
+it's again mostly low-grade noise all over: btrfs, cifs, nfs, ocfs,
+xfs and some core vfs fixes.
+
+The rest is arch updates (mainly arm64, x86, mips), tooling (mostly
+perf tooling updates, but also some selftest fixlets), documentation,
+and misc core kernel and mm stuff.
+
+There really isn't anything huge that stands out. You can scan the
+appended shortlog for a flavor of the details, it's not too long to
+just scroll through.
+
+              Linus
+
+---
+Adam Ford (2):
+      serial: mctrl_gpio: Check for NULL pointer
+      serial: 8250_omap: Fix gpio check for auto RTS/CTS
+
+Adam Zerella (3):
+      docs: arm64: Fix indentation and doc formatting
+      docs: hwmon: Include 'inspur-ipsps1.rst' into docs
+      hwmon: docs: Extend inspur-ipsps1 title underline
+
+Adit Ranadive (1):
+      RDMA/vmw_pvrdma: Free SRQ only once
+
+Al Viro (3):
+      Fix the locking in dcache_readdir() and friends
+      shmem: fix LSM options parsing
+      libfs: take cursors out of list when moving past the end of directory
+
+Alan Stern (1):
+      USB: yurex: Don't retry on unexpected errors
+
+Alexander Shishkin (1):
+      perf/core: Fix inheritance of aux_output groups
+
+Alexander Usyskin (1):
+      mei: avoid FW version request on Ibex Peak and earlier
+
+Aliasgar Surti (1):
+      xfs: removed unused error variable from xchk_refcountbt_rec
+
+Andi Kleen (2):
+      perf script brstackinsn: Fix recovery from LBR/binary mismatch
+      perf jevents: Fix period for Intel fixed counters
+
+Andreas Klinger (1):
+      iio: adc: hx711: fix bug in sampling of data
+
+Andrey Smirnov (1):
+      tty: serial: fsl_lpuart: Fix lpuart_flush_buffer()
+
+Anshuman Khandual (1):
+      mm/memremap: drop unused SECTION_SIZE and SECTION_MASK
+
+Anson Huang (1):
+      tty: serial: imx: Use platform_get_irq_optional() for optional IRQs
+
+Ard Biesheuvel (3):
+      crypto: arm/aes-ce - build for v8 architecture explicitly
+      crypto: arm/aes-ce - add dependency on AES library
+      efivar/ssdt: Don't iterate over EFI vars if no SSDT override was spec=
+ified
+
+Arnaldo Carvalho de Melo (13):
+      tools headers uapi: Sync drm/i915_drm.h with the kernel sources
+      tools headers uapi: Sync asm-generic/mman-common.h with the kernel
+      tools headers uapi: Sync linux/usbdevice_fs.h with the kernel sources
+      tools headers uapi: Sync linux/fs.h with the kernel sources
+      tools headers kvm: Sync kvm headers with the kernel sources
+      perf tools: Propagate get_cpuid() error
+      perf evsel: Fall back to global 'perf_env' in perf_evsel__env()
+      perf annotate: Propagate perf_env__arch() error
+      perf annotate: Fix the signedness of failure returns
+      perf annotate: Propagate the symbol__annotate() error return
+      perf annotate: Fix arch specific ->init() failure errors
+      perf annotate: Return appropriate error code for allocation failures
+      perf annotate: Don't return -1 for error when doing BPF disassembly
+
+Arnd Bergmann (1):
+      udc: lpc32xx: fix 64-bit compiler warning
+
+Arvind Sankar (1):
+      lib/string: Make memzero_explicit() inline instead of external
+
+Austin Kim (2):
+      fs: cifs: mute -Wunused-const-variable message
+      btrfs: silence maybe-uninitialized warning in clone_range
+
+Baoquan He (1):
+      memcg: only record foreign writebacks with dirty pages when
+memcg is not disabled
+
+Bart Van Assche (1):
+      RDMA/iwcm: Fix a lock inversion issue
+
+Bartosz Golaszewski (1):
+      gpiolib: don't clear FLAG_IS_OUT when emulating open-drain/open-sourc=
+e
+
+Bastien Nocera (1):
+      USB: rio500: Remove Rio 500 kernel driver
+
+Ben Dooks (1):
+      efi: Make unexported efi_rci2_sysfs_init() static
+
+Beni Mahler (1):
+      USB: serial: ftdi_sio: add device IDs for Sienna and Echelon PL-20
+
+Benjamin Coddington (1):
+      SUNRPC: fix race to sk_err after xs_error_report
+
+Biju Das (1):
+      dt-bindings: serial: sh-sci: Document r8a774b1 bindings
+
+Bill Kuzeja (1):
+      xhci: Prevent deadlock when xhci adapter breaks during init
+
+Bill O'Donnell (1):
+      xfs: assure zeroed memory buffers for certain kmem allocations
+
+Boris Ostrovsky (1):
+      x86/xen: Return from panic notifier
+
+Brian Foster (3):
+      xfs: log the inode on directory sf to block format change
+      xfs: remove broken error handling on failed attr sf to leaf change
+      xfs: move local to extent inode logging into bmap helper
+
+Brian Norris (1):
+      firmware: google: increment VPD key_len properly
+
+Bruce Chen (1):
+      gpio: eic: sprd: Fix the incorrect EIC offset when toggling
+
+Chris Down (3):
+      mm, memcg: proportional memory.{low,min} reclaim
+      mm, memcg: make memory.emin the baseline for utilisation determinatio=
+n
+      mm, memcg: make scan aggression always exclude protection
+
+Chris Wilson (12):
+      drm/i915/execlists: Remove incorrect BUG_ON for schedule-out
+      drm/i915: Perform GGTT restore much earlier during resume
+      drm/i915: Don't mix srcu tag and negative error codes
+      drm/i915: Extend Haswell GT1 PSMI workaround to all
+      drm/i915: Verify the engine after acquiring the active.lock
+      drm/i915: Prevent bonded requests from overtaking each other on preem=
+ption
+      drm/i915: Mark contents as dirty on a write fault
+      drm/i915/execlists: Drop redundant list_del_init(&rq->sched.link)
+      drm/i915: Only enqueue already completed requests
+      drm/i915: Fixup preempt-to-busy vs reset of a virtual request
+      drm/i915/execlists: Protect peeking at execlists->active
+      drm/i915/gt: execlists->active is serialised by the tasklet
+
+Christian Borntraeger (1):
+      s390/uaccess: avoid (false positive) compiler warnings
+
+Christian Brauner (1):
+      binder: prevent UAF read in print_binder_transaction_log_entry()
+
+Christoph Hellwig (1):
+      serial/sifive: select SERIAL_EARLYCON
+
+Christophe JAILLET (3):
+      tty: serial: owl: Fix the link time qualifier of 'owl_uart_exit()'
+      tty: serial: rda: Fix the link time qualifier of 'rda_uart_exit()'
+      RDMA/core: Fix an error handling path in 'res_get_common_doit()'
+
+Chuck Lever (1):
+      NFSv4: Fix leak of clp->cl_acceptor string
+
+Colin Ian King (1):
+      efi/tpm: Fix sanity check of unsigned tbl_size being less than zero
+
+Connor Kuehl (1):
+      staging: rtl8188eu: fix null dereference when kzalloc fails
+
+Cristian Marussi (2):
+      kselftest: add capability to skip chosen TARGETS
+      kselftest: exclude failed TARGETS from runlist
+
+Dan Carpenter (3):
+      usb: cdns3: Fix use after free in probe error handling
+      usb: typec: tcpm: usb: typec: tcpm: Fix a signedness bug in
+tcpm_fw_get_caps()
+      mm/vmpressure.c: fix a signedness bug in vmpressure_register_event()
+
+Dan Murphy (1):
+      leds: core: Fix leds.h structure documentation
+
+Daniele Palmas (1):
+      USB: serial: option: add Telit FN980 compositions
+
+Dave Wysochanski (1):
+      cifs: use cifsInodeInfo->open_file_lock while iterating to avoid a pa=
+nic
+
+Dave Young (1):
+      efi/x86: Do not clean dummy variable in kexec path
+
+David Frey (1):
+      iio: light: opt3001: fix mutex unlock race
+
+Denis Efremov (1):
+      staging: rtl8188eu: fix HighestRate check in odm_ARFBRefresh_8188E()
+
+Desnes A. Nunes do Rosario (1):
+      selftests/powerpc: Fix compile error on tlbie_test due to newer gcc
+
+Dexuan Cui (2):
+      HID: hyperv: Use in-place iterator API in the channel callback
+      Drivers: hv: vmbus: Fix harmless building warnings without CONFIG_PM_=
+SLEEP
+
+Douglas Anderson (1):
+      MAINTAINERS: kgdb: Add myself as a reviewer for kgdb/kdb
+
+Emmanuel Nicolet (1):
+      spufs: fix a crash in spufs_create_root()
+
+Eric Sandeen (1):
+      xfs: remove unused flags arg from xfs_get_aghdr_buf()
+
+Fabrice Gasnier (2):
+      iio: adc: stm32-adc: move registers definitions
+      iio: adc: stm32-adc: fix a race when using several adcs with dma and =
+irq
+
+Filipe Manana (1):
+      Btrfs: fix memory leak due to concurrent append writes with fiemap
+
+Frederic Weisbecker (1):
+      sched/vtime: Fix guest/system mis-accounting on task switch
+
+Fuqian Huang (1):
+      xen/grant-table: remove unnecessary printing
+
+Geert Uytterhoeven (3):
+      staging: octeon: Use "(uintptr_t)" to cast from pointer to int
+      serial: sh-sci: Use platform_get_irq_optional() for optional interrup=
+ts
+      MAINTAINERS: Remove Simon as Renesas SoC Co-Maintainer
+
+George G. Davis (2):
+      selftests: watchdog: Validate optional file argument
+      selftests: watchdog: Add command line option to show watchdog_info
+
+Greg KH (1):
+      RDMA/cxgb4: Do not dma memory off of the stack
+
+Halil Pasic (1):
+      s390/cio: fix virtio-ccw DMA without PV
+
+Hans de Goede (4):
+      driver core: platform: Add platform_get_irq_byname_optional()
+      usb: dwc3: Switch to platform_get_irq_byname_optional()
+      usb: dwc3: Remove dev_err() on platform_get_irq() failure
+      iio: adc: axp288: Override TS pin bias current for some models
+
+Harshad Shirwadkar (1):
+      blk-wbt: fix performance regression in wbt scale_up/scale_down
+
+Heikki Krogerus (2):
+      usb: typec: ucsi: ccg: Remove run_isr flag
+      usb: typec: ucsi: displayport: Fix for the mode entering routine
+
+Ian Kent (1):
+      vfs: add missing blkdev_put() in get_tree_bdev()
+
+Ian Rogers (4):
+      libsubcmd: Make _FORTIFY_SOURCE defines dependent on the feature
+      perf tests: Avoid raising SEGV using an obvious NULL dereference
+      perf docs: Allow man page date to be specified
+      perf llvm: Don't access out-of-scope array
+
+Jack Morgenstein (1):
+      RDMA/cm: Fix memory leak in cm_add/remove_one
+
+Jacky.Cao@sony.com (1):
+      USB: dummy-hcd: fix power budget for SuperSpeed mode
+
+James Morse (2):
+      arm64: Fix incorrect irqflag restore for priority masking for compat
+      arm64: ftrace: Ensure synchronisation in PLT setup for
+Neoverse-N1 #1542419
+
+Jan Schmidt (1):
+      xhci: Check all endpoints for LPM timeout
+
+Janakarajan Natarajan (1):
+      x86/asm: Fix MWAITX C-state hint value
+
+Jason Gunthorpe (6):
+      RDMA/mlx5: Do not allow rereg of a ODP MR
+      RDMA/mlx5: Fix a race with mlx5_ib_update_xlt on an implicit MR
+      RDMA/odp: Lift umem_mutex out of ib_umem_odp_unmap_dma_pages()
+      RDMA/mlx5: Order num_pending_prefetch properly with synchronize_srcu
+      RDMA/mlx5: Put live in the correct place for ODP MRs
+      RDMA/mlx5: Add missing synchronize_srcu() for MW cases
+
+Jens Axboe (2):
+      io_uring: only flush workqueues on fileset removal
+      io_uring: fix sequence logic for timeout requests
+
+Jerry Snitselaar (1):
+      efi/tpm: Only set 'efi_tpm_final_log_size' after successful
+event log parsing
+
+Jia Guo (1):
+      ocfs2: clear zero in unaligned direct IO
+
+Jia-Ju Bai (3):
+      fs: ocfs2: fix possible null-pointer dereferences in
+ocfs2_xa_prepare_entry()
+      fs: ocfs2: fix a possible null-pointer dereference in
+ocfs2_write_end_nolock()
+      fs: ocfs2: fix a possible null-pointer dereference in
+ocfs2_info_scan_inode_alloc()
+
+Jia-Ye Li (1):
+      staging: exfat: Use kvzalloc() instead of kzalloc() for exfat_sb_info
+
+Jiaxun Yang (1):
+      MIPS: elf_hwcap: Export userspace ASEs
+
+Joe Perches (3):
+      net: sctp: Rename fallthrough label to unhandled
+      compiler_attributes.h: Add 'fallthrough' pseudo keyword for
+switch/case use
+      Documentation/process: Add fallthrough pseudo-keyword
+
+Joel Fernandes (Google) (1):
+      binder: Fix comment headers on binder_alloc_prepare_to_free()
+
+Johan Hovold (30):
+      USB: serial: keyspan: fix NULL-derefs on open() and write()
+      USB: microtek: fix info-leak at probe
+      USB: adutux: fix use-after-free on disconnect
+      USB: adutux: fix NULL-derefs on disconnect
+      USB: usblcd: fix I/O after disconnect
+      USB: usblcd: drop redundant disconnect mutex
+      USB: usblcd: drop redundant lcd mutex
+      USB: usblcd: use pr_err()
+      USB: legousbtower: fix slab info leak at probe
+      USB: legousbtower: fix deadlock on disconnect
+      USB: legousbtower: fix potential NULL-deref on disconnect
+      USB: legousbtower: fix open after failed reset request
+      USB: usb-skeleton: fix runtime PM after driver unbind
+      USB: usblp: fix runtime PM after driver unbind
+      USB: serial: fix runtime PM after driver unbind
+      media: stkwebcam: fix runtime PM after driver unbind
+      USB: usb-skeleton: fix NULL-deref on disconnect
+      USB: usb-skeleton: fix use-after-free after driver unbind
+      USB: usb-skeleton: drop redundant in-urb check
+      USB: legousbtower: fix use-after-free on release
+      USB: ldusb: fix NULL-derefs on driver unbind
+      USB: adutux: fix use-after-free on release
+      USB: chaoskey: fix use-after-free on release
+      USB: iowarrior: fix use-after-free on disconnect
+      USB: iowarrior: fix use-after-free on release
+      USB: iowarrior: fix use-after-free after driver unbind
+      USB: iowarrior: drop redundant disconnect mutex
+      USB: iowarrior: drop redundant iowarrior mutex
+      USB: iowarrior: use pr_err()
+      USB: yurex: fix NULL-derefs on disconnect
+
+Jonathan Neusch=C3=A4fer (1):
+      dt-bindings: usb: Fix references to usb-hcd.yaml
+
+Jordan Niethe (1):
+      powerpc/kvm: Fix kvmppc_vcore->in_guest value in kvmhv_switch_to_host
+
+Josef Bacik (3):
+      btrfs: fix incorrect updating of log root tree
+      btrfs: allocate new inode in NOFS context
+      btrfs: fix uninitialized ret in ref-verify
+
+Julien Grall (1):
+      arm64: cpufeature: Effectively expose FRINT capability to userspace
+
+Kai-Heng Feng (1):
+      xhci: Increase STS_SAVE timeout in xhci_suspend()
+
+Kan Liang (9):
+      x86/cpu: Add Comet Lake to the Intel CPU models header
+      perf/x86/intel: Add Comet Lake CPU support
+      perf/x86/msr: Add Comet Lake CPU support
+      perf/x86/cstate: Add Comet Lake CPU support
+      perf/x86/msr: Add new CPU model numbers for Ice Lake
+      perf/x86/cstate: Update C-state counters for Ice Lake
+      perf/x86/intel: Add Tiger Lake CPU support
+      perf/x86/msr: Add Tiger Lake CPU support
+      perf/x86/cstate: Add Tiger Lake CPU support
+
+Kees Cook (1):
+      selftests/kselftest/runner.sh: Add 45 second timeout per test
+
+Keith Busch (1):
+      null_blk: Fix zoned command return code
+
+Kenneth Graunke (1):
+      drm/i915: Whitelist COMMON_SLICE_CHICKEN2
+
+Krishnamraju Eraparaju (1):
+      RDMA/siw: Fix serialization issue in write_space()
+
+Laurent Dufour (1):
+      powerpc/pseries: Remove confusing warning message.
+
+Laurent Pinchart (5):
+      drm/panel: lg-lb035q02: Fix SPI alias
+      drm/panel: nec-nl8048hl11: Fix SPI alias
+      drm/panel: sony-acx565akm: Fix SPI alias
+      drm/panel: tpo-td028ttec1: Fix SPI alias
+      drm/panel: tpo-td043mtea1: Fix SPI alias
+
+Leon Romanovsky (1):
+      RDMA/nldev: Reshuffle the code to avoid need to rebind QP in error pa=
+th
+
+Linus Torvalds (2):
+      uaccess: implement a proper unsafe_copy_to_user() and switch
+filldir over to it
+      Linux 5.4-rc3
+
+Lorenzo Bianconi (2):
+      iio: imu: st_lsm6dsx: forbid 0 sensor sensitivity
+      iio: imu: st_lsm6dsx: fix waitime for st_lsm6dsx i2c controller
+
+Lukas Wunner (1):
+      efi/cper: Fix endianness of PCIe class code
+
+Lukas Zapletal (1):
+      hwmon: (k10temp) Update documentation and add temp2_input info
+
+Mao Wenan (1):
+      usbip: vhci_hcd indicate failed message
+
+Marco Felsch (4):
+      gpio: fix getting nonexclusive gpiods from DT
+      iio: light: fix vcnl4000 devicetree hooks
+      iio: light: add missing vcnl4040 of_compatible
+      iio: adc: ad799x: fix probe error handling
+
+Mark Rutland (2):
+      arm64: mm: avoid virt_to_phys(init_mm.pgd)
+      arm64: mm: fix spurious fault detection
+
+Masahiro Yamada (7):
+      module: swap the order of symbol.namespace
+      modpost: fix broken sym->namespace for external module builds
+      module: rename __kstrtab_ns_* to __kstrtabns_* to avoid symbol confli=
+ct
+      kbuild: fix build error of 'make nsdeps' in clean tree
+      nsdeps: fix hashbang of scripts/nsdeps
+      nsdeps: make generated patches independent of locale
+      doc: move namespaces.rst from kbuild/ to core-api/
+
+Masanari Iida (1):
+      staging: exfat: Fix a typo in Kconfig
+
+Masayoshi Mizuma (1):
+      arm64/sve: Fix wrong free for task->thread.sve_state
+
+Mathias Nyman (4):
+      xhci: Fix false warning message about wrong bounce buffer write lengt=
+h
+      xhci: Prevent device initiated U1/U2 link pm if exit latency is too l=
+ong
+      xhci: Fix USB 3.1 capability detection on early xHCI 1.1 spec based h=
+osts
+      xhci: Fix NULL pointer dereference in xhci_clear_tt_buffer_complete()
+
+Matt Roper (1):
+      drm/i915/cml: Add second PCH ID for CMP
+
+Mauro Carvalho Chehab (1):
+      bindings: rename links to mason USB2/USB3 DT files
+
+Max Reitz (1):
+      xfs: Fix tail rounding in xfs_alloc_file_space()
+
+Maxime Ripard (2):
+      ARM: dts: sunxi: Revert phy-names removal for ECHI and OHCI
+      dt-bindings: usb: Bring back phy-names
+
+Michael Straube (1):
+      staging: exfat: add missing SPDX line to Kconfig
+
+Michal Hocko (1):
+      kernel/sysctl.c: do not override max_threads provided by userspace
+
+Michal Kalderon (1):
+      RDMA/core: Fix use after free and refcnt leak on ndev in_device
+in iwarp_query_port
+
+Michal Simek (1):
+      serial: uartps: Fix uartps_major handling
+
+Mika Westerberg (2):
+      bdi: Do not use freezable workqueue
+      Revert "libata, freezer: avoid block device removal while system
+is frozen"
+
+Mohamad Heib (1):
+      IB/core: Fix wrong iterating on ports
+
+Navid Emamdoost (7):
+      RDMA/hfi1: Prevent memory leak in sdma_init
+      Staging: fbtft: fix memory leak in fbtft_framebuffer_alloc
+      misc: fastrpc: prevent memory leak in fastrpc_dma_buf_attach
+      staging: vt6655: Fix memory leak in vt6655_probe
+      iio: imu: adis16400: release allocated memory on failure
+      iio: imu: adis16400: fix memory leak
+      virt: vbox: fix memory leak in hgcm_call_preprocess_linaddr
+
+Nirmoy Das (1):
+      drm/amdgpu: fix memory leak
+
+Nishad Kamdar (1):
+      x86: Use the correct SPDX License Identifier in headers
+
+Noralf Tr=C3=B8nnes (3):
+      staging/fbtft: Depend on OF
+      staging/fbtft: Remove fbtft_device
+      staging/fbtft: Remove flexfb
+
+Nuno S=C3=A1 (1):
+      hwmon: Fix HWMON_P_MIN_ALARM mask
+
+Okash Khawaja (1):
+      staging: speakup: document sysfs attributes
+
+Ondrej Mosnacek (1):
+      selinux: fix context string corruption in convert_context()
+
+Pascal Bouwmann (1):
+      iio: fix center temperature of bmc150-accel-core
+
+Paul Burton (2):
+      mtd: rawnand: au1550nd: Fix au_read_buf16() prototype
+      MIPS: Disable Loongson MMI instructions for kernel build
+
+Pavel Begunkov (2):
+      io_uring: fix reversed nonblock flag for link submission
+      io_uring: remove wait loop spurious wakeups
+
+Pavel Machek (1):
+      Add my linux-leds branch to MAINTAINERS
+
+Pavel Shilovsky (3):
+      CIFS: Gracefully handle QueryInfo errors during open
+      CIFS: Force revalidate inode when dentry is stale
+      CIFS: Force reval dentry if LOOKUP_REVAL flag is set
+
+Pawel Laszczak (3):
+      usb: cdns3: Fix sheduling with locks held.
+      usb:cdns3: Fix for CV CH9 running with g_zero driver.
+      usb: cdns3: Fix for incorrect DMA mask.
+
+Peter Jones (2):
+      efi/tpm: Don't access event->count when it isn't mapped
+      efi/tpm: Don't traverse an event log with no events
+
+Petr Mladek (1):
+      tracing: Initialize iter->seq after zeroing in tracing_read_pipe()
+
+Potnuri Bharat Teja (1):
+      RDMA/iw_cxgb4: fix SRQ access from dump_qp()
+
+Qian Cai (1):
+      mm/page_alloc.c: fix a crash in free_pages_prepare()
+
+Randy Dunlap (3):
+      serial: uartlite: fix exit path null pointer
+      tty: n_hdlc: fix build on SPARC
+      serial: fix kernel-doc warning in comments
+
+Reinhard Speyerer (1):
+      USB: serial: option: add support for Cinterion CLS8 devices
+
+Remi Pommarel (1):
+      iio: adc: meson_saradc: Fix memory allocation order
+
+Rick Tseng (1):
+      usb: xhci: wait for CNR controller not ready bit in xhci resume
+
+Rob Herring (1):
+      xen: Stop abusing DT of_dma_configure API
+
+Roger Quadros (2):
+      usb: cdns3: gadget: Fix full-speed mode
+      usb: cdns3: fix cdns3_core_init_role()
+
+Sami Tolvanen (1):
+      x86/cpu/vmware: Use the full form of INL in VMWARE_PORT
+
+Shiraz, Saleem (1):
+      RDMA/i40iw: Associate ibdev to netdev before IB device registration
+
+Shuah Khan (1):
+      selftests: Add kselftest-all and kselftest-install targets
+
+Song Liu (2):
+      perf/core: Rework memory accounting in perf_mmap()
+      perf/core: Fix corner case in perf_rotate_context()
+
+Srivatsa S. Bhat (VMware) (2):
+      tracing/hwlat: Report total time spent in all NMIs during the sample
+      tracing/hwlat: Don't ignore outer-loop duration when calculating
+max_latency
+
+Stefan Popa (3):
+      iio: accel: adxl372: Fix/remove limitation for FIFO samples
+      iio: accel: adxl372: Fix push to buffers lost samples
+      iio: accel: adxl372: Perform a reset at start up
+
+Stefan-gabriel Mirea (2):
+      tty: serial: linflexuart: Fix magic SysRq handling
+      tty: serial: Fix PORT_LINFLEXUART definition
+
+Stephen Rothwell (1):
+      powerpc/64s/radix: Fix build failure with RADIX_MMU=3Dn
+
+Steve French (3):
+      smb3: cleanup some recent endian errors spotted by updated sparse
+      smb3: remove noisy debug message and minor cleanup
+      smb3: Fix regression in time handling
+
+Steve MacLean (3):
+      perf map: Fix overlapped map handling
+      perf inject jit: Fix JIT_CODE_MOVE filename
+      perf docs: Correct and clarify jitdump spec
+
+Steven Rostedt (VMware) (8):
+      tracefs: Revert ccbd54ff54e8 ("tracefs: Restrict tracefs when
+the kernel is locked down")
+      ftrace: Get a reference counter for the trace_array on filter files
+      tracing: Get trace_array reference for available_tracers files
+      tracing: Have trace events system open call tracing_open_generic_tr()
+      tracing: Add tracing_check_open_get_tr()
+      tracing: Add locked_down checks to the open calls of files
+created for tracefs
+      tracing: Do not create tracefs files if tracefs lockdown is in effect
+      recordmcount: Fix nop_mcount() function
+
+Takashi Iwai (1):
+      staging: bcm2835-audio: Fix draining behavior regression
+
+Tejun Heo (1):
+      writeback: fix use-after-free in finish_writeback_work()
+
+Thierry Reding (2):
+      arm64: errata: Update stale comment
+      gpio: max77620: Use correct unit for debounce times
+
+Thomas Bogendoerfer (3):
+      MIPS: include: Mark __cmpxchg as __always_inline
+      MIPS: include: Mark __xchg as __always_inline
+      MIPS: fw: sni: Fix out of bounds init of o32 stack
+
+Thomas Richter (2):
+      perf vendor events s390: Add JSON transaction for machine type 8561
+      perf vendor events s390: Use s390 machine name instead of type 8561
+
+Tom Lendacky (1):
+      perf/x86/amd: Change/fix NMI latency mitigation to use a timestamp
+
+Tomas Winkler (1):
+      mei: me: add comet point (lake) LP device ids
+
+Tomi Valkeinen (1):
+      drm/bridge: tc358767: fix max_tu_symbol value
+
+Trond Myklebust (2):
+      NFS: Fix O_DIRECT accounting of number of bytes read/written
+      NFS: Remove redundant mirror tracking in O_DIRECT
+
+Tudor Ambarus (1):
+      mtd: spi-nor: Fix direction of the write_sr() transfer
+
+Valdis Kletnieks (1):
+      staging: exfat - fix SPDX tags..
+
+Valentin Schneider (1):
+      RISC-V: entry: Remove unneeded need_resched() loop
+
+Ville Syrj=C3=A4l=C3=A4 (1):
+      drm/i915: Bump skl+ max plane width to 5k for linear/x-tiled
+
+Vincent Chen (3):
+      riscv: avoid kernel hangs when trapped in BUG()
+      riscv: avoid sending a SIGTRAP to a user thread trapped in WARN()
+      riscv: Correct the handling of unexpected ebreak in do_trap_break()
+
+Vincenzo Frascino (5):
+      arm64: vdso32: Fix broken compat vDSO build warnings
+      arm64: vdso: Remove stale files from old assembly implementation
+      arm64: vdso32: Detect binutils support for dmb ishld
+      arm64: vdso32: Remove jump label config option in Makefile
+      lib: vdso: Remove CROSS_COMPILE_COMPAT_VDSO
+
+Vitaly Wool (1):
+      mm/z3fold.c: claim page in the beginning of free
+
+Vlastimil Babka (2):
+      mm, sl[ou]b: improve memory accounting
+      mm, sl[aou]b: guarantee natural alignment for kmalloc(power-of-two)
+
+Wei Yongjun (1):
+      xhci-ext-caps.c: Add missing platform_device_put() on error in
+xhci_create_intel_xhci_sw_pdev()
+
+Will Deacon (8):
+      arm64: Mark functions using explicit register variables as
+'__always_inline'
+      arm64: Default to building compat vDSO with clang when CONFIG_CC_IS_C=
+LANG
+      arm64: vdso32: Move definition of COMPATCC into vdso32/Makefile
+      arm64: vdso32: Don't use KBUILD_CPPFLAGS unconditionally
+      arm64: vdso32: Pass '--target' option to clang via VDSO_CAFLAGS
+      arm64: vdso32: Rename COMPATCC to CC_COMPAT
+      arm64: Kconfig: Make CONFIG_COMPAT_VDSO a proper Kconfig option
+      panic: ensure preemption is disabled during panic()
+
+Xiubo Li (1):
+      nbd: fix possible sysfs duplicate warning
+
+Xuewei Zhang (1):
+      sched/fair: Scale bandwidth quota and period without losing
+quota/period ratio precision
+
+Yi Wang (1):
+      mm: fix -Wmissing-prototypes warnings
+
+Yoshihiro Shimoda (2):
+      usb: renesas_usbhs: gadget: Do not discard queues in
+usb_ep_set_{halt,wedge}()
+      usb: renesas_usbhs: gadget: Fix usb_ep_set_{halt,wedge}() behavior
+
+YueHaibing (2):
+      scripts: add_namespace: Fix coccicheck failed
+      w1: ds250x: Fix build error without CRC16
+
+Yunfeng Ye (1):
+      arm64: armv8_deprecated: Checking return value for memory allocation
+
+ZhangXiaoxu (1):
+      nfs: Fix nfsi->nrequests count error on nfs_inode_remove_request
+
+Zygo Blaxell (1):
+      btrfs: fix balance convert to single on 32-bit host CPUs
+
+amy.shih (2):
+      hwmon: (nct7904) Fix the incorrect value of vsen_mask in
+nct7904_data struct
+      hwmon: (nct7904) Add array fan_alarm and vsen_alarm to store the
+alarms in nct7904_data struct.
+
+zhong jiang (1):
+      iio: Fix an undefied reference error in noa1305_probe

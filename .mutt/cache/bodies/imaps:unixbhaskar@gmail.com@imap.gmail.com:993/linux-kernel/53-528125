@@ -1,0 +1,82 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp1655375lfj;
+        Thu, 13 Aug 2020 09:24:28 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzbVLfaTsiF5j3+rQtvt50SyVX5iyk0XgTwI29E4hUNI3WicYkC4LfvCZlf2LcQKgqOJkhe
+X-Received: by 2002:a17:906:f8c3:: with SMTP id lh3mr5664292ejb.263.1597335868445;
+        Thu, 13 Aug 2020 09:24:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597335868; cv=none;
+        d=google.com; s=arc-20160816;
+        b=JJZX7zjwBtxFLgvlTx6u6IMAnmCdnHdB7a79VBN49TPKXGkCPpYoGU43qU5zfgAC8u
+         IT4gr0ervtlxkviJ38OipIuaGeOyql85smbNQgYY06Bw9WjC/eatlAqLv3HFnHrSh+N4
+         MH55h8h4N/JP1ymCBZV5Lsq2mokIaKah/w4s3FcC7umUyPnSRZabA7LwuvJD4XVDWnNT
+         3n5rPzeiqjL1D3oQq+ffS0o37EekVM5UE1SsLikLD0ivkHhESzkIGo93tJwp1KQ1XxnX
+         7XYsds/49pc0hh2sHdf9ZhbK1ds0vR9fB4pidYcKqFwQUOIkF7ZrZTr58qzxCtB/IQop
+         31jg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=ENJel17QHZm6sVoerll5mfXCZ+4/YwP5PWRN7eMiDZA=;
+        b=CnTQLxlAJP16SwQhrfkknhus4vcTZUCaWVapkhXUDXm5gS8xkMMgi8OAcz3uPAsdOx
+         RAJGM5CsyuB3PTmvX2pDp8zowSfcI0BelVmcAdSGoeJCK9BsiOazH5IPcC92drYQDIEQ
+         r9bw2LS2kPN6+d9zNFrsnO9bAXRd8zsd4A5HNtdmKHmVFfATSX+5K7MQtziaxZXzn1iP
+         aN//u4qgx/OTsM5JA9vjyYY2aW8UWe+P+3ggPYdKj2ZAKLKoRn4gLvWgK8r7Pxyx5SIV
+         p0UNvvJN+LBv8EFAA9xjKrKI94ou1hC6pcRAl755cRYJh6nefmytYCawGmcWQN8mVCd0
+         /PAg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id dm1si3876033edb.315.2020.08.13.09.24.06;
+        Thu, 13 Aug 2020 09:24:28 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726605AbgHMQVp (ORCPT <rfc822;beyondssmith@gmail.com>
+        + 99 others); Thu, 13 Aug 2020 12:21:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59768 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726167AbgHMQVp (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 13 Aug 2020 12:21:45 -0400
+Received: from ZenIV.linux.org.uk (zeniv.linux.org.uk [IPv6:2002:c35c:fd02::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD77FC061757;
+        Thu, 13 Aug 2020 09:21:44 -0700 (PDT)
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1k6Fz3-00EzMC-U0; Thu, 13 Aug 2020 16:21:41 +0000
+Date:   Thu, 13 Aug 2020 17:21:41 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     David Laight <David.Laight@aculab.com>
+Cc:     'Josef Bacik' <josef@toxicpanda.com>, "hch@lst.de" <hch@lst.de>,
+        "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "kernel-team@fb.com" <kernel-team@fb.com>
+Subject: Re: [PATCH] proc: use vmalloc for our kernel buffer
+Message-ID: <20200813162141.GY1236603@ZenIV.linux.org.uk>
+References: <20200813145305.805730-1-josef@toxicpanda.com>
+ <714c8baabe1a4d0191f8cdaf6e28a32d@AcuMS.aculab.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <714c8baabe1a4d0191f8cdaf6e28a32d@AcuMS.aculab.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Aug 13, 2020 at 04:19:27PM +0000, David Laight wrote:
+> From: Josef Bacik
+> > Sent: 13 August 2020 15:53
+> > 
+> >   sysctl: pass kernel pointers to ->proc_handler
+> > 
+> > we have been pre-allocating a buffer to copy the data from the proc
+> > handlers into, and then copying that to userspace.  The problem is this
+> > just blind kmalloc()'s the buffer size passed in from the read, which in
+> > the case of our 'cat' binary was 64kib.  Order-4 allocations are not
+> > awesome, and since we can potentially allocate up to our maximum order,
+> > use vmalloc for these buffers.
+> 
+> What happens if I run 'dd bs=16M ...' ?
+
+Try it.

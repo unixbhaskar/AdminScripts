@@ -1,0 +1,124 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp2453564lfj;
+        Mon, 17 Aug 2020 04:58:12 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzZs4t0sEALAVla27Wz2CViuwmjCd1RFh1+jVuiafKq8Wh7QnAZ+Sw+CStGQWx04M3YCdkV
+X-Received: by 2002:a17:906:12cd:: with SMTP id l13mr14431989ejb.385.1597665492696;
+        Mon, 17 Aug 2020 04:58:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597665492; cv=none;
+        d=google.com; s=arc-20160816;
+        b=1D0dut/spmQHRKgfbzWd5xWL2FNJPE1M4Nx3WJ+nVfwrGWkmiG9P+FQVc+oa4Sg1T7
+         RnxI/fAW2viUw8+DKs5ucZ7odAdhkuwleXbCTYmuD0Y17cFcLKrttb4ORIsrV2O70zto
+         Tb73b3nibdZUCQ+2oZf3CDXTvZC6GoTmZylGnERRhL9O5DZIUJ9tOal9cbgvTsjiWVwB
+         IzaSJiZGKh04aik+cCBQzAyXpN4UOLhzysuY0H31sEmyYmpagDFI7kIGvVrdQQbosXdx
+         G/2xon7mo9/X43h3IdVjQYBwd9m5a3lXAHqxI0YF5S2GQ+/jYTQohwlhxiU4bOXVY5i2
+         NzNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=BpxQoFwDs39NA1MXbM1A9ctcYwgnMBiBO7PX5vk0oRA=;
+        b=dr+IyZVX/WVDchlYSTx+I3ybDeGN2FM4TP//aY7oX7x4Yr0/Z+4uSOztPqQbd19eT9
+         ZCD+9zH9sOLhY7BUkEZBgls74FjT/QuM5NjwfcGIbpY8GmZFM7Jllnz0TDrY0cH+ktKo
+         s/pWCXyZy582wko1o5VRz68Wn3+ulsYmuEKOGvbIUjqekdb+b8vtlBBICKWiRwIHZOXF
+         JY9sQNQxC3OeYC6QHL+zmpScjEQXH845I/S5A5CD4ZZ289U1amTsihRyQiFBuhtXBYbU
+         uuOFIpmNk5LEQts39WsOJJ8Mv3mZbREK6zSyMvUYiWxZu84kZk1SSoPV864fNjaoOG8n
+         CdCg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=xvCAEQt7;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id l7si10667114eja.172.2020.08.17.04.57.49;
+        Mon, 17 Aug 2020 04:58:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=xvCAEQt7;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=linuxfoundation.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727863AbgHQL5Z (ORCPT <rfc822;apple4onegiven@gmail.com>
+        + 99 others); Mon, 17 Aug 2020 07:57:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50490 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726633AbgHQL5Z (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 17 Aug 2020 07:57:25 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 81FA1204EA;
+        Mon, 17 Aug 2020 11:57:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1597665445;
+        bh=WlpyWk2CigbIwSvUvCGB3jBf0Ifuv83GLdABZeilG9I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=xvCAEQt7XuRhAa959zo5CVsMnypZOd8mFKK5XD9d+i9uFdBaPVgKy+mVnyhQixtWN
+         QTm+l5gT1UjH2su3kPMB4xFcnQB+CQifQVoY+7sNvADHd6xJ7vE0vWn6/4HwWz2S4O
+         LMBh1EIhEsg09SBQQdqsgmLqcqjhvl7Bo04s/nak=
+Date:   Mon, 17 Aug 2020 13:57:44 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Jim Baxter <jim_baxter@mentor.com>
+Cc:     linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+        linux-usb@vger.kernel.org,
+        "Resch Carsten (CM/ESO6)" <Carsten.Resch@de.bosch.com>,
+        "Rosca, Eugeniu (ADITG/ESB)" <erosca@de.adit-jv.com>
+Subject: Re: PROBLEM: Long Workqueue delays.
+Message-ID: <20200817115744.GA3985908@kroah.com>
+References: <71aafe68-7fe0-6b77-ea8e-83edd3f16c8d@mentor.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <71aafe68-7fe0-6b77-ea8e-83edd3f16c8d@mentor.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Aug 17, 2020 at 12:40:03PM +0100, Jim Baxter wrote:
+> We have issues with the workqueue of the kernel overloading the CPU 0 
+> when we we disconnect a USB stick.
+> 
+> This results in other items on the shared workqueue being delayed by
+> around 6.5 seconds with a default kernel configuration and 2.3 seconds
+> on a config tailored for our RCar embedded platform.
+> 
+> I am aware there will be delays on the shared workqueue, are the delays
+> we are seeing considered normal?
+> 
+> 
+> 
+> We first noticed this issue on custom hardware and we have recreated it
+> on an RCar Starter Kit using a test module [1] to replicate the
+> behaviour, the test module outputs any delays of greater then 9ms.
+> 
+> To run the test we have a 4GB random file on a USB stick and perform
+> the following test:
+> 
+> 
+> - Load the Module:
+> # taskset -c 0 modprobe latency-mon
+> 
+> - Copy large amount of data from the stick:
+> # dd if=/run/media/sda1/sample.txt of=/dev/zero
+> [ 1437.517603] DELAY: 10
+> 8388607+1 records in
+> 8388607+1 records out
+> 
+
+Is this data really flushed out to the device?
+
+> - Disconnect the USB stick:
+> [ 1551.796792] usb 2-1: USB disconnect, device number 2
+> [ 1558.625517] DELAY: 6782
+> 
+> 
+> The Delay output 6782 is in milliseconds.
+
+What USB workqueue is taking so long?
+
+The one trying to deal with the filesystem flushing out the data that it
+can't do now that the device is removed?  :)
+
+thanks,
+
+greg k-h

@@ -1,0 +1,140 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp4122400lfj;
+        Fri, 27 Sep 2019 15:45:38 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqy+FblLWY2bqcK9xCGVE3geOJc8z9P3n0tQYzctFrDw5vB9IA59VUNmQDMy6EB3hAkuGGRB
+X-Received: by 2002:a50:baab:: with SMTP id x40mr7365551ede.60.1569624337987;
+        Fri, 27 Sep 2019 15:45:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569624337; cv=none;
+        d=google.com; s=arc-20160816;
+        b=uBotv4UCXCMfklJns6v0f89nfv4oN5QFuKHZkAS3OEUqAoY6pio7veF8eKesBKohw1
+         ik8/T+7ezNSPayaAL3+8X5u2LF9qU2bPIH8uWdv+BY3XfqRTdNIUqKytCrCLFcR4Saso
+         qOuQqBZOc2F/6PTKG0dEZuLGz2AS0G6iRnEMlKyjpzYJeBNYx0891QYE8srNYn7IHJkx
+         w/2Z5eF3yppnv5CANK8ddxvG39cPklih6/6qDMjjR+oC19bY0zZVbYUz7iNVoBXTpv2e
+         Q+NT7CINiLyKHN+tfMEaRxeAayKuIAua6Cd2ISI5UKYlSc+LFYUPBLW+80YuoIntyPPz
+         yCqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=UwSSJy15lqLdjwLfpsk3R3EoKs3M3+DyuxlQmnhgzFY=;
+        b=jw197llRebambBttx+hAqev1T6qEicU1Fj35X4UjG/iD0jWO0oOMKdiv48PiJbEiaE
+         qiUQQNgSA9gwm5SKNcKQSJiGClIv3vc7RtFMHFqnWInQvQzv605iX9w19kIOt6duV3hB
+         j/OoDATV37j2+ZXupEUPaRCV5jYyrfA3XCH0UeAjBe9Z+NtrKGD9Y7QjJ0Qa0SFROHW2
+         7uoT5htmg2tkWz+rPkHB7wrSyMErJp+HgJk3pmocRFPu0eBJw+dVoVTFsiD3HWuBGgix
+         wp66jHT0pIA0hi5ymzPizA4+RdM6rLICUrdlWxpyebGjVhem1Zri1P2rvzjMzjHdKdke
+         sx3Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=KG0GPEhB;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f17si2479960eda.232.2019.09.27.15.45.14;
+        Fri, 27 Sep 2019 15:45:37 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=KG0GPEhB;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728382AbfI0WoW (ORCPT <rfc822;4ak.abc@gmail.com> + 99 others);
+        Fri, 27 Sep 2019 18:44:22 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:41838 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725815AbfI0WoW (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 27 Sep 2019 18:44:22 -0400
+Received: by mail-lj1-f194.google.com with SMTP id f5so3970253ljg.8
+        for <linux-kernel@vger.kernel.org>; Fri, 27 Sep 2019 15:44:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UwSSJy15lqLdjwLfpsk3R3EoKs3M3+DyuxlQmnhgzFY=;
+        b=KG0GPEhB4yI2UkkiLVvvfUC0fe3KS87zi2YmU4FaAjPZyfFOSt+evL7Qdj12aTQif6
+         P8S/6U3LDBPWEwma7vrvobooIFOgoeAQQ0h4EPIl6CUxBE3xFoWqxg88aemIuL+NC/Dh
+         HazHKFOKb1ffKnkcbl6O7hxptqfzzMeeqaE0E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UwSSJy15lqLdjwLfpsk3R3EoKs3M3+DyuxlQmnhgzFY=;
+        b=WeGoIa+E/PzEQUmCDODABDU0LRRP+ncp701hY8IvPLD9LiW8MHz9lU324UBPide/2u
+         Sl1bsM4BeTalTPg7xHj+0oyXPfYltke4oqpY2fE0DPu6QJJ1jzzgBrl0bDIULUgQbruH
+         BFAdivyIXaXwqHO09+f4Fmyz63pcWJ686t/FhHJehs6vA0maNfgxCQHDX9uLUtEyMDCm
+         zEwi4oSGCgJOERFySnxZK9OXrxQwOI6MFjl+gJe+m467kRBjnJG4LLbsXsW7K4C+W3lT
+         0OmdMaiI69cPgl2dSEAlUTElaVXld0BCYV6cBhAIF0T2/aXNq7Be9k0PKEvOKIvZnMnh
+         d2kw==
+X-Gm-Message-State: APjAAAW+m2pN9fg/9LjikgiWqlIiLgYSr3hJoPfu/lg/Nd1Q6qE8GMkJ
+        XbVJcJLEikA5dsMYh3BiBXuC8BMqtdk=
+X-Received: by 2002:a2e:924f:: with SMTP id v15mr4422529ljg.199.1569624259371;
+        Fri, 27 Sep 2019 15:44:19 -0700 (PDT)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com. [209.85.208.174])
+        by smtp.gmail.com with ESMTPSA id d28sm738766lfq.88.2019.09.27.15.44.18
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Sep 2019 15:44:18 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id 7so3975211ljw.7
+        for <linux-kernel@vger.kernel.org>; Fri, 27 Sep 2019 15:44:18 -0700 (PDT)
+X-Received: by 2002:a2e:3015:: with SMTP id w21mr4513668ljw.165.1569624258157;
+ Fri, 27 Sep 2019 15:44:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190927200838.GA2618@fieldses.org>
+In-Reply-To: <20190927200838.GA2618@fieldses.org>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Fri, 27 Sep 2019 15:44:02 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wj_bMxjz_T9Oa62Uyp8tKnKomtHKV9HTnuvMxrdwuTPOg@mail.gmail.com>
+Message-ID: <CAHk-=wj_bMxjz_T9Oa62Uyp8tKnKomtHKV9HTnuvMxrdwuTPOg@mail.gmail.com>
+Subject: Re: [GIT PULL] nfsd changes for 5.4
+To:     "J. Bruce Fields" <bfields@fieldses.org>
+Cc:     linux-nfs@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Chuck Lever <chuck.lever@oracle.com>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Sep 27, 2019 at 1:08 PM J. Bruce Fields <bfields@fieldses.org> wrote:
+>
+> Please pull nfsd changes from:
+>
+>   git://linux-nfs.org/~bfields/linux.git tags/nfsd-5.4
+
+Hmm. I styarted to pull, but then realized that the description
+doesn't match the content at all.
+
+You say:
+
+> Highlights:
+>
+>         - add a new knfsd file cache, so that we don't have to open and
+>           close on each (NFSv2/v3) READ or WRITE.  This can speed up
+>           read and write in some cases.  It also replaces our readahead
+>           cache.
+>         - Prevent silent data loss on write errors, by treating write
+>           errors like server reboots for the purposes of write caching,
+>           thus forcing clients to resend their writes.
+>         - Tweak the code that allocates sessions to be more forgiving,
+>           so that NFSv4.1 mounts are less likely to hang when a server
+>           already has a lot of clients.
+>         - Eliminate an arbitrary limit on NFSv4 ACL sizes; they should
+>           now be limited only by the backend filesystem and the
+>           maximum RPC size.
+>         - Allow the server to enforce use of the correct kerberos
+>           credentials when a client reclaims state after a reboot.
+>
+> And some miscellaneous smaller bugfixes and cleanup.
+
+But then the actual code is just one single small commit:
+
+> Dave Wysochanski (1):
+>       SUNRPC: Track writers of the 'channel' file to improve cache_listeners_exist
+
+which doesn't actually match any of the things your description says
+should be there.
+
+So I undid my pull - either the description is completely wrong, or
+you tagged the wrong commit.
+
+Please double-check,
+
+             Linus

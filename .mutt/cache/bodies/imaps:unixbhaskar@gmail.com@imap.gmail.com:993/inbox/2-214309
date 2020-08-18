@@ -1,0 +1,174 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp4180283lfc;
+        Mon, 9 Dec 2019 04:03:38 -0800 (PST)
+X-Google-Smtp-Source: APXvYqw+Qa83h9fQc3InF2WBi/IUTfAMfo6/UwKsk7N7AdNGqcGJF/nuK4XIVDCJ5oHa+GpCs1d5
+X-Received: by 2002:a62:7c54:: with SMTP id x81mr10282758pfc.180.1575893018686;
+        Mon, 09 Dec 2019 04:03:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1575893018; cv=none;
+        d=google.com; s=arc-20160816;
+        b=EF2RLeW0ytnt/yyYdmyRjYSXEVSfjsYF9mTTtPjW/IHYPXP6tUzjaKkuYvZ3Nw3S5y
+         iAwI/Gcy1aIP1C8R1/wLYp76GEbTTZrznZ2rzwCcplklxYkbgm2pkNGVg96S98fuVEL0
+         wb2pfRC1HWZYvNeDqR0SKxTZHehGZGKxwuuiPPcABVRpy3Tar+wCQoxQcQHDGvzKOFoM
+         r/GiJK9DkWZv4547Xg29HRcrsh0+jxgmDb+NtsCY3qrMjgJsUZPhVSdC0jY9UJvgBHmV
+         XNKpRQn3mKo6y/QSs/CPU6/1/M+Z4CNmKng20n+3BnkSFsSRW7XF5ri2tagNlI6yLuD8
+         5LLw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:auto-submitted:references:in-reply-to:message-id:date
+         :subject:to:from;
+        bh=Kfu0adFDNRcGL4F9ff6jBYAcwJHGSa4ZdpnqjILeXTU=;
+        b=VIqx7SShQoCqXPgk07MGosoZeWRvcDQ0/+mAd0W2dOI7ER667Fj7aQao4gwg7uVM3y
+         H8VMTeN/jfGwkaNOu7ugqmMxtIE6srrElEOp4aeCseZ2LZqDeop0RzbQNIgCfQrLLKEM
+         2k3+1OwDapw6ELcoFZtp12ILADcD6LZbEFV7AVIcNwgz6eayuSDpIKLMWSxujxvAI5FO
+         N1AbeqKZ6xVfzVzm2NaLKiDuV56dDqIP968lqgwHaIIDphEGP+XhyDnv32T6Nafx/AMU
+         faVAtT2SBaGeqOLkG2wtwuugA7UjpoffCmZSoq/5/xuci9MS+Vad5nLtvXpRaq4nnOOX
+         ce3A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of bugzilla_noreply@novell.com designates 137.65.250.171 as permitted sender) smtp.mailfrom=bugzilla_noreply@novell.com
+Return-Path: <bugzilla_noreply@novell.com>
+Received: from mh.novell.com (monroe.provo.novell.com. [137.65.250.171])
+        by mx.google.com with ESMTPS id b11si16559711pgk.393.2019.12.09.04.03.38
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 09 Dec 2019 04:03:38 -0800 (PST)
+Received-SPF: pass (google.com: domain of bugzilla_noreply@novell.com designates 137.65.250.171 as permitted sender) client-ip=137.65.250.171;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of bugzilla_noreply@novell.com designates 137.65.250.171 as permitted sender) smtp.mailfrom=bugzilla_noreply@novell.com
+Received: from novprvlin1091.provo.novell.com ([137.65.249.143])
+	by mh.novell.com with ESMTP (NOT encrypted); Mon, 09 Dec 2019 05:03:22 -0700
+Received: by novprvlin1091.provo.novell.com (Postfix, from userid 30)
+	id 7E3AA74050; Mon,  9 Dec 2019 12:03:22 +0000 (UTC)
+From: bugzilla_noreply@novell.com
+To: unixbhaskar@gmail.com
+Subject: [Bug 1158777] It failing to created initrd image for last 3 upgrades
+ .
+Date: Mon, 09 Dec 2019 12:03:22 +0000
+X-Bugzilla-Reason: CC Reporter
+X-Bugzilla-Type: changed
+X-Bugzilla-Watch-Reason: None
+X-Bugzilla-Classification: openSUSE
+X-Bugzilla-Product: openSUSE Tumbleweed
+X-Bugzilla-Component: Upgrade Problems
+X-Bugzilla-Version: Current
+X-Bugzilla-Keywords: 
+X-Bugzilla-Severity: Critical
+X-Bugzilla-Who: conde.philippe@skynet.be
+X-Bugzilla-Status: NEW
+X-Bugzilla-Priority: P5 - None
+X-Bugzilla-Assigned-To: bnc-team-screening@forge.provo.novell.com
+X-Bugzilla-QA-Contact: jsrain@suse.com
+X-Bugzilla-Target-Milestone: ---
+X-Bugzilla-Flags: needinfo?
+X-Bugzilla-Changed-Fields: cc
+X-Bugzilla-NTS-Support-Num: 
+Message-ID: <bug-1158777-87276-fwQ1ANPMeu@http.bugzilla.opensuse.org/>
+In-Reply-To: <bug-1158777-87276@http.bugzilla.opensuse.org/>
+References: <bug-1158777-87276@http.bugzilla.opensuse.org/>
+Content-Type: multipart/alternative; boundary="1575893002.D4Bc4ef2.28407";
+ charset="UTF-8"
+X-Bugzilla-URL: http://bugzilla.opensuse.org/
+Auto-Submitted: auto-generated
+MIME-Version: 1.0
+
+
+--1575893002.D4Bc4ef2.28407
+Date: Mon, 9 Dec 2019 12:03:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+http://bugzilla.opensuse.org/show_bug.cgi?id=1158777
+http://bugzilla.opensuse.org/show_bug.cgi?id=1158777#c2
+
+Philippe Condé <conde.philippe@skynet.be> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |conde.philippe@skynet.be
+
+--- Comment #2 from Philippe Condé <conde.philippe@skynet.be> ---
+Comment on attachment 825774
+  --> http://bugzilla.opensuse.org/attachment.cgi?id=825774
+Failed to create initrd from past 3 upgrades,stratis and convertfsconvertfs
+missing
+
+hello,
+
+I had the same problem some weeks ago and found that in file 
+/etc/dracut.conf.d/05-convertfs.conf I had 2 times the line
+add_dracutmodules+="convertfs"
+
+I removed the second line and started again mkinitrd ==> succesfull.
+
+Regards
+
+-- 
+You are receiving this mail because:
+You are on the CC list for the bug.
+You reported the bug.
+--1575893002.D4Bc4ef2.28407
+Date: Mon, 9 Dec 2019 12:03:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="http://bugzilla.opensuse.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:conde.philippe&#64;skynet.be" title="Philippe Condé &lt;conde.philippe&#64;skynet.be&gt;"> <span class="fn">Philippe Condé</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - It failing to created initrd image for last 3 upgrades ."
+   href="http://bugzilla.opensuse.org/show_bug.cgi?id=1158777">bug 1158777</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>conde.philippe&#64;skynet.be
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - It failing to created initrd image for last 3 upgrades ."
+   href="http://bugzilla.opensuse.org/show_bug.cgi?id=1158777#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - It failing to created initrd image for last 3 upgrades ."
+   href="http://bugzilla.opensuse.org/show_bug.cgi?id=1158777">bug 1158777</a>
+              from <span class="vcard"><a class="email" href="mailto:conde.philippe&#64;skynet.be" title="Philippe Condé &lt;conde.philippe&#64;skynet.be&gt;"> <span class="fn">Philippe Condé</span></a>
+</span></b>
+        <pre>Comment on <span class=""><a href="attachment.cgi?id=825774" name="attach_825774" title="Failed to create initrd from past 3 upgrades,stratis and convertfsconvertfs missing">attachment 825774</a> <a href="attachment.cgi?id=825774&amp;action=edit" title="Failed to create initrd from past 3 upgrades,stratis and convertfsconvertfs missing">[details]</a></span>
+Failed to create initrd from past 3 upgrades,stratis and convertfsconvertfs
+missing
+
+hello,
+
+I had the same problem some weeks ago and found that in file 
+/etc/dracut.conf.d/05-convertfs.conf I had 2 times the line
+add_dracutmodules+=&quot;convertfs&quot;
+
+I removed the second line and started again mkinitrd ==&gt; succesfull.
+
+Regards</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are on the CC list for the bug.</li>
+          <li>You reported the bug.</li>
+      </ul>
+    </body>
+</html>
+--1575893002.D4Bc4ef2.28407--

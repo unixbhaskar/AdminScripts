@@ -1,0 +1,458 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:6752:0:0:0:0:0 with SMTP id e18csp5027877lfj;
+        Tue, 25 Jun 2019 03:45:11 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxqu7/AbUcAZ/vnDOYMlcbDMTDfMDH/nlKFFiO5kx7rqloTNXlc6iRmcLWOWvHttJfaRq/h
+X-Received: by 2002:a02:2a8f:: with SMTP id w137mr133250518jaw.50.1561459511187;
+        Tue, 25 Jun 2019 03:45:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1561459511; cv=none;
+        d=google.com; s=arc-20160816;
+        b=e/MUIwAHUIY9AU+Jtv3blB1E1RZZ0JZUc0xwE7dTgoXpiFaLSSc7pZ8jJhU/tCLvBj
+         rOASyBGXlizfq+0G/rR0hn/SsHJcf49e/zUmAsQ/bZmmm/oftRXbsIIe9ltGwUKrMrTf
+         hPCtTb9wD1nx/0QbpiH64zpBa3udKIVJq664IpMa8KRvM1910bPE5P8luuO/lF9UAlsy
+         H9AG0vnLlVnyzsuc0GAA0PeXA07Q/ozniufgCWMy7SIztEQyAPRQGvtfNOCqZIZik9Z8
+         1JfprQYraSJAmgEGTj4vaVWTjNnU2tdZeCvSmVTr0vpXqQxl4qaNO2c5VZC4RfPdd668
+         dY3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=subject:date:reply-to:to:from:mime-version:message-id:feedback-id
+         :auto-submitted:list-unsubscribe:dkim-signature:dkim-signature;
+        bh=/dYyQ3sWpbdiq3DRRrMtgw8sZYEMBE9Hym7zWtoucRg=;
+        b=GMqfWK3T2ZK+kYNEDVCAutLRNBU3OgIwfGhP29chssobsBY6WqnUyL2lGFD8z4pTvS
+         WezsXzJ0nEhTc0RKdCVFDFCrLtQWjbMNfN8XjQWjYmsnWT3uZb93l7yUJJV8u6PTqeeh
+         egWTIzKYxZHbC+JRUyn+fBWrOcwQacrBoJdLVFq62S3EpP3CoHIF0h82412KEwu3FCea
+         tvMK5ALPwxXPvHdiogssbi7kvoBNDWVxiszhel2dADwi6eqOliNmz9YJ7aqDaWRhiJAN
+         iDVSchXRmspLwp8a5PPBcX0E1+/5OA9WMM6VXd3u3yIPkppa7NjM1tFFtyIMGkxpsFHB
+         uMdg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@leanpub.com header.s=20130614173029.pm header.b=Ss9wGmju;
+       dkim=pass header.i=@pm.mtasv.net header.s=pm header.b=KDUBP6BV;
+       spf=pass (google.com: domain of pm_bounces@pm.mtasv.net designates 50.31.156.114 as permitted sender) smtp.mailfrom=pm_bounces@pm.mtasv.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=leanpub.com
+Return-Path: <pm_bounces@pm.mtasv.net>
+Received: from sc-ord-mta114.mtasv.net (sc-ord-mta114.mtasv.net. [50.31.156.114])
+        by mx.google.com with ESMTPS id 66si788375jae.26.2019.06.25.03.45.10
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 25 Jun 2019 03:45:11 -0700 (PDT)
+Received-SPF: pass (google.com: domain of pm_bounces@pm.mtasv.net designates 50.31.156.114 as permitted sender) client-ip=50.31.156.114;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@leanpub.com header.s=20130614173029.pm header.b=Ss9wGmju;
+       dkim=pass header.i=@pm.mtasv.net header.s=pm header.b=KDUBP6BV;
+       spf=pass (google.com: domain of pm_bounces@pm.mtasv.net designates 50.31.156.114 as permitted sender) smtp.mailfrom=pm_bounces@pm.mtasv.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=leanpub.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=20130614173029.pm; d=leanpub.com;
+ h=List-Unsubscribe:Feedback-ID:Message-ID:MIME-Version:From:To:Reply-To:Date:Subject:Content-Type; i=hello@leanpub.com;
+ bh=ppcYpNu0m5g0FCKvwgwiBxbigwQ=;
+ b=Ss9wGmjuYhlRq2g9EA9eeBxZFZxtaLAglkAU8A5TXBQrwvWczaeLxxwQ87jC04s7w+xsqTiz2/g0
+   HHOkp4yx62PdLROdfXLunqnBxgJzvfl1XMBZjxDTgpS8PJA9lST4J9lbyKVp7DjkxqITJ+cIsIzO
+   F90rf7SgxZbC7CwJff4=
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=pm; d=pm.mtasv.net;
+ h=List-Unsubscribe:Feedback-ID:Message-ID:MIME-Version:From:To:Reply-To:Date:Subject:Content-Type;
+ bh=ppcYpNu0m5g0FCKvwgwiBxbigwQ=;
+ b=KDUBP6BVq8GzYGsTsWOmT+DYtZF9l0eFNoiG5zaXXxPD2/GNHszNf8vsOllWQIDZIj4hHqfsnwZr
+   uqeb3Ia36+pU/fbzaMn1CbO5h+SHXrqjOkFo+csDI8Bs5Ra8vPsnavf00fDrh+cWUEMMx89xLOIu
+   3Bo0LEtGKObG/MXTNj8=
+Received: by sc-ord-mta114.mtasv.net id h27tjc1jk5k1 for <unixbhaskar@gmail.com>; Tue, 25 Jun 2019 06:45:10 -0400 (envelope-from <pm_bounces@pm.mtasv.net>)
+X-PM-IP: 50.31.156.114
+X-IADB-IP: 50.31.156.114
+X-IADB-IP-REVERSE: 114.156.31.50
+List-Unsubscribe: <https://community.leanpub.com/email/unsubscribe/0951ad85b3db363b21737c861b86b19b657642cae82d4e3e38f985c975c52bd5>
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+Feedback-ID: s4758-_:s4758:a19644:postmark
+X-Complaints-To: abuse@postmarkapp.com
+X-PM-Message-Id: 7a34ba1c-eb4f-486e-9732-3f393f1be9ff
+X-PM-RCPT: |bTB8MTk2NDR8NDc1OHx1bml4Ymhhc2thckBnbWFpbC5jb20=|
+Message-ID: <7a34ba1c-eb4f-486e-9732-3f393f1be9ff@mtasv.net>
+MIME-Version: 1.0
+From: "Leanpub Forums summary" <hello@leanpub.com>
+To: unixbhaskar@gmail.com
+Reply-To: "Leanpub Forums summary" <hello@leanpub.com>
+Date: 25 Jun 2019 06:45:09 -0400
+Subject: [Leanpub Forums] Summary
+Content-Type: multipart/alternative;
+ boundary=--boundary_7410199_b26c35b4-e6b5-490c-a6ab-02ab7df9860e
+
+
+----boundary_7410199_b26c35b4-e6b5-490c-a6ab-02ab7df9860e
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+A brief summary of [Leanpub Forums][1] since your last visit on J=
+une 11=0D=0D=0A=0D=0D=0A2 New Topics=0D=0D=0A10 New Posts=0D=0D=0A=
+53 New Users=0D=0D=0A=0D=0D=0A-----------------------------------=
+---------------------------------------------=0D=0D=0A=0D=0D=0A##=
+# Popular Topics=0D=0D=0A=0D=0D=0A[How to specify book sample?][2=
+]=0D=0D=0A=0D=0D=0A Hi Judson, =0D=0D=0AIt sounds like our messag=
+ing here is probably a bit confusing, sorry about that! Hopefully=
+ this helps: =0D=0D=0A=0D=0D=0A=0D=0D=0AYou can only generate a =E2=
+=80=9Csubset=E2=80=9D if you are previewing, not when you are pub=
+lishing. A =E2=80=9Csubset=E2=80=9D is different from a =E2=80=9C=
+sample=E2=80=9D. People do a =E2=80=9Csubset=E2=80=9D when e.g. t=
+hey only want to look at one chapter, and don=E2=80=99t want to w=
+ait for the whole book to generate. We explain this a bit here: h=
+ttp://help.leanpub.com/articles/3025574-i-only-want-to-do-preview=
+-of-a-specific-part-of-my-book-how-do-i-so-a-subset-preview. =0D=0D=0A=
+=0D=0D=0A=0D=0D=0ABefore you publish your book, we have a feature=
+ that lets you put up a sample book on your book=E2=80=99s landin=
+g page. After you publish your book, to generate a sample, you ha=
+ve to set up a sample book a different way, and it only appears o=
+n your book=E2=80=99s landing page when you publish a new version=
+ of your book. =0D=0D=0A=0D=0D=0A=0D=0D=0AHere are the instructio=
+ns for creating a sample book if you=E2=80=99re using Markua: htt=
+ps://leanpub.com/markua/read#conditional-inclusion. =0D=0D=0AHere=
+ are the instructions for c...=0D=0D=0A--------------------------=
+------------------------------------------------------=0D=0D=0A=0D=
+=0D=0A=0D=0D=0A[Welcome to everyone who was only on the Google Gr=
+oup!][3]=0D=0D=0A=0D=0D=0A We=E2=80=99ve finally turned off the L=
+eanpub Google Group, and are using this forum instead. If you hav=
+e just joined, feel free to ask any questions on this thread!=0D=0D=0A=
+-----------------------------------------------------------------=
+---------------=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=
+=0D=0D=0A=0D=0D=0A=0D=0D=0A[1]: https://community.leanpub.com/=0D=
+=0D=0A[2]: https://community.leanpub.com/t/how-to-specify-book-sa=
+mple/1373=0D=0D=0A[3]: https://community.leanpub.com/t/welcome-to=
+-everyone-who-was-only-on-the-google-group/1378=0D=0D=0A=0D=0D=0A=
+=0D=0D=0A=0D=0D=0AThis summary is sent from [Leanpub Forums][1] w=
+hen we haven't seen you in a while. Change [your email settings][=
+4], or [click here][5] to unsubscribe.=0D=0D=0A=0D=0D=0A[4]: http=
+s://community.leanpub.com/my/preferences/emails=0D=0D=0A[5]: http=
+s://community.leanpub.com/email/unsubscribe/0951ad85b3db363b21737=
+c861b86b19b657642cae82d4e3e38f985c975c52bd5=0D=0D=0A=0D=0D=0A=0D=0D=0A=
+=0D=0D=0A
+----boundary_7410199_b26c35b4-e6b5-490c-a6ab-02ab7df9860e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<body>=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A  <meta http-equiv=3D"C=
+ontent-type" name=3D"viewport" content=3D"initial-scale=3D1.0, ma=
+ximum-scale=3D1.0, user-scalable=3Dno, width=3Ddevice-width">=0D=0D=0A=
+  <title></title>=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=
+=0D=0A<!--[if mso]>=0D=0D=0A<style type=3D"text/css">=0D=0D=0Abod=
+y, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans=
+-serif !important;}=0D=0D=0A</style>=0D=0D=0A<![endif]-->=0D=0D=0A=
+=0D=0D=0A<span style=3D"display:none!important;color:#f3f3f3;font=
+-size:1px;line-height:1px;max-height:0;max-width:0;mso-hide:all!i=
+mportant;opacity:0;overflow:hidden;visibility:hidden">=0D=0D=0A  =
+A brief summary since your last visit on June 11=0D=0D=0A</span>=0D=
+=0D=0A=0D=0D=0A<table dir=3D"ltr" style=3D"background-color:#ffff=
+ff;width:100%;">=0D=0D=0A  <tr>=0D=0D=0A    <td align=3D"center" =
+style=3D"text-align: center;padding: 20px 0; font-family:Helvetic=
+a,Arial,sans-serif;">=0D=0D=0A=0D=0D=0A  <a href=3D"https://commu=
+nity.leanpub.com" style=3D"text-decoration: none; font-weight: bo=
+ld; color: #006699;; color:#333333;font-size:22px;text-decoration=
+:none;">=0D=0D=0A    Leanpub Forums=0D=0D=0A  </a>=0D=0D=0A=0D=0D=0A=
+    </td>=0D=0D=0A  </tr>=0D=0D=0A</table>=0D=0D=0A=0D=0D=0A<tabl=
+e dir=3D"ltr" style=3D"width:100%;background:#f3f3f3;padding:0;bo=
+rder-spacing:0;font-family:Helvetica,Arial,sans-serif;font-size:1=
+4px;font-weight:200;line-height:1.3;vertical-align:top;">=0D=0D=0A=
+  <tr>=0D=0D=0A    <td style=3D"width:5%;vertical-align:top;paddi=
+ng:0;">=0D=0D=0A      <div style=3D"background-color: #2F70AC; co=
+lor: #FFFFFF;">=0D=0D=0A        <table dir=3D"ltr" style=3D"borde=
+r-spacing:0;padding:0;width:100%">=0D=0D=0A          <tbody>=0D=0D=0A=
+            <tr>=0D=0D=0A              <td height=3D"400px" style=
+=3D"height:400px;border-collapse:collapse!important;margin:0;mso-=
+line-height-rule:exactly;padding:0;">=C2=A0</td>=0D=0D=0A        =
+    </tr>=0D=0D=0A          </tbody>=0D=0D=0A        </table>=0D=0D=0A=
+      </div>=0D=0D=0A    </td>=0D=0D=0A    <td style=3D"vertical-=
+align:top;padding:0;font-family:Helvetica,Arial,sans-serif;">=0D=0D=0A=
+      <table dir=3D"ltr" align=3D"center" style=3D"background-col=
+or: #2F70AC; color: #FFFFFF;; border-spacing:0;margin:0;padding:0=
+;text-align:inherit;vertical-align:top;width:100%">=0D=0D=0A     =
+   <tbody>=0D=0D=0A          <tr>=0D=0D=0A            <td style=3D=
+"border-collapse:collapse!important;color:#0a0a0a;line-height:1.3=
+;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:=
+normal">=0D=0D=0A=0D=0D=0A<br>=0D=0D=0A<center style=3D"backgroun=
+d-color: #2F70AC; color: #FFFFFF;; font-size:22px;font-weight:400=
+;">Since your last visit</center>=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=
+<table dir=3D"ltr" style=3D"table-layout:fixed;margin:10px 0 20px=
+ 0;padding:0;vertical-align:top;width:100%">=0D=0D=0A<tbody>=0D=0D=0A=
+  <tr>=0D=0D=0A      <td style=3D"text-align:center;font-size:36p=
+x;font-weight:400;">=0D=0D=0A        <a href=3D"https://community=
+.leanpub.com/new" style=3D"text-decoration: none; font-weight: bo=
+ld; color: #006699;; background-color: #2F70AC; color: #FFFFFF;">=
+<strong>2</strong></a>=0D=0D=0A      </td>=0D=0D=0A      <td styl=
+e=3D"text-align:center;font-size:36px;font-weight:400;">=0D=0D=0A=
+        <a href=3D"https://community.leanpub.com/new" style=3D"te=
+xt-decoration: none; font-weight: bold; color: #006699;; backgrou=
+nd-color: #2F70AC; color: #FFFFFF;"><strong>10</strong></a>=0D=0D=0A=
+      </td>=0D=0D=0A      <td style=3D"text-align:center;font-siz=
+e:36px;font-weight:400;">=0D=0D=0A        <a href=3D"https://comm=
+unity.leanpub.com/about" style=3D"text-decoration: none; font-wei=
+ght: bold; color: #006699;; background-color: #2F70AC; color: #FF=
+FFFF;"><strong>53</strong></a>=0D=0D=0A      </td>=0D=0D=0A  </tr=
+>=0D=0D=0A  <tr>=0D=0D=0A      <td style=3D"font-size:14px;font-w=
+eight:400;text-align:center;">=0D=0D=0A        <a href=3D"https:/=
+/community.leanpub.com/new" style=3D"text-decoration: none; font-=
+weight: bold; color: #006699;; background-color: #2F70AC; color: =
+#FFFFFF;"><strong>New Topics</strong></a>=0D=0D=0A      </td>=0D=0D=0A=
+      <td style=3D"font-size:14px;font-weight:400;text-align:cent=
+er;">=0D=0D=0A        <a href=3D"https://community.leanpub.com/ne=
+w" style=3D"text-decoration: none; font-weight: bold; color: #006=
+699;; background-color: #2F70AC; color: #FFFFFF;"><strong>New Pos=
+ts</strong></a>=0D=0D=0A      </td>=0D=0D=0A      <td style=3D"fo=
+nt-size:14px;font-weight:400;text-align:center;">=0D=0D=0A       =
+ <a href=3D"https://community.leanpub.com/about" style=3D"text-de=
+coration: none; font-weight: bold; color: #006699;; background-co=
+lor: #2F70AC; color: #FFFFFF;"><strong>New Users</strong></a>=0D=0D=0A=
+      </td>=0D=0D=0A  </tr>=0D=0D=0A</tbody>=0D=0D=0A</table>=0D=0D=0A=
+=0D=0D=0A<center style=3D"background-color: #2F70AC; color: #FFFF=
+FF;; font-size:22px;font-weight:400;margin-bottom: 8px;">Popular =
+Topics</center>=0D=0D=0A=0D=0D=0A=0D=0D=0A            </td>=0D=0D=0A=
+          </tr>=0D=0D=0A        </tbody>=0D=0D=0A      </table>=0D=
+=0D=0A      <table dir=3D"ltr" align=3D"center" style=3D"border-s=
+pacing:0;background:#fefefe;margin:0;padding:0;text-align:center;=
+vertical-align:top;width:100%">=0D=0D=0A        <tbody>=0D=0D=0A =
+         <tr>=0D=0D=0A            <td style=3D"-moz-hyphens:auto;=
+-webkit-hyphens:auto;border-collapse:collapse!important;color:#0a=
+0a0a;hyphens:auto;line-height:1.3;margin:0;padding:0;text-align:l=
+eft;vertical-align:top;word-wrap:normal">=0D=0D=0A=0D=0D=0A<!--  =
+ Beginning of Popular Topic   -->=0D=0D=0A<table dir=3D"ltr" styl=
+e=3D"width:100%">=0D=0D=0A  <tbody>=0D=0D=0A    <tr>=0D=0D=0A    =
+  <td style=3D"margin:0;padding:0 0 0 16px;text-align:left;vertic=
+al-align:top;">=0D=0D=0A        <p style=3D"color:#8f8f8f;line-he=
+ight:1.3;margin: 20px 0 0 0;">=0D=0D=0A          <a href=3D"https=
+://community.leanpub.com/c/authors" style=3D"text-decoration: non=
+e; font-weight: bold; color: #006699;; font-size: 0.857em; white-=
+space: nowrap; display: inline-block; position: relative; line-he=
+ight: 1; margin-right: 10px;"><span style=3D"background-color: #2=
+5AAE2;display: inline-block; width: 10px; height: 10px;"></span><=
+span style=3D"color: #222222; vertical-align: text-top; line-heig=
+ht: 1; margin-left: 4px; padding-left: 2px; display: inline;max-w=
+idth: 150px; overflow: hidden; text-overflow: ellipsis;" data-dro=
+p-close=3D"true" title=3D"This is a forum where Leanpub authors c=
+an ask questions, provide answers and share any tips and tricks t=
+hat have worked for them.">The Leanpub Authors Forum</span></a>=0D=
+=0D=0A        </p>=0D=0D=0A      </td>=0D=0D=0A      <td style=3D=
+"margin:0;padding:0 16px 0 0;text-align:right;vertical-align:top;=
+">=0D=0D=0A        <p style=3D"color:#8f8f8f;line-height:1.3;marg=
+in:20px 0 0 0;font-weight:400;">=0D=0D=0A          June 22=0D=0D=0A=
+        </p>=0D=0D=0A      </td>=0D=0D=0A    </tr>=0D=0D=0A  </tb=
+ody>=0D=0D=0A</table>=0D=0D=0A=0D=0D=0A<table dir=3D"ltr" style=3D=
+"vertical-align:top;width:100%">=0D=0D=0A  <tbody>=0D=0D=0A    <t=
+r>=0D=0D=0A      <td style=3D"padding:0 8px 8px 16px; text-align:=
+left; width:100%;">=0D=0D=0A        <h2 style=3D"font-size:18px;f=
+ont-weight:400;line-height:1.3;margin:0;padding:0;word-wrap:norma=
+l">=0D=0D=0A          <a href=3D"https://community.leanpub.com/t/=
+how-to-specify-book-sample/1373" style=3D"text-decoration: none; =
+font-weight: bold; color: #006699;; font-weight:400;line-height:1=
+.3;margin:0;padding:0;text-decoration:none">=0D=0D=0A            =
+<strong>How to specify book sample?</strong>=0D=0D=0A          </=
+a>=0D=0D=0A        </h2>=0D=0D=0A      </td>=0D=0D=0A    </tr>=0D=
+=0D=0A  </tbody>=0D=0D=0A</table>=0D=0D=0A=0D=0D=0A<table dir=3D"=
+ltr" style=3D"padding:0;position:relative;text-align:left;vertica=
+l-align:top;width:100%">=0D=0D=0A  <tbody>=0D=0D=0A    <tr>=0D=0D=0A=
+      <td style=3D"color:#0a0a0a;line-height:1.3;margin:0 auto;pa=
+dding:0 0 0 16px;width:50px;">=0D=0D=0A        <img src=3D"https:=
+//community.leanpub.com/user_avatar/community.leanpub.com/judsonl=
+moore/45/118990_1.png" style=3D"border-radius:50%;clear:both;disp=
+lay:block;float:none;height:50px;width:50px;margin:0;max-width:10=
+0%;outline:0;text-align:center;text-decoration:none;" align=3D"ce=
+nter">=0D=0D=0A      </td>=0D=0D=0A      <td style=3D"color:#0a0a=
+0a;padding:0 16px 0 8px;text-align:left;vertical-align:top;">=0D=0D=0A=
+            <h6 style=3D"color:inherit;line-height:1.3;margin:0;p=
+adding:0;font-weight: normal;font-size:16px;">Judson L Moore</h6>=
+=0D=0D=0A          <p style=3D"color:inherit;font-size:14px;font-=
+weight:400;line-height:1.3;margin:0 0 8px 0;padding:0;word-wrap:n=
+ormal;">judsonlmoore</p>=0D=0D=0A      </td>=0D=0D=0A    </tr>=0D=
+=0D=0A  </tbody>=0D=0D=0A</table>=0D=0D=0A=0D=0D=0A<table dir=3D"=
+ltr" style=3D"border-bottom:1px solid #f3f3f3;padding:0;text-alig=
+n:left;vertical-align:top;width:100%">=0D=0D=0A  <tbody>=0D=0D=0A=
+    <tr>=0D=0D=0A      <td style=3D"color:#0a0a0a;font-size:14px;=
+padding:0 16px 0 16px;text-align:left;width:100%;font-weight:norm=
+al;">=0D=0D=0A        <p>I seem to recall that once upon a time I=
+ could publish the full book or a sample. Under preview, I found =
+the instructions for generating a subset.txt file to specify this=
+, but for publish, I don=E2=80=99t find how to specify the same. =
+Is this still possible? (Was it ever possible?)</p>=0D=0D=0A     =
+ </td>=0D=0D=0A    </tr>=0D=0D=0A  </tbody>=0D=0D=0A</table>=0D=0D=0A=
+=0D=0D=0A<table dir=3D"ltr" style=3D"padding:0;text-align:left;ve=
+rtical-align:top;width:100%; margin-top:20px;">=0D=0D=0A  <tbody>=
+=0D=0D=0A    <tr>=0D=0D=0A      <td style=3D"padding:0 8px 16px 1=
+6px;text-align:left;white-space:nowrap;vertical-align:top;width:7=
+5px">=0D=0D=0A        <img src=3D"https://community.leanpub.com/i=
+mages/emails/heart.png" style=3D"clear:both;display:inline-block;=
+float:left;height:20px;margin:0;max-width:100%;opacity:.4;outline=
+:0;text-decoration:none;width:auto">=0D=0D=0A        <p style=3D"=
+color:#8f8f8f;float:left;line-height:1.3;margin:0 5px 10px 5px;pa=
+dding:0;text-align:left;font-weight:400;">1</p>=0D=0D=0A      </t=
+d>=0D=0D=0A      <td style=3D"padding:0 8px 16px 8px;text-align:l=
+eft;white-space:nowrap;vertical-align:top;width:75px">=0D=0D=0A  =
+      <img src=3D"https://community.leanpub.com/images/emails/com=
+ment.png" style=3D"clear:none;display:inline-block;float:left;hei=
+ght:20px;margin:0;max-width:100%;opacity:.4;outline:0;text-decora=
+tion:none;width:auto">=0D=0D=0A        <p style=3D"color:#8f8f8f;=
+float:left;line-height:1.3;margin:0 5px 10px 5px;padding:0;text-a=
+lign:left;font-weight:400;">4</p>=0D=0D=0A      </td>=0D=0D=0A   =
+   <td style=3D"padding:0 8px 16px 8px;text-align:left;white-spac=
+e:nowrap;vertical-align:top;">=0D=0D=0A            <img src=3D"ht=
+tps://community.leanpub.com/user_avatar/community.leanpub.com/jud=
+sonlmoore/45/118990_1.png" style=3D"border-radius:50%;clear:both;=
+display:inline-block;height:20px;width:20px;outline:0;text-decora=
+tion:none;">=0D=0D=0A            <img src=3D"https://community.le=
+anpub.com/user_avatar/community.leanpub.com/lenepp/45/118526_1.pn=
+g" style=3D"border-radius:50%;clear:both;display:inline-block;hei=
+ght:20px;width:20px;outline:0;text-decoration:none;">=0D=0D=0A   =
+   </td>=0D=0D=0A      <td style=3D"line-height:1.3;padding:0 16p=
+x 0 8px;text-align:right;white-space:nowrap;vertical-align:top;">=
+=0D=0D=0A        <a href=3D"https://community.leanpub.com/t/how-t=
+o-specify-book-sample/1373" style=3D"text-decoration: none; font-=
+weight: bold; color: #006699;; background-color: #2F70AC; color: =
+#FFFFFF;; width:100%;text-decoration:none;padding:8px 16px;white-=
+space:nowrap;">=0D=0D=0A          Read More=0D=0D=0A        </a>=0D=
+=0D=0A      </td>=0D=0D=0A    </tr>=0D=0D=0A  </tbody>=0D=0D=0A</=
+table>=0D=0D=0A<div style=3D"background-color:#f3f3f3;">=0D=0D=0A=
+  <table dir=3D"ltr" style=3D"padding:0;width:100%">=0D=0D=0A    =
+<tbody><tr><td height=3D"20px" style=3D"border-collapse:collapse!=
+important;line-height:20px;margin:0;mso-line-height-rule:exactly;=
+padding:0;">=C2=A0</td></tr></tbody>=0D=0D=0A  </table>=0D=0D=0A<=
+/div>=0D=0D=0A<!--   End of Popular Topic   -->=0D=0D=0A=0D=0D=0A=
+=0D=0D=0A=0D=0D=0A<!--   Beginning of Popular Topic   -->=0D=0D=0A=
+<table dir=3D"ltr" style=3D"width:100%">=0D=0D=0A  <tbody>=0D=0D=0A=
+    <tr>=0D=0D=0A      <td style=3D"margin:0;padding:0 0 0 16px;t=
+ext-align:left;vertical-align:top;">=0D=0D=0A        <p style=3D"=
+color:#8f8f8f;line-height:1.3;margin: 20px 0 0 0;">=0D=0D=0A     =
+     <a href=3D"https://community.leanpub.com/c/authors" style=3D=
+"text-decoration: none; font-weight: bold; color: #006699;; font-=
+size: 0.857em; white-space: nowrap; display: inline-block; positi=
+on: relative; line-height: 1; margin-right: 10px;"><span style=3D=
+"background-color: #25AAE2;display: inline-block; width: 10px; he=
+ight: 10px;"></span><span style=3D"color: #222222; vertical-align=
+: text-top; line-height: 1; margin-left: 4px; padding-left: 2px; =
+display: inline;max-width: 150px; overflow: hidden; text-overflow=
+: ellipsis;" data-drop-close=3D"true" title=3D"This is a forum wh=
+ere Leanpub authors can ask questions, provide answers and share =
+any tips and tricks that have worked for them.">The Leanpub Autho=
+rs Forum</span></a>=0D=0D=0A        </p>=0D=0D=0A      </td>=0D=0D=0A=
+      <td style=3D"margin:0;padding:0 16px 0 0;text-align:right;v=
+ertical-align:top;">=0D=0D=0A        <p style=3D"color:#8f8f8f;li=
+ne-height:1.3;margin:20px 0 0 0;font-weight:400;">=0D=0D=0A      =
+    June 24=0D=0D=0A        </p>=0D=0D=0A      </td>=0D=0D=0A    =
+</tr>=0D=0D=0A  </tbody>=0D=0D=0A</table>=0D=0D=0A=0D=0D=0A<table=
+ dir=3D"ltr" style=3D"vertical-align:top;width:100%">=0D=0D=0A  <=
+tbody>=0D=0D=0A    <tr>=0D=0D=0A      <td style=3D"padding:0 8px =
+8px 16px; text-align:left; width:100%;">=0D=0D=0A        <h2 styl=
+e=3D"font-size:18px;font-weight:400;line-height:1.3;margin:0;padd=
+ing:0;word-wrap:normal">=0D=0D=0A          <a href=3D"https://com=
+munity.leanpub.com/t/welcome-to-everyone-who-was-only-on-the-goog=
+le-group/1378" style=3D"text-decoration: none; font-weight: bold;=
+ color: #006699;; font-weight:400;line-height:1.3;margin:0;paddin=
+g:0;text-decoration:none">=0D=0D=0A            <strong>Welcome to=
+ everyone who was only on the Google Group!</strong>=0D=0D=0A    =
+      </a>=0D=0D=0A        </h2>=0D=0D=0A      </td>=0D=0D=0A    =
+</tr>=0D=0D=0A  </tbody>=0D=0D=0A</table>=0D=0D=0A=0D=0D=0A<table=
+ dir=3D"ltr" style=3D"padding:0;position:relative;text-align:left=
+;vertical-align:top;width:100%">=0D=0D=0A  <tbody>=0D=0D=0A    <t=
+r>=0D=0D=0A      <td style=3D"color:#0a0a0a;line-height:1.3;margi=
+n:0 auto;padding:0 0 0 16px;width:50px;">=0D=0D=0A        <img sr=
+c=3D"https://community.leanpub.com/user_avatar/community.leanpub.=
+com/peter/45/118141_1.png" style=3D"border-radius:50%;clear:both;=
+display:block;float:none;height:50px;width:50px;margin:0;max-widt=
+h:100%;outline:0;text-align:center;text-decoration:none;" align=3D=
+"center">=0D=0D=0A      </td>=0D=0D=0A      <td style=3D"color:#0=
+a0a0a;padding:0 16px 0 8px;text-align:left;vertical-align:top;">=0D=
+=0D=0A            <h6 style=3D"color:inherit;line-height:1.3;marg=
+in:0;padding:0;font-weight: normal;font-size:16px;">Peter Armstro=
+ng</h6>=0D=0D=0A          <p style=3D"color:inherit;font-size:14p=
+x;font-weight:400;line-height:1.3;margin:0 0 8px 0;padding:0;word=
+-wrap:normal;">peter</p>=0D=0D=0A      </td>=0D=0D=0A    </tr>=0D=
+=0D=0A  </tbody>=0D=0D=0A</table>=0D=0D=0A=0D=0D=0A<table dir=3D"=
+ltr" style=3D"border-bottom:1px solid #f3f3f3;padding:0;text-alig=
+n:left;vertical-align:top;width:100%">=0D=0D=0A  <tbody>=0D=0D=0A=
+    <tr>=0D=0D=0A      <td style=3D"color:#0a0a0a;font-size:14px;=
+padding:0 16px 0 16px;text-align:left;width:100%;font-weight:norm=
+al;">=0D=0D=0A        <p>We=E2=80=99ve finally turned off the Lea=
+npub Google Group, and are using this forum instead. If you have =
+just joined, feel free to ask any questions on this thread!</p>=0D=
+=0D=0A      </td>=0D=0D=0A    </tr>=0D=0D=0A  </tbody>=0D=0D=0A</=
+table>=0D=0D=0A=0D=0D=0A<table dir=3D"ltr" style=3D"padding:0;tex=
+t-align:left;vertical-align:top;width:100%; margin-top:20px;">=0D=
+=0D=0A  <tbody>=0D=0D=0A    <tr>=0D=0D=0A      <td style=3D"paddi=
+ng:0 8px 16px 16px;text-align:left;white-space:nowrap;vertical-al=
+ign:top;width:75px">=0D=0D=0A        <img src=3D"https://communit=
+y.leanpub.com/images/emails/heart.png" style=3D"clear:both;displa=
+y:inline-block;float:left;height:20px;margin:0;max-width:100%;opa=
+city:.4;outline:0;text-decoration:none;width:auto">=0D=0D=0A     =
+   <p style=3D"color:#8f8f8f;float:left;line-height:1.3;margin:0 =
+5px 10px 5px;padding:0;text-align:left;font-weight:400;">0</p>=0D=
+=0D=0A      </td>=0D=0D=0A      <td style=3D"padding:0 8px 16px 8=
+px;text-align:left;white-space:nowrap;vertical-align:top;width:75=
+px">=0D=0D=0A        <img src=3D"https://community.leanpub.com/im=
+ages/emails/comment.png" style=3D"clear:none;display:inline-block=
+;float:left;height:20px;margin:0;max-width:100%;opacity:.4;outlin=
+e:0;text-decoration:none;width:auto">=0D=0D=0A        <p style=3D=
+"color:#8f8f8f;float:left;line-height:1.3;margin:0 5px 10px 5px;p=
+adding:0;text-align:left;font-weight:400;">1</p>=0D=0D=0A      </=
+td>=0D=0D=0A      <td style=3D"padding:0 8px 16px 8px;text-align:=
+left;white-space:nowrap;vertical-align:top;">=0D=0D=0A           =
+ <img src=3D"https://community.leanpub.com/user_avatar/community.=
+leanpub.com/peter/45/118141_1.png" style=3D"border-radius:50%;cle=
+ar:both;display:inline-block;height:20px;width:20px;outline:0;tex=
+t-decoration:none;">=0D=0D=0A      </td>=0D=0D=0A      <td style=3D=
+"line-height:1.3;padding:0 16px 0 8px;text-align:right;white-spac=
+e:nowrap;vertical-align:top;">=0D=0D=0A        <a href=3D"https:/=
+/community.leanpub.com/t/welcome-to-everyone-who-was-only-on-the-=
+google-group/1378" style=3D"text-decoration: none; font-weight: b=
+old; color: #006699;; background-color: #2F70AC; color: #FFFFFF;;=
+ width:100%;text-decoration:none;padding:8px 16px;white-space:now=
+rap;">=0D=0D=0A          Read More=0D=0D=0A        </a>=0D=0D=0A =
+     </td>=0D=0D=0A    </tr>=0D=0D=0A  </tbody>=0D=0D=0A</table>=0D=
+=0D=0A<div style=3D"background-color:#f3f3f3;">=0D=0D=0A  <table =
+dir=3D"ltr" style=3D"padding:0;width:100%">=0D=0D=0A    <tbody><t=
+r><td height=3D"20px" style=3D"border-collapse:collapse!important=
+;line-height:20px;margin:0;mso-line-height-rule:exactly;padding:0=
+;">=C2=A0</td></tr></tbody>=0D=0D=0A  </table>=0D=0D=0A</div>=0D=0D=0A=
+<!--   End of Popular Topic   -->=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=
+=0D=0D=0A            </td>=0D=0D=0A          </tr>=0D=0D=0A      =
+  </tbody>=0D=0D=0A      </table>=0D=0D=0A    </td>=0D=0D=0A    <=
+td style=3D"width:5%;vertical-align:top;padding:0;">=0D=0D=0A    =
+  <!-- Background that goes down part-way behind content -->=0D=0D=0A=
+      <div style=3D"background-color: #2F70AC; color: #FFFFFF;">=0D=
+=0D=0A        <table dir=3D"ltr" style=3D"border-spacing:0;paddin=
+g:0;width:100%">=0D=0D=0A          <tbody>=0D=0D=0A            <t=
+r>=0D=0D=0A              <td height=3D"400px" style=3D"height:400=
+px;border-collapse:collapse!important;margin:0;mso-line-height-ru=
+le:exactly;padding:0;">=C2=A0</td>=0D=0D=0A            </tr>=0D=0D=0A=
+          </tbody>=0D=0D=0A        </table>=0D=0D=0A      </div>=0D=
+=0D=0A    </td>=0D=0D=0A  </tr>=0D=0D=0A</table>=0D=0D=0A=0D=0D=0A=
+=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=
+=0D=0A    =0D=0D=0A    <td style=3D"width:5%;padding:0;">=C2=A0</=
+td>=0D=0D=0A  =0D=0D=0A=0D=0D=0A<style>=0D=0D=0A  @media only scr=
+een {=0D=0D=0A    html {=0D=0D=0A      min-height: 100%;=0D=0D=0A=
+      background: #f3f3f3=0D=0D=0A    }=0D=0D=0A  }=0D=0D=0A=0D=0D=0A=
+  @media only screen and (max-width:900px) {=0D=0D=0A    table.bo=
+dy img {=0D=0D=0A      width: auto;=0D=0D=0A      height: auto=0D=
+=0D=0A    }=0D=0D=0A    table.body center {=0D=0D=0A      min-wid=
+th: 0!important;=0D=0D=0A    }=0D=0D=0A    table.body .side-space=
+r {=0D=0D=0A      width: 2.5%!important;=0D=0D=0A    }=0D=0D=0A  =
+  table.body .column,=0D=0D=0A =20  table.body .columns {=0D=0D=0A=
+      height: auto!important;=0D=0D=0A      -moz-box-sizing: bord=
+er-box;=0D=0D=0A      -webkit-box-sizing: border-box;=0D=0D=0A   =
+   box-sizing: border-box;=0D=0D=0A      padding-left: 16px!impor=
+tant;=0D=0D=0A      padding-right: 16px!important=0D=0D=0A    }=0D=
+=0D=0A    table.body .column .column,=0D=0D=0A    table.body .col=
+umn .columns,=0D=0D=0A    table.body .columns .column,=0D=0D=0A  =
+  table.body .columns .columns {=0D=0D=0A      padding-left: 0!im=
+portant;=0D=0D=0A      padding-right: 0!important=0D=0D=0A    }=0D=
+=0D=0A  }=0D=0D=0A</style>=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=
+=0D=0A<div dir=3D"ltr" style=3D"color:#666; font-size:95%; text-a=
+lign:center; padding-top:15px;">=0D=0D=0A  This summary is sent f=
+rom <a href=3D"https://community.leanpub.com" style=3D"text-decor=
+ation: none; font-weight: bold; color: #006699;; color: #0088cc">=
+Leanpub Forums</a> when we haven't seen you in a while. Change <a=
+ href=3D"https://community.leanpub.com/my/preferences/emails" sty=
+le=3D"text-decoration: none; font-weight: bold; color: #006699;">=
+your email settings</a>, or <a style=3D"text-decoration: none; fo=
+nt-weight: bold; color: #006699;; color: #0088cc" href=3D"https:/=
+/community.leanpub.com/email/unsubscribe/0951ad85b3db363b21737c86=
+1b86b19b657642cae82d4e3e38f985c975c52bd5">click here</a> to unsub=
+scribe.=0D=0D=0A</div>=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A<!-- pr=
+event Gmail on iOS font size manipulation -->=0D=0D=0A<div style=3D=
+"display:none;white-space:nowrap;font:15px courier;line-height:0"=
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=0D=0D=0A=
+  =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0</div>=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=0D=0A=0D=
+=0D=0A</body>
+----boundary_7410199_b26c35b4-e6b5-490c-a6ab-02ab7df9860e--
+
+

@@ -1,0 +1,307 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:548e:0:0:0:0:0 with SMTP id t14csp3898426lfk;
+        Mon, 26 Aug 2019 02:14:08 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwM7QHHjy3Z+zREFo8KG6m5xo1rrWrPIDkqmtp0QPttUWR8d7MrYDOKAnk7fNHACeqO2x+A
+X-Received: by 2002:a65:6454:: with SMTP id s20mr15415274pgv.15.1566810848017;
+        Mon, 26 Aug 2019 02:14:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1566810848; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Q0Pty3X00z1ErzZkCnuyOJglJHqXKKT7fbu2UqjQzTWhOAtrcHtGAacA1L0haRahne
+         bmaOMjmqNjF31j71at7F7FCGh1AkD73XMPy9jFW5Oo3xCkO7goVLCrryrvzeQqUNPN/7
+         YQ0rpn6La/iHPb7rAVAqR2Y7omG260tS4qLFBkNYyIu+dnL666LSw6nF6XOZok+JJ9tk
+         HSedZab6wsTYXkQM+tuebEcKSRuPSTzokdGTrf/GQPLGSGD9oA/sp5w2Gqcvr0p0JFxQ
+         3Tv5Mrxgrk9L+nbbwiavklFLkmrbRuJcdeap7b+Y6KnboZhATmBSAKi3hu8LZC9mUOFy
+         gmjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:sender:message-id:subject
+         :reply-to:from:to:date:dkim-signature;
+        bh=R3sD9YCR9BB6UZAycLSCH9ZuYxgW01dy1AH+CvKOpE8=;
+        b=ZDEsPHcEQV7XY3pSDaCI4CNbiT55KTOsMZWPrisA9A4vENwfqVbhLoOB5/gVVjeUFn
+         9ioM2L2FLdkc2oQRY+9pUu6qLDkZcR1p5mhFcigQzL6/2bcNpM9/JaaI7rRcgeQ/7At+
+         2dM5awmqk7cGtss2LghOnK8iJVs477pPqGPv/sjK/qrrGBgndCXVeVeKL2pKLQXO6Fqs
+         xsWERKkyKR6cueQXRqDDjd5/6u0Hv1+M5ZiVGmJtdiJGB7YX4bAALJtPBMxb779LH27k
+         EUEoGrEHf+pbi/2GUNYeQFArLNMPhzkbw5FyfL+kYP/g+iQGja7zKoCHTHCjn3x35Hw7
+         LAQg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@naukri.com header.s=2015 header.b=hjTzRFhj;
+       spf=pass (google.com: domain of ssureshkumaryxrozw5hagvhbhrolmnvbq==@naukri.com designates 103.214.115.141 as permitted sender) smtp.mailfrom="ssureshkumarYXRoZW5haGVhbHRoLmNvbQ==@naukri.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=naukri.com
+Return-Path: <ssureshkumarYXRoZW5haGVhbHRoLmNvbQ==@naukri.com>
+Received: from nmail-one03-two14-one15-one41.naukri.com (nmail-one03-two14-one15-one41.naukri.com. [103.214.115.141])
+        by mx.google.com with ESMTPS id 185si8461837pgc.522.2019.08.26.02.14.07
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 26 Aug 2019 02:14:08 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ssureshkumaryxrozw5hagvhbhrolmnvbq==@naukri.com designates 103.214.115.141 as permitted sender) client-ip=103.214.115.141;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@naukri.com header.s=2015 header.b=hjTzRFhj;
+       spf=pass (google.com: domain of ssureshkumaryxrozw5hagvhbhrolmnvbq==@naukri.com designates 103.214.115.141 as permitted sender) smtp.mailfrom="ssureshkumarYXRoZW5haGVhbHRoLmNvbQ==@naukri.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=naukri.com
+Return-Path: <ssureshkumarYXRoZW5haGVhbHRoLmNvbQ==@naukri.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=naukri.com; s=2015;
+	t=1566810845; bh=O4ZMnKH4KI0fGZGXxTVdXYhyvma+KBtcEEjBEv450o8=;
+	h=Date:To:From:Reply-To:Subject;
+	b=hjTzRFhjHpBK2T4uHho0dTpyxuj1VSMrXaSRDcWYUFU5URUFl6rpdKcMI01XZ68ey
+	 sqTVIhu1Qq4SRC39wM9O4G8pkK3lB7M0TYgrqee/Y8v7YAQhpvsXAOuG37GQU9I/VX
+	 S+HTrzN8EUeCnlTWt+btrDc/VbvM5mgAp7BkJzIA=
+Received: from [172.10.115.133] ([172.10.115.133:51120] helo=n5plnjobdb15.ieil.net)
+	by n5plimla02.ieil.net (envelope-from <ssureshkumarYXRoZW5haGVhbHRoLmNvbQ==@naukri.com>)
+	(ecelerity 3.6.13.50539 r(Core:3.6.13.0)) with ESMTP
+	id B3/10-37584-DD2A36D5; Mon, 26 Aug 2019 14:44:05 +0530
+Date: Mon, 26 Aug 2019 14:44:05 +0530
+To: unixbhaskar@gmail.com
+From: "AthenaHealth Technology Private Limited." <ssureshkumarYXRoZW5haGVhbHRoLmNvbQ==@naukri.com>
+Reply-To: ssureshkumaryxrozw5hagvhbhrolmnvbq==39r60-rd@rmsg.naukri.com
+Subject: Job | Senior Member of Technical Staff - Tech Ops / Chennai
+Message-ID: <ab1f6c838529c97865b4510239ccde48@n5plnjobdb15.ieil.net>
+X-Priority: 3
+X-Mailer: Naukri Mailer
+Sender: resdex@naukri.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+     <div class=3D"emailBody er0"> <table width=3D"600" cellspacing=3D"1" c=
+ellpadding=3D"5" align=3D"center" border=3D"0"><tr> <td style=3D"word-break=
+:normal;margin-bottom:5px;line-height:16px;" height=3D"30" bgcolor=3D"#ffff=
+ff" align=3D"center"><span style=3D"font-size:11px; font-family:Arial, Helv=
+etica, sans-serif; color:#888"> <!--RMJHEADERSTART--> The sender of this em=
+ail is registered with Naukri.com as AthenaHealth Technology Private Limite=
+d.  company. To respond back directly to the Employer, please click on Repl=
+y button, or send an email to <a href=3D"mailto:ssureshkumar@athenahealth.c=
+om" title=3D"ssureshkumar@athenahealth.com">ssureshkumar@athenahealth.com</=
+a> <!--RMJHEADEREND--> <!--ALERTMESSAGESTART--><div style=3D"font-size:11px=
+; font-family:Arial, Helvetica, sans-serif; color:#333">Do Not forward this=
+ email, it contains links which allow direct login to your Naukri account.<=
+/div><!--ALERTMESSAGEEND--></span></td></tr><td bgcolor=3D"#fafafa" style=
+=3D"border:1px solid #eeeeee;padding:0;"></td></tr><tr style=3D"background:=
+#fff"><td style=3D"border:1px solid #f1f1f1;border-top:none;padding-left:6p=
+x; padding-right:6pxpadding-top:0px;padding-bottom:0px;"><table><tr><td sty=
+le=3D"word-break:break-word" bgcolor=3D"#FFFFFF" valign=3D"top"><font face=
+=3D"Arial, Helvetica, sans-serif" color=3D"#000000"> <span style=3D'font-si=
+ze:14px;'>  <div style=3D'margin:0px; padding:3px 0px;'><strong>Experience =
+required for the Job:</strong>&nbsp;4&nbsp;-&nbsp;10 years</div>   <div sty=
+le=3D'margin:0px; padding:3px 0px;'><strong>Annual Salary of the Job:</stro=
+ng>&nbsp;0.00 - 0.00 Lacs</div>  <div style=3D"word-break:break-word">  </d=
+iv> <div style=3D'margin:0px; padding:3px 0px;word-break:break-word'><stron=
+g>Job Location:</strong>&nbsp;Chennai</div>  </span>   <br>  <br/><a class=
+=3D"mainPrevColor" title=3D"Send your Naukri profile to the recruiter in on=
+e click" href=3D" http://my.naukri.com/AL/ResdexRMJMail/alid/{}/redirectPar=
+am/applyProcessRMJ?applytype=3Dsingle&amp;ApplyMode=3D1&amp;src=3Drmj &reqI=
+d=3D322478&messageId=3DMjAxOTA4I0FhQ1FyT3RodFpjPV8xNTY2ODEwODQ0&logstr=3DER=
+0" style=3D'margin-right: 5px; background:#3c98ed; font-size:17px; font-wei=
+ght:bold;color:#fff; padding:7px 10px;font-family:Arial, Helvetica, sans-se=
+rif; text-decoration:none;'>Apply Now</a>   &nbsp;&nbsp;  <a class=3D"mainP=
+revColor" title=3D'Reply with additional details sought by the recruiter' h=
+ref=3D' http://my.naukri.com/AL/ResdexRMJMail/alid/{}/redirectParam/replyVi=
+ew?applytype=3Dsingle&amp;ApplyMode=3D1&amp;src=3Drmj  &reqId=3D322478&mess=
+ageId=3DMjAxOTA4I0FhQ1FyT3RodFpjPV8xNTY2ODEwODQ0' style=3D'background:#3c98=
+ed; font-size:17px; font-weight:bold;color:#fff; padding:7px 10px;font-fami=
+ly:Arial, Helvetica, sans-serif; text-decoration:none;'>Reply</a>   <!--RMJ=
+BODYSTART--><!-- VNAME=3D--><!--VPHOTO=3D--><!--JOBMAXEXPERIENCE=3D10--><!-=
+-JOBMINEXPERIENCE=3D4--><!--JOBLOCATION=3DChennai--><!--JOBMESSAGEID=3DMjAx=
+OTA4I0FhQ1FyT3RodFpjPV8xNTY2ODEwODQ0--><!--DESIGNATION=3D--><!--COMPID=3D--=
+><!--LOCATION=3D--><!--VSLUG=3D--><!--PROFILEHEADING=3D--><!--DOMAINEXP=3D-=
+-><!--APPLYURL=3Dhttp%3A%2F%2Fapply.naukri.com%2Fapply%2FprocessRmj%3Fapply=
+type%3Dsingle%26ApplyMode%3D1%26src%3Drmj%26applySrc%3Drmj&reqId=3D322478%2=
+6messageId=3DMjAxOTA4I0FhQ1FyT3RodFpjPV8xNTY2ODEwODQ0--><!--REPLYURL=3Dhttp=
+s%3A%2F%2Fwww.naukri.com%2Fmyapply%2Fsavermj%3Fsrc%3Drmj%26reqId=3D322478%2=
+6msgId=3DMjAxOTA4I0FhQ1FyT3RodFpjPV8xNTY2ODEwODQ0--><p style=3D"clear:both;=
+ font-size:12px;padding:0 0 10px 0"><br/><strong>Dear Bhaskar Chowdhury,</s=
+trong></p>  <blockquote style=3D'margin:0px; padding:10px 0px; font-size: 1=
+2px;font-family:Arial, Helvetica, sans-serif;word-break:break-word'> Job De=
+scription:<div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;marg=
+in-top:0"></div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:=
+0;margin-top:0">Healthcare must be continually available. Infrastructure-as=
+-a-Service ensures the continuous availability of the technologies and syst=
+ems that are the foundation of athenahealth=E2=80=99s services. We are dire=
+ctly responsible for thousands of servers, petabytes of storage, and handli=
+ng thousands of web requests per second, all while sustaining growth at a m=
+eteoric rate. We enable an operating system for the medical office that abs=
+tracts away administrative complexity, leaving doctors free to practice med=
+icine.</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;ma=
+rgin-top:0"></div><div style=3D"margin-bottom:7px;margin-left:0;margin-righ=
+t:0;margin-top:0">We need talented individuals to bring their technical exp=
+ertise and creative thinking to help us implement elegant solutions to comp=
+lex technical problems. Do you have a desire to make a difference?</div><di=
+v style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0"></d=
+iv><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:=
+0">Position Summary:</div><div style=3D"margin-bottom:7px;margin-left:0;mar=
+gin-right:0;margin-top:0"></div><div style=3D"margin-bottom:7px;margin-left=
+:0;margin-right:0;margin-top:0">You will be working within our Infrastructu=
+re-as-a-Service (IaaS) team and be responsible for supporting the systems t=
+hat allow athenahealth to efficiently scale and deliver compute, network, a=
+nd storage services to our stakeholders. This role will serve as an entrypo=
+int into the IaaS team ensuring our customer=E2=80=99s requests are resolve=
+d quickly, accurately, and with the highest quality of customer service. Su=
+ccess in this role will require troubleshooting acumen, curiosity, patience=
+, and a strong sense of ownership. You=E2=80=99ll play a crucial role triag=
+ing issues, gathering requirements, solving technical problems, and buildin=
+g sustainable solutions.</div><div style=3D"margin-bottom:7px;margin-left:0=
+;margin-right:0;margin-top:0"></div><div style=3D"margin-bottom:7px;margin-=
+left:0;margin-right:0;margin-top:0">Key Responsibilities:</div><div style=
+=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0"></div><div=
+ style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=
+=E2=80=A2=09Provide hands on first level troubleshooting and triage of inco=
+ming requests: resolve transactional requests, escalate requests that requi=
+re planning or subject matter expertise, gather requirements and refine cus=
+tomer requests, route requests to appropriate engineering teams.</div><div =
+style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=
+=E2=80=A2=09Coordinate and troubleshoot complex technical issues until reso=
+lution.</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;m=
+argin-top:0">=E2=80=A2=09Understand and follow engineering conventions, arc=
+hitectures, and best practices.</div><div style=3D"margin-bottom:7px;margin=
+-left:0;margin-right:0;margin-top:0">=E2=80=A2=09Automate repetitive or toi=
+lsome tasks.</div><div style=3D"margin-bottom:7px;margin-left:0;margin-righ=
+t:0;margin-top:0">=E2=80=A2=09Build and maintain documentation of our syste=
+ms, processes, and tools.</div><div style=3D"margin-bottom:7px;margin-left:=
+0;margin-right:0;margin-top:0">=E2=80=A2=09Recognize trends in requests and=
+ take action to resolve issues proactively based on the impact of the trend=
+.</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-=
+top:0">=E2=80=A2=09Accurately estimate the effort of engineering tasks; hel=
+p to guide and provide feedback to the team and be more accurate in estimat=
+ing.</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;marg=
+in-top:0">=E2=80=A2=09Own the lifecycle of an issue from start to finish, e=
+nsuring proactive communication with our customers and the backend engineer=
+ing teams. Gather feedback from customers and ensure any lessons learned ar=
+e documented and communicated to the engineering teams.</div><div style=3D"=
+margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=E2=80=A2=09Im=
+prove our tools when gaps arise. Partner with engineering teams to build ne=
+w tools or add functionality to existing tools as needed.</div><div style=
+=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0"></div><div=
+ style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">Educ=
+ation, Experience, &amp; Skills Required:</div><div style=3D"margin-bottom:=
+7px;margin-left:0;margin-right:0;margin-top:0"></div><div style=3D"margin-b=
+ottom:7px;margin-left:0;margin-right:0;margin-top:0">=E2=80=A2=09Technical =
+Degree or University Degree</div><div style=3D"margin-bottom:7px;margin-lef=
+t:0;margin-right:0;margin-top:0">=E2=80=A2=092-5 years of professional expe=
+rience</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;ma=
+rgin-top:0">=E2=80=A2=09Strong written and verbal communication skills</div=
+><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0"=
+>=E2=80=A2=09Strong customer service background</div><div style=3D"margin-b=
+ottom:7px;margin-left:0;margin-right:0;margin-top:0">=E2=80=A2=09Technical =
+aptitude</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;=
+margin-top:0">=E2=80=A2=09Previous experience in a production environment w=
+ith exposure additional environments and their corresponding troubleshootin=
+g methodologies. This includes:</div><div style=3D"margin-bottom:7px;margin=
+-left:0;margin-right:0;margin-top:0">o=09Networking equipment and protocols=
+</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-t=
+op:0">o=09Web protocols and systems</div><div style=3D"margin-bottom:7px;ma=
+rgin-left:0;margin-right:0;margin-top:0">o=09Familiarity with the Linux com=
+mand line and server environment</div><div style=3D"margin-bottom:7px;margi=
+n-left:0;margin-right:0;margin-top:0">o=09Database environments (Oracle, My=
+Sql)</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;marg=
+in-top:0">o=09Storage platforms such as NetApp, Pure, and Kaminario</div><d=
+iv style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top:0">=
+=E2=80=A2=09Familiarity and experience with public and private cloud enviro=
+nments</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;ma=
+rgin-top:0">=E2=80=A2=09Familiarity with open source tooling such as Ansibl=
+e, Terraform, Puppet, Nagios, Prometheus, Grafana, Kibana, Graylog, ELK Sta=
+ck</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin=
+-top:0">=E2=80=A2=09Familiarity with release engineering tooling such as Gi=
+t, BitBucket, Jenkins, Artifactory, JIRA</div><div style=3D"margin-bottom:7=
+px;margin-left:0;margin-right:0;margin-top:0">=E2=80=A2=09Familiarity with =
+Cloud Native, SRE, and DevOps engineering philosophies and methodologies.</=
+div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin-top=
+:0"><br></div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;=
+margin-top:0">Kindly send across your resume to ssureshkumar@athenahealth.c=
+om</div><div style=3D"margin-bottom:7px;margin-left:0;margin-right:0;margin=
+-top:0"><br></div><div style=3D"margin-bottom:7px;margin-left:0;margin-righ=
+t:0;margin-top:0">Regards,</div><div style=3D"margin-bottom:7px;margin-left=
+:0;margin-right:0;margin-top:0">Suresh Kumar</div></blockquote><!--RMJBODYS=
+TOP--> <br> <!--RMJSIGNATURESTART--> <blockquote style=3D'margin:0px; paddi=
+ng:10px 0px; font-size: 12px;font-weight:normal;font-family: Arial, Helveti=
+ca, sans-serif;word-break:break-word'> </blockquote> <!--RMJSIGNATUREEND-->=
+ <div style=3D"clear:both;"></div> <!--RMJFOOTERSTART-->  <p style=3D'color=
+:#444444; font-size:12px; font-family:Arial, Helvetica, sans-serif; border:=
+#d1f1fe solid 1px; background:#f4fcff;padding:0 10px;line-height:15px'><br =
+/>You are receiving this e-mail because your profile contained one or more =
+of the following words that the recruiter searched on: " <em style=3D'font-=
+weight:700;font-style: normal;font-size:10px'>Linux</em> ", " <em style=3D'=
+font-weight:700;font-style: normal;font-size:10px'>Networking</em> ", " <em=
+ style=3D'font-weight:700;font-style: normal;font-size:10px'>Oracle</em> ",=
+ " <em style=3D'font-weight:700;font-style: normal;font-size:10px'>MySQL</e=
+m> "<br /><br /></p>     <table align=3D"center" width=3D"280" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"margin-left:auto; margin-right:auto; marg=
+in-top:10px; margin-bottom:0px;"><tr><td width=3D"275" bgcolor=3D"#f4f8fe" =
+style=3D"border:1px solid #e7f0fe; font:bold 13px Arial, Helvetica, sans-se=
+rif;color:#5d6f8a; padding:10px; margin:0 auto;">Is this job relevant to yo=
+u? <a href=3D"http://jobsearch.naukri.com/mynaukri/jobs_feedback.php?respon=
+se=3Dyes&mid=3D47215492" style=3D"background:#5d6f8a; padding:5px; text-ali=
+gn:center;color:#fff !important; text-decoration:none; margin:0 5px;cursor:=
+pointer;font-weight:bold">Yes</a> <a href=3D"http://jobsearch.naukri.com/my=
+naukri/jobs_feedback.php?response=3Dno&mid=3D47215492" style=3D"background:=
+#5d6f8a; padding:5px; text-align:center;color:#fff !important; text-decorat=
+ion:none;cursor:pointer;font-weight:bold;">No</a></td></tr></table>  </font=
+></td></tr> <tr><td bgcolor=3D"#FFFFFF" style=3D'font-size:11px;border-bott=
+om:1px solid #f1f1f1;' align=3D'center'> <font face=3D"Arial, Helvetica, sa=
+ns-serif" color=3D"#313131" style=3D"font-weight:0;font-family:Arial, Helve=
+tica, sans-serif;">Your feedback would help us in sending you the most rele=
+vant job opportunities</font></td><td height=3D'30'></td></tr> <tr> <td val=
+ign=3D'top' bgcolor=3D'#FFFFFF'> <font face=3D'Arial, Helvetica, sans-serif=
+' color=3D'#313131'><div style=3D'border-bottom:1px solid #888888; line-hei=
+ght:16px; font-size:10px; font-weight:bold;'>Disclaimer:</div> <div style=
+=3D'padding-top:5px; font-size:10px;font-family:Arial, Helvetica, sans-seri=
+f;word-break:break-word'>The sender of this email is registered with naukri=
+.com as <strong>AthenaHealth Technology Private Limited. </strong> (<a href=
+=3D'mailto:ssureshkumar@athenahealth.com' style=3D'cursor:pointer;' title=
+=3D"ssureshkumar@athenahealth.com">ssureshkumar@athenahealth.com</a>, Build=
+ing 3B, Floor 7, RMZ Millenia Tech Park, Chennai, Tamilnadu - 600096) using=
+ Naukri.com services. The responsibility of checking the authenticity of of=
+fers/correspondence lies with you. If you consider the content of this emai=
+l inappropriate or spam, you may: Forward this email to: <a href=3D'mailto:=
+compliance@naukri.com' style=3D'cursor:pointer;'>compliance@naukri.com</a> =
+or you can <a href=3D'http://my.naukri.com/BlockCompany/blockOneCompany?com=
+panyIdStr=3D76942' style=3D'cursor:pointer;'>Block this Company</a> from se=
+arching your resume in the database.<br /><strong>Please Note:</strong> Thi=
+s mail is a private message from the recruiter. We have enabled auto login =
+for your convenience, you are strongly advised not to forward this email to=
+ protect your account from unauthorized access.<br /><strong>Advisory</stro=
+ng>: Please do not pay any money to anyone who promises to find you a job. =
+This could be in the form of a registration fee or document processing fee =
+or visa charges or any other pretext. The money could be asked for upfront =
+or it could be asked after trust has been built after some correspondence h=
+as been exchanged. Also please note that in case you get a job offer or a l=
+etter of intent without having been through an interview process it is prob=
+ably a scam and you should contact <a href=3D'mailto:compliance@naukri.com'=
+ style=3D'cursor:pointer;'>compliance@naukri.com</a> for advise.</div></fon=
+t> <table width=3D'100%' border=3D'0' cellspacing=3D'0' cellpadding=3D'0'><=
+tr><td height=3D'5'></td></tr><tr><td style=3D'font-family:Arial, Helvetica=
+, sans-serif;font-size:14px;border:1px solid #d1f1fe; line-height:30px; bac=
+kground:#f4fcff' align=3D'center'><a class=3D"linkMainColor" href=3D'http:/=
+/my.naukri.com/HomePage/view' style=3D'cursor:pointer; font-weight:bold; fo=
+nt-family:Arial, Helvetica, sans-serif; font-size:14px;' title=3D'Update Yo=
+ur Resume Now'>Update Your Resume Now</a> to be on the top of Employer's Re=
+sume Search</td></tr><tr><td height=3D'5'></td></tr><tr><td style=3D'border=
+:1px solid #d1f1fe; line-height:30px; background:#f4fcff;font-family:Arial,=
+ Helvetica, sans-serif; text-align: center; font-size: 14px; '><a class=3D"=
+linkMainColor" href=3D"http://jobsearch.naukri.com/mynaukri/js_msngr.php?xz=
+=3D0_0_5&amp;ma=3DC" style=3D'font-size:14px;font-weight:bold;font-family:A=
+rial, Helvetica, sans-serif;'>Create your own job alert</a> to receive simi=
+lar jobs directly in your inbox.</td></tr></table> <table width=3D"100%" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"0"><tr> <td height=3D"5"></td> =
+</tr> <tr> <td bgcolor=3D"#e9e9e9" align=3D"center"><font face=3D"Arial, He=
+lvetica, sans-serif" style=3D"font-size:11px;word-break:break-word"><strong=
+>Your Resume has only 30 seconds to impress a Recruiter. <a class=3D"linkMa=
+inColor" href=3D"http://resume.naukri.com/resume-writing-services?fftid=3D7=
+00003" style=3D"cursor:pointer;font-weight:bold;">Get your resume written b=
+y Experts.</a> <br /> Call 1800-3010-5557 now! (Toll-Free)</strong></font><=
+/td></tr></table></td></tr></table></td></tr> <tr><td> <img width=3D"0px" h=
+eight=3D"0px" src=3D"http://jatracking.naukri.com/Finale/tracking_resdex.ph=
+p?data=3DeyJtYWlsS2V5IjoiYjBlZGVjMGYzNTA0ZDYxNDEzZjM5MTY1NDZlNzg4NDYiLCJjbG=
+llbnQiOiJSTUpNYWlsIiwiYXBwX2lkIjoxMTIsIm1haWxlcl9pZCI6IjQ3MjE1NDkyIiwibWFpb=
+HNlbnR0aW1lc3RhbXAiOjE1NjY4MTA4NDQzNTcsInNvdXJjZSI6IlJNSiIsInN0eWxlIjoiRVIw=
+IiwicmR4dXNlcmlkIjoiMTY2NTY4NCIsImNvbXBhbnlpZCI6NjQ3Mzk1LCJkb2NfaWQiOiIwYmI=
+yZmVlODUyM2I2YjljNmRjZTk2NTEzNzEyZGEyMiIsImpzdW5pcWlkIjoiM2FjYzBlYjQ2OTAyNT=
+BmNDk4In0=3D" style=3D"display:none !important"/><img width=3D"0px" height=
+=3D"0px" src=3D"https://logs.naukri.com/collectorapi/v1/uba?data=3D%7B%22te=
+nantId%22%3A1%2C%22deviceType%22%3A%22WEB%22%2C%22eventName%22%3A%22communi=
+cationOpen%22%2C%22communicationType%22%3A%22MAIL%22%2C%22mailerId%22%3A%22=
+47215492%22%2C%22mailType%22%3A%22RMJ%22%2C%22communicationId%22%3A%2247215=
+492%22%2C%22appId%22%3A112%2C%22userId%22%3A%221665684%22%2C%22companyId%22=
+%3A647395%2C%22encEmail%22%3A%227f67428e7a4d0854226fc18ca8438c206bd8de1cf0e=
+75953386ac7ac6481fd6892d2d6ac5f21f68f%22%7D" style=3D"display:none !importa=
+nt"/> <img width=3D"0px" height=3D"0px" src=3D"http://mailtracking.naukri.c=
+om/Finale/mmm_main/resdex_record_response.php?src=3DRMJ&messageId=3D4721549=
+2&style=3DER0" style=3D"display:none !important"/> </td></tr> </table> </di=
+v>  <!--RMJFOOTEREND-->  

@@ -1,0 +1,85 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:41c8:0:0:0:0:0 with SMTP id o191csp2351691lfa;
+        Fri, 13 Mar 2020 13:28:53 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vsaeWkwxXHkWkHI7v8/uJU5TwUZJhvl9RYGTNIZXu7WUB4qrtmBBjkFkyiZyUFlL9FGeznw
+X-Received: by 2002:a9d:3f4b:: with SMTP id m69mr11825960otc.146.1584131333098;
+        Fri, 13 Mar 2020 13:28:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1584131333; cv=none;
+        d=google.com; s=arc-20160816;
+        b=oN2TtVxQLwvD1p0PpqZm1rcmyhQ8cDu9IvBtTq4kZnZy/rTGvFhfahtIL8rjx3HGQf
+         IIB9qVK2wOz0eX/1naeCegTkiPSpQta+XEWETDdMYL65fc1zYtH4dLuFX49N6CQJQMq+
+         hNVOtyT3GLNldlGJl8M6MaQnFrvtxIxvQag3m0NfmGh1H7Rd5pAMs2F7qnH6hn60S9rR
+         fzhQqhQvIMgjVpy5B5QzOl9GNdmQQBn/ba5AXdULmMQES7C1Pw+EjTxHc66+yCbcyihI
+         uvKbFq0pyHX29+Yl/dDKPs67L5ghnz1SAB72RXbwhec0yMSlf/qXdFYzcLm5kkUo+/3s
+         y2Fw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:date:message-id:references
+         :in-reply-to:from:dkim-signature:subject;
+        bh=zCCRkVtit6uQ3pHhgBmrPa8iPqBgPb1ttEYXKefPhkU=;
+        b=guAK5RixALZXKA01oQK2PZvOp7sCrwn8gU7E1k0YI9BgqTW6Ghf0ta0SvL+eda6Rz0
+         DZHOL54fV9hzfTSLy7tgq+qoDaT0ZscAEu2KpSyQEpIf6l+KGS5OaJVbBk6xL50Ax/5B
+         L5ma45LLU/un5WzZX2+sAotxzF1g1GmJpj5S5j7J3akVXcAvZCCxyxE60lYJNzijfPdi
+         cYZdGmaFw/BIAw4kjpcAsl9w9a9sUChqAYhWAS0Frc7M8mjqj2oN/aO7M5foBf3A+CXD
+         uSYSap4vGDafHJqENmOVxqQT6UeM8i67FTLJc1HAmQeOxQRhrjZy3Lo+Z+gIeVrYDlTB
+         yyOg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=EQ70V2Q6;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id h145si5282707oib.210.2020.03.13.13.28.45;
+        Fri, 13 Mar 2020 13:28:53 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=EQ70V2Q6;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727434AbgCMUZL (ORCPT <rfc822;tmayfield1@gmail.com>
+        + 51 others); Fri, 13 Mar 2020 16:25:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47624 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727383AbgCMUZI (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 13 Mar 2020 16:25:08 -0400
+Subject: Re: [GIT PULL] Power management fix for v5.6-rc6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1584131107;
+        bh=25YpGDthvkqDKq8fdchPfoJFDDmdYXlIqN3Oz3tiHMU=;
+        h=From:In-Reply-To:References:Date:To:Cc:From;
+        b=EQ70V2Q6/n+byeA+Z8bTNpJopyqMiSyBLJrCbgAUXN5XRzyZB9B3uClt+mlEqKu5n
+         ARm7md59LVYdcpYV2T0lUcXvv+YN1Dr1UiMnmFKKKdB8+Q9gplWbUAHR9cSdSqk6Ek
+         1Pa6F+a1wzgWE6pTxitfvGaUedEw7CpSKQi83yyE=
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <CAJZ5v0jcZsixVWpfb=OkWNPD8Q=DC-Q-gvEzLh7vkCksT3a0HA@mail.gmail.com>
+References: <CAJZ5v0jcZsixVWpfb=OkWNPD8Q=DC-Q-gvEzLh7vkCksT3a0HA@mail.gmail.com>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <CAJZ5v0jcZsixVWpfb=OkWNPD8Q=DC-Q-gvEzLh7vkCksT3a0HA@mail.gmail.com>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git pm-5.6-rc6
+X-PR-Tracked-Commit-Id: bce74b1feb01accc6654a1f3e37958478d3a4fbc
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 78511edc2dd4c7b9f74f3b544093c854b7bd7744
+Message-Id: <158413110780.9951.6005924479376345266.pr-tracker-bot@kernel.org>
+Date:   Fri, 13 Mar 2020 20:25:07 +0000
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+The pull request you sent on Fri, 13 Mar 2020 18:57:18 +0100:
+
+> git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git pm-5.6-rc6
+
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/78511edc2dd4c7b9f74f3b544093c854b7bd7744
+
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/prtracker

@@ -1,0 +1,119 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp150457lfc;
+        Thu, 5 Dec 2019 18:16:32 -0800 (PST)
+X-Google-Smtp-Source: APXvYqziNE/wIuMuhFK63F3lXW7fppCaJgJFBstS3oZwbHLdxOFyzYKPsdyotIZfuuVoWO1dJclj
+X-Received: by 2002:aca:d4ca:: with SMTP id l193mr10523507oig.133.1575598592499;
+        Thu, 05 Dec 2019 18:16:32 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1575598592; cv=none;
+        d=google.com; s=arc-20160816;
+        b=IgFlQdiIK7sagcMBSAwSFrCGo8R7M6zju5/sbyXgUSzdeWveD1YJOz1sGZ+/36x/TZ
+         FbgP6qXnlDVzlPcf5StqhFDl2NUjvB7awV/r88e96jAxJP1sVb+PZKpm226evrMLEpWi
+         QCdWGeA4wTyJkcnw2NYYJN7QcvEZZ9Ul1KBP0WYwSskSTziqdqO+I4504H565TCLqeHZ
+         5CU4ZOvZ+wN84nTSjof8iMbqgJQnL/jVbt4bJZEOsMOZ/9Ac4Z8/KxHfd1KDfXGtu5mb
+         0tnkZnrGGVkJpx85mppW2FzJ6JI2WczXPeWralYcuaHZMvFVoMmwr7yop38hQWi+8Ujf
+         TTng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:cc:to:subject
+         :message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=xvIAU4ajlJMH6F3Cdm6kVXiilcE6i5hIxPHQ49SNC2U=;
+        b=Mi/UdDQNSeCz/ApmHVFQGM01HEctrvwvBTgU3CYsM9SuPzPHCNhGrCbb82nvVAw2Ir
+         hupgkZ7nWI3NSPdONriKstVXB73ZRc1YUMPVYhQ0wxpjqK9it+l7Y6UQYfVF+UeaTeTl
+         oVy0DRQA93flUWJ41gkKg1Up5WVivLo8qrXEukplAn2/TkQBerTqAf9MMU4EUiab/lYS
+         P/At3eEBngauPhixdK7/yR4YQ4SIdQMCKnd/uMMqnURKLnWpwOTW/vjsXn9Lb5kj7hva
+         Us8ylsbn1/122/7BoyVmySJUczXwnrNixkU8WMGxGwqha5+ZhgRokjgRoCQoMVaJ7BKX
+         vBIA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=RpK75t0v;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id p22si4930190ota.43.2019.12.05.18.16.18;
+        Thu, 05 Dec 2019 18:16:32 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=RpK75t0v;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726203AbfLFCQP (ORCPT <rfc822;songbei6@gmail.com> + 99 others);
+        Thu, 5 Dec 2019 21:16:15 -0500
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:35145 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726065AbfLFCQO (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 5 Dec 2019 21:16:14 -0500
+Received: by mail-lf1-f65.google.com with SMTP id 15so4064727lfr.2
+        for <linux-kernel@vger.kernel.org>; Thu, 05 Dec 2019 18:16:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=xvIAU4ajlJMH6F3Cdm6kVXiilcE6i5hIxPHQ49SNC2U=;
+        b=RpK75t0vxIowsQzVUL/QqdLluqPD/186ouUbUukZlke5uhvKiir/Ohtr9zCNWpLqZ9
+         bHuJNNmVMv9KRBa9PyXiVuDclb0hpU6lle/7KZrI9xwBqgwknoB1s7usTIUGXDrqZAPS
+         dMHer8SJhn6AbpkREiXkFM8GfFrbYt1FG6oQw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=xvIAU4ajlJMH6F3Cdm6kVXiilcE6i5hIxPHQ49SNC2U=;
+        b=sU3RLjia7QsmKLPbenU9zn8zOJVPVBSZx2uxib1+QGLLuPDiS4w/50IVj3+qVyJdzE
+         hC42yaf7kb7ADBdbrpwtEowL32jNIDWPnVeLiwzqU9SB+/YHHC2/niweuHo5ChDNQnfU
+         iCqjYXTafLfW7wgS8gIATCLXByzmhbwB2qgf7eqrAahf24fWljqD+c2CoUrozSrmcD5A
+         d2q4WYHoVk6eZmkuVo5EarlJJvegeseuo/y50i+XefcvLPr/sQzm4VmZx/Aqf43V9RxV
+         mEIcchFGLxJR1LjxS2Ur7nAbJkwlT0Or8mQ7Uk1lKVIIPS7GUW/gdBkDKQ63shfj6deG
+         rrUg==
+X-Gm-Message-State: APjAAAWmuPAOmPrCiXFoUaGoC1yHUeQpOrkCb41/b5uRIvT1OHpQg+34
+        +8e+ziDU77CLj94qruE5W4tyaw9A0qU=
+X-Received: by 2002:ac2:531b:: with SMTP id c27mr6627092lfh.91.1575598572325;
+        Thu, 05 Dec 2019 18:16:12 -0800 (PST)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com. [209.85.208.169])
+        by smtp.gmail.com with ESMTPSA id c6sm5644387lfi.47.2019.12.05.18.16.11
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Dec 2019 18:16:11 -0800 (PST)
+Received: by mail-lj1-f169.google.com with SMTP id e28so5859342ljo.9
+        for <linux-kernel@vger.kernel.org>; Thu, 05 Dec 2019 18:16:11 -0800 (PST)
+X-Received: by 2002:a05:651c:239:: with SMTP id z25mr4910107ljn.48.1575598570830;
+ Thu, 05 Dec 2019 18:16:10 -0800 (PST)
+MIME-Version: 1.0
+References: <20191206013819.GL4203@ZenIV.linux.org.uk>
+In-Reply-To: <20191206013819.GL4203@ZenIV.linux.org.uk>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Thu, 5 Dec 2019 18:15:54 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wgPd1dYZjywZqPYZP-7dD2ihwviYfYLY3i+K=OLk2ZozQ@mail.gmail.com>
+Message-ID: <CAHk-=wgPd1dYZjywZqPYZP-7dD2ihwviYfYLY3i+K=OLk2ZozQ@mail.gmail.com>
+Subject: Re: [git pull] vfs.git d_inode/d_flags barriers
+To:     Al Viro <viro@zeniv.linux.org.uk>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Ritesh Harjani <riteshh@linux.ibm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Dec 5, 2019 at 5:38 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
+>
+>   git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs.git fixes
+
+I'm not pulling this.
+
+Commit 6c2d4798a8d1 ("new helper: lookup_positive_unlocked()") results
+in a new - and valid - compiler warning:
+
+  fs/quota/dquot.c: In function =E2=80=98dquot_quota_on_mount=E2=80=99:
+  fs/quota/dquot.c:2499:1: warning: label =E2=80=98out=E2=80=99 defined but=
+ not used
+[-Wunused-label]
+   2499 | out:
+        | ^~~
+
+and I don't want to see new warnings in my tree.
+
+I wish linux-next would complain about warnings (assuming this had
+been there), because they aren't ok.
+
+                 Linus

@@ -1,0 +1,79 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:41c8:0:0:0:0:0 with SMTP id o191csp2860809lfa;
+        Mon, 9 Mar 2020 13:59:06 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vtg6Bk//BeJhlRandAJG8Iq68lxhMphBUeiSN/BGQYxDuThHyiGW/Q3vIIkhdcwiaGOrX8E
+X-Received: by 2002:a9d:412:: with SMTP id 18mr8002851otc.134.1583787546771;
+        Mon, 09 Mar 2020 13:59:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1583787546; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Wdslh/zAYHw9gj8lPzUh5YJv3vVFGczvTPf1gIRjd9bZ6KPpn7Th5+agcp9AmzR9C2
+         gXv3UlPMfn7EHQ8rcY9pa44phX4gcho+RBpPjPHnhaCqzhzzAzQs1TwUc49NO0+APCWe
+         KhWW3eHJrQkAU+XmJaDRkpujJML/n5v6y4wdhOxBrafRUc8DbFuY6gdoxcPh2CoAI4D2
+         srMXA08PT0v1fRvH6+JurUkMuwiU3goUhnDeWdC6dn3DpCoc5tFkZaT61URoQ2xLEGHo
+         enY/qE2gzzucG9B63oq96/2KWr2XoFUmT53DcIhYCsXmZXcHA6ilwKic+lzaMKNeXYWu
+         z3SA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :references:in-reply-to:message-id:subject:cc:to:from:date;
+        bh=v+kbHVJZC26fgX95u2f28pXlhLU8wGHR0pfyLtfXq+g=;
+        b=q9pkY9qtaEaK3fpUFMWUEep4egUPJslvdB3lni9gR4+GOGovzwYikoGru0BGZwRmbz
+         r+rB0rG3KtTuah5SZoc0Uh+frS+FLSkgNrj62wS+PYH6H6eDPQ6v8LCD9FRWoH1QRnu6
+         +j/Dd/p14yLCZEgX3Hh3YM1ogIwf1M9OJTYaZYBe06+AJ6WgXmqTSRpdOJhcnxzFlsOE
+         Aqqj0byezvWkFJyPHuDYS42qHfeb3lFGmvyGtGkUj34i5ol6MY1qF+59fmwhrxAfsLmK
+         MwKQ5Ht5tPfYw4pBLT4cHEp+ZxwSBc05S5VCdeOGkRRY3bhK34lBIMX6rWNiIXcs/x6K
+         ZrNA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id l4si6547467otj.173.2020.03.09.13.58.57;
+        Mon, 09 Mar 2020 13:59:06 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726454AbgCIU6O (ORCPT <rfc822;beyondssmith@gmail.com>
+        + 68 others); Mon, 9 Mar 2020 16:58:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58948 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725992AbgCIU6O (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 9 Mar 2020 16:58:14 -0400
+Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com [66.24.58.225])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BC0462464B;
+        Mon,  9 Mar 2020 20:58:12 +0000 (UTC)
+Date:   Mon, 9 Mar 2020 16:58:11 -0400
+From:   Steven Rostedt <rostedt@goodmis.org>
+To:     "Paul E. McKenney" <paulmck@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+        Joel Fernandes <joel@joelfernandes.org>,
+        Frederic Weisbecker <frederic@kernel.org>
+Subject: Re: Instrumentation and RCU
+Message-ID: <20200309165811.05603ce0@gandalf.local.home>
+In-Reply-To: <20200309204710.GU2935@paulmck-ThinkPad-P72>
+References: <87mu8p797b.fsf@nanos.tec.linutronix.de>
+        <20200309204710.GU2935@paulmck-ThinkPad-P72>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, 9 Mar 2020 13:47:10 -0700
+"Paul E. McKenney" <paulmck@kernel.org> wrote:
+
+> Yeah, I know.  Just what the kernel doesn't need, yet another variant
+> of RCU...
+
+And call this variant: yarcu (Yet Another RCU) (pronounced yar-ku ?)
+
+-- Steve

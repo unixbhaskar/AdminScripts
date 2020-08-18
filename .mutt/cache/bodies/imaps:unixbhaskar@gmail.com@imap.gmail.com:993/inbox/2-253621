@@ -1,0 +1,100 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp2664632lfj;
+        Mon, 17 Aug 2020 09:45:03 -0700 (PDT)
+X-Received: by 2002:a19:414b:: with SMTP id o72mr7895952lfa.86.1597682703250;
+        Mon, 17 Aug 2020 09:45:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597682703; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XLvfEJ49VwFFXCClQKdWo2BoUGFkkeuLWk7hPTT71i5oAbdP4xVXvfIHlTQ7CHH1T1
+         4k7z2DzrJuV/Cz1t1L9W+RPfhRbIYudXIgLYLNtsnS7S+1kXsCm6O/+rWOmRMCslGL1P
+         OE0OQ5Ua1m0LhMFO6gNDj7aJdJPIVJhDUo2hjNu3iEc0DmwvmC9zBEXSscTOIw+yvLIZ
+         DGxriMa1/buTT9dba4PCwYGFxW6V7Xk5HD3JCRIAQ7RTRzL9CsqFcgL8c5wR8awQQqkB
+         b9JwQ3mYE/TVMUgFM+EeQG38X6KfMtoV8YrYUxdoHqn+l3EGSSoW5e6NJdDWFkMyN3ZP
+         MabQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=BDpYbXacOYsmncSK2AxZjXV+MuH8o29BVrL5LEXIDao=;
+        b=AA6QPFAdOgFOGQ2eUXn0hzG2bmakOzY+aDMYV0wQYGZvoR31OyKmYFbsC824T9X13X
+         WPZB1s45KGDFLtbWJv0jUmTTo4hzyZ9ayQo0hmEF9nb6mnWcD0e/7c7IqgZgc+MxE638
+         +GzOHPIFtMCLO6dFqUo8PEAwq0iNFm2r00N7ynantfWrPREJ6LWBJuPMIYvZVnKxG6L6
+         22l1WHA8e694XOeMDPnnZLGNpVRWKvBtoXPDAvLyz5PWPPgqnehe4aHtkTX3OLPPQ9QV
+         B9Ea/m/gnin9MCtxQfmtoOweAPqkmDthcCi9UlzKv+wxd9g5qbkQFKWCPfKAaC9AmpSX
+         jPGQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=N9mA78VS;
+       spf=pass (google.com: domain of torvalds@linuxfoundation.org designates 209.85.220.65 as permitted sender) smtp.mailfrom=torvalds@linuxfoundation.org
+Return-Path: <torvalds@linuxfoundation.org>
+Received: from mail-sor-f65.google.com (mail-sor-f65.google.com. [209.85.220.65])
+        by mx.google.com with SMTPS id x25sor3846829lfn.36.2020.08.17.09.45.03
+        for <unixbhaskar@gmail.com>
+        (Google Transport Security);
+        Mon, 17 Aug 2020 09:45:03 -0700 (PDT)
+Received-SPF: pass (google.com: domain of torvalds@linuxfoundation.org designates 209.85.220.65 as permitted sender) client-ip=209.85.220.65;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=N9mA78VS;
+       spf=pass (google.com: domain of torvalds@linuxfoundation.org designates 209.85.220.65 as permitted sender) smtp.mailfrom=torvalds@linuxfoundation.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=BDpYbXacOYsmncSK2AxZjXV+MuH8o29BVrL5LEXIDao=;
+        b=N9mA78VSzeS1Ibf4nnKhBabPs9szpKlK8P2/V2m9CB/RgA6lo1+1nKIg3E56jLovdP
+         kkd5UK2dlxrEAoU4CZJ4rRiJ253W8vMgrneneJje+XRZKJqFUVZId44QVzMf+wKHMi24
+         Fe7LXyvTGe4AS60d/L5+Z2cb07COtm2Yx1wcg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:content-transfer-encoding;
+        bh=BDpYbXacOYsmncSK2AxZjXV+MuH8o29BVrL5LEXIDao=;
+        b=LRO6NhNW9ngpp7mr7PbaK/9tfqzT+Tt53o3XoVfneixcgqit+RylRNurhIopaz69yc
+         cGE+DQrLWFneSV5/wDZY6tCAfU1jR7F2KOW2H+SYrI/kajHZdwAmWSQekOw9EphhzIxe
+         ICmm/ka60z12ez24lPpl/yDLDgEm05EH0vhAI/w4nwHXUR9nHCyEdXG874dbfNCCGHXE
+         VAzjuej84lNSmBKu5Cp2zVwvAIOQG2HGW8pIwKXkNthB+Z4O4G+UCwDa8ewA9ouMQx98
+         o5hXxfp+mg9OHWawi2U5Dk7olsHOzsqgYfUEicjeM9E7sg+A2Zwtn0s1uEeJzgW1eDtf
+         cbBQ==
+X-Gm-Message-State: AOAM5308wH5o0y9irkBx9Qe8Q9MJrAq+NOAQxVtLnxHjKb/vuMGIMHVf
+	O/DiV3m3OCR30dob6HEA/m5X1aACJrw6fw==
+X-Google-Smtp-Source: ABdhPJyakIzGvjCvHhinJQxcNvlDfwjoC9XA+bWMkoWRgFaZZUEkzazFbJbdwJhJ6IzVuVhic+q+2w==
+X-Received: by 2002:a19:7d04:: with SMTP id y4mr7877993lfc.51.1597682702641;
+        Mon, 17 Aug 2020 09:45:02 -0700 (PDT)
+Return-Path: <torvalds@linuxfoundation.org>
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com. [209.85.208.177])
+        by smtp.gmail.com with ESMTPSA id r11sm2634477ljk.46.2020.08.17.09.45.01
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Aug 2020 09:45:01 -0700 (PDT)
+Received: by mail-lj1-f177.google.com with SMTP id v9so18234333ljk.6
+        for <unixbhaskar@gmail.com>; Mon, 17 Aug 2020 09:45:01 -0700 (PDT)
+X-Received: by 2002:a2e:b008:: with SMTP id y8mr6932586ljk.421.1597682701076;
+ Mon, 17 Aug 2020 09:45:01 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAHk-=wiwfkKp93C+yLqKWAU0ChBdeBDUhgOk09_=UQ8gOKbV3w@mail.gmail.com>
+ <20200816225822.GA3222@debian>
+In-Reply-To: <20200816225822.GA3222@debian>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 17 Aug 2020 09:44:45 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgOaEmFGYhnx7XLe8AbQKYpgMAzyuHuS8dYZoB2hS3C=A@mail.gmail.com>
+Message-ID: <CAHk-=wgOaEmFGYhnx7XLe8AbQKYpgMAzyuHuS8dYZoB2hS3C=A@mail.gmail.com>
+Subject: Re: ..build stopped... Linux 5.9-rc1
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>, Linus Torvalds <torvalds@linux-foundation.org>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, Aug 16, 2020 at 3:58 PM Bhaskar Chowdhury <unixbhaskar@gmail.com> w=
+rote:
+>
+> I am scared that I might have missed something very obvious ...am I?? And=
+ the build abort...take a peek..
+>
+> ./arch/x86/include/asm/io.h:292:2: error: implicit declaration of functio=
+n =E2=80=98slow_down_io=E2=80=99 [-Werror=3Dimplicit-function-declaration]
+
+I'm not seeing how that would happen with a pristine codebase, but
+send me your config just in case.
+
+slow_down_io() is declared not that much further up in that file (or
+in paravirt.h that gets included before for the CONFIG_PARAVIRT case).
+
+             Linus

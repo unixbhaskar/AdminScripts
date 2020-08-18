@@ -1,0 +1,72 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.50.104.9 with SMTP id ga9csp113335igb;
+        Thu, 5 Jul 2012 18:55:17 -0700 (PDT)
+Return-Path: <debarchansarkar@gmail.com>
+Received-SPF: pass (google.com: domain of debarchansarkar@gmail.com designates 10.182.174.70 as permitted sender) client-ip=10.182.174.70;
+Authentication-Results: mr.google.com; spf=pass (google.com: domain of debarchansarkar@gmail.com designates 10.182.174.70 as permitted sender) smtp.mail=debarchansarkar@gmail.com; dkim=pass header.i=debarchansarkar@gmail.com
+Received: from mr.google.com ([10.182.174.70])
+        by 10.182.174.70 with SMTP id bq6mr23480567obc.78.1341539717174 (num_hops = 1);
+        Thu, 05 Jul 2012 18:55:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:from:date:message-id:subject:to:content-type;
+        bh=K+9Thr2GOW1hZ6BaGtRVQjr3rkJYARIMZiH4Dd6DULg=;
+        b=g8JSeyUWHxmeFdRWqE7E3oQ1X+xyo+Pj9CbIdEhyu5g4kj0t48SakTIUO9QKX99Fyw
+         XK9L5BFeDhBpn11ve/thn05Vq8Kmc7SHSW4Iea2r0Cnurur70j4Te2MJ1HTCjNT386yK
+         iOwrNPphQYbiKy8QHXOEVWlOUhQEofjE4bQCtc8tLGZPZplzaH7TMZe9PXluEKM3FP21
+         c4SBoImhON70GMmCejSAwSFpTmJ5STzih8tX74rCslxPygivkn2tHAoSPx0tmIwqur50
+         yqhWJbqOkLmVE3Oah4L3skHcPTscat86gxJF/ybCtgV/SmpyY6fUrQqDCmhhaYezPZab
+         Scnw==
+Received: by 10.182.174.70 with SMTP id bq6mr23480567obc.78.1341539717169;
+ Thu, 05 Jul 2012 18:55:17 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.76.99.129 with HTTP; Thu, 5 Jul 2012 18:54:57 -0700 (PDT)
+From: Debarchan <debarchansarkar@gmail.com>
+Date: Fri, 6 Jul 2012 07:24:57 +0530
+Message-ID: <CAFb2byio-DnGySfNKDhVCcxo0VEga5JFPC49mVGxJ0bT1q6R3Q@mail.gmail.com>
+Subject: Urgent
+To: Patka Da <unixbhaskar@gmail.com>
+Content-Type: multipart/alternative; boundary=e89a8f647bcf4b41f704c41f8ef3
+
+--e89a8f647bcf4b41f704c41f8ef3
+Content-Type: text/plain; charset=UTF-8
+
+Patka da,
+
+As dimensions in data storage and retrieval is going to an unanticipated
+heights presently, I've come across a requirement to set up Apache Hadoop
+in a Linux Cluster. I'm very sure that I would come across difficulties as
+I have last worked on Linux environment 5-8 years ago and that too in labs
+as a part of my MCA paper :(
+
+Please keep yourself available and prompt to my (may be stupid) questions
+that is surely going to be lining up your way for the coming couple of
+months :)
+
+Thanks, boss!!
+Buro
+
+-- 
+Debarchan--"I never said most of the things I said"
+
+--e89a8f647bcf4b41f704c41f8ef3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div>Patka da,</div><div>=C2=A0</div><div>As dimensions in data storage and=
+ retrieval is going to an unanticipated heights presently, I&#39;ve come ac=
+ross a requirement to set up Apache Hadoop in a Linux Cluster. I&#39;m very=
+ sure that I would come across difficulties as I have last worked on Linux =
+environment 5-8 years ago and that too in labs as a part of my MCA paper :(=
+</div>
+
+<div>=C2=A0</div><div>Please keep yourself available and prompt to my (may =
+be stupid) questions that is surely going to be lining up your way for the =
+coming couple of months :)</div><div>=C2=A0</div><div>Thanks, boss!!</div><=
+div>Buro<br clear=3D"all">
+
+<br>-- <br>Debarchan--&quot;I never said most of the things I said&quot;<br=
+>
+</div>
+
+--e89a8f647bcf4b41f704c41f8ef3--

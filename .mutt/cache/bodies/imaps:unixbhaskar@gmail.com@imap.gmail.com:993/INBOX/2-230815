@@ -1,0 +1,107 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:4c88:0:0:0:0:0 with SMTP id z130csp1784567lfa;
+        Sun, 29 Mar 2020 10:36:41 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vsrWjY8sqs/ov5LjZHL3SK3upWq8G8f13Dr6GISteZ8B0nE2u0I0LNfDN4kywVvBfuJ4cec
+X-Received: by 2002:aca:706:: with SMTP id 6mr5088779oih.115.1585503401575;
+        Sun, 29 Mar 2020 10:36:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585503401; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XcWoY2Fxh4pzG7qFEtOTdbRx4UEhbY3Wv63z3g/ITa56ySbqyFmzMJWDVLKTcL3j+v
+         aVPrYYO1UXd7sTXH7lFj2dS7+amL/98NiWOqbgBjsL/xYCLl6WQ44hsLab3BOXoqUXKZ
+         Bz3GowiK3lh8sDLjqoF6C9xnxr4Qk/rjN1FbLmtrCaNDq6bVst98EJW+rEn5XoxpOkPI
+         QHQWDlfR6fKpCP2583MxhTnyNwOz71v4mcBjBBl0738dJT11H66R2f5/0HTlgNxXejpO
+         wA8YaD/9npvKrj266zil1+JEsponGFCRq9SYDlYfmf3l7eogkrKXsbb1KkuxrDXo4ViP
+         bb3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=uF9ju1VXjYMdKAq7SYnU4SKEXhGZYS4gUazfdnb0Iv8=;
+        b=Ac4TCovVsIYfxaQytR4upvjQobRs5Nk+MbbG4RzUNDETpk4CtWbyNt6BmcH56qwAhr
+         HdORBPgrXQiQHTY66Ld+wrg0DOckdHKb899ZFp7izb8B2UqG4bbmPCeGZn5bZKFfymU5
+         vqzS2tMSMG+ZVLaQvgmH6+949x5yqhyubeIGzpc0Sjn+O0xRLQg9syOpY2z08N1Jsy51
+         w23c3Pvxah9gqR2XmHGl2p+pEgQwR5NcNR4/YitKeyKbcb84xZH550smCJ4NmAF3XEBn
+         4VCWr/WJQ1PhDziU1NiMKDwd/ZDlniH69gAOhQcSZ7eiIJk8P9qmrsJRZB+tbyNCnNk6
+         fawA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=X0ytTSPz;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id m125si4645372oia.240.2020.03.29.10.36.20;
+        Sun, 29 Mar 2020 10:36:41 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=X0ytTSPz;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728311AbgC2Re1 (ORCPT <rfc822;davidalro.kernel@gmail.com>
+        + 99 others); Sun, 29 Mar 2020 13:34:27 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:46298 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727933AbgC2Re0 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 29 Mar 2020 13:34:26 -0400
+Received: by mail-lj1-f196.google.com with SMTP id r7so7817502ljg.13
+        for <linux-kernel@vger.kernel.org>; Sun, 29 Mar 2020 10:34:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uF9ju1VXjYMdKAq7SYnU4SKEXhGZYS4gUazfdnb0Iv8=;
+        b=X0ytTSPzpoiXAuUiU+FOLPgIBg2tMnUBEy6YmzKbNk3TPoZ8rR4vp8K3MKE3TLGyfB
+         tZ5sgEHNwUJHmB6iqy/G36WYjTSaSFkZXEt7VVe0f9rHHZ+HVVmhx7c7smnFsdelQsZx
+         ATJMbSrFSl2IFNWyfIHWPnZMQWjUneHs7abQQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uF9ju1VXjYMdKAq7SYnU4SKEXhGZYS4gUazfdnb0Iv8=;
+        b=poyPIQaR7S9CC/WxM4OkdhZF/eRi3bGNkynGDGzN7z+xQv76oy+A+ELOMgyM82gZSn
+         wyVh2ZBfpBq6R8sL2PkEiflxzIVZcqoKoIhjx/JgnzPXKK90lCOY5/pk1p22gksvcJ/l
+         k1JaVXPd3S7XtrngiOnTCqq5ybNOlSLSSq0qpkj0yTZczc08kIkcP05uy4oWM8OaLVp6
+         nzjjp4atGD3KkezVVwXq2+SBG9V6fG/I04y+0mRL4jqzTYYV3ZIpq0maWFTR6eS8tsRc
+         gHo12G9X1Q3q9tHhz8+XV6PovWo1wZr3ehL6raIOfBi4eiNEf9NM0Ex7N/9t8aCiIHTP
+         hfLg==
+X-Gm-Message-State: AGi0Pub6yXRYvPfyiIPhxa/WlXR71FrPf3tN0WeGz04npQskBCe9eN0V
+        pP3FWiieLCTYi8nzIXlsGlsGy1Ul1HQ=
+X-Received: by 2002:a2e:b521:: with SMTP id z1mr5264770ljm.19.1585503263728;
+        Sun, 29 Mar 2020 10:34:23 -0700 (PDT)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
+        by smtp.gmail.com with ESMTPSA id j14sm6525142lfc.32.2020.03.29.10.34.22
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Mar 2020 10:34:22 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id r7so7817423ljg.13
+        for <linux-kernel@vger.kernel.org>; Sun, 29 Mar 2020 10:34:22 -0700 (PDT)
+X-Received: by 2002:a2e:9b8e:: with SMTP id z14mr5057608lji.150.1585503262229;
+ Sun, 29 Mar 2020 10:34:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <158549780513.2870.9873806112977909523.tglx@nanos.tec.linutronix.de>
+ <158549780514.2870.1236107824707197925.tglx@nanos.tec.linutronix.de>
+In-Reply-To: <158549780514.2870.1236107824707197925.tglx@nanos.tec.linutronix.de>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 29 Mar 2020 10:34:06 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whTDGWiaBcUfx2UhffL8FAPZ2Qy4dzmAcVoB+_=0vvx3w@mail.gmail.com>
+Message-ID: <CAHk-=whTDGWiaBcUfx2UhffL8FAPZ2Qy4dzmAcVoB+_=0vvx3w@mail.gmail.com>
+Subject: Re: [GIT pull] x86/urgent for v5.6
+To:     Thomas Gleixner <tglx@linutronix.de>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "the arch/x86 maintainers" <x86@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, Mar 29, 2020 at 9:03 AM Thomas Gleixner <tglx@linutronix.de> wrote:
+>
+> please pull the latest x86/urgent branch from:
+>
+>    git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git x86-urgent-2020-03-29
+
+Heh. I already got this from Ingo, where it was "x86-urgent-for-linus"
+and merged on Tuesday: commit 3f3ee43a4623 ("Merge branch
+'x86-urgent-for-linus' of
+git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip")
+
+              Linus

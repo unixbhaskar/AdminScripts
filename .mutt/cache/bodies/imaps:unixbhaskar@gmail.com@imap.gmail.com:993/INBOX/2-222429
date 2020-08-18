@@ -1,0 +1,111 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp2981125lfc;
+        Sun, 9 Feb 2020 12:08:44 -0800 (PST)
+X-Google-Smtp-Source: APXvYqx0Mu5lDTKTWkBqKxYpchlGg6Pukj2qgmNt66xlRCEmtgQIeAahWC2x9yh+5vqVrZkKLYe0
+X-Received: by 2002:a05:6830:1e37:: with SMTP id t23mr7973561otr.16.1581278924585;
+        Sun, 09 Feb 2020 12:08:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1581278924; cv=none;
+        d=google.com; s=arc-20160816;
+        b=fW2QczjMOFiQKQ8cxA21Sr3AlwgUuzl1OAhhFB3gS+71afo/wKQQhtgiCJhHAfZ/ER
+         fuFBJM9jfopn3O+fut5k2nlj1C6GpnVPqrPQt7pr/gdV0ygKPL7UwrS7j8oeLcOvJck4
+         p518vNeb1KysU0Bss2YX1XgbbZLq1sYrO1+SC+TxX7/6DHI+zxIXOxW7p4GD3JY6Z+Ph
+         aaVq7u4TMD8vo6XljSiMBVXRPOGtkIN1eCxtRzvIGfLnP7RDd1qwD0xyfjOmavaj7zBd
+         peA0S1c8Tb7mKbLKndJPfhhoLtqEE8yFceKOLKiffKDqjQHp4rmuSINu/cUiJNqD4G8M
+         4HIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=RqkAOwU05UON4/2tM3Mm2FBB11Kh6mbQkKkZsuuJoAk=;
+        b=akPfrD+BfayPztBf2uHH5bXfsuVH0ppDINwxDuZzp9xYPPtf15SjZUCrMamWLz/GlH
+         81v7qjwVHxCgPiFHo9D+Dj8cQCTsiA+3h5gfvMokfQREyt6X2VxflZiGzwxhbgC8bC9p
+         UQYqE43ugCaP0F7fdDZ6KhVM6RTDm8VH5NnWKwin/t9t2R2QBwuK/8O8jBHVA2m90Spr
+         B3nkInf6TfjjwG6DVrY9Cga0wszwwNRal8PAQUCy23uFPfhqYFsllk8r7GK2pFHMFom3
+         nmOeeSjPzkObw27OLImE5EX7rrBJQHh0X8cdQKgwXSaQiNuGi0307vgsGbPjKZ1XKpzC
+         xKBw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b="SJ6Llb/q";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id a12si7381207oid.189.2020.02.09.12.08.19;
+        Sun, 09 Feb 2020 12:08:44 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b="SJ6Llb/q";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727723AbgBIUHI (ORCPT <rfc822;rfried.dev@gmail.com>
+        + 99 others); Sun, 9 Feb 2020 15:07:08 -0500
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:41806 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727367AbgBIUHI (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 9 Feb 2020 15:07:08 -0500
+Received: by mail-lj1-f194.google.com with SMTP id h23so4712066ljc.8
+        for <linux-kernel@vger.kernel.org>; Sun, 09 Feb 2020 12:07:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RqkAOwU05UON4/2tM3Mm2FBB11Kh6mbQkKkZsuuJoAk=;
+        b=SJ6Llb/q03yekoiDXqo0/Fb9wCK4/wepkgs+HBkTFxFClv0ZqkdI+TEOXtmuGXk7aM
+         4H9xi7FR6lYiPK38/Oj9VwGy4a4rIc97oXlnfuzXiM+d5RnkelOGbqzJfL5D4b2iNoRt
+         f0hGoO04FaLUBr55zVIhEiK7UlEVh/ze2PVDU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RqkAOwU05UON4/2tM3Mm2FBB11Kh6mbQkKkZsuuJoAk=;
+        b=iIPTVTmz1FMvSfl6+W7Xf++TWJQyamKKh+rZYB4ffcBJCGiQmIi2rj3sNL0mC+jJ/w
+         URZ4wQpdoa6nYV4qQGFdIE9rYtcLyl/jQzpN9c0QOZlNV1q+0M0ioSU+izlWUzEl86YC
+         z2w0v+yYSn60rRVx6YBEr8RsrxvTXYjmNkVyCmtS0uxB5IMEOUrxFf7C/24QA27WZSqu
+         YDvhPyAuMvVK938EyGYKKsKpyyJHFCs8zPzmxfCGPvp7tyN7fThz2r9JDlZHFi5xWWXK
+         BLCp+CaaAd0OejXJALbPMzXM7bq+AJXr2Fn6JGJM4OO1JMHSh8f7DbRq2PDVB63owKsw
+         mKsg==
+X-Gm-Message-State: APjAAAUME86dVbFcPbJNA0KFm3EtvYBvnTrlMzaU4mRVZYuqt4dWwPds
+        tAbIt4e39HVjDuhUmvsuj4C7hfushcQ=
+X-Received: by 2002:a2e:85ce:: with SMTP id h14mr5858551ljj.41.1581278824566;
+        Sun, 09 Feb 2020 12:07:04 -0800 (PST)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
+        by smtp.gmail.com with ESMTPSA id u16sm5083054lfi.36.2020.02.09.12.07.03
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Feb 2020 12:07:03 -0800 (PST)
+Received: by mail-lj1-f176.google.com with SMTP id x7so4766736ljc.1
+        for <linux-kernel@vger.kernel.org>; Sun, 09 Feb 2020 12:07:03 -0800 (PST)
+X-Received: by 2002:a2e:3a13:: with SMTP id h19mr5865848lja.16.1581278823207;
+ Sun, 09 Feb 2020 12:07:03 -0800 (PST)
+MIME-Version: 1.0
+References: <158125695731.26104.949647922067525745.tglx@nanos.tec.linutronix.de>
+ <158125695732.26104.3631526665331853849.tglx@nanos.tec.linutronix.de>
+In-Reply-To: <158125695732.26104.3631526665331853849.tglx@nanos.tec.linutronix.de>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 9 Feb 2020 12:06:47 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wiEg6+j1UuRSAZmXozJEw0p33gM9uPT2oAOFwsOUaa=uw@mail.gmail.com>
+Message-ID: <CAHk-=wiEg6+j1UuRSAZmXozJEw0p33gM9uPT2oAOFwsOUaa=uw@mail.gmail.com>
+Subject: Re: [GIT pull] perf fixes for 5.6-rc1
+To:     Thomas Gleixner <tglx@linutronix.de>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "the arch/x86 maintainers" <x86@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, Feb 9, 2020 at 6:06 AM Thomas Gleixner <tglx@linutronix.de> wrote:
+>
+>    - Prevent am intgeer underflow in the perf mlock acounting
+>
+>    - Add a missing prototyp for arch_perf_update_userpage()
+>
+>    - Fix the perf parser so it does not delete parse event terms, which
+>      caused a regression for using perf with the ARM CoreSight as the sink
+>      confuguration was missing due to the deletion.
+
+You've started drinking too early in the day.  But hey, I guess it was
+evening _somewhere_ in the world.
+
+Pick out the five speeling errors in that pull request message.
+
+               Linus

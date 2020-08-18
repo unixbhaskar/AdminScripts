@@ -1,0 +1,106 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp2091389lfc;
+        Sat, 8 Feb 2020 13:39:59 -0800 (PST)
+X-Google-Smtp-Source: APXvYqytdOGeSrlt4F5G3vGF1eiLaBkYund3SCJiDGPXwLnOcGgpbtA+KA7vZEKZleLiXStpIIkK
+X-Received: by 2002:a17:90a:b10a:: with SMTP id z10mr12407895pjq.115.1581197998980;
+        Sat, 08 Feb 2020 13:39:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1581197998; cv=none;
+        d=google.com; s=arc-20160816;
+        b=fWks0Dmk8/m7fzGLIBXIdXqUzkDRE5dDcFa9y6OZf0kvM8OdW+0Yyy8cMDn2K1XApP
+         YQOEU4AWTbBrfFTiZv25NbkKNnTtflPi4GrIKji0g30iHdVHPAH6GOlRDry/fdMHGq/U
+         Er1ht9viwfE8/jpnIVFx7iZy3lbzWGn9Z4+oPdpvHM7ydeGEpLK1XK4bZyfSbgqQ6Wf2
+         pd3CAIdZbSSzG1LAdElig1zt3B3c/ivSG50c09AI6tBuILwNVg0OQHie6AvVUIexe2HZ
+         5Omp3T7gaiAILHRQtQe+g+weFJr7BoE3l6lTJy/9W1fZ4xXAxgKkYjUQAsDM8VS+cOeA
+         /+sA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=sender:errors-to:content-transfer-encoding:list-subscribe:list-help
+         :list-post:list-archive:list-unsubscribe:list-id:precedence:cc:to
+         :subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature:delivered-to;
+        bh=Zp1cU6E9ki7BVgQA4qCaNEaZR45F0PuHNoJ8a/QaCA4=;
+        b=wU/h9H5rvjoM+F22aVpZQCtaspn7eU6GjMK7MmQFwmNYV7yGLM1E2afbUK7h0LkEVX
+         oGdgTea5MEgS2/xOnEswpYdUxwO54N8+c8+nSWUWCZzk6pQmlDoVi0/hVAbY47N3Jv08
+         ZscOOHntbY0kL20R+9uN1sq5GmruPWhi4PvIKryXT3UVtSVUbq3OJ1tD9sk4hDdOW2mw
+         MVetN07k5b0QjLSFWraPYwNcux3562FuVFkfvCCqttmaKeQad0cFOYbxpFbD0HCvXTSG
+         c8fnRumEREaqBbKwG7dHNY/PAMcv5v9VkQh2/0JanrJLY8pEfLrq+PgGG9ZjLrIOTzM8
+         LYRg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=neutral (body hash did not verify) header.i=@zx2c4.com header.s=mail header.b=kULudfDk;
+       spf=pass (google.com: domain of wireguard-bounces@lists.zx2c4.com designates 192.95.5.69 as permitted sender) smtp.mailfrom=wireguard-bounces@lists.zx2c4.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=zx2c4.com
+Return-Path: <wireguard-bounces@lists.zx2c4.com>
+Received: from krantz.zx2c4.com (krantz.zx2c4.com. [192.95.5.69])
+        by mx.google.com with ESMTPS id t9si3073975pgl.539.2020.02.08.13.37.41
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 08 Feb 2020 13:39:58 -0800 (PST)
+Received-SPF: pass (google.com: domain of wireguard-bounces@lists.zx2c4.com designates 192.95.5.69 as permitted sender) client-ip=192.95.5.69;
+Authentication-Results: mx.google.com;
+       dkim=neutral (body hash did not verify) header.i=@zx2c4.com header.s=mail header.b=kULudfDk;
+       spf=pass (google.com: domain of wireguard-bounces@lists.zx2c4.com designates 192.95.5.69 as permitted sender) smtp.mailfrom=wireguard-bounces@lists.zx2c4.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=zx2c4.com
+Received: from krantz.zx2c4.com (localhost [IPv6:::1])
+	by krantz.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 6cf4e98a;
+	Sat, 8 Feb 2020 21:34:59 +0000 (UTC)
+Return-Path: Jason@zx2c4.com
+Delivered-To: WireGuard@lists.zx2c4.com
+Received: from krantz.zx2c4.com (localhost [127.0.0.1])
+ by krantz.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 32effb16
+ for <WireGuard@lists.zx2c4.com>; Sat, 8 Feb 2020 21:34:56 +0000 (UTC)
+Received: from frisell.zx2c4.com (frisell.zx2c4.com [192.95.5.64])
+ by krantz.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 31a46321
+ for <WireGuard@lists.zx2c4.com>; Sat, 8 Feb 2020 21:34:56 +0000 (UTC)
+Received: by frisell.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 3727bf06
+ for <WireGuard@lists.zx2c4.com>; Sat, 8 Feb 2020 21:34:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=mime-version
+ :references:in-reply-to:from:date:message-id:subject:to:cc
+ :content-type; s=mail; bh=i0YvBp5rbZZfC8T9OSffHMiBnZk=; b=kULudf
+ DkKbGQVSbdSQGLbIcMP1NOTW8TikmGm6GHEThVmDLQWTlMgANIFFIaG8CBv7/ngQ
+ mNNe6lJuPIXt1Xp6EEw+8lVWLEyFvL9uwjNkMSf/f8FfbExKBgZoPLvHkqAY0Il3
+ r/vYb+ur244ZjMSY0L1YSLfg+OnxW9ljQ2sPguSxTRpDR1utoNTuWnwAjRNrVYyB
+ JCJxhK0pNN1C6RV7VhbKEDxCMP29QvcJ0JFSK/d00NNDGJgp744B6PAwjQg9iEkK
+ GiXiTBy4YvpTKwZ1A/gpd0nsBcHQGj4CL3pgjv5i1xKD0oF00tIQ0eGAxDPM1cf0
+ OF5nDSeOlHVdwvFA==
+Received: by frisell.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id cb9d7d28
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO)
+ for <WireGuard@lists.zx2c4.com>; Sat, 8 Feb 2020 21:34:56 +0000 (UTC)
+Received: by mail-ot1-f51.google.com with SMTP id r16so2765733otd.2
+ for <WireGuard@lists.zx2c4.com>; Sat, 08 Feb 2020 13:36:18 -0800 (PST)
+X-Gm-Message-State: APjAAAVXULzQQbL9LAI/E9Gibo8QyTD1GMpn/HnXVDvNwAu3YuoHkVog
+ 5T+ySEwPBazFbDku8wAoH93aNM58Dz8+fkschh0=
+X-Received: by 2002:a9d:24c8:: with SMTP id z66mr4844344ota.52.1581197777944; 
+ Sat, 08 Feb 2020 13:36:17 -0800 (PST)
+MIME-Version: 1.0
+References: <CAMK_KHiuWijzbna+tBpZfZm9MixXXy5iEXoVh0r3oNmrqC-Ccg@mail.gmail.com>
+In-Reply-To: <CAMK_KHiuWijzbna+tBpZfZm9MixXXy5iEXoVh0r3oNmrqC-Ccg@mail.gmail.com>
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Sat, 8 Feb 2020 22:36:07 +0100
+X-Gmail-Original-Message-ID: <CAHmME9ocPawJ4amTG4JjcJga1EYKZUnEMoDvNSoJYvFqJbT3=g@mail.gmail.com>
+Message-ID: <CAHmME9ocPawJ4amTG4JjcJga1EYKZUnEMoDvNSoJYvFqJbT3=g@mail.gmail.com>
+Subject: Re: wireguard looses internet connection intermittently.
+To: kunalv.shah@gmail.com
+Cc: WireGuard mailing list <WireGuard@lists.zx2c4.com>
+X-BeenThere: wireguard@lists.zx2c4.com
+X-Mailman-Version: 2.1.15
+Precedence: list
+List-Id: Development discussion of WireGuard <wireguard.lists.zx2c4.com>
+List-Unsubscribe: <https://lists.zx2c4.com/mailman/options/wireguard>,
+ <mailto:wireguard-request@lists.zx2c4.com?subject=unsubscribe>
+List-Archive: <http://lists.zx2c4.com/pipermail/wireguard/>
+List-Post: <mailto:wireguard@lists.zx2c4.com>
+List-Help: <mailto:wireguard-request@lists.zx2c4.com?subject=help>
+List-Subscribe: <https://lists.zx2c4.com/mailman/listinfo/wireguard>,
+ <mailto:wireguard-request@lists.zx2c4.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Errors-To: wireguard-bounces@lists.zx2c4.com
+Sender: "WireGuard" <wireguard-bounces@lists.zx2c4.com>
+
+GCP uses an MTU of 1460 because Google's network does weird things.
+That means the MTU for WireGuard should be 1380. On the GCP box, try
+adding `MTU=1380` to your config and add this line to PostUp: `
+; iptables -t mangle -A POSTROUTING -p tcp --tcp-flags SYN,RST SYN -j
+TCPMSS --clamp-mss-to-pmtu`
+_______________________________________________
+WireGuard mailing list
+WireGuard@lists.zx2c4.com
+https://lists.zx2c4.com/mailman/listinfo/wireguard

@@ -1,0 +1,97 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:548e:0:0:0:0:0 with SMTP id t14csp3424931lfk;
+        Sun, 25 Aug 2019 15:52:07 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwzShID5eK9iV8taShlCMQISHv1TLa3aEwjoaEnpVYkR9+/XRwQcwhSRAFC7Ts/TwW6n7k7
+X-Received: by 2002:a63:f304:: with SMTP id l4mr13708216pgh.66.1566773526974;
+        Sun, 25 Aug 2019 15:52:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1566773526; cv=none;
+        d=google.com; s=arc-20160816;
+        b=CNOtfxmbng6iWKq0a76HhQi+M1ftb0ZIfJfRv/XdCWZF2MfmiBgoE4PfR0OFmAI2Z3
+         2OuQavc45B7dVNp0xY4EQoSfPClbC4fV1awsk0cT/VkOQlvMNSOrLOBOF+dkbhp8q6qF
+         gNC+ioEFC4FiESFjr0/UYJLcpd0HqdEkuntZD8WqZwpZLXbWtTYyKW8oc7dA20zQ7+oU
+         srboYb/2erLGoZzvvFMCb1jQMiBQzkHEyOhXhaTyk85rWFkNL0bTQYAZd7rcTDMfpCj7
+         OKsbkc7uGUc9DIoJBNJmhqGD5a5DO9KUp/L7usjGiFfOvANnoR4WchXSaRyj09iphDIv
+         6o9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-transfer-encoding:content-disposition:mime-version
+         :references:message-id:subject:cc:to:from:date:dkim-signature;
+        bh=fWYAPG+1006AeWWBWjdG72l6elL2X09zkjVtE8i+LMM=;
+        b=0o/e+teMJ/Blu9IfO2z0vWc9qi7nXaq2DQzv22mh6NMLs9dU7YBSJrPLtxwmHfRiBe
+         4rtyjMWkHdKN5n31BV7P/Rx8jXK1UVSeFA3V2TIsdvgP/rBOlGnP20HYJw1hJnQrYj7Q
+         WAPQGLtfJP0uyyOPTZnIP4FXVjYBt1yjT+jMv9N12xxlYqY0xc76DvKXJPS6ijjVNuel
+         oIkuGwcQDKkgry52NiKB7tYmVKnmJJYi8jb//IN5CLaGdilzHsEWuZ4CIANQOigAFNSM
+         wQl21YMFXs3vkrL1oNLJBGWuz11IHFpXqOF7O/9AQruzpoHiSCsKa7Q5wlI+Be1OmsnD
+         z3rA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=pG5I1EzA;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f24si1859337pfn.139.2019.08.25.15.51.18;
+        Sun, 25 Aug 2019 15:52:06 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=pG5I1EzA;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729043AbfHYWfk (ORCPT <rfc822;tputra6004@gmail.com>
+        + 99 others); Sun, 25 Aug 2019 18:35:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57488 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728944AbfHYWfk (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 25 Aug 2019 18:35:40 -0400
+Received: from localhost (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0E8942070B;
+        Sun, 25 Aug 2019 22:35:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566772539;
+        bh=fWYAPG+1006AeWWBWjdG72l6elL2X09zkjVtE8i+LMM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pG5I1EzAHntwN3s4m3gHH+8/TIlRnVM79XmNAIeWYXWplYBB58l/xUs6H+05dt4J+
+         XwS+Kv4zcbRXT6HXgyUm0ANczl6MpluKFQVQGaY7qzBGzGd2xtvheXcoDfCXxWI5JD
+         Rb5Z4SErUlv2gPPlzL6m+NyWJ7KnHKZ59CnCW+Yg=
+Date:   Sun, 25 Aug 2019 18:35:38 -0400
+From:   Sasha Levin <sashal@kernel.org>
+To:     =?iso-8859-1?Q?J=F6rg-Volker?= Peetz <jvpeetz@web.de>
+Cc:     stable@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: Linux 5.2.10
+Message-ID: <20190825223537.GB5281@sasha-vm>
+References: <20190825144703.6518-1-sashal@kernel.org>
+ <qju9bd$47qi$1@blaine.gmane.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <qju9bd$47qi$1@blaine.gmane.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Thanks for looking into this!
+
+On Sun, Aug 25, 2019 at 05:26:37PM +0200, Jörg-Volker Peetz wrote:
+>Where can I find your public gpg key and it's fingerprint?
+>It's not yet documented on https://www.kernel.org/category/signatures.html .
+
+You're right, I'll send a patch to add my fingerprint as well.
+
+>I'm asking because the "gpg --locate-keys" method does not work for me.
+
+I can confirm this, and this is weird... I see a kernel.org UID on the
+key, and gpg seems to confirm that as well:
+
+$ gpg --quick-add-uid DEA66FF797772CDC 'Sasha Levin <sashal@kernel.org>'
+gpg: Such a user ID already exists on this key!
+
+Let me contact kernel.org support to see what I'm doing wrong...
+
+--
+Thanks,
+Sasha

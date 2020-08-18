@@ -1,0 +1,116 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1499668lfj;
+        Wed, 9 Oct 2019 19:31:35 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzTwAUIzP5Whjd30HxF1zFqIyjk4scaSrVoQEjiFXqBEj0XrEstFOZEevr30VVvFOxkrmHM
+X-Received: by 2002:a17:906:6087:: with SMTP id t7mr5889778ejj.58.1570674695682;
+        Wed, 09 Oct 2019 19:31:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1570674695; cv=none;
+        d=google.com; s=arc-20160816;
+        b=BRm6ntT0faJbTDyx8xYbJmlFKV8C31AKPX7OdyqtJTJkIE01MUMGtzkVN3NmVNMeQ/
+         KzYpD66iuO9rKiYbybJlTDmpuvfXQIgP/mqdLdJPgoBQIrfyV5s1L6aWg8n/n+4H++wv
+         88obckoKTrnVOvphPL+X+DRtaoP3z5k/BTMUJUgKJ6oMik2Ai8czNXveEenV0F9wcaRz
+         azkBTLY117nLwcvrmfNc77bYNVBbiJHdHtxUFr4ERe0zRuad5/xaIGFDo8gs7Vq50veF
+         9t/uQEjclZbGaOsVHTIjbiq23xCyY1ivc7YR8jXMWbY/iil9SIES1tIQh9CKhB1jJKKJ
+         S5mg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=kiyNt/xJekPXIhuKZIFZr04kR6MVjud5JHLuZXfE0rU=;
+        b=tD5+TtB4cyziUH1ZAXY3Rr0n5dlmywJdECwExEBcUMVx6wlGKHmrmmYlYpSppaeQfv
+         e949gjnuR8DLlYziA/TbIJyJkgpW/AwjKcHMBS7b9QVqYJICCwjUdbbquq63/wY+Zz89
+         4YQwJztTK4vQdGn+/YbP2nsOoGmaHZSJfY5n6RRkAe5S2rAJZ/aVL53DBVHbDPTOa1AB
+         T4POepO+ZiVCNLz8+Od58uU0Ky4hhD/tiVlVFIIMV8ChSEqACQwLXbKpycFuHJbITjqG
+         8vkldHrcBeCkqYnkZ14z4iSPh20Ar9fzdl66UcYYWlH9bvWCbZh+LLXkUZKHb+yaC5NI
+         Rxkw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@chromium.org header.s=google header.b=SyVZTij3;
+       spf=pass (google.com: best guess record for domain of linux-doc-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=chromium.org
+Return-Path: <linux-doc-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id l21si2646196edc.112.2019.10.09.19.31.03;
+        Wed, 09 Oct 2019 19:31:35 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-doc-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@chromium.org header.s=google header.b=SyVZTij3;
+       spf=pass (google.com: best guess record for domain of linux-doc-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=chromium.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726659AbfJJCbA (ORCPT <rfc822;unixbhaskar@gmail.com>
+        + 99 others); Wed, 9 Oct 2019 22:31:00 -0400
+Received: from mail-pg1-f179.google.com ([209.85.215.179]:43350 "EHLO
+        mail-pg1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726465AbfJJCbA (ORCPT
+        <rfc822;linux-doc@vger.kernel.org>); Wed, 9 Oct 2019 22:31:00 -0400
+Received: by mail-pg1-f179.google.com with SMTP id i32so2644420pgl.10
+        for <linux-doc@vger.kernel.org>; Wed, 09 Oct 2019 19:30:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=kiyNt/xJekPXIhuKZIFZr04kR6MVjud5JHLuZXfE0rU=;
+        b=SyVZTij3mTFyijG0kOCQZ/JAoLMYFf/FIetijY0B5VW0lJQ/DHR94Ub5HPjlfQhhHv
+         L3/pvSQD+xYjcIn+zm1Gexvsl9wvABvUIBXbptWDOan8WsitaKTH8jse1aRn/ySTsJnY
+         WcVUdNI1ieqd61+yq2zng50F7DoYpiA7WllpM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kiyNt/xJekPXIhuKZIFZr04kR6MVjud5JHLuZXfE0rU=;
+        b=DIt/I+tneXJ2mFJ86bI1NXNnBEnCZy3UztLA3tJXNiEWGcmdXTXOjZWvg3NIdm1Mld
+         p0YWM5lZ0sz/nuVGjNy2ql6r49AvAU15/y55/ErX6wAt+4qoHc1Xm4KkJKNDz4X0ZcCQ
+         ozPD2Z3jjCmgNC2Bu24Mtw31W6rRXb1TwzpBBdk8safCMSnIYpYbdYvjgll1fF0my9yq
+         KFgZM94yLlmbEZxMKgbjNwL4LkOOYy6zXHl03I9Te3kbzfZcxeDkJ+/ZQcr31+/cC4SW
+         4wNs4XMRMe5H/GW9+BfGvtFYlviFGHsP+fu1v+q9lrdzrYEa1Hx8I0sofhkfPfhRe1H4
+         qwVw==
+X-Gm-Message-State: APjAAAXqRDTXo/yy8vsLM8V7SJUoZugt5GaDewjo41uoT2JEsU5pAhGZ
+        NVj1sQQbNqhF8DEehTlwRlm5ETcvmX4=
+X-Received: by 2002:a65:4907:: with SMTP id p7mr8010561pgs.429.1570674658240;
+        Wed, 09 Oct 2019 19:30:58 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+        by smtp.gmail.com with ESMTPSA id i8sm4240086pgl.18.2019.10.09.19.30.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Oct 2019 19:30:57 -0700 (PDT)
+Date:   Wed, 9 Oct 2019 19:30:56 -0700
+From:   Kees Cook <keescook@chromium.org>
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Subject: Re: Sphinx parallel build errors
+Message-ID: <201910091929.0C058BB@keescook>
+References: <dc19a670-7e8e-04e5-667d-578c2dd3754e@infradead.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dc19a670-7e8e-04e5-667d-578c2dd3754e@infradead.org>
+Sender: linux-doc-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-doc.vger.kernel.org>
+X-Mailing-List: linux-doc@vger.kernel.org
+
+On Wed, Oct 09, 2019 at 02:37:51PM -0700, Randy Dunlap wrote:
+> 
+> Sphinx parallel build error:
+> OSError: [Errno 12] Cannot allocate memory
+> 
+> I have had this error 4 times in the last 3 days.
+> 
+> The first time it oom-killed Thunderbird.  No big deal.
+> The second time it oom-killed gimp, which had 24 photos open.
+> Still no big deal.  Just a nuisance.
+
+Eek, sorry! OOM-killer once again chooses ... not the culprit. ;)
+
+> My little laptop has only 8 GB of RAM.
+> 
+> Is there a way that I can limit the amount of parallelism?
+
+As mentioned, "make -jN htmldocs" should be respected now (before it was
+as many CPUs as it had). I'm wondering if it's actually the addition of
+the MAINTAINERS file parsing -- that's a really big parse and maybe that
+pushed things over the edge?
+
+-- 
+Kees Cook

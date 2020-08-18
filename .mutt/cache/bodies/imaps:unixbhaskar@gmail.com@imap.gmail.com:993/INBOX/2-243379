@@ -1,0 +1,150 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp3860184lfk;
+        Sun, 7 Jun 2020 04:46:27 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwbHxKzF4qb5pcIubEQC6JDxRQEzX1hjts4O8Tzi21aMe4eobA+GhNUrSIdL2k2tUY3abL0
+X-Received: by 2002:a50:fc04:: with SMTP id i4mr17257930edr.117.1591530387153;
+        Sun, 07 Jun 2020 04:46:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591530387; cv=none;
+        d=google.com; s=arc-20160816;
+        b=hZ3tfd1K2vhZLHcGVdM/ARpZdkdNF7fHVaKpOxHjpAwDhTqw3Ebcq09LH6ArN3ybbl
+         y9fhx8nufk7Pf9giWm9TL76c7OSBND9E332lZAzJqvjW5ehb908WPVR2ZxSpEQmoBpvy
+         WRH4/TX87RyXklTifemFqVLtSOb43ImMjocgkwYLMDTRLPZPk1Vt6pESOoT3+iAZ5KJo
+         IIVqhS9mTkc7poSk/JWsQLuAojccUjcpP6IXNMLtprrnlfH79HP/zq2cvzzZR0bjwREA
+         n3wSMcJXSsKmItdjUkqFLhQg5JKz07xdoqBHu3F2EzAMf0Dq4+HY9fAbFlT3ypQIYper
+         79xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :message-id:date:subject:cc:to:from:dkim-signature;
+        bh=KcD5CwkGY7txXlFcHwdxKeEEodB0zDdg6dKRCIEB02k=;
+        b=yyjgGgYcTyRi0ZDmwnR1wr10ww4QQn+AzgGP9KIXxohVT3xVSNtez3o2v45hbmBxU2
+         OuZGTmGjtBQZJG3FnPu1B2BV8cWa+el2Q4lqE+hc5F3q/RN+gCnoE44F3C8DOelQEYGQ
+         ztFrRvuNlZeuZ3N4LYRUEmHnxE5tyTxQcKZCQ+lzeuTB9n1ERXGtnUJvTpmP8aahbFu5
+         MCerw7RWLXEX9nyHOfkFoOL5sRRNzq/YZ0rkHbiEU2QCX0whAtU5EGam7IwYA0WXblEV
+         EmeErjzmFghl7F8mSlStUsiuK+uITOZuXEj4z7mhZryAlD82mS89SXkluCtYaKVY0AnW
+         y1Dw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=1aNJYD0G;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id o7si7197037edt.103.2020.06.07.04.45.58;
+        Sun, 07 Jun 2020 04:46:27 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=1aNJYD0G;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726471AbgFGLoe (ORCPT <rfc822;guilhem.herail@gmail.com>
+        + 99 others); Sun, 7 Jun 2020 07:44:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43132 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725886AbgFGLoe (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 7 Jun 2020 07:44:34 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0E9AC206D5;
+        Sun,  7 Jun 2020 11:44:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1591530273;
+        bh=1TXBR+/2RbdAR0CbkwIjMfbzrG/D/azAbH56V2/jJd0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=1aNJYD0GRAQSPpTYrlt9/dUDF7PAxFKImOQHFOADLRK7tCbZ+1ft9Z9OW9ngtgLZE
+         t7HuQ4JBEm7NVlGpqDfSItKVsZDZr4O4eXdlVA4oeHWKNB/WnEV9h95Z95ye0AjfNu
+         iEybhvBCkpTin4tvYExl+jp8H0uW7SZyMhdpQ6wM=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     linux-kernel@vger.kernel.org, akpm@linux-foundation.org,
+        torvalds@linux-foundation.org, stable@vger.kernel.org
+Cc:     lwn@lwn.net, jslaby@suse.cz,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Linux 5.7.1
+Date:   Sun,  7 Jun 2020 13:44:18 +0200
+Message-Id: <1591530257663@kroah.com>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+I'm announcing the release of the 5.7.1 kernel.
+
+All users of the 5.7 kernel series must upgrade.
+
+The updated 5.7.y git tree can be found at:
+	git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux-5.7.y
+and can be browsed at the normal kernel.org git web browser:
+	https://git.kernel.org/?p=linux/kernel/git/stable/linux-stable.git;a=summary
+
+thanks,
+
+greg k-h
+
+------------
+
+ Makefile                                        |    2 -
+ arch/x86/include/asm/pgtable.h                  |    1 
+ crypto/algapi.c                                 |   22 ++++++++++++++------
+ crypto/api.c                                    |    3 +-
+ crypto/internal.h                               |    1 
+ drivers/hid/hid-multitouch.c                    |   26 ++++++++++++++++++++++++
+ drivers/hid/hid-sony.c                          |   17 +++++++++++++++
+ drivers/hid/i2c-hid/i2c-hid-dmi-quirks.c        |    8 +++++++
+ drivers/media/dvb-core/dvbdev.c                 |    5 ++--
+ drivers/net/dsa/mt7530.c                        |   11 +++++++---
+ drivers/net/dsa/mt7530.h                        |    6 +++++
+ drivers/net/wireless/cisco/airo.c               |   12 +++++++++++
+ drivers/net/wireless/intersil/p54/p54usb.c      |    1 
+ drivers/net/wireless/mediatek/mt76/mt76x02.h    |    1 
+ drivers/net/wireless/mediatek/mt76/mt76x2/usb.c |    1 
+ drivers/staging/media/ipu3/include/intel-ipu3.h |    7 +++---
+ include/uapi/linux/mmc/ioctl.h                  |    1 
+ kernel/relay.c                                  |    5 ++++
+ mm/mremap.c                                     |    2 -
+ 19 files changed, 115 insertions(+), 17 deletions(-)
+
+Benjamin Tissoires (1):
+      HID: multitouch: enable multi-input as a quirk for some devices
+
+Brad Love (1):
+      media: dvbdev: Fix tuner->demod media controller link
+
+DENG Qingfang (1):
+      net: dsa: mt7530: set CPU port to fallback mode
+
+Dan Carpenter (1):
+      airo: Fix read overflows sending packets
+
+Daniel Axtens (1):
+      kernel/relay.c: handle alloc_percpu returning NULL in relay_open
+
+Fan Yang (1):
+      mm: Fix mremap not considering huge pmd devmap
+
+Giuseppe Marco Randazzo (1):
+      p54usb: add AirVasT USB stick device-id
+
+Greg Kroah-Hartman (1):
+      Linux 5.7.1
+
+Herbert Xu (1):
+      crypto: api - Fix use-after-free and race in crypto_spawn_alg
+
+Julian Sax (1):
+      HID: i2c-hid: add Schneider SCL142ALM to descriptor override
+
+Jérôme Pouiller (1):
+      mmc: fix compilation of user API
+
+Matthew Garrett (1):
+      mt76: mt76x02u: Add support for newer versions of the XBox One wifi adapter
+
+Sakari Ailus (2):
+      media: Revert "staging: imgu: Address a compiler warning on alignment"
+      media: staging: ipu3-imgu: Move alignment attribute to field
+
+Scott Shumate (1):
+      HID: sony: Fix for broken buttons on DS3 USB dongles
+

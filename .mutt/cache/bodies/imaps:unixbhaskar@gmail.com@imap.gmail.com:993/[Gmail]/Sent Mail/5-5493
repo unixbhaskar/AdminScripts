@@ -1,0 +1,793 @@
+Date: Tue, 10 Mar 2020 16:22:19 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: Linux 5.6-rc5 ..boots well with qemu 
+Message-ID: <20200310105219.GA3151@Gentoo>
+Mail-Followup-To: Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+	Linus Torvalds <torvalds@linux-foundation.org>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <CAHk-=wjie=L9=jO-VKR5u7+5Ekis-VR5m=zUChR9djhAuAN55g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="OgqxwSJOaUobr8KG"
+Content-Disposition: inline
+In-Reply-To: <CAHk-=wjie=L9=jO-VKR5u7+5Ekis-VR5m=zUChR9djhAuAN55g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+
+--OgqxwSJOaUobr8KG
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 18:17 Sun 08 Mar 2020, Linus Torvalds wrote:
+>I was hoping I'd have been home already and do this leisurely from my
+>usual setup, but due to flight cancellations and travel trouble, I'm
+>instead doing the rc5 from 28,000 feet. But at least I'm on my way
+>home, and next rc should be normal.
+>
+>That said, everything looks mostly fine. I say "mostly", because while
+>nothing in particular looks worrisome, this rc5 is bigger than I'd
+>have liked. In fact, it's not only bigger than rc4 was, but it's
+>bigger than we historically are at this point.
+>
+>That's never a great sign, but who knows, it might be just timing. The
+>previous rc was smaller than usual, so it might have been just pent-up
+>patches from that. I won't really start worrying unless the trent
+>continues for next week too...
+>
+>Apart from the size, things look fairly normal. About 60% drivers
+>(GPU, dmaengine, phy, sound, rdma, backlight..), with the rest being a
+>mix of arch updates, documentation, perf tooling and "misc core code"
+>(filesystems, kernel, vm).
+>
+>The shortlog is appended for people who want to skim the details.
+>
+>Please do continue testing,
+>
+>                    Linus
+
+Well, at least it boots well to me! with qemu ....
+
+
+[   16.331136] EXT4-fs (sda): mounted filesystem with ordered data mode.
+Opts: (null)
+[   16.333272] ext4 filesystem being mounted at /sysroot supports
+timestamps until 2038 (0x7fffffff)
+[   16.551114] dracut: Mounted root filesystem /dev/sda
+[   17.194732] dracut: Switching root
+[   17.244369] process '/bin/busybox' started with executable stack
+mount: mounting proc on /proc failed: Device or resource busy
+[   17.469256] EXT4-fs (sda): re-mounted. Opts: (null)
+[   17.469816] ext4 filesystem being remounted at / supports timestamps
+until 2038 (0x7fffffff)
+Starting syslogd: OK
+Starting klogd: OK
+Running sysctl: OK
+Initializing random number generator... done.
+Starting network: OK
+
+Welcome to Buildroot
+buildroot login: root
+# uname -a
+Linux buildroot 5.6.0-rc5 #1 SMP Mon Mar 9 15:25:06 IST 2020 x86_64
+GNU/Linux
+
+
+~Bhaskar
+
+
+
+
+
+
+
+
+
+>
+>---
+>
+>Aaro Koskinen (1):
+>      spi: spi_register_controller(): free bus id on error paths
+>
+>Adrian Hunter (2):
+>      perf arm-spe: Fix endless record after being terminated
+>      perf auxtrace: Add auxtrace_record__read_finish()
+>
+>Ahmad Fatoum (1):
+>      ARM: imx: build v7_cpu_resume() unconditionally
+>
+>Ahzo (1):
+>      drm/ttm: fix leaking fences via ttm_buffer_object_transfer
+>
+>Alexandre Ghiti (1):
+>      riscv: Fix range looking for kernel image memblock
+>
+>Amadeusz S=C5=82awi=C5=84ski (1):
+>      ASoC: Intel: Skylake: Fix available clock counter incrementation
+>
+>Andy Shevchenko (1):
+>      MAINTAINERS: Add missed files related to Synopsys DesignWare UART
+>
+>Anup Patel (4):
+>      RISC-V: Add kconfig option for QEMU virt machine
+>      RISC-V: Enable QEMU virt machine support in defconfigs
+>      RISC-V: Select SYSCON Reboot and Poweroff for QEMU virt machine
+>      RISC-V: Select Goldfish RTC driver for QEMU virt machine
+>
+>Ard Biesheuvel (3):
+>      efi/x86: Align GUIDs to their size in the mixed mode runtime wrapper
+>      efi/x86: Remove support for EFI time and counter services in mixed m=
+ode
+>      efi/x86: Handle by-ref arguments covering multiple pages in mixed mo=
+de
+>
+>Arnaldo Carvalho de Melo (4):
+>      perf bpf: Remove bpf/ subdir from bpf.h headers used to build bpf ev=
+ents
+>      perf arch powerpc: Sync powerpc syscall.tbl with the kernel sources
+>      tools arch x86: Sync the msr-index.h copy with the kernel sources
+>      tools headers UAPI: Update tools's copy of kvm.h headers
+>
+>Artemy Kovalyov (1):
+>      IB/mlx5: Fix implicit ODP race
+>
+>Aurelien Aptel (1):
+>      cifs: fix rename() by ensuring source handle opened with DELETE bit
+>
+>Axel Lin (1):
+>      ASoC: wm8741: Fix typo in Kconfig prompt
+>
+>Bernard Metzler (2):
+>      RDMA/siw: Fix failure handling during device creation
+>      RDMA/iwcm: Fix iwcm work deallocation
+>
+>Bhawanpreet Lakha (1):
+>      drm/amd/display: Clear link settings on MST disable connector
+>
+>Bibby Hsieh (4):
+>      drm/mediatek: Add plane check in async_check function
+>      drm/mediatek: Add fb swap in async_update
+>      drm/mediatek: Move gce event property to mutex device node
+>      drm/mediatek: Make sure previous message done or be aborted before s=
+end
+>
+>Brendan Higgins (3):
+>      reset: brcmstb-rescal: add unspecified HAS_IOMEM dependency
+>      reset: intel: add unspecified HAS_IOMEM dependency
+>      Revert "software node: Simplify software_node_release() function"
+>
+>Carlo Nonato (1):
+>      block, bfq: fix overwrite of bfq_group pointer in bfq_find_set_group=
+()
+>
+>Cengiz Can (1):
+>      blktrace: fix dereference after null check
+>
+>Changbin Du (1):
+>      dmaengine: doc: fix warnings/issues of client.rst
+>
+>Charles Keepax (1):
+>      ASoC: dapm: Correct DAPM handling of active widgets during shutdown
+>
+>Chris Wilson (4):
+>      drm/i915/gem: Break up long lists of object reclaim
+>      drm/i915: Protect i915_request_await_start from early waits
+>      drm/i915/perf: Reintroduce wait on OA configuration completion
+>      drm/i915/gt: Drop the timeline->mutex as we wait for retirement
+>
+>Christian Brauner (2):
+>      binder: prevent UAF for binderfs devices
+>      binder: prevent UAF for binderfs devices II
+>
+>Christian Hewitt (1):
+>      arm64: dts: meson: fix gxm-khadas-vim2 wifi
+>
+>Christian Lachner (1):
+>      ALSA: hda/realtek - Fix silent output on Gigabyte X570 Aorus Master
+>
+>Christophe JAILLET (1):
+>      spi: bcm63xx-hsspi: Really keep pll clk enabled
+>
+>Christophe Leroy (2):
+>      selftests: pidfd: Add pidfd_fdinfo_test in .gitignore
+>      selftest/lkdtm: Use local .gitignore
+>
+>Cong Wang (1):
+>      dma-buf: free dmabuf->name in dma_buf_release()
+>
+>Damien Le Moal (1):
+>      riscv: Force flat memory model with no-mmu
+>
+>Dan Carpenter (6):
+>      dmaengine: idxd: Fix error handling in idxd_wq_cdev_dev_setup()
+>      dmaengine: coh901318: Fix a double lock bug in dma_tc_handle()
+>      tee: amdtee: fix memory leak in amdtee_open_session()
+>      drm/i915/selftests: Fix return in assert_mmap_offset()
+>      ASoC: SOF: Fix snd_sof_ipc_stream_posn()
+>      hwmon: (adt7462) Fix an error return in ADT7462_REG_VOLT()
+>
+>Dan Lazewatsky (1):
+>      usb: quirks: add NO_LPM quirk for Logitech Screen Share
+>
+>Dan Murphy (2):
+>      ASoC: tas2562: Return invalid for when bitwidth is invalid
+>      ASoC: tas2562: Fix sample rate error message
+>
+>Daniel Axtens (1):
+>      altera-stapl: altera_get_note: prevent write beyond end of 'key'
+>
+>Daniel Wagner (1):
+>      block: Remove used kblockd_schedule_work_on()
+>
+>Dave Jiang (4):
+>      dmaengine: idxd: fix runaway module ref count on device driver bind
+>      dmaengine: idxd: correct reserved token calculation
+>      dmaengine: idxd: sysfs input of wq incorrect wq type should return e=
+rror
+>      dmaengine: idxd: wq size configuration needs to check global max size
+>
+>Dennis Dalessandro (1):
+>      IB/hfi1, qib: Ensure RCU is locked when accessing list
+>
+>Desnes A. Nunes do Rosario (1):
+>      powerpc: fix hardware PMU exception bug on PowerVM compatibility
+>mode systems
+>
+>Dinh Nguyen (1):
+>      ARM: socfpga_defconfig: Add back DEBUG_FS
+>
+>Dmitry Osipenko (2):
+>      dmaengine: tegra-apb: Fix use-after-free
+>      dmaengine: tegra-apb: Prevent race conditions of tasklet vs free list
+>
+>Dongli Zhang (2):
+>      xenbus: req->body should be updated before req->state
+>      xenbus: req->err should be updated before req->state
+>
+>Dragos Tarcatu (2):
+>      ASoC: topology: Fix memleak in soc_tplg_link_elems_load()
+>      ASoC: topology: Fix memleak in soc_tplg_manifest_load()
+>
+>Eugeniu Rosca (3):
+>      usb: core: hub: fix unhandled return by employing a void function
+>      usb: core: hub: do error out if usb_autopm_get_interface() fails
+>      usb: core: port: do error out if usb_autopm_get_interface() fails
+>
+>Evan Benn (1):
+>      drm/mediatek: Find the cursor plane instead of hard coding it
+>
+>Evan Green (1):
+>      spi: pxa2xx: Add CS control clock quirk
+>
+>Ezequiel Garcia (1):
+>      media: hantro: Fix broken media controller links
+>
+>Fabio Estevam (1):
+>      arm64: dts: imx8qxp-mek: Remove unexisting Ethernet PHY
+>
+>Fabrice Gasnier (1):
+>      regulator: stm32-vrefbuf: fix a possible overshoot when re-enabling
+>
+>Faiz Abbas (1):
+>      arm: dts: dra76x: Fix mmc3 max-frequency
+>
+>Florian Fainelli (1):
+>      phy: brcm-sata: Correct MDIO operations for 40nm platforms
+>
+>Frieder Schrempf (1):
+>      dmaengine: imx-sdma: Fix the event id check to include RX event for =
+UART6
+>
+>Geert Uytterhoeven (3):
+>      arm64: defconfig: Replace ARCH_R8A7796 by ARCH_R8A77960
+>      ARM: dts: r8a7779: Remove deprecated "renesas, rcar-sata" compatible=
+ value
+>      ARM: meson: Drop unneeded select of COMMON_CLK
+>
+>Georgi Djakov (1):
+>      interconnect: Handle memory allocation errors
+>
+>Gerald Schaefer (1):
+>      s390/mm: fix panic in gup_fast on large pud
+>
+>Gerd Hoffmann (3):
+>      drm/shmem: add support for per object caching flags.
+>      drm/virtio: fix mmap page attributes
+>      drm/shmem: drop pgprot_decrypted()
+>
+>Greg Kroah-Hartman (1):
+>      debugfs: remove return value of debugfs_create_regset32()
+>
+>Grygorii Strashko (3):
+>      phy: ti: gmii-sel: fix set of copy-paste errors
+>      phy: ti: gmii-sel: do not fail in case of gmii
+>      ARM: dts: dra7-l4: mark timer13-16 as pwm capable
+>
+>Guillaume La Roque (1):
+>      arm64: dts: meson-sm1-sei610: add missing interrupt-names
+>
+>Gustavo A. R. Silva (1):
+>      xen: Replace zero-length array with flexible-array member
+>
+>Hans Verkuil (5):
+>      media: pulse8-cec: INIT_DELAYED_WORK was called too late
+>      media: pulse8-cec: close serio in disconnect, not adap_free
+>      media: vicodec: process all 4 components for RGB32 formats
+>      media: v4l2-mem2mem.c: fix broken links
+>      media: mc-entity.c: use & to check pad flags, not =3D=3D
+>
+>He Zhe (1):
+>      perf probe: Check return value of strlist__add() for -ENOMEM
+>
+>Hersen Wu (1):
+>      drm/amdgpu/display: navi1x copy dcn watermark clock settings to
+>smu resume from s3 (v2)
+>
+>Hou Tao (1):
+>      dm: fix congested_fn for request-based device
+>
+>Huang Ying (1):
+>      mm: fix possible PMD dirty bit lost in set_pmd_migration_entry()
+>
+>Hui Wang (1):
+>      ALSA: hda/realtek - Fix a regression for mute led on Lenovo Carbon X1
+>
+>Icenowy Zheng (1):
+>      drm/bridge: analogix-anx6345: fix set of link bandwidth
+>
+>Jack Yu (2):
+>      ASoC: rt1015: add operation callback function for rt1015_dai[]
+>      ASoC: rt1015: modify pre-divider for sysclk
+>
+>Jason A. Donenfeld (1):
+>      efi: READ_ONCE rng seed size before munmap
+>
+>Jason Gunthorpe (2):
+>      RMDA/cm: Fix missing ib_cm_destroy_id() in ib_cm_insert_listen()
+>      RDMA/odp: Ensure the mm is still alive before creating an implicit c=
+hild
+>
+>Jay Dolan (1):
+>      serial: 8250_exar: add support for ACCES cards
+>
+>Jean-Philippe Brucker (1):
+>      arm64: context: Fix ASID limit in boot messages
+>
+>Jens Axboe (2):
+>      Revert "bcache: ignore pending signals when creating gc and
+>allocator thread"
+>      io_uring: free fixed_file_data after RCU grace period
+>
+>Jernej Skrabec (3):
+>      drm/sun4i: de2/de3: Remove unsupported VI layer formats
+>      drm/sun4i: Add separate DE3 VI layer formats
+>      drm/sun4i: Fix DE2 VI layer format support
+>
+>Jerome Brunet (1):
+>      ASoC: meson: g12a: add tohdmitx reset
+>
+>Jian-Hong Pan (1):
+>      ALSA: hda/realtek - Enable the headset of ASUS B9450FA with ALC294
+>
+>Jim Lin (1):
+>      usb: storage: Add quirk for Samsung Fit flash
+>
+>Jiri Slaby (2):
+>      vt: selection, push console lock down
+>      vt: selection, push sel_lock up
+>
+>Joakim Zhang (1):
+>      drivers/perf: fsl_imx8_ddr: Correct the CLEAR bit definition
+>
+>Joe Perches (1):
+>      cifs: Use #define in cifs_dbg
+>
+>Johan Hovold (1):
+>      ARM: dts: imx6dl-colibri-eval-v3: fix sram compatible properties
+>
+>John Bates (1):
+>      drm/virtio: fix resource id creation race
+>
+>John Stultz (1):
+>      drm: kirin: Revert "Fix for hikey620 display offset problem"
+>
+>Jonathan Neusch=C3=A4fer (4):
+>      dt-bindings: mfd: zii,rave-sp: Fix a typo ("onborad")
+>      dt-bindings: mfd: tps65910: Improve grammar
+>      dt-bindings: mfd: Fix typo in file name of twl-familly.txt
+>      parse-maintainers: Mark as executable
+>
+>Josip Pavic (1):
+>      drm/amd/display: fix dcc swath size calculations on dcn1
+>
+>Jos=C3=A9 Roberto de Souza (1):
+>      drm/i915/psr: Force PSR probe only after full initialization
+>
+>Juergen Gross (4):
+>      x86/ioperm: Add new paravirt function update_io_bitmap()
+>      x86/mm: Fix dump_pagetables with Xen PV
+>      xen/xenbus: fix locking
+>      xen/blkfront: fix ring info addressing
+>
+>Kailang Yang (2):
+>      ALSA: hda/realtek - Add Headset Mic supported
+>      ALSA: hda/realtek - Add Headset Button supported for ThinkPad X1
+>
+>Kees Cook (1):
+>      fcntl: Distribute switch variables for initialization
+>
+>Kirill A. Shutemov (1):
+>      mm: avoid data corruption on CoW fault into PFN-mapped VMA
+>
+>Kishon Vijay Abraham I (2):
+>      phy: core: Fix phy_get() to not return error on link creation failure
+>      ARM: dts: dra7: Add "dma-ranges" property to PCIe RC DT nodes
+>
+>Kuninori Morimoto (2):
+>      ASoC: soc-pcm/soc-compress: don't use snd_soc_dapm_stream_stop()
+>      ASoC: soc-component: tidyup snd_soc_pcm_component_sync_stop()
+>
+>Leonard Crestez (5):
+>      firmware: imx: scu: Ensure sequential TX
+>      firmware: imx: misc: Align imx sc msg structs to 4
+>      firmware: imx: scu-pd: Align imx sc msg structs to 4
+>      firmware: imx: Align imx_sc_msg_req_cpu_start to 4
+>      soc: imx-scu: Align imx sc msg structs to 4
+>
+>Ley Foon Tan (1):
+>      arm64: dts: socfpga: agilex: Fix gmac compatible
+>
+>Linus Torvalds (1):
+>      Linux 5.6-rc5
+>
+>Lucas De Marchi (1):
+>      drm/i915/tgl: Add Wa_1608008084
+>
+>Lucas Tanure (1):
+>      HID: hyperv: NULL check before some freeing functions is not needed.
+>
+>Lukas Bulwahn (3):
+>      MAINTAINERS: fix style in RESET CONTROLLER FRAMEWORK
+>      MAINTAINERS: clean up PCIE DRIVER FOR CAVIUM THUNDERX
+>      MAINTAINERS: update ALLWINNER CPUFREQ DRIVER entry
+>
+>Lukas Wunner (1):
+>      spi: spidev: Fix CS polarity if GPIO descriptors are used
+>
+>Madhuparna Bhowmik (2):
+>      fork: Use RCU_INIT_POINTER() instead of rcu_access_pointer()
+>      exit: Fix Sparse errors and warnings
+>
+>Maor Gottlieb (2):
+>      RDMA/core: Fix pkey and port assignment in get_new_pps
+>      RDMA/core: Fix protection fault in ib_mr_pool_destroy
+>
+>Marco Felsch (2):
+>      ARM: dts: imx6: phycore-som: fix emmc supply
+>      usb: usb251xb: fix regulator probe and error handling
+>
+>Marek Szyprowski (3):
+>      drm/exynos: dsi: propagate error value and silence meaningless warni=
+ng
+>      drm/exynos: dsi: fix workaround for the legacy clock name
+>      drm/exynos: hdmi: don't leak enable HDMI_EN regulator if probe fails
+>
+>Mark Zhang (1):
+>      RDMA/nldev: Fix crash when set a QP to a new counter but QPN is miss=
+ing
+>
+>Martin Fuzzey (1):
+>      dmaengine: imx-sdma: fix context cache
+>
+>Matt Roper (2):
+>      drm/i915: Program MBUS with rmw during initialization
+>      drm/i915/tgl: Add Wa_22010178259:tgl
+>
+>Matthias Reichl (1):
+>      ASoC: pcm512x: Fix unbalanced regulator enable call in probe error p=
+ath
+>
+>Mauro Carvalho Chehab (3):
+>      docs: adm1177: fix a broken reference
+>      docs: dt: fix several broken references due to renames
+>      docs: dt: fix several broken doc references
+>
+>Max Gurtovoy (1):
+>      RDMA/rw: Fix error flow during RDMA context initialization
+>
+>Mel Gorman (1):
+>      mm, numa: fix bad pmd by atomically check for pmd_trans_huge
+>when marking page tables prot_numa
+>
+>Michael Ellerman (1):
+>      powerpc/mm: Fix missing KUAP disable in flush_coherent_icache()
+>
+>Michael Walle (2):
+>      Revert "tty: serial: fsl_lpuart: drop EARLYCON_DECLARE"
+>      tty: serial: fsl_lpuart: free IDs allocated by IDA
+>
+>Mike Snitzer (3):
+>      dm bio record: save/restore bi_end_io and bi_integrity
+>      dm integrity: use dm_bio_record and dm_bio_restore
+>      dm: bump version of core and various targets
+>
+>Mikulas Patocka (6):
+>      dm integrity: fix recalculation when moving from journal mode to
+>bitmap mode
+>      dm integrity: fix a deadlock due to offloading to an incorrect workq=
+ueue
+>      dm integrity: fix invalid table returned due to argument count misma=
+tch
+>      dm cache: fix a crash due to incorrect work item cancelling
+>      dm: report suspended device during destroy
+>      dm writecache: verify watermark during resume
+>
+>Miroslav Benes (1):
+>      arch/Kconfig: update HAVE_RELIABLE_STACKTRACE description
+>
+>Nathan Chancellor (1):
+>      RDMA/core: Fix use of logical OR in get_new_pps
+>
+>Naveen N. Rao (1):
+>      powerpc: Include .BTF section
+>
+>Nicolas Saenz Julienne (1):
+>      ARM: dts: bcm2711: Add pcie0 alias
+>
+>Niklas Schnelle (1):
+>      s390/pci: Fix unexpected write combine on resource
+>
+>OGAWA Hirofumi (1):
+>      fat: fix uninit-memory access for partial initialized inode
+>
+>Oleksandr Suvorov (1):
+>      ARM: dts: imx7-colibri: Fix frequency for sd/mmc
+>
+>Olivier Moysan (1):
+>      ASoC: stm32: sai: manage rebind issue
+>
+>Omar Sandoval (1):
+>      btrfs: fix RAID direct I/O reads with alternate csums
+>
+>Parav Pandit (1):
+>      Revert "RDMA/cma: Simplify rdma_resolve_addr() error flow"
+>
+>Paulo Alcantara (SUSE) (1):
+>      cifs: fix potential mismatch of UNC paths
+>
+>Pavel Begunkov (3):
+>      io-wq: fix IO_WQ_WORK_NO_CANCEL cancellation
+>      io-wq: remove io_wq_flush and IO_WQ_WORK_INTERNAL
+>      io_uring: fix lockup with timeouts
+>
+>Peng Fan (1):
+>      ARM: dts: imx7d: fix opp-supported-hw
+>
+>Peter Chen (2):
+>      usb: cdns3: gadget: link trb should point to next request
+>      usb: cdns3: gadget: toggle cycle bit before reset endpoint
+>
+>Peter Ujfalusi (6):
+>      dmaengine: ti: k3-udma: Workaround for RX teardown with stale data i=
+n peer
+>      dmaengine: ti: k3-udma: Move the TR counter calculation to helper fu=
+nction
+>      dmaengine: ti: k3-udma: Use the TR counter helper for slave_sg and c=
+yclic
+>      dmaengine: ti: k3-udma: Use the channel direction in
+>pause/resume functions
+>      dmaengine: ti: k3-udma: Fix terminated transfer handling
+>      ARM: dts: dra7-evm: Rename evm_3v3 regulator to vsys_3v3
+>
+>Petr Vorel (1):
+>      regulator: qcom_spmi: Fix docs for PM8004
+>
+>Phong LE (1):
+>      drm/mediatek: Handle component type MTK_DISP_OVL_2L correctly
+>
+>Pierre-Louis Bossart (1):
+>      ASoC: soc-core: fix for_rtd_codec_dai_rollback() macro
+>
+>Pratham Pratap (1):
+>      usb: dwc3: gadget: Update chain bit correctly when using sg list
+>
+>Prike Liang (2):
+>      drm/amd/powerplay: fix pre-check condition for setting clock range
+>      drm/amd/powerplay: map mclk to fclk for COMBINATIONAL_BYPASS case
+>
+>Randy Dunlap (1):
+>      Documentation/admin-guide/acpi: fix fan_performance_states.rst warni=
+ngs
+>
+>Ravi Bangoria (13):
+>      powerpc/watchpoint: Don't call dar_within_range() for Book3S
+>      perf annotate/tui: Re-render title bar after switching back from
+>script browser
+>      perf annotate: Fix --show-total-period for tui/stdio2
+>      perf annotate: Fix --show-nr-samples for tui/stdio2
+>      perf config: Introduce perf_config_u8()
+>      perf annotate: Make perf config effective
+>      perf annotate: Prefer cmdline option over default config
+>      perf annotate: Fix perf config option description
+>      perf config: Document missing config options
+>      perf annotate: Remove privsize from symbol__annotate() args
+>      perf annotate: Simplify disasm_line allocation and freeing code
+>      perf annotate: Align struct annotate_args
+>      perf annotate: Fix segfault with source toggle
+>
+>Rikard Falkeborn (1):
+>      phy: allwinner: Fix GENMASK misuse
+>
+>Rob Herring (3):
+>      dt-bindings: reset: intel,rcu-gw: Fix intel,global-reset schema
+>      dt-bindings: Fix dtc warnings in examples
+>      dt-bindings: bus: Drop empty compatible string in example
+>
+>Ronald Tschal=C3=A4r (1):
+>      serdev: Fix detection of UART devices on Apple machines.
+>
+>Ronnie Sahlberg (1):
+>      cifs: don't leak -EAGAIN for stat() during reconnect
+>
+>Saravana Kannan (3):
+>      driver core: Call sync_state() even if supplier has no consumers
+>      driver core: Add dev_has_sync_state()
+>      driver core: Skip unnecessary work when device doesn't have sync_sta=
+te()
+>
+>Sasha Levin (1):
+>      Hyper-V: Drop Sasha Levin from the Hyper-V maintainers
+>
+>Sean Christopherson (1):
+>      x86/pkeys: Manually set X86_FEATURE_OSPKE to preserve existing chang=
+es
+>
+>Sean Paul (1):
+>      drm/mediatek: Ensure the cursor plane is on top of other overlays
+>
+>Sebastian Andrzej Siewior (1):
+>      mm/z3fold.c: do not include rwlock.h directly
+>
+>Sherry Sun (1):
+>      EDAC/synopsys: Do not print an error with back-to-back snprintf() ca=
+lls
+>
+>Shin'ichiro Kawasaki (1):
+>      dm zoned: Fix reference counter initial value of chunk works
+>
+>Stefan Wahren (2):
+>      ARM: dts: bcm283x: Add missing properties to the PWR LED
+>      ARM: bcm2835_defconfig: Explicitly restore CONFIG_DEBUG_FS
+>
+>Steve French (1):
+>      cifs: add missing mount option to /proc/mounts
+>
+>Suman Anna (2):
+>      ARM: dts: am437x-idk-evm: Fix incorrect OPP node names
+>      ARM: dts: dra7xx-clocks: Fixup IPU1 mux clock parent source
+>
+>S=C3=A9bastien Szymanski (1):
+>      dt-bindings: arm: fsl: fix APF6Dev compatible
+>
+>Takashi Iwai (3):
+>      ASoC: intel: skl: Fix pin debug prints
+>      ASoC: intel: skl: Fix possible buffer overflow in debug outputs
+>      ASoC: pcm: Fix possible buffer overflow in dpcm state sysfs output
+>
+>Theodore Ts'o (1):
+>      dm thin metadata: fix lockdep complaint
+>
+>Thomas Bogendoerfer (1):
+>      ALSA: sgio2audio: Remove usage of dropped hw_params/hw_free functions
+>
+>Thomas Richter (1):
+>      perf test: Fix test trace+probe_vfs_getname.sh on s390
+>
+>Thommy Jakobsson (1):
+>      spi/zynqmp: remove entry that causes a cs glitch
+>
+>Tianci.Yin (1):
+>      drm/amdgpu: disable 3D pipe 1 on Navi1x
+>
+>Tomeu Vizoso (1):
+>      drm/panfrost: Don't try to map on error faults
+>
+>Tomi Valkeinen (1):
+>      backlight: add led-backlight driver
+>
+>Tony Lindgren (5):
+>      phy: mapphone-mdm6600: Fix write timeouts with shorter GPIO
+>toggle interval
+>      ARM: dts: droid4: Configure LED backlight for lm3532
+>      bus: ti-sysc: Fix 1-wire reset quirk
+>      ARM: OMAP2+: Fix compile if CONFIG_HAVE_ARM_SMCCC is not set
+>      phy: mapphone-mdm6600: Fix timeouts by adding wake-up handling
+>
+>Tudor Ambarus (1):
+>      spi: atmel-quadspi: fix possible MMIO window size overrun
+>
+>Tycho Andersen (1):
+>      riscv: fix seccomp reject syscall code path
+>
+>Ulf Hansson (5):
+>      dt-bindings: arm: Correct links to idle states definitions
+>      dt-bindings: arm: Fix cpu compatibles in the hierarchical example fo=
+r PSCI
+>      dt-bindings: power: Convert domain-idle-states bindings to json-sche=
+ma
+>      dt-bindings: power: Extend nodename pattern for power-domain provide=
+rs
+>      dt-bindings: arm: Fixup the DT bindings for hierarchical PSCI states
+>
+>Vadim Pasternak (1):
+>      hwmon: (pmbus/xdpe12284) Add callback for vout limits conversion
+>
+>Vignesh Raghavendra (3):
+>      spi: spi-omap2-mcspi: Handle DMA size restriction on AM65x
+>      spi: spi-omap2-mcspi: Support probe deferral for DMA channels
+>      dmaengine: ti: k3-udma: Use ktime/usleep_range based TX completion c=
+heck
+>
+>Vincent Chen (2):
+>      riscv: avoid the PIC offset of static percpu data in module
+>beyond 2G limits
+>      riscv: Change code model of module to medany to improve data accessi=
+ng
+>
+>Vincent Guittot (1):
+>      sched/fair: Fix statistics for find_idlest_group()
+>
+>Vladimir Oltean (1):
+>      ARM: dts: ls1021a: Restore MDIO compatible to gianfar
+>
+>Vlastimil Babka (1):
+>      mm, hotplug: fix page online with DEBUG_PAGEALLOC compiled but not e=
+nabled
+>
+>Wei Li (3):
+>      perf intel-pt: Fix endless record after being terminated
+>      perf intel-bts: Fix endless record after being terminated
+>      perf cs-etm: Fix endless record after being terminated
+>
+>Wei Liu (1):
+>      Hyper-V: add myself as a maintainer
+>
+>Yash Shah (1):
+>      riscv: dts: Add GPIO reboot method to HiFive Unleashed DTS file
+>
+>Yintian Tao (1):
+>      drm/amdgpu: clean wptr on wb when gpu recovery
+>
+>Yuji Sasaki (1):
+>      spi: qup: call spi_qup_pm_resume_runtime before suspending
+>
+>Zhang Xiaoxu (1):
+>      vgacon: Fix a UAF in vgacon_invert_region
+>
+>luanshi (1):
+>      drivers/perf: arm_pmu_acpi: Fix incorrect checking of gicc pointer
+>
+>tangbin (1):
+>      tty:serial:mvebu-uart:fix a wrong return
+>
+>yangerkun (1):
+>      locks: fix a potential use-after-free problem when wakeup a waiter
+
+--OgqxwSJOaUobr8KG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl5ncVYACgkQsjqdtxFL
+KRWUxAgAzgs0uwOi6Nk/1Dhdsw9t3nP9Y/oB05SZHspUWe1SglUK0eVkTJl8apPO
+jAQoMzVizuy3gMrpyWFoTV3nX9E1en5fVSSrEMS0gmpCtapUun5Kyfqq2rXeNLI0
+KCr//y+yDQ17Bm9nxEKB7SVI0IIa6YSJ+hyWrEZTJ39Y3Q1JZlDTxosqKo7L19G0
+ci9AGJeKxzVvbtREvUjbiHUpWGJtIzXqo449+JYX9ksXExPmq5PZonf+PMAsQgr7
+jsB2YBMFuO9jKLlY7z1fNkoSZD+K7C0d5+vq+L986WnqVM/ZS0y0lPIQTdv2IyJr
+bAhLLhw1rTT8XV7ugM5gQw2dN9+4WQ==
+=ATPl
+-----END PGP SIGNATURE-----
+
+--OgqxwSJOaUobr8KG--

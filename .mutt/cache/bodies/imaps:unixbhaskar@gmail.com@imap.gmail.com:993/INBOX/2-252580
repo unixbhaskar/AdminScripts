@@ -1,0 +1,112 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp4155963lfj;
+        Sun, 9 Aug 2020 12:47:56 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwaoLFW5Gq6trA/toRsUrs0FLOyTgIFFjcN8Bs3BN0A6oFMaf8kMplHfbA7VbcevxDwC4Eu
+X-Received: by 2002:a17:906:7253:: with SMTP id n19mr19818335ejk.387.1597002476433;
+        Sun, 09 Aug 2020 12:47:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597002476; cv=none;
+        d=google.com; s=arc-20160816;
+        b=DW/cbJRMM2JcAnxirEcnxqWXHAO+h+jdfbNxELAaYB58LFrVidaYfJ/aOEWTT/vuPF
+         khJxANs0vlqljVRuPPz13h5W/C8J4q96IkjV1E9yiRvhGht4dQDVk1opilHqXUPP+3E4
+         rAaGvjKRtyP7QH5+S3bvssEdFETPHSez1hvuOcksSy0syqXNnFBsyzdLGO7gT14rAyCl
+         bY+NM3RFMgmoLu3HxnGBJSzrGSgPML2qoZnjWHW3WkO47FnwrPjifNpc89MzQhMjVcJO
+         H+rHsZlFGhgBUDOo1Nz5BB9jjziLdwFDgC5/dM81Rc8UXj99Nb0IH3bzQFtIDNFwCfEc
+         yMEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Vy2/Tr7nL0xv4oVageuubwhBrv+oQnLE6xMeTiKzlWg=;
+        b=LTdqa44CvXG92Y3QCiUzEKDSZMAjsei2Tzw9v00w6Sy9G+xM6Bk9VItxVIN9Kg6dbG
+         cLAS7TbKdMu5Cuqf4LVrUp2uVzHWwYtSpcV5khQDLTC8oKDKvckyxnvyf3f4KrbSjDr0
+         qceVVIdfznLLVYYICiZKKtwbxDUHgL0NSRHg04LtSbId/j7/bmRLjTUYC0wl4B+NBega
+         4/mVkSGdKIZaH488DPD75Jmw6siI5zu+ff+4ahptZC3fQYV0wNZTxVynHuu7IVNwpiaS
+         Pt1E29f/mzHTGS8Qt78/vU6GCdjYcfbr3pzXPEIXZdFij+dHdqsxLfcaoImwMVRrluzG
+         6NhA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=LTKE7gQH;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id c22si9870679edr.146.2020.08.09.12.47.33;
+        Sun, 09 Aug 2020 12:47:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=LTKE7gQH;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726370AbgHITrX (ORCPT <rfc822;bl0pbl33p@gmail.com> + 99 others);
+        Sun, 9 Aug 2020 15:47:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53796 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726242AbgHITrW (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 9 Aug 2020 15:47:22 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C890C061756
+        for <linux-kernel@vger.kernel.org>; Sun,  9 Aug 2020 12:47:22 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id 185so7366738ljj.7
+        for <linux-kernel@vger.kernel.org>; Sun, 09 Aug 2020 12:47:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Vy2/Tr7nL0xv4oVageuubwhBrv+oQnLE6xMeTiKzlWg=;
+        b=LTKE7gQHSMbXFk9BVmgefSL/wzopLbPob90qw8+5pHE5gKF0rhLL+EohGdbeXMjNcS
+         q9+Yl4CrJIBM4pVPQ58/QvBFG4KfA/1bQIvG4TBGrX8oLdm1W5xqR6zgWfQVzINniybL
+         6c1mtrtqdtE5kji/ppywZ7rFT9FwrRXNif3a0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Vy2/Tr7nL0xv4oVageuubwhBrv+oQnLE6xMeTiKzlWg=;
+        b=g9XUuXLZ4Dx7x6wILbTcI96C/et8e5KSZkXvwi+U5OXHfUEOF+wqjJkMmLCyaNKGZn
+         aOWkPtNcVD5ElqLYXWESd80r/Hsc5Nwa/I1DZzLCsmd1R9Uv094ow0C3s/A9n+6Djik5
+         v1+0VWXkTGC4+PX8I1rujQMETe2QjWxkHL9hDI8dIerEFL4cYVyFefKUYo/j0XB2Z9nl
+         77pIB22mdzA+kP5XfnVPl3yGeLLgrJUneOJT5p4Qf3FNuL7aYjsIzizjfJVQGOGjX8Jc
+         czQjAaB/MR62S9Vh1oiTJdQjGN7GESbtCTZ5lJZUzGuXWfVFz04o+t3Pf8hzipEWxml8
+         Hmvg==
+X-Gm-Message-State: AOAM532G/jDDOZMd04UoJBpuRdBdZIhUZ1nZaEUA5wok0f3LDIxkNMAt
+        ho5fX5JO0NNMyc52s6WMqeHxnFSXxrU=
+X-Received: by 2002:a2e:9904:: with SMTP id v4mr10405068lji.321.1597002439719;
+        Sun, 09 Aug 2020 12:47:19 -0700 (PDT)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
+        by smtp.gmail.com with ESMTPSA id q8sm9356179lfm.92.2020.08.09.12.47.18
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Aug 2020 12:47:18 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id v4so7390870ljd.0
+        for <linux-kernel@vger.kernel.org>; Sun, 09 Aug 2020 12:47:18 -0700 (PDT)
+X-Received: by 2002:a2e:7615:: with SMTP id r21mr10223230ljc.371.1597002437691;
+ Sun, 09 Aug 2020 12:47:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200809003453.79673eb3@xps13>
+In-Reply-To: <20200809003453.79673eb3@xps13>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 9 Aug 2020 12:47:01 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whJ0SQjLeMiVvMXayxvxCmAMdROxyb-Pzs=kr4-Ba5BCA@mail.gmail.com>
+Message-ID: <CAHk-=whJ0SQjLeMiVvMXayxvxCmAMdROxyb-Pzs=kr4-Ba5BCA@mail.gmail.com>
+Subject: Re: [GIT PULL] mtd: Changes for 5.9
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     linux-mtd <linux-mtd@lists.infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sat, Aug 8, 2020 at 3:35 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+>
+> MTD core changes:
+..
+
+You didn't even mention the stm32 controller change, which seems to be
+the biggest individual thing in here..
+
+Hmm?
+
+              Linus

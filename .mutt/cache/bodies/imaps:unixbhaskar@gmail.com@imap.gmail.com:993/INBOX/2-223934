@@ -1,0 +1,96 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp6386304lfc;
+        Tue, 18 Feb 2020 12:09:46 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxXLX54Mz3pMqU45p5py19BM0Yr+v9hSr/xZqFUATYfdhd15tD8L3JeAQ+vqi7QA4KwPfpe
+X-Received: by 2002:aca:5582:: with SMTP id j124mr2294814oib.20.1582056586661;
+        Tue, 18 Feb 2020 12:09:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1582056586; cv=none;
+        d=google.com; s=arc-20160816;
+        b=H2gsRN+Llw80ykkTUCXiBYX98i12HQI1ut7B4ch2lkXPNtvH+Mw0EA/6CwVEmTLa+o
+         2Zq/rk2IfdM0IPoMksAB/BmLUM3adJOoaDhyRkyivHnJwfJRaNOnPvw0g8kggslt8AZ6
+         k7x67WHvmj3hCA2KXw/KOVjSbEkrrT0+2g1uFlpYR3ucdSciZZhmevJ1kwFYQ6CjYl9V
+         Qgskn8IWX0NQKUpf47BNzSJOerSD+5qUz8iuk5NmVbrjBC8PMLJ57LxYag1w4YIAFVd0
+         WCk+LmnlTS+69CLqP9knvCEyg7YVIBmDl4N5jL//glZcK2ilBW61+UGHoaWob1wx7iBR
+         4htA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :references:in-reply-to:message-id:subject:cc:to:from:date;
+        bh=WE4VEJguaZNjsMq3EYdwQiIDlpaCmkD0rEFw1HazVx4=;
+        b=dlYzRNYZ2PF4lHHmUvAglSdLdJp8ssOfr5Q0ZVZAtH2G/o1GaKuY+/NQXAaDNyf42I
+         B618tD28D/WyuT0diYxyk3GHjKREkXMhUhUHdXJXG06Wp1wU6iV1ysBmyvpLYseB8e7c
+         xp2TFJd/pyigM1EpBRs/PjZhdHi1TeGWuMMePhMY3Uav0emwVmi67x/eC2TdcAddiIVg
+         FlQ+0XB+69x/G/Z0aS/XHsKlr4Vm2vmKLV+6bjVxl2DWcznJ9xnB8YIAnmQS0mzCZZM6
+         0YcM0DdLgiNyvsnKEpLf0c3QlZziwCsr5KXXwtkpDl2m88zmvPAI7ivRAR/IdE419GxG
+         zSkA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id d14si179586ote.195.2020.02.18.12.09.35;
+        Tue, 18 Feb 2020 12:09:46 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727668AbgBRUI5 (ORCPT <rfc822;diweiguang88@gmail.com>
+        + 99 others); Tue, 18 Feb 2020 15:08:57 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48896 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727601AbgBRUIx (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 18 Feb 2020 15:08:53 -0500
+Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com [66.24.58.225])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2A4DC22B48;
+        Tue, 18 Feb 2020 20:08:52 +0000 (UTC)
+Date:   Tue, 18 Feb 2020 15:08:50 -0500
+From:   Steven Rostedt <rostedt@goodmis.org>
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     Peter Zijlstra <peterz@infradead.org>,
+        Andy Lutomirski <luto@kernel.org>,
+        Tony Luck <tony.luck@intel.com>, x86-ml <x86@kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC] #MC mess
+Message-ID: <20200218150850.224d9b8e@gandalf.local.home>
+In-Reply-To: <20200218195035.GN14449@zn.tnic>
+References: <20200218173150.GK14449@zn.tnic>
+        <20200218131158.693eeefc@gandalf.local.home>
+        <20200218195035.GN14449@zn.tnic>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, 18 Feb 2020 20:50:35 +0100
+Borislav Petkov <bp@alien8.de> wrote:
+
+> True story, thanks for that hint!
+> 
+> static_key_disable()
+> |-> cpus_read_lock()
+> |-> percpu_down_read(&cpu_hotplug_lock)
+> |->might_sleep()
+> 
+> Yuck. Which means, the #MC handler must switch to __rdmsr()/__wrmsr()
+> now.
+> 
+> I wish I could travel back in time and NAK the hell of that MSR
+> tracepoint crap.
+
+Can we create a per_cpu variable that gets set when we enter the MC
+handler, and not call the msr trace points when that is set?
+
+Now, is jump labels bad in these cases (note, it is possible to trigger
+a breakpoint in them, does an iret disable the MC as well, which means
+we could get nested MC handlers corrupting the IST stack?).
+
+You could have the msr_tracepoint_active() check this per cpu variable?
+
+msr reading and writing is rather slow, and I'm sure reading a per_cpu
+variable is going to be in the noise of it.
+
+-- Steve

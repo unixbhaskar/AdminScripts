@@ -1,0 +1,118 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:548e:0:0:0:0:0 with SMTP id t14csp464165lfk;
+        Tue, 13 Aug 2019 23:09:19 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxSsYXuD9SzRj6aNBeZF4xizVZa5g/QJYrFRxqMnuSZcKAtJ3whLnVgxakWO20C5bTLHtNt
+X-Received: by 2002:a63:2b84:: with SMTP id r126mr38616501pgr.308.1565762958988;
+        Tue, 13 Aug 2019 23:09:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1565762958; cv=none;
+        d=google.com; s=arc-20160816;
+        b=MoHkoCk0JghMjHyAAV0pxp2t+myyIyhyMcFT1WR9CMFSbqqxQ2LapeAKDXv28pm6q4
+         p557Jvus24vZxmvJ6vHoePLrMV+b5Yiz6GfR7iLTd3dRZw3wqeRCwiwZyFFD8nK0B42p
+         RTqd2wbJqOoeocIQl8Q62nRSHJqgdUOhdgwlcZU/QAUJbb2qhGho3CP7k04Ap0ruDDAZ
+         1hYdpUtHRPL3+YfdHZymGXlwGi0W/B711g9j1nGR2Rde06fMaPqDsM7eEYVsbWPeAOXO
+         gcPh1P9u6zdJVIMxnTas+O7l5LEAMpw2CZk45pKW2rbXoNsw/4P1ydDs3UasPdEVbc72
+         HVPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:mime-version:message-id:subject:cc:to
+         :from:date:dkim-signature;
+        bh=WmMRfysP3OGFtqMtSuzXAG2xDJXtWGfQ0AiAq/nO2+A=;
+        b=btz9YjUYaA1dXKWOFVhbMRBxq86aQECcqwGCbdgJkRAPibfHy/riQ3BwAk0mVfNkM7
+         6E1BT7XFqf/RczzusvFXeGwE7qpMsQcVtY2R1v5aWXfNYD8xlqfpYAcM6qj+ybzwFOHu
+         G92YeM9ya5fVonqFer9QCQth9OPg4WoBisJ151kQO2YPufs5d5hpP0ilX9/eyt35EJnm
+         +FwhW9ttqmt7CSKk5NiR3Oa2md4J0yYzKPgbcAh+2y7H6UovUnTtkhBrDFPLDtFhDUfC
+         CWoWiaiCkUajA+wDKlvQLTqihOa9IfCxZBtH0Ae5mFWoXR0alVlB3bq4ClOxeyuN9MrM
+         eimQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@canb.auug.org.au header.s=201702 header.b=eMqTOudp;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id g11si6554970plm.230.2019.08.13.23.08.47;
+        Tue, 13 Aug 2019 23:09:18 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@canb.auug.org.au header.s=201702 header.b=eMqTOudp;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727021AbfHNGIo (ORCPT <rfc822;ut0s.dev@gmail.com> + 99 others);
+        Wed, 14 Aug 2019 02:08:44 -0400
+Received: from ozlabs.org ([203.11.71.1]:32841 "EHLO ozlabs.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725895AbfHNGIo (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 14 Aug 2019 02:08:44 -0400
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 467fKN60qpz9sDQ;
+        Wed, 14 Aug 2019 16:08:40 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+        s=201702; t=1565762921;
+        bh=HI//54gDnkRWE5izXUq7EkVdHYUA9kytY50PGDkbhMM=;
+        h=Date:From:To:Cc:Subject:From;
+        b=eMqTOudpTZOKxZIGLwLxKFYmj+D2zSxuP6OMEWTtmLfl/4x9BatBe38BAqHc21W6e
+         aQeGV0X7uIy9JKi+Y/xnjmFrXqftJ5AlqbNPisyerBvgvwZII1zO8gxHarRdt7Q0WN
+         BBp/efJEHu+Vf1Zm43y6+uLFbGHoqxgmm8hySUF968szHmtTWAv3aZ31OT2Wv2OPZK
+         6NGRQgCsf0FTBc40TLpx+iYYiHz6XZ3dztpNOlGq82qbRUJNlSxvd6L4DVPMuY/N7c
+         Ga1lf0xLiA/9W/bAkBNJjxnk4h+BuXlwevbD6J5ZO7R6f5wBR7rL4DT1YmDoH4fTcn
+         gsPMkmluK5/cw==
+Date:   Wed, 14 Aug 2019 16:08:35 +1000
+From:   Stephen Rothwell <sfr@canb.auug.org.au>
+To:     Greg KH <greg@kroah.com>
+Cc:     Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Martyn Welch <martyn.welch@collabora.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: linux-next: build warning after merge of the staging tree
+Message-ID: <20190814160835.4aabb60a@canb.auug.org.au>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="Sig_/ImpS2R4AWltIOhqc20o3n=8";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+--Sig_/ImpS2R4AWltIOhqc20o3n=8
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+After merging the staging tree, today's linux-next build (x86_64
+allmodconfig) produced this warning:
+
+drivers/iio/light/noa1305.c: In function 'noa1305_scale':
+drivers/iio/light/noa1305.c:87:9: warning: this statement may fall through =
+[-Wimplicit-fallthrough=3D]
+   *val2 =3D 77 * 4;
+   ~~~~~~^~~~~~~~
+drivers/iio/light/noa1305.c:88:2: note: here
+  case NOA1305_INTEGR_TIME_200MS:
+  ^~~~
+
+Introduced by commit
+
+  741172d18e8a ("iio: light: noa1305: Add support for NOA1305")
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/ImpS2R4AWltIOhqc20o3n=8
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl1TpWMACgkQAVBC80lX
+0GxnwQf/flpd3sBx9QB5iWuBiTMmLX4oyZrOIi9FvTnhcq41CkkZZEsdUwEyc1Kv
+o8gz4C268Y4lpbYsAls7WzxS7PYIFjy0B6U6QFaINX1djbYI2TTm+D0N5JIplO70
+Tga5xpke/c95l2mQSYmepwtsvEVwDT3dhX40uBDUm+Z1ImG17YTpo+YvQSHbaY9j
+QoYMB27FA2+EcCqsBHlRNWcyYyvOJCwOCtA6IhHYv+2sVio3Pb3hjup2/wTAKo6V
+YVv5zdb9uqReH5uqO7Lym2AB/hOkSVhe9XF3cj9Goc8TwmrbZAZApq8BaKLJL2WG
+vFy82b1rpUUduQZvm9t17wd6Kq9HJg==
+=tjk3
+-----END PGP SIGNATURE-----
+
+--Sig_/ImpS2R4AWltIOhqc20o3n=8--

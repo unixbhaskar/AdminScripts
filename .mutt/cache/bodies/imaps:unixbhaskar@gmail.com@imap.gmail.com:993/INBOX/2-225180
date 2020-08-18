@@ -1,0 +1,146 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5999:0:0:0:0:0 with SMTP id w25csp2276315lfn;
+        Tue, 25 Feb 2020 16:21:11 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwWPZ39cZfPQ1J1G4HllWgn3MTvcmDlN7tR0lVZ5TIF6px819UA6O6TLuZqqPeV2/iIvv83
+X-Received: by 2002:aca:1903:: with SMTP id l3mr1162731oii.16.1582676471150;
+        Tue, 25 Feb 2020 16:21:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1582676471; cv=none;
+        d=google.com; s=arc-20160816;
+        b=tNnh6U+drZ+vin709Zh4pGxRy2EvfXqQFCTjdvBNSVOQeo1VEePIh5UtQI7U2JzgVs
+         lCJLN+RQDNOV7wuV0wsDE6cNOMxzfAqHc34QpmNvEOleU/yiIIKpmcmm00Yo8t3POyy8
+         dPSgcoJUGfYHXeJwjlpMY0UKl1CFFP+Sj5IO31g0RM9ErWaaBZl0lgsh+VJ71u1//oaT
+         g5Pu1nG20YhhTEP+O/CtsZJnFWVb2TOuu1iBrNHYDRCI5k+c0KQDSPhODdXI8Orz2rU2
+         JHU+2iDhVp7PSjm+/UAydXyNBxIwafCGYFjb581ATKKs4vA1iV7161hJP1cIP5j4WOzq
+         Tg0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :message-id:subject:cc:to:from:date;
+        bh=am5CoGN2KUMhKBc9MOMf9CxR8ZEDDfw+heNrdkicjPc=;
+        b=cA7TnKcUTq0GlqlmgR53EKWDxPvL2lN5+jT9LwntaJ5wCWFaByXcby5gF6Hc9Eqw9w
+         lzOkQU+im6XHBLwygyZhQcesp9YDcg8K7g2ncn5mvj71PYQzeMar5ojusyZnFgj5Sfte
+         UiGGA8rOlvAKzCe8WCszNjk5psLc/r5BsqE4FSel8HdRMmYxwVZk6kCrHkU5zUyprumF
+         w+nw0sDZ5NpPYFDYOiQLkcq6GXOvIt1wpG6+BhQF7IvZAiLlel2bJCjCiC/IqGFLMmk5
+         YZcg5N6zX5B33BjAzzMXHVvyxQ9JjzKyl8CMTdSa9mGMdu2LWAILEQLMF8/h1njTCBc9
+         eTxQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id m12si171566oim.195.2020.02.25.16.20.59;
+        Tue, 25 Feb 2020 16:21:11 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729583AbgBZATa (ORCPT <rfc822;beyondssmith@gmail.com>
+        + 99 others); Tue, 25 Feb 2020 19:19:30 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40416 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728865AbgBZATa (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 25 Feb 2020 19:19:30 -0500
+Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com [66.24.58.225])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C554324656;
+        Wed, 26 Feb 2020 00:19:28 +0000 (UTC)
+Date:   Tue, 25 Feb 2020 19:19:27 -0500
+From:   Steven Rostedt <rostedt@goodmis.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Tom Zanussi <zanussi@kernel.org>
+Subject: [GIT PULL] tracing/bootconfig: Fixes and changes to bootconfig
+ before it goes live in a release
+Message-ID: <20200225191927.3cbaa0db@gandalf.local.home>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+
+Linus,
+
+Tracing updates:
+
+ Change in API of bootconfig (before it comes live in a release)
+  - Have a magic value "BOOTCONFIG" in initrd to know a bootconfig exists
+  - Set CONFIG_BOOT_CONFIG to 'n' by default
+  - Show error if "bootconfig" on cmdline but not compiled in
+  - Prevent redefining the same value
+  - Have a way to append values
+  - Added a SELECT BLK_DEV_INITRD to fix a build failure
+
+ Synthetic event fixes:
+  - Switch to raw_smp_processor_id() for recording CPU value in preempt
+    section. (No care for what the value actually is)
+  - Fix samples always recording u64 values
+  - Fix endianess
+  - Check number of values matches number of fields
+  - Fix a printing bug
+
+ Fix of trace_printk() breaking postponed start up tests
+
+ Make a function static that is only used in a single file.
+
+
+Please pull the latest trace-v5.6-rc2 tree, which can be found at:
+
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/rostedt/linux-trace.git
+trace-v5.6-rc2
+
+Tag SHA1: b50d255b6c6f55384c40bbac65fd5d5d4529a8ba
+Head SHA1: 2910b5aa6f545c044173a5cab3dbb7f43e23916d
+
+
+Masami Hiramatsu (9):
+      tracing: Clear trace_state when starting trace
+      bootconfig: Set CONFIG_BOOT_CONFIG=n by default
+      bootconfig: Add bootconfig magic word for indicating bootconfig explicitly
+      tools/bootconfig: Remove unneeded error message silencer
+      bootconfig: Reject subkey and value on same parent key
+      bootconfig: Print array as multiple commands for legacy command line
+      bootconfig: Prohibit re-defining value on same key
+      bootconfig: Add append value operator support
+      bootconfig: Fix CONFIG_BOOTTIME_TRACING dependency issue
+
+Qiujun Huang (1):
+      bootconfig: Mark boot_config_checksum() static
+
+Steven Rostedt (VMware) (2):
+      tracing: Have synthetic event test use raw_smp_processor_id()
+      tracing: Disable trace_printk() on post poned tests
+
+Tom Zanussi (4):
+      tracing: Make sure synth_event_trace() example always uses u64
+      tracing: Make synth_event trace functions endian-correct
+      tracing: Check that number of vals matches number of synth event fields
+      tracing: Fix number printing bug in print_synth_event()
+
+----
+ Documentation/admin-guide/bootconfig.rst     |  34 +++++++-
+ include/linux/bootconfig.h                   |   3 +
+ init/Kconfig                                 |   5 +-
+ init/main.c                                  |  38 +++++----
+ kernel/trace/Kconfig                         |   4 +-
+ kernel/trace/synth_event_gen_test.c          |  44 +++++------
+ kernel/trace/trace.c                         |   2 +
+ kernel/trace/trace_events_hist.c             | 112 ++++++++++++++++++++++++---
+ lib/bootconfig.c                             |  36 ++++++---
+ tools/bootconfig/include/linux/printk.h      |   5 +-
+ tools/bootconfig/main.c                      |  51 +++++++-----
+ tools/bootconfig/samples/bad-mixed-kv1.bconf |   3 +
+ tools/bootconfig/samples/bad-mixed-kv2.bconf |   3 +
+ tools/bootconfig/samples/bad-samekey.bconf   |   6 ++
+ tools/bootconfig/test-bootconfig.sh          |  18 ++++-
+ 15 files changed, 272 insertions(+), 92 deletions(-)
+ create mode 100644 tools/bootconfig/samples/bad-mixed-kv1.bconf
+ create mode 100644 tools/bootconfig/samples/bad-mixed-kv2.bconf
+ create mode 100644 tools/bootconfig/samples/bad-samekey.bconf
+---------------------------

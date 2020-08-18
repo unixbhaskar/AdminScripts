@@ -1,0 +1,105 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp3118122lfc;
+        Sun, 9 Feb 2020 15:49:51 -0800 (PST)
+X-Google-Smtp-Source: APXvYqyPyylbGhVotb0cH1rC5/fUw0GiZXZKZ+ON4CiC1hMqbxXL7zWNDarRVHIXa0se00XIQ0uW
+X-Received: by 2002:a05:6830:15d2:: with SMTP id j18mr8440771otr.216.1581292191472;
+        Sun, 09 Feb 2020 15:49:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1581292191; cv=none;
+        d=google.com; s=arc-20160816;
+        b=g9zKyeMzX0D7Wi2vp0Zno+xuh+Tz+2rP3Aep9CuiAQtcwcMKmyyGNivowhhx6xVnb1
+         knQpfnK2kYwnbPbcb0PHmDspOtTwTOh8x0rAi+/GOZtibYppx7t+5ZearsRDHfwOhoLX
+         7KQD9YXJsf2lYfD3u4YBdAb1qOKOsxOlon38WqLH3T4A4UN9l1BGmhMBz7Xx1wofpD47
+         4Kp1NAVtVvtiYjOlBUj84ktulSULNWviHQO1Rye/P9BRjpyuygBZdvfabrejLXU4g/DR
+         Ho900EL3SNBv8jA1IsnFKKUoXlQZBLJ+MNUuYwkxpcPXlYgUYxDtg2fLKdSrNxz6rLda
+         rzQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=7qvl6TOYvLiKT8J0iO19pvnc3/hyeywMYYkZ/FlpkFQ=;
+        b=uF8LZUYtl5D9lYVSs3CezaA8krAkjX6C2gdPhcfKgjoNVJ3ScreYHJdpo6fGJ4/Lro
+         B5LEuko/6GeJ9G9Lz3CSlMbbMlG/SQyxVxFJVHB5A9K4Vu+XFN8nbEyvvJ53PjMWpbnt
+         kRyWotzPz/vk+WvBrvkTPc6XRnBu/+aWbLZnlsgpoaxH/YFEszQZ2tD6qNjlNiGUtPfh
+         8QctNFYahS+JSUXX1WjhdWFnpjTrg/UVn42IUeZafdaDod9zVXC0slQFj7dyKSKYcFJd
+         Xz3TeiJXrnyRIQP+z/Mp0vz4kTze4uR35XdfXVfe5SaAcyU9Vyz6G665AEtCpLT8kRj0
+         GWlQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=OLTJtcXR;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id i6si4295816otj.24.2020.02.09.15.49.32;
+        Sun, 09 Feb 2020 15:49:51 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=OLTJtcXR;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727447AbgBIXsl (ORCPT <rfc822;l814699480@gmail.com>
+        + 99 others); Sun, 9 Feb 2020 18:48:41 -0500
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:43892 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726843AbgBIXsk (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 9 Feb 2020 18:48:40 -0500
+Received: by mail-lj1-f195.google.com with SMTP id a13so5039521ljm.10
+        for <linux-kernel@vger.kernel.org>; Sun, 09 Feb 2020 15:48:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7qvl6TOYvLiKT8J0iO19pvnc3/hyeywMYYkZ/FlpkFQ=;
+        b=OLTJtcXRacKws8QoDAKx/glLSqSXdvT1W+hLkXz2TVjhZjFEBccZqQXpw/casFjlBE
+         iTo1DCzs7kEHyUFH0Ibq2XG9uME+DWZNKtUqZGgvTdC/D1kh5FNAkB4j7Sg9WSr7u4TG
+         cCHLZqFU2QwM/4yvL0wLS1FTQi3aoc3XJVTBA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7qvl6TOYvLiKT8J0iO19pvnc3/hyeywMYYkZ/FlpkFQ=;
+        b=IqVPwxSEk8iG6m0oIhzN7gzbU5EysF9lSain0ZH+faQC0WRiSiHwQ6bnZ2p9Jtlut0
+         +sOja42CrqCCkeNXbWYVlF1FTJ/Ugc1N4sT1rvYtLLmlwcnpJLmT3lXiG4alEKOAKdEf
+         UlMuloSv9cr+qNNNGk/XS9QRyzwpTd515gRXKYDRilJVQL2W0owP7Gi7WP0u8EZPivgc
+         BHqMAYGeXU1djJ/J3K57Tby7M3Q6epXX6m0VweKJVxIhWvFGyq6ROqBSihk1WRCQBRHr
+         iCK1B7Q6ObvyaeOehNRsyF+0al2pvP/0wI/5louPLyZZhg6G02Tx1vrDigHg59qLf3Hz
+         PxAA==
+X-Gm-Message-State: APjAAAXim6/xRfDwzCYdsm3QTWrdX5W4t4c1aRwkd2eeDb0aUXITOEiR
+        xZyhC6ytleCCF0+7HTT8QXxzm+fSF0I=
+X-Received: by 2002:a2e:556:: with SMTP id 83mr6201614ljf.127.1581292118376;
+        Sun, 09 Feb 2020 15:48:38 -0800 (PST)
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com. [209.85.167.41])
+        by smtp.gmail.com with ESMTPSA id k24sm6572923ljj.27.2020.02.09.15.48.37
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Feb 2020 15:48:37 -0800 (PST)
+Received: by mail-lf1-f41.google.com with SMTP id v201so2850046lfa.11
+        for <linux-kernel@vger.kernel.org>; Sun, 09 Feb 2020 15:48:37 -0800 (PST)
+X-Received: by 2002:a19:4849:: with SMTP id v70mr4737816lfa.30.1581292116618;
+ Sun, 09 Feb 2020 15:48:36 -0800 (PST)
+MIME-Version: 1.0
+References: <20200210080821.691261a8@canb.auug.org.au> <CAHk-=wiM9gSf=EifmenHZOccd16xvFgQyV=V=9jEHR7_h3b0JA@mail.gmail.com>
+ <20200209225735.3c2eacb6@why>
+In-Reply-To: <20200209225735.3c2eacb6@why>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 9 Feb 2020 15:48:20 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wiZqek8X3DzqP69--vm3cn9EMGNcuOtDStALMuMmuA7YA@mail.gmail.com>
+Message-ID: <CAHk-=wiZqek8X3DzqP69--vm3cn9EMGNcuOtDStALMuMmuA7YA@mail.gmail.com>
+Subject: Re: linux-next: build failure in Linus' tree
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Stephen Rothwell <sfr@canb.auug.org.au>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, Feb 9, 2020 at 2:57 PM Marc Zyngier <maz@kernel.org> wrote:
+>
+> Do you mind applying the following patch on top? It fixes the breakage
+> here.
+
+Done. Added proper reported-by (and cc).
+
+              Linus

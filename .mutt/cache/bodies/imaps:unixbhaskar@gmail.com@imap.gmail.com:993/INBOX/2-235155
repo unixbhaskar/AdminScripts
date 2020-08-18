@@ -1,0 +1,200 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp5393622lfg;
+        Tue, 21 Apr 2020 12:36:36 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJREg4f/B1DzlJlBe3hHhRYRKeGemK2Zb38rG7tF2a3pAKb/pwdG1oD5BU368otYrafNYzP
+X-Received: by 2002:a2e:9791:: with SMTP id y17mr12800421lji.174.1587497796019;
+        Tue, 21 Apr 2020 12:36:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587497796; cv=none;
+        d=google.com; s=arc-20160816;
+        b=P8oNq+u4CSRmkMi2/SUxeGTufqTUXnDmi3i41lKN+7BrxQIcTAAA11TawPa4nnF57t
+         vOTD5so/O+dkqUk3cMuOpfvDgipnVBGzdyDPBq3CvQ1IQ1e1O8JTmW0cWupFlGvVBu2u
+         zRJSLrgYw0sjFhseKVbTSZHTm5cv00elf1HH/71TLWu5gVuyei0OAJxa5Ydrt5wWl80J
+         yZfOXoNZnqS9VKbWEjAl5OZewHVuE1hDYjmLp+fZ2Oq1NRCyjVuuXIQZh5EuNX1Htz/w
+         p82hmCNH2j+FMRucgYuouA2cDCraGSKa6WHZOHhxfKmUHzlnN/lw3cZMy7BLnI9YPHQS
+         PN/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=subject:in-reply-to:content-disposition:mime-version:references
+         :message-id:cc:to:from:date:delivered-to:delivered-to:reply-to
+         :list-id:list-subscribe:list-unsubscribe:list-help:list-post
+         :precedence:mailing-list;
+        bh=7ImRNRE6uh36WM/aB7jbZXIse/0oMtC5CQExqrG7U2I=;
+        b=xw/UFG/dJ8vFfP3FDrtrsrT8fTrmNSQrlzB7jlR3FYJ2FyexErm6b/dp/xoRmuQD/N
+         91TZnnMuDUx2GV4CyXHAvChlyEchXzNDI3T7oRmZLBR3gLO67Dqubyjv2bHEEmHHujOp
+         WshkECeoVOyt6Mb0WU/zg5Za9hJXg4lAAmCwwYTs58C4OPkriz7f2gaQ4UDmw8G5Ih6i
+         4EFhwlhMvZu3uMpGG+tcrt4AcF2RxoCUcoq/VnblAId952AHfGxPMDFlebGRUnDbV9O0
+         K1IM9e1Ho+SMMZpxogpWd2PuCo0+L0/0elxGW6pLYEFnpIJ5fR9/F1lY2uJBxmwyGGnG
+         lkVA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of oss-security-return-25924-unixbhaskar=gmail.com@lists.openwall.com designates 195.42.179.200 as permitted sender) smtp.mailfrom="oss-security-return-25924-unixbhaskar=gmail.com@lists.openwall.com";
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=archlinux.org
+Return-Path: <oss-security-return-25924-unixbhaskar=gmail.com@lists.openwall.com>
+Received: from mother.openwall.net (mother.openwall.net. [195.42.179.200])
+        by mx.google.com with SMTP id y20si2283193ljc.312.2020.04.21.12.36.35
+        for <unixbhaskar@gmail.com>;
+        Tue, 21 Apr 2020 12:36:36 -0700 (PDT)
+Received-SPF: pass (google.com: domain of oss-security-return-25924-unixbhaskar=gmail.com@lists.openwall.com designates 195.42.179.200 as permitted sender) client-ip=195.42.179.200;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of oss-security-return-25924-unixbhaskar=gmail.com@lists.openwall.com designates 195.42.179.200 as permitted sender) smtp.mailfrom="oss-security-return-25924-unixbhaskar=gmail.com@lists.openwall.com";
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=archlinux.org
+Received: (qmail 18005 invoked by uid 550); 21 Apr 2020 19:33:56 -0000
+Mailing-List: contact oss-security-help@lists.openwall.com; run by ezmlm
+Precedence: bulk
+List-Post: <mailto:oss-security@lists.openwall.com>
+List-Help: <mailto:oss-security-help@lists.openwall.com>
+List-Unsubscribe: <mailto:oss-security-unsubscribe@lists.openwall.com>
+List-Subscribe: <mailto:oss-security-subscribe@lists.openwall.com>
+List-ID: <oss-security.lists.openwall.com>
+Reply-To: oss-security@lists.openwall.com
+Delivered-To: mailing list oss-security@lists.openwall.com
+Delivered-To: moderator for oss-security@lists.openwall.com
+Received: (qmail 32309 invoked from network); 21 Apr 2020 19:15:58 -0000
+X-Spam-Checker-Version: SpamAssassin 3.4.4-rc1 (2020-01-18) on velox
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
+	autolearn_force=no version=3.4.4-rc1
+Authentication-Results: linderud.pw; dkim=none; dkim-atps=neutral
+Date: Tue, 21 Apr 2020 21:15:44 +0200
+From: Morten Linderud <foxboron@archlinux.org>
+To: oss-security@lists.openwall.com
+Cc: "info@aminvakil.com" <info@aminvakil.com>
+Message-ID: <20200421191544.2w3zzmpwxl5tq5qg@anathema>
+References: <RrVCUf0UYM4S99v51o8A6lAatx04FP2OR23b5CU8yUASHP5KYo_uzDUGevjvZdhYY8QxFFH190BQOw-r2TG7neN7NOkiAyixvsVOzwCpcs8=@protonmail.com>
+ <5b8fe86a-56e8-715a-1f0d-a4961e516fc2@aminvakil.com>
+ <20200421184747.GA93069@espresso.pseudorandom.co.uk>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3j3a4p3c5ngbgltu"
+Content-Disposition: inline
+In-Reply-To: <20200421184747.GA93069@espresso.pseudorandom.co.uk>
+Subject: Re: [oss-security] Pacman package manager - taking untrusted input
+
+--3j3a4p3c5ngbgltu
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Apr 21, 2020 at 07:47:47PM +0100, Simon McVittie wrote:
+> On Tue, 21 Apr 2020 at 21:51:56 +0430, Amin Vakil wrote:
+> > On 4/21/20 8:57 PM, jellicent@protonmail.com wrote:
+> > > The code supports database signatures, so the real issue is the distro
+> > > infrastructure.
+>=20
+> I interpret this as: pacman can accept either signed or unsigned
+> databases, but the various distros that use pacman (such as Arch Linux)
+> currently only publish unsigned databases in practice. Is that correct?
+>=20
+> Can pacman be configured to *only* accept signed databases, so that a
+> mirror containing an unverifiable database (unsigned, signed with a key
+> that is not explicitly trusted, or with an invalid signature) is treated
+> as an error? If it cannot, then there's an obvious downgrade attack:
+> a malicious mirror could substitute an unsigned database and the pacman
+> client would happily use that.
+
+Pacman can enforce database signatures, it is described in the man page:
+
+https://www.archlinux.org/pacman/pacman.conf.5.html#SC
+
+The defaults in Arch Linux is currently that package signatures are require=
+d,
+and database signatures optional. Installing files locally with `-U` is
+optional.
+
+SigLevel    =3D Required DatabaseOptional
+LocalFileSigLevel =3D Optional
+
+The upstream pacman project distributes with signing optional.
+
+> On Tue, 21 Apr 2020 at 17:41:42 +0000, jellicent@protonmail.com wrote:
+> > An attacker need only find a bug in how Pacman does
+> > parsing/reading of the database file to potentially get code execution
+> > on the box as root.
+>=20
+> My understanding is that this is a risk, and at least arguably a design
+> flaw, but not generally considered to be a vulnerability (CVE IDs,
+> etc.) unless/until an unfixed parser bug with the necessary severity
+> is found.
+>=20
+> Of course, that doesn't mean it wouldn't be a good idea to authenticate
+> the database before parsing it: that would mitigate a lot of potential
+> vulnerabilities.
+>=20
+> Something that might be considered to be a vulnerability already (or not,
+> depending on the pacman and distro maintainers' threat models) is that
+> an attacker could substitute a database that lists obsolete packages
+> with known vulnerabilities. Those packages will presumably be validly
+> signed by distro developers (because at one time they were considered
+> to be the best version available). Presumably pacman won't normally
+> downgrade from the version it has installed to a strictly older version
+> from a mirror, but if a user installs a new (not currently installed)
+> package using that mirror/database, they'll unknowingly be installing
+> an older package that has known vulnerabilities.
+
+Pacman wouldn't downgrade any packages in this case without the user explic=
+itly
+asking pacman to do so. Pacman would also issue warning that locally instal=
+led
+packages are newer then the downgraded ones.
+
+Unless a parsing bug is found the worst case scenario is holding back secur=
+ity
+updates for some amount of time until the user notices.
+
+=20
+> That form of attack is difficult to address in general, because it needs
+> a revocation or expiry mechanism. apt-based distros are starting to
+> address equivalent issues by setting a Valid-Until field on their archive
+> metadata, so that clients will warn their user if presented with outdated
+> archive metadata (the equivalent of pacman's database) - although this is
+> somewhat awkward to deploy, because it requires a signing key to be
+> made available on a regular basis, which conflicts with the idea that
+> high-value signing keys should be kept offline when not in use.
+
+Timestamped databases is also a feature Allan McRae has been working on lat=
+ely.
+
+https://git.archlinux.org/users/allan/pacman.git/log/?h=3Dtimestamp
+
+However, as noted, it would still require an online signing key to sign it.=
+ This
+is argueably one of the larger problems with the Arch Linux package
+infrastructure currently as all packager keys are distributed. We haven't c=
+ome
+up with reasonable solution yet as one would need to properly secure said k=
+ey.
+
+
+And at a closing note, there hasn't been any issues with the parsing code t=
+o the
+database. However the one the original author probably thinks of is the CVE=
+ from
+2016 where there was a bug in the gnupg packet parsing code in relation to =
+GnuPG
+signatures.
+
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=3DCVE-2016-5434
+
+--=20
+Morten Linderud
+PGP: 9C02FF419FECBE16
+
+--3j3a4p3c5ngbgltu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEktnGzemaICTWkKdu50JoO6CMsv8FAl6fRl8ACgkQ50JoO6CM
+sv8XlBAA05SpNrWlJadx7dYqrrxfBVGQY6GzlJKfYEijjcmR6WhKIdjlZfWPvH4T
+aekORgN0PPnkEJei8hbKc9JijCGAmHt2PnNyGsRxCDPUOOVDlY9Xh46MjITH+3jO
+UqFz1JLOl1xm9KMdplFT1ScjLEI6nPt+JL9ASiWKX4guSNSxmLUwnh/5OxxiM33y
+TLyO15tmKIIT45+4fZVDEz9NnXIp+VqV5km3inyKYGPi0N/vf9oPKSWgTn4SJRlf
+qZceMKoYWKKlLoSY0C5l+F7AkaxJDWdqFASLvdV4Y9WqyBaSD5c0AhB+1tghsXzN
+DE5vYMEuCmRR6WxIkIgy2Dk0sRVnU6IzX4LIAaZn2MsQvcSyNjbbG+1yKBe/CsgP
+0YNU8WNC/zr2kqSBynNjSAf68sM9Xl0O7v0AmgmbJMyXsg6oeW7jv5Fv/ofpcvuh
+/SuT/TQj62vqofkJTiqBDRwkd5Yl00Y6Rr6Ek2Ii03oi0WL0dJqWapqFxwoPXZmF
+9hyYrgiN2xL9PHIeVEqh27iITn/5Dfctrtf18KKgGpaNQIdF9M7rOgV3vI8oE9lT
+Qa/IUPN9mpxKjv6Q2vgk0Q9DbnjYwouKonPndyXIL+0jyG6lYsE6gQ3dA/jmTvC1
+IVOWNQ7sSyiaIM+urm0lec8bkhfsEz53qRauAlRexgwpbR+MQAU=
+=0LHs
+-----END PGP SIGNATURE-----
+
+--3j3a4p3c5ngbgltu--

@@ -1,0 +1,97 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:f20e:0:0:0:0:0 with SMTP id q14csp2927635lfh;
+        Mon, 18 May 2020 05:23:42 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzNWrJPxk4xruERxAyW/fsB6WhksSWQ3VZS/ZL0/7L91sVpGxqjVgc6yS1OepbbO3OI3jQh
+X-Received: by 2002:a17:906:2ac6:: with SMTP id m6mr14106781eje.234.1589804622117;
+        Mon, 18 May 2020 05:23:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1589804622; cv=none;
+        d=google.com; s=arc-20160816;
+        b=c5J679K+TtiO530e0XJsqCh4EXlcslUzdyWwbU7o+dWfxfVbW9Y3vP2VDnc9rQSkE6
+         IMEnSRqGI9sNCxlwPYASp1su/vgDChdbRtitdoTH3/Y8dEtUTBceZYVxt14JT3RT5Oah
+         myZl3UfIxjzL6ijORJSy1VxAnlpr7HsS0hih5uwiuM6GcrJCzkbNA1IApfFziC7qwZgl
+         L4Vt74UhlckZx6Fzdd7H/KXePSKHg1Pc11DldXaX+N3YKeybFmXVSuRjg92R/qkmUG3b
+         8QYZc2zRDgYmWx8H0goKD1AYORPnyV0zF+KxrZDc07I6A81lAdC2HUeX5+ITrma94SrT
+         gwvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :organization:references:in-reply-to:message-id:subject:cc:to:from
+         :date;
+        bh=JBJZ6sXJaHS1a0z+LyZpVkANNN4ng/QdZ3Niq+kbPNU=;
+        b=JHqFnmJiHYz6bn047OMcrgYU6IyXkWEbQT/soqMe/6KKJa6b8mOV1Gs0tuAMBcbsBy
+         HMbLz3zpywRmlNUflgV7MG8kKsXbRdWQKKF9p1EedHi+XXDvKi+uIv+ICufjpVsw8e3O
+         nYi4JkbpT04YKhIZINPjw/9r8ju+3QDzs7enyTQSPBobQShEE8NkDbhnwTn/fQMxp7I/
+         oH317C/IQBG5wlCwi0Yogm8P1iteY2yHOKnK8dCXI+cwahdt6Hoc5PjZa5CN4uIsEFMd
+         qhJFR5zG5bZRPXngGU8e3KsO5bOCWAqx5TlwdUomQiUtq3fIJj+KJ7QDCR/YaFNNKss1
+         HpeQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-next-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-next-owner@vger.kernel.org
+Return-Path: <linux-next-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id w8si6696684eji.455.2020.05.18.05.23.17;
+        Mon, 18 May 2020 05:23:42 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-next-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-next-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-next-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727005AbgERMW4 (ORCPT <rfc822;chandanrlinux@gmail.com>
+        + 99 others); Mon, 18 May 2020 08:22:56 -0400
+Received: from ms.lwn.net ([45.79.88.28]:33700 "EHLO ms.lwn.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726585AbgERMW4 (ORCPT <rfc822;linux-next@vger.kernel.org>);
+        Mon, 18 May 2020 08:22:56 -0400
+Received: from lwn.net (localhost [127.0.0.1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id 897EA2CC;
+        Mon, 18 May 2020 12:22:54 +0000 (UTC)
+Date:   Mon, 18 May 2020 06:22:53 -0600
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     Stephen Rothwell <sfr@canb.auug.org.au>
+Cc:     Al Viro <viro@ZenIV.linux.org.uk>,
+        David Miller <davem@davemloft.net>,
+        Networking <netdev@vger.kernel.org>,
+        Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Stephen Kitt <steve@sk2.org>, Christoph Hellwig <hch@lst.de>
+Subject: Re: linux-next: manual merge of the jc_docs tree with the vfs and
+ net-next trees
+Message-ID: <20200518062253.24709cec@lwn.net>
+In-Reply-To: <20200518123013.6e4cb3cc@canb.auug.org.au>
+References: <20200518123013.6e4cb3cc@canb.auug.org.au>
+Organization: LWN.net
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
+Sender: linux-next-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-next.vger.kernel.org>
+X-Mailing-List: linux-next@vger.kernel.org
+
+On Mon, 18 May 2020 12:30:13 +1000
+Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+
+> Today's linux-next merge of the jc_docs tree got a conflict in:
+> 
+>   kernel/sysctl.c
+> 
+> between commit:
+> 
+>   f461d2dcd511 ("sysctl: avoid forward declarations")
+> 
+> from the vfs tree and commit:
+> 
+>   2f4c33063ad7 ("docs: sysctl/kernel: document ngroups_max")
+> 
+> from the jc_docs tree.
+
+Hmm...that's somewhat messy.  I somehow managed to miss the change to
+kernel/sysctl.c that doesn't have much to do with documentation.  Stephen
+(Kitt): I've reverted that change for now.  Could I ask you to resubmit it
+as two different patches?  I'll happily take the actual docs change; the
+sysctl change can be sent to the VFS tree on top of the changes there.
+
+In general we really don't want to mix unrelated changes like this.
+
+Thanks,
+
+jon

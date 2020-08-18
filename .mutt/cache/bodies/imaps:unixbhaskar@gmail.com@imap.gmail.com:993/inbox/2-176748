@@ -1,0 +1,95 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp2193670lfb;
+        Fri, 19 Apr 2019 11:31:23 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqw2RJq/8uf8v2j94r3yK1TYwKRL7eKJBkN3wpBh5sg0/TiWdru39wPPWhshSvp3fsugmVFN
+X-Received: by 2002:a17:902:442:: with SMTP id 60mr5377208ple.107.1555698683289;
+        Fri, 19 Apr 2019 11:31:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1555698683; cv=none;
+        d=google.com; s=arc-20160816;
+        b=plhHMf9rq+Dt2SMS+2YZ2hbJepf+Sxoa1zXan/OZ3j6Z/oxK6hvGDEpbTQ0/U3DrXv
+         7TL3UMKqkBQAqmMKKXrZmrHxK/n40BObWUTHfGhEH6oLMrF0YCXX578MZJJA3Q8GvE9k
+         RoDS5w1kClK1UnbdRxgRIyzpvGh0t99+nAgigREV3d6VUZJZ7KfRqPg1pqcMogUJUvEh
+         mcLgr74roYM3/M+aSR7oew7Zu2ewcSkKs3vAdqh+1x2c6nssDne3Tk40bJ/iSy6O5/Cc
+         IAg0uyZhaCQ0HwB6A0eRIfu9+uHuDUbI47Q6g0aA/pJ40EkNfSYrb2MqftR8fny5EGx/
+         Kwww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=xw4hpkBCJBZd2XY4daBknM7FWa2dPZEUgMB0/R7u3lM=;
+        b=Fl+XanstpfALcW2gTr1cOPhvWoXCIArsdJs0k87O9Cq4HgrwLLt4ZeI1Df8gEVL4rs
+         K9JLPdx1s2lM5VOhPoLuaAa9ag6nZqTRKxm16z1tnOcN3lUTk+N6ZI530J+2QF9DnkEn
+         T/LV67CscXiqUZkRNRUIeooPrItQBFTmyXQqOq6VVKb7IgbYWhp9+qb9K/p9YE2m2kuT
+         OCDhN5P59s6J6Vid46kDE3atrG1NEp55+XXKttRKsUmAPJ/i1diiNmOpD4DPHMfOmZv7
+         Jd6IYeIglqU26OjOafsjgRwS4QpAJ38DkK/k6L8f/KxYXnRqkN5oSpoVVW41D/mPLRo8
+         aPvw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=SI6UrF0x;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id p91si3382455plb.230.2019.04.19.11.31.19;
+        Fri, 19 Apr 2019 11:31:23 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=SI6UrF0x;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727968AbfDSS3U (ORCPT <rfc822;snowfrs@gmail.com> + 22 others);
+        Fri, 19 Apr 2019 14:29:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53874 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727448AbfDSS3P (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 19 Apr 2019 14:29:15 -0400
+Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9CF86222B3;
+        Fri, 19 Apr 2019 13:40:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1555681205;
+        bh=zkeHzfaBVgH51+2rLKVPG4T40ylx+KZ3jS4dKb8Q6P0=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=SI6UrF0xU4xpg+ipoDDolupWiLsE7BPYs55ze5wnMQTsPZ0ZIW7mVI0++JhKWyQRq
+         53cQyZfdC4W8MOWEyRMrbBbWm0WfPato+VBqjHrdzeKib3k4SUjpLkC4JK8MVZfZ0a
+         PLFWnZbIWILPuEBaOfejNUs0sRs7V0FBSmR2Vuok=
+Subject: Re: [PATCHv2] selftests/efivarfs: clean up test files from
+ test_create*()
+To:     Po-Hsu Lin <po-hsu.lin@canonical.com>
+Cc:     linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org,
+        shuah <shuah@kernel.org>
+References: <20190419131221.28297-1-po-hsu.lin@canonical.com>
+ <03bdc88d-07cd-08ca-7d2f-ba93069eb41b@kernel.org>
+ <CAMy_GT83h6DtYYm6GMz=wXfpLpyqt3GqdEmw7Aj40kKq1NkQoA@mail.gmail.com>
+From:   shuah <shuah@kernel.org>
+Message-ID: <388c89a4-5f45-7eaa-9240-83336c9de663@kernel.org>
+Date:   Fri, 19 Apr 2019 07:40:05 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <CAMy_GT83h6DtYYm6GMz=wXfpLpyqt3GqdEmw7Aj40kKq1NkQoA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 4/19/19 7:30 AM, Po-Hsu Lin wrote:
+> Hello,
+> 
+> Commit f8a0590f fix some part of this issue.
+> I will send out V3 base on this commit in linux-kselftest next branch.
+> 
+> Thank you.
+> 
+> 
+
+Yes. That sounds right based on my quick look at both patches.
+Please send v3. I will get that into next.
+
+thanks,
+-- Shuah

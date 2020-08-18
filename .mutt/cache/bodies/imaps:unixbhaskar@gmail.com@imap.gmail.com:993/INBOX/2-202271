@@ -1,0 +1,138 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2861787lfj;
+        Fri, 20 Sep 2019 14:26:29 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxJStNV6CqobKrj9O6XLDsv3rT6kB4LBtyFNRp96i9Djf5WKU471eE3mGu+ZmB2+SmuOp3i
+X-Received: by 2002:a17:906:7802:: with SMTP id u2mr4177851ejm.3.1569014789807;
+        Fri, 20 Sep 2019 14:26:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569014789; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xTQlzrsnNLWIhkqKpcWO++dtshha6HWJtE4e741ZRgRuALaa3cs3jRRRgv0NTWZLcn
+         9Vpv5r+IfQ9qVgnLCjURNAgiiViL/3LXgWa5Sa2XEfit2sgQ2Fqsv/7ooxfbqFcMv/Vc
+         uKWO/NhmeSFT9RUNZyJl1aVpjryE7siqB78HZOVzXmVky5WUKuZaKVG/5xD+F8mBCf72
+         6CILa+xDZIkfOArC1hZRgkXvGWx+kTAHJHZYLuoFi4a1GWT6A6EImeyYm2UthQ/NIwlO
+         4Cva/hYCfy1/maMk8Ka0HatBc4CartMV2WfuVh8m8VVG2oIdqpFuWxvlmMim+wUZuYRz
+         MRGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=5FNGFxL5BLhyvs37aNDD2u4JgDHGO5UPdmdnn3EHqLo=;
+        b=jh36HnDBH18F3isTOvqkUrA4dydM3iXc2WbK1CZvEThwEzCGNZSUnvi1ufZ5pQUNHA
+         l4waddY6M6iVZW66SNoeGiW6Idquwv3+Y9qmJ42emEh7NfN0eLQT1hi2/i4TfQ/rCWK1
+         n5ubNz8X7ycQVpMU24SAoDEx/jjQ4/UIm7ACKmjGEwRsHksxffrL5Bv6h35e+kWpzIQQ
+         GZWzueQ/OJPr5+wFwAo/q2qvI/OeAzfzOGkH3ZhlD2nDNHZMOiLp7riCrEyMeBI6NU9Y
+         qOCm0Kyvz6NCa19qqlMvM0rzhPiccVZqGfNM9pF2ZfVqZZGYPM51bdwbgX3meK6iD7PL
+         LzxA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=SpEy3jPk;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id i16si2217155ede.86.2019.09.20.14.26.05;
+        Fri, 20 Sep 2019 14:26:29 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=SpEy3jPk;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2392804AbfISXjl (ORCPT <rfc822;hari.prasath50250@gmail.com>
+        + 99 others); Thu, 19 Sep 2019 19:39:41 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:42252 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391738AbfISXji (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 19 Sep 2019 19:39:38 -0400
+Received: by mail-lf1-f65.google.com with SMTP id c195so3612827lfg.9
+        for <linux-kernel@vger.kernel.org>; Thu, 19 Sep 2019 16:39:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5FNGFxL5BLhyvs37aNDD2u4JgDHGO5UPdmdnn3EHqLo=;
+        b=SpEy3jPkCRJpYSb59pOS+GuECUW5l5+gVAswRj/iKNkELB5/NunWndHY13iq+Kk6OL
+         rQoJupSBfhWOcfEiUrIZsCK/nOELDk9lHhQlXV/dRiocbMOemmpHSrl4qWuBsFz1AzVF
+         mfz4fIf2/PIYYKHqLSFmX/7zeaeSOShoOouj8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5FNGFxL5BLhyvs37aNDD2u4JgDHGO5UPdmdnn3EHqLo=;
+        b=XfHvixrpbRj1HaXeJ7koOx1e5WUKElSgSFjbJAOzeJqCbNPQDC3oXgBAuGFzEICFgf
+         2Fh7asAxDsxEBKYWDXiHdkDFhdTsd61sMiWAxf0k9TEaXfSB7NQr2GBJVzJfUH3pBcC3
+         Z3xCFvinhqnacO5UzFioAdTsv7/zMpk0HPyaZ3HgOI48O0P7lsJFgOJlQhZnrNCnH0h5
+         xo3eKKN3oaWuYHyvYYILQZj3aQFkXgxJEgLREaaMqVyTIYKgqivgCAmnA7W3WSRBKT40
+         2AatdKywmkcyvW32Xl6rPfilmjwMLHRMPt49o6dxNaQXOUQ19xFMUbC3uXUt9N40Ct3W
+         ybpw==
+X-Gm-Message-State: APjAAAWqd/pmv9guvsO4dUgv760ZAaZwXYQEVli213qV8iuGnLafsTun
+        G4Xm8fmqwSClJQzwnuj9yMxGrj1wIR4=
+X-Received: by 2002:ac2:5483:: with SMTP id t3mr6527034lfk.39.1568936376283;
+        Thu, 19 Sep 2019 16:39:36 -0700 (PDT)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com. [209.85.167.53])
+        by smtp.gmail.com with ESMTPSA id v1sm79512lfa.87.2019.09.19.16.39.35
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Sep 2019 16:39:35 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id r22so3642450lfm.1
+        for <linux-kernel@vger.kernel.org>; Thu, 19 Sep 2019 16:39:35 -0700 (PDT)
+X-Received: by 2002:a19:7d55:: with SMTP id y82mr6397849lfc.106.1568936374113;
+ Thu, 19 Sep 2019 16:39:34 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAPM=9txTjip6SonSATB-O38TGX9ituQaw+29PnAkNJ960R1z6g@mail.gmail.com>
+In-Reply-To: <CAPM=9txTjip6SonSATB-O38TGX9ituQaw+29PnAkNJ960R1z6g@mail.gmail.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Thu, 19 Sep 2019 16:39:17 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjHDrmx+Rj+oJw5V4mfWjpYzpwcJbqY-L-nvsNW_d8e_g@mail.gmail.com>
+Message-ID: <CAHk-=wjHDrmx+Rj+oJw5V4mfWjpYzpwcJbqY-L-nvsNW_d8e_g@mail.gmail.com>
+Subject: Re: [git pull] drm tree for 5.4-rc1
+To:     Dave Airlie <airlied@gmail.com>
+Cc:     Daniel Vetter <daniel.vetter@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Sep 19, 2019 at 12:09 PM Dave Airlie <airlied@gmail.com> wrote:
+>
+> There are a few merge conflicts across the board, we have a shared
+> rerere cache which meant I hadn't noticed them until I avoided the
+> cache.
+> https://cgit.freedesktop.org/drm/drm/log/?h=drm-5.4-merge
+> contains what we've done, none of them are too crazy.
+
+Hmm. My merge isn't identical to that. It's close though. Different
+order for one #define which might be just from you and me merging
+different directions.
+
+But I also ended up removing the .gem_prime_export initialization to
+drm_gem_prime_export, because it's the default if none exists. That's
+the left-over from
+
+    3baeeb21983a ("drm/mtk: Drop drm_gem_prime_export/import")
+
+after the import stayed around because it got turned into an actually
+non-default one.
+
+I think that both of our merges are right - equivalent but just
+slightly different.
+
+But the reason I'm pointing this out is that I also get the feeling
+that if it needs that dev->dev_private difference from the default
+function in prime_import(), wouldn't it need the same for prime_export
+too?
+
+I don't know the code, and I don't know the hardware, but just from a
+"pattern matching" angle I just wanted to check whether maybe there's
+need for a mtk_drm_gem_prime_export() wrapper that does that same
+thing with
+
+        struct mtk_drm_private *private = dev->dev_private;
+
+        .. use private->dev  instead of dev->dev ..
+
+So I'm just asking that somebody that knows that drm/mtk code should
+double-check that oddity.
+
+Thanks,
+              Linus

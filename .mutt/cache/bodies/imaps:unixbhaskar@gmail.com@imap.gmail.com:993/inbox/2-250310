@@ -1,0 +1,115 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp2841113lfj;
+        Fri, 24 Jul 2020 13:48:01 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxhXWUgAERvqtXlrb+Scif06ZA4HTTABFadCCP2Gea47WHrttDBviLT5F21nYaXUY1shPrS
+X-Received: by 2002:a17:907:20c4:: with SMTP id qq4mr10510308ejb.85.1595623681551;
+        Fri, 24 Jul 2020 13:48:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1595623681; cv=none;
+        d=google.com; s=arc-20160816;
+        b=GU23Y9zpqnBJ0ZOkqt8Clay0SE9K7GialK6VKxKfvXfViDGmxiKPEk6+IRLD2sFhPl
+         bD364DZMXzTSIzMbyYAzuI9pSCKC/zmgLbnjPUOSvPQRgtAHkZEpmhmM7rBz5HVdzqbV
+         Su9n3a89vgqz2l4i2PUcpiL7sSEBovTyKemcL+wDz7zMUuP86pebGix9sgn3+ERLIDXq
+         LiUcjzGt83rHVJXSd6cSWp8BZS34m9Dkyj0tQOZBu9wy2VNJ5+ETkFFnDUG2B6QjiQjs
+         a8Yu7Y42SwDnOZKDvgydd8ZLrsXQHEBf9tXVH5ONG+vAhaM3WU8nw9m9EUoZrIbPymPd
+         7sBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=B82gYYGiPy2JMsI7fbcCJSg3IUC2NN/ufVJBewTAqEg=;
+        b=JCBX9YBpEiilxmkerzU5d9mo8znloeJ7ncNbx7ze2uVDxI+hTgroBTGNWcujCUqpRB
+         rqQzkjNt2XzyNLgVeYjoyGuKsHjefNnDXh+jgIwfDoRcRCHpEbmd3bbHGzaRg+Bmp4St
+         HTZ70E/uVYPwABz05puU6/g+Fq413BYd/6iO59U22i+RBIKV7bif+DrJDwSs8t8O/36U
+         xFcOOgHqAvDQ5XJE4zfxkMvwaKR9TskW29bIMguRI0cm5eR6hRvHkcRGiv+xmvMiDlpC
+         x4063aW7vOs+Lr1zs8A663fPhs91/Rnaf/Ai6Lm9CcwhyZCi2Xh9hwCYcq9pCn7YXHGB
+         +aCg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=MIx4Nwnw;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id k18si1190312ejp.753.2020.07.24.13.47.48;
+        Fri, 24 Jul 2020 13:48:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=MIx4Nwnw;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726701AbgGXUoF (ORCPT <rfc822;mintybayleaf@gmail.com>
+        + 57 others); Fri, 24 Jul 2020 16:44:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49544 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726651AbgGXUoE (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 24 Jul 2020 16:44:04 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54DB7C0619D3
+        for <linux-kernel@vger.kernel.org>; Fri, 24 Jul 2020 13:44:04 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id v4so1594423ljd.0
+        for <linux-kernel@vger.kernel.org>; Fri, 24 Jul 2020 13:44:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=B82gYYGiPy2JMsI7fbcCJSg3IUC2NN/ufVJBewTAqEg=;
+        b=MIx4Nwnw0hQOhBxrC/PQv6JymjkmUdhb4keWH8aN8ACb+ycU5lnNx3lXJuG63vOZjb
+         BUAJColHg6jYaO75jafZJMwlxOchGjWwGP0flmY/+dRs+aMNz/mEfimaT0NoBQYPt2KR
+         LfWGqfZb42ZNg23nQJGx5oYJitbQLfaPCvDUI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=B82gYYGiPy2JMsI7fbcCJSg3IUC2NN/ufVJBewTAqEg=;
+        b=nr5mM04Hl6HE0n4mdJBVJBTfjUcLzA/lCPzImQDAn7PjKrKw0JwTlU4yt9ta8O4xZg
+         km8UKZG5V1wONuSz1E7dp5uPhXYDYGH5oal+4paqSP1himie/BFjKH4FiQyOjxfpJPfR
+         LAAsVGrJwtSYGnZE6Lw5kCtCJWQtw56v9UqX1pVdRiyvyY7g8UzdkMSRa1ZqE/e0ATNr
+         lmFp7ujdkTJMIGYZbkhKjatO9JLlzB0IyOkOGof4T58/s84V9eO2DLBe0PYoBuILhaXN
+         qcqbOOGV7+QMI/sKD1fAqplxyuwjRQKEFZE32IFNuTiK4TCGnO+WjXuZMdmZjvylv68R
+         uKrg==
+X-Gm-Message-State: AOAM532hNmq7at3u1yXaS2O64ANWN2tKvy6WOD5Bmk3MSaGZN+d/3zYd
+        OXRL2znuPggIxGVkdl4kNZGDpIBCvlc=
+X-Received: by 2002:a2e:9811:: with SMTP id a17mr4983294ljj.86.1595623442475;
+        Fri, 24 Jul 2020 13:44:02 -0700 (PDT)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com. [209.85.208.175])
+        by smtp.gmail.com with ESMTPSA id y26sm486418ljk.26.2020.07.24.13.44.01
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jul 2020 13:44:01 -0700 (PDT)
+Received: by mail-lj1-f175.google.com with SMTP id q6so11270375ljp.4
+        for <linux-kernel@vger.kernel.org>; Fri, 24 Jul 2020 13:44:01 -0700 (PDT)
+X-Received: by 2002:a2e:760b:: with SMTP id r11mr5366037ljc.285.1595623440971;
+ Fri, 24 Jul 2020 13:44:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200724192728.GA1596@ninjato>
+In-Reply-To: <20200724192728.GA1596@ninjato>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Fri, 24 Jul 2020 13:43:44 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjaHZKQnOuGLWukvMrTmDrDd6iyiq5toQumB2uX1nR9Xw@mail.gmail.com>
+Message-ID: <CAHk-=wjaHZKQnOuGLWukvMrTmDrDd6iyiq5toQumB2uX1nR9Xw@mail.gmail.com>
+Subject: Re: [PULL REQUEST] i2c for v5.8
+To:     Wolfram Sang <wsa@kernel.org>
+Cc:     linux-i2c@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Jul 24, 2020 at 12:27 PM Wolfram Sang <wsa@kernel.org> wrote:
+>
+> And a question: can we have an additional rc this cycle because of the
+> holiday season? I was away and this extra week would help in my case.
+
+Do you have a lot of pending fixes? Because things _seem_ fairly quiet
+for this release, and right now it doesn't seem to make much sense to
+delay 5.8.
+
+Surprises happen, and this could change any day, but nobody else has
+indicated any problems that I know of, and this week has been very
+quiet (until today, when I start getting all the "end of the week"
+pull requests, so my opinion on that may change by the time I do an
+rc7)
+
+             Linus

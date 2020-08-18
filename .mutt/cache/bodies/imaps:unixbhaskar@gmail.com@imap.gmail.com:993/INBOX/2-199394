@@ -1,0 +1,105 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp6415120lfj;
+        Tue, 3 Sep 2019 14:18:31 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxY6zKiDfnjrjj3CbbsRFxm3i4LtjEY/twW0DDqrz1p3t/cocaRltj3vvUi5d01Sl+APOg1
+X-Received: by 2002:a62:e205:: with SMTP id a5mr42912206pfi.137.1567545511122;
+        Tue, 03 Sep 2019 14:18:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1567545511; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Je7duKTgTtSb4KuuFiru5q/bMkD7d/vWAdceGscFJW+61a5aYNa/SIDdUy5Hg09kop
+         fCrhp7aL6nCBHZwUNoBjk9+N//jYUlYnxq4hfXP64o+iTO1kAkkWqkO4Y5oSs0PEDFNM
+         9UKxFj+ZUgTP9B9QTJwsuOUOl1s7bdExK6ehmxvJFdI2Dn046q8vDQKgK7nhHq7aHXYE
+         1apdf2SBCVeDN/8RmNdWag+VrEhCZ41S+AyhRPsGormWCblQD1ffkgPlRD27ckX4dQWG
+         UxHiHkZU4KAQgjsAHacE4ZiK3aCxvmVZjWOzGVvvR502/z0CVkWgKNclm4j/l6zZPXUR
+         66GA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date;
+        bh=//HQ4C+2M6WSAPGG7VqXZ/KEG/q0xn9sshgZpUEhWDs=;
+        b=XaEP43C29pttYOCCtjNFVq2OXw2xhiu5HeF4lFZooDPlUdwI5heq+Rwmrvfb7jJgfd
+         /PjKodrkhFuXea3gTMEJzYBZeptKtEYTSi6jR+LYrlGy9PkGUgZolzyIpYx4jxXhaL8z
+         9FLLJoiNpkaB9iX0QcN08d2m+orl2lntwQ+y/5PpFKo/r6twDiw/Nt15esijb4smKZ5U
+         WGdk5vuKmBIATWqevydNncJYxPYD90Cx89gzFGml6ITfqG8FlHOAG62gVIo9HJ+OmMNd
+         KsyUQjMTdxvweCTX4AIWIu84OBeI/We2UeqDHoTzhdsKNhDSDYkyvQN+D1BF/tvyUW71
+         EQRw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id d23si11422588pfr.274.2019.09.03.14.18.16;
+        Tue, 03 Sep 2019 14:18:31 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726830AbfICVR5 (ORCPT <rfc822;snailbinich@gmail.com>
+        + 99 others); Tue, 3 Sep 2019 17:17:57 -0400
+Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:41590 "EHLO
+        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726375AbfICVR5 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 3 Sep 2019 17:17:57 -0400
+Received: from callcc.thunk.org (guestnat-104-133-0-96.corp.google.com [104.133.0.96] (may be forged))
+        (authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x83LHmaX031393
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 3 Sep 2019 17:17:49 -0400
+Received: by callcc.thunk.org (Postfix, from userid 15806)
+        id E453442049E; Tue,  3 Sep 2019 17:17:47 -0400 (EDT)
+Date:   Tue, 3 Sep 2019 17:17:47 -0400
+From:   "Theodore Y. Ts'o" <tytso@mit.edu>
+To:     Deepa Dinamani <deepa.kernel@gmail.com>
+Cc:     Qian Cai <cai@lca.pw>, Jeff Layton <jlayton@kernel.org>,
+        Alexander Viro <viro@zeniv.linux.org.uk>,
+        Linux FS-devel Mailing List <linux-fsdevel@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Ext4 Developers List <linux-ext4@vger.kernel.org>,
+        Andreas Dilger <adilger.kernel@dilger.ca>,
+        Arnd Bergmann <arnd@arndb.de>
+Subject: Re: "beyond 2038" warnings from loopback mount is noisy
+Message-ID: <20190903211747.GD2899@mit.edu>
+References: <1567523922.5576.57.camel@lca.pw>
+ <CABeXuvoPdAbDr-ELxNqUPg5n84fubZJZKiryERrXdHeuLhBQjQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CABeXuvoPdAbDr-ELxNqUPg5n84fubZJZKiryERrXdHeuLhBQjQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Sep 03, 2019 at 09:18:44AM -0700, Deepa Dinamani wrote:
+> 
+> This prints a warning for each inode that doesn't extend limits beyond
+> 2038. It is rate limited by the ext4_warning_inode().
+> Looks like your filesystem has inodes that cannot be extended.
+> We could use a different rate limit or ignore this corner case. Do the
+> maintainers have a preference?
+
+We need to drop this commit (ext4: Initialize timestamps limits), or
+at least the portion which adds the call to the EXT4_INODE_SET_XTIME
+macro in ext4.h.  
+
+I know of a truly vast number of servers in production all over the
+world which are using 128 byte inodes, and spamming the inodes at the
+maximum rate limit is a really bad idea.  This includes at some major
+cloud data centers where the life of individual servers in their data
+centers is well understood (they're not going to last until 2038) and
+nothing stored on the local Linux file systems are long-lived ---
+that's all stored in the cluster file systems.  The choice of 128 byte
+inode was deliberately chosen to maximize storage TCO, and so spamming
+a warning at high rates is going to be extremely unfriendly.
+
+In cases where the inode size is such that there is no chance at all
+to support timestamps beyond 2038, a single warning at mount time, or
+maybe a warning at mkfs time might be acceptable.  But there's no
+point printing a warning time each time we set a timestamp on such a
+file system.  It's not going to change, and past a certain point, we
+need to trust that people who are using 128 byte inodes did so knowing
+what the tradeoffs might be.  After all, it is *not* the default.
+
+     	 	   	      	    	 - Ted

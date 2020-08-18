@@ -1,0 +1,132 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp6292433lfc;
+        Tue, 18 Feb 2020 10:12:59 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxIGYvqYYXr8NmHiIJ7bZaFz/4lqj7oJgxWtyCZDIj0ZPqvNmmqoNhgGuowyjDyqdysLFIj
+X-Received: by 2002:a9d:6c9a:: with SMTP id c26mr16001217otr.279.1582049579139;
+        Tue, 18 Feb 2020 10:12:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1582049579; cv=none;
+        d=google.com; s=arc-20160816;
+        b=G0WQGvYUKEVXyoEw5JdaTVM1zY8KhNhvSrF0a1ZT5TD6/HcDeW4M9vzzarULeXPpdY
+         VsNWKDMDxs3AfNanL2d1SbhPgGcS+G5r/ac0c+Rp8OD73iTHGHMALQHO9on+bCwQJts3
+         dFB1puv2k/pBgCsiY0QpCW91hrabubNvqZzV5PHaitxKq+Mn6nnG9dFYVvBhaUiGCtDk
+         hsbY73ro4Ikd1PPV7CI8vCiUdquYih3b4P1eDQry+Z4JDxlUvllGyw9jg8DY5usBM+ZY
+         jOksqRyjJsATEvb5caHnU/gARk437F7yrRT0geAZOP4P13htvcZRZ97lQHld9UYC1xex
+         dr6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :references:in-reply-to:message-id:subject:cc:to:from:date;
+        bh=dnyb5/ziB75m7+z2mILnW4FCSYpJR8F1Slk5FUv4mZo=;
+        b=JXSMU172AFfmZquut6GO+8ARntB99VTGsBThfgLbQs3h6JeZ5eodg34KRObiD+k/am
+         zcXnpi30++sckXxiVf1S8QruKvDtlds1QwwqLxI3lfH9Qq37Q0d3rJZqc0zoHyxIf22y
+         RsVV01HfT3SQEHroPFUirqRO0HjmnfUgKDkl1TphVr/cZZdr8Tk7EFJLc9AO0YAAzSxV
+         ufIVDbZO0g+qgItTZo7amXXAsu1sKreiJoz/xMQDUv90PbRNCrxoxmpnFe+uQJlvXghI
+         5Pt4QQR0thvncH+kpID5/rpaZJ0pkuIZQNGcPq4XPhcwFGjqhCRLa41X1DOTUh2kmzXc
+         QlRg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id b2si2411431ots.284.2020.02.18.10.12.47;
+        Tue, 18 Feb 2020 10:12:59 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726422AbgBRSMB (ORCPT <rfc822;diweiguang88@gmail.com>
+        + 99 others); Tue, 18 Feb 2020 13:12:01 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42258 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726239AbgBRSMB (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 18 Feb 2020 13:12:01 -0500
+Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com [66.24.58.225])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 48CB1208C4;
+        Tue, 18 Feb 2020 18:12:00 +0000 (UTC)
+Date:   Tue, 18 Feb 2020 13:11:58 -0500
+From:   Steven Rostedt <rostedt@goodmis.org>
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     Peter Zijlstra <peterz@infradead.org>,
+        Andy Lutomirski <luto@kernel.org>,
+        Tony Luck <tony.luck@intel.com>, x86-ml <x86@kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC] #MC mess
+Message-ID: <20200218131158.693eeefc@gandalf.local.home>
+In-Reply-To: <20200218173150.GK14449@zn.tnic>
+References: <20200218173150.GK14449@zn.tnic>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, 18 Feb 2020 18:31:50 +0100
+Borislav Petkov <bp@alien8.de> wrote:
+
+> Ok,
+> 
+> so Peter raised this question on IRC today, that the #MC handler needs
+> to disable all kinds of tracing/kprobing and etc exceptions happening
+> while handling an #MC. And I guess we can talk about supporting some
+> exceptions but #MC is usually nasty enough to not care about tracing
+> when former happens.
+
+What's the issue with tracing? Does this affect the tracing done by the
+edac_mc_handle_error code?
+
+It has a trace event in it, that the rasdaemon uses.
+
+> 
+> So how about this trivial first stab of using the big hammer and simply
+> turning off stuff? The nmi_enter()/nmi_exit() thing still needs debating
+> because ist_enter() already does rcu_nmi_enter() and I'm not sure
+> whether any of the context tracking would still be ok with that.
+> 
+> Anything else I'm missing? It is likely...
+> 
+> Thx.
+> 
+> ---
+> diff --git a/arch/x86/kernel/cpu/mce/core.c b/arch/x86/kernel/cpu/mce/core.c
+> index 2c4f949611e4..6dff97c53310 100644
+> --- a/arch/x86/kernel/cpu/mce/core.c
+> +++ b/arch/x86/kernel/cpu/mce/core.c
+> @@ -1214,7 +1214,7 @@ static void __mc_scan_banks(struct mce *m, struct mce *final,
+>   * MCE broadcast. However some CPUs might be broken beyond repair,
+>   * so be always careful when synchronizing with others.
+>   */
+> -void do_machine_check(struct pt_regs *regs, long error_code)
+> +void notrace do_machine_check(struct pt_regs *regs, long error_code)
+>  {
+>  	DECLARE_BITMAP(valid_banks, MAX_NR_BANKS);
+>  	DECLARE_BITMAP(toclear, MAX_NR_BANKS);
+> @@ -1251,6 +1251,10 @@ void do_machine_check(struct pt_regs *regs, long error_code)
+>  	if (__mc_check_crashing_cpu(cpu))
+>  		return;
+>  
+> +	hw_breakpoint_disable();
+> +	static_key_disable(&__tracepoint_read_msr.key);
+
+I believe static_key_disable() sleeps, and does all kinds of crazing
+things (like update the code).
+
+-- Steve
+
+> +	tracing_off();
+> +
+>  	ist_enter(regs);
+>  
+>  	this_cpu_inc(mce_exception_count);
+> @@ -1360,6 +1364,7 @@ void do_machine_check(struct pt_regs *regs, long error_code)
+>  	ist_exit(regs);
+>  }
+>  EXPORT_SYMBOL_GPL(do_machine_check);
+> +NOKPROBE_SYMBOL(do_machine_check);
+>  
+>  #ifndef CONFIG_MEMORY_FAILURE
+>  int memory_failure(unsigned long pfn, int flags)
+> 
+

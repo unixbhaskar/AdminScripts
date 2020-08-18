@@ -1,0 +1,575 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp1722249lfc;
+        Sat, 1 Feb 2020 03:45:13 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzZ3XgOs9lSzgL3a6XkhF6CXrt92SjJUPID7OQXg9NxcwOE78UkFrnG7eoF4yvaMu6M4cMm
+X-Received: by 2002:a1c:20d6:: with SMTP id g205mr18557188wmg.38.1580557512940;
+        Sat, 01 Feb 2020 03:45:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580557512; cv=none;
+        d=google.com; s=arc-20160816;
+        b=D5nAGgZAgsxC5H8A3g7g2OU0bEsohImFMHPbn+E0vL06yIm8JlkAWEXs7AG+UuNXG3
+         Jf+DtuM62lawj0lIii4XNB6jUTpX2Gw6+KVCQL7oK2uOY4Fc+2xhUwgwD7IAPhgUWxPp
+         Okarpf7hiHp94w9f+IXF/MB3MTnNoui/JUjAYIbAYpm8iW9Ez5cCwWwptnxpGflcNCR9
+         KzeTVOmz45lQ4EqkGMTH7d0UkFVlx+0SH/qjlRQpVHHf3Zi4/vkOFcmDibHmsdztZLrp
+         SAPBPQZ3t67mpoeEBx5ZveNIqhM3qm6JNX1++oMErDGBo5jc9USrD+A1afcHiEhp8wLz
+         C8QA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:bounces-to:mime-version:subject:message-id:to:from
+         :dkim-signature:dkim-signature;
+        bh=2xjObXVOtlZYl5ziqyBlgpwVT/PCLODddtb5keLkdSg=;
+        b=ipG7dN52ig0Oo2KpaJUJ9UERxd18Z4hvUg69+Z+IIkOjUMm+QVIKjnWJ84zr1uzrGy
+         7xZF+KnIaSs3F1sFXWJwPMN45FOLeujvL4GgaEiimrG5Rdsa8AZT3GWBHAjOkrX4gDyo
+         6GBHuspTC7SkJhx49OLRgckli1LYbqeMc6sGHx+fX8Ow1wVRvghC9pnTg3IdzPXXONi8
+         33CFdlw+cMU+Tbd5gHhfIkakA4Sl2yl6mv/tLSFeGDHdMLmQNGIx28zdVm37O+tFiWW7
+         Q7eQrIu9Qe+mLVqNtyGmckWTesFKkNAKmtax6DDoQ6sMVPKXzmN0/FyW3KcUIKUsfwXi
+         KsEg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@amazon.in header.s=vrv25uounjrl47ud6pendp3i72b4h35u header.b=mUl80pMd;
+       dkim=pass header.i=@amazonses.com header.s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn header.b=fPunsLam;
+       spf=pass (google.com: domain of 2020020111451136dcd976e96f4e47bd0d1a566f30p0eu@bounces.amazon.in designates 54.240.1.27 as permitted sender) smtp.mailfrom=2020020111451136dcd976e96f4e47bd0d1a566f30p0eu@bounces.amazon.in;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=amazon.in
+Return-Path: <2020020111451136dcd976e96f4e47bd0d1a566f30p0eu@bounces.amazon.in>
+Received: from a1-27.smtp-out.eu-west-1.amazonses.com (a1-27.smtp-out.eu-west-1.amazonses.com. [54.240.1.27])
+        by mx.google.com with ESMTPS id r4si9836548wrp.314.2020.02.01.03.45.12
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sat, 01 Feb 2020 03:45:12 -0800 (PST)
+Received-SPF: pass (google.com: domain of 2020020111451136dcd976e96f4e47bd0d1a566f30p0eu@bounces.amazon.in designates 54.240.1.27 as permitted sender) client-ip=54.240.1.27;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@amazon.in header.s=vrv25uounjrl47ud6pendp3i72b4h35u header.b=mUl80pMd;
+       dkim=pass header.i=@amazonses.com header.s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn header.b=fPunsLam;
+       spf=pass (google.com: domain of 2020020111451136dcd976e96f4e47bd0d1a566f30p0eu@bounces.amazon.in designates 54.240.1.27 as permitted sender) smtp.mailfrom=2020020111451136dcd976e96f4e47bd0d1a566f30p0eu@bounces.amazon.in;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=amazon.in
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=vrv25uounjrl47ud6pendp3i72b4h35u; d=amazon.in; t=1580557512;
+	i=@gc.email.amazon.in;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date;
+	bh=azQX0CU2UmP2hqcziu1tYVn1OVJEdEt8WezcJOGWB7M=;
+	b=mUl80pMdYRUMmvGgLeIaka7EjIUzSivUdtdKf4JuOmlppQkCZth1Itdn+TYuLtos
+	tA+Fq1P8p4CyegER/7ZScTKRRksjX+gLrnzZPvJOwxs0ZBf8k/E6FIoRFwNaozQ4Dl6
+	eVScJo2NiDuJeKxCmIQooDbzJ9Tm/lk0W0Cmw0ks=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1580557512;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date:Feedback-ID;
+	bh=azQX0CU2UmP2hqcziu1tYVn1OVJEdEt8WezcJOGWB7M=;
+	b=fPunsLamkNjmONmsWJKZnBljN8UJ1pF9V5seW+AqT+fHvLpW7qNMo2euGqcqXfmE
+	6Ce+FR9GTe5BpSk5RxtOGYu9pnFwHzjbke1Z17ENQ/VIfO8LHJP5f5UZj4FM9G/fqCi
+	f1xwEeUt+TfYitmYkVkM8JQd0Ow1lT1re6E65pps=
+From: Amazon Pay balance <in-gc-orders@gc.email.amazon.in>
+To: unixbhaskar@gmail.com
+Message-ID: <010201700091acec-1bc93d22-b654-4cc4-b06f-3e78c824159c-000000@eu-west-1.amazonses.com>
+Subject: Amazon has added a Refund Gift Card to your Amazon Pay balance
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_11283693_1765845618.1580557511911"
+X-AMAZON-MAIL-RELAY-TYPE: notification
+Bounces-to: 2020020111451136dcd976e96f4e47bd0d1a566f30p0eu@bounces.amazon.in
+X-AMAZON-METADATA: CA=C25392G7TMXVXA-CU=A63QZFCWPB27C
+X-Original-MessageID: <urn.rtn.msg.2020020111451136dcd976e96f4e47bd0d1a566f30p0eu@1580557511912.rtn-svc-eu-back-c42xl1b-0fd43276.eu-west-1.amazon.com>
+Date: Sat, 1 Feb 2020 11:45:11 +0000
+X-SES-Outgoing: 2020.02.01-54.240.1.27
+Feedback-ID: 1.eu-west-1.UIAUrMfbpGrxavqnRE0yoZrAUBI9C7GRNUx/kUDo6B4=:AmazonSES
+
+------=_Part_11283693_1765845618.1580557511911
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" =
+/>
+  <title>
+Amazon.in Order
+</title><style type=3D"text/css">
+        .ReadMsgBody {width: 100%; background-color: #FFFFFF;}
+        .ExternalClass {width: 100%; background-color: #FFFFFF;}
+        body   {width: 100%; background-color: #e3e3e3; margin:0; padding:0=
+; -webkit-font-smoothing: antialiased;-webkit-text-size-adjust:none;}
+        html {width: 100%; }
+        table {border-collapse: collapse;}
+        .btn {width:200px; text-align: center!important;}
+        .farm-row{ font-family:Arial, sans-serif; font-size:12px; padding: =
+3px; color:#333333}
+        span.mainmessage {font-size:14px;text-decoration:none;font-family:A=
+rial,sans-serif;line-height:1; color:#333333; font-weight:bold}
+        .mobileShow {display:none !important;}
+        .mobileShow .x-site {display:none !important;}
+=09table {mso-table-lspace:0pt;mso-table-rspace:0pt; border-collapse:collap=
+se;}=20
+
+        @media only screen and (max-width: 670px)  {
+            body[yahoo] .deviceWidth {width:100% !important}
+            body[yahoo] td[class=3D"wrap"] {
+                padding: 0 10px;
+            }
+            body[yahoo] td[class=3D"column"] img {width: auto !important;he=
+ight:auto !important; min-width: auto !important;}
+=09     /* X-Site CSS */
+        body[yahoo]   td[class=3D"x-site"] {
+            display: none;
+        }
+        }
+        @media only screen and (max-width: 640px)  {
+            body[yahoo] td[class=3D"column"] img {width: auto !important;he=
+ight:auto !important;}
+            body[yahoo] .center {text-align: center!important;}
+            body[yahoo] td[class=3D"column"] {
+                display: block;
+                width: 100%;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+      body[yahoo] table[class=3D"greeter"] {display: none;}
+            body[yahoo] .footerLinks {width:32%; margin-bottom:40px}
+            body[yahoo].farm-row{ font-family:Arial, sans-serif; font-size:=
+12px; padding: 3px; color:#333333}
+            body[yahoo] td[class=3D"linkfarm"] {display: none;}
+=09}
+
+        @media only screen and (max-width: 479px) {
+            body[yahoo] .deviceWidth {width:100% !important}
+            body[yahoo] .center {text-align: center!important;}
+            body[yahoo] td[class=3D"column"] {
+                display: block;
+                width: 100%;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            body[yahoo] .footerLinks { width:32%; margin-bottom:40px}
+            body[yahoo] .btn {width:100%; text-align: center!important;}
+            body[yahoo] td[class=3D"x-site"] {display: none;}
+            body[yahoo] td[class=3D"linkfarm"] {display: none;}
+            body[yahoo].farm-row{ font-family:Arial, sans-serif; font-size:=
+12px; padding: 3px; color:#333333}
+
+            body[yahoo] .destination-switch {
+                width: 100%;
+                height: auto;
+                display:block;
+                background-repeat:no-repeat;
+                background-color:#FFF;
+                background-position:center;
+                margin-top: 15px;
+            }
+=09     /* X-Site CSS */
+        body[yahoo]   td[class=3D"x-site"] {
+            display: none;
+        }
+        }
+        @media only screen and (max-width: 450px) {
+        body[yahoo] td[class=3D"pattern"] .col {
+            width: 100%;
+            display: block;
+            padding-bottom: 0 !important;
+            padding-right: 10px !important;
+            padding-left: 10px !important;
+            margin-bottom: 20px;
+        }
+        body[yahoo] td[class=3D"pattern"] .col:first-child {
+            margin-right: 10px;
+        }
+        body[yahoo] td[class=3D"pattern"] .row:last-child .col:last-child {
+            margin-bottom: 0;
+            margin-right: 10px;
+        }
+        /* X-Site CSS */
+        body[yahoo]   td[class=3D"x-site"] {
+            display: none;
+        }
+        /* STRIPE Switch */
+
+        body[yahoo] .stripe-switch {
+            width: 300px;
+            height: 150px;
+            background-image: url(http://g-ec2.images-amazon.com/images/G/0=
+1/mobile/2013/300x150/300x150_v3.gif);
+            display:block;
+            background-repeat:no-repeat;
+            background-color:#FFF;
+            background-position:center;
+        }
+        body[yahoo] td[class=3D"stripe"] {
+            text-align:center;
+            display:block;
+            background-color:#FFF;
+            margin:none;
+            width: 300px;
+        }
+        body[yahoo] td[class=3D"stripe"] img {
+            display:none;
+        }
+        body[yahoo] td[class=3D"origin"]{
+            max-height: 0px; font-size: 0; display: none;
+        }
+
+        body[yahoo] td[class=3D"origin"] img{
+            max-height: 0px; font-size: 0; display: none;
+        }
+        /* Link Farm CSS */
+        body[yahoo] table[class=3D"farm"] {
+            display: none;
+        }
+        body[yahoo] td[class=3D"mobileShow"] img, body[yahoo] .mobileShow {
+            display: block !important;
+            width: 100% !important;
+            height: auto !important;
+            max-height: inherit !important;
+            opacity: 1 !important;
+        }
+
+        body[yahoo] .textSegway .mobileShow {
+            width: auto !important;
+            font-family:arial,sans-serif;font-size:12px !important;color:#3=
+36699;text-decoration:underline;font-weight:bold;
+            margin-top: 3px;
+        }
+
+        body[yahoo] td[class=3D"textSegway"] {
+            text-align: right !important;
+        }
+
+        }
+    </style></head><!-- Body -->
+<body style=3D"background-color: #ffffff" yahoo=3D"fix"><img width=3D"1" he=
+ight=3D"1" src=3D"https://www.amazon.in/gp/r.html?C=3D2KY4C4I2ULZYM&K=3D3PZ=
+F5AV5RYIE4&M=3Durn:rtn:msg:2020020111451136dcd976e96f4e47bd0d1a566f30p0eu&R=
+=3D38ZCQ993BKNGP&T=3DO&U=3Dhttps%3A%2F%2Fimages-eu.ssl-images-amazon.com%2F=
+images%2FG%2F01%2Fnav%2Ftransp.gif&H=3DWHCY52CLRK2HDEGWS9UX8QAPSQWA&ref_=3D=
+pe_1779811_63091381_opens" />
+
+<!-- Wrapper -->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"ReadMsgBody" style=3D"background-color: #ffffff;">
+
+<tr><td>
+
+<td valign=3D"top" align=3D"center" class=3D"wrap" style=3D"background-colo=
+r: #ffffff;">
+
+<div align=3D"center" class=3D"wrap" width=3D"583" >
+
+<!-- Top area text --><table width=3D"583" border=3D"0" align=3D"center" ce=
+llspacing=3D"0" class=3D"deviceWidth"><tr>
+    <td align=3D"center">
+        <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D=
+"0">
+            <tbody><tr>
+                <td height=3D"20" style=3D"background-color: #ffffff" align=
+=3D"left"><span style=3D"font-family:Arial;font-size:12px;font-weight:400;l=
+ine-height:19px;color:#888888;text-align:left;">
+        You've received a &#x20B9;899.00 Amazon Pay Gift Card!<br />
+                    </span></td>
+            </tr>
+            </tbody></table></td>
+</tr></table>
+<!-- Top area text end--><!-- Main section table manages the drop shadow an=
+d 10px of padding -->
+
+
+<table class=3D"deviceWidth" cellspacing=3D"0" cellpadding=3D"10" border=3D=
+"0" align=3D"center" style=3D"border:1px solid #CCC;"><tr><td>
+<!-- Top Image -->
+<table width=3D"583" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=
+=3D"center" class=3D"deviceWidth" bgcolor=3D"#FFFFFF">
+<tr>
+    <td><table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D=
+"0" style=3D"background:#fff;">
+        <tbody><tr>
+            <td width=3D"100%" valign=3D"top" align=3D"left" style=3D"backg=
+round:#fff;"><table width=3D"100%" cellpadding=3D"5" border=3D"0">
+                <tbody><tr>
+                   =20
+                    <td width=3D"100%" valign=3D"top" class=3D"origin">
+=09=09=09<div class=3D"origin">
+=09=09=09=09<a href=3D"https://www.amazon.in/gp/r.html?C=3D2KY4C4I2ULZYM&K=
+=3D3PZF5AV5RYIE4&M=3Durn:rtn:msg:2020020111451136dcd976e96f4e47bd0d1a566f30=
+p0eu&R=3DV616KWKJT5UN&T=3DC&U=3Dhttps%3A%2F%2Fwww.amazon.in%2Fgp%2Fcss%2Fgc=
+%2Fpayment%2Fview-gc-balance%3Fref_%3Dpe_1779811_63091381&H=3DIWZLLNCBMDTOQ=
+8ODWYANEAWICU0A&ref_=3Dpe_1779811_63091381">
+
+<img border=3D"0" src=3D"https://images-eu.ssl-images-amazon.com/images/G/3=
+1/gc/designs/livepreview/a_generic_10_in_noto_email_in-main._CB339491701_.p=
+ng" alt=3D"Amazon Gift Card" style=3D"display:block;width:100%;">
+
+</a></div></td>
+                </tr>
+
+                <!--[if !mso 9]><!-->
+                <tr>
+                    <td class=3D"mobileShow" style=3D"padding:0px;"><a href=
+=3D"https://www.amazon.in/gp/r.html?C=3D2KY4C4I2ULZYM&K=3D3PZF5AV5RYIE4&M=
+=3Durn:rtn:msg:2020020111451136dcd976e96f4e47bd0d1a566f30p0eu&R=3D1GRVR4XWL=
+UJFJ&T=3DC&U=3Dhttps%3A%2F%2Fwww.amazon.in%2Fgp%2Fcss%2Fgc%2Fpayment%2Fview=
+-gc-balance%3Fref_%3Dpe_1779811_63091381&H=3DNB4Q0M1DABAD6F8S9IWOXMT7IYKA&r=
+ef_=3Dpe_1779811_63091381">
+
+<img border=3D"0" src=3D"https://images-eu.ssl-images-amazon.com/images/G/3=
+1/gc/designs/livepreview/a_generic_10_in_noto_email_in-main._CB339491701_.p=
+ng" alt=3D"Amazon Gift Card" style=3D"width: 0; overflow: hidden; float: le=
+ft; max-height: 0px; display: none; height:0px;opacity:0;"></a></td>
+                </tr>
+                <!--[endif]---->
+                </tbody></table>
+                &nbsp;</td>
+        </tr>
+        </tbody></table></td>
+</tr>
+</table>
+<!-- Top Image end--><!-- Message Body -->
+<table width=3D"583" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=
+=3D"center" class=3D"deviceWidth" bgcolor=3D"#FFFFFF">
+    <tr>
+        <td class=3D"column"style=3D"font-size: 13px; color: #959595; font-=
+weight: normal; text-align: left; font-family: Helvetica, Arial, sans-serif=
+; line-height: 24px; vertical-align: top; padding:10px 0">
+            <table width=3D"100%" border=3D"0" cellspacing=3D"1" cellpaddin=
+g=3D"0">
+                <tr>
+                    <td align=3D"right" valign=3D"top" width=3D"261"><table=
+ align=3D"center" cellpadding=3D"0" cellspacing=3D"3" border=3D"0">
+                        <tr>
+                            <td align=3D"right"><img src=3D"https://images-=
+eu.ssl-images-amazon.com/images/G/31/gc/designs/livepreview/AmazonGiftCard_=
+Logo._CB481454331_.png" alt=3D"Amazon Pay Gift Card Logo" border=3D"0"/></a=
+></td>
+                        </tr>
+                        <tr>
+                           <td align=3D"right" valign=3D"top" style=3D"font=
+-family: arial,sans-serif">
+                           <div style=3D"font-family:Arial,Helvetica,sans-s=
+erif; font-size:13px; color:#999999; line-height:1.4em;">Reference ID: </di=
+v>
+                           <div style=3D"font-family:Arial,Helvetica,sans-s=
+erif; font-size:15px; line-height:1em; color:#666666;">6014853582911539</di=
+v></td>
+
+                        </tr>
+                    </table></td>
+                <td width=3D"1" height=3D"136" bgcolor=3D"#dddddd" class=3D=
+"x-site" style=3D"font-size:1px"><!--   --></td>
+                </tr>
+            </table>
+
+        </td>
+        <td class=3D"column"style=3D"font-size: 13px; color: #959595; font-=
+weight: normal; text-align: left; font-family: Helvetica, Arial, sans-serif=
+; line-height: 24px; vertical-align: top; padding:10px 0">
+            <table width=3D"100%" border=3D"0" cellspacing=3D"1" cellpaddin=
+g=3D"0">
+                <tr>
+                    <td align=3D"right" valign=3D"top" width=3D"261"><table=
+ align=3D"center" cellpadding=3D"0" cellspacing=3D"3" border=3D"0">
+                        <tr>
+                            <td>
+                           <span style=3D"font-family:Arial,Helvetica,sans-=
+serif; font-size:42px; color:#333333; line-height:1em;">&#8377;899.00</span=
+><br/><br/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign=3D"top" style=3D"font-family: arial,=
+sans-serif">
+                               <div style=3D"font-size:12px; color:#999999;=
+ line-height:1.4em;">Expiry Date:<span style=3D"font-family:Arial,Helvetica=
+,sans-serif; font-size:15px; line-height:1em; color:#666666;">31-Jan-2021</=
+span></div>
+=09=09=09    </td>
+=09=09=09</tr>
+                    </table>
+=09=09=09<table class=3D"deviceWidth" cellspacing=3D"1" cellpadding=3D"0">
+=09=09=09=09<tr>
+                        <td style=3D"float:right;"><br/>
+                      <img src=3D"https://images-eu.ssl-images-amazon.com/i=
+mages/G/31/gc/designs/livepreview/quicksilver_jpg2._CB308934800_.jpg" alt=
+=3D"Amazon Pay Gift Card logo" border=3D"0" />
+                        </td>
+                        </tr>
+=09=09=09</table>
+=09=09=09</td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>
+<!-- Message Body end -->
+
+<!-- Bottom Message -->
+<table width=3D"583" class=3D"deviceWidth" border=3D"0" align=3D"center" ce=
+llpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#FFFFFF">
+  =20
+  <tr><td height=3D"1" colspan=3D"5" style=3D"line-height:0; border-top:1px=
+ solid #dddddd; overflow:hidden; padding:0 5px;"> </td></tr>
+    <tr>
+    <td width=3D"583" valign=3D"top" bgcolor=3D"#FFFFFF" align=3D"left" cla=
+ss=3D"resizer">
+     =20
+        <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"10" border=
+=3D"0" align=3D"left">
+            <tbody><tr>
+                <td align=3D"left" style=3D"text-shadow:2px 2px 1px #cccccc=
+ !important;">
+
+<font size=3D"1" face=3D"verdana,arial,sans-serif" color=3D"#999" style=3D"=
+font-family: verdana,arial,sans-serif; font-size: 10px; color: #999;">
+
+<div style=3D"font-size:18px; font-family:'Lucida Sans',Georgia,Arial,Helve=
+tica,sans-serif; color:#666666; line-height:1.3em">Dear Customer,<br/><br/>=
+Refund for your Amazon.in Order has been applied to your Amazon Pay balance=
+. You can check your balance by visiting <a href=3D"https://www.amazon.in/g=
+p/r.html?C=3D2KY4C4I2ULZYM&K=3D3PZF5AV5RYIE4&M=3Durn:rtn:msg:20200201114511=
+36dcd976e96f4e47bd0d1a566f30p0eu&R=3D3VFKOZM6QLLDT&T=3DC&U=3Dhttps%3A%2F%2F=
+www.amazon.in%2Fgp%2Fcss%2Fgc%2Fpayment%3Fref_%3Dpe_1779811_63091381&H=3DVZ=
+MGFCVU1JI1YTG2QPCWLX4BZXUA&ref_=3Dpe_1779811_63091381">https://www.amazon.i=
+n/gp/css/gc/payment</a>. You can use your Amazon Pay balance for subsequent=
+ purchases on <a href=3D"https://www.amazon.in/gp/r.html?C=3D2KY4C4I2ULZYM&=
+K=3D3PZF5AV5RYIE4&M=3Durn:rtn:msg:2020020111451136dcd976e96f4e47bd0d1a566f3=
+0p0eu&R=3D3KLBD2THFJDMC&T=3DC&U=3Dhttps%3A%2F%2Fwww.amazon.in%3Fref_%3Dpe_1=
+779811_63091381&H=3DO5KAFRDGEOUQVYLCFYVDGMVR0G4A&ref_=3Dpe_1779811_63091381=
+">www.amazon.in</a> till expiry. If you have any questions please visit <a =
+href=3D"https://www.amazon.in/gp/r.html?C=3D2KY4C4I2ULZYM&K=3D3PZF5AV5RYIE4=
+&M=3Durn:rtn:msg:2020020111451136dcd976e96f4e47bd0d1a566f30p0eu&R=3D3GIWP59=
+KYHC80&T=3DC&U=3Dhttps%3A%2F%2Fwww.amazon.in%2Fhelp%3Fref_%3Dpe_1779811_630=
+91381&H=3DCJSZOHNCBQZQYBVXGDXN0JTE25AA&ref_=3Dpe_1779811_63091381">www.amaz=
+on.in/help</a> to call or e-mail us from the Customer Service box from the =
+right side of the page.<br/><br/>Amazon Customer Service</div></font></td>
+               =20
+            </tr>
+            </tbody></table></td>
+</tr>
+</table>
+<!-- Bottom Message end -->
+    <!-- End main section table -->
+
+</td></tr>
+
+</table>
+<!-- End of Main Table -->
+
+<br /><br />
+
+    <!-- Bottom Info --><!-- legal -->
+<table class=3D"deviceWidth" style=3D"font-family:arial,sans-serif;font-siz=
+e:10px;color:#CCCCCC;line-height:16px;" border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"583" align=3D"center"><tr>
+       <td align=3D"justify" valign=3D"top" style=3D"text-justify:inter-wor=
+d !important; font-family:Arial,Helvetica,sans-serif; color:#999999; font-s=
+ize:12px;">
+          <b>Terms and Conditions: Amazon Pay Gift Cards issued by Qwikcilv=
+er</b>
+          <br /><div style=3D"font-size:11px; font-family:Arial,Helvetica,s=
+ans-serif; color:#999999;"><p>These terms and conditions apply to Amazon Pa=
+y Gift Cards &#40;&#34;Gift Cards&#34;&#41; issued by Qwikcilver Solutions =
+Private Limited &#40;&#34;Qwikcilver&#34;&#41;.  Qwikcilver is a private li=
+mited company organized under the laws of India&#44; and is the issuer of G=
+ift Cards.  By purchasing or using a Gift Card&#44; you are agreeing to and=
+ accept these terms and conditions.=20
+<br/><br/>1.   <b>Redemption.</b><br>
+Gift Cards may only be redeemed toward the purchase of eligible products on=
+ <a href=3D"https://www.amazon.in/gp/r.html?C=3D2KY4C4I2ULZYM&K=3D3PZF5AV5R=
+YIE4&M=3Durn:rtn:msg:2020020111451136dcd976e96f4e47bd0d1a566f30p0eu&R=3DK2V=
+8ZAQIWQXO&T=3DC&U=3Dhttps%3A%2F%2Fwww.amazon.in%3Fref_%3Dpe_1779811_6309138=
+1&H=3DANCPAEMTK8XVMZKDY6XYU8XPYL4A&ref_=3Dpe_1779811_63091381">www.amazon.i=
+n</a>. Purchases are deducted from the redeemer&#39;s Amazon Pay balance. A=
+ny unused Amazon Pay balance will remain associated with the redeemer&#39;s=
+ Amazon.in account and applied to purchases in order of earliest expiration=
+ date. If a purchase exceeds the redeemer&#39;s Amazon Pay balance, the rem=
+aining amount must be paid using credit card&#44; net banking or debit card=
+.  No fees or charges apply to Gift Cards.  Qwikcilver may provide Gift Car=
+d purchasers with information about the redemption status of Gift Cards tha=
+t they purchase or use.<br><b> Amazon Gift Card once added to Amazon Pay ba=
+lance, cannot be cancelled.</b><br/><br/>2. <b>Limitations.</b><br>=20
+Gift Cards&#44; including any unused Gift Card balances&#44; expire one yea=
+r from the date of issuance.  Gift Cards may only be purchased in denominat=
+ions ranging from Rs. 10 to Rs. 10&#44;000, or such other limits as Qwikcil=
+ver may determine.  Gift Cards cannot be used to purchase other gift cards.=
+ Gift Cards cannot be reloaded&#44; resold&#44; transferred for value or re=
+deemed for cash. Unused Gift Card balances associated with an Amazon.in acc=
+ount may not be transferred to another Amazon.in account.  No interest will=
+ be payable by Qwikcilver on any Gift Card or Gift Card balance. Qwikcilver=
+ makes no representation or warranty that <a href=3D"https://www.amazon.in/=
+gp/r.html?C=3D2KY4C4I2ULZYM&K=3D3PZF5AV5RYIE4&M=3Durn:rtn:msg:2020020111451=
+136dcd976e96f4e47bd0d1a566f30p0eu&R=3D18H71PH4TAZYG&T=3DC&U=3Dhttps%3A%2F%2=
+Fwww.amazon.in%3Fref_%3Dpe_1779811_63091381&H=3D2PWAADTTMENPPC3Z71VDALTNZKO=
+A&ref_=3Dpe_1779811_63091381">www.amazon.in</a> will always be accessible w=
+ithout interruption.<br/><br/>3. <b>Fraud.</b><br>
+Qwikcilver is not responsible if a Gift Card is lost&#44; stolen&#44; destr=
+oyed or used without permission.  Amazon Seller Services Private Limited &#=
+40;&#34;Amazon&#34;&#41; will have the right to close customer accounts and=
+ take payment from alternative forms of payment if a fraudulently obtained =
+Gift Card is redeemed and&#47;or used to make purchases on <a href=3D"https=
+://www.amazon.in/gp/r.html?C=3D2KY4C4I2ULZYM&K=3D3PZF5AV5RYIE4&M=3Durn:rtn:=
+msg:2020020111451136dcd976e96f4e47bd0d1a566f30p0eu&R=3D3EZBU12MU2BMG&T=3DC&=
+U=3Dhttps%3A%2F%2Fwww.amazon.in%2F%3Fref_%3Dpe_1779811_63091381&H=3DNIUJDHL=
+UTAN6SXN5FLEGQOEAPR4A&ref_=3Dpe_1779811_63091381">www.amazon.in</a>.<br/><b=
+r/>4.  <b>Governing Law and Jurisdiction.</b><br>=20
+ These terms and conditions are governed by and construed in accordance wit=
+h the laws of India. You&#44; Qwikcilver and Amazon each agree to submit to=
+ the exclusive jurisdiction of the courts at Bangalore.  You agree to indem=
+nify Qwikcilver and Amazon for all claims brought by a third party against =
+it or its affiliates arising out of or in connection with a breach of any o=
+f these terms and conditions.<br/><br/>5.  <b>Limitation of Liability.</b><=
+br>
+NEITHER QWIKCILVER NOR AMAZON MAKE ANY WARRANTIES&#44; EXPRESS OR IMPLIED&#=
+44; WITH RESPECT TO GIFT CARDS&#44; INCLUDING WITHOUT LIMITATION&#44; ANY E=
+XPRESS OR IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR P=
+URPOSE. IN THE EVENT A GIFT CARD IS NON-FUNCTIONAL&#44; YOUR SOLE REMEDY WI=
+LL BE THE REPLACEMENT OF SUCH GIFT CARD. IF APPLICABLE LAW DOES NOT ALLOW L=
+IMITATIONS ON IMPLIED WARRANTIES OR THE EXCLUSION OR LIMITATION OF CERTAIN =
+DAMAGES&#44; SOME OR ALL OF THE ABOVE DISCLAIMERS&#44; EXCLUSIONS&#44; OR L=
+IMITATIONS MAY NOT APPLY TO YOU&#44; AND YOU MAY HAVE ADDITIONAL RIGHTS.<br=
+/><br/>6.  <b>General Terms.</b><br>=20
+The Amazon.in Conditions of Use apply to Gift Cards.  Qwikcilver reserves t=
+he right to change these Gift Card terms and conditions from time to time i=
+n its discretion and without prior notice to you.  All terms and conditions=
+ are applicable to the extent permitted by law.<br/><br/>7.  <b>Qwickcilver=
+ Contact Information.</b><br>
+Website address: <a href=3D"https://www.amazon.in/gp/f.html?C=3D2KY4C4I2ULZ=
+YM&K=3D3PZF5AV5RYIE4&M=3Durn:rtn:msg:2020020111451136dcd976e96f4e47bd0d1a56=
+6f30p0eu&R=3D1ECT362OYFQKQ&T=3DC&U=3Dhttps%3A%2F%2Famazonbal.qwikcilver.com=
+%2F&H=3DFFAIGH7H9XRXN590RUDXS09YB4IA">www.amazonbal.qwikcilver.com</a>.</br=
+>
+View your gift card transaction statement <a href=3D"https://www.amazon.in/=
+gp/f.html?C=3D2KY4C4I2ULZYM&K=3D3PZF5AV5RYIE4&M=3Durn:rtn:msg:2020020111451=
+136dcd976e96f4e47bd0d1a566f30p0eu&R=3D7GPIO4VWCFXL&T=3DC&U=3Dhttps%3A%2F%2F=
+gcbal.qcamz.qwikcilver.com%2FSSA%2F&H=3DBTNIXTWH7PLSKKH7XSHLRKIZEXMA">here<=
+/a>.<br/><br/>
+</p></div>
+        </td>
+    </tr>
+</table>
+<!-- Bottom Gift and Order ID -->
+<table class=3D"deviceWidth" style=3D"font-family:arial,sans-serif;font-siz=
+e:10px;color:#CCCCCC;line-height:16px" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"583" align=3D"center">
+    <tr>
+        <td width=3D"50%" align=3D"left" valign=3D"top" style=3D"font-famil=
+y:Arial,Helvetica,sans-serif; font-size:11px; color:#999999;"><b>Reference =
+ID: </b>6014853582911539</td>
+        <td width=3D"50%" align=3D"right" valign=3D"top" style=3D"font-fami=
+ly:Arial,Helvetica,sans-serif; font-size:11px; color:#999999;"><b>Order Num=
+ber: </b>1111kb4gnIwyYBD1q7jMe2AXw.1</td>
+      </tr>
+    </table>
+    <!-- Bottom Gift and Order ID End -->
+<!-- legal-end --></td></tr></table>
+
+</div></td>
+
+</td>
+
+</tr>
+
+</table>
+<!-- End Wrapper -->
+<img width=3D"1" height=3D"1" src=3D"https://www.amazon.in/gp/r.html?C=3D2K=
+Y4C4I2ULZYM&K=3D3PZF5AV5RYIE4&M=3Durn:rtn:msg:2020020111451136dcd976e96f4e4=
+7bd0d1a566f30p0eu&R=3D1F1ZFZY6IPQLQ&T=3DE&U=3Dhttps%3A%2F%2Fimages-eu.ssl-i=
+mages-amazon.com%2Fimages%2FG%2F01%2Fnav%2Ftransp.gif&H=3DDWFYCPQSRAGRBFHTR=
+5IJYXCEHPAA&ref_=3Dpe_1779811_63091381_open" /></body>
+
+</html>
+------=_Part_11283693_1765845618.1580557511911--

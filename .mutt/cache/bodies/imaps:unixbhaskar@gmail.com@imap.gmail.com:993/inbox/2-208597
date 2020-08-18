@@ -1,0 +1,106 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:57c1:0:0:0:0:0 with SMTP id k1csp291837lfo;
+        Mon, 4 Nov 2019 23:51:07 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzdG9oSC1moG1wuyAVdNzjVXHrEDevTGVpEo7pU8R+mDIcpKLSi8BxaikqlBU7A9mc4HduW
+X-Received: by 2002:a17:906:2599:: with SMTP id m25mr26859319ejb.227.1572940267719;
+        Mon, 04 Nov 2019 23:51:07 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1572940267; cv=none;
+        d=google.com; s=arc-20160816;
+        b=rUpB0mShsPRrPii1hNIaJDYa4qwe1mDbDff2WRacS0/Dd4wAP6aqxzOC9ULlezmmLM
+         K6dH2WnuRrZHdA+nrTiQB3V2XLu65GE3MGuXkILfyI9oIPyGwZE/iqWkUHA0pqXeGq/8
+         5PuqI6MoWHGJnXrhqNBr+MUWGrlmHt+1P/IzTKzw6xQJhbV9hHXzOPHL4mZ3s5YnruDe
+         DSVKp2PTlO6WPVTRY7+w3gwTgntjHcGQdRUTWdn3OcuaZfjnngMlWaQk+NnXM/XFYelA
+         0i74LtF36oooC8ACCuXsUn9pmwszEg6lHqNYEzgaCUtWcnHEG9SAyAjLzaXiHzY+q4CU
+         TDFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:dkim-signature;
+        bh=DTC36tj7ygFEfCsY/8+rPttbeWDaskbMAX7hbXVGim8=;
+        b=wARQRgu8cIN7f5q0n7+8S5XrddPbIWwOynjPYCC6nN0U8a/3D5wAQ0ew1TfeUeSr66
+         nIdGkGY3ZLgfEcqoIV6Q/qek9wgBagYi7qnTysi5qv/RPtvoxSb7W+8UWt6TGU+AvagD
+         zxY3yAj28MI5fJJU1vFfH+HbcNejkBXDIwgQYedxsujt5y7t7vDhraKbdoD+AcABTHUK
+         YSd/SXM/UqoeGDhyrioTLeZHPiX/jyLYsn6lJH9f0kvsZA0G6JuoXeOUI0OrJEQPjqNg
+         HfXsIyLqaB9nLgZp5oW9SAOgMRfV4Peku7WIZNpIWTlk4oHb++eby7I81t5maTaBDRfl
+         yCeQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=Tqh36Oxm;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id ck15si11927054ejb.358.2019.11.04.23.50.44;
+        Mon, 04 Nov 2019 23:51:07 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=Tqh36Oxm;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2387870AbfKEHrd (ORCPT <rfc822;yxpengi686@gmail.com>
+        + 95 others); Tue, 5 Nov 2019 02:47:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46180 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387482AbfKEHrd (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 5 Nov 2019 02:47:33 -0500
+Received: from localhost (host6-102.lan-isdn.imaginet.fr [195.68.6.102])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 583F3206BA;
+        Tue,  5 Nov 2019 07:47:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1572940050;
+        bh=HOSqksOEOxuLPFJ/nye+bypmqdSlIzOajYUiFRJPI1s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Tqh36OxmfEHUz18pWs0ecvnVyIj8QbGOo+3iz8aiqVT7AXIAwlSfmPb91uEIKKbye
+         llA001qZul0TUaAXYe/1u9TXBwkIngxPKtQtQ5zpnIx3iJKFAq5RjFoOKnV0G8/tkI
+         YJroHmeIFQRVBMqca766m82M3h7WNtzl9FRTjL70=
+Date:   Tue, 5 Nov 2019 08:47:22 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Chanwoo Choi <cw00.choi@samsung.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Chanwoo Choi (chanwoo@kernel.org)" <chanwoo@kernel.org>,
+        =?utf-8?B?7ZWo66qF7KO8?= <myungjoo.ham@samsung.com>
+Subject: Re: [GIT PULL v2] extcon-next for v5.5
+Message-ID: <20191105074722.GA2590260@kroah.com>
+References: <CGME20191105045553epcas1p3aeb81b122b12c40e93bc5768272e2ce1@epcas1p3.samsung.com>
+ <ff758fcb-8ff9-4e87-9ee8-0247dcf686c1@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ff758fcb-8ff9-4e87-9ee8-0247dcf686c1@samsung.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Nov 05, 2019 at 02:01:30PM +0900, Chanwoo Choi wrote:
+> Dear Greg,
+> 
+> This is extcon-next pull request for v5.5. I add detailed description of
+> this pull request on below. Please pull extcon with following updates.
+> 
+> Detailed description for this pull request:
+> 1. Clean up the and fix the minor issue of extcon provider driver
+> - extcon-intel-cht-wc don't reset the USB data connection at probe time
+>   in order to prevent the removing all devices from bus.
+> - extcon-sm5502 reset the registers at proble time in order to
+>   prevent the some stuck state. And remove the redundant variable
+>   initialization.
+> 
+> Changes from v2 as following:
+> - add the missed patch title of this pull request
+> 
+> Best Regards,
+> Chanwoo Choi
+> 
+> The following changes since commit 54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c:
+> 
+>   Linux 5.4-rc1 (2019-09-30 10:35:40 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/extcon.git tags/extcon-next-for-5.5
+
+Pulled and pushed out, thanks.
+
+greg k-h

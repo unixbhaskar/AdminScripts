@@ -1,0 +1,136 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp1726602lfc;
+        Thu, 30 Jan 2020 04:02:08 -0800 (PST)
+X-Google-Smtp-Source: APXvYqyRfeHO95322rPYtcxHWBDIRFzHAPccsq3XHNcYG7DmyN8V0WhcLYTFimc/xZ93xG6nzlUb
+X-Received: by 2002:a05:6402:655:: with SMTP id u21mr3514040edx.78.1580385728349;
+        Thu, 30 Jan 2020 04:02:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580385728; cv=none;
+        d=google.com; s=arc-20160816;
+        b=K2nj3Of6ijUnB+tS6yk/WM8X5EVDev6c0AY97x4j3NvnQDFAxqhVGmbyi7GxRHyIdJ
+         yvnL291T34U7iK9bvc5H0bJ/vVotr7ee6rmCSPOJfVpA9OEfugyogNspReCvDJ2FevQo
+         HW0tvh4UuYagsfBuJmLXfAmw70eu7huvYT+qWLOAj4PROM58/aOGc6IB31SfGX93gnP0
+         BWoG17VFwS5XaBR3DbyId6mXd0u8tazERX6OKaSpERAmcqPhpxVMJdL1nSku/Vjn9Zak
+         2+kej4lpZG+ZvR0R0AQ9ueUeV1l0VsfDX31qjA516XcohzcBha6TrJxuH3mVyFrimI5f
+         uZ3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :dkim-signature:dkim-signature;
+        bh=SJyu3bBmI2OdB73/aniVF5SZ80+0U7MRpnJsNZP5oLQ=;
+        b=uARv3oUewg9amowwSEgWXAd+1/aJilqEgnl4FvuXLzi/Z8h8F5+qYiPipfSGKt0rk8
+         o0BO4oRDbRIyEOkUQlaFCtLZnH3GGmAssIUi+IpvgUnGf8EkVeOoRC8WOOmFlMuWCX2t
+         FvbYSRy65TAJIJMdzKi2uJzVzUjEQKLv2LhWPehK77h3CvYeTV5l3upnd0fc/maLEyRW
+         kwcNOE2UtboaLetupJGZwkWolfPqCSim4JPzI1ZiNCrwP/J8sVDsPaChZ6laSA0A8pQj
+         yYaBRbEdERv9soEjqVbAKIgFdGEzDdSjzcuJBvK0B49B8dyqCgstTFYCh0VrQ1rrUd8S
+         owjg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kroah.com header.s=fm2 header.b=X93gksuI;
+       dkim=pass header.i=@messagingengine.com header.s=fm1 header.b=rMkiLKhR;
+       spf=pass (google.com: domain of greg@kroah.com designates 64.147.123.20 as permitted sender) smtp.mailfrom=greg@kroah.com
+Return-Path: <greg@kroah.com>
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com. [64.147.123.20])
+        by mx.google.com with ESMTPS id l25si2996372ejx.105.2020.01.30.04.02.08
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 Jan 2020 04:02:08 -0800 (PST)
+Received-SPF: pass (google.com: domain of greg@kroah.com designates 64.147.123.20 as permitted sender) client-ip=64.147.123.20;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kroah.com header.s=fm2 header.b=X93gksuI;
+       dkim=pass header.i=@messagingengine.com header.s=fm1 header.b=rMkiLKhR;
+       spf=pass (google.com: domain of greg@kroah.com designates 64.147.123.20 as permitted sender) smtp.mailfrom=greg@kroah.com
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+	by mailout.west.internal (Postfix) with ESMTP id A7B9C4AC
+	for <unixbhaskar@gmail.com>; Thu, 30 Jan 2020 07:02:06 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Thu, 30 Jan 2020 07:02:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
+	date:from:to:subject:message-id:mime-version:content-type; s=
+	fm2; bh=SJyu3bBmI2OdB73/aniVF5SZ80+0U7MRpnJsNZP5oLQ=; b=X93gksuI
+	nBrtPJycMKgjycPYwlHt8CvhA38q7BqszeoCLQ8ZvuDBGesnQvp0NNAiUsze+JWC
+	byv5q0JchHU1V6wznTRalcq2EBB+SOiSdC+sWeee/SrLJZzTbpFPuNKdkvIXb+fQ
+	eJI/fYMJXTLMPPDVejniumy7F1IGCIqp8kNmTiflvxd1z0s5KjiVOjt9l+YmQpjm
+	w2GKSTXMsk2wVUJG2JtcWfqwVISVp7DaJ1MTk06rdMmQfO5ieJWaYDXz76s67pLf
+	EZvjWann/mpGioXb8f3qZPHrg9ynYCh9UAFZF8OqGxUUVK9D52iyStsKiVZhh+kw
+	btQLsfRA27b9Bg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-type:date:from:message-id
+	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm1; bh=SJyu3bBmI2OdB73/aniVF5SZ80+0U
+	7MRpnJsNZP5oLQ=; b=rMkiLKhRYmz1YkD52T5PZa7obOZ8dkLCc12oeDM/SD3RD
+	iavx5bToXSujvlJsar6G4qUQ4B7K13wrQj8CHFjjBX9hYuAdn+VjfF/eYyjXkn2J
+	JqocAud0veCofNaZXxohoQjxFVtYgoHmJNZHr1fnSkaxdj2PpFb1Pxujz5e7J5o4
+	+njjbpds1b/Q2u4r1AdfHpNWCySJwgdVd/tTOPy+/hh+kq9HhnWyJeV2JvUGtC1n
+	Bop9sWomlE6iKnu1lfdHZjmeW6Ce2p0+ijyUflAqUs05bWBBrFN+IDnPKGMDzMlk
+	13Zb70ApYXwG6AmhAL5sbF/OIVFeYvn7vi6f8nEaw==
+X-ME-Sender: <xms:vsUyXi2NDCb-7wres1nzWb34f3EeKkBXGWVK47MqjY7wqmavAQBmXw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrfeekgdefiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfggtggusehttdertddttd
+    dvnecuhfhrohhmpefirhgvghcumffjuceoghhrvghgsehkrhhorghhrdgtohhmqeenucff
+    ohhmrghinheplhifnhdrnhgvthdplhhinhhugihfohhunhgurghtihhonhdrohhrghdpgh
+    hithhhuhgsrdgtohhmnecukfhppeekgedrvdeguddrudelkedrudekudenucevlhhushht
+    vghrufhiiigvpeeinecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvgheskhhrohgrhh
+    drtghomh
+X-ME-Proxy: <xmx:vsUyXpRXZXj5WLORVNKHiGEAN88bZutOjwRCmEBlnuDaKGWqwkTxzA>
+    <xmx:vsUyXvi4tIpf8ex7qsDuycWuHD5WuqaTSaSKpdMZABRfkdWiqXmpMw>
+    <xmx:vsUyXqYs2lhuH1vLz57DgfkRXlBebhoD5ULeeU_Q4iLhWJsn0MCW4Q>
+    <xmx:vsUyXpMiR1DvJ47XQcd0oxs8uz1HZaMqRurdxmwj7_iMviRXRTD2Wg>
+Received: from localhost (unknown [84.241.198.181])
+	by mail.messagingengine.com (Postfix) with ESMTPA id C63B93060B27;
+	Thu, 30 Jan 2020 07:02:05 -0500 (EST)
+Date: Thu, 30 Jan 2020 12:53:22 +0100
+From: Greg KH <greg@kroah.com>
+To: unixbhaskar@gmail.com
+Subject: Linux kernel development reports for the 5.5 release
+Message-ID: <20200130115322.GA960287@kroah.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi,
+
+I'm trying to keep track of the different companies that people are
+working for, or if people are just doing this as a hobby, or being paid
+as a consultant for future articles on lwn.net about who is doing the
+work on the Linux kernel.
+
+Jonathan Corbet has also been writing articles at lwn.net about this
+topic, and we share the same set of scripts, as well as we write a
+yearly article for the Linux Foundation about Linux kernel
+contributions.  An example of this can be found at:
+	https://www.linuxfoundation.org/2017-linux-kernel-report-landing-page/
+
+Your email address shows up in the changelog for the 5.5 kernel release
+as a contributor, but I can't seem to place it with a company.  If you
+don't mind, could you let me know what company you work for?  Or if no
+company, do you want to be classified in any of these other categories
+instead:
+	- Amateur/Hobbyist/Unaffiliated/None
+	  - this category is for people who are doing kernel work, but
+	    not getting paid by any corporation to do it.
+	- Consultant
+	  - this category is for people who are consultants working on
+	    the kernel and getting paid by other companies (not your
+	    own) to do the work
+	- Academia
+	  - this category is for people working for Universities and
+	    doing kernel work as part of their research or other
+	    responsibilities related to school work.
+	- Unknown
+	  - this category is for people who want to remain in the
+	    "unknown" category.
+
+If you want, this mapping will be kept private and only myself and Jon
+Corbet (of lwn.net) will have access to it.
+
+The scripts involved in this can be found at:
+	https://github.com/gregkh/kernel-history
+if you are curious.
+
+If you have any questions about this, please let me know.
+
+If you never want me to bother you with this again, just let me know and
+I will be glad to take you off of my list.
+
+Thank you for your time,
+
+greg k-h

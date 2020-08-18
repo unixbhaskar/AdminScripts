@@ -1,0 +1,124 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:4812:0:0:0:0:0 with SMTP id v18csp1827709lfa;
+        Mon, 16 Mar 2020 10:35:47 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vuNT6YC2v7skxd9sEKzmZGOuNXkhRhS54i0eIiFgSnrbDNPOdNPnmrLvcsqBN4eJ0RP9jCb
+X-Received: by 2002:a54:468b:: with SMTP id k11mr461392oic.134.1584380147845;
+        Mon, 16 Mar 2020 10:35:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1584380147; cv=none;
+        d=google.com; s=arc-20160816;
+        b=F912GtmGfliW0R9xN6rGz/a/OzLuzml0md/zSAShSCae1zLI2sYJpSLzMIueaafaEo
+         2YXMbJGyF0gk4POaMb9dDvSv9wkwxuI+J2SB45TwWWJSFqJhF1Ep5tkPAszCrMAZx+pG
+         R2r4gVpSNiGEDpGgAB9Piez8MgCj0oZ7v3bkLF/q2vmfHOc0Jj3oWKDFCZDd8qjqR49A
+         qiLgM9ZFF+goBZSdtgagRJRHkM6So2Rbxo7ZNP/Od8XliMgIvkYicqCqZPHw7qF9AFDb
+         sdm/j90FbQZAWY8fSraGMkv9O5dnifHf6mvS2ldn4EyZpHBFP37BhT22Zi7uqX6hot1u
+         3MvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=7PTWvIyjfvgfI+AbbkM8uGjoiifhnlvV3GafuV1Cqc8=;
+        b=l/GtGUxkjWGxbrXOH2CFqKpKmYe0IXqI9Yr43KUehIr7nJXyEj9Uss8IHzX9CnbjMD
+         tbr1JZfvDbWmFHFkDCJo8TfF6Lrb7a+NkNgG4Gf9cHXu9pGCIgYtw+RlPUW8Ahvur6xa
+         FxlK5S9gGLsNhUhXZFT0uUleckhNUo2GZU7pUubC22ZXkKfbv64I+aYsmt50EvUF0fvR
+         1Yo+LRBj5Ko1vCiETMMO0V3tf4Re2WP3+WQdXrAfncC8vO1kFARrzKKnNuz/4MjZdJTG
+         w8Wx4xXaQ+eNIyfpllrG7Mtje/wf9EJrcjvtOHExy+XAduKk7WzuxWiC8SiLB3ONy9p0
+         yq/g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=RZOkHoG6;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id x2si296107oie.56.2020.03.16.10.35.40;
+        Mon, 16 Mar 2020 10:35:47 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=RZOkHoG6;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1732064AbgCPRdc (ORCPT <rfc822;mintybayleaf@gmail.com>
+        + 45 others); Mon, 16 Mar 2020 13:33:32 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:39781 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732008AbgCPRdc (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 16 Mar 2020 13:33:32 -0400
+Received: by mail-lf1-f65.google.com with SMTP id j15so14833169lfk.6
+        for <linux-kernel@vger.kernel.org>; Mon, 16 Mar 2020 10:33:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7PTWvIyjfvgfI+AbbkM8uGjoiifhnlvV3GafuV1Cqc8=;
+        b=RZOkHoG6bG5PRXDItscgc46suq4mTsbo6XPWhssqKTvVMozW8s73T/8weflqCoPnVx
+         C8H0wKeZkrSpnte2xq3Tsr4CPOzNfEwBOJoITgL7KLHhVHVo5nXZqWFHvfIOvkmjRiXo
+         tq5QazNudSYv+mfvtxTGlkoupzplWXGDDix6M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7PTWvIyjfvgfI+AbbkM8uGjoiifhnlvV3GafuV1Cqc8=;
+        b=h+dW+teXJC6k2AhMyST5uhxfNFB820DEwpuoLGcAC2P9M02FXlRblJLJeF8RGqRjHr
+         tZ+u7ScLBIyDEOnUsNFaDkE/gznNW+8XlEZnNRt9o9DnMsJLzNWaDxlNZfIR7BW2czVE
+         pFLeHUMb8GuVn0qD1g3d073Vx0bsuINlDUyQRLt74oUSjyXEv7CYq2oaygSNgLWjgWhs
+         57/aJopH1A9XGLz5vdkGDfcif0624REy4Shh5rhJMz+4HhRm/Xr3185OD+J5aqejxF2l
+         lSWlzyZ1adMGL3Ice3BaU0dEyIyyoK4Jk2lwwJ7HbOtWw1gGQErgvpWiIQFjEjYwQpyX
+         uvpQ==
+X-Gm-Message-State: ANhLgQ2+oymd54DkC30E5a0wq4+uWXERBsh/Av5IdWluV69P2qjMVYt4
+        cCG1HiLWhu7dAN/4gMUGg/gRaENfQ7w=
+X-Received: by 2002:a19:4cc2:: with SMTP id z185mr314829lfa.0.1584380008824;
+        Mon, 16 Mar 2020 10:33:28 -0700 (PDT)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com. [209.85.167.49])
+        by smtp.gmail.com with ESMTPSA id l22sm319600ljc.32.2020.03.16.10.33.27
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Mar 2020 10:33:27 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id b13so14788329lfb.12
+        for <linux-kernel@vger.kernel.org>; Mon, 16 Mar 2020 10:33:27 -0700 (PDT)
+X-Received: by 2002:a19:c7:: with SMTP id 190mr316101lfa.30.1584380007220;
+ Mon, 16 Mar 2020 10:33:27 -0700 (PDT)
+MIME-Version: 1.0
+References: <1973193.1584373757@warthog.procyon.org.uk>
+In-Reply-To: <1973193.1584373757@warthog.procyon.org.uk>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Mon, 16 Mar 2020 10:33:10 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wih0Uq8CB+wk1heOobmS3Yuehnp5bqx=4fj=chzAHJoLw@mail.gmail.com>
+Message-ID: <CAHk-=wih0Uq8CB+wk1heOobmS3Yuehnp5bqx=4fj=chzAHJoLw@mail.gmail.com>
+Subject: Re: To split or not to split a syscall implementation from its wireup?
+To:     David Howells <dhowells@redhat.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Mar 16, 2020 at 8:49 AM David Howells <dhowells@redhat.com> wrote:
+>
+> When it comes to creating a new system call, do you have a preference as to
+> whether the system call implementation should be in the same patch as the
+> wire-up or is it preferable that the two be split into separate patches?
+
+It depends.
+
+If it's "new code that has no other use than the system call", then
+splitting it up is pointless: you'll just have a commit with dead code
+first and no test coverage, and then a commit that adds the system
+call. If it results in the problems, the new system call commit is the
+one that gets fingered as the problematic one, but it doesn't actually
+really _do_ anything.
+
+However, if adding a new system call is preceded by first
+re-organizing existing code so that you have the infrastructure set up
+for the new system call, then that re-organization should be done
+separately, and then one commit that just adds the new system call
+that uses the newly organized code.  In fact, in that case if the new
+organization is at all subtle, I'd prefer not just splitting it, but
+waiting a bit before adding the new system call - because if the
+changes cause problems, then the reord may be fundamentally broken and
+maybe the new system call isn't even worth the pain at all.
+
+So the difference is that in that second case, testing the
+re-organized code on its own is meaningful (and arguably more
+important than the new system call, since it's a potential for
+regression on its own).
+
+            Linus

@@ -1,0 +1,191 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2800245lfj;
+        Mon, 23 Sep 2019 08:47:21 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwE3Xj8R40gj4OCJfPCWYGir0o2SbNp3wbkFk5zRlU7sWZRwn4iR9AoOGtsSP/oRw9ZB2TS
+X-Received: by 2002:a17:906:3615:: with SMTP id q21mr474978ejb.201.1569253641135;
+        Mon, 23 Sep 2019 08:47:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569253641; cv=none;
+        d=google.com; s=arc-20160816;
+        b=UdLHLNrwoAv5TkZZ07/RuURnr8lh+m882aN0TTw+KlKXDpAiESK6oavHMxHmQqBDih
+         hZV0DWSK5SV8hpzIXLUPIHG6sJP6mlYa69XWWOzjFffuFUFccNtLsYkwHVnDb5RXet4h
+         Xxa5KnQrEbrJELJyr+o25F8ZlTZ4veUMQWhPn/cLXoC4WgNWiYD/89PTRTjNbkxbWbfL
+         3UwAWZwfyTF1mdHjJVHjFV6jv4NDonLWoCX4OnHJszQxzlUXAOvuQzfNejm3Bf/yFL79
+         Pvnmesrg1AgqU45dK3oSJC/R4VpGYcB4ddlRJh3zBvwXBczPM+o9yNRF/CQBQtL4DT0N
+         SktA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:dkim-signature;
+        bh=X93s5hYSpLA5aC2DQCNoSlx7GHCnb6Rr8qEhiw/Mc+A=;
+        b=BJ1pAc15Oynxc4Y1BqGb8w6MC4xmFeIMV6fTzyRiyRyKVQuKD49Un30ZS7vhc9JvY7
+         EM42OtOzgdsxIbbAMOJJF2pxH9bNf/Du92xPr55RZ0SbF7S1U8W4qS2xbrWmsBCp0UW+
+         duJ4uEKUhTanGtVnvhnB8RhXkT4MJPXx90CNRvkWThZrXdJpWxFM8ULID6d817doOdme
+         yMJ0Ua2SriCpoXpN6v/E42xzDdBUyRhn0fG58QsazZyv5BIyntFfJ3o2BdC0evKMqNyO
+         O8YiqWPgDlGaS7A7iJ3pN57YM69TaeDCTTNHfIser4eqP9GyQoDC7y46dGVHUmIs0cNY
+         /1Eg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=hNDtF8O6;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id h90si7160265edd.178.2019.09.23.08.46.57;
+        Mon, 23 Sep 2019 08:47:21 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=hNDtF8O6;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728739AbfIVLwv (ORCPT <rfc822;collabvm20@gmail.com>
+        + 99 others); Sun, 22 Sep 2019 07:52:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33636 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728651AbfIVLwv (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 22 Sep 2019 07:52:51 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C63E720820;
+        Sun, 22 Sep 2019 11:52:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1569153170;
+        bh=OTbFl16kVgDlPYKOn3cAtdccCFyvjZkldfYvpFFrVww=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hNDtF8O6tygeQUPclcPJbrDC6t6x5c2fPIUJtXzCK3HyqbL8GlQm3wTU6pvV6NOSH
+         9nRnVvDZRL6HadphoZPrgn/GEfM9cDoHQD7WDz/6fpogjwWqrLYq1tvLs330wD9ypu
+         xLmk2Iyym7wfgDwJdnhe0aneU+YkUKg/owMg2Wuw=
+Date:   Sun, 22 Sep 2019 13:52:47 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Ingo Molnar <mingo@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Shuah Khan <skhan@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
+        Anders Roxell <anders.roxell@linaro.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [GIT PULL] Kselftest update for Linux 5.4-rc1
+Message-ID: <20190922115247.GA2679387@kroah.com>
+References: <be8059f4-8e8f-cd18-0978-a9c861f6396b@linuxfoundation.org>
+ <CAHk-=wgs+UoZWfHGENWSVBd57Z-Vp0Nqe68R6wkDb5zF+cfvDg@mail.gmail.com>
+ <CAKRRn-edxk9Du70A27V=d3Na73fh=fVvGEVsQRGROrQm05YRrA@mail.gmail.com>
+ <CAFd5g45ROPm-1SD5cD772gqESaP3D8RbBhSiJXZzbaA+2hFdHA@mail.gmail.com>
+ <CAHk-=wgMuNLBhJR_nFHrpViHbz2ErQ-fJV6B9o0+wym+Wk+r0w@mail.gmail.com>
+ <20190922112555.GB122003@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190922112555.GB122003@gmail.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, Sep 22, 2019 at 01:25:55PM +0200, Ingo Molnar wrote:
+> 
+> * Linus Torvalds <torvalds@linux-foundation.org> wrote:
+> 
+> > On Fri, Sep 20, 2019 at 9:35 AM Brendan Higgins
+> > <brendanhiggins@google.com> wrote:
+> > >
+> > > Sorry about that. I am surprised that none of the other reviewers
+> > > brought this up.
+> > 
+> > I think I'm "special".
+> > 
+> > There was some other similar change a few years ago, which I
+> > absolutely hated because of how it broke autocomplete for me. Very few
+> > other people seemed to react to it.
+> 
+> FWIW, I am obsessively sensitive to autocomplete and overall source code 
+> file hieararchy and nomenclature details as well, so it's not just you.
+> 
+> Beyond the muscle memory aspect, nonsensical naming and inanely flat file 
+> hierarchies annoy kernel developers and makes it harder for newbies to 
+> understand the kernel source as well.
+> 
+> The less clutter, the more organization, the better - and there's very 
+> few valid technical reasons to add any new files or directories to the 
+> top level directory - we should probably *remove* quite a few.
+> 
+> For example 'firmware/' was recently moved to drivers/firmware/, and in a 
+> similar fashion about a third of the remaining 22 directories should 
+> probably be moved too:
+> 
+>   drwxr-xr-x    arch
+>   drwxr-xr-x    block
+>   drwxr-xr-x    certs           # move to build/certs/ dir
+>   drwxr-xr-x    crypto          # move to kernel/crypto/ or security/crypto/
+>   drwxr-xr-x    Documentation
+>   drwxr-xr-x    drivers
+>   drwxr-xr-x    fs
+>   drwxr-xr-x    include
+>   drwxr-xr-x    init
+>   drwxr-xr-x    ipc             # move to kernel/ipc/
+>   drwxr-xr-x    kernel
+>   drwxr-xr-x    lib
+>   drwxr-xr-x    LICENSES
+>   drwxr-xr-x    mm
+>   drwxr-xr-x    net
+>   drwxr-xr-x    samples         # move to Documentation/samples/
+>   drwxr-xr-x    scripts         # move to build/scripts/
+>   drwxr-xr-x    security
+>   drwxr-xr-x    sound           # move to drivers/sound/
+>   drwxr-xr-x    tools
+>   drwxr-xr-x    usr             # move to build/usr/
+>   drwxr-xr-x    virt            # move to the already existing drivers/virt/
+> 
+>   -rw-r--r--    COPYING
+>   -rw-r--r--    CREDITS
+>   -rw-r--r--    Kbuild
+>   -rw-r--r--    Kconfig
+>   -rw-r--r--    MAINTAINERS
+>   -rw-r--r--    Makefile
+>   -rw-r--r--    README
+> 
+> There's a few borderline ones:
+> 
+>  - 'block' could in principle move to drivers/block/core/ but it's fine 
+>    at the top level too I think.
+> 
+>  - 'init' could in principle be moved to kernel/init/ - but it's not 
+>    wrong at the top level either.
+> 
+> The remaining top level hierarchy would look pretty sweet and short:
+> 
+>   drwxr-xr-x    arch
+>   drwxr-xr-x    block
+>   drwxr-xr-x    build             # new
+>   drwxr-xr-x    Documentation
+>   drwxr-xr-x    drivers
+>   drwxr-xr-x    fs
+>   drwxr-xr-x    include
+>   drwxr-xr-x    init
+>   drwxr-xr-x    kernel
+>   drwxr-xr-x    lib
+>   drwxr-xr-x    LICENSES
+>   drwxr-xr-x    mm
+>   drwxr-xr-x    net
+>   drwxr-xr-x    security
+>   drwxr-xr-x    tools
+> 
+>   -rw-r--r--    COPYING
+>   -rw-r--r--    CREDITS
+>   -rw-r--r--    Kbuild
+>   -rw-r--r--    Kconfig
+>   -rw-r--r--    MAINTAINERS
+>   -rw-r--r--    Makefile
+>   -rw-r--r--    README
+> 
+> I'm volunteering to do this (in a scripted, repeatable, reviewable, 
+> tweakable and "easy to execute in a quiet moment" fashion), although
+> I also expect you to balk at the churn. :-)
+
+I for one would love the above changes.  And I'm the one that has to
+deal with all of the backporting issues that arise with stable backports :)
+
+thanks,
+
+greg k-h

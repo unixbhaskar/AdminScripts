@@ -1,0 +1,780 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp540918lfk;
+        Wed, 20 May 2020 05:44:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzUjAcjjI1eQetM67VHn7ixNgl70RM7mXGtSwV8NA2AXHVdK9nv+nLsK4ohxW2lSHLawCdV
+X-Received: by 2002:aca:be41:: with SMTP id o62mr3003960oif.133.1589978659621;
+        Wed, 20 May 2020 05:44:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1589978659; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Vl+LTDfcpMNmVsKdgglBnuQ30UW0KESIEQNWRGv1ilZZQpyYzZyiwEN1S4W0yEIOoB
+         oB7BTeidlWD+lsHH1eDxhyPdwCQO7IPVjLBckG8SjfqpWlLS0f9PANrk+IfXxE2bcOUf
+         8WQfJknimr5crNY1FsMkqUjNrm96RxWxShldNaNN6iU21G/0z0pX7y+hWjeYza2g60YU
+         7+3qRywuBBkzr8pU9cHHHJ6TXo9Vu466G7gF9RQZMqUjJKxTlNWRlab08ZiIKEmkRl/Z
+         CMud5dnn/Iz51T4deuNnaOJK3nFzQvzftxHs2AJvvQdjpD3FBLOqn6P2YqhgiG31RUo8
+         r4zQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:date:to:from:subject:mime-version:dkim-signature;
+        bh=GGoLAyjwHB800l4riDURZLAXfG2EZQ5YPv7t2eG82s0=;
+        b=M4PiagG3OGpdDjOMy4Oc2I2zAfhk1OEFu7TkohLoZXqxWapmGIwn9L9Ce2kAblW5xx
+         e42uaa1F0JOlXV6K4pHLOQhA9DDwTXOMEPy+AuGeaVvpT1gLYrviIvLwsmXPYC8dbcvg
+         I79sbpSrxal2W+cj4sX6/KC2Jcz1qIsZLgfVTXyDph3pSZJId/PAA7Pm13mXoswqcz20
+         xgPlaENntxHzjCG9d7q5wq60d+Ep54HnPw9gcKSrFYZPl4mom5D485RnVxyH3yPnFGrr
+         tERm8iDFgJNgbI/pnISmK/fIi+L3VOV0bkFyhJMLjzeLQH/AdpMGAQAfNkhwUXcrwSZd
+         ONtw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@disqus.net header.s=mta header.b=D+ukfAd7;
+       spf=pass (google.com: domain of notifications@disqus.net designates 169.46.82.254 as permitted sender) smtp.mailfrom=notifications@disqus.net
+Return-Path: <notifications@disqus.net>
+Received: from mail.disqus.net (mail.disqus.net. [169.46.82.254])
+        by mx.google.com with ESMTPS id 5si1076145otu.284.2020.05.20.05.44.19
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 May 2020 05:44:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of notifications@disqus.net designates 169.46.82.254 as permitted sender) client-ip=169.46.82.254;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@disqus.net header.s=mta header.b=D+ukfAd7;
+       spf=pass (google.com: domain of notifications@disqus.net designates 169.46.82.254 as permitted sender) smtp.mailfrom=notifications@disqus.net
+Received: from localhost (unknown [10.93.41.139])
+	by mail.disqus.net (Postfix) with ESMTPS id 100172AA65A7
+	for <unixbhaskar@gmail.com>; Wed, 20 May 2020 12:44:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disqus.net; s=mta;
+	t=1589978659; bh=oTUfEldwjHn5QUqRBrFL5lchc4QShvmQJPJes6N1qC0=;
+	h=Subject:From:To:Date;
+	b=D+ukfAd7UvQ99DBLSoGgBJ1E5ZCjEQOzu2WD/thUCp9EB0apKFpEWhQn/iQxgu0E0
+	 PN6BY9Uk21ybU1RB8gSvrNLIQuC9VPMD9BpQ3I0F+vGmQq7AB/Q2oYVFPZMQspCa24
+	 O5y/Vwcn4cyu6AX4fAb54Pdb+u4l22kwmYbm4ljPlBhnlJKbAg2rrWOVmKAGLoilIr
+	 1UhuAx+JDVNA+lNFRj7+jz5pS/lWjuZgAaRZ406G2r1PcA5QpOt/P1YrVBavrroFbn
+	 sG0fvpTNBaLyJMlOWt8t2ol24foyZjmlQVaiS6E78Wa94M0ZjrN5IRMp2S45gSFjLz
+	 G0PFpMi/sAFFQ==
+Received: from [127.0.0.1] ([127.0.0.1])
+	by localhost (Postfix) with ESMTP id 03FDB420729
+	for <unixbhaskar@gmail.com>; Wed, 20 May 2020 12:44:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4862403991092603542=="
+MIME-Version: 1.0
+Subject: trofi's blog: GCC 10 in Gentoo on Disqus
+From: "Disqus Digests" <notifications@disqus.net>
+To: unixbhaskar@gmail.com
+Date: Wed, 20 May 2020 12:44:19 -0000
+Message-ID: <20200520124419.1588.22844@task-5.dal10.ibm.prod.disqus.net>
+X-Disqus-Signature: ImF1dGguVXNlcj9pZD01MDI3NzU3MyI.Eaa3og.Me_i0f6pC_01xC6lqSQkx38jGWE
+
+--===============4862403991092603542==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head xmlns="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width">
+<title>Disqus digest for Wednesday, May 20th
+</title>
+<style type="text/css">
+/* -------------------------------------
+GLOBAL
+------------------------------------- */
+/*  RESETS  */
+body {
+-webkit-font-smoothing: antialiased;
+-webkit-text-size-adjust: none;
+width: 100%!important;
+height: 100%;
+margin: 0;
+padding: 0;
+font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+.preheader {
+color: white;
+font-size: 1px;
+display: none !important;
+mso-hide:all;
+}
+img {
+height: auto;
+outline: none;
+text-decoration: none;
+display: block;
+max-width: 100%;
+}
+a img {
+border: none;
+}
+/*  TYPOGRAPHY  */
+p,
+td,
+ul li,
+ol li {
+color: #353a3d;
+font-size: 14px;
+font-weight: 400;
+word-wrap: break-word;
+line-height: 1.4;
+font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+p {
+margin-bottom: .75em;
+}
+a {
+color: #49B3F5;
+text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+margin-top: 0;
+font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+line-height: 1.1;
+letter-spacing: -0.045em;
+color: #5a6267;
+}
+h1 {
+font-weight: 600;
+font-size: 38px;
+margin-bottom: 5px;
+}
+h2 { /* thread headlines */
+font-weight: 500;
+font-size: 24px;
+}
+h3 { /* doc header */
+font-weight: 300;
+font-size: 18px;
+}
+h4 {
+font-weight: 600;
+font-size: 14px;
+}
+h5 {
+font-weight: 600;
+font-size: 12px;
+}
+.avatar {
+border-radius: 2px;
+}
+.helper {
+color: #849097;
+}
+.helper a {
+color: #849097;
+}
+.small {
+font-size: 85%;
+color: #849097;
+}
+.bullet,
+.pipe {
+font-size: 14px;
+color: #e4e9ec;
+padding-left: 5px;
+padding-right: 5px;
+font-weight: 200;
+}
+.centered-cell {
+text-align: center;
+word-wrap: break-word;
+width: inherit;
+display: block;
+}
+/* -------------------------------------
+HEADER
+------------------------------------- */
+table.head-wrap { width: 100%;}
+.header td {
+vertical-align: middle;
+}
+a.settings-link {
+font-weight: 500;
+color: #849097;
+}
+a.settings-link img {
+display: inline-block;
+margin-bottom: 0;
+vertical-align: -2px;
+}
+/* -------------------------------------
+BODY
+------------------------------------- */
+table.body-wrap { width: 100%;}
+/* -------------------------------------
+Footer
+------------------------------------- */
+table.footer-wrap { width: 100%;}
+.footer p {
+color: #849097;
+}
+.footer a {
+color: #353a3d;
+}
+/* -------------------------------------
+LAYOUT
+------------------------------------- */
+table,
+tr,
+td {
+border-collapse: collapse;
+}
+.container {
+display: block!important;
+max-width: 640px!important;
+margin: 0 auto!important;
+clear: both!important;
+}
+.content {
+padding-left: 10px;
+padding-right: 10px;
+max-width: 640px;
+margin: 0 auto;
+display: block;
+}
+.content.header {
+padding-bottom: 0;
+}
+.content table {
+width: 100%;
+}
+/* Horizontal rules, dividers, and spacers  */
+hr {
+border: none;
+height: 1px;
+overflow: hidden;
+background: #e4e9ec;
+margin: 0;
+}
+td.divider-2px hr {
+height: 2px;
+}
+td.spacer-30 {
+padding-bottom: 30px;
+line-height: 0;
+overflow: hidden;
+}
+td.comment-divider {
+padding-top: 0;
+padding-bottom: 12px;
+line-height: 1px;
+}
+td.divider-2px {
+padding-top: 30px;
+padding-bottom: 30px;
+line-height: 2px;
+}
+td.divider-1px {
+padding-top: 12px;
+padding-bottom: 12px;
+line-height: 1px;
+}
+.clear { /* Place a .clear element after each set of columns */
+display: block;
+clear: both;
+}
+/* -------------------------------------
+BUTTONS
+------------------------------------- */
+.button-cta {
+color: #ffffff!important;
+font-weight: 700;
+background-color: #4bb3f4;
+font-size: 18px;
+padding-top: 8px;
+padding-left: 16px;
+padding-bottom: 8px;
+padding-right: 16px;
+border-radius: 3px;
+}
+.button-cta span {
+color: #ffffff!important;
+}
+h2 .button-cta {
+font-weight: 700;
+font-size: 24px;
+}
+/* -------------------------------------
+MARKETING
+- Styles designed for low-content
+emails where the CTA is important
+------------------------------------- */
+.marketing-cta {
+text-align: center;
+padding-top: 10px;
+padding-left: 10%;
+padding-bottom: 10px;
+padding-right: 10%;
+}
+.marketing-cta a.img-wrapper {
+display: block;
+text-align: center;
+}
+.marketing-cta a.img-wrapper img {
+margin: 0 auto;
+}
+.marketing-content p,
+.marketing-content td,
+.marketing-content ul li,
+.marketing-content ol li {
+font-size: 16px;
+font-weight: 400;
+line-height: 1.4;
+margin-top: 0;
+margin-bottom: 5px;
+}
+.marketing-content h1,
+.marketing-content h2,
+.marketing-content h3,
+.marketing-content h4,
+.marketing-content h5,
+.marketing-content h5 {
+margin-bottom: 5px;
+line-height: 1.4;
+}
+.marketing-cta .button-cta {
+margin-left: auto;
+margin-right: auto;
+}
+/* -------------------------------------
+ASIDE
+------------------------------------- */
+.aside {
+display: block;
+background: #eee;
+padding-top: 10px;
+padding-left: 10px;
+padding-bottom: 5px;
+padding-right: 10px;
+margin-bottom: 20px;
+}
+/* -------------------------------------
+LISTS
+------------------------------------- */
+</style>
+<style type="text/css">
+/* -------------------------------------
+CSS TO BE LEFT IN THE HEADER
+FOR CLIENTS THAT SUPPORT IT
+------------------------------------- */
+a:hover,
+a:hover span {
+color: #1188d2!important;
+}
+.button-cta:hover {
+color: #ffffff!important;
+background-color: #1188d2!important;
+}
+.button-cta:hover span {
+color: #ffffff!important;
+}
+/* -------------------------------------
+CLIENT-SPECIFIC HACKS
+------------------------------------- */
+/*  OUTLOOK
+- Override Outlook's embedded padding issue
+- Fix Outlook's full-width background issue
+*/
+#outlook a {
+padding: 0;
+}
+body {
+width: 100% !important;
+}
+.ReadMsgBody {
+width: 100%;
+}
+.ExternalClass {
+width: 100%;
+display:block !important;
+}
+/* -------------------------------------
+PHONE-SIZED DEVICES
+------------------------------------- */
+@media only screen and (max-device-width: 480px) {
+html {
+-webkit-text-size-adjust: 100%;
+}
+.content {
+width: 100%;
+}
+table {
+border-collapse: collapse;
+}
+h2.headline {
+font-weight: 700;
+font-size: 20px!important;
+margin-bottom: 5px;
+}
+.button-cta {
+display: block!important;
+padding: 0!important;
+}
+div.header {
+padding-top: 20px;
+}
+div.footer {
+padding-bottom: 20px;
+}
+}
+}
+</style>
+<style type="text/css">
+a.user:hover {
+color: #1a95e2!important;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<span class="preheader"></span>
+<!-- HEADER -->
+<table class="head-wrap">
+<tr>
+<td></td>
+<td class="header container">
+<!-- /content -->
+<div class="content header">
+<table>
+<tr>
+<td>
+<a href="https://disqus.com/home/?utm_medium=email&amp;utm_content=logo" class="logo"><img src="http://a.disquscdn.com/1587400073/images/email/logo.gif" alt="Disqus" width="83" height="18"></a>
+</td>
+<td align="right">
+<a href="https://disqus.com/home/settings/email/?utm_medium=email" class="settings-link small">
+<img src="http://a.disquscdn.com/1587400073/images/email/icon-gear.gif" width="12" height="13">
+&#160;Settings
+</a>
+</td>
+<td align="right" width="64">
+<a href="https://disqus.com/home/account/?utm_medium=email" class="settings-avatar">
+<img class="avatar" src="http://c.disquscdn.com/uploads/users/5027/7573/avatar92.jpg?1586509739" title="My account" width="24" height="24">
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="3" class="spacer-30">&#160;</td>
+</tr>
+</table>
+</div>
+<!-- /content -->
+</td>
+<td></td>
+</tr>
+</table>
+<!-- /HEADER -->
+<!-- BODY -->
+<table class="body-wrap">
+<tr>
+<td></td>
+<td class="container">
+<img src="https://referrer.disqus.com/juggler/event.gif?category=activity&amp;impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;user_id=50277573&amp;adverb=internal&amp;zone=digest&amp;object_type=daily&amp;variant=active&amp;utm_source=digest&amp;experiment=new_notifications&amp;object_id=&amp;verb=open&amp;event=activity" alt="" width="1" height="1">
+<div class="content">
+<table>
+<tr>
+<td align="center">
+<h3 class="doc-header" style="margin: 0">
+</h3>
+<table>
+<tr><td height="5" style="line-height: 0;">&#160;</td></tr>
+<tr>
+<td align="center">
+<table class="inline-reply-button" style="border-radius: 4px; width: inherit; min-height: 32px; word-wrap: break-word; background-color: #2e9fff; text-align: center">
+<tr>
+<td class="button-spacer" height="32" width="12">&#160;</td>
+<td height="32">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;user_id=50277573&amp;adverb=internal&amp;zone=digest&amp;url=https%3A%2F%2Fdisqus.com%2Fhome%2Fdiscover%2F%3Futm_source%3Ddigest%26utm_content%3Dtop_btn%26utm_medium%3Demail%3A9x6L8TTzHJ2lO0vO1_L2gjHTHhM&amp;section=footer&amp;object_type=link&amp;variant=active&amp;utm_source=digest&amp;adjective=cta_button&amp;experiment=new_notifications&amp;object_id=&amp;verb=click&amp;event=activity" style="color: #fff; font-size: 18px; line-height: 42px">
+<strong>Find a great discussion</strong>
+</a>
+</td>
+<td class="button-spacer" height="32" width="12">&#160;</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td height="5" style="line-height: 0;">&#160;</td></tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="divider-2px">
+<hr>
+</td>
+</tr>
+</table>
+</div>
+<!-- Score(replies=0, followers=0, score=4, date=datetime.datetime(2020, 3, 22, 13, 21, 51, 149936)) -->
+<!-- Thread -->
+<div class="content intro">
+<table>
+<tr>
+<td>
+<h2 class="headline" style="margin-bottom: 8px">
+<a href="http://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;adjective=thread_title&amp;thread=7928788143&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;user_id=50277573&amp;adverb=internal&amp;zone=digest&amp;url=http%3A%2F%2Ftrofi.github.io%2Fposts%2F213-gcc-10-in-gentoo.html%3At7DRMz71Q3ca6hHSNl5aV4wTryQ&amp;object_id=&amp;experiment=new_notifications" style="color: #353a3d">
+trofi's blog: GCC 10 in Gentoo
+</a>
+</h2>
+<p class="helper byline" style="margin: 0">
+<img class="inline-icon" src="https://media.disquscdn.com/email/assets/heart4.png" width="15" height="15" alt="Disqus heart" style="vertical-align: -3px; display: inline-block; margin-bottom: 0">
+You recommended this discussion 
+<span class="pipe">|</span>
+<a href="http://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;object_type=link&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;adjective=thread_forum_name&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=http%3A%2F%2Ftrofi.github.io%3APY_1QUUiJCgDG-7FMeV9k9lowiA&amp;section=forum-header&amp;object_id=&amp;experiment=new_notifications">
+<img class="favicon" src="http://c.disquscdn.com/uploads/forums/268/8627/favicon.png" alt="trofi.github.io" width="16" height="16" style="border-radius: 2px; vertical-align: -3px; display: inline-block; margin-bottom: 0">
+&#160;trofi.github.io
+</a>
+<span class="pipe">|</span>
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;adjective=thread_comment_count&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=https%3A%2F%2Fdisqus.com%2Fhome%2Fdiscussion%2Ftrofi%2Ftrofis_blog_gcc_10_in_gentoo%2F%3Futm_source%3Ddigest%26utm_medium%3Demail%26utm_content%3Dcomment_count%3ANvTf66u-pQMnRM6eWA-pahCwk9c&amp;section=forum-header&amp;object_id=&amp;experiment=new_notifications">
+<span>3 comments</span>
+</a>
+</p>
+</td>
+</tr>
+<tr>
+<td class="divider-1px">
+<hr>
+</td>
+</tr>
+<tr>
+<td>
+<!-- &lt;SubscribedThreadPostEvent: uuid=UUID(&#39;355fcf6e-9a15-11ea-8080-0002c01a1039&#39;), target_reference=&lt;InstanceReference at 0x7f558c39b6d0: forums.Post?id=4920144158&gt;&gt; -->
+<!-- Score(reply=False, points=0, date=datetime.datetime(2020, 5, 19, 21, 10, 46, 868363, tzinfo=&lt;UTC&gt;)) -->
+<div class="comment">
+<table>
+<tr>
+<td width="42" class="avatar" style="padding-top: 4px; vertical-align: top">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;postrank=1&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=https%3A%2F%2Fdisqus.com%2Fby%2Fbobwya%2F%3Futm_source%3Ddigest%26utm_content%3Davatar%26utm_medium%3Demail%3AZi8gncCTpaMH5vxU7umk2IPnj0g&amp;section=parent-post-user&amp;object_id=&amp;experiment=new_notifications">
+<img class="avatar" src="http://c.disquscdn.com/uploads/users/6200/6549/avatar92.jpg?1405768418" alt="Bob Wya" title="Visit Bob Wya's profile" width="32" height="32">
+</a>
+</td>
+<td class="comment-container" style="padding-bottom: 9px">
+<p class="helper comment-byline" style="margin-top: 0; margin-bottom: 6px">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;postrank=1&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=https%3A%2F%2Fdisqus.com%2Fby%2Fbobwya%2F%3Futm_source%3Ddigest%26utm_content%3Dcomment_author%26utm_medium%3Demail%3AGDlLkWzV5fgvh8Qrn5skXG8Y6gY&amp;section=parent-post-user&amp;object_id=&amp;experiment=new_notifications" title="Visit Bob Wya's profile" class="user" style="color: #49B3F5; font-weight: 500">
+Bob Wya
+</a>
+<span class="pipe">|</span>
+Tuesday, May 19th
+<span class="pipe">|</span>
+<a href="http://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;postrank=1&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=http%3A%2F%2Ftrofi.github.io%2Fposts%2F213-gcc-10-in-gentoo.html%23comment-4919950147%3A8gelD1n0GtL4n6bFcUCNtRrv8uY&amp;section=parent-post-comment-footer&amp;object_id=&amp;experiment=new_notifications" class="comment-footer">
+View on trofi.github.io</a>
+</p>
+<p style="margin-top: 0; margin-bottom: 6px">Hi, thanks that sorted out a nasty boot issue I had... The suggested kernel patch fixed my CONFIG_STACKPROTECTOR_STRONG=y kernel configuration! Thanks!<br>Now just gotta fix a zfs module build ...</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="comment level-2">
+<table>
+<tr>
+<td width="42" class="avatar" style="padding-top: 4px; vertical-align: top">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;postrank=1&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=https%3A%2F%2Fdisqus.com%2Fby%2Ftrofi%2F%3Futm_source%3Ddigest%26utm_content%3Davatar%26utm_medium%3Demail%3AiNbU2bE7abZmhx8Yr9TaPHoCV48&amp;section=post-user&amp;object_id=&amp;experiment=new_notifications">
+<img class="avatar" src="http://c.disquscdn.com/uploads/users/8350/931/avatar92.jpg?1589922647" alt="trofi" title="Visit trofi's profile" width="32" height="32">
+</a>
+</td>
+<td class="comment-container" style="padding-bottom: 9px">
+<p class="helper comment-byline" style="margin-top: 0; margin-bottom: 6px">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;postrank=1&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=https%3A%2F%2Fdisqus.com%2Fby%2Ftrofi%2F%3Futm_source%3Ddigest%26utm_content%3Dcomment_author%26utm_medium%3Demail%3AnLSQg82ihpdwnkK_cekm4CJRDpE&amp;section=post-user&amp;object_id=&amp;experiment=new_notifications" title="Visit trofi's profile" class="user" style="color: #49B3F5; font-weight: 500">
+trofi
+</a>
+replied
+<span class="pipe">|</span>
+Tuesday, May 19th
+<span class="pipe">|</span>
+<a href="http://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;postrank=1&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=http%3A%2F%2Ftrofi.github.io%2Fposts%2F213-gcc-10-in-gentoo.html%23comment-4920144158%3A5is29rn884NBJjlaljSUlb1NDgA&amp;section=post-comment-footer&amp;object_id=&amp;experiment=new_notifications" class="comment-footer">
+View on trofi.github.io</a>
+</p>
+<p style="margin-top: 0; margin-bottom: 6px">Glad to hear it helped you!</p>
+</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+<tr>
+<td class="comment-divider">
+<hr>
+</td>
+</tr>
+<tr>
+<td>
+<!-- &lt;SubscribedThreadPostEvent: uuid=UUID(&#39;dd82748c-99ff-11ea-8080-00020cf84253&#39;), target_reference=&lt;InstanceReference at 0x7f558c39b090: forums.Post?id=4919950147&gt;&gt; -->
+<!-- Score(reply=False, points=0, date=datetime.datetime(2020, 5, 19, 18, 38, 0, 24590, tzinfo=&lt;UTC&gt;)) -->
+<div class="comment">
+<table>
+<tr>
+<td width="42" class="avatar" style="padding-top: 4px; vertical-align: top">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;postrank=2&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=https%3A%2F%2Fdisqus.com%2Fby%2Fbobwya%2F%3Futm_source%3Ddigest%26utm_content%3Davatar%26utm_medium%3Demail%3AZi8gncCTpaMH5vxU7umk2IPnj0g&amp;section=post-user&amp;object_id=&amp;experiment=new_notifications">
+<img class="avatar" src="http://c.disquscdn.com/uploads/users/6200/6549/avatar92.jpg?1405768418" alt="Bob Wya" title="Visit Bob Wya's profile" width="32" height="32">
+</a>
+</td>
+<td class="comment-container" style="padding-bottom: 9px">
+<p class="helper comment-byline" style="margin-top: 0; margin-bottom: 6px">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;postrank=2&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=https%3A%2F%2Fdisqus.com%2Fby%2Fbobwya%2F%3Futm_source%3Ddigest%26utm_content%3Dcomment_author%26utm_medium%3Demail%3AGDlLkWzV5fgvh8Qrn5skXG8Y6gY&amp;section=post-user&amp;object_id=&amp;experiment=new_notifications" title="Visit Bob Wya's profile" class="user" style="color: #49B3F5; font-weight: 500">
+Bob Wya
+</a>
+<span class="pipe">|</span>
+Tuesday, May 19th
+<span class="pipe">|</span>
+<a href="http://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;postrank=2&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=http%3A%2F%2Ftrofi.github.io%2Fposts%2F213-gcc-10-in-gentoo.html%23comment-4919950147%3A8gelD1n0GtL4n6bFcUCNtRrv8uY&amp;section=post-comment-footer&amp;object_id=&amp;experiment=new_notifications" class="comment-footer">
+View on trofi.github.io</a>
+</p>
+<p style="margin-top: 0; margin-bottom: 6px">Hi, thanks that sorted out a nasty boot issue I had... The suggested kernel patch fixed my CONFIG_STACKPROTECTOR_STRONG=y kernel configuration! Thanks!<br>Now just gotta fix a zfs module build ...</p>
+</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+<tr>
+<td class="comment-divider">
+<hr>
+</td>
+</tr>
+<tr>
+<td>
+<p class="helper byline" style="margin: 0">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;adjective=thread_comment_count&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;adverb=internal&amp;user_id=50277573&amp;zone=digest&amp;thread=7928788143&amp;url=https%3A%2F%2Fdisqus.com%2Fhome%2Fdiscussion%2Ftrofi%2Ftrofis_blog_gcc_10_in_gentoo%2F%3Futm_source%3Ddigest%26utm_medium%3Demail%26utm_content%3Dadditional_comments%3A3QXm7K_S8_xLrma7e3SbVqkgv_c&amp;section=thread-footer&amp;object_id=&amp;experiment=new_notifications">1 additional comments</a>
+<span class="pipe">|</span>
+<a href="http://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;object_type=thread&amp;variant=active&amp;forum_id=2688627&amp;utm_source=digest&amp;thread=7928788143&amp;verb=click&amp;event=activity&amp;threadrank=1&amp;user_id=50277573&amp;adverb=internal&amp;zone=digest&amp;url=http%3A%2F%2Ftrofi.github.io%2Fposts%2F213-gcc-10-in-gentoo.html%3At7DRMz71Q3ca6hHSNl5aV4wTryQ&amp;section=thread-footer&amp;object_id=&amp;experiment=new_notifications">
+View the full discussion on trofi.github.io</a>
+</p>
+</td>
+</tr>
+<tr>
+<td class="divider-2px">
+<hr>
+</td>
+</tr>
+</table>
+</div>
+<!-- /content - Thread -->
+<!-- Star tip -->
+<div class="content">
+<table>
+<tr>
+<td>
+<p class="helper star-tip" style="color: #EF8995; margin: 0">
+<img class="inline-icon" src="https://media.disquscdn.com/email/assets/heart4.png" width="15" height="15" alt="Disqus heart" style="vertical-align: -3px; display: inline-block; margin-bottom: 0">
+Recommend discussions to add them to your Digests.
+</p>
+</td>
+</tr>
+<tr>
+<td class="divider-2px">
+<hr>
+</td>
+</tr>
+</table>
+</div>
+<!-- /content - Star tip -->
+<table>
+<tr>
+<td>
+<h2 class="headline" style="margin-bottom: 8px">
+Stay updated with the latest on COVID-19 and personalized #WorkFromHome content!
+</h2>
+</td>
+</tr>
+<tr>
+<td align="center">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;user_id=50277573&amp;adverb=internal&amp;zone=digest&amp;url=https%3A%2F%2Fthehill.com%2Fsocial-tags%2Fcoronavirus%3Futm_source%3Ddigest%26utm_medium%3Demail%26utm_content%3Dcorona%3Ax4gVpie0k9FFmr_2_Jdwfacax_k&amp;section=corona-info-addon&amp;object_type=daily&amp;variant=active&amp;utm_source=digest&amp;experiment=new_notifications&amp;object_id=&amp;verb=click&amp;event=activity" class="thread-header">
+<div class="thread-item" style="hyphens: auto; padding: 8px; max-width: 500px; border: 1px solid #CAD1D4; margin: 8px; overflow-wrap: break-word">
+<table width="100%" height="65">
+<tr>
+<td width="64">
+<img src="https://c.disquscdn.com/get?url=https%3A%2F%2Fthehill.com%2Fsites%2Fdefault%2Ffiles%2Fthehill_logo_200.jpg&amp;amp;key=zgHRs5tlO4CulVAo0ADOhA" width="64" height="64">
+</td>
+<td>
+<h3 class="thread-title" style="color: rgb(46, 159, 255); padding-left: 8px; margin-bottom: 0 ! important">
+<b>The Hill - Coronavirus News</b>
+</h3>
+</td>
+</tr>
+</table>
+</div>
+</a>
+</td>
+</tr>                                  
+<tr>
+<td align="center">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;user_id=50277573&amp;adverb=internal&amp;zone=digest&amp;url=https%3A%2F%2Fwww.mercurynews.com%2Fnews%2Fhealth%2F%3Futm_source%3Ddigest%26utm_medium%3Demail%26utm_content%3Dcorona%3AHtzvk_ZC1e5ig_uOYmCiywF_z1c&amp;section=corona-info-addon&amp;object_type=daily&amp;variant=active&amp;utm_source=digest&amp;experiment=new_notifications&amp;object_id=&amp;verb=click&amp;event=activity" class="thread-header">
+<div class="thread-item" style="hyphens: auto; padding: 8px; max-width: 500px; border: 1px solid #CAD1D4; margin: 8px; overflow-wrap: break-word">
+<table width="100%" height="65">
+<tr>
+<td width="64">
+<img src="https://farmscapegardens.com/wp-content/uploads/2018/10/the-mercury-news.png" width="64" height="64">
+</td>
+<td>
+<h3 class="thread-title" style="color: rgb(46, 159, 255); padding-left: 8px; margin-bottom: 0 ! important">
+<b>Mercury News - Health, disease, medicine and fitness news</b>
+</h3>
+</td>
+</tr>
+</table>
+</div>
+</a>
+</td>
+</tr>                                  
+<tr>
+<td align="center">
+<a href="https://disq.us/url?impression=9f2a39f2-9a97-11ea-9889-3a840ab16cf3&amp;product=email&amp;user_id=50277573&amp;adverb=internal&amp;zone=digest&amp;url=https%3A%2F%2Fwww.nhpr.org%2Fterm%2Fhealth-0%3Futm_source%3Ddigest%26utm_medium%3Demail%26utm_content%3Dcorona%3A8-bQ3Q18Sw_ir7A1tN_YUnpGydo&amp;section=corona-info-addon&amp;object_type=daily&amp;variant=active&amp;utm_source=digest&amp;experiment=new_notifications&amp;object_id=&amp;verb=click&amp;event=activity" class="thread-header">
+<div class="thread-item" style="hyphens: auto; padding: 8px; max-width: 500px; border: 1px solid #CAD1D4; margin: 8px; overflow-wrap: break-word">
+<table width="100%" height="65">
+<tr>
+<td width="64">
+<img src="https://www.nhpr.org/sites/nhpr/files/201504/logo_fid_0.png" width="64" height="64">
+</td>
+<td>
+<h3 class="thread-title" style="color: rgb(46, 159, 255); padding-left: 8px; margin-bottom: 0 ! important">
+<b>New Hampshire Public Radio - Health</b>
+</h3>
+</td>
+</tr>
+</table>
+</div>
+</a>
+</td>
+</tr>                                  
+<tr>
+<td class="divider-2px">
+<hr>
+</td>
+</tr>
+</table>
+</td>
+<td></td>
+</tr>
+</table>
+<!-- /BODY-WRAPPER -->
+<!-- FOOTER -->
+<table class="footer-wrap">
+<tr>
+<td></td>
+<td class="container">
+<!-- content -->
+<div class="content footer">
+<table>
+<tr>
+<td>
+<p>
+You're receiving this message because you're signed up to receive Disqus notifications.
+You can <a href="http://disqus.com/digests/unsubscribe/eyJ1c2VyIjo1MDI3NzU3M30:1jbO54:Q4y2HtA6os_q7stfmN-bI_Sj9UE/" target="_blank">unsubscribe</a>
+from these emails, or reduce the rate at which we send them by adjusting your
+<a href="https://disqus.com/home/settings/email/?utm_medium=email" target="_blank">notification settings</a>.
+</p>
+<p>Feedback on Disqus Digests? Please <a href="https://www.surveymonkey.com/s/digest-feedback" target="_blank">let us know</a>!</p>
+</td>
+</tr>
+<tr>
+<td align="right">
+<a href="https://disqus.com/home/account/?utm_medium=email"><img src="http://a.disquscdn.com/1587400073/images/email/logo-gray.gif" alt="Disqus" width="83" height="18"></a>
+</td>
+</tr>
+</table>
+</div>
+<!-- /content -->
+</td>
+<td></td>
+</tr>
+</table>
+<!-- /FOOTER -->
+<!-- THIS WAS GENERATED FROM rEMAILTEMPLATES -->
+</body>
+</html>
+
+--===============4862403991092603542==--

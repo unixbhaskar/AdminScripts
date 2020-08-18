@@ -1,0 +1,97 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2633430lfj;
+        Fri, 20 Sep 2019 10:40:15 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx7i41kYPumaHvN2vOPZA4mYzJY/W3D3+ZO/mgcyd2Am9AGzekrI7Q7fvk0Sk6BFiuf46uD
+X-Received: by 2002:a17:906:7a0d:: with SMTP id d13mr20414374ejo.242.1569001215697;
+        Fri, 20 Sep 2019 10:40:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569001215; cv=none;
+        d=google.com; s=arc-20160816;
+        b=g2poQYST34YrdNil30sTCOn+sbFXX/bmLrei2x/vQKom80ZCJkWwieqTlMY7Ymd3XX
+         QKtm4W73IAR2hj9CZVyoZYFySaEJWV6xNqVAZ6Y4Yb2/DDo+i40c3HT/B6pBHZBljj/r
+         ubkt/PUVE3lNNoZaJ4+XbEJDagUbA4M23ZgGEH380q3k9tQVsHUF1QbiaBdDq+RKIgn1
+         1ryezTEienqIiWHwyKy7KwXPUlB0Y4Iw4JgPJiQVCZ+h457ERjudjLfVmsyAihYi8Vij
+         U2C80wtTkNiLwlO3iPowBw9EF2ArfFGN3JMwYStVWBsSTz+Mqq+9/AG+msNSNi4iLrkw
+         i1ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=/pRI5s675ZgE8sFIt/EXn7EthhsMe/0n96FtZO8bGpc=;
+        b=GkIioZEdVmU8SiBdZSqsZTaS0Q3QBMUV0nrvVw5RisKcc/jrfwji+7rRahsrrJLHh3
+         PosWyzPa1i5MezHEYq4Pb6wvnxzkgNX4DlYIhVl5ahPIeXjGLzKKexlVM5kCuC/n5hJH
+         nUwA+1e13z+k2vvaXQWV0O4uoj4vPboCI0Z3Lk/tRoBck9dlIqMTbf4fwmQ71gp7sBoZ
+         AlWSOyY2dCzpW65g4gk9xCrBYMGX2wXu8/usHSCbTcopPJDHwvpCB6S9VS4fuIPqIe3t
+         CdtGgtuOT6ekuZgdAyjuQUFhAFuMCZkh4NcbiziKYx0oFO9rpgSD5Kw31tL1tM6DZbhJ
+         9p2w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=H6MDB+JA;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id v17si1348334ejq.5.2019.09.20.10.39.50;
+        Fri, 20 Sep 2019 10:40:15 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=H6MDB+JA;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2395080AbfITHfA (ORCPT <rfc822;hari.prasath50250@gmail.com>
+        + 99 others); Fri, 20 Sep 2019 03:35:00 -0400
+Received: from mail-io1-f45.google.com ([209.85.166.45]:35291 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2395072AbfITHfA (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 20 Sep 2019 03:35:00 -0400
+Received: by mail-io1-f45.google.com with SMTP id q10so14066163iop.2
+        for <linux-kernel@vger.kernel.org>; Fri, 20 Sep 2019 00:34:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=/pRI5s675ZgE8sFIt/EXn7EthhsMe/0n96FtZO8bGpc=;
+        b=H6MDB+JAVE/8h9k7Krkpq2DTauDKqModIUqtF7aGhaD0XUzN7aNOvrVFf4jT+HXg+I
+         LoubKetlmnBlZaF3rzuwZNIVOzQ/93smeZcVfXBWdaA+OrdH/qwWjaKClvirMtISsdQL
+         BnM5T521mbZ9ION/zJyq28yicuWrHxAP782KtXG5soF6HelO69ikbVqaWkz8nLLsulkQ
+         YArU/+QRV5WWHyrbJ0BhNstKAwltVXLQVVpCzVpAyvdMM1/lbQSGatudaeS0ynaounhw
+         HFaDVaNJjQ4rQCbcxVJhP7lRxFfSXO7jUaWOHjCm2eAaDfHDfpN69T7+3HJ+zFmtwWU2
+         tQWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=/pRI5s675ZgE8sFIt/EXn7EthhsMe/0n96FtZO8bGpc=;
+        b=MlfikYbu1MxGkB+yCpKu/ZRKHTaiEZiTY27QjZhROxad+vwjj73tP4jwJI00wltI/t
+         wQD7z6xv8e2h2mQ/xTsjQo+xGmLunQdTNlH9MMxt0eyFkFZ+NymjK0XIoD+fIwKYpGM3
+         F19Z+ltPwbifaoZ8zt3B2+1OSSDkLiJFq/d5ufT2gvQ/230PEIM0NhKEwCKbNjg0Vz00
+         OIcJObUv+6/PfgqcwVaxHzY37eo7uwCnTqT5U3ldo4jQMIchYMxcz2KUjoB/xmpDt+1J
+         oAHZfYjxGfQoYDuFZ1X9RjMYuRNfYnZBcqajlEMlqOxNFklrpV+q/WLT4DuNeMr5LO7O
+         jaKg==
+X-Gm-Message-State: APjAAAVOh9vLRjLPde5Y5Nazj4Lc2pjWpQjgoYmj56SDuZmHw8tbbFSZ
+        Rkg7dS0YAKgfZGUlujtfoGnZ1zPNKy3k+HnSuu2Q63IM9is=
+X-Received: by 2002:a5d:8f02:: with SMTP id f2mr5525140iof.272.1568964897490;
+ Fri, 20 Sep 2019 00:34:57 -0700 (PDT)
+MIME-Version: 1.0
+From:   Steve French <smfrench@gmail.com>
+Date:   Fri, 20 Sep 2019 02:34:46 -0500
+Message-ID: <CAH2r5mu1+muust_HA8oOWjYSmH6cLZA-d7pRzGJJsHauoDdJdQ@mail.gmail.com>
+Subject: checkpatch warnings in sched.h
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Dan Carpenter <dan.carpenter@oracle.com>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Any hints to get rid of the noisy warnings in sched.h that make it
+hard to spot real warnings:
+
+/include/linux/sched.h:609:43: error: bad integer constant expression
+/include/linux/sched.h:609:73: error: invalid named zero-width bitfield `value'
+
+I noticed mention of this on lkml but didn't see any suggested
+solution to this distracting warning
+
+-- 
+Thanks,
+
+Steve

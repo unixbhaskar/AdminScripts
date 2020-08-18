@@ -1,0 +1,133 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2341747lfj;
+        Sat, 12 Oct 2019 09:47:00 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyJ5+W8q7YnXfH1is2/n4jcphIZFA+qKkYLO/1DnASoSaeCcL3hCAkUG1bva0laxUbmSpm3
+X-Received: by 2002:a17:906:5e19:: with SMTP id n25mr20510083eju.131.1570898820604;
+        Sat, 12 Oct 2019 09:47:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1570898820; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ajx1wrVmlWek6tRsruvhx73BHPcNSggZhnrvwaWYO58dsx9nXkidVGfyGmH7w+L+Gr
+         aKFSDFe4A/U6T2vr6n4C8VgYlJ4UO1gujYjcDkQ931kFnOAmgR1lsWKeOV8LxkksGCfb
+         DuWWdHzG+VoVfNLZJCyCAey8gyAmIXB7FZn/NzqNaQ72xJZI+KlZ1y+9jbMnqBbr9E9u
+         M/lcIttF0gm3OPaZAkvFLniBzreYPadIjfYyNmHWnK4dg0VQokXRr72xkZ824mokkuU+
+         JN0rfHtmudFUyohyx1HZBt3FzK4ApaZyX5QISiVZgrSUTw0PiTjhJCdaWcpu3n+UxSJu
+         0XAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date:dkim-signature;
+        bh=mW1BTd/8uhE7t2jOfghtws3Kks9nImcXVCmLSM1NKtU=;
+        b=jV5uFYTt3XZORdO+7lBBR74j6Zsxirf8yy8zhXxnRkgzma0whXry9IvRES6rXpFHo2
+         ZClVN0YgWlITNvIdN1ZyJ9kpGp0QLN9sEdB6HMPuUghvg1sP/ofI4V4eAuDiY+EC7xoM
+         cBrScy+5xmprUccaSDVSzdC/AVxXjpzdSX9Dsa0HVy/3eNCPFJRK7dxeXb4ld2GQdLUJ
+         sC8jhYLTxi7M4iymdQadWwPxfCSB7/aepjqj6mY2w64Z+EppiNBCbeuFa04srZ5ASB/t
+         1tLBpexa20q1EppGiiK0ev0ixQI0uK3/Y6EA86hx64QYQJLDUPFLyHhaWBiXO098wv74
+         koOA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=TQyvD4PY;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id r19si7592161edy.409.2019.10.12.09.46.37;
+        Sat, 12 Oct 2019 09:47:00 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=TQyvD4PY;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729478AbfJLQTO (ORCPT <rfc822;n4ag3a2sh1i@gmail.com>
+        + 99 others); Sat, 12 Oct 2019 12:19:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45234 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729146AbfJLQRO (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 12 Oct 2019 12:17:14 -0400
+Received: from localhost (unknown [62.119.166.9])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0BA8921929;
+        Sat, 12 Oct 2019 16:17:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570897033;
+        bh=qCRTRQxvkK2V3Gin90iarjIfaKv+CaRux0YOEkUjRy8=;
+        h=Date:From:To:Cc:Subject:From;
+        b=TQyvD4PYtxBd4gPYzxcnKB9lRtTaQaY7sFHpsV8ALKr4Ut9ZTYUMLL9cHqGiUbWdk
+         w0R0PcaMcOZ0HMyIsUISGqJLQcz5PCyYme5ts6nT3QCuQXMjQ1bZ3ok7xqmFQI/eHw
+         B0mLn3U8439MOaIfrRssWwg7X+5fEGaKlDv9EDJM=
+Date:   Sat, 12 Oct 2019 18:16:59 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org
+Subject: [GIT PULL] Char/Misc driver fixes for 5.4-rc3
+Message-ID: <20191012161659.GA2191759@kroah.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.12.2 (2019-09-21)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+The following changes since commit 54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c:
+
+  Linux 5.4-rc1 (2019-09-30 10:35:40 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git tags/char-misc-5.4-rc3
+
+for you to fetch changes up to 442f1e746e8187b9deb1590176f6b0ff19686b11:
+
+  firmware: google: increment VPD key_len properly (2019-10-11 08:41:34 +0200)
+
+----------------------------------------------------------------
+Char/Misc driver fixes for 5.4-rc3.
+
+Here are some small char/misc driver fixes for 5.4-rc3.
+
+Nothing huge here.  Some binder driver fixes (although it is still being
+discussed if these all fix the reported issues or not, so more might be
+coming later), some mei device ids and fixes, and a google firmware
+driver bugfix that fixes a regression, as well as some other tiny fixes.
+
+All have been in linux-next with no reported issues.
+
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+----------------------------------------------------------------
+Alexander Usyskin (1):
+      mei: avoid FW version request on Ibex Peak and earlier
+
+Brian Norris (1):
+      firmware: google: increment VPD key_len properly
+
+Christian Brauner (1):
+      binder: prevent UAF read in print_binder_transaction_log_entry()
+
+Joel Fernandes (Google) (1):
+      binder: Fix comment headers on binder_alloc_prepare_to_free()
+
+Navid Emamdoost (2):
+      misc: fastrpc: prevent memory leak in fastrpc_dma_buf_attach
+      virt: vbox: fix memory leak in hgcm_call_preprocess_linaddr
+
+Tomas Winkler (1):
+      mei: me: add comet point (lake) LP device ids
+
+YueHaibing (1):
+      w1: ds250x: Fix build error without CRC16
+
+ drivers/android/binder.c                 |  4 +++-
+ drivers/android/binder_alloc.c           |  2 +-
+ drivers/android/binder_internal.h        |  2 +-
+ drivers/firmware/google/vpd_decode.c     |  2 +-
+ drivers/misc/fastrpc.c                   |  1 +
+ drivers/misc/mei/bus-fixup.c             | 14 +++++++++++---
+ drivers/misc/mei/hw-me-regs.h            |  3 +++
+ drivers/misc/mei/hw-me.c                 | 21 ++++++++++++++++++---
+ drivers/misc/mei/hw-me.h                 |  8 ++++++--
+ drivers/misc/mei/mei_dev.h               |  4 ++++
+ drivers/misc/mei/pci-me.c                | 13 ++++++++-----
+ drivers/virt/vboxguest/vboxguest_utils.c |  3 ++-
+ drivers/w1/slaves/Kconfig                |  1 +
+ 13 files changed, 60 insertions(+), 18 deletions(-)

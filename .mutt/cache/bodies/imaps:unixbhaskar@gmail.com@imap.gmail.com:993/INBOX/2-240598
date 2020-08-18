@@ -1,0 +1,112 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp908705lfk;
+        Sat, 23 May 2020 06:20:38 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwN1yxzWuYKf1QJRWEESpcYwu3kSZzesNcIPEmSLciO4k94YpLTq5u82HQN9oVgUbS8iI6m
+X-Received: by 2002:a50:8b42:: with SMTP id l60mr6865201edl.55.1590240038241;
+        Sat, 23 May 2020 06:20:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590240038; cv=none;
+        d=google.com; s=arc-20160816;
+        b=N6HngE6OS5pCuj2NHS16NLXo7OUGyEMugk9R8PF1tLjDVjYrkwxzfuymbQmSiIsRQj
+         EfWdLDmjQ7wx0/0JON+pCVcSV0zV9rrfx/oSchW3BLubnsKGoKYDYFBExqwyftq8sjgR
+         R5+jApNK0uzlhdzIAHJYfeQS/bI1wwnalprkLuoJwdKVMAEbiVmk9KHBN01SJISG6Ga6
+         l3cyMFu9s+HxexT4BmSHW2pI63A0BSpOYIOc0AVg11Xyq9d68MyDoc/yJDaneBg0rDv7
+         6SaSTLN0qfleEO3OkOGGQTXlzIJBw1cVLZsMcR/SpTR4jY0Wwr9kypeuC/rCHBqgYmSg
+         zC4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:dkim-signature;
+        bh=4rTpZMwmltGKXvYlBH6K2Mr/R8ffuNJ5uuuEmGNfd5k=;
+        b=uJy/wz0woZDYjUs9j9tm54WU89ZEM8O1DzuQb/HvtuPLO5dczQ5imB1ev5r8yXad3z
+         RlQRIHbgRYqJn2xZXEvmxpx5Y7scx6mo7vkZSNIVk014Ot/0YuenNuYSdDEw10JGNQbt
+         zI4PUgquWY2A8fFUVbPQGizpi0EbKKfQ08VeYnzlvDoQTFf0Po2M7RpHSqaZOeG6tfxN
+         H/6LUqQi2Ooqob7bHShFYXhujvE8aom5TfZLLmU3n+jpdzyPKCZaScSpkYkXhoSOZKqj
+         0+WDCe64g9435jegV6jkPEe2DMl6PqT2vdSwPKy9a5u48S4JE90APYYJ23OhTFx6u/I+
+         zZ0Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=o+uLu6h7;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id x20si6891278edi.323.2020.05.23.06.20.15;
+        Sat, 23 May 2020 06:20:38 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=o+uLu6h7;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2387846AbgEWNSS (ORCPT <rfc822;mattkilgore12@gmail.com>
+        + 99 others); Sat, 23 May 2020 09:18:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56036 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387772AbgEWNSR (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 23 May 2020 09:18:17 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 205CC207F9;
+        Sat, 23 May 2020 13:18:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1590239897;
+        bh=MiBK1bmI2x+vgmgd072DJ2yKOanRH70VQ3qjtUJrPBI=;
+        h=Date:From:To:Cc:Subject:From;
+        b=o+uLu6h7FyVLxTFgyOvsYJ6be36GrA2b4+28XTuntIe8EW/ucVWSJAMQ3SGlcaQbH
+         XUfiOTPab0uDeZTiJuJdcvaU9Vev0bMgJ416UG6Qo8bKWxbvTdrDLLr+BAEcs9Tr0n
+         xLwNXoCo6z8xAoRf/D0NdnMhDMoBmV6dV894kCc0=
+Date:   Sat, 23 May 2020 15:18:15 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org
+Subject: [GIT PULL] Char/Misc driver fixes for 5.7-rc7
+Message-ID: <20200523131815.GA56291@kroah.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+The following changes since commit 2ef96a5bb12be62ef75b5828c0aab838ebb29cb8:
+
+  Linux 5.7-rc5 (2020-05-10 15:16:58 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git tags/char-misc-5.7-rc7
+
+for you to fetch changes up to 7a839dbab1be59f5ed3b3b046de29e166784c9b4:
+
+  misc: rtsx: Add short delay after exit from ASPM (2020-05-22 13:27:38 +0200)
+
+----------------------------------------------------------------
+Char/Misc fixes for 5.7-rc7
+
+Here are some small char/misc driver fixes for 5.7-rc7 that resolve some
+reported issues.  Included in here are tiny fixes for the mei,
+coresight, rtsx, ipack, and mhi drivers.
+
+All of these have been in linux-next with no reported issues.
+
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+----------------------------------------------------------------
+Alexander Usyskin (1):
+      mei: release me_cl object reference
+
+Calvin Johnson (1):
+      coresight: cti: remove incorrect NULL return check
+
+Klaus Doth (1):
+      misc: rtsx: Add short delay after exit from ASPM
+
+Wei Yongjun (2):
+      ipack: tpci200: fix error return code in tpci200_register()
+      bus: mhi: core: Fix some error return code
+
+ drivers/bus/mhi/core/init.c                          | 2 ++
+ drivers/hwtracing/coresight/coresight-cti-platform.c | 4 ++--
+ drivers/ipack/carriers/tpci200.c                     | 1 +
+ drivers/misc/cardreader/rtsx_pcr.c                   | 3 +++
+ drivers/misc/mei/client.c                            | 2 ++
+ 5 files changed, 10 insertions(+), 2 deletions(-)

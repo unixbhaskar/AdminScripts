@@ -1,0 +1,276 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp572748lfj;
+        Wed, 22 Jul 2020 04:48:43 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzwWM6dUxs/9Q7mYmH8KvWw58S6Sm8lCCikJeSsYDpI9IVXF5lf+LoZ2gHeO1f5Z1h9mMBs
+X-Received: by 2002:ad4:4e6e:: with SMTP id ec14mr30042019qvb.79.1595418523386;
+        Wed, 22 Jul 2020 04:48:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1595418523; cv=none;
+        d=google.com; s=arc-20160816;
+        b=OjX190qznvJfr+FM1z9LecmfQzJawnBXJ2I3A/CBsTNX38P8JkspT4/6tDIaETM2o6
+         pybsP4TZPTfo0fNXsKERGGKVaBZMo1pi4MoB8HdVSHCT0wVDrPOkVGIYF6YzWtQqDNTV
+         SeWfUOCkModfz1PfXbtB0QMGX5nFBVomJxPUAsJcSnP+zgJjf947d0oX+ne9Xcl37Jiz
+         PFSLOP66Se94u+2t78ZgM+jfIATGwosu540TDeFFoCZjoLfvjRGN0QBViZDUuJVuCo9h
+         q5n0C7/vkWB3NtwHKJRbedQhZ6rH7KPpXMA8XTLgSzDh0wVd+IPl6SS6llAwTFu5N/3D
+         8Niw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:reply-to:list-unsubscribe
+         :date:to:mime-version:subject:message-id:from:dkim-signature
+         :dkim-signature;
+        bh=WU9HJj2Tj+oUGyOlYFrMJ9kFED+k5xNMrIQpuZWOO1Y=;
+        b=TfNWGaU2THaoN3lpsrG7tey3f6M+mrvLLAPvURXVSSnZW61+srQUVczoOCTeZUw08Q
+         eEJ3BaXujvfn2N3LPSumZR7S7E0Uc+mPWQV4jFNfUCj3+nD3HG/J7XpWY5MMjCVWdoz3
+         9V8YMeJP0U7RIDpvW6AvKAnltBLzdl6L4PSRTVEL6/aNvbXWpnk+rZqtT3fEUyZ3kb1A
+         8reMKeZ44wZaEmhglZkrQxCK9P6hGDiYIugRKQG3PM4YgaN7BI4GQZsSABrO4v2z8s6b
+         WmEAcxvH3uKJbp+Qfih/+0Yw/QeYIZER+fBjz06xQf30rDCrtm9ImsdpbfHKcfbaYhWb
+         1Gtw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=SY9VTjOI;
+       dkim=pass header.i=@mailb.linkedin.com header.s=proddkim1024 header.b=c401F6lR;
+       spf=pass (google.com: domain of m-be73a9zt2xvewlajph0q9g2yhttslpevltrk0a1skfs8ne7l54x8l314oxksvp@bounce.linkedin.com designates 2620:109:c006:104::146 as permitted sender) smtp.mailfrom=m-be73a9zt2xvewlajph0q9g2yhttslpevltrk0a1skfs8ne7l54x8l314oxksvp@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-be73a9zt2xvewlajph0q9g2yhttslpevltrk0a1skfs8ne7l54x8l314oxksvp@bounce.linkedin.com>
+Received: from mailb-ab.linkedin.com (mailb-ab.linkedin.com. [2620:109:c006:104::146])
+        by mx.google.com with ESMTPS id l39si14409604qta.305.2020.07.22.04.48.43
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Jul 2020 04:48:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m-be73a9zt2xvewlajph0q9g2yhttslpevltrk0a1skfs8ne7l54x8l314oxksvp@bounce.linkedin.com designates 2620:109:c006:104::146 as permitted sender) client-ip=2620:109:c006:104::146;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=SY9VTjOI;
+       dkim=pass header.i=@mailb.linkedin.com header.s=proddkim1024 header.b=c401F6lR;
+       spf=pass (google.com: domain of m-be73a9zt2xvewlajph0q9g2yhttslpevltrk0a1skfs8ne7l54x8l314oxksvp@bounce.linkedin.com designates 2620:109:c006:104::146 as permitted sender) smtp.mailfrom=m-be73a9zt2xvewlajph0q9g2yhttslpevltrk0a1skfs8ne7l54x8l314oxksvp@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1595418523;
+	bh=WU9HJj2Tj+oUGyOlYFrMJ9kFED+k5xNMrIQpuZWOO1Y=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=SY9VTjOIq66H6LcMWfrQJLE+IC6bGeS8D3gqChQTNnriaVtwMgiB0ObZy2qRDyzmN
+	 ZFmTvekeX93N9IGtrfLJr/lZuETs5i5e2fjZ0cCPfMKR07HTBQeHXmXV5VIww4yqr6
+	 NP3NwiXjAH8m7U/ANf7g4ICCi3Tbu7i0WWkiirU4bUscNXn6sbxSDVf7VNfXa6rX8V
+	 Rv3Y/zXc7K7FZBETXQ/SBhGN1Cpd3vDMZh+6ZG4s6jtr/DCWlM1VnQqmUDw8R0ITNS
+	 u0L4kxVocGcpvdpoPu3Vv5qxGzSqpT+CAz9WITIfh6pAwf6ly5B9gPnxLcFxmwLL+Y
+	 WVeuyQh1bYa7w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailb.linkedin.com;
+	s=proddkim1024; t=1595418523;
+	bh=WU9HJj2Tj+oUGyOlYFrMJ9kFED+k5xNMrIQpuZWOO1Y=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=c401F6lRR+A0XcyV9hC9sYS92aiaCdYmgcS1TfKGk3BFu/Hny70a4jMmP18WKX5LS
+	 goxDYEdAKHRnlWUA7CNNlWMuc3iLQXaLjF2hHmBR9mNj7iPmj3FNQZfsCtLa5AUpfC
+	 tiwCvIx9odrQgxi4uEHo4KzRQq2UxlhVbdWn/fos=
+From: Nagalakshmi N <inmail-hit-reply@linkedin.com>
+Message-ID: <1713803273.329247.1595418522791.JavaMail.app@lor1-app44693.prod.linkedin.com>
+Subject: Linux-Job Opportunity
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_329244_464313121.1595418522785"
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Date: Wed, 22 Jul 2020 11:48:42 +0000 (UTC)
+X-LinkedIn-Class: INMAIL
+X-LinkedIn-Template: email_inmail_initial_single_01
+X-LinkedIn-fbl: m2-asztphz7s3wi061x98lod2urrcewmlmdfr5p6pbfhg3y1qo733brdb4bzejc6hv7xufxfysanx36dlzkonkj8jam0437ugx8cku2xk
+X-LinkedIn-Id: 9uku3r-kcxazto0-p5
+List-Unsubscribe: <https://www.linkedin.com/e/v2?e=9uku3r-kcxazto0-p5&t=lun&midToken=AQE-oFg_K8K0Dw&ek=email_inmail_initial_single_01&loid=AQEL0VokrhuBfAAAAXN2WrSTN1JWrBszwFK6Il2Y_kCf9cDppZR9rcRAcEUAEijh9jkmhazAAlzYjME0TN0M1QZZlRpIm7SyhEs&eid=9uku3r-kcxazto0-p5>
+Reply-To: Nagalakshmi N <4d40bac4-4cb3-4b3b-bf20-8fe7a29616fc@reply.linkedin.com>
+Feedback-ID: email_inmail_initial_single_01:linkedin
+Require-Recipient-Valid-Since: unixbhaskar@gmail.com; Wed, 19 Jul 2017 10:55:52 +0000
+
+------=_Part_329244_464313121.1595418522785
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+Linux-Job Opportunity
+
+Dear Bhaskar, <br>
+<br>
+Hope you are doing good. we do have an opportunity with one of the best cli=
+ent<br>
+ Mode:Permanent with QuessCorp (Deployment to client) <br>
+Linux (RHEL) &amp; Windows Application Servers - Tomcat, JBOSS<br>
+WAS Web Servers - Apache, HTTP Databases - Oracle, MSSQL <br>
+Scripting - Shell/PowershellExperiance: <br>
+Exp:3 to 5 years<br>
+Notice Period: Within 30 Days of Notice Period<br>
+Location: Chennai <br>
+If interested Kindly share cv to nagalakshmi.n@quesscorp.com<br>
+9113023607<br>
+<br>
+ Nagalakshmi<br>
+9113023607
+
+Go here to reply:
+https://www.linkedin.com/comm/messaging/thread/6691670268034867200/?midToke=
+n=3DAQE-oFg_K8K0Dw&trk=3Deml-email_inmail_initial_single_01-inmail-0-sent_a=
+ccepted&trkEmail=3Deml-email_inmail_initial_single_01-inmail-0-sent_accepte=
+d-null-9uku3r%7Ekcxazto0%7Ep5-null-neptune%2Fmessaging%2Ethread&lipi=3Durn%=
+3Ali%3Apage%3Aemail_email_inmail_initial_single_01%3BX%2BYkS4k9QmOTQW7PZ7cf=
+fQ%3D%3D
+
+Go here if not interested:
+https://www.linkedin.com/comm/messaging/thread/6691670268034867200/?midToke=
+n=3DAQE-oFg_K8K0Dw&trk=3Deml-email_inmail_initial_single_01-inmail-2-sent_r=
+ejected&trkEmail=3Deml-email_inmail_initial_single_01-inmail-2-sent_rejecte=
+d-null-9uku3r%7Ekcxazto0%7Ep5-null-neptune%2Fmessaging%2Ethread&lipi=3Durn%=
+3Ali%3Apage%3Aemail_email_inmail_initial_single_01%3BX%2BYkS4k9QmOTQW7PZ7cf=
+fQ%3D%3D
+
+
+
+
+
+You are receiving InMail notification emails. Unsubscribe here: https://www=
+.linkedin.com/e/v2?e=3D9uku3r-kcxazto0-p5&t=3Dlun&midToken=3DAQE-oFg_K8K0Dw=
+&ek=3Demail_inmail_initial_single_01&loid=3DAQEL0VokrhuBfAAAAXN2WrSTN1JWrBs=
+zwFK6Il2Y_kCf9cDppZR9rcRAcEUAEijh9jkmhazAAlzYjME0TN0M1QZZlRpIm7SyhEs&eid=3D=
+9uku3r-kcxazto0-p5
+
+This email was intended for Bhaskar Chowdhury (Linux SME). Learn why we inc=
+luded this at the following link: https://www.linkedin.com/e/v2?e=3D9uku3r-=
+kcxazto0-p5&lipi=3Durn%3Ali%3Apage%3Aemail_email_inmail_initial_single_01%3=
+BX%2BYkS4k9QmOTQW7PZ7cffQ%3D%3D&a=3DcustomerServiceUrl&midToken=3DAQE-oFg_K=
+8K0Dw&ek=3Demail_inmail_initial_single_01&articleId=3D4788
+
+If you need assistance or have questions, please contact LinkedIn Customer =
+Service: https://www.linkedin.com/e/v2?e=3D9uku3r-kcxazto0-p5&lipi=3Durn%3A=
+li%3Apage%3Aemail_email_inmail_initial_single_01%3BX%2BYkS4k9QmOTQW7PZ7cffQ=
+%3D%3D&a=3DcustomerServiceUrl&midToken=3DAQE-oFg_K8K0Dw&ek=3Demail_inmail_i=
+nitial_single_01
+
+=C2=A9 2020 LinkedIn Ireland Unlimited Company. LinkedIn, the LinkedIn logo=
+, and InMail are registered trademarks of LinkedIn Corporation in the Unite=
+d States and/or other countries. All rights reserved.
+LinkedIn is a registered business name of LinkedIn Ireland Unlimited Compan=
+y.
+Registered in Ireland as a private unlimited company, Company Number 477441
+Registered Office: 70 Sir John Rogersons Quay, Dublin 2
+------=_Part_329244_464313121.1595418522785
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns=3D"http://www.w3=
+.org/1999/xhtml" lang=3D"en" xml:lang=3D"en"> <head> <meta http-equiv=3D"Co=
+ntent-Type" content=3D"text/html;charset=3Dutf-8"> <meta name=3D"HandheldFr=
+iendly" content=3D"true"> <meta name=3D"viewport" content=3D"width=3Ddevice=
+-width; initial-scale=3D0.666667; user-scalable=3D0"> <meta name=3D"viewpor=
+t" content=3D"width=3Ddevice-width"> <title></title> </head> <body> <span s=
+tyle=3D"display: none !important;font-size: 1px;visibility: hidden;opacity:=
+ 0;color: transparent;height: 0;width: 0;mso-hide: all;"></span> <table rol=
+e=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=
+=3D"font-family:Helvetica,Arial,sans-serif; border-collapse:collapse; width=
+:100% !important; font-family:Helvetica,Arial,sans-serif; margin:0; padding=
+:0;" width=3D"100%" bgcolor=3D""> <tbody> <tr> <td colspan=3D"3"> <table ro=
+le=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=
+=3D"font-family:Helvetica,Arial,sans-serif; " width=3D"1"> <tbody> <tr> <td=
+> <div style=3D"height:5px;font-size:5px;line-height:5px;"> &nbsp; </div></=
+td> </tr> </tbody> </table></td> </tr> <tr> <td> <table cellspacing=3D"0" c=
+ellpadding=3D"0" border=3D"0" align=3D"center" width=3D"100%" style=3D"tabl=
+e-layout: fixed;"> <tbody> <tr> <td align=3D"center"> <table role=3D"presen=
+tation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"font-fami=
+ly:Helvetica,Arial,sans-serif; " width=3D"100%"> <tbody> <tr> <td align=3D"=
+left">Dear Bhaskar, <br> <br> Hope you are doing good. we do have an opport=
+unity with one of the best client<br> Mode:Permanent with QuessCorp (Deploy=
+ment to client) <br> Linux (RHEL) &amp; Windows Application Servers - Tomca=
+t, JBOSS<br> WAS Web Servers - Apache, HTTP Databases - Oracle, MSSQL <br> =
+Scripting - Shell/PowershellExperiance: <br> Exp:3 to 5 years<br> Notice Pe=
+riod: Within 30 Days of Notice Period<br> Location: Chennai <br> If interes=
+ted Kindly share cv to nagalakshmi.n@quesscorp.com<br> 9113023607<br> <br> =
+Nagalakshmi<br> 9113023607</td> </tr> <tr> <td> <table width=3D"1" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"1"> <tbody> <tr> <td> <div style=3D=
+"height:25px;font-size:25px;line-height:25px"> &nbsp; </div></td> </tr> </t=
+body> </table></td> </tr> <tr> <td> <table role=3D"presentation" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0" style=3D"font-family:Helvetica,Arial=
+,sans-serif; " width=3D"100%" align=3D"left"> <tbody> <tr> <td> <table bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left"> <tbody> <tr> <=
+td align=3D"center" height=3D"30" valign=3D"middle" bgcolor=3D"#287BBC" bac=
+kground=3D"" style=3D"background:url() repeat-x scroll bottom #287BBC;backg=
+round-color:#287BBC;border:1px solid #1B5480;-moz-border-radius:3px;-webkit=
+-border-radius:3px;border-radius:3px; cursor: pointer;"> <table role=3D"pre=
+sentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"font-f=
+amily:Helvetica,Arial,sans-serif; " width=3D"100%" bgcolor=3D"transparent">=
+ <tbody> <tr> <td width=3D"13"> <table width=3D"13px" border=3D"0" cellspac=
+ing=3D"0" cellpadding=3D"1"> <tbody> <tr> <td> <div style=3D"height:0px;fon=
+t-size:0px;line-height:0px"> &nbsp; </div></td> </tr> </tbody> </table></td=
+> <td><a href=3D"https://www.linkedin.com/comm/messaging/thread/66916702680=
+34867200/?midToken=3DAQE-oFg_K8K0Dw&amp;trk=3Deml-email_inmail_initial_sing=
+le_01-inmail-3-view_message&amp;trkEmail=3Deml-email_inmail_initial_single_=
+01-inmail-3-view_message-null-9uku3r%7Ekcxazto0%7Ep5-null-neptune%2Fmessagi=
+ng%2Ethread&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_inmail_initial_single_=
+01%3BX%2BYkS4k9QmOTQW7PZ7cffQ%3D%3D" style=3D"text-decoration:none; font-si=
+ze: 13px;font-weight: bold;color: white;white-space: nowrap;display: block;=
+" target=3D"_blank"><span style=3D"font-size: 13px;font-weight: bold;color:=
+ white;white-space: nowrap;display: block;">View message</span></a></td> <t=
+d width=3D"13"> <table width=3D"13px" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"1"> <tbody> <tr> <td> <div style=3D"height:0px;font-size:0px;line-=
+height:0px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr> </tbody>=
+ </table></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td> </=
+tr> <tr> <td> <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"1"> <tbody> <tr> <td> <div style=3D"height:10px;font-size:10px;line-hei=
+ght:10px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr> <tr> <td a=
+lign=3D"left"><a href=3D"https://www.linkedin.com/comm/in/nagalakshmi-n-244=
+291141?midToken=3DAQE-oFg_K8K0Dw&amp;trk=3Deml-email_inmail_initial_single_=
+01-null-4-null&amp;trkEmail=3Deml-email_inmail_initial_single_01-null-4-nul=
+l-null-9uku3r%7Ekcxazto0%7Ep5-null-neptune%2Fprofile%7Evanity%2Eview&amp;li=
+pi=3Durn%3Ali%3Apage%3Aemail_email_inmail_initial_single_01%3BX%2BYkS4k9QmO=
+TQW7PZ7cffQ%3D%3D" style=3D"text-decoration:none; color:#0077B5; font-size:=
+12px;">View Nagalakshmi's LinkedIn profile</a></td> </tr> <tr> <td> <table =
+width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D"1"> <tbody> <tr> =
+<td> <div style=3D"height:20px;font-size:20px;line-height:20px"> &nbsp; </d=
+iv></td> </tr> </tbody> </table></td> </tr> <tr> <td> <table role=3D"presen=
+tation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"font-fami=
+ly:Helvetica,Arial,sans-serif; " width=3D"auto" align=3D"left"> <tbody> <tr=
+> <td style=3D"margin: 0; background-color: #EEE; color: #999; padding: 5px=
+;">TIP</td> <td style=3D"color: #999; padding: 5px; font-size: 12px;">You c=
+an respond to Nagalakshmi by replying to this email</td> </tr> </tbody> </t=
+able></td> </tr> <tr> <td> <table width=3D"1" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"1"> <tbody> <tr> <td> <div style=3D"height:20px;font-size:=
+20px;line-height:20px"> &nbsp; </div></td> </tr> </tbody> </table></td> </t=
+r> <tr> <td style=3D"color:#999999; border-top:1px solid #cccccc; padding-t=
+op:10px;"> <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"1"> <tbody> <tr> <td> <div style=3D"height:1px;font-size:1px;line-height:1=
+px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr> <tr> <td style=
+=3D"font-size:11px; color:#999999;" align=3D"left">You are receiving InMail=
+ notification emails. <a style=3D"text-decoration:underline;color:inherit;"=
+ href=3D"https://www.linkedin.com/e/v2?e=3D9uku3r-kcxazto0-p5&amp;t=3Dlun&a=
+mp;midToken=3DAQE-oFg_K8K0Dw&amp;ek=3Demail_inmail_initial_single_01&amp;lo=
+id=3DAQGar1wIhGbvZQAAAXN2WrSPlNrLqx9wPdMpSTZogI_W6igmUqLwQV1vCJjbH2LmYX2FVJ=
+6R--wgRF02HxbrngndxIFzP1Qg4D0&amp;eid=3D9uku3r-kcxazto0-p5">Unsubscribe</a>=
+</td> </tr> <tr> <td style=3D"font-size:11px; color:#999999;" align=3D"left=
+">This email was intended for Bhaskar Chowdhury (Linux SME). <a style=3D"te=
+xt-decoration:none;color:#0077B5;" href=3D"https://www.linkedin.com/e/v2?e=
+=3D9uku3r-kcxazto0-p5&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_inmail_initi=
+al_single_01%3BX%2BYkS4k9QmOTQW7PZ7cffQ%3D%3D&amp;a=3DcustomerServiceUrl&am=
+p;midToken=3DAQE-oFg_K8K0Dw&amp;ek=3Demail_inmail_initial_single_01&amp;art=
+icleId=3D4788">Learn why we included this.</a></td> </tr> <tr> <td align=3D=
+"left"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" style=3D"font-family:Helvetica,Arial,sans-serif; " width=3D"100%=
+"> <tbody> <tr> <td> <table width=3D"1" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"1"> <tbody> <tr> <td> <div style=3D"height:10px;font-size:10px;l=
+ine-height:10px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr> <tr=
+> <td align=3D"left"> <table role=3D"presentation" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" style=3D"font-family:Helvetica,Arial,sans-serif; f=
+ont-size:11px; font-family:Helvetica,Arial,sans-serif; color:#6A6C6D;" widt=
+h=3D"100%"> <tbody> <tr> <td></td> </tr> <tr> <td></td> </tr> <tr> <td>If y=
+ou need assistance or have questions, please contact <a style=3D"color:#007=
+7B5;text-decoration:none;" target=3D"_blank" href=3D"https://www.linkedin.c=
+om/e/v2?e=3D9uku3r-kcxazto0-p5&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_inm=
+ail_initial_single_01%3BX%2BYkS4k9QmOTQW7PZ7cffQ%3D%3D&amp;a=3DcustomerServ=
+iceUrl&amp;midToken=3DAQE-oFg_K8K0Dw&amp;ek=3Demail_inmail_initial_single_0=
+1">LinkedIn Customer Service</a>.</td> </tr> <tr> <td> <table width=3D"1" b=
+order=3D"0" cellspacing=3D"0" cellpadding=3D"1"> <tbody> <tr> <td> <div sty=
+le=3D"height:10px;font-size:10px;line-height:10px"> &nbsp; </div></td> </tr=
+> </tbody> </table></td> </tr> <tr> <td>=C2=A9 2020, LinkedIn Corporation. =
+1000 West Maude Avenue, Sunnyvale, CA 94085, USA</td> </tr> </tbody> </tabl=
+e></td> </tr> <tr> <td> <table width=3D"1" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"1"> <tbody> <tr> <td> <div style=3D"height:20px;font-size:20p=
+x;line-height:20px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr> =
+</tbody> </table></td> </tr> </tbody> </table></td> </tr> </tbody> </table>=
+</td> </tr> </tbody> </table> <img alt=3D"" role=3D"presentation" src=3D"ht=
+tps://www.linkedin.com/emimp/ip_T1hWcmRUTnlMV3RqZUdGNmRHOHdMWEExOlpXMWhhV3h=
+mYVc1dFlXbHNYMmx1YVhScFlXeGZjMmx1WjJ4bFh6QXg6.gif" style=3D"width:1px; heig=
+ht:1px;"> </body> </html>
+------=_Part_329244_464313121.1595418522785--
+

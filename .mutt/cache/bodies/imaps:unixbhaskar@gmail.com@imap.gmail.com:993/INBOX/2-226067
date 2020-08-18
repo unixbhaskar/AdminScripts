@@ -1,0 +1,171 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:2382:0:0:0:0:0 with SMTP id j124csp2386931lfj;
+        Mon, 2 Mar 2020 05:08:14 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwdUMDKI5KG5qpg2xsfYFdnDlFmzcHWr605vFUCjRAaTEeIlSf9RItsiYZIIb4QuzTeZxL/
+X-Received: by 2002:adf:b1d4:: with SMTP id r20mr21898020wra.303.1583154494552;
+        Mon, 02 Mar 2020 05:08:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1583154494; cv=none;
+        d=google.com; s=arc-20160816;
+        b=0MHY/OUfiy8axjN4NbkxDU2BTG98PMdP2umqxs6gtqmqJGYt2A5wG3yzPu2QL/Q506
+         5+59MvY6jBA4LguN2UveKL6si0ihWlKJjOB42P6noRnO/CY2wOldkNKkclrzjRDGMvMi
+         F9s5xmRMGjAm8orC0kKICBWA3a4DJDHtSBEIoIrxMVdeC8OdQmbIJ36nNF2GKe4GZWRc
+         96Pr7vNjlCZ8aCEeB6BwDLDDsqZJJCd8qTbp4VPpmhLUxqtPuiT7EB9OE2TugFvSyl/U
+         FyFGmyfdU/GmfqCygVXtBSLwdlvofq5wRPdQJkGUsKVPA+w6tDUHzyK9uN85doYMRQ3X
+         cCUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=in-reply-to:mime-version:user-agent:date:message-id:autocrypt:from
+         :references:to:subject;
+        bh=c6yv7sthP7PtNhpEghGbJk+xOJZyM42A6Db+Nzxt9BA=;
+        b=Gmix0XX+I0CZ71kCf2DBqnE7Ek50NEcCa+tT+YFXVE2DX9FW+LldKf/wEJMsBSkqiz
+         VEs5T89QAxns8ohCOMDdJ5O82LbB/B5D9XutJOMjxUeRlbYuTS19KOkYWbcP8visIJo8
+         KPHHMsojYbOu5f7fCh0HDZjVVfsvOxFu7PTfTjn19E6/50f/Ztc6xzPvetKmDLrS/RGa
+         qjcdIs0SjvqMxNNUPnclxOTrX2Mm/TbBTkatneGj6Zq79I51kTcN4Z7Tfs8WrUvjXhb5
+         ZiY2fGKKmav3dZnF1ekUj0DDqi2qIVKlWMM5/GRC58xHhWkumDdEcUU88wkbWxuh6SrI
+         +0Mg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux@leemhuis.info designates 2a01:488:42:1000:50ed:8234:: as permitted sender) smtp.mailfrom=linux@leemhuis.info
+Return-Path: <linux@leemhuis.info>
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de. [2a01:488:42:1000:50ed:8234::])
+        by mx.google.com with ESMTPS id p5si10925290wrq.291.2020.03.02.05.08.14
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 02 Mar 2020 05:08:14 -0800 (PST)
+Received-SPF: pass (google.com: domain of linux@leemhuis.info designates 2a01:488:42:1000:50ed:8234:: as permitted sender) client-ip=2a01:488:42:1000:50ed:8234::;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux@leemhuis.info designates 2a01:488:42:1000:50ed:8234:: as permitted sender) smtp.mailfrom=linux@leemhuis.info
+Received: from [2a00:e68:14:16:259b:84d6:2879:b869] (helo=thl.ct.heise.de); authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1j8kns-0003rs-QI; Mon, 02 Mar 2020 14:08:12 +0100
+Subject: Re: Can you move the kernel-chktaint script to "scripts" dir???
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+ Randy Dunlap <rdunlap@infradead.org>
+References: <20200302120846.GA3734@OpenSuse>
+From: Thorsten Leemhuis <linux@leemhuis.info>
+Autocrypt: addr=linux@leemhuis.info; prefer-encrypt=mutual; keydata=
+ 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
+ 5iv6NKaV29GWHbY=
+Message-ID: <5739a392-74c5-eae2-35c4-7a3b3139035e@leemhuis.info>
+Date: Mon, 2 Mar 2020 14:08:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
+MIME-Version: 1.0
+In-Reply-To: <20200302120846.GA3734@OpenSuse>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="gjmXBwc9R21euK3HVf5RQzJPqwdAA2293"
+X-bounce-key: webpack.hosteurope.de;linux@leemhuis.info;1583154494;f7e2f46c;
+X-HE-SMSGID: 1j8kns-0003rs-QI
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--gjmXBwc9R21euK3HVf5RQzJPqwdAA2293
+Content-Type: multipart/mixed; boundary="GT8cYFx6j5IvovTguJvsMJS3kOTFKRAvx"
+
+--GT8cYFx6j5IvovTguJvsMJS3kOTFKRAvx
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi!
+
+Bhaskar Chowdhury schrieb am 02.03.20 um 13:08:
+>=20
+> I somehow accidentally stumbled on that script , found it buried under
+> two level deep in directory structure!! why?? Is that intentional from
+> your part to keep it there??
+>=20
+> OR do you think it only help to "debugging" the kernel, so it best to b=
+e
+> there right under the proper name directory?? (ditching UNIX's=C2=A0 lo=
+ng
+> standing=C2=A0 misnomer convention..ha ha ha ha)
+>=20
+> Can you move that to scripts dir(as the subject line says) ..at least i=
+t
+> would be more visible to the people than hunting down some important
+> tool for debugging.
+
+Well, if you look at scripts/Makefile you'll find this in the header:
+
+# scripts contains sources for various helper programs used throughout
+
+# the kernel for the build process.
+
+
+After reading this I decided it was the wrong place and found one that
+seemed like a better fit. Sure get_maintainer.pl is in scripts/ as well,
+but that's something meant to be used by developers. kernel-chktaint
+OTOH is meant for users, just like most of the stuff in tools/ is, and
+that's why I think it's a better fit.
+
+Anyway: I have no strong option on this, feel free to submit a patch
+that moves it. I likely will mention my reasoning for the current place
+(just like I did above) but won't oppose so a move strongly.
+
+Ciao, Thorsten
+
+
+--GT8cYFx6j5IvovTguJvsMJS3kOTFKRAvx--
+
+--gjmXBwc9R21euK3HVf5RQzJPqwdAA2293
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEqKvGvpWWV+KD1C11crbm70xYPS0FAl5dBTsACgkQcrbm70xY
+PS0tVw/+NSwYkm9ZCzA9/Pjs6/rvsgv06KP9PfF5vcgF/cfF4Ct1UZQGCW1gulJi
+nnMO8Ig3ahar5EGYYUSLVyUTCfOdgjLa5sQLFnzJrP13jpHoYudB2uzDmVjjjEFq
+YQQN5/75r1iO+E+y/VwvPCoNdsHQzL9d9eKI3hUu7Q2r2bDP5zfL1pYFBSj1GZ49
+sueqYpRN7kdvJWOaqohPHe5l5/Dy2h3janmMAL0u3rRlrLKjgVDIAwcAcAqq2LH2
+aAHoowrDtNVAt8rjxUz4PZ0SxBGauJHrfMOsWrudFjaIjaKZqVGblV241KXkJ86a
+PWvrjAgL10wNtstAnYjsShxeTTNvCJgEQ/ymNt9Pq4kzUZdbbUrTmFGraAjqk/fL
+Hm3EhCDgyEt6Qh5esSurwg6+4766i5ja9+DGjw+iLSiJmqJmA6Zx0KEDaztzwaHn
+Jsie5DStbY0LYwLHxijtjEfhV9AcXwR5Nx7VNbGCPQ/lbsx4ZSTTEmUT40yhL6zR
+idsR0VRyAtVR2YQgKKMYBfP8fazD4yYkckTqNDTML6UPkqzVh/IdzEpVhBWuv+0m
+zpMEMHjbYj1/7G3aljx9Y24EPZB0HiubILRQW8AFux5aTBrynb+IIu6gKn14a1QY
+P2kHjQ+tzkAKuL99CSPmckrT1NhA9+ScBU8SrOU8g8vJCR80n80=
+=sD0f
+-----END PGP SIGNATURE-----
+
+--gjmXBwc9R21euK3HVf5RQzJPqwdAA2293--

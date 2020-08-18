@@ -1,0 +1,152 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp6467126lfj;
+        Sun, 29 Sep 2019 18:49:08 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx43+wzUwUlI/yRYXoKvXtSbB3lsHgGpwAYknNVryZsW6IiWbY1RP3b1dTNXF96vGJqFDbq
+X-Received: by 2002:a17:907:20a2:: with SMTP id pw2mr16900766ejb.163.1569808148860;
+        Sun, 29 Sep 2019 18:49:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569808148; cv=none;
+        d=google.com; s=arc-20160816;
+        b=RSjgoDc9ZyWE89Hs1YMCGzlXud7bQlkb/y7FDZ5It7IUM7AFZV2BYTBG66rJCcqul6
+         3dHOunm0D/cbbyEFjZ7fTwj1++5d+yot+p56NWQXUiRz7XcM8u1jkb6gTIKwNFSnlDPT
+         5uIknNj9UIqHlAA8jwiutGVqM0m2udW7yQ6Nz2k1AvLUkK9agkQlsqDTHlR3eqQQdD+w
+         B36PZO5H3i5fAwbs091kaDONiki/PCgDtvjOJ16C9xVB7O69XLfZQvhev8zyyzZR09mV
+         ZLSCqjtkKZRuPqHNkZUk4r8z5f6KnGQrEKIj+FzjMFXUqnyDSVeg8vmxwOGMXlffnkQN
+         TX6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=OStn3A8XRbnEfI71UUE4yVSkm+2U9S4IJIR3YZunIa8=;
+        b=bFgoTrdSUXnUKtz18I16D+EXGERlUeyJLU589zgzr8NBhxJYG6yUKCWIZl798yMhEB
+         F64ySwgVhv7PX331SFcW8/Ptla50BLWz8AJQjCG0QwsXOyzNyemtUMbjQD0BuVxLlnGo
+         OoSghPuKkrdth8NfG/8svJMIlsGiixk8DC4DXRrE12fhrNqXA9IEPeR0QvVMr0MyaeYw
+         4WLtJK3h3JQGfkfUj7iZnjfrS3VFs1dEhF6UBo5TqYRNOafu0CfIQ1d3fdJVl1Z6RGWk
+         5nxCJQQeBKZ4SVmYI1A6mWy8MbEWCXCVs+UgADxwycTAH5B3L/PecjK6kYyrhs1212+8
+         s9Jg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=NXyBIBlo;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id d10si5619776eja.69.2019.09.29.18.48.13;
+        Sun, 29 Sep 2019 18:49:08 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=NXyBIBlo;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729280AbfI3BQx (ORCPT <rfc822;petrus.archlinux@gmail.com>
+        + 99 others); Sun, 29 Sep 2019 21:16:53 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:36208 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726360AbfI3BQx (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 29 Sep 2019 21:16:53 -0400
+Received: by mail-lf1-f66.google.com with SMTP id x80so5729391lff.3
+        for <linux-kernel@vger.kernel.org>; Sun, 29 Sep 2019 18:16:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OStn3A8XRbnEfI71UUE4yVSkm+2U9S4IJIR3YZunIa8=;
+        b=NXyBIBloVeIZL7SxyBQNtnDx/LQgEPT2tcB8WqFj9hd7uFstu2xRSHRF18908ykPiN
+         Irluv5r2DT8bSW+MV2afzkAR18XW3EkZUfTn/pox8jg3Oc3rK+mK1Pio5UwibMlJpTrw
+         7wUNQ8EjSNEYYBuZZgNTf9/HpUIcwq18e4XN4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OStn3A8XRbnEfI71UUE4yVSkm+2U9S4IJIR3YZunIa8=;
+        b=XrHgfvyhC7zr+S6h6MACQB8YVHkQN5jAv1ye5pY+z5fh6mZBFZs3sFyyx43XtF+jkW
+         29ITHIToH2kCVwrVD342obbcRk3nBMyr3DYzeIEi3dFL006z3XnM8rZT3RJwFHbNNaQ9
+         9j0Q3zg51Gxtbma4CxVfaSYDkG4S+di8Nbod+ziJ0tJl8r3aZAgOiqrFLbCvxAjN+FcA
+         p3YngqqSvcR0CFFWS546oqFZmp8GoqwXl6hHKOMDil0oxRNo+wzTMsTpM88gIJiWDPvd
+         UIso5fCtJNSw/jgt4ckgXW27CK9egScLmKC0rnND6/WSanzjB+73ucs1xwnMT24KNo64
+         yLGg==
+X-Gm-Message-State: APjAAAV/OFB3HsniUEp4c7235j32TGIrKcvkRMrchv3NxQlMsc423FIG
+        qwBavLST1R1gLNqspF5+s1HNVysNBH8=
+X-Received: by 2002:ac2:46ee:: with SMTP id q14mr8858859lfo.152.1569806210765;
+        Sun, 29 Sep 2019 18:16:50 -0700 (PDT)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
+        by smtp.gmail.com with ESMTPSA id c18sm3548982ljd.27.2019.09.29.18.16.49
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Sep 2019 18:16:50 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id a22so7662117ljd.0
+        for <linux-kernel@vger.kernel.org>; Sun, 29 Sep 2019 18:16:49 -0700 (PDT)
+X-Received: by 2002:a2e:3015:: with SMTP id w21mr10202435ljw.165.1569806209417;
+ Sun, 29 Sep 2019 18:16:49 -0700 (PDT)
+MIME-Version: 1.0
+References: <alpine.DEB.2.21.1909290010500.2636@nanos.tec.linutronix.de> <CAHk-=wgjC01UaoV35PZvGPnrQ812SRGPoV7Xp63BBFxAsJjvrg@mail.gmail.com>
+In-Reply-To: <CAHk-=wgjC01UaoV35PZvGPnrQ812SRGPoV7Xp63BBFxAsJjvrg@mail.gmail.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 29 Sep 2019 18:16:33 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wi0vxLmwEBn2Xgu7hZ0U8z2kN4sgCax+57ZJMVo3huDaQ@mail.gmail.com>
+Message-ID: <CAHk-=wi0vxLmwEBn2Xgu7hZ0U8z2kN4sgCax+57ZJMVo3huDaQ@mail.gmail.com>
+Subject: Re: x86/random: Speculation to the rescue
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        "Ahmed S. Darwish" <darwish.07@gmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Nicholas Mc Guire <hofrat@opentech.at>,
+        "the arch/x86 maintainers" <x86@kernel.org>,
+        Andy Lutomirski <luto@kernel.org>,
+        Kees Cook <keescook@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sat, Sep 28, 2019 at 4:53 PM Linus Torvalds
+<torvalds@linux-foundation.org> wrote:
+>
+> But hey, here's a made-up patch. It basically does jitter entropy, but
+> it uses a more complex load than the fibonacci LFSR folding: it calls
+> "schedule()" in a loop, and it sets up a timer to fire.
+
+Ok, I'm sure a lot of people will end up finding this distasteful, and
+I'll admit to just waffling about it myself.
+
+But I am supposed to close the merge window today, and honestly, I
+want _something_ to happen about the getrandom() issue during the 5.4
+merge cycle.
+
+So I had a few choices
+
+ - just ignore things and hope some consensus happens
+
+ - start the movement to a new getrandom() interface and encourage
+user space to say "yeah, I don't need _secure_ random numbers"
+
+ - or just say "hey, a lot of people find jitter entropy reasonable,
+so let's just try this".
+
+And I went with that last choice. If it works, it makes the
+getrandom() interface changes a non-issue.
+
+I'm not saying my patch is going to be the last word on the issue. I'm
+_personally_ ok with it and believe it's not crazy, and if it then
+makes serious people go "Eww" and send some improvements to it, then
+it has served its purpose.
+
+But I've committed that patch and the revert of the ext4 revert to a
+local branch, I'll do some basic testing of it (which honestly on my
+machines are kind of pointless, since all of them support rdrand), but
+assuming it passes the basic smoke tests - and I expect it to - I'll
+merge it for rc1.
+
+I also have my old readdir branch that I decided I want to merge due
+to the (completely independent) discussion about filldir issues, so
+I'll probably end up delaying rc1 until tomorrow, but just a heads up.
+I don't want to leave this until "some time later in the -rc series",
+although I will be _more_ than happy to have people send me fixes to
+my somewhat simplistic patch.
+
+That said, my patch may be simplistic, but I suspect using a loop with
+a real load like schedule() and arming a timer is a lot more realistic
+than some of the jitter entropy papers with their _very_ trivial
+LFSR's and some made-up pointer chasing.
+
+But yeah, I think improvements to it are also not unexpected or unreasonable ;)
+
+              Linus

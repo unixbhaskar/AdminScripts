@@ -1,0 +1,138 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp1616054lfc;
+        Sat, 25 Jan 2020 02:45:02 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzmdHHS9pOlASf6yYYX+YD2c3SdcplLDzJcYZDOYHs9WVHy6O6lHhhXCPOM9+RHK5Ubea/W
+X-Received: by 2002:a9d:4c94:: with SMTP id m20mr6113681otf.341.1579949102342;
+        Sat, 25 Jan 2020 02:45:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579949102; cv=none;
+        d=google.com; s=arc-20160816;
+        b=kk9XiLAcY2METek5LqJTJmlZkQNhzvR40+jbA6PLgA0idRcXgUMPk4p1gUGDozZFtU
+         ypU4enLrPcHOSrd3Spu4LQ7pyEjwqljlpuknIPJL1IGrWuXTY5PueE+7hebyHfe1jIHb
+         g5ktjcOMft9Lm/p6PV+ucZQaEKnyg8bwhH60hikcTsgGwDCcsymW4aXDkQptq/4lnuN/
+         mf3mBgoYVE6einw2akRhsDPml2dShhHoY6KjoJSQxeWwN7qorMNnFCQSwTVuaOpwgLRm
+         //N9HAQEmCV/mKy+xoNp1tcpJ4dzvB4ZwSKfaG6sDANCVY5URMXcAtbJhSFg3GsqUnKH
+         Y4TQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :robot-unsubscribe:robot-id:message-id:mime-version:cc:subject:to
+         :reply-to:from:date;
+        bh=dil8ZfvwsGvc/IWz5HvqLY8qgbtxg4X6bu8osqzU2L0=;
+        b=yaNOmJIOhHcg+35w58ULDSpB9BL4TSP+gPW2BqY5z8aEu1hqsXRzV2R4871t7McnGQ
+         s0aSZm01BJJwEpQLizDxrOLy39Mbe8uk+l7xsHdHEt9z/op7S9BrL56yB+dyVbcW5TSU
+         ytN17n2tgblVquIWL36EOZMo8g7gqCqHpBleZdFqCHz90deI6vc41YRfmnwDe2z+sWjK
+         arkPUtxXd61F0L770kRi5JuC2TCDoDpe/1jxXx0zZqdyUEYuxaNVqB57tyfJuVtDRNji
+         lJMLLaxueD8BhsUKS+ubPn8IJWnLTbwARKJ6CtMfERkrQ/gNBYXBEmxx/cyfjhN/3Bq4
+         Gqtw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id l14si969751oii.37.2020.01.25.02.44.51;
+        Sat, 25 Jan 2020 02:45:02 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729636AbgAYKnO (ORCPT <rfc822;hameed.s.mohideen@gmail.com>
+        + 99 others); Sat, 25 Jan 2020 05:43:14 -0500
+Received: from Galois.linutronix.de ([193.142.43.55]:44222 "EHLO
+        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729401AbgAYKnB (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 25 Jan 2020 05:43:01 -0500
+Received: from [5.158.153.53] (helo=tip-bot2.lab.linutronix.de)
+        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
+        (Exim 4.80)
+        (envelope-from <tip-bot2@linutronix.de>)
+        id 1ivIu2-0008Vr-VO; Sat, 25 Jan 2020 11:42:59 +0100
+Received: from [127.0.1.1] (localhost [IPv6:::1])
+        by tip-bot2.lab.linutronix.de (Postfix) with ESMTP id 3E5861C0105;
+        Sat, 25 Jan 2020 11:42:49 +0100 (CET)
+Date:   Sat, 25 Jan 2020 10:42:49 -0000
+From:   "tip-bot2 for Madhuparna Bhowmik" <tip-bot2@linutronix.de>
+Reply-to: linux-kernel@vger.kernel.org
+To:     linux-tip-commits@vger.kernel.org
+Subject: [tip: core/rcu] doc: Updated full list of RCU API in whatisRCU.rst
+Cc:     Madhuparna Bhowmik <madhuparnabhowmik04@gmail.com>,
+        Amol Grover <frextrite@gmail.com>,
+        Phong Tran <tranmanphong@gmail.com>,
+        "Paul E. McKenney" <paulmck@kernel.org>, x86 <x86@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+MIME-Version: 1.0
+Message-ID: <157994896906.396.7111674737424958367.tip-bot2@tip-bot2>
+X-Mailer: tip-git-log-daemon
+Robot-ID: <tip-bot2.linutronix.de>
+Robot-Unsubscribe: Contact <mailto:tglx@linutronix.de> to get blacklisted from these emails
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Linutronix-Spam-Score: -1.0
+X-Linutronix-Spam-Level: -
+X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+The following commit has been merged into the core/rcu branch of tip:
+
+Commit-ID:     17f0da13873ba393a72f14d41ffc8ff388e38723
+Gitweb:        https://git.kernel.org/tip/17f0da13873ba393a72f14d41ffc8ff388e38723
+Author:        Madhuparna Bhowmik <madhuparnabhowmik04@gmail.com>
+AuthorDate:    Mon, 11 Nov 2019 23:41:22 +05:30
+Committer:     Paul E. McKenney <paulmck@kernel.org>
+CommitterDate: Tue, 10 Dec 2019 18:51:54 -08:00
+
+doc: Updated full list of RCU API in whatisRCU.rst
+
+This patch updates the list of RCU API in whatisRCU.rst.
+
+Signed-off-by: Madhuparna Bhowmik <madhuparnabhowmik04@gmail.com>
+Tested-by: Amol Grover <frextrite@gmail.com>
+Tested-by: Phong Tran <tranmanphong@gmail.com>
+Signed-off-by: Paul E. McKenney <paulmck@kernel.org>
+---
+ Documentation/RCU/whatisRCU.rst |  9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/RCU/whatisRCU.rst b/Documentation/RCU/whatisRCU.rst
+index 2f6f6eb..c7f147b 100644
+--- a/Documentation/RCU/whatisRCU.rst
++++ b/Documentation/RCU/whatisRCU.rst
+@@ -884,11 +884,14 @@ in docbook.  Here is the list, by category.
+ RCU list traversal::
+ 
+ 	list_entry_rcu
++	list_entry_lockless
+ 	list_first_entry_rcu
+ 	list_next_rcu
+ 	list_for_each_entry_rcu
+ 	list_for_each_entry_continue_rcu
+ 	list_for_each_entry_from_rcu
++	list_first_or_null_rcu
++	list_next_or_null_rcu
+ 	hlist_first_rcu
+ 	hlist_next_rcu
+ 	hlist_pprev_rcu
+@@ -902,7 +905,7 @@ RCU list traversal::
+ 	hlist_bl_first_rcu
+ 	hlist_bl_for_each_entry_rcu
+ 
+-RCU pointer/list udate::
++RCU pointer/list update::
+ 
+ 	rcu_assign_pointer
+ 	list_add_rcu
+@@ -912,10 +915,12 @@ RCU pointer/list udate::
+ 	hlist_add_behind_rcu
+ 	hlist_add_before_rcu
+ 	hlist_add_head_rcu
++	hlist_add_tail_rcu
+ 	hlist_del_rcu
+ 	hlist_del_init_rcu
+ 	hlist_replace_rcu
+-	list_splice_init_rcu()
++	list_splice_init_rcu
++	list_splice_tail_init_rcu
+ 	hlist_nulls_del_init_rcu
+ 	hlist_nulls_del_rcu
+ 	hlist_nulls_add_head_rcu

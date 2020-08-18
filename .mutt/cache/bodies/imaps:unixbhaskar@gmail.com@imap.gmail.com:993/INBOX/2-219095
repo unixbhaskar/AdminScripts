@@ -1,0 +1,195 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp9854135lfc;
+        Fri, 17 Jan 2020 08:59:43 -0800 (PST)
+X-Google-Smtp-Source: APXvYqyjEl1evNjlj3QdE8snbT1C5i2M+6XvTiDl9iibKb3bul6v3mKdBc017ApSzSpFDkOhf98k
+X-Received: by 2002:a63:6d4f:: with SMTP id i76mr41734315pgc.301.1579280383061;
+        Fri, 17 Jan 2020 08:59:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579280383; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LZaQQVL/0u7uASJn/nJtUb+hfEHsABFAX0Iqa/UVvkQ1RNjbjFGoeD3enCXKoBB44Z
+         0eE96AB/jpY0uvN8uwQloEl512qvHoLvp7KvuBXeKxVFyXqdkTWgAoujMZBBoYJh+3l4
+         Jg+fXea9mTTKz1Cc66qKuECr92UnjhUgWLHkXfemabveVv/CzlXUzbJt5AEgrcWi1TFP
+         jCVe3UcsG5fq1EUuQjYJheyiIiixrrPA7HnjXXU5R0oDpCIsnb5L6NTPu1KA7+YpOhZ2
+         hW58BRi/ZFUTW/zhrQ5Nw0LbDSGOIZJFLrbREjsX1ge/ArV/Xz8xi/kjaHHG5vDm+KxN
+         PpUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:auto-submitted:references:in-reply-to:message-id:date
+         :subject:to:from;
+        bh=L0OPLI3v2ZFuUMAxcafY1PgtpDwbxPoDNmtTioOqObk=;
+        b=kdt5j3tgbZLiftmpA/e6+9pgY4IiIssNQ2UeUo+VMIOyJElf4HMzKumXWa0aJIQbFb
+         5eBD3g6spM3pT8pi4W4RuyqdX6IoOhN2nwpcC0lScy5GYse72N90s1zvKnpgRdRGn+en
+         ZcEuAYOjopPGHRoWPPYybSaN9xbSbA4wX/LufyZX0jNHoVurzcrWnXJpoYkxNl1t0lc8
+         rE3eTJeIJA3Tz90U3wK5qXJzM1KRv5pmb9K8kdcNut8gqJ1p+P/h6YEmipPTrqWJvff9
+         lSVom3nouYhfOvZ6nDc6mxG9FdcXDVi7G4DI1VFYY88gNLyyTdNPSWKq8evxv5ibBDEV
+         iUng==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of bugzilla_noreply@novell.com designates 137.65.250.171 as permitted sender) smtp.mailfrom=bugzilla_noreply@novell.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=novell.com
+Return-Path: <bugzilla_noreply@novell.com>
+Received: from mh.novell.com (monroe.provo.novell.com. [137.65.250.171])
+        by mx.google.com with ESMTPS id r8si25081419pgl.497.2020.01.17.08.59.42
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 17 Jan 2020 08:59:43 -0800 (PST)
+Received-SPF: pass (google.com: domain of bugzilla_noreply@novell.com designates 137.65.250.171 as permitted sender) client-ip=137.65.250.171;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of bugzilla_noreply@novell.com designates 137.65.250.171 as permitted sender) smtp.mailfrom=bugzilla_noreply@novell.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=novell.com
+Received: from novprvlin1092.provo.novell.com ([137.65.249.144])
+	by mh.novell.com with ESMTP (NOT encrypted); Fri, 17 Jan 2020 09:59:31 -0700
+Received: by novprvlin1092.provo.novell.com (Postfix, from userid 30)
+	id 084EE6404E; Fri, 17 Jan 2020 16:59:31 +0000 (UCT)
+From: bugzilla_noreply@novell.com
+To: unixbhaskar@gmail.com
+Subject: [Bug 1158777] dracut fails to create initrd because of
+ 05-convertfs.conf
+Date: Fri, 17 Jan 2020 16:59:29 +0000
+X-Bugzilla-Reason: CC Reporter
+X-Bugzilla-Type: changed
+X-Bugzilla-Watch-Reason: None
+X-Bugzilla-Classification: openSUSE
+X-Bugzilla-Product: openSUSE Tumbleweed
+X-Bugzilla-Component: Upgrade Problems
+X-Bugzilla-Version: Current
+X-Bugzilla-Keywords: 
+X-Bugzilla-Severity: Major
+X-Bugzilla-Who: thomas.blume@suse.com
+X-Bugzilla-Status: NEW
+X-Bugzilla-Priority: P2 - High
+X-Bugzilla-Assigned-To: daniel.molkentin@suse.com
+X-Bugzilla-QA-Contact: jsrain@suse.com
+X-Bugzilla-Target-Milestone: ---
+X-Bugzilla-Flags: 
+X-Bugzilla-Changed-Fields: cc
+X-Bugzilla-NTS-Support-Num: 
+Message-ID: <bug-1158777-87276-r5SVNH2zi5@http.bugzilla.opensuse.org/>
+In-Reply-To: <bug-1158777-87276@http.bugzilla.opensuse.org/>
+References: <bug-1158777-87276@http.bugzilla.opensuse.org/>
+Content-Type: multipart/alternative; boundary="1579280370.aE5Ff24.16380";
+ charset="UTF-8"
+X-Bugzilla-URL: http://bugzilla.opensuse.org/
+Auto-Submitted: auto-generated
+MIME-Version: 1.0
+
+
+--1579280370.aE5Ff24.16380
+Date: Fri, 17 Jan 2020 16:59:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+http://bugzilla.opensuse.org/show_bug.cgi?id=1158777
+http://bugzilla.opensuse.org/show_bug.cgi?id=1158777#c12
+
+Thomas Blume <thomas.blume@suse.com> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |thomas.blume@suse.com
+
+--- Comment #12 from Thomas Blume <thomas.blume@suse.com> ---
+(In reply to Philippe Condé from comment #11)
+> Questions
+> 
+> 1.Can I delete the first line in /etc/dracut.conf.d/05-convertfs.conf?
+
+yes, this line is obsolete.
+
+> 2.Can I delete the rd.convertfs in grub bootloader via Yast?
+
+yes, you can delete this too.
+
+> 3. When do we need a rd.convertfs in the bootloader command line and what is
+> it doing?
+
+This is to convert the obsolete directory /var/run into a symlink, like it is
+on new installations.
+When /var/run stays a directory, you will have the content of this directory
+twice, one time below /var/run and one time below /run.
+It seems that on your machine, the conversion of /var/run to a symlink fails
+for any reason.
+That makes the conversion code adding the conversion parameters again at each
+package update.
+I'm working on a fix for this and will provide a testpackage when it is ready.
+
+-- 
+You are receiving this mail because:
+You are on the CC list for the bug.
+You reported the bug.
+--1579280370.aE5Ff24.16380
+Date: Fri, 17 Jan 2020 16:59:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="http://bugzilla.opensuse.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:thomas.blume&#64;suse.com" title="Thomas Blume &lt;thomas.blume&#64;suse.com&gt;"> <span class="fn">Thomas Blume</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - dracut fails to create initrd because of 05-convertfs.conf"
+   href="http://bugzilla.opensuse.org/show_bug.cgi?id=1158777">bug 1158777</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>thomas.blume&#64;suse.com
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - dracut fails to create initrd because of 05-convertfs.conf"
+   href="http://bugzilla.opensuse.org/show_bug.cgi?id=1158777#c12">Comment # 12</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - dracut fails to create initrd because of 05-convertfs.conf"
+   href="http://bugzilla.opensuse.org/show_bug.cgi?id=1158777">bug 1158777</a>
+              from <span class="vcard"><a class="email" href="mailto:thomas.blume&#64;suse.com" title="Thomas Blume &lt;thomas.blume&#64;suse.com&gt;"> <span class="fn">Thomas Blume</span></a>
+</span></b>
+        <pre>(In reply to Philippe Condé from <a href="show_bug.cgi?id=1158777#c11">comment #11</a>)
+<span class="quote">&gt; Questions
+&gt; 
+&gt; 1.Can I delete the first line in /etc/dracut.conf.d/05-convertfs.conf?</span >
+
+yes, this line is obsolete.
+
+<span class="quote">&gt; 2.Can I delete the rd.convertfs in grub bootloader via Yast?</span >
+
+yes, you can delete this too.
+
+<span class="quote">&gt; 3. When do we need a rd.convertfs in the bootloader command line and what is
+&gt; it doing?</span >
+
+This is to convert the obsolete directory /var/run into a symlink, like it is
+on new installations.
+When /var/run stays a directory, you will have the content of this directory
+twice, one time below /var/run and one time below /run.
+It seems that on your machine, the conversion of /var/run to a symlink fails
+for any reason.
+That makes the conversion code adding the conversion parameters again at each
+package update.
+I'm working on a fix for this and will provide a testpackage when it is ready.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are on the CC list for the bug.</li>
+          <li>You reported the bug.</li>
+      </ul>
+    </body>
+</html>
+--1579280370.aE5Ff24.16380--

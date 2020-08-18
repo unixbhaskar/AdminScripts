@@ -1,0 +1,187 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp417284lfj;
+        Tue, 11 Aug 2020 07:31:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzQgACDUzQX4cIdxQf6Cq0ingeQL0Qo9z3uvMkvCvGgTsgzu+ms53gIoiC7OZ/rKc1FtTV6
+X-Received: by 2002:aa7:d5cb:: with SMTP id d11mr26556714eds.330.1597156315234;
+        Tue, 11 Aug 2020 07:31:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597156315; cv=none;
+        d=google.com; s=arc-20160816;
+        b=h7fY4yYe+0OJvdsGeqQTwAhJRHThvzfVtswjRRLWY3GAbp5SBYCiavLiyO+JcooUwS
+         NdGfUhm8OS1CLq8ftutCr7EzanFHGL+8kX60VbURxa7Q7P5Fnj8dSjpX/jP3NBENoYwL
+         O7jRTMbDB+JDAonfCVr25FaNY0kEmgGkPobcz6mX+SHoC19CbV4KULB5YDbwXZp78ghb
+         2rFaj5VgOcHu3rNula/p24tUysjEldC96ajfsh6lk5MaaAW0v/dDw3qXlkfveXLMTP8m
+         z4pA7ji0NYWniOtARED0RcLSVxDmZu7nDGKUY/16Y2Zt5qhGNC7HBT4RDh+d/6xvodp1
+         G/2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=KkzFrtv0c+qoPAhI6jwpG+PydA17UzEovGlcuGw1Sps=;
+        b=liVhQzgJsNL41vbpBZe6PfgEPgJEs5uJZXOsA79mIb6Z1wJaTY4qp7Z0FqgOR7qOqD
+         Ktvm7K4KjOAq0kiL3vk7RqLntpRc7JVk+Nx3V2++TRo3Kio7UrfZtaPGt7o56Mk2B/P1
+         Phc7ktjFYGEOiyJDB85nROdIgq53YqcolHl2GciWVkgZ1jPbG8UcF1UDCiWXqPl/g42T
+         gXeeouZnSpeBlzbNPD9DG3Fqz/xUWP+iBJHGxsJBinNCHWIIdUsjra6C5zogHBxHKgxP
+         cNLwkFDT/3Gm/sqM6p8ysYPCn9UeDCmcF2auAXsTVLH5ztlSRPp3IfFiUlfXjqfSjhyw
+         /dWg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linaro.org header.s=google header.b=Cm1Tcc1Q;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id i19si6720648ejh.715.2020.08.11.07.31.31;
+        Tue, 11 Aug 2020 07:31:55 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linaro.org header.s=google header.b=Cm1Tcc1Q;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728783AbgHKO3k (ORCPT <rfc822;luke.ovalle@gmail.com>
+        + 99 others); Tue, 11 Aug 2020 10:29:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50804 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728737AbgHKO3i (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 11 Aug 2020 10:29:38 -0400
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16EBC06174A
+        for <linux-kernel@vger.kernel.org>; Tue, 11 Aug 2020 07:29:37 -0700 (PDT)
+Received: by mail-lj1-x243.google.com with SMTP id v12so13734781ljc.10
+        for <linux-kernel@vger.kernel.org>; Tue, 11 Aug 2020 07:29:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KkzFrtv0c+qoPAhI6jwpG+PydA17UzEovGlcuGw1Sps=;
+        b=Cm1Tcc1QCdLhQB+oaKcHVbnlYt9sGsmFejuHFLKrI9QqSNl/Fse5iGu3VtFfWFDsVL
+         LaJZoICnAbnedb4SGXu5bdSED6k8LU8weTlxSQm2ZytW13SCmEDyW1aF2vQhRchu2b4X
+         QBa3FW9LTHR+lUp5HrNWKHC/u0rBwDQ1P24vRBZ79SRIMNPtOH6SnBB2JRla7wM1kFwM
+         M+2EfwC0j1xm+UOwmmQnQGMEwen81gnf482PeXuBfVRq0EmYU/uVd3M+ZShUxlhp5I//
+         Ctly+qbkrF0UN6hELmWq3OJKqAtfI2KN8HJTPxm8okIeDGWmXQ24pfW0E/JePUuaRLFW
+         Mi1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KkzFrtv0c+qoPAhI6jwpG+PydA17UzEovGlcuGw1Sps=;
+        b=Y9j824sBG4i9V827olDK7Yb1UNP6mN964rGj265cwuOP0nusXGisAqFzcvfGnD1kIV
+         yTYNrT2J64OIyc6yxtqAvxp57H/7u6EVU9tLePVOiDL8FusweGoEaqR9HK9Yp95mi+Bn
+         aEc+/AtwZH16nzoXO6gT+jVDk4Wti1stuKuo3IIh0uUxcnO3bAX6p4RD/gKmDSjHqTv5
+         uVw7nqxoe3bw8UsNgs9O/PvZUR5N2IAcDema5DQWARiqy2fdui1iQRQdlyJ6PJeFUsQS
+         sqSEcdcx7te5Y4RXbzV0SKrBjj+MYZemSGCIW38LLCI7u7pCrUZMh1u9i/Pfb3rVebrP
+         84lQ==
+X-Gm-Message-State: AOAM532n62jUS2j+CHuyTzemwJ4Ta6DK2MF/WrF+mcX05g4QTnsNKfks
+        vn+IuWdsCPXCayp8GME1hOx8cYNAwpWHNK5E9IFALA==
+X-Received: by 2002:a05:651c:1293:: with SMTP id 19mr3003077ljc.427.1597156176182;
+ Tue, 11 Aug 2020 07:29:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <1595333413-30052-1-git-send-email-sumit.garg@linaro.org>
+ <CAFA6WYMN=na4Pxnu1LYRVAAZRdV==5EwU-Vcq-QkRb_jaLiPmw@mail.gmail.com> <20200811135801.GA416071@kroah.com>
+In-Reply-To: <20200811135801.GA416071@kroah.com>
+From:   Sumit Garg <sumit.garg@linaro.org>
+Date:   Tue, 11 Aug 2020 19:59:24 +0530
+Message-ID: <CAFA6WYMN8i96rEZuHLnskB+4k0o=K9vF1_we83P04h2BSoGjmQ@mail.gmail.com>
+Subject: Re: [RFC 0/5] Introduce NMI aware serial drivers
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-serial@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
+        Jiri Slaby <jslaby@suse.com>,
+        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        Jason Wessel <jason.wessel@windriver.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Hi Greg,
+
+Thanks for your comments.
+
+On Tue, 11 Aug 2020 at 19:27, Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+>
+> On Tue, Aug 11, 2020 at 07:20:26PM +0530, Sumit Garg wrote:
+> > On Tue, 21 Jul 2020 at 17:40, Sumit Garg <sumit.garg@linaro.org> wrote:
+> > >
+> > > Make it possible for UARTs to trigger magic sysrq from an NMI. With the
+> > > advent of pseudo NMIs on arm64 it became quite generic to request serial
+> > > device interrupt as an NMI rather than IRQ. And having NMI driven serial
+> > > RX will allow us to trigger magic sysrq as an NMI and hence drop into
+> > > kernel debugger in NMI context.
+> > >
+> > > The major use-case is to add NMI debugging capabilities to the kernel
+> > > in order to debug scenarios such as:
+> > > - Primary CPU is stuck in deadlock with interrupts disabled and hence
+> > >   doesn't honor serial device interrupt. So having magic sysrq triggered
+> > >   as an NMI is helpful for debugging.
+> > > - Always enabled NMI based magic sysrq irrespective of whether the serial
+> > >   TTY port is active or not.
+> > >
+> > > Currently there is an existing kgdb NMI serial driver which provides
+> > > partial implementation in upstream to have a separate ttyNMI0 port but
+> > > that remained in silos with the serial core/drivers which made it a bit
+> > > odd to enable using serial device interrupt and hence remained unused. It
+> > > seems to be clearly intended to avoid almost all custom NMI changes to
+> > > the UART driver.
+> > >
+> > > But this patch-set allows the serial core/drivers to be NMI aware which
+> > > in turn provides NMI debugging capabilities via magic sysrq and hence
+> > > there is no specific reason to keep this special driver. So remove it
+> > > instead.
+> > >
+> > > Approach:
+> > > ---------
+> > >
+> > > The overall idea is to intercept serial RX characters in NMI context, if
+> > > those are specific to magic sysrq then allow corresponding handler to run
+> > > in NMI context. Otherwise, defer all other RX and TX operations onto IRQ
+> > > work queue in order to run those in normal interrupt context.
+> > >
+> > > This approach is demonstrated using amba-pl011 driver.
+> > >
+> > > Patch-wise description:
+> > > -----------------------
+> > >
+> > > Patch #1 prepares magic sysrq handler to be NMI aware.
+> > > Patch #2 adds NMI framework to serial core.
+> > > Patch #3 and #4 demonstrates NMI aware uart port using amba-pl011 driver.
+> > > Patch #5 removes kgdb NMI serial driver.
+> > >
+> > > Goal of this RFC:
+> > > -----------------
+> > >
+> > > My main reason for sharing this as an RFC is to help decide whether or
+> > > not to continue with this approach. The next step for me would to port
+> > > the work to a system with an 8250 UART.
+> > >
+> >
+> > A gentle reminder to seek feedback on this series.
+>
+> It's the middle of the merge window, and I can't do anything.
+>
+> Also, I almost never review RFC patches as I have have way too many
+> patches that people think are "right" to review first...
+>
+
+Okay, I understand and I can definitely wait for your feedback.
+
+> I suggest you work to flesh this out first and submit something that you
+> feels works properly.
+>
+
+IIUC, in order to make this approach substantial I need to make it
+work with 8250 UART (major serial driver), correct? As currently it
+works properly for amba-pl011 driver.
+
+> good luck!
+>
+
+Thanks.
+
+-Sumit
+
+> greg k-h

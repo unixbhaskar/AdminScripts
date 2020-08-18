@@ -1,0 +1,81 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp3547754lfj;
+        Mon, 23 Sep 2019 23:18:35 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwmfB0vM2c7uumL+0eNlalbeWfqlWgHyt7oKLsSibEgwZm4DhFLNY+88x7DnfHap0IX1diK
+X-Received: by 2002:adf:f4cd:: with SMTP id h13mr854750wrp.42.1569305915272;
+        Mon, 23 Sep 2019 23:18:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569305915; cv=none;
+        d=google.com; s=arc-20160816;
+        b=TQmZyaDtDt97Sk9BGwK2KKt+BsWQJ6nEuY+V846yZwKWFIkpsZhgBxgL3PIFiAjuDE
+         bLCr1JeWmVm9csjbKnKw9/rqFXR7RdBOSBuR5d9Adg4V85qQls5FazMJJe8RjkOhAPXx
+         YtwhtBVhEPO3INjNlY2ZWDZjn6JwOpYEWzDxCdUN5OVdALwS2BDlq03XSj/EApfsEzx4
+         I4UTaMDala66xn4511f7nItPEePtOS6pS+8lOV/XzNKBnGT2pdNQzQBcKKfNj7tvSG73
+         AnRxMpVMBqAuciRatPa7MVLnak92oH8X3aeq+HhXrVMJdJKm9lhhG/JcJo76QGU2YRfO
+         XPYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:to:from:date;
+        bh=nlDs0VqlB7c2+9jc/t0uxe53eiXTLLa1/SRlTU/1fDg=;
+        b=RA7eU7H6uR6gN0BAWZJHjBQ2Vxah5TAwpY8wwVkQgwkSoGHpx96JAZEjGCKCgtfhZk
+         YZ6DOqNLKpxw//o6cXPtlDhKqOyZpP2eYTQWKLJil0v2GJEEqkAJptFeSeP+qGjUWnQc
+         LihvKAS1cpK1IkRExQTNAmewssjSNEuy0l0n6LPZ0j/C6b/eoAKSPZXLWtb23JF2j7a5
+         hQRr5ipvRg+LDjKA0IsAqjnhFP7ODsMtDOZvoieZRpWAgn+uEHzdynB1n0lKxJZN0q4b
+         6SlaN740tRj2P4abMED4M24/dVx4qwC8H+VWZ+r54GNqu2tNEV2ZFAPKkukdksH14k13
+         k/7Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of w@1wt.eu designates 62.212.114.60 as permitted sender) smtp.mailfrom=w@1wt.eu
+Return-Path: <w@1wt.eu>
+Received: from 1wt.eu (wtarreau.pck.nerim.net. [62.212.114.60])
+        by mx.google.com with ESMTP id t11si738512wmf.17.2019.09.23.23.18.35
+        for <unixbhaskar@gmail.com>;
+        Mon, 23 Sep 2019 23:18:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of w@1wt.eu designates 62.212.114.60 as permitted sender) client-ip=62.212.114.60;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of w@1wt.eu designates 62.212.114.60 as permitted sender) smtp.mailfrom=w@1wt.eu
+Received: (from willy@localhost)
+	by pcw.home.local (8.15.2/8.15.2/Submit) id x8O6IXvC026337
+	for unixbhaskar@gmail.com; Tue, 24 Sep 2019 08:18:33 +0200
+Date: Tue, 24 Sep 2019 08:18:33 +0200
+From: Willy Tarreau <w@1wt.eu>
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Subject: Re: Ben sent 132 patches and Sasa sent 203 patches..woohooo!
+Message-ID: <20190924061833.GC26202@1wt.eu>
+References: <20190924053003.GA29856@Gentoo>
+ <20190924055202.GB26202@1wt.eu>
+ <20190924061354.GB29856@Gentoo>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190924061354.GB29856@Gentoo>
+User-Agent: Mutt/1.6.1 (2016-04-27)
+
+On Tue, Sep 24, 2019 at 11:43:57AM +0530, Bhaskar Chowdhury wrote:
+> On 07:52 Tue 24 Sep 2019, Willy Tarreau wrote:
+> > On Tue, Sep 24, 2019 at 11:00:06AM +0530, Bhaskar Chowdhury wrote:
+> > > Is this kind of heaving patching done before?? I can't recollect.
+> > 
+> > Yes it's being done, and quite frankly Bhaskar, this e-mail as well as
+> > all your other automated ones ("thanks a bunch") after each and every
+> > release do not bring any value and only add noise, particularly when
+> > developers are directly CCed. You should avoid this because you're
+> > training developers to systematically ignore your messages and the day
+> > you have a real question or issue to report, nobody will notice nor
+> > respond.
+> > 
+> > Just my two cents,
+> > Willy
+> 
+> Okay, Willy, I will take your suggestion. You are absolutely right. I
+> was trying to appreciate the effort put in by everyone nothing else.
+
+You know, the best rewards for developers is to see less bugs come after
+a release :-)
+
+> I will stop that from now on. Thank you so much for the heads up, I
+> should have realized much before, but as I said.
+
+Thank you! And I'm sure this will help you exchange more easily with
+developers in the future.
+
+Cheers,
+Willy

@@ -1,0 +1,289 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp570489lfg;
+        Fri, 3 Apr 2020 05:10:20 -0700 (PDT)
+X-Google-Smtp-Source: APiQypL6eU1Q2gIHGwehD5gL6v0zLL1xxQFwB+PBC9VQ+/Y+w3QkhbtaPN1EQ1PwLw2NNCM7Jift
+X-Received: by 2002:a62:3487:: with SMTP id b129mr8197569pfa.150.1585915820047;
+        Fri, 03 Apr 2020 05:10:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585915820; cv=none;
+        d=google.com; s=arc-20160816;
+        b=YBPJAYKVG/a7JvP9PH8L/YAfjS8zRho9dy9BfyDUIgbposGSys6p7BZndH0/Ftfm1T
+         +D0U7TkzdiotV7jPImcGoUxg+/X9jfCk8yKyoOauGWB2mTbrYUauiwpGB3BenRbMBGhJ
+         NIQ4Ii3SOiWcYwnYTaWY6KUSH3aEch0j0qbpS3WVSbKU/bWzSLb/i43grvEb/r09DAK/
+         uLlNM0GnJ/KDqlJJXMJzPIt9ksGbGP0IeqdgCDwLuvusGwcIRjRbZTCfpW1NgPsAiQZP
+         c906ZoXN6XqT/8xSKe2b2MqBhpdUqfFg+upwbkVxjYmhbbJzXd1T+xy2RppVNjZedjm4
+         mzeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:message-id:mime-version:subject:to:reply-to:from
+         :dkim-signature:dkim-signature;
+        bh=eqCqBsq15GT/NNd4AU1yh6hov4nUUXR6eccskYZi29A=;
+        b=Gfr5ogMpLlkG/wRLm8Nm2ONTrJOeDKJP3QnEE3MvhwYGi42P8A8XYkRckLE9BjQiko
+         DIr9wFcjz4LRydYgfFNu16gK9S4Ib5ZbxtzypzC/jMnB8uzWSPzsn1xrRDHLHoB9Yb86
+         vueKWOWq3qCsbf4fAAGjEQql9pZN7TGA4DTkEKhaATHRlMaFCndNZXXP+64JBunCyCLW
+         JqdTa9aZM8XZkgREjpIUhl/VMJBzqF8ygjAcPbA5D/r/vj/AS9ODNCPgSj/kK16CJhWR
+         uSNWcEN88LW9jtlYToCVVvGbbqcmRYir1hcsr0PZACtptbeIE1z9I/FCX/V97j22qTuI
+         9UXQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@hirist.com header.s=ozvbrksoc7uiy4j2462zlaldogoc7oyy header.b="tc/Xy/UB";
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=BZQpLOlU;
+       spf=pass (google.com: domain of 010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000@postmaster.hirist.com designates 54.240.27.16 as permitted sender) smtp.mailfrom=010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000@postmaster.hirist.com
+Return-Path: <010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000@postmaster.hirist.com>
+Received: from a27-16.smtp-out.us-west-2.amazonses.com (a27-16.smtp-out.us-west-2.amazonses.com. [54.240.27.16])
+        by mx.google.com with ESMTPS id a185si5927579pfa.16.2020.04.03.05.10.19
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Fri, 03 Apr 2020 05:10:20 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000@postmaster.hirist.com designates 54.240.27.16 as permitted sender) client-ip=54.240.27.16;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@hirist.com header.s=ozvbrksoc7uiy4j2462zlaldogoc7oyy header.b="tc/Xy/UB";
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=BZQpLOlU;
+       spf=pass (google.com: domain of 010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000@postmaster.hirist.com designates 54.240.27.16 as permitted sender) smtp.mailfrom=010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000@postmaster.hirist.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ozvbrksoc7uiy4j2462zlaldogoc7oyy; d=hirist.com; t=1585915819;
+	h=From:Reply-To:To:Subject:MIME-Version:Content-Type:Message-ID:Date;
+	bh=LnIpO9ZQ5vcrnlBKDBCyYfWJwvWEgc3jRyQ1leWE4U4=;
+	b=tc/Xy/UBLDd8GS6RkdwW+YabMnzTp2dFO/7j7zUTt590nhe3yNpIBC3YkGM0j4i5
+	YbKvBAQKkuyNKepKh0k/seRJ2imZ6+wg1vdB4Mbw9GI4KZgYFFCpBNoKI206kuMzs74
+	gvm3pdU0cwyveq+/dqAM7KiqnrnHfPxS6HXvnQ9s=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1585915819;
+	h=From:Reply-To:To:Subject:MIME-Version:Content-Type:Message-ID:Date:Feedback-ID;
+	bh=LnIpO9ZQ5vcrnlBKDBCyYfWJwvWEgc3jRyQ1leWE4U4=;
+	b=BZQpLOlU29t6nfxjoJRZjkl57Qw7lv8PCzYSUg5XW51lh0zKwN27pphGeAU03KVK
+	sIwRewomO2ZRvBOU8aoa0wSIuxFRdGmiIohsJZ88POggNpTXoddLwbWIah7kU2iQgb9
+	1wP9XDcAny+u9iFnFEeCFQ+XEfgfbkL1t6wgMeH0=
+From: "hirist.com" <info@hirist.com>
+Reply-To: info@hirist.com
+To: unixbhaskar@gmail.com
+Subject: hirist.com - Top Matching Jobs based on your preferences from
+ Leading IT/Tech Companies
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3821414_537007411.1585915819141"
+Message-ID: <010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000@us-west-2.amazonses.com>
+Date: Fri, 3 Apr 2020 12:10:19 +0000
+X-SES-Outgoing: 2020.04.03-54.240.27.16
+Feedback-ID: 1.us-west-2.qwcXgh25GITLsLx1ZZUGQwRNefECmFrWT39Dpe8Y7Fk=:AmazonSES
+
+------=_Part_3821414_537007411.1585915819141
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hello Bhaskar Chowdhury,<br><br>Below are the top Matching jobs based on yo=
+ur job feed tags, experience range, and location preference(s). Click on an=
+y job link to apply. <br><ul><li style=3D"margin-left:0px;">31/03 - <a titl=
+e=3D"Abinitio Developer - ETL/Data Modeling (2-11 yrs)" href=3D"https://www=
+.hirist.com/j/Abinitio-Developer---ETL-Data-Modeling-2-11-yrs-578946.html?r=
+ef=3Dep_ev"> Abinitio Developer - ETL/Data Modeling (2-11 yrs)</a> - Chenna=
+i</li><br style=3D"padding:10px 10px;" /><li style=3D"margin-left:0px;">02/=
+04 - <a title=3D"Senior AWS Administrator/Solution Architect - Applications=
+ & Database Migration (5-15 yrs)" href=3D"https://www.hirist.com/j/Senior-A=
+WS-Administrator-Solution-Architect---Applications-%26-Database-Migration-5=
+-15-yrs-579992.html?ref=3Dep_ev"> Senior AWS Administrator/Solution Archite=
+ct - Applications & Database Migration (5-15 yrs)</a> - Any Location/Bangal=
+ore/Chennai/Hyderabad/Pune</li><br style=3D"padding:10px 10px;" /><li style=
+=3D"margin-left:0px;">30/03 - <a title=3D"Cloud Unix Administrator - ITIL C=
+ertified (5-12 yrs)" href=3D"https://www.hirist.com/j/Cloud-Unix-Administra=
+tor---ITIL-Certified-5-12-yrs-578618.html?ref=3Dep_ev"> Cloud Unix Administ=
+rator - ITIL Certified (5-12 yrs)</a> - Anywhere in India/Multiple Location=
+s/Bangalore/Chennai/Gurgaon/Gurugram/Hyderabad/Noida/Pune</li><br style=3D"=
+padding:10px 10px;" /><a title=3D'more jobs' href=3D'https://www.hirist.com=
+/jobfeed/?ref=3Dep_more_ev'> More jobs >></a><br/><br/></ul>Jobs which are =
+matching your tags preferences but outside your experience  and location pr=
+eferences. You can consider these jobs as well. <br><ul><li style=3D"margin=
+-left:0px;">03/04 - <a title=3D"Lead Full Stack Developer - Java/J2EE (6-10=
+ yrs)" href=3D"https://www.hirist.com/j/Lead-Full-Stack-Developer---Java-J2=
+EE-6-10-yrs-580241.html?ref=3Dep_sec2_ev"> Lead Full Stack Developer - Java=
+/J2EE (6-10 yrs)</a> - Pune</li><br style=3D"padding:10px 10px;" /><li styl=
+e=3D"margin-left:0px;">03/04 - <a title=3D"Middleware Developer - Java/Mult=
+ithreading/Data Structure (3-8 yrs)" href=3D"https://www.hirist.com/j/Middl=
+eware-Developer---Java-Multithreading-Data-Structure-3-8-yrs-580125.html?re=
+f=3Dep_sec2_ev"> Middleware Developer - Java/Multithreading/Data Structure =
+(3-8 yrs)</a> - Bangalore</li><br style=3D"padding:10px 10px;" /><li style=
+=3D"margin-left:0px;">03/04 - <a title=3D"Machine Learning Scientist - Pyth=
+on/Java/C++ (8-12 yrs)" href=3D"https://www.hirist.com/j/Machine-Learning-S=
+cientist---Python-Java-C%2B%2B-8-12-yrs-580098.html?ref=3Dep_sec2_ev"> Mach=
+ine Learning Scientist - Python/Java/C++ (8-12 yrs)</a> - Hyderabad</li><br=
+ style=3D"padding:10px 10px;" /><li style=3D"margin-left:0px;">03/04 - <a t=
+itle=3D"Senior Scientist/NLP/Machine Learning/Data Mining Professional (2-1=
+0 yrs)" href=3D"https://www.hirist.com/j/Senior-Scientist-NLP-Machine-Learn=
+ing-Data-Mining-Professional-2-10-yrs-580084.html?ref=3Dep_sec2_ev"> Senior=
+ Scientist/NLP/Machine Learning/Data Mining Professional (2-10 yrs)</a> - B=
+angalore</li><br style=3D"padding:10px 10px;" /><li style=3D"margin-left:0p=
+x;">03/04 - <a title=3D"Software Development Manager - Machine Learning - J=
+ava/Perl/AWS/Agile/Scrum (10-15 yrs)" href=3D"https://www.hirist.com/j/Soft=
+ware-Development-Manager---Machine-Learning---Java-Perl-AWS-Agile-Scrum-10-=
+15-yrs-580057.html?ref=3Dep_sec2_ev"> Software Development Manager - Machin=
+e Learning - Java/Perl/AWS/Agile/Scrum (10-15 yrs)</a> - Bangalore</li><br =
+style=3D"padding:10px 10px;" /><li style=3D"margin-left:0px;">03/04 - <a ti=
+tle=3D"Machine Learning Scientist - Python/Java/C++ (8-12 yrs)" href=3D"htt=
+ps://www.hirist.com/j/Machine-Learning-Scientist---Python-Java-C%2B%2B-8-12=
+-yrs-580049.html?ref=3Dep_sec2_ev"> Machine Learning Scientist - Python/Jav=
+a/C++ (8-12 yrs)</a> - Hyderabad</li><br style=3D"padding:10px 10px;" /><li=
+ style=3D"margin-left:0px;">02/04 - <a title=3D"Middleware Developer - USB/=
+Kernel/Multithreading (3-8 yrs)" href=3D"https://www.hirist.com/j/Middlewar=
+e-Developer---USB-Kernel-Multithreading-3-8-yrs-580014.html?ref=3Dep_sec2_e=
+v"> Middleware Developer - USB/Kernel/Multithreading (3-8 yrs)</a> - Bangal=
+ore</li><br style=3D"padding:10px 10px;" /><li style=3D"margin-left:0px;">0=
+2/04 - <a title=3D"Senior Developer - USB/Embedded System (3-8 yrs)" href=
+=3D"https://www.hirist.com/j/Senior-Developer---USB-Embedded-System-3-8-yrs=
+-580004.html?ref=3Dep_sec2_ev"> Senior Developer - USB/Embedded System (3-8=
+ yrs)</a> - Bangalore</li><br style=3D"padding:10px 10px;" /><li style=3D"m=
+argin-left:0px;">02/04 - <a title=3D"Backup Engineer - Installation & Confi=
+guration (5-10 yrs)" href=3D"https://www.hirist.com/j/Backup-Engineer---Ins=
+tallation-%26-Configuration-5-10-yrs-579925.html?ref=3Dep_sec2_ev"> Backup =
+Engineer - Installation & Configuration (5-10 yrs)</a> - Hyderabad</li><br =
+style=3D"padding:10px 10px;" /><a title=3D'more jobs' href=3D'https://www.h=
+irist.com/jobfeed/?ref=3Dep_sec2_more_ev'>More jobs >></a><br/></ul><br/>He=
+re's the list of keywords you are following -<br/><br/><a href=3D'https://w=
+ww.hirist.com/k/linux-jobs-23.html?ref=3Dejf_tags'>Linux</a> <a href=3D'htt=
+ps://www.hirist.com/tags?ref=3Dejf_mytags'>More...</a><br/><br/><a title=3D=
+'click to follow/unfollow keywords' href=3D'https://www.hirist.com/meta/?re=
+f=3Dejf_meta'>Click here</a> to view all keywords - <a title=3D'click to fo=
+llow/unfollow keywords' href=3D'https://www.hirist.com/meta/?ref=3Dejf_meta=
+'>www.hirist.com/meta</a><br/><br/><br/>Please try our new mobile app on <a=
+ href=3D"http://bit.ly/hiristAndroid">Android</a> or <a href=3D"http://bit.=
+ly/hiristiPhone">iPhone</a> and do let us know your feedback - mobile@hiris=
+t.com<br><br>Best Regards,<br> Team hirist.com<br/><br/><p style=3D'color:#=
+787878;font-size:11px;'>___________________________________________________=
+______________________________________________________<br><br/>You are rece=
+iving this email because you are registered to hirist.com as a Jobseeker.<b=
+r/>If you don't want to receive emails like these anymore, you can <a href=
+=3D"https://www.hirist.com/settings?ref=3Dep_ev"> Unsubscribe</a> <br/><br/=
+>Copyright &#169; 2019 hirist.com. All rights reserved. <br/>Sent by hirist=
+.com | 6th Floor, Kings Mall, Sector - 10, Rohini, Delhi-85</p>
+------=_Part_3821414_537007411.1585915819141
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hello Bhaskar Chowdhury,<br><br>Below are the top Matching jobs based on yo=
+ur job feed tags, experience range, and location preference(s). Click on an=
+y job link to apply. <br><ul><li style=3D"margin-left:0px;">31/03 - <a titl=
+e=3D"Abinitio Developer - ETL/Data Modeling (2-11 yrs)" href=3D"https://pos=
+toffice.hirist.com/CL0/https:%2F%2Fwww.hirist.com%2Fj%2FAbinitio-Developer-=
+--ETL-Data-Modeling-2-11-yrs-578946.html%3Fref=3Dep_ev/1/010101713ff2f484-7=
+25e4695-4c96-4323-9cd2-dbd2258d2287-000000/BXJL3mimmRlJ59fCwsH4sa_EJA8QZN-X=
+EScrl8-ZsIc=3D135"> Abinitio Developer - ETL/Data Modeling (2-11 yrs)</a> -=
+ Chennai</li><br style=3D"padding:10px 10px;" /><li style=3D"margin-left:0p=
+x;">02/04 - <a title=3D"Senior AWS Administrator/Solution Architect - Appli=
+cations & Database Migration (5-15 yrs)" href=3D"https://postoffice.hirist.=
+com/CL0/https:%2F%2Fwww.hirist.com%2Fj%2FSenior-AWS-Administrator-Solution-=
+Architect---Applications-%2526-Database-Migration-5-15-yrs-579992.html%3Fre=
+f=3Dep_ev/1/010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000/4Z=
+NtAVVaEIHoc5L7nrWIey6jELrRL_fgljD3qfOioNY=3D135"> Senior AWS Administrator/=
+Solution Architect - Applications & Database Migration (5-15 yrs)</a> - Any=
+ Location/Bangalore/Chennai/Hyderabad/Pune</li><br style=3D"padding:10px 10=
+px;" /><li style=3D"margin-left:0px;">30/03 - <a title=3D"Cloud Unix Admini=
+strator - ITIL Certified (5-12 yrs)" href=3D"https://postoffice.hirist.com/=
+CL0/https:%2F%2Fwww.hirist.com%2Fj%2FCloud-Unix-Administrator---ITIL-Certif=
+ied-5-12-yrs-578618.html%3Fref=3Dep_ev/1/010101713ff2f484-725e4695-4c96-432=
+3-9cd2-dbd2258d2287-000000/n_rFKDE7x9UO47AENIMuAEdm8x8ulRSCYfMXQs_tyBc=3D13=
+5"> Cloud Unix Administrator - ITIL Certified (5-12 yrs)</a> - Anywhere in =
+India/Multiple Locations/Bangalore/Chennai/Gurgaon/Gurugram/Hyderabad/Noida=
+/Pune</li><br style=3D"padding:10px 10px;" /><a title=3D'more jobs' href=3D=
+'https://postoffice.hirist.com/CL0/https:%2F%2Fwww.hirist.com%2Fjobfeed%2F%=
+3Fref=3Dep_more_ev/1/010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-=
+000000/6r1D8YTeDsvWDZUR88OS_0iH3z-ex0Hqkje5zGaeLaQ=3D135'> More jobs >></a>=
+<br/><br/></ul>Jobs which are matching your tags preferences but outside yo=
+ur experience  and location preferences. You can consider these jobs as wel=
+l. <br><ul><li style=3D"margin-left:0px;">03/04 - <a title=3D"Lead Full Sta=
+ck Developer - Java/J2EE (6-10 yrs)" href=3D"https://postoffice.hirist.com/=
+CL0/https:%2F%2Fwww.hirist.com%2Fj%2FLead-Full-Stack-Developer---Java-J2EE-=
+6-10-yrs-580241.html%3Fref=3Dep_sec2_ev/1/010101713ff2f484-725e4695-4c96-43=
+23-9cd2-dbd2258d2287-000000/R1u5TRF2IFGQPm7Vn_EjPWN3FzKfP2FgaKsmJVBD_mk=3D1=
+35"> Lead Full Stack Developer - Java/J2EE (6-10 yrs)</a> - Pune</li><br st=
+yle=3D"padding:10px 10px;" /><li style=3D"margin-left:0px;">03/04 - <a titl=
+e=3D"Middleware Developer - Java/Multithreading/Data Structure (3-8 yrs)" h=
+ref=3D"https://postoffice.hirist.com/CL0/https:%2F%2Fwww.hirist.com%2Fj%2FM=
+iddleware-Developer---Java-Multithreading-Data-Structure-3-8-yrs-580125.htm=
+l%3Fref=3Dep_sec2_ev/1/010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d228=
+7-000000/Xe5IXKDf2W1ScXxjH_AeGjvny98WuidAqzTAnRABS7s=3D135"> Middleware Dev=
+eloper - Java/Multithreading/Data Structure (3-8 yrs)</a> - Bangalore</li><=
+br style=3D"padding:10px 10px;" /><li style=3D"margin-left:0px;">03/04 - <a=
+ title=3D"Machine Learning Scientist - Python/Java/C++ (8-12 yrs)" href=3D"=
+https://postoffice.hirist.com/CL0/https:%2F%2Fwww.hirist.com%2Fj%2FMachine-=
+Learning-Scientist---Python-Java-C%252B%252B-8-12-yrs-580098.html%3Fref=3De=
+p_sec2_ev/1/010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000/zm=
+IGyhLgflBR8gUXFd9a3YOHS6Y45huuRYYuaUDkWDs=3D135"> Machine Learning Scientis=
+t - Python/Java/C++ (8-12 yrs)</a> - Hyderabad</li><br style=3D"padding:10p=
+x 10px;" /><li style=3D"margin-left:0px;">03/04 - <a title=3D"Senior Scient=
+ist/NLP/Machine Learning/Data Mining Professional (2-10 yrs)" href=3D"https=
+://postoffice.hirist.com/CL0/https:%2F%2Fwww.hirist.com%2Fj%2FSenior-Scient=
+ist-NLP-Machine-Learning-Data-Mining-Professional-2-10-yrs-580084.html%3Fre=
+f=3Dep_sec2_ev/1/010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-0000=
+00/ERVNqRlRhe4ZgkEuAC22TY76j31CunRqM8qYUzFPzxI=3D135"> Senior Scientist/NLP=
+/Machine Learning/Data Mining Professional (2-10 yrs)</a> - Bangalore</li><=
+br style=3D"padding:10px 10px;" /><li style=3D"margin-left:0px;">03/04 - <a=
+ title=3D"Software Development Manager - Machine Learning - Java/Perl/AWS/A=
+gile/Scrum (10-15 yrs)" href=3D"https://postoffice.hirist.com/CL0/https:%2F=
+%2Fwww.hirist.com%2Fj%2FSoftware-Development-Manager---Machine-Learning---J=
+ava-Perl-AWS-Agile-Scrum-10-15-yrs-580057.html%3Fref=3Dep_sec2_ev/1/0101017=
+13ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000/5TR7EK3pJth28a5MFe4WF=
+V7f0uKZhKWeeggKRMKi7Zk=3D135"> Software Development Manager - Machine Learn=
+ing - Java/Perl/AWS/Agile/Scrum (10-15 yrs)</a> - Bangalore</li><br style=
+=3D"padding:10px 10px;" /><li style=3D"margin-left:0px;">03/04 - <a title=
+=3D"Machine Learning Scientist - Python/Java/C++ (8-12 yrs)" href=3D"https:=
+//postoffice.hirist.com/CL0/https:%2F%2Fwww.hirist.com%2Fj%2FMachine-Learni=
+ng-Scientist---Python-Java-C%252B%252B-8-12-yrs-580049.html%3Fref=3Dep_sec2=
+_ev/1/010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000/V_2oFR-p=
+3gJwxv2bBk_s6ifWiGH7HmRmIlr4YHb3aHk=3D135"> Machine Learning Scientist - Py=
+thon/Java/C++ (8-12 yrs)</a> - Hyderabad</li><br style=3D"padding:10px 10px=
+;" /><li style=3D"margin-left:0px;">02/04 - <a title=3D"Middleware Develope=
+r - USB/Kernel/Multithreading (3-8 yrs)" href=3D"https://postoffice.hirist.=
+com/CL0/https:%2F%2Fwww.hirist.com%2Fj%2FMiddleware-Developer---USB-Kernel-=
+Multithreading-3-8-yrs-580014.html%3Fref=3Dep_sec2_ev/1/010101713ff2f484-72=
+5e4695-4c96-4323-9cd2-dbd2258d2287-000000/HEtYdyLJAJqkPCZuxW4MlOI1m9m43pF5c=
+0ylYjZO0Xg=3D135"> Middleware Developer - USB/Kernel/Multithreading (3-8 yr=
+s)</a> - Bangalore</li><br style=3D"padding:10px 10px;" /><li style=3D"marg=
+in-left:0px;">02/04 - <a title=3D"Senior Developer - USB/Embedded System (3=
+-8 yrs)" href=3D"https://postoffice.hirist.com/CL0/https:%2F%2Fwww.hirist.c=
+om%2Fj%2FSenior-Developer---USB-Embedded-System-3-8-yrs-580004.html%3Fref=
+=3Dep_sec2_ev/1/010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-00000=
+0/h3EBojH20Liz-VgSsF0HsBkAi1xqvFtlCi3Inp1OHR0=3D135"> Senior Developer - US=
+B/Embedded System (3-8 yrs)</a> - Bangalore</li><br style=3D"padding:10px 1=
+0px;" /><li style=3D"margin-left:0px;">02/04 - <a title=3D"Backup Engineer =
+- Installation & Configuration (5-10 yrs)" href=3D"https://postoffice.hiris=
+t.com/CL0/https:%2F%2Fwww.hirist.com%2Fj%2FBackup-Engineer---Installation-%=
+2526-Configuration-5-10-yrs-579925.html%3Fref=3Dep_sec2_ev/1/010101713ff2f4=
+84-725e4695-4c96-4323-9cd2-dbd2258d2287-000000/fJrY0wDj_x6GEmn-ohLbFvpNufHC=
+z3eRLx4QNWTJxv0=3D135"> Backup Engineer - Installation & Configuration (5-1=
+0 yrs)</a> - Hyderabad</li><br style=3D"padding:10px 10px;" /><a title=3D'm=
+ore jobs' href=3D'https://postoffice.hirist.com/CL0/https:%2F%2Fwww.hirist.=
+com%2Fjobfeed%2F%3Fref=3Dep_sec2_more_ev/1/010101713ff2f484-725e4695-4c96-4=
+323-9cd2-dbd2258d2287-000000/mVfqJRHaXqAucH-dynGFS0SudnGQ2eT68_hLFPetbrk=3D=
+135'>More jobs >></a><br/></ul><br/>Here's the list of keywords you are fol=
+lowing -<br/><br/><a href=3D'https://postoffice.hirist.com/CL0/https:%2F%2F=
+www.hirist.com%2Fk%2Flinux-jobs-23.html%3Fref=3Dejf_tags/1/010101713ff2f484=
+-725e4695-4c96-4323-9cd2-dbd2258d2287-000000/q6X-uZX0MYNW965LMw90kP2HZEnzGC=
+Bw8t95eul0uc4=3D135'>Linux</a> <a href=3D'https://postoffice.hirist.com/CL0=
+/https:%2F%2Fwww.hirist.com%2Ftags%3Fref=3Dejf_mytags/1/010101713ff2f484-72=
+5e4695-4c96-4323-9cd2-dbd2258d2287-000000/6eiScDhGPYGKMroxIXMYoS_DcP6Kjc3xj=
+1t6Yvw8-tY=3D135'>More...</a><br/><br/><a title=3D'click to follow/unfollow=
+ keywords' href=3D'https://postoffice.hirist.com/CL0/https:%2F%2Fwww.hirist=
+.com%2Fmeta%2F%3Fref=3Dejf_meta/1/010101713ff2f484-725e4695-4c96-4323-9cd2-=
+dbd2258d2287-000000/kMlyXfwMOdcqv56hAcw0_cQ6hA92n0AJdYTvBfSRMdk=3D135'>Clic=
+k here</a> to view all keywords - <a title=3D'click to follow/unfollow keyw=
+ords' href=3D'https://postoffice.hirist.com/CL0/https:%2F%2Fwww.hirist.com%=
+2Fmeta%2F%3Fref=3Dejf_meta/2/010101713ff2f484-725e4695-4c96-4323-9cd2-dbd22=
+58d2287-000000/2F2KaxbwKTpXUQugEACoGY81bNE3NUbWvKW4Rj8b5a0=3D135'>www.hiris=
+t.com/meta</a><br/><br/><br/>Please try our new mobile app on <a href=3D"ht=
+tp://postoffice.hirist.com/CL0/http:%2F%2Fbit.ly%2FhiristAndroid/1/01010171=
+3ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000/bwmS635RBv73CZWO-BdKpj=
+-rtdsrszKI6AtqX9etOxk=3D135">Android</a> or <a href=3D"http://postoffice.hi=
+rist.com/CL0/http:%2F%2Fbit.ly%2FhiristiPhone/1/010101713ff2f484-725e4695-4=
+c96-4323-9cd2-dbd2258d2287-000000/i16los7gSF07XDg5BWFuoN8S3WOZVEWCxCfN70sgN=
+cc=3D135">iPhone</a> and do let us know your feedback - mobile@hirist.com<b=
+r><br>Best Regards,<br> Team hirist.com<br/><br/><p style=3D'color:#787878;=
+font-size:11px;'>__________________________________________________________=
+_______________________________________________<br><br/>You are receiving t=
+his email because you are registered to hirist.com as a Jobseeker.<br/>If y=
+ou don't want to receive emails like these anymore, you can <a href=3D"http=
+s://postoffice.hirist.com/CL0/https:%2F%2Fwww.hirist.com%2Fsettings%3Fref=
+=3Dep_ev/1/010101713ff2f484-725e4695-4c96-4323-9cd2-dbd2258d2287-000000/xRR=
+5gIgnsxECQo6qA6S77gWfGxQMV0UyqeS3o38LbhM=3D135"> Unsubscribe</a> <br/><br/>=
+Copyright &#169; 2019 hirist.com. All rights reserved. <br/>Sent by hirist.=
+com | 6th Floor, Kings Mall, Sector - 10, Rohini, Delhi-85</p><img alt=3D""=
+ src=3D"http://postoffice.hirist.com/CI0/010101713ff2f484-725e4695-4c96-432=
+3-9cd2-dbd2258d2287-000000/BToC9GWY0a0YsYDNvzyx2XY2GfBkvZFbVNnnzSLSmZk=3D13=
+5" style=3D"display: none; width: 1px; height: 1px;">
+
+------=_Part_3821414_537007411.1585915819141--

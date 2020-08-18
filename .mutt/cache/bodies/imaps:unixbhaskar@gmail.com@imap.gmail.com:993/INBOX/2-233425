@@ -1,0 +1,156 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp2052305lfg;
+        Sat, 11 Apr 2020 13:58:34 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJ7QHA/B8axdPSLesChMWO9FfCaD9vefW/rJOSn4DCGJ8ZI8WoEagQYQWuGyBB8qJbjJA9G
+X-Received: by 2002:aed:25c1:: with SMTP id y1mr5108713qtc.344.1586638714432;
+        Sat, 11 Apr 2020 13:58:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586638714; cv=none;
+        d=google.com; s=arc-20160816;
+        b=L2CUPE3C2VMewJwr5eaRkcxJSZmUPhJfmchw6AInQnbk/atog/B9FcTxXqpwVHU3nD
+         Zull6Q168MEmhrXrTYkqF6C4fHxSjnM8YdT8v3ZifoGDLkgqGdJ8kxjOFcZigsO+w2xP
+         /kvTWQ5Lxw4358i8D4Y0dWFO5cjFtgtMpWMjHTLMeuu0207pJ0C8S0VzXBYTuuZ8JerS
+         Fb7DqbCHR4qXZyGa5VJVNJiyRhrNOZknWbRcFR46c/xhEiz/GvkWZxjeMy5LZXPdj0eJ
+         OhTJCOmEW59sO36VEi/MUw2JODCfgwSaYQQWGsPgM9a9rnGtHRa5NZXYF22vDWmVmVSN
+         DSBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=eWYOxbXFRnbNvAiB3r8nYDFiXyRHEzA+YDF9hheoCek=;
+        b=utDNCy+zaSk21Byuj1qS7sn16cTLHoOdmqe/B5cn9kYe/qCs2EooXpaRwei2M3FzG8
+         nRaFFf6iIRtUS08aQ/z/kzk7BE6dSvkRoJO2puu9ZL6PQ7bVM1rdyQVQP/ewQrPheyGl
+         zp484xmVWb9qCWb3brNhPGTq2x3V0kB8pdHNUbzrrl6kTVxLsK70CNx4PuOsW6SNamO9
+         fy5nNp4PLPScZCg2vauzvBlpieOxqzU6Im3ILYqIp4mp4dN23jrDm/FELJWqSI2wBFZq
+         0OopKJ8PDFZ1irRQfApZxX3H3q6AyeK/YB9Mc31ToSz0OPUUxs4nyl3zl/9ITNS/Q5ML
+         1tOg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=d38VMacm;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id o5si988763qtr.207.2020.04.11.13.58.19;
+        Sat, 11 Apr 2020 13:58:34 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=d38VMacm;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726761AbgDKU6R (ORCPT <rfc822;mattkilgore12@gmail.com>
+        + 99 others); Sat, 11 Apr 2020 16:58:17 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:47051 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726565AbgDKU6R (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 11 Apr 2020 16:58:17 -0400
+Received: by mail-lf1-f68.google.com with SMTP id m19so3721231lfq.13
+        for <linux-kernel@vger.kernel.org>; Sat, 11 Apr 2020 13:58:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eWYOxbXFRnbNvAiB3r8nYDFiXyRHEzA+YDF9hheoCek=;
+        b=d38VMacm5CC5OO6PkiOjO+BmV1qUgyaDDCExE9nJj04S8R8ZwUN0ijSLBpjR9kG73i
+         e2H+lVwaVML/nJgrm+owTR9pLMhaaGbA+Fp3vWA06siDzigMBK4wCw4Vmyc4WCSJaqxE
+         J1zxKymqjHSdEO1H49jzOWxRMaUDOJSreZ3oQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eWYOxbXFRnbNvAiB3r8nYDFiXyRHEzA+YDF9hheoCek=;
+        b=RQdLeOq/FUYCdYJyuuTNwjyUNeKuhbXDiTfOvlhA0ROP2Z+aULxLqSjerDnlMhbcwT
+         ddyuShLJayho7qwdZ3BEbEISDJMvz/8A1Zh8H+iGBl/qvAeaqb1z1UC1F6Kdo0k795Fg
+         AcN5gfvCEgzwdnUnto9kX3WWzD2du4An9bxSw3TTFifbgX0LDw9Zf2r12699HlPrTNNp
+         LMWYharKDlqLhmm6pniKV5wglFKds88DUqJCfUkErC+m5MMwykTEsL1pdmFiWoi6WUR5
+         rfYYrfmP2ij+NJ5YlkfoRsdqfB55bL6oXqpDb2s6QkgpKueGq1rwM88FtWWQ20OlTboT
+         IXZg==
+X-Gm-Message-State: AGi0PubWOKvC0CtWqelkrNFdyr0ZLti1C3vXTvPRfBgBlX94ZDKglwdc
+        D+yG8iEAR3aYYeBeHF01KwzO1ZXkiZc=
+X-Received: by 2002:ac2:4304:: with SMTP id l4mr2997930lfh.87.1586638694284;
+        Sat, 11 Apr 2020 13:58:14 -0700 (PDT)
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com. [209.85.167.54])
+        by smtp.gmail.com with ESMTPSA id u7sm4603141lfu.3.2020.04.11.13.58.13
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Apr 2020 13:58:13 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id m19so3721198lfq.13
+        for <linux-kernel@vger.kernel.org>; Sat, 11 Apr 2020 13:58:13 -0700 (PDT)
+X-Received: by 2002:a19:7706:: with SMTP id s6mr6058553lfc.31.1586638692669;
+ Sat, 11 Apr 2020 13:58:12 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200411203220.GG21484@bombadil.infradead.org>
+In-Reply-To: <20200411203220.GG21484@bombadil.infradead.org>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sat, 11 Apr 2020 13:57:56 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgCAGVwAVTuaoJu4bF99JEG66iN7_vzih=Z33GMmOTC_Q@mail.gmail.com>
+Message-ID: <CAHk-=wgCAGVwAVTuaoJu4bF99JEG66iN7_vzih=Z33GMmOTC_Q@mail.gmail.com>
+Subject: Re: [GIT PULL] Rename page_offset() to page_pos()
+To:     Matthew Wilcox <willy@infradead.org>
+Cc:     linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Linux-MM <linux-mm@kvack.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sat, Apr 11, 2020 at 1:32 PM Matthew Wilcox <willy@infradead.org> wrote:
+>
+> We've had some trouble recently with page_offset() being confusingly
+> named.
+
+This makes little sense to me.
+
+I don't find "page_pos()" to be in the least more intuitive than
+"page_offset()".  Yes, you have some numbers of "offset" vs "pos"
+being used for the position in the file, but they aren't _that_
+different, and honestly, if you look at things like the man-page for
+"lseek()", the byte offset you seek to is called an "offset".
+
+The fact that somebody was confused by the current name is a red
+herring - there's nothing to say that they wouldn't have been confused
+by "page_pos()", except for the fact that that wasn't the name.
+
+So honestly, i the confusion is that we have "pgoff_t", which is the
+offset of the page counted in _pages_, then my reaction is that
+
+ (a) I think the truly confusing name is "pgoff_t" (and any
+"page_offset" variable of that type). Calling that "pgindex_t" and
+"page_index" would be a real clarification.
+
+ (b) if we really do want to rename page_offset() because of confusion
+with the page index "offset", then the logical thing would be to
+clarify that it's a byte offset, not the page index.
+
+So "page_pos()" to me sounds not at all more descriptive, and having
+two names (for stable kernels, for people with memories, for
+historical patches, whatever) only sounds like a source of even more
+confusion in the future.
+
+If we'd want a _descriptive_ name, then "byte_offset_of_page()" would
+probably be that. That's hard to mis-understand.
+
+Yes that's also more of a mouthful, and it still has the "two
+different names for the same thing" issue wrt
+stable/old/rebased/whatever patches.
+
+But if there are enough people who find "page_offset()" to be a source
+of confusion, then I'd at least prefer to _truly_ remove any
+possibility of confusion with that longer name.
+
+I'd like to have a few more people step up and say "I find that name
+confusing enough that I think it's worth the confusion of renaming
+it".
+
+We've had the "page_offset()" name _forever_, this is the first time I
+hear it being a problem (it goes back to 2005, and before that it was
+used inside the NFS code).
+
+Of course, we've also had "pgoff_t" forever - that name goes back to 2002.
+
+But unlike "page_offset()", I do think that "pgoff_t" is actually a
+truly bad name.
+
+Which is why I'd much rather change "pgoff_t" to "pgindex_t" and
+related "page_offset" variables to "page_index" variables.
+
+            Linus

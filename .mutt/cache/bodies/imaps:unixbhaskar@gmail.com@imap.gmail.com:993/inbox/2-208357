@@ -1,0 +1,120 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:57c1:0:0:0:0:0 with SMTP id k1csp3801824lfo;
+        Mon, 4 Nov 2019 00:34:16 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxYoIljexAf7tgF28U7fR76JR3Z8eIqsLjWcVmPYjOnjw89xt1PcbPSy7dQaHQNLT9ticym
+X-Received: by 2002:a50:b2c4:: with SMTP id p62mr25981778edd.128.1572856456274;
+        Mon, 04 Nov 2019 00:34:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1572856456; cv=none;
+        d=google.com; s=arc-20160816;
+        b=mKzTCu/5B8FUeC/5a9niJhcsRFcHwpxYeA7KNuPhxzS6mB8O3/OJnUP2okZzyX70p1
+         7hPfEZ3Fw4fhumh7jDfeIiTJqrNiHcPmqSvQeQHWEizQUWZ+co8rW6FIYOq0EQQuhQt1
+         Q9nt5H9vuBMUV0YJt7WeyJYuhazTQ5msJS/9CfzEhZ5sqaZ56wLvSwQVXxNXiKfgBMB3
+         7tHX3w+9eysNO+drU7qR5rMFsJ5A2fZh7E7NPrU6ekCvzJJaOO0UzILsUJYy3XAAiySl
+         reY0S+RY/H+ZlwJp8EztHiUV2KP1cnK0ej/Kfaos/TN2J5qP16Iucp+aedeE56LT+jDX
+         M9HA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=XF7J+DG7tWV9RXyc1r5Ixjph12lPvVDvV5bwthUbBEI=;
+        b=subOC2yVKuyV3alO+ULT9XgZvyjAyW16UO6vfdjjcYOTGPr9FcIXnnRYJ3BEf0adn7
+         mQYkXZ9aM/BLbTnVGO5Da4j/x8L3JL5oeuclWdub5dSRY6lLVc4HAIx/kETlPVKu+Oav
+         X1ubFF0mjkxol54DtZPjXvIApnQpnxTATPVpF+NL0H7tzBbvgAcBm8N5rjanIurUfag0
+         hH2Tnqc5OT8geIsmJHkZDv2s1u3UmvpPj8nDIkZo3bLf+PVddFx0e5aPKv17n+qY5xu5
+         j3KtNqbQSLPpVarb/b7cQCMw50aMIHaRR4FPoxq9nJFxin7XBK8+z5AQ1k8obB+Oa8bQ
+         NHFg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=FZhgUCwU;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f51si7589717edb.421.2019.11.04.00.33.52;
+        Mon, 04 Nov 2019 00:34:16 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=FZhgUCwU;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727499AbfKDIc4 (ORCPT <rfc822;leducqui.kstn@gmail.com>
+        + 95 others); Mon, 4 Nov 2019 03:32:56 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:33443 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727267AbfKDIc4 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 4 Nov 2019 03:32:56 -0500
+Received: by mail-wr1-f66.google.com with SMTP id s1so15974802wro.0
+        for <linux-kernel@vger.kernel.org>; Mon, 04 Nov 2019 00:32:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=XF7J+DG7tWV9RXyc1r5Ixjph12lPvVDvV5bwthUbBEI=;
+        b=FZhgUCwUZX7igZi16yQODx8+KbkHGclBlDJjHYCZxM7KjufVHj1csQ1x5nU3ZRUFHy
+         W6P9jDawE7Aci66askzFeHB+6ipqKGEIDPN2Ki1vkVD8jIZdzdVPPYWAaH9cUTuCQGcu
+         mtMasHpUeWbSaJ5F7hZ/6NQ574mhrl4uqfRZE8El7uTMrRhF5gbGUZYwLU9a5kvxVE/L
+         k4FbZTQzVozpd/OHSfrPOPT/2ZE3nmsKoaKh0pdcsjJFPZUbMDzqQKX+3+8VrIUAWPbz
+         Dh2lV4z13F7IEOp8RrfBBB0mXD8VVMXOiUwDIV2Fvb8GQi4ZrkAH1gqu/gdbTfTKb/bR
+         gbnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=XF7J+DG7tWV9RXyc1r5Ixjph12lPvVDvV5bwthUbBEI=;
+        b=ln9HUcobiSb5Lt75X9DX4pySZye0vBuK9jG0mInL2gBfp0lUkTqvoh1EaNHBBKUXAw
+         A+ek18v2l141t0kY80CymowN6zoxJGDzlxJNuuCj/QXW9ZUi8tOjm4IkiE42ZYWLcoSW
+         zEzdshn+NV1dFPHNTSmmN+ep91SiW7KDgKQQZhxv4qJS3cJSZoTezBBQeuvl4loq9Fxd
+         m8BRBva2dMkXe46RInhnou4BRn2fr8Ydv0PPkGJ9ItbIYDWQcVqz+Z8qy4rAjPEbr0J9
+         V1fCdbjfTr7pAxZyN4R7JhPYDSbU1CFMPcYO5sUAEjPEKcw31jPbZRx7D3VW/EEe4NC2
+         Yqkw==
+X-Gm-Message-State: APjAAAUqodHaq2wgAF8viTIEQYZ2safgaFKZ4Ii/wHJ0Q9owCXhdg2/X
+        VJSL5B2peYNQ5UsRpgnRjKT4+w==
+X-Received: by 2002:adf:fd08:: with SMTP id e8mr1452202wrr.42.1572856373332;
+        Mon, 04 Nov 2019 00:32:53 -0800 (PST)
+Received: from [192.168.86.166] (83-86-89-107.cable.dynamic.v4.ziggo.nl. [83.86.89.107])
+        by smtp.gmail.com with ESMTPSA id z13sm17303360wrm.64.2019.11.04.00.32.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Nov 2019 00:32:52 -0800 (PST)
+Subject: Re: ALSA: pcm: use dma_can_mmap() to check if a device supports
+ dma_mmap_*
+To:     youling 257 <youling257@gmail.com>, Takashi Iwai <tiwai@suse.de>
+Cc:     linux-xtensa@linux-xtensa.org, Michal Simek <monstr@monstr.eu>,
+        Vladimir Murzin <vladimir.murzin@arm.com>,
+        linux-parisc@vger.kernel.org, linux-sh@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, Helge Deller <deller@gmx.de>,
+        x86@kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-m68k@lists.linux-m68k.org,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org, hch@lst.de
+References: <CAOzgRdYSaaF6OkXGME2=fn1dfTbpyt_GqEs=10oXH=V6SudfyA@mail.gmail.com>
+ <s5himo0cbmm.wl-tiwai@suse.de>
+ <CAOzgRdYTa-nAa7QV6c2aZs910BACg91vAjcjw4V-Oy8KCZVmmQ@mail.gmail.com>
+From:   Greg Kroah-Hartman <gregkh@google.com>
+Message-ID: <60ee349a-1fe7-46f0-5161-1dcfcb6fbee9@google.com>
+Date:   Mon, 4 Nov 2019 09:32:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.0
+MIME-Version: 1.0
+In-Reply-To: <CAOzgRdYTa-nAa7QV6c2aZs910BACg91vAjcjw4V-Oy8KCZVmmQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US-large
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 11/4/19 9:27 AM, youling 257 wrote:
+ > This driver 
+https://android.googlesource.com/kernel/common/+/refs/heads/android-mainline/drivers/usb/gadget/function/f_audio_source.c
+ >
+
+The driver is broken and needs to be fixed.  Please feel free to submit
+patches to AOSP to do so as you can trigger this easily.
+
+thanks,
+
+greg k-h

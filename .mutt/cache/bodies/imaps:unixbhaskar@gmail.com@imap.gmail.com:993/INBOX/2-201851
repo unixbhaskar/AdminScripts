@@ -1,0 +1,688 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp7048749lfj;
+        Wed, 18 Sep 2019 08:28:48 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwCc4oDeoQ8GnRrtgEiML0D9FkDAzBDTUAJhYfHbMIpvc2cie7n+woxi3vGPekIsYFaJxCJ
+X-Received: by 2002:a17:906:15c2:: with SMTP id l2mr10026704ejd.4.1568820528833;
+        Wed, 18 Sep 2019 08:28:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568820528; cv=none;
+        d=google.com; s=arc-20160816;
+        b=zQxTwmsBB6vkN1Nt/NyB780AHsXJ4VocoPwgXOE9LlzreytxzW61LMd2MzxJtUxr7o
+         NhSvjKpY2mz1bD2W0wmgwa1RyCCyESHhlPJuEOtXDYLhMyqeSovJ2AobDsbv5l5KB5mM
+         U0bfXyspYVci6b3nxXTwbFZXk33cj4G/IzHS5L7iN1hVDbyqZ9fGCT2Kr1rwepyk6zw4
+         TNL/FATcotp4hO418xMpbuomI/Qo4O1UZl+eTI4vTC3iuv6ZwwzJatu9UUfIiokV6KHa
+         /p4/3jmEVrOsLw4/Lf52/M9bOeTGF1K7s0NG+Od+I9Dr5k1mjnKwYSdoeL5X38VrrlBs
+         c1eA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date:dkim-signature;
+        bh=OhgIG9SRGuRPWUSX1FNmz9lsd+k2YD1qfm/vb7woT2U=;
+        b=d0KUV05F3ELKBLgHtXQVr+elGdbMIBIRqYaLY3RD4v0JGF/8F2NpNmh28Fnnz8Mqh8
+         7tVZnxteR5D12DkX6UXIyvm7s6BIK/6dqrc83Zq4Mo7IUydwB2XGqQjENj0MG5vVNNYk
+         /T8g5WcJf15xXAkJ1sE4446nftju5A8ZW0cFtGO4e1sXysQWBMYtIXAnEa403vxgVYIv
+         hYs0maG88FkZkWu2lRiRaBRU6Z8qWnKWG7AFhTukhgxKT9kbyZmrNpdMksGlFCFXg59x
+         r1ShRJUD17D4jpL5fJNSP4OoPycyZsnxGj94QTZwlgOvyWsExHUGrDRc91EQiLT9neZA
+         CvPg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=C9z82ISz;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id 91si4063797edy.188.2019.09.18.08.28.23;
+        Wed, 18 Sep 2019 08:28:48 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=C9z82ISz;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1730523AbfIRLtB (ORCPT <rfc822;rfried.dev@gmail.com>
+        + 99 others); Wed, 18 Sep 2019 07:49:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55164 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726545AbfIRLtA (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 18 Sep 2019 07:49:00 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A97F421907;
+        Wed, 18 Sep 2019 11:48:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568807338;
+        bh=CsQDP1p+nPvO5XuIWFb64v6GH16KFm8rZ2ZF9poFhkg=;
+        h=Date:From:To:Cc:Subject:From;
+        b=C9z82ISzsiyKuJFhcLRCKjNAAopqZo4Rvkmiw/w5+rwsesufR8D2bi3/USIwiEXdc
+         P5pQl4tvwVJA1q/cS1XrvdLtNx5slatya4QOmjGSnPaRSIPdXxM7F8e32sJCtVjDpf
+         1j10VilLmpO9hRhzsdxapk+IZXirT1cu8JWWBocI=
+Date:   Wed, 18 Sep 2019 13:48:55 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org
+Subject: [GIT PULL] Char/Misc driver patches for 5.4-rc1
+Message-ID: <20190918114855.GA1899676@kroah.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+The following changes since commit 089cf7f6ecb266b6a4164919a2e69bd2f938374a:
+
+  Linux 5.3-rc7 (2019-09-02 09:57:40 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git tags/char-misc-5.4-rc1
+
+for you to fetch changes up to 16a0f687cac70301f49d6f99c4115824e6aad42b:
+
+  misc: mic: Use PTR_ERR_OR_ZERO rather than its implementation (2019-09-10 23:18:05 +0100)
+
+----------------------------------------------------------------
+Char/Misc driver patches for 5.4-rc1
+
+Here is the big char/misc driver pull request for 5.4-rc1.
+
+As has been happening in previous releases, more and more individual
+driver subsystem trees are ending up in here.  Now if that is good or
+bad I can't tell, but hopefully it makes your life easier as it's more
+of an aggregation of trees together to one merge point for you.
+
+Anyway, lots of stuff in here:
+	- habanalabs driver updates
+	- thunderbolt driver updates
+	- misc driver updates
+	- coresight and intel_th hwtracing driver updates
+	- fpga driver updates
+	- extcon driver updates
+	- some dma driver updates
+	- char driver updates
+	- android binder driver updates
+	- nvmem driver updates
+	- phy driver updates
+	- parport driver fixes
+	- pcmcia driver fix
+	- uio driver updates
+	- w1 driver updates
+	- configfs fixes
+	- other assorted driver updates
+
+All of these have been in linux-next for a long time with no reported
+issues.
+
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+----------------------------------------------------------------
+Adam Zerella (1):
+      pcmcia/i82092: Refactored dprintk macro for dev_dbg().
+
+Alexander Shishkin (5):
+      intel_th: msu: Introduce buffer interface
+      intel_th: msu-sink: An example msu buffer "sink"
+      intel_th: msu: Get rid of the window size limit
+      intel_th: msu: Prevent freeing buffers while locked windows exist
+      intel_th: msu: Preserve pre-existing buffer configuration
+
+Andrew Murray (4):
+      coresight: etm4x: Remove superfluous setting of os_unlock
+      coresight: etm4x: Use explicit barriers on enable/disable
+      coresight: etm4x: use module_param instead of module_param_named
+      coresight: etm4x: improve clarity of etm4_os_unlock comment
+
+Andy Shevchenko (4):
+      extcon: arizona: Switch to use device_property_count_u32()
+      extcon: axp288: Add missed error check
+      extcon: axp288: Use for_each_set_bit() in axp288_extcon_log_rsi()
+      thunderbolt: Switch to use device_property_count_uXX()
+
+Anson Huang (2):
+      dt-bindings: imx-ocotp: Add i.MX8MN compatible
+      nvmem: imx-ocotp: Add i.MX8MN support
+
+Arnd Bergmann (1):
+      mic: avoid statically declaring a 'struct device'.
+
+Bjorn Andersson (4):
+      interconnect: qcom: Add QCS404 interconnect provider driver
+      phy: qcom-qmp: Correct ready status, again
+      misc: fastrpc: Reference count channel context
+      misc: fastrpc: Don't reference rpmsg_device after remove
+
+Carlos A Petry (1):
+      fpga: altera-cvp: Fix function definition argument
+
+Charles Keepax (1):
+      extcon: arizona: Update binding example to use available defines
+
+Chuhong Yuan (4):
+      misc: alcor_pci: Use dev_get_drvdata
+      mei: Use dev_get_drvdata where possible
+      parport: parport_serial: Use dev_get_drvdata
+      habanalabs: Use dev_get_drvdata
+
+Colin Ian King (1):
+      misc: xilinx_sdfec: fix spelling mistake: "Schdule" -> "Schedule"
+
+Dan Carpenter (4):
+      misc: xilinx_sdfec: Fix a couple small information leaks
+      misc: xilinx_sdfec: Return -EFAULT if copy_from_user() fails
+      misc: xilinx_sdfec: Prevent a divide by zero in xsdfec_reg0_write()
+      misc: xilinx_sdfec: Prevent integer overflow in xsdfec_table_write()
+
+Daniel Mack (2):
+      uio: uio_pdrv_genirq: Make UIO name controllable via DT node property
+      uio: Documentation: Add information on using uio_pdrv_genirq with DT
+
+David Dai (1):
+      interconnect: qcom: Add tagging and wake/sleep support for sdm845
+
+Dmitry Torokhov (1):
+      driver core: add dev_groups to all drivers
+
+Dotan Barak (1):
+      habanalabs: explicitly set the queue-id enumerated numbers
+
+Dragan Cvetic (8):
+      misc: xilinx_sdfec: Store driver config and state
+      misc: xilinx_sdfec: Add ability to configure turbo
+      misc: xilinx_sdfec: Add ability to configure LDPC
+      misc: xilinx_sdfec: Add ability to get/set config
+      misc: xilinx_sdfec: Support poll file operation
+      misc: xilinx_sdfec: Add stats & status ioctls
+      Docs: misc: xilinx_sdfec: Add documentation
+      MAINTAINERS: add maintainer for SD-FEC
+
+Fugang Duan (2):
+      dt-bindings: fsl: scu: add new compatible string for ocotp
+      nvmem: imx: add i.MX8QM platform support
+
+Fuqian Huang (1):
+      sgi-xpc: Use GFP_ATOMIC for kmalloc in atomic context.
+
+Geert Uytterhoeven (1):
+      parport: Add missing newline at end of file
+
+Georgi Djakov (4):
+      interconnect: Add support for path tags
+      interconnect: Add pre_aggregate() callback
+      dt-bindings: interconnect: Add Qualcomm QCS404 DT bindings
+      interconnect: qcom: Add interconnect RPM over SMD driver
+
+Greg Kroah-Hartman (14):
+      fpga: dfl: use driver core functions, not sysfs ones.
+      Merge 5.3-rc2 into char-misc-next
+      Merge tag 'fpga-for-5.4' of git://git.kernel.org/.../mdf/linux-fpga into char-misc-next
+      Merge 5.3-rc4 into char-misc-next
+      Merge 5.3-rc5 into char-misc-next
+      Merge tag 'lkdtm-next' of https://git.kernel.org/.../kees/linux into char-misc-next
+      Merge 5.3-rc7 into char-misc-next
+      Merge tag 'extcon-next-for-5.4' of git://git.kernel.org/.../chanwoo/extcon into char-misc-next
+      Merge tag 'icc-5.4-rc1' of https://git.linaro.org/people/georgi.djakov/linux into char-misc-next
+      Merge tag 'phy-for-5.4' of git://git.kernel.org/.../kishon/linux-phy into char-misc-next
+      Merge tag 'thunderbolt-for-v5.4' of git://git.kernel.org/.../westeri/thunderbolt into char-misc-next
+      Merge tag 'fpga-cvp-for-5.4' of git://git.kernel.org/.../mdf/linux-fpga into char-misc-next
+      Merge tag 'fpga-dfl-for-5.4' of git://git.kernel.org/.../mdf/linux-fpga into char-misc-next
+      Merge tag 'misc-habanalabs-next-2019-09-05' of git://people.freedesktop.org/~gabbayo/linux into char-misc-next
+
+Grzegorz Jaszczyk (5):
+      phy: mvebu-cp110-comphy: Add SMC call support
+      phy: mvebu-cp110-comphy: Add RXAUI support
+      phy: mvebu-cp110-comphy: Add USB3 host/device support
+      phy: mvebu-cp110-comphy: Add SATA support
+      phy: mvebu-cp110-comphy: Add PCIe support
+
+Hridya Valsaraju (6):
+      binder: Validate the default binderfs device names.
+      binder: Add default binder devices through binderfs when configured
+      binder: add a mount option to show global stats
+      binder: Add stats, state and transactions files
+      binder: Make transaction_log available in binderfs
+      binder: Add binder_proc logging to binderfs
+
+Hung-Te Lin (1):
+      firmware: google: check if size is valid when decoding VPD data
+
+J. Bruce Fields (1):
+      thunderbolt: Show key using %*pE not %*pEp
+
+Jean Delvare (1):
+      eeprom: Deprecate the legacy eeprom driver
+
+Jia-Ju Bai (1):
+      char: ppdev: Fix a possible null-pointer dereference in pp_release()
+
+Jordan Crouse (1):
+      drivers: qcom: Add BCM vote macro to header
+
+Jorge Ramirez-Ortiz (2):
+      misc: fastrpc: fix memory leak when out of memory
+      misc: fastrpc: remove unused definition
+
+Kees Cook (2):
+      lkdtm: Add Control Flow Integrity test
+      lkdtm: Split WARNING into separate tests
+
+Linus Walleij (2):
+      extcon: fsa9480: Support the FSA880 variant
+      extcon: gpio: Request reasonable interrupts
+
+Mao Wenan (1):
+      interconnect: qcom: remove COMPILE_TEST from CONFIG_INTERCONNECT_QCOM_QCS404
+
+Marek Szyprowski (2):
+      phy: core: document phy_calibrate()
+      phy: samsung: disable bind/unbind platform driver feature
+
+Markus Elfring (1):
+      coresight: etm4x: Two function calls less
+
+Martin Blumenstingl (4):
+      nvmem: meson-mx-efuse: allow reading data smaller than word_size
+      dt-bindings: phy: add binding for the Lantiq VRX200 and ARX300 PCIe PHYs
+      phy: lantiq: vrx200-pcie: add a driver for the Lantiq VRX200 PCIe PHY
+      phy: enable compile-testing for the Lantiq PHY drivers
+
+Masahiro Yamada (1):
+      ppdev: add header include guard
+
+Mathieu Poirier (3):
+      coresight: tmc: Make memory width mask computation into a function
+      coresight: tmc-etr: Decouple buffer sync and barrier packet insertion
+      coresight: tmc-etr: Add barrier packets when moving offset forward
+
+Matt Pelland (2):
+      phy: marvell: phy-mvebu-cp110-comphy: implement RXAUI support
+      phy: marvell: phy-mvebu-cp110-comphy: rename instances of DLT
+
+Matthew Wilcox (Oracle) (1):
+      xilinx_sdfec: Convert to IDA
+
+Mauro Carvalho Chehab (1):
+      docs: ABI: remove extension from sysfs-class-mic.txt
+
+Mika Westerberg (8):
+      thunderbolt: Correct path indices for PCIe tunnel
+      thunderbolt: Move NVM upgrade support flag to struct icm
+      thunderbolt: Use 32-bit writes when writing ring producer/consumer
+      thunderbolt: Do not fail adding switch if some port is not implemented
+      thunderbolt: Hide switch attributes that are not set
+      thunderbolt: Expose active parts of NVM even if upgrade is not supported
+      thunderbolt: Add support for Intel Ice Lake
+      ACPI / property: Add two new Thunderbolt property GUIDs to the list
+
+Miquel Raynal (10):
+      phy: mvebu-a3700-comphy: Inform users if their firmware is too old
+      phy: mvebu-cp110-comphy: Add clocks support
+      phy: mvebu-cp110-comphy: Explicitly initialize the lane submode
+      phy: mvebu-cp110-comphy: List already supported Ethernet modes
+      phy: mvebu-cp110-comphy: Rename the macro handling only Ethernet modes
+      phy: mvebu-cp110-comphy: Allow non-Ethernet modes to be configured
+      phy: mvebu-cp110-comphy: Cosmetic change in a helper
+      phy: mvebu-cp110-comphy: Update comment about powering off all lanes at boot
+      dt-bindings: phy: Add Marvell COMPHY clocks
+      dt-bindings: pci: add PHY properties to Armada 7K/8K controller bindings
+
+Moritz Fischer (4):
+      fpga: altera-pr-ip: Make alt_pr_unregister function void
+      dt-bindings: fpga: Consolidate bridge properties
+      Merge tag 'dev_groups_all_drivers' into fpga-dfl-for-5.4
+      Merge branch 'char-misc-next' of git://git.kernel.org/.../gregkh/char-misc into fpga-dfl-for-5.4
+
+Nathan Chancellor (1):
+      phy-rockchip-inno-hdmi: Fix RK3328_TERM_RESISTOR_CALIB_SPEED_7_0's third value
+
+Nishka Dasgupta (6):
+      sgi-xp: xpc_uv: Make structure xpc_arch_ops_uv constant
+      slimbus: qcom-ngd-ctrl: Add of_node_put() before return
+      phy: marvell: phy-armada38x-comphy: Add of_node_put() before return
+      phy: marvell: phy-mvebu-cp110-comphy: Add of_node_put() before return
+      phy: marvell: phy-mvebu-a3700-comphy: Add of_node_put() before return
+      phy: qualcomm: phy-qcom-qmp: Add of_node_put() before return
+
+Oded Gabbay (21):
+      habanalabs: remove write_open_cnt property
+      habanalabs: add comments on INFO IOCTL
+      habanalabs: add debug print when rejecting CS
+      habanalabs: cap simulator timeout
+      habanalabs: power management through sysfs is only for GOYA
+      habanalabs: add handle field to context structure
+      habanalabs: kill user process after CS rollback
+      habanalabs: show the process context dram usage
+      habanalabs: rename user_ctx as compute_ctx
+      habanalabs: maintain a list of file private data objects
+      habanalabs: change device_setup_cdev() to be more generic
+      habanalabs: create two char devices per ASIC
+      habanalabs: replace __cpu_to_le32/64 with cpu_to_le32/64
+      habanalabs: replace __le32_to_cpu with le32_to_cpu
+      habanalabs: print to kernel log when reset is finished
+      habanalabs: add uapi to retrieve device utilization
+      habanalabs: add uapi to retrieve aggregate H/W events
+      habanalabs: display card name as sensors header
+      habanalabs: stop using the acronym KMD
+      habanalabs: show correct id in error print
+      habanalabs: correctly cast variable to __le32
+
+Omer Shpigelman (2):
+      habanalabs: use default structure for user input in Debug IOCTL
+      habanalabs: improve security in Debug IOCTL
+
+Richard Gong (4):
+      firmware: stratix10-svc: extend svc to support new RSU features
+      firmware: add Intel Stratix10 remote system update driver
+      firmware: rsu: document sysfs interface
+      MAINTAINERS: add maintainer for Intel Stratix10 FW drivers
+
+Rishi Gupta (1):
+      toshiba: Add correct printk log level while emitting error log
+
+Sai Prakash Ranjan (2):
+      coresight: etm4x: Add ETM PIDs for SDM845 and MSM8996
+      coresight: cpu-debug: Add support for Qualcomm Kryo
+
+Scott Branden (2):
+      test_firmware: add support for request_firmware_into_buf
+      selftests: firmware: Add request_firmware_into_buf tests
+
+Srinivas Kandagatla (3):
+      slimbus: fix slim_tid_txn()
+      misc: fastrpc: fix double refcounting on dmabuf
+      misc: fastrpc: free dma buf scatter list
+
+Stefan Mavrodiev (1):
+      nvmem: sunxi_sid: fix A64 SID controller support
+
+Stefan Wahren (1):
+      nvmem: mxs-ocotp: update MODULE_AUTHOR() email address
+
+Stephen Boyd (3):
+      uio: Remove dev_err() usage after platform_get_irq()
+      extcon: adc-jack: Remove dev_err() usage after platform_get_irq()
+      misc: Remove spear13xx pcie gadget driver
+
+Suzuki K Poulose (5):
+      coresight: etr_buf: Consolidate refcount initialization
+      coresight: tmc-etr: Handle memory errors
+      coresight: tmc-etr: Check if non-secure access is enabled
+      coresight: Convert pr_warn to dev_warn for obsolete bindings
+      coresight: acpi: Static funnel support
+
+Tetsuo Handa (1):
+      /dev/mem: Bail out upon SIGKILL.
+
+Thomas Bogendoerfer (2):
+      w1: add 1-wire master driver for IP block found in SGI ASICs
+      w1: add DS2501, DS2502, DS2505 EPROM device driver
+
+Thor Thayer (3):
+      fpga: altera-cvp: Discover Vendor Specific offset
+      fpga: altera-cvp: Preparation for V2 parts.
+      fpga: altera-cvp: Add Stratix10 (V2) Support
+
+Tomer Tayar (5):
+      habanalabs: Add descriptive names to PSOC scratch-pad registers
+      habanalabs: Add descriptive name to PSOC app status register
+      habanalabs: Expose devices after initialization is done
+      habanalabs: Handle HW_IP_INFO if device disabled or in reset
+      habanalabs: Make the Coresight timestamp perpetual
+
+Vasyl Gomonovych (1):
+      extcon: sm5502: Add IRQ_ONESHOT
+
+Wen Yang (1):
+      phy: ti: am654-serdes: fix an use-after-free in serdes_am654_clk_register()
+
+Wolfram Sang (3):
+      extcon: extcon-max77843: convert to i2c_new_dummy_device
+      misc: eeprom: ee1004: convert to i2c_new_dummy_device
+      misc: eeprom: max6875: convert to i2c_new_dummy_device
+
+Wu Hao (15):
+      fpga: dfl: fme: add DFL_FPGA_FME_PORT_RELEASE/ASSIGN ioctl support.
+      fpga: dfl: pci: enable SRIOV support.
+      fpga: dfl: afu: add AFU state related sysfs interfaces
+      fpga: dfl: add id_table for dfl private feature driver
+      fpga: dfl: make uinit callback optional
+      fpga: dfl: fme: add capability sysfs interfaces
+      fpga: dfl: make init callback optional
+      fpga: dfl: fme: convert platform_driver to use dev_groups
+      fpga: dfl: afu: convert platform_driver to use dev_groups
+      fpga: dfl: afu: add userclock sysfs interfaces.
+      fpga: dfl: afu: expose __afu_port_enable/disable function.
+      fpga: dfl: afu: add error reporting support.
+      fpga: dfl: afu: add STP (SignalTap) support
+      fpga: dfl: fme: add global error reporting support
+      Documentation: fpga: dfl: add descriptions for virtualization and new interfaces.
+
+Yabin Cui (2):
+      coresight: tmc-etr: Fix updating buffer in not-snapshot mode.
+      coresight: tmc-etr: Fix perf_data check
+
+Yoshihiro Shimoda (1):
+      phy: renesas: rcar-gen3-usb2: Disable clearing VBUS in over-current
+
+YueHaibing (2):
+      w1: mxc_w1: use devm_platform_ioremap_resource() to simplify code
+      w1: omap-hdq: use devm_platform_ioremap_resource() to simplify code
+
+zhong jiang (1):
+      misc: mic: Use PTR_ERR_OR_ZERO rather than its implementation
+
+ .../ABI/testing/sysfs-bus-intel_th-devices-msc     |    3 +-
+ .../{sysfs-class-mic.txt => sysfs-class-mic}       |    0
+ .../testing/sysfs-devices-platform-stratix10-rsu   |  128 +++
+ Documentation/ABI/testing/sysfs-driver-habanalabs  |   14 +-
+ Documentation/ABI/testing/sysfs-platform-dfl-fme   |   85 ++
+ Documentation/ABI/testing/sysfs-platform-dfl-port  |   85 ++
+ .../devicetree/bindings/arm/freescale/fsl,scu.txt  |    4 +-
+ .../devicetree/bindings/extcon/extcon-arizona.txt  |    2 +-
+ .../devicetree/bindings/extcon/extcon-fsa9480.txt  |    4 +-
+ .../bindings/fpga/altera-fpga2sdram-bridge.txt     |    5 +-
+ .../bindings/fpga/altera-freeze-bridge.txt         |    5 +-
+ .../bindings/fpga/altera-hps2fpga-bridge.txt       |    5 +-
+ .../devicetree/bindings/fpga/fpga-bridge.txt       |   13 +
+ .../bindings/fpga/xilinx-pr-decoupler.txt          |    8 +-
+ .../bindings/interconnect/qcom,qcs404.txt          |   45 +
+ .../devicetree/bindings/nvmem/imx-ocotp.txt        |    3 +-
+ .../devicetree/bindings/pci/pci-armada8k.txt       |    8 +
+ .../bindings/phy/lantiq,vrx200-pcie-phy.yaml       |   95 ++
+ .../devicetree/bindings/phy/phy-mvebu-comphy.txt   |   10 +
+ Documentation/driver-api/uio-howto.rst             |    7 +
+ Documentation/fpga/dfl.rst                         |  105 ++
+ Documentation/misc-devices/index.rst               |    1 +
+ MAINTAINERS                                        |   23 +
+ drivers/acpi/property.c                            |    6 +
+ drivers/android/binder.c                           |  100 +-
+ drivers/android/binder_internal.h                  |   86 ++
+ drivers/android/binderfs.c                         |  290 ++++-
+ drivers/base/dd.c                                  |   14 +
+ drivers/char/mem.c                                 |   21 +
+ drivers/char/ppdev.c                               |    2 +-
+ drivers/char/toshiba.c                             |    8 +-
+ drivers/clk/qcom/clk-rpmh.c                        |   16 +-
+ drivers/extcon/extcon-adc-jack.c                   |    4 +-
+ drivers/extcon/extcon-arizona.c                    |    2 +-
+ drivers/extcon/extcon-axp288.c                     |   16 +-
+ drivers/extcon/extcon-fsa9480.c                    |    1 +
+ drivers/extcon/extcon-gpio.c                       |   29 +-
+ drivers/extcon/extcon-max77843.c                   |    6 +-
+ drivers/extcon/extcon-sm5502.c                     |    2 +-
+ drivers/firmware/Kconfig                           |   18 +
+ drivers/firmware/Makefile                          |    1 +
+ drivers/firmware/google/vpd.c                      |    4 +-
+ drivers/firmware/google/vpd_decode.c               |   55 +-
+ drivers/firmware/google/vpd_decode.h               |    6 +-
+ drivers/firmware/stratix10-rsu.c                   |  451 ++++++++
+ drivers/firmware/stratix10-svc.c                   |   76 +-
+ drivers/fpga/Kconfig                               |    6 +-
+ drivers/fpga/Makefile                              |    3 +-
+ drivers/fpga/altera-cvp.c                          |  342 ++++--
+ drivers/fpga/altera-pr-ip-core-plat.c              |    4 +-
+ drivers/fpga/altera-pr-ip-core.c                   |    4 +-
+ drivers/fpga/dfl-afu-error.c                       |  230 ++++
+ drivers/fpga/dfl-afu-main.c                        |  381 +++++-
+ drivers/fpga/dfl-afu.h                             |    9 +
+ drivers/fpga/dfl-fme-error.c                       |  359 ++++++
+ drivers/fpga/dfl-fme-main.c                        |  128 ++-
+ drivers/fpga/dfl-fme-pr.c                          |    7 +-
+ drivers/fpga/dfl-fme.h                             |    6 +-
+ drivers/fpga/dfl-pci.c                             |   36 +
+ drivers/fpga/dfl.c                                 |  226 +++-
+ drivers/fpga/dfl.h                                 |   52 +-
+ drivers/hwtracing/coresight/coresight-cpu-debug.c  |   33 +-
+ .../hwtracing/coresight/coresight-etm4x-sysfs.c    |   13 +-
+ drivers/hwtracing/coresight/coresight-etm4x.c      |   38 +-
+ drivers/hwtracing/coresight/coresight-funnel.c     |   11 +-
+ drivers/hwtracing/coresight/coresight-priv.h       |   10 +-
+ drivers/hwtracing/coresight/coresight-replicator.c |    3 +-
+ drivers/hwtracing/coresight/coresight-tmc-etf.c    |   23 +-
+ drivers/hwtracing/coresight/coresight-tmc-etr.c    |   93 +-
+ drivers/hwtracing/coresight/coresight-tmc.c        |   40 +
+ drivers/hwtracing/coresight/coresight-tmc.h        |   11 +-
+ drivers/hwtracing/intel_th/Makefile                |    3 +
+ drivers/hwtracing/intel_th/msu-sink.c              |  116 ++
+ drivers/hwtracing/intel_th/msu.c                   |  537 +++++++--
+ drivers/hwtracing/intel_th/msu.h                   |   20 +-
+ drivers/interconnect/core.c                        |   27 +-
+ drivers/interconnect/qcom/Kconfig                  |   12 +
+ drivers/interconnect/qcom/Makefile                 |    4 +
+ drivers/interconnect/qcom/qcs404.c                 |  539 +++++++++
+ drivers/interconnect/qcom/sdm845.c                 |  160 ++-
+ drivers/interconnect/qcom/smd-rpm.c                |   77 ++
+ drivers/interconnect/qcom/smd-rpm.h                |   15 +
+ drivers/misc/Kconfig                               |    9 -
+ drivers/misc/Makefile                              |    1 -
+ drivers/misc/cardreader/alcor_pci.c                |    6 +-
+ drivers/misc/eeprom/Kconfig                        |    5 +-
+ drivers/misc/eeprom/ee1004.c                       |    6 +-
+ drivers/misc/eeprom/max6875.c                      |    6 +-
+ drivers/misc/fastrpc.c                             |   79 +-
+ drivers/misc/habanalabs/asid.c                     |    2 +-
+ drivers/misc/habanalabs/command_buffer.c           |    3 +-
+ drivers/misc/habanalabs/command_submission.c       |   27 +-
+ drivers/misc/habanalabs/context.c                  |   40 +-
+ drivers/misc/habanalabs/debugfs.c                  |   16 +-
+ drivers/misc/habanalabs/device.c                   |  488 +++++---
+ drivers/misc/habanalabs/goya/goya.c                |   95 +-
+ drivers/misc/habanalabs/goya/goyaP.h               |   19 +-
+ drivers/misc/habanalabs/goya/goya_coresight.c      |   89 +-
+ drivers/misc/habanalabs/goya/goya_hwmgr.c          |  109 ++
+ drivers/misc/habanalabs/habanalabs.h               |  129 ++-
+ drivers/misc/habanalabs/habanalabs_drv.c           |  171 ++-
+ drivers/misc/habanalabs/habanalabs_ioctl.c         |  180 ++-
+ drivers/misc/habanalabs/hw_queue.c                 |   18 +-
+ drivers/misc/habanalabs/hwmon.c                    |   24 +-
+ drivers/misc/habanalabs/include/armcp_if.h         |   85 +-
+ drivers/misc/habanalabs/include/goya/goya.h        |    2 +
+ .../misc/habanalabs/include/goya/goya_reg_map.h    |   34 +
+ drivers/misc/habanalabs/irq.c                      |    4 +-
+ drivers/misc/habanalabs/sysfs.c                    |  126 +-
+ drivers/misc/lkdtm/Makefile                        |    1 +
+ drivers/misc/lkdtm/bugs.c                          |    7 +-
+ drivers/misc/lkdtm/cfi.c                           |   42 +
+ drivers/misc/lkdtm/core.c                          |    2 +
+ drivers/misc/lkdtm/lkdtm.h                         |    4 +
+ drivers/misc/mei/pci-me.c                          |   19 +-
+ drivers/misc/mei/pci-txe.c                         |   19 +-
+ drivers/misc/mic/card/mic_x100.c                   |   28 +-
+ drivers/misc/mic/scif/scif_epd.h                   |    5 +-
+ drivers/misc/sgi-xp/xpc_uv.c                       |    4 +-
+ drivers/misc/spear13xx_pcie_gadget.c               |  797 -------------
+ drivers/misc/xilinx_sdfec.c                        | 1214 +++++++++++++++++++-
+ drivers/nvmem/imx-ocotp-scu.c                      |    7 +
+ drivers/nvmem/imx-ocotp.c                          |    7 +
+ drivers/nvmem/meson-mx-efuse.c                     |    3 +-
+ drivers/nvmem/mxs-ocotp.c                          |    2 +-
+ drivers/nvmem/sunxi_sid.c                          |    1 +
+ drivers/parport/Makefile                           |    2 +-
+ drivers/parport/parport_serial.c                   |    6 +-
+ drivers/pcmcia/i82092.c                            |    6 +-
+ drivers/phy/Makefile                               |    2 +-
+ drivers/phy/lantiq/Kconfig                         |   11 +
+ drivers/phy/lantiq/Makefile                        |    1 +
+ drivers/phy/lantiq/phy-lantiq-vrx200-pcie.c        |  494 ++++++++
+ drivers/phy/marvell/Kconfig                        |    1 +
+ drivers/phy/marvell/phy-armada38x-comphy.c         |    4 +-
+ drivers/phy/marvell/phy-mvebu-a3700-comphy.c       |   17 +-
+ drivers/phy/marvell/phy-mvebu-cp110-comphy.c       |  525 ++++++++-
+ drivers/phy/phy-core.c                             |   10 +
+ drivers/phy/qualcomm/phy-qcom-qmp.c                |   44 +-
+ drivers/phy/renesas/phy-rcar-gen3-usb2.c           |    2 +
+ drivers/phy/rockchip/phy-rockchip-inno-hdmi.c      |    2 +-
+ drivers/phy/samsung/phy-exynos-dp-video.c          |    1 +
+ drivers/phy/samsung/phy-exynos-mipi-video.c        |    1 +
+ drivers/phy/samsung/phy-exynos-pcie.c              |    1 +
+ drivers/phy/samsung/phy-exynos5-usbdrd.c           |    1 +
+ drivers/phy/samsung/phy-exynos5250-sata.c          |    1 +
+ drivers/phy/samsung/phy-samsung-usb2.c             |    1 +
+ drivers/phy/ti/phy-am654-serdes.c                  |   33 +-
+ drivers/slimbus/qcom-ngd-ctrl.c                    |    5 +-
+ drivers/slimbus/slimbus.h                          |    2 +-
+ drivers/thunderbolt/Makefile                       |    2 +-
+ drivers/thunderbolt/ctl.c                          |   23 +-
+ drivers/thunderbolt/eeprom.c                       |    6 +-
+ drivers/thunderbolt/icm.c                          |  194 +++-
+ drivers/thunderbolt/nhi.c                          |  134 ++-
+ drivers/thunderbolt/nhi.h                          |   22 +
+ drivers/thunderbolt/nhi_ops.c                      |  179 +++
+ drivers/thunderbolt/nhi_regs.h                     |   37 +
+ drivers/thunderbolt/switch.c                       |   52 +-
+ drivers/thunderbolt/tb_msgs.h                      |   16 +-
+ drivers/thunderbolt/tunnel.c                       |    4 +-
+ drivers/thunderbolt/xdomain.c                      |    2 +-
+ drivers/uio/uio_dmem_genirq.c                      |    4 +-
+ drivers/uio/uio_pdrv_genirq.c                      |   14 +-
+ drivers/w1/masters/Kconfig                         |    9 +
+ drivers/w1/masters/Makefile                        |    1 +
+ drivers/w1/masters/mxc_w1.c                        |    4 +-
+ drivers/w1/masters/omap_hdq.c                      |    4 +-
+ drivers/w1/masters/sgi_w1.c                        |  130 +++
+ drivers/w1/slaves/Kconfig                          |    6 +
+ drivers/w1/slaves/Makefile                         |    1 +
+ drivers/w1/slaves/w1_ds250x.c                      |  290 +++++
+ include/dt-bindings/interconnect/qcom,qcs404.h     |   88 ++
+ include/dt-bindings/phy/phy-lantiq-vrx200-pcie.h   |   11 +
+ include/linux/device.h                             |    3 +
+ include/linux/firmware/intel/stratix10-smc.h       |   51 +-
+ .../linux/firmware/intel/stratix10-svc-client.h    |   11 +-
+ include/linux/fpga/altera-pr-ip-core.h             |    2 +-
+ include/linux/intel_th.h                           |   79 ++
+ include/linux/interconnect-provider.h              |    7 +-
+ include/linux/interconnect.h                       |    5 +
+ include/linux/platform_data/sgi-w1.h               |   13 +
+ include/linux/thunderbolt.h                        |    2 +
+ include/linux/w1.h                                 |    5 +
+ include/soc/qcom/tcs.h                             |   20 +-
+ include/uapi/linux/fpga-dfl.h                      |   18 +
+ include/uapi/linux/ppdev.h                         |    5 +-
+ include/uapi/misc/habanalabs.h                     |  102 +-
+ include/uapi/misc/xilinx_sdfec.h                   |  448 ++++++++
+ lib/test_firmware.c                                |   50 +-
+ tools/testing/selftests/firmware/fw_filesystem.sh  |   57 +-
+ tools/testing/selftests/firmware/fw_lib.sh         |   11 +
+ 192 files changed, 10381 insertions(+), 2299 deletions(-)
+ rename Documentation/ABI/testing/{sysfs-class-mic.txt => sysfs-class-mic} (100%)
+ create mode 100644 Documentation/ABI/testing/sysfs-devices-platform-stratix10-rsu
+ create mode 100644 Documentation/devicetree/bindings/fpga/fpga-bridge.txt
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml
+ create mode 100644 drivers/firmware/stratix10-rsu.c
+ create mode 100644 drivers/fpga/dfl-afu-error.c
+ create mode 100644 drivers/fpga/dfl-fme-error.c
+ create mode 100644 drivers/hwtracing/intel_th/msu-sink.c
+ create mode 100644 drivers/interconnect/qcom/qcs404.c
+ create mode 100644 drivers/interconnect/qcom/smd-rpm.c
+ create mode 100644 drivers/interconnect/qcom/smd-rpm.h
+ create mode 100644 drivers/misc/habanalabs/include/goya/goya_reg_map.h
+ create mode 100644 drivers/misc/lkdtm/cfi.c
+ delete mode 100644 drivers/misc/spear13xx_pcie_gadget.c
+ create mode 100644 drivers/phy/lantiq/phy-lantiq-vrx200-pcie.c
+ create mode 100644 drivers/thunderbolt/nhi_ops.c
+ create mode 100644 drivers/w1/masters/sgi_w1.c
+ create mode 100644 drivers/w1/slaves/w1_ds250x.c
+ create mode 100644 include/dt-bindings/interconnect/qcom,qcs404.h
+ create mode 100644 include/dt-bindings/phy/phy-lantiq-vrx200-pcie.h
+ create mode 100644 include/linux/intel_th.h
+ create mode 100644 include/linux/platform_data/sgi-w1.h
+ create mode 100644 include/uapi/misc/xilinx_sdfec.h

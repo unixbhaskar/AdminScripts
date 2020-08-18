@@ -1,0 +1,135 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp7334174lfj;
+        Wed, 18 Sep 2019 12:58:30 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzSdAZCdZp1BJvkv7Wb4IH0j26BXejWdGqSo7KIetdgasnJrJZ6mW9N5eh0mBrP5+AKB27B
+X-Received: by 2002:aa7:df8e:: with SMTP id b14mr9723752edy.65.1568836710817;
+        Wed, 18 Sep 2019 12:58:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568836710; cv=none;
+        d=google.com; s=arc-20160816;
+        b=fMSfXOwkyLcqdoOwd+pNKrPbENyafmaZF0Bl0SpTTgLSBcrIqzYV5HbmPOG70FknRJ
+         iaphQI8pOgVsrKi4Lgzc6MmC6zcJ3TgOaR1eJrswYDKKmEUhDLjBDhnzdmNOgsIvOuMj
+         INTayS06Rx70m7lZXTAMSWq4LT9E0zutFAplGsBi/Vszx8ub2APbxGWvRX+/1M0H2lBe
+         6MCV6t6g28jgvq5DeKxlSW9FW/hcXJuEXpnXX2FlytqAYJ5tag7WrjKb8BrkfYZckAot
+         pBDN7nhnbqQY6C2gnO+Z8v6moe3yDUCoudRiwvxOjTz58AsDs2PzxIJMn4cSthn2oVrr
+         msBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=FIxcmAv8Po+czY66H7vvvtaXyWmCwGyyWI4O3j01+mA=;
+        b=r0I2CnKMpKSYQavoKFsO9frfilto112FMNzt1/4kJbQnI8m2ArSVng+iSyme83iZC2
+         MO3DNOoAQ2W1D/v5bK8FSYuFNEFUXuDdtOszfL6OfLvTvUNQ6xNV6nr60gd5I3z2ZIZ/
+         0mYpDwaYkZso2AVdva81E75xxVkxuIcS+MUQClUGC/zSlRDj4n/ogdI0dIdLu4lUrXfC
+         dlJR/c89s7KtYdjeg5wQAwg8k9d6l8yg95EbrmBTR4tf+NaMY7xBxv3E2rEj2Ogt8BGx
+         QXsUZhfeHNWLJlDhQT8GbZQBOHABX+GpwAUMm1QHEYKd/0UUXHbqNl+kGrV4Ex6dQrvx
+         jeeg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=EsmVEzq1;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id s41si3931630edm.412.2019.09.18.12.58.06;
+        Wed, 18 Sep 2019 12:58:30 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=EsmVEzq1;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2388877AbfIRTDm (ORCPT <rfc822;ryodando@gmail.com> + 99 others);
+        Wed, 18 Sep 2019 15:03:42 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:38461 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725899AbfIRTDl (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 18 Sep 2019 15:03:41 -0400
+Received: by mail-lf1-f67.google.com with SMTP id u28so471108lfc.5
+        for <linux-kernel@vger.kernel.org>; Wed, 18 Sep 2019 12:03:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FIxcmAv8Po+czY66H7vvvtaXyWmCwGyyWI4O3j01+mA=;
+        b=EsmVEzq19JVOk1cxULtjZcJs4Iioe/J/ot0dhBe+67+Wr5xqdgNOOOV43ylIRXSwPW
+         RWYcYMVP0sfHCohLpBDidM7I6SBijQg1LVQ/B/7pSoAc+t/JKz6Z5HSOR4oP8Q04+rwA
+         ANqiISTCEEC4qcWcXT0n988u0ONPsMOZrgrd0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FIxcmAv8Po+czY66H7vvvtaXyWmCwGyyWI4O3j01+mA=;
+        b=UAMD/HY4CtwSCCzsS8jpzHaeiMmw8WoSTBcVAsmxTwyKIqSEVM/Wg0NXxM9TfZjrGT
+         nV7ibNuwbt2/u+JkByTEv7RuzwL9+BpLS3sOn18wj3zPUjN1jN+RmNGrRmt7cdqvErqR
+         qRqtwVfjq79+wNfyj33nBm1A8LGQD/MZQY6J9L+iBCeyFjMtekqrOJGIFXj9F+er995I
+         sEd5qzndBOSbCHOitTy/fcLk9KNEAn8g4ma0UV9g7jvJvrjHEv6PFG47VyLdEM+rKN03
+         c55Mpz4aOGG0blbNS0/Jnoh/ZhW5dRTP/hfieuE76/6rQ4iqQhVxuwBgFj2ZzNEeSJvZ
+         cSZg==
+X-Gm-Message-State: APjAAAWh/ycMpcbtVS6jcxj72BA+KJhpGYlRVZDv9eiMD25nlTKxm46G
+        nrD/AGzI4hdDmcNundSAYNCqZyG6oj4=
+X-Received: by 2002:a19:ee02:: with SMTP id g2mr2886896lfb.113.1568833419573;
+        Wed, 18 Sep 2019 12:03:39 -0700 (PDT)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
+        by smtp.gmail.com with ESMTPSA id o18sm1128114lfb.25.2019.09.18.12.03.34
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Sep 2019 12:03:39 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id l21so1041606lje.4
+        for <linux-kernel@vger.kernel.org>; Wed, 18 Sep 2019 12:03:34 -0700 (PDT)
+X-Received: by 2002:a2e:8943:: with SMTP id b3mr3094106ljk.165.1568833413723;
+ Wed, 18 Sep 2019 12:03:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190918170952.GT2596@sirena.co.uk> <20190918185257.GC1933777@kroah.com>
+In-Reply-To: <20190918185257.GC1933777@kroah.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Wed, 18 Sep 2019 12:03:17 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whreYmsU_AQtzDS5gd3yamYJ72gBo+YekYSyJLPQ1Qo-A@mail.gmail.com>
+Message-ID: <CAHk-=whreYmsU_AQtzDS5gd3yamYJ72gBo+YekYSyJLPQ1Qo-A@mail.gmail.com>
+Subject: Re: linux-next: build failure after merge of the driver-core tree
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        linux-i2c@vger.kernel.org,
+        Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Wed, Sep 18, 2019 at 11:53 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+>
+> On Wed, Sep 18, 2019 at 06:09:52PM +0100, Mark Brown wrote:
+> >
+> > After merging the driver-core tree, today's linux-next build
+> > for arm64 allmodconfig failed like this:
+>
+> Wait, I thought Linus said this fixup was now resolved.  What went
+> wrong?
+
+I think this is purely a linux-next build failure.
+
+I do full allmodconfig builds between each merge I do, and what
+happened is that as part of the LED merge, I removed the
+no-longer-used 'i2c_acpi_find_match_adapter()' to resolve that build
+warning.
+
+Then linux-next presumably merged my tree with the driver-core tree,
+and that re-instated the use of i2c_acpi_find_match_adapter() - which
+was now gone.
+
+But when *I* merged the driver-core tree, I did the merge fixup
+correctly to actually re-instate not only the use, but also re-instate
+the removed function that now had a use again.
+
+> Linus, should I submit a fix for this?
+
+My tree should be fine, and I really think this is just a temporary
+linux-next effect from the above. I think linux-next only handled the
+actual syntactic conflicts, not the semantic conflict of "function had
+been removed to avoid build error from previous merge, and needed to
+be brought back"
+
+Knock wood.
+
+              Linus

@@ -1,0 +1,111 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:f20e:0:0:0:0:0 with SMTP id q14csp3253321lfh;
+        Mon, 18 May 2020 12:13:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw9PRMfjMLKuVmfzqL/wTrA76FHmdAdl0AXGr9EaOqlWwd0ZiDdnNVOWBgOpi6iJvaJnx7+
+X-Received: by 2002:a05:6402:b91:: with SMTP id cf17mr5101282edb.148.1589829199162;
+        Mon, 18 May 2020 12:13:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1589829199; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xtfnq29ay1tIG1NzK6/JH7BZb1QyTw4XdLjupdq/CCXe//qOxIYyggx+rd5Op1izkt
+         xittDIIA1LBy16aEbt6eK9XMQVUXLxyzjj3O0LX8JBrRGwXz39w2OM7BoLEIrPH01/PM
+         o5ml4DMeEPfdQ0A99qVz5f3hoWJhIJJNuKqQQaSZ+fY7rE6En4iSKzdp7YpOJNSZCpQg
+         G5uqb1FnL+svXZBjCqNcnXB2e1mrk/VtkEyaSVgZfrrMSt51ZSWlUFyHoZrMOw7Wn/uR
+         hPH3fA33Tbv1lw8kABbl+mo6cBkXi3WZG8YNYW/EDDrEB5HO9jLAaBVYVsCWninOiXGk
+         C/rg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ilFS0djlykVy1P5eI7mmIHkWUV2TLGO3S4u/3xid4pg=;
+        b=TtB175ksYJ8jEnVaF2mpAP5g+Vh7aXU8QkcEhRExD+fHeQ42RiJ5EA3mxwXg0dP740
+         8P44hqCbTWiZHsXuLVi/vRSQix0UVho9RhrRu/5juK71tpMXA17yIDs28SoJmP9HhDIW
+         HiTepWtTO9xh5wFfRheJeGfy3AUiZArqRg+HP8+0uUU92xV9MAbaU+L3Gbuhve783V7k
+         Jz7RcH4Wo2dIG6ncSg/HBMxr/2m8wY9cPC1q3Ebd8FuZxjDYT4wiL/w3ov242lnJLGGz
+         ywFesiPBOA5jLleReA2QI4MbaE1lRCkPOsbpidkhy74nCaWXnmO2IYbvTwC6Y8I2ttZE
+         snYg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=f+uZ9XMv;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id g25si5909709edy.554.2020.05.18.12.12.55;
+        Mon, 18 May 2020 12:13:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=f+uZ9XMv;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1730266AbgERRrs (ORCPT <rfc822;mbal7831@gmail.com> + 99 others);
+        Mon, 18 May 2020 13:47:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60700 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730254AbgERRro (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 18 May 2020 13:47:44 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1199AC05BD09
+        for <linux-kernel@vger.kernel.org>; Mon, 18 May 2020 10:47:44 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id e125so8068888lfd.1
+        for <linux-kernel@vger.kernel.org>; Mon, 18 May 2020 10:47:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ilFS0djlykVy1P5eI7mmIHkWUV2TLGO3S4u/3xid4pg=;
+        b=f+uZ9XMvjcg7Pj2CajPFupJFIDSr9ddFhQhrxBb0RA/bsuI7ZzuATo0+/ylZltsOVJ
+         R22A7vytwMouhLrIf/3AATPF8b9+0quvf7roPc6/setO6Sv4SVM72UAdlF/UGkInI0XA
+         1uTfX87HNlIdTTPW3uw5dFcty9O5kBfWhOOwA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ilFS0djlykVy1P5eI7mmIHkWUV2TLGO3S4u/3xid4pg=;
+        b=mlsoYA1UGBLZE1nTwKX8a4/KlmbjVa6gfTUWpCZVAKg0cT3CoUHFUl9nECcPmv7oQq
+         O9oeeqhr4ZtSEfCRMr9h2qpiVHiggAYRbT8naE+blde0FbBD3CjezSs6qJyxBXhyOlAo
+         SOLShwOEhrzfDrMo6H/Rq7xkKo2xI3niBnQ425D303az2C3N9nk5lrIJxmSlErRddt9x
+         3VjwanENYt4aHX0/mfhei9twzS4QiqPeXo8rYaLKVzM0O6kN/ojxmz6dPy/rnY9eWrXK
+         nF5kona3NqE0VDXQbM7x5bjn1M2EXG59YimaJz6+xBs6JVCPznwTjwux9jSmxAsdKiuH
+         WkYw==
+X-Gm-Message-State: AOAM532m27Etzq8F2Mn9WsZZ8LgRrWPm6pGvLsq9LNPLKhRqFuqw0cpS
+        B+kbmRsWy3H0oO85ftMwkbYsEkqXId4=
+X-Received: by 2002:ac2:46c1:: with SMTP id p1mr11727121lfo.25.1589824061988;
+        Mon, 18 May 2020 10:47:41 -0700 (PDT)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
+        by smtp.gmail.com with ESMTPSA id v28sm1295914lfd.35.2020.05.18.10.47.40
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 May 2020 10:47:41 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id v5so8819277lfp.13
+        for <linux-kernel@vger.kernel.org>; Mon, 18 May 2020 10:47:40 -0700 (PDT)
+X-Received: by 2002:a19:d52:: with SMTP id 79mr11576675lfn.125.1589824060570;
+ Mon, 18 May 2020 10:47:40 -0700 (PDT)
+MIME-Version: 1.0
+References: <1589816971.5111.113.camel@linux.ibm.com>
+In-Reply-To: <1589816971.5111.113.camel@linux.ibm.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Mon, 18 May 2020 10:47:24 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wh_Zw7ug+iMALAKfQkdyVAUWC0UB0bfRRPMOCC7U5uTFQ@mail.gmail.com>
+Message-ID: <CAHk-=wh_Zw7ug+iMALAKfQkdyVAUWC0UB0bfRRPMOCC7U5uTFQ@mail.gmail.com>
+Subject: Re: [GIT PULL] integrity subsystem fixes for v5.7
+To:     Mimi Zohar <zohar@linux.ibm.com>
+Cc:     linux-integrity <linux-integrity@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, May 18, 2020 at 8:49 AM Mimi Zohar <zohar@linux.ibm.com> wrote:
+>
+>   git://git.kernel.org/pub/scm/linux/kernel/git/zohar/linux-integrity.git next-integrity.fixes
+
+No such head.
+
+It looks like the plain 'fixes' branch has the same commit ID, but
+there's no next-integrity.fixes.
+
+Btw, any chance you could start using signed tags? I've been
+encouraging people to do that even on kernel.org, and we've got fairly
+high coverage these days..
+
+             Linus

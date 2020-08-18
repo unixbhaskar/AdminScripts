@@ -1,0 +1,78 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp2578987lfk;
+        Mon, 25 May 2020 08:43:03 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxOFM7L+1dkHLKqZnYu+i3pVFcfzj5QQNzmXzx9PNti0ZvBDfioV4J1JY19uWbBvuy/oYTm
+X-Received: by 2002:aa7:da04:: with SMTP id r4mr15429201eds.346.1590421383239;
+        Mon, 25 May 2020 08:43:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590421383; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wgQgF+3ul8KSBWJSoZ2ae7hCQRMTCfrbyYuycfM7oNcwwBSEBKA5zJ4lWBeZYhSscc
+         t4A3bXzKi5NogIQzmDwniK8z97uALaMSX54yqvJB792ow3vhG4Jc6eFa8vmo83yzgs88
+         jedBtUb+ojCL+YBjvAyMOlZMJUZ51NtFY3jueap0bp9cBEQxqYLHebQoIrJ5tpboSWD6
+         oFEz3IGFcbeictN+RjXzUQZMCDRFxFR6fpCJWCi48PM8/plyKJdLxU1p4+YjPeNghdHE
+         Y1S4hdGy18AOK9Mm5Zb27MKTRPbJbUG3PYiYarSj0Ya8R7kUNLhWX/n98xmWps3Oqjms
+         ZOyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :organization:references:in-reply-to:message-id:subject:cc:to:from
+         :date;
+        bh=yUv/XzpG4IimyI15Lv/p5OJdjXez2wBLlAFmc/yb4ns=;
+        b=Ki4Dp7q5UBfMIH+W3C1I59x3W6i/mSPPDsOknEcMjlt0J0rN3ctlUQ02KqmV5VyPUg
+         fOfH7IdP9jIxTCMUlzL7SNfOjAn3x4ByiQbNv99nqs5rmqKL11LjWEE5iE8K9StC9HkG
+         guMqC0PV2W9f+LMNgEL9Dr8c35jqIk0n5k7t6VfrBlIz2g79qmVPVY6zXxLRObFM3wxu
+         aroWPC4kROpO81oq7XxHr//MmCgSRsNlA696D62uZN1Jwa9ZH+pSHZiNSVjrewTdwe8N
+         vZZHnWXqugyFdojx3W0MQhcjvxOVUWTrZEmWjoov6d8XSPtOA/2Fhxvsd5qk//yor3Om
+         L+sg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Return-Path: <linux-doc-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id i21si61639ejy.399.2020.05.25.08.42.31;
+        Mon, 25 May 2020 08:43:03 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2404203AbgEYPlz (ORCPT <rfc822;bryce.steven.willey@gmail.com>
+        + 99 others); Mon, 25 May 2020 11:41:55 -0400
+Received: from ms.lwn.net ([45.79.88.28]:60674 "EHLO ms.lwn.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2404002AbgEYPlz (ORCPT <rfc822;linux-doc@vger.kernel.org>);
+        Mon, 25 May 2020 11:41:55 -0400
+Received: from lwn.net (localhost [127.0.0.1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id 625562DC;
+        Mon, 25 May 2020 15:41:55 +0000 (UTC)
+Date:   Mon, 25 May 2020 09:41:54 -0600
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Cc:     linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: reference to Linux Foundation NDA program obsolete?
+Message-ID: <20200525094154.7c9f4bd6@lwn.net>
+In-Reply-To: <alpine.DEB.2.21.2005240722560.5201@felia>
+References: <alpine.DEB.2.21.2005240722560.5201@felia>
+Organization: LWN.net
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
+Sender: linux-doc-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-doc.vger.kernel.org>
+X-Mailing-List: linux-doc@vger.kernel.org
+
+On Sun, 24 May 2020 07:33:29 +0200 (CEST)
+Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote:
+
+> The link is dead; internet search only showed some references from 
+> meeting minutes in 2008, but nothing more since then.
+> 
+> Has this LF NDA program simply been phased out?
+
+That's a good question...I'm asking around at the LF, will let you know
+once I get an answer.  It could well be that the page just got lost in the
+reshuffling of the LF web site - an annual event, as far as I can tell.
+
+Thanks,
+
+jon

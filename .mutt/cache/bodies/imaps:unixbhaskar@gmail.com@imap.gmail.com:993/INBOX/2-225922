@@ -1,0 +1,174 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:2382:0:0:0:0:0 with SMTP id j124csp1733306lfj;
+        Sun, 1 Mar 2020 15:06:21 -0800 (PST)
+X-Google-Smtp-Source: ADFU+vunJsVvrM2iVsJKP3Fqu7+O8NWZOvLvYMvYxPd6RwWqsU/oN8IgpWYdnp1WL9yg1DMb410q
+X-Received: by 2002:a9d:6f88:: with SMTP id h8mr2899503otq.91.1583103980891;
+        Sun, 01 Mar 2020 15:06:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1583103980; cv=none;
+        d=google.com; s=arc-20160816;
+        b=cLdgwU4lOr68jL4HkPdAwqvsh9iOGTadSYOVvgMnI1zw5RfEzkJ/E9CuJbPfRqc5L8
+         2hxqzh0hc1Dw+eIVdmeZVKynhkrd9DskwVKDqKu6jFdBHnz5JlQ/KqVzQ3cu0eltxS+e
+         JdohpdXSB7DFJqb1zn+24t9BUW5Z82ACn7rtO9q7n4cNBNVZ+ZQH4XopyVqU+Vs10S8w
+         od2NrTkadl4ulDxtl9N/rgKXovgmRy0sRhfMHeZAirCWgKvxeNSKesKlZkQF/f0Bg0JC
+         haVtltlTyjFWoRozJs/jc/ViPiJcVUSvD5+Y4Gt3ZY2YI/2otvR/h0rTBw0Xdtgj0eE+
+         Qdwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=XuiAbO2SkXe4tDJeax00CsvNvM/vImoEM31blqjC8GQ=;
+        b=k5nTSFDoIXJpFQHoNTceTmnC5xaQmyn0OSUZ26Vq/wsdeexF3FFd4+Jyo2MG/4SNxt
+         fIf1DsAVIPD6w4YMUPG1RoHQIdAY4hi0e/DVQwcsae9eF7FD+lnHdTpWM0OpYy+Tiv9P
+         NPDXMmoEInHNwqUzrN2hyQgsvBZB0kaJo/eC7O92PxLpeWd6Y5RNcpqJE87hYoK9Hn8V
+         Mk5xslYAqXWZwF05UCQnlmnjnnm1DMn880pPoK66+Ww8kYyTjIux4J6gWCSjLoX11psb
+         Ij7gyz9bGI7AIekJfcgirnmjG0zDWSZB4F8hcFoW8JOXIkPShHhi10EeAfWIoEIl62+l
+         fsyw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=J1RJ+HVn;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id s64si5289275oig.147.2020.03.01.15.06.09;
+        Sun, 01 Mar 2020 15:06:20 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=J1RJ+HVn;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726954AbgCAXFB (ORCPT <rfc822;tmayfield1@gmail.com>
+        + 99 others); Sun, 1 Mar 2020 18:05:01 -0500
+Received: from us-smtp-1.mimecast.com ([207.211.31.81]:34943 "EHLO
+        us-smtp-1.mimecast.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726700AbgCAXFA (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 1 Mar 2020 18:05:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1583103900;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=XuiAbO2SkXe4tDJeax00CsvNvM/vImoEM31blqjC8GQ=;
+        b=J1RJ+HVn68U+LiSvJhctdSSRlcr1CQAM0ObGZOeHF7HWxcxYlSkNjiixmi6TPHTFzVB5/o
+        27PIyzYmRae3GWeHGL8qtP2/EDtzlCrr487RjtkXRYaWojsRaIvcajSHNS6WavLI3y9caI
+        wVikcONR0yld4pZaq8Tr3Z095PuY1DM=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-15-zSxI_YTcNoOYWiL82Vhy5g-1; Sun, 01 Mar 2020 18:04:58 -0500
+X-MC-Unique: zSxI_YTcNoOYWiL82Vhy5g-1
+Received: by mail-wr1-f70.google.com with SMTP id m18so3615997wro.22
+        for <linux-kernel@vger.kernel.org>; Sun, 01 Mar 2020 15:04:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=XuiAbO2SkXe4tDJeax00CsvNvM/vImoEM31blqjC8GQ=;
+        b=PfOoa6aGvw2xUzN5vjuaL72JLKJnveqBCM9FhyKFXQ9bvBalY6lA/1sHaJjmavxViE
+         wYrmXUQOnJqvXAC1REQRlZMiS4ZseQlZIURHGXlFu5vz7R+/bGy+aYhJZKZHe0aSxb4J
+         p+Kp5guc6qwpDvsBgPTruab19w2jjNAZuQksJ3ndQ+Gjm0h/t9AJrUeqZcuK4KWd+k67
+         xyEbZ7raVl1HcqJK1HCzna+LBkmntZq9cuy6CLE5sZK03abQKl+PPFevd3hIvzSUYlzF
+         BUpsqBaUcDdWX37rMqNsbtZs9YoU2vgLvMKo0050etXAIuFuzKUT9wLLiPLP0L273I8k
+         XQfA==
+X-Gm-Message-State: APjAAAWQQoWD3y6CeRO8lskXZhkQ//0qE2T0kJNv17RW5+24RGDGfSPa
+        DzUutLI8uWr3c9Uml74KA3XiMgnakASY7KseVoX2hpuUNYP9PXmkq3oHwK8aidUc7LrL38vxr6i
+        tu8+6xLxhe7zx5UUNAnABqiov
+X-Received: by 2002:a5d:4450:: with SMTP id x16mr17790261wrr.242.1583103897242;
+        Sun, 01 Mar 2020 15:04:57 -0800 (PST)
+X-Received: by 2002:a5d:4450:: with SMTP id x16mr17790237wrr.242.1583103896891;
+        Sun, 01 Mar 2020 15:04:56 -0800 (PST)
+Received: from ?IPv6:2001:b07:6468:f312:e1d9:d940:4798:2d81? ([2001:b07:6468:f312:e1d9:d940:4798:2d81])
+        by smtp.gmail.com with ESMTPSA id i204sm13279922wma.44.2020.03.01.15.04.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 Mar 2020 15:04:56 -0800 (PST)
+Subject: Re: [GIT PULL] Second batch of KVM changes for Linux 5.6-rc4 (or rc5)
+To:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Michael Ellerman <mpe@ellerman.id.au>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        KVM list <kvm@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+References: <1583089390-36084-1-git-send-email-pbonzini@redhat.com>
+ <CAHk-=wiin_LkqP2Cm5iPc5snUXYqZVoMFawZ-rjhZnawven8SA@mail.gmail.com>
+From:   Paolo Bonzini <pbonzini@redhat.com>
+Message-ID: <4f115b07-7d94-da4f-edb2-f4d565c4289e@redhat.com>
+Date:   Mon, 2 Mar 2020 00:04:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+MIME-Version: 1.0
+In-Reply-To: <CAHk-=wiin_LkqP2Cm5iPc5snUXYqZVoMFawZ-rjhZnawven8SA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 01/03/20 22:33, Linus Torvalds wrote:
+> On Sun, Mar 1, 2020 at 1:03 PM Paolo Bonzini <pbonzini@redhat.com> wrote:
+>>
+>> Paolo Bonzini (4):
+>>       KVM: allow disabling -Werror
+> 
+> Honestly, this is just badly done.
+> 
+> You've basically made it enable -Werror only for very random
+> configurations - and apparently the one you test.
+> Doing things like COMPILE_TEST disables it, but so does not having
+> EXPERT enabled.
+
+Yes, I took this from the i915 Kconfig.  It's temporary, in 5.7 I am
+planning to get it to just !KASAN, but for 5.6 I wanted to avoid more
+breakage so I added the other restrictions.  The difference between
+x86-64 and i386 is really just the frame size warnings, which Christoph
+triggered because of a higher CONFIG_NR_CPUS.
+
+(BTW, perhaps it makes sense for Sparse to have something like __nostack
+for structs that contain potentially large arrays).
+
+> I've merged this, but I wonder why you couldn't just do what I
+> suggested originally?  Seriously, if you script your build tests,
+> and don't even look at the results, then you might as well use
+> 
+>    make KCFLAGS=-Werror
+
+I did that and I'm also adding W=1; and I threw in a smaller than
+default frame size warning option too because I don't want cpumasks on
+the stack anyway.  However, that wouldn't help contributors.  I'm okay
+if I get W=1 or frame size warnings from patches from other
+contributors, but I think it's a disservice to them that they have to
+set KCFLAGS in order to avoid warnings.
+
+> the "now it causes problems for
+> random compiler versions" is a real issue again - but at least it
+> wouldn't be a random kernel subsystem that happens to trigger it, it
+> would be a _generic_ issue, and we'd have everybody involved when a
+> compiler change introduces a new warning.
+
+Yes, and GCC prereleases are tested with Linux, for example by doing
+full Rawhide rebuilds.  If we started using -Werror by default
+(including allyesconfig), they would probably report warnings early.
+Same for clang.
+
+I hope that Linux can have -Werror everywhere, or at least a
+CONFIG_WERROR option that does it even if it defaults to n for a release
+or more.  But I don't think we can get there without first seeing what
+issues pop up in a few subsystems or arches---even before considering
+new compilers---so I decided I would just try.
+
+Paolo
+
+> Adding the powerpc people, since they have more history with their
+> somewhat less hacky one. Except that one automatically gets disabled
+> by "make allmodconfig" and friends, which is also kind of pointless.
+
+> Michael, what tends to be the triggers for people using
+> PPC_DISABLE_WERROR? Do you have reports for it? Could we have a
+> _generic_ option that just gets enabled by default, except it gets
+> disabled by _known_ issues (like KASAN).
+> 
+> Being disabled for "make allmodconfig" is kind of against one of the
+> _points_ of "the build should be warning-free".
+

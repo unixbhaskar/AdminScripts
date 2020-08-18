@@ -1,0 +1,136 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp1709560lfj;
+        Thu, 13 Aug 2020 10:39:21 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxIMT9mt5oF8egxs8jziJgR67h2G6nTlrhj5YcStDgGyyl8RPABwF+jVNIdqjMG81o2hygc
+X-Received: by 2002:a05:6402:d07:: with SMTP id eb7mr6053198edb.160.1597340361658;
+        Thu, 13 Aug 2020 10:39:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597340361; cv=none;
+        d=google.com; s=arc-20160816;
+        b=A6dL835jOG9/3gLA5LoVNQEp8bH28kQLFKnIXn6IioWfJeiSThJEdhS8n2OiWj7j1V
+         HbZyn0KO/7Djz5HdZnY4ChlN2AxhQwnW0QWLYwFuNvn4mYxyS59lK9uY0mzQWwy3b00B
+         YiNN6QELVwhwvmZIx6FzVGKLVnCoeSfe5gIkSXyV17v9t0T1LZ0vcBUwgY8XSG+ljDto
+         4LEpRoRvU4cR2AdN/AFPm0KEqpGHB98+CpaeP19PbceRj2PaoLrVPjPQ+mmp6w4/+Fvl
+         eBZMLWlo7AU8PEk1OGingODPIq3W0YUTFbIINnQJgrlk2lcFzRPcJ1BPlj5nCfGvq6Jj
+         uhpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=9jlgVFW8cz8UnSK84wDsTo/KXIXNWwrMl6cC3LnDPv4=;
+        b=aHlqHqvVz5tRyWyzIj9BG3ZL7Q9zstxrq2p+JB5ywBXathLypxTqTJmCCDRdU7R2qv
+         4qaiKSkm7eZ3jY+rKTiht/VBCuzLuLwgyft8D8sTDYVNuLWucaE11ewwHbMe80iwO3io
+         XstJaALvzT8eWI8HC4x21HSTgyy3R3V+eq6ltNlTYpXSPMfYGNFEIZSNiSmLTr62Ro8S
+         ZmecLaPKFNLJveVQ9a6mC/TZb2W96FnLk0580LDHH6PGdhZ0+rSiSnWDNg0QiGiCnWIM
+         bGcxCTtKfF5pWfMYw8Z1lL4RwMXClcDfiQ+c8y7XFvigxGfmGA3vh2gzQfHta25OL7Ro
+         b6Xg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@toxicpanda-com.20150623.gappssmtp.com header.s=20150623 header.b=sh9bDuKN;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id a20si3774640ejx.257.2020.08.13.10.38.58;
+        Thu, 13 Aug 2020 10:39:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@toxicpanda-com.20150623.gappssmtp.com header.s=20150623 header.b=sh9bDuKN;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726546AbgHMRgQ (ORCPT <rfc822;beyondssmith@gmail.com>
+        + 99 others); Thu, 13 Aug 2020 13:36:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726244AbgHMRgP (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 13 Aug 2020 13:36:15 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CF5EC061757
+        for <linux-kernel@vger.kernel.org>; Thu, 13 Aug 2020 10:36:15 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id k18so4954922qtm.10
+        for <linux-kernel@vger.kernel.org>; Thu, 13 Aug 2020 10:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=toxicpanda-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=9jlgVFW8cz8UnSK84wDsTo/KXIXNWwrMl6cC3LnDPv4=;
+        b=sh9bDuKNQMwxUwVp6W0+Ns5Wb6IFR/6zaqA7W8oYXVDOzc057MiRpQRRowgHDaiTcB
+         9Ya1PtztpYgdTWwe0T5BJj1i51Hhtk0jvbtA5BKV74/xlz4I9cQyMnn4o6QzfCRbrpNG
+         QDr/OjEW6cURvv2WL7nwGhwuF9yXQTvCSA4zVOnhtS2e/t9IK/Vx7TftKDprRdCQ6syW
+         6CGAOl+bKUHCHZorXS+ITQ5uEj3Ti482H7qSNPceuvvgtrKbIEJpjtbbWw0GwCqhL2Ag
+         vDXyRamOoNmA41Zw66ARN1ICqsdSyYiQxfy6odqZ7QA0eqjl1352w9f47ZmRS8Ci/uIg
+         XFiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=9jlgVFW8cz8UnSK84wDsTo/KXIXNWwrMl6cC3LnDPv4=;
+        b=NkNbvway6CE8K9Pb9AYRIugQmI7Fi6JZGvnkHpNMBuez3iJHKhcxsTcyZc9uWzbXKj
+         TJu11FrUpMSb1wvw70x6lof9AneJgWD0R+8oSrbIBT0QR6ViqBK/1Rw4pa4x6g+QjkmN
+         L51BxFTppkM1nDaQkfd8TetquUkzDt1HNv0aFmIICGu/WwIXAwHCLojE9S4hS+Qe1YOs
+         OvMqzc78uuNa61lbBMIoEgJqrhEAOM7YWDV/9M+FIGfnXOs+qH3YTxxNJHCVbj7lhhae
+         K4pwsfRBSAIotkoTK2zIpO8dAwAhXi+gtOUmHxClfFMTTRm5+AJ6bGyOFM2I8zUSjbWG
+         fekw==
+X-Gm-Message-State: AOAM5307+EG1q3GI8UMc41sQ2W8s5IAqTxup/zLKUF8Md2P98ZG95zff
+        AeRA6Sxjapxpp7EAWvX+sgm9xQ==
+X-Received: by 2002:ac8:349a:: with SMTP id w26mr6584026qtb.263.1597340171930;
+        Thu, 13 Aug 2020 10:36:11 -0700 (PDT)
+Received: from ?IPv6:2620:10d:c0a8:11d9::10a7? ([2620:10d:c091:480::1:fe9c])
+        by smtp.gmail.com with ESMTPSA id i68sm6007004qkb.58.2020.08.13.10.36.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Aug 2020 10:36:10 -0700 (PDT)
+Subject: Re: [PATCH][v2] proc: use vmalloc for our kernel buffer
+To:     Al Viro <viro@zeniv.linux.org.uk>
+Cc:     Christoph Hellwig <hch@lst.de>, linux-kernel@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, kernel-team@fb.com,
+        willy@infradead.org
+References: <20200813145305.805730-1-josef@toxicpanda.com>
+ <20200813153356.857625-1-josef@toxicpanda.com>
+ <20200813153722.GA13844@lst.de>
+ <974e469e-e73d-6c3e-9167-fad003f1dfb9@toxicpanda.com>
+ <20200813154117.GA14149@lst.de> <20200813162002.GX1236603@ZenIV.linux.org.uk>
+ <9e4d3860-5829-df6f-aad4-44d07c62535b@toxicpanda.com>
+ <20200813173155.GZ1236603@ZenIV.linux.org.uk>
+From:   Josef Bacik <josef@toxicpanda.com>
+Message-ID: <34b2d8f2-d10a-a9fd-3b5e-470cb8c4251d@toxicpanda.com>
+Date:   Thu, 13 Aug 2020 13:36:09 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:68.0)
+ Gecko/20100101 Thunderbird/68.11.0
+MIME-Version: 1.0
+In-Reply-To: <20200813173155.GZ1236603@ZenIV.linux.org.uk>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 8/13/20 1:31 PM, Al Viro wrote:
+> On Thu, Aug 13, 2020 at 01:19:18PM -0400, Josef Bacik wrote:
+> 
+>>> in sunrpc proc_dodebug() turns into
+>>> 		left -= snprintf(buffer, left, "0x%04x\n",
+> 					 ^^^^
+> 					 left + 1, that is.
+> 
+>>> 				 *(unsigned int *) table->data);
+>>> and that's not the only example.
+>>>
+>>
+>> We wouldn't even need the extra +1 part, since we're only copying in how
+>> much the user wants anyway, we could just go ahead and convert this to
+>>
+>> left -= snprintf(buffer, left, "0x%04x\n", *(unsigned int *) table->data);
+>>
+>> and be fine, right?  Or am I misunderstanding what you're looking for?  Thanks,
+> 
+> snprintf() always produces a NUL-terminated string.  And if you are passing 7 as
+> len, you want 0xf0ad\n to be copied to user.  For that you need 8 passed to
+> snprintf, and 8-byte buffer given to it.
+> 
+
+Right, gotcha.  I'll rig that up and see how it looks.  I'd recommend looking 
+through what I do with a fine tooth comb, I'm obviously not batting 1000 today. 
+Thanks,
+
+Josef

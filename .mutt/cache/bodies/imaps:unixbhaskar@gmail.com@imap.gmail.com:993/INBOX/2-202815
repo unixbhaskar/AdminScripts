@@ -1,0 +1,112 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1377211lfj;
+        Wed, 25 Sep 2019 17:05:25 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxOkcH+Kf1MWI7XlwgpXlx9C7wA6Yjw0roSzbC0PtsZhhgxJYGfUj+xvYBrQSTUbNg7rDd6
+X-Received: by 2002:a50:a557:: with SMTP id z23mr667311edb.99.1569456325320;
+        Wed, 25 Sep 2019 17:05:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569456325; cv=none;
+        d=google.com; s=arc-20160816;
+        b=rUVFdS1hviqAYUcfxtWg+HyrqDABlxgUZAdOnRWWlJp6XtcW13z01KNxMWsshgFX0C
+         fZcxyTxxHfcWhzPJ7bFuu3EwvPOhoIimFFlIHQ2l6Uk83irmOMEJFpb+mSSCTmxMwk8n
+         ZqGMNQRsfGs4CDKIfWOkbvvHPAuOT2ckfTHKpt+c2VIWZDSXvbnBWpEcU/1iqS/ZHsr+
+         fpPPWDRSI2RL/7murRUsXfWcdzUgZ5bQ5yD8g/hjrIV+Bi2pKM/SrWtepiwtxhsuNo+U
+         Jvk/698yOsqUKCmbcS6HwikhQ0tVNQ9mPO6QTKtMl9vnqYvk5Di3Cm0MOPuIl5ds27yt
+         8nkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=2a5iRl0pwYddtRZuyM8DbsyUr2hb638EoJcEbjk4XVU=;
+        b=nMb7TXqPDtAUNiggx4OFDwCsFDoSKpDa52AVkLtuk60shyOhxSIGHpqIr+9xvd4Xy5
+         VR45mVnzZXqCHWLGq9SVZuecMkmzQbpZFCVvpFk0gTX3fR/yAEvvPhM+rQjtIGOo7TV4
+         IBKsVpmRbtGJF7dsJkjE/9/hOFvwh2gnZ2GB5I9qdrirUX76SmHePa1n1yb2Xpkg0sjJ
+         6A1ciwmwOllgz9YNEfE7FsyzF2631cQoYx2OpKB7vTKM2uOX0vP7WMWEicqs0SpKTu+a
+         DRoJ1zVJyJw8DqjYDJQaoP3A/II1Q/7nFrHerQzIHXQOFtxcdaEZmEZ7Fja0rYTVdD4f
+         cWjw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b="JcoEGS/A";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id y9si322928edv.405.2019.09.25.17.05.00;
+        Wed, 25 Sep 2019 17:05:25 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b="JcoEGS/A";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2503095AbfIWVir (ORCPT <rfc822;tavery321@gmail.com> + 99 others);
+        Mon, 23 Sep 2019 17:38:47 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:41901 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389058AbfIWVir (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 23 Sep 2019 17:38:47 -0400
+Received: by mail-lf1-f68.google.com with SMTP id r2so11298765lfn.8
+        for <linux-kernel@vger.kernel.org>; Mon, 23 Sep 2019 14:38:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2a5iRl0pwYddtRZuyM8DbsyUr2hb638EoJcEbjk4XVU=;
+        b=JcoEGS/AI2rU99SMqow9YrwJpVhAdInWmVe0K73EpxT4IX0dSd4iV6gEYJNry3t1NZ
+         czy0P2z6QFvutymUbR9Kl/JfZ7V+MTGu8fD757Q0hU9hsZCA1KKVL4ex53vmZh/jPMib
+         pBCmfcv12WS9ovtx+DEcpFDjd8BQTAsbCG3Fk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2a5iRl0pwYddtRZuyM8DbsyUr2hb638EoJcEbjk4XVU=;
+        b=qMyxuYKIRQQ/A4QbetfI/e/oX4qgyUZ/E8eCBYi0zPsSp3j5Ijf2+S08xhzO4TqFQh
+         yVydEdHfifoUHTUO6yPChaHuSf5Sp9y47avZ+E332dniQzVmceEWVLOWgTuJm+cHc+Yb
+         3qW3jrCXBDPdZLFFud2n+eMP7f0oJsT1kP+UYN46jMVSCKhUhEWbl6loQdLkyDLAyDXn
+         LhEzjD1cj8QZRCuTLkvXCkGb3nooJW5Xq/2qtk3O6diS9gEXSY5H0xPrTmy/mBA6pY9r
+         X6Bt/D7unojqR3TOhgX9HbErFMuvTflAQq6yB0hjV4K9fK5Mk3ANFPLIYcSiXY60632t
+         li3g==
+X-Gm-Message-State: APjAAAVKgzb0ao4j6yOHff/1aR+N4IYuf8/9rFouvWDkWKeGw6rrs+WX
+        3ztIwGs7cYY3jhRJwn7ij1TfP99EN6E=
+X-Received: by 2002:a05:6512:512:: with SMTP id o18mr968397lfb.153.1569274725200;
+        Mon, 23 Sep 2019 14:38:45 -0700 (PDT)
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com. [209.85.167.43])
+        by smtp.gmail.com with ESMTPSA id x6sm2055907ljh.99.2019.09.23.14.38.44
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Sep 2019 14:38:44 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id q11so11291125lfc.11
+        for <linux-kernel@vger.kernel.org>; Mon, 23 Sep 2019 14:38:44 -0700 (PDT)
+X-Received: by 2002:a19:f204:: with SMTP id q4mr945017lfh.29.1569274723803;
+ Mon, 23 Sep 2019 14:38:43 -0700 (PDT)
+MIME-Version: 1.0
+References: <745ac819-f2ae-4525-1855-535daf783638@schaufler-ca.com> <CAHk-=wg1zkUTdnx5pNVOf=uuSJiEywNiztQe4oRiPb1pfA399w@mail.gmail.com>
+In-Reply-To: <CAHk-=wg1zkUTdnx5pNVOf=uuSJiEywNiztQe4oRiPb1pfA399w@mail.gmail.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Mon, 23 Sep 2019 14:38:28 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgNi_y5SaXGS3hsxsFcU8P89O9ayJZ6yEYkvCC115J40A@mail.gmail.com>
+Message-ID: <CAHk-=wgNi_y5SaXGS3hsxsFcU8P89O9ayJZ6yEYkvCC115J40A@mail.gmail.com>
+Subject: Re: [GIT PULL] Smack patches for v5.4 - retry
+To:     Casey Schaufler <casey@schaufler-ca.com>
+Cc:     Linux Security Module list 
+        <linux-security-module@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Sep 23, 2019 at 2:35 PM Linus Torvalds
+<torvalds@linux-foundation.org> wrote:
+>
+> On Mon, Sep 23, 2019 at 1:14 PM Casey Schaufler <casey@schaufler-ca.com> wrote:
+> >
+> > Thank for the instruction. I think this is correct.
+>
+> Looks fine, pulled.
+
+Oh, btw, can you get more signatures on your pgp key? I actually care
+more about having a key than having a key with lots of signatures (*),
+but signatures and a chain of trust would be good too.
+
+                   Linus
+
+(*) To me, keys are more of a "yeah, I'm the same person that usually
+sends these pull requests" than some kind of hard identity.

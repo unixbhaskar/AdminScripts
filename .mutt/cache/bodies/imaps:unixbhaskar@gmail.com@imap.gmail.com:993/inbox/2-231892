@@ -1,0 +1,1171 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp3515lfg;
+        Thu, 2 Apr 2020 16:50:13 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJSVFS+UTTjY4uH1Wu1RwGMo/Vcw4w8EzMEQXPNaNxzGUXCVBuR39ImX4C/x+UTHPDB8+tO
+X-Received: by 2002:a25:aace:: with SMTP id t72mr9689292ybi.409.1585871412889;
+        Thu, 02 Apr 2020 16:50:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585871412; cv=none;
+        d=google.com; s=arc-20160816;
+        b=gV9FLQ6DNDUmouIqvLVltJC1061bqINFZjS9nOGTuLgs+ktjGVZNuV5v7+3ggl305y
+         VkIh1uZGFm4L8Z536zVQBnC71Xh6AuDnm99iCGULMwArHOMiX1kelNznFv5fAZyD/DKl
+         dTUEzFbjJIm/RFT4ph3lXL22KZjxBQ0gxTcfosF1P8AfSk08vmBjqSt/lhKJeaREzce5
+         YCkojGqEUCFSU47eU2hujHFY7jwYv1FhRl+MJe0dtxcEM0sNZU74WGlKIGTdJRwxv9id
+         sQJtSpA7EiBG7EOjZ88Hs3mFyX2Yr6gkyx99fp3+idcxvXABPgP+bEVf3A9IAmcZZ2Bt
+         Dqlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:list-unsubscribe-post:list-unsubscribe:precedence
+         :list-id:feedback-id:message-id:date:to:reply-to:from:subject
+         :dkim-signature:dkim-signature;
+        bh=DSi2qFrM6Tl2NgnAlVrAW8S/6V250J7tynH59yrSXDM=;
+        b=0kLS0wZeSO+KM2FAUz90Xc+n2xJ5A9+nHA6dtILpoK+SZYQQDBVbJhvGemFhbGw8s/
+         WGSrbpF6vT22tLGkUXTMRGLct6Mg+qaRPofQlV13rZy2YaVa5yvXgYWYSOd1ZCoAncGk
+         sdgklOoFfJ2+ITeqTvZRSS7kcJgKm0ifgh8QbEZzp+F8W+/49CiekMMcYH+vmHsfqsv0
+         XIhQalDlkSVokiaYXOJRTemRPzOYMKx/W96Y7k6/1bRwZnkh/laKOlf31132hKdOxTpd
+         UM/Ak2TFDkEJxIO9imoIsKGLBnBWZeUHvIPunVKm0RN9oIFc2fLsw8f59UVPGyrG6O6x
+         AU6g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.mcsv.net header.s=k1 header.b=AJMw0Qy8;
+       dkim=pass header.i=@ted.com header.s=k1 header.b=sOLK0DKl;
+       spf=pass (google.com: domain of bounce-mc.us1_933717.1271509-714b53187b@mail147.atl81.rsgsv.net designates 198.2.129.147 as permitted sender) smtp.mailfrom=bounce-mc.us1_933717.1271509-714b53187b@mail147.atl81.rsgsv.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ted.com
+Return-Path: <bounce-mc.us1_933717.1271509-714b53187b@mail147.atl81.rsgsv.net>
+Received: from mail147.atl81.rsgsv.net (mail147.atl81.rsgsv.net. [198.2.129.147])
+        by mx.google.com with ESMTPS id l63si6328936ybc.101.2020.04.02.16.50.12
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 02 Apr 2020 16:50:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-mc.us1_933717.1271509-714b53187b@mail147.atl81.rsgsv.net designates 198.2.129.147 as permitted sender) client-ip=198.2.129.147;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.mcsv.net header.s=k1 header.b=AJMw0Qy8;
+       dkim=pass header.i=@ted.com header.s=k1 header.b=sOLK0DKl;
+       spf=pass (google.com: domain of bounce-mc.us1_933717.1271509-714b53187b@mail147.atl81.rsgsv.net designates 198.2.129.147 as permitted sender) smtp.mailfrom=bounce-mc.us1_933717.1271509-714b53187b@mail147.atl81.rsgsv.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ted.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.mcsv.net;
+	s=k1; t=1585868669; bh=DSi2qFrM6Tl2NgnAlVrAW8S/6V250J7tynH59yrSXDM=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:Feedback-ID:List-ID:
+	 List-Unsubscribe:Content-Type:MIME-Version;
+	b=AJMw0Qy8Gc7T5Z2XDyOpy6T5wCv4z2ukG8kPgACdg8RPpIz9SBhHj6bL/phPfHp9P
+	 5EImS7DYDEflOMidzPjNKX2nJIXifkEsCiIRlgw7x+0UqOKZv4rYHTi2Sn1bl8vrYd
+	 M8SHSj36JVi8YqhXwGgt8AiqBfpBjQ20MX/M8jFk=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ted.com; s=k1;
+	t=1585868669; i=no-reply@ted.com;
+	bh=DSi2qFrM6Tl2NgnAlVrAW8S/6V250J7tynH59yrSXDM=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:List-ID:List-Unsubscribe:
+	 Content-Type:MIME-Version;
+	b=sOLK0DKlzVK4Reazn0mX1mNHa0fzK59PVoDbtdD/p0ivXBphl9Xs4jzRCdOSJ51DT
+	 e5s/B2LUDZHE5rIal/dw+In0j4CffqqdJK6DaGqYglASdDRWHiyPUFQ0WiqXWNnNge
+	 4sDl4oB8+6GC193+wQPlC5S5iLCHGe+Pca0vgA4g=
+Received: from localhost (localhost [127.0.0.1])
+	by mail147.atl81.rsgsv.net (Mailchimp) with ESMTP id 48tdtP20kZz9NSpm5
+	for <unixbhaskar@gmail.com>; Thu,  2 Apr 2020 23:04:29 +0000 (GMT)
+Subject: =?utf-8?Q?Why=20sleep=20matters=20now=20more=20than=20ever?=
+From: =?utf-8?Q?TED=20Talks=20Daily?= <no-reply@ted.com>
+Reply-To:  <us1-4bcc77cb76-4d567ff553@inbound.mailchimpapp.net>
+To: <unixbhaskar@gmail.com>
+Date: Thu,  2 Apr 2020 23:03:58 +0000
+Message-ID: <07487d1456302a286cf9c4ccc.714b53187b.20200402230347.6938c067d4.f7cad5ab@mail147.atl81.rsgsv.net>
+X-Mailer: MailChimp Mailer - **CID6938c067d4714b53187b**
+X-Campaign: mailchimp07487d1456302a286cf9c4ccc.6938c067d4
+X-campaignid: mailchimp07487d1456302a286cf9c4ccc.6938c067d4
+X-Report-Abuse: Please report abuse for this campaign here: https://mailchimp.com/contact/abuse/?u=07487d1456302a286cf9c4ccc&id=6938c067d4&e=714b53187b
+X-MC-User: 07487d1456302a286cf9c4ccc
+Feedback-ID: 933717:933717.1271509:us1:mc
+List-ID: 07487d1456302a286cf9c4cccmc list <07487d1456302a286cf9c4ccc.678209.list-id.mcsv.net>
+Precedence: bulk
+X-Auto-Response-Suppress: OOF, AutoReply
+X-Accounttype: pd
+List-Unsubscribe: <https://ted.us1.list-manage.com/unsubscribe?u=07487d1456302a286cf9c4ccc&id=12ac513728&e=714b53187b&c=6938c067d4>, <mailto:unsubscribe-mc.us1_07487d1456302a286cf9c4ccc.6938c067d4-714b53187b@mailin.mcsv.net?subject=unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Content-Type: multipart/alternative; boundary="_----------=_MCPart_1830494986"
+MIME-Version: 1.0
+
+This is a multi-part message in MIME format
+
+--_----------=_MCPart_1830494986
+Content-Type: text/plain; charset="utf-8"; format="fixed"
+Content-Transfer-Encoding: quoted-printable
+
+https://ted.us1.list-manage.com/track/click?u=3D07487d1456302a286cf9c4ccc&=
+id=3D1ed86e835a&e=3D714b53187b
+
+
+** April 2=2C 2020
+------------------------------------------------------------
+
+
+** Today's TED Talk
+------------------------------------------------------------
+
+
+** Why sleep matters now more than ever
+------------------------------------------------------------
+https://ted.us1.list-manage.com/track/click?u=3D07487d1456302a286cf9c4ccc&=
+id=3D63468fa386&e=3D714b53187b
+
+60:41 minutes =C2=B7 TED Connects
+
+A good night's sleep has perhaps never been more important. Sharing wisdom=
+ and debunking myths=2C sleep scientist Matt Walker discusses the impact o=
+f sleep on mind and body -- from unleashing your creative powers to boosti=
+ng your memory and immune health -- and details practices you can start (a=
+nd stop) doing tonight to get some rest. (This virtual conversation is par=
+t of the TED Connects series=2C hosted by head of TED Chris Anderson and c=
+urrent affairs curator Whitney Pennington Rodgers. Recorded April 1=2C 202=
+0)
+Watch now =C2=BB (https://ted.us1.list-manage.com/track/click?u=3D07487d14=
+56302a286cf9c4ccc&id=3Db8a0182e08&e=3D714b53187b)
+
+
+** Playlist of the Day
+------------------------------------------------------------
+https://ted.us1.list-manage.com/track/click?u=3D07487d1456302a286cf9c4ccc&=
+id=3Da52c26e935&e=3D714b53187b
+
+
+** Talks to form better habits
+------------------------------------------------------------
+
+There's never a bad time to start a good habit. Let these talks set the fr=
+amework for a healthier=2C happier life. Watch =C2=BB (https://ted.us1.lis=
+t-manage.com/track/click?u=3D07487d1456302a286cf9c4ccc&id=3Da778c79922&e=
+=3D714b53187b)
+
+8 talks =C2=B7 Total run time 1:37:41
+
+
+** New from TED-Ed
+------------------------------------------------------------
+
+
+** History vs. Sigmund Freud
+------------------------------------------------------------
+https://ted.us1.list-manage.com/track/click?u=3D07487d1456302a286cf9c4ccc&=
+id=3D94052720c6&e=3D714b53187b
+
+5:16 minutes
+
+Working in Vienna at the turn of the 20th century=2C he began his career a=
+s a neurologist before pioneering the discipline of psychoanalysis=2C and=
+ his influence towers above that of all other psychologists in the public=
+ eye. But was Sigmund Freud right about human nature? And were his methods=
+ scientific? Todd Dufresne puts this controversial figure on trial in Hist=
+ory vs. Sigmund Freud.
+Watch now =C2=BB (https://ted.us1.list-manage.com/track/click?u=3D07487d14=
+56302a286cf9c4ccc&id=3D6dbb3d04a7&e=3D714b53187b)
+
+
+** Download the TED app
+------------------------------------------------------------
+https://ted.us1.list-manage.com/track/click?u=3D07487d1456302a286cf9c4ccc&=
+id=3D24e9d8e91b&e=3D714b53187b https://ted.us1.list-manage.com/track=
+/click?u=3D07487d1456302a286cf9c4ccc&id=3Dcce8db1c3c&e=3D714b53187b
+
+You are receiving this email because you've subscribed to our mailing list=
+=2E
+
+Copyright =C2=A9 2020 TED=2C All rights reserved.
+ You're receiving the TED Talks daily email because you subscribed to it o=
+n TED.com. (Was this forwarded by a friend? You can sign up here: http://w=
+ww.ted.com/newsletter )
+
+Our mailing address is:
+TED
+330 Hudson Street
+12th Floor
+New York=2C NY 10013
+USA
+unsubscribe from this list (https://ted.us1.list-manage.com/unsubscribe?u=
+=3D07487d1456302a286cf9c4ccc&id=3D12ac513728&e=3D714b53187b&c=3D6938c067d4)=
+    update subscription preferences (https://ted.us1.list-manage.com/profi=
+le?u=3D07487d1456302a286cf9c4ccc&id=3D12ac513728&e=3D714b53187b)    view ema=
+il in browser (https://us1.campaign-archive.com/?u=3D07487d1456302a286cf9c=
+4ccc&id=3D6938c067d4&e=3D714b53187b)
+--_----------=_MCPart_1830494986
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www=
+=2Ew3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+<head><meta name=3D"twitter:image:src" content=3D"https://pe.tedcdn.com/im=
+ages/ted/9ac45b947b9dcf2ca0fb227426ee162724fe6fe4_800x600.jpg"><meta name=
+=3D"twitter:description" content=3D"A good night's sleep has perhaps never=
+ been more important. Sharing wisdom and debunking myths=2C sleep scientis=
+t Matt Walker discusses the impact of sleep on mind and body -- from unlea=
+shing your creative powers to boosting your memory and immune health -- an=
+d details practices you can start (and stop) doing tonight to get some res=
+t. (This virtual conversation is part of the TED Connects series=2C hosted=
+ by head of TED Chris Anderson and current affairs curator Whitney Penning=
+ton Rodgers. Recorded April 1=2C 2020)"><meta name=3D"twitter:title" conte=
+nt=3D"Why sleep matters now more than ever"><meta name=3D"twitter:card" co=
+ntent=3D"summary_large_image"><meta property=3D"og:type" content=3D"articl=
+e"><meta property=3D"og:description" content=3D"A good night's sleep has p=
+erhaps never been more important. Sharing wisdom and debunking myths=2C sl=
+eep scientist Matt Walker discusses the impact of sleep on mind and body -=
+- from unleashing your creative powers to boosting your memory and immune=
+ health -- and details practices you can start (and stop) doing tonight to=
+ get some rest. (This virtual conversation is part of the TED Connects ser=
+ies=2C hosted by head of TED Chris Anderson and current affairs curator Wh=
+itney Pennington Rodgers. Recorded April 1=2C 2020)"><meta property=3D"og:=
+image" content=3D"https://pe.tedcdn.com/images/ted/9ac45b947b9dcf2ca0fb227=
+426ee162724fe6fe4_800x600.jpg"><meta property=3D"og:title" content=3D"Why=
+ sleep matters now more than ever"><meta property=3D"og:url" content=3D"ht=
+tp://eepurl.com/gYAFC9">
+=09<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+">
+=09<meta name=3D"viewport" content=3D"width=3Ddevice-width=2C initial-scal=
+e=3D1.0">
+=09<title>Why sleep matters now more than ever</title>
+
+
+=09
+<style type=3D"text/css">
+=09=09a:hover{
+=09=09=09text-decoration:underline !important;
+=09=09}
+=09=09body{
+=09=09=09margin:0;
+=09=09=09padding:0;
+=09=09=09width:100%;
+=09=09}
+=09=09img{
+=09=09=09border:0;
+=09=09=09height:auto;
+=09=09=09outline:none;
+=09=09}
+=09=09table=2Ctd{
+=09=09=09border-collapse:collapse;
+=09=09=09mso-table-lspace:0pt;
+=09=09=09mso-table-rspace:0pt;
+=09=09}
+=09=09h1{
+=09=09=09color:#FFFFFF !important;
+=09=09=09font-family:Helvetica;
+=09=09=09font-size:26px;
+=09=09=09font-style:normal;
+=09=09=09font-weight:bold;
+=09=09=09line-height:100%;
+=09=09=09letter-spacing:normal;
+=09=09=09text-align:center;
+=09=09=09display:block;
+=09=09=09margin:0;
+=09=09}
+=09=09h2{
+=09=09=09color:#2D9CE8 !important;
+=09=09=09font-family:Helvetica;
+=09=09=09font-size:20px;
+=09=09=09font-style:normal;
+=09=09=09font-weight:bold;
+=09=09=09line-height:100%;
+=09=09=09letter-spacing:normal;
+=09=09=09text-align:center;
+=09=09=09display:block;
+=09=09=09margin:0;
+=09=09}
+=09=09h3{
+=09=09=09color:#505050 !important;
+=09=09=09font-family:Helvetica;
+=09=09=09font-size:20px;
+=09=09=09font-style:normal;
+=09=09=09font-weight:bold;
+=09=09=09line-height:120%;
+=09=09=09letter-spacing:normal;
+=09=09=09text-align:left;
+=09=09=09display:block;
+=09=09=09margin:0;
+=09=09}
+=09=09h4{
+=09=09=09color:#AAAAAA !important;
+=09=09=09font-family:Helvetica;
+=09=09=09font-size:14px;
+=09=09=09font-style:normal;
+=09=09=09font-weight:bold;
+=09=09=09line-height:100%;
+=09=09=09letter-spacing:normal;
+=09=09=09text-transform:uppercase;
+=09=09=09display:block;
+=09=09=09margin:0;
+=09=09}
+=09=09#preheader{
+=09=09=09background-color:#707070;
+=09=09=09border-bottom:2px solid #5A5A5A;
+=09=09=09padding:10px;
+=09=09}
+=09=09.preheaderContent{
+=09=09=09color:#FFFFFF;
+=09=09=09font-family:Helvetica;
+=09=09=09font-size:11px;
+=09=09=09line-height:125%;
+=09=09}
+=09=09.preheaderContent a=2C.preheaderContent a:active=2C.preheaderContent=
+ a:link=2C.preheaderContent a:visited=2C.preheaderContent a:hover{
+=09=09=09color:#FFFFFF;
+=09=09=09font-weight:normal;
+=09=09=09text-decoration:underline;
+=09=09}
+=09=09#contents{
+=09=09=09background:#EEEAE7;
+=09=09=09padding-bottom:40px;
+=09=09}
+=09=09#header{
+=09=09=09border-top:0;
+=09=09=09border-bottom:0;
+=09=09=09padding:30px 10px;
+=09=09}
+=09=09.headerContent{
+=09=09=09color:#FF2B06;
+=09=09=09font-family:Helvetica;
+=09=09=09font-size:20px;
+=09=09=09font-weight:bold;
+=09=09=09line-height:100%;
+=09=09}
+=09=09#body{
+=09=09=09background:#FFFFFF;
+=09=09=09border-radius:5px;
+=09=09=09box-shadow:#d3d2d1 1px 3px 4px 0px;
+=09=09=09-moz-box-shadow:1px 3px 4px #d3d2d1;
+=09=09=09-webkit-box-shadow:1px 3px 4px #d3d2d1;
+=09=09=09-ms-filter:"progid:DXImageTransform.Microsoft.Shadow(Strength=3D4=
+=2C Direction=3D135=2C Color=3D'#d3d2d1')";
+=09=09=09filter:progid:DXImageTransform.Microsoft.Shadow(Strength=3D4=2C D=
+irection=3D135=2C Color=3D'#d3d2d1');
+=09=09}
+=09=09.bodyContent{
+=09=09=09color:#505050;
+=09=09=09font-family:Helvetica;
+=09=09=09font-size:15px;
+=09=09=09line-height:150%;
+=09=09=09text-align:left;
+=09=09}
+=09=09.bodyContent a=2C.bodyContent a:active=2C.bodyContent a:link=2C.body=
+Content a:visited=2C.bodyContent a:hover{
+=09=09=09color:#FF2B06;
+=09=09=09font-weight:normal;
+=09=09=09text-decoration:none;
+=09=09}
+=09=09.bodyContent a:hover{
+=09=09=09text-decoration:underline;
+=09=09}
+=09=09.bodyContent p{
+=09=09=09margin:0 0 15px 0;
+=09=09}
+=09=09#talks{
+=09=09=09padding:20px 0 20px 0;
+=09=09}
+=09=09.talk{
+=09=09=09padding:20px 40px 0 40px;
+=09=09}
+=09=09.talkVideoLink{
+=09=09=09display:block;
+=09=09=09margin:10px 0;
+=09=09=09position:relative;
+=09=09=09text-align:center;
+=09=09}
+=09=09.talkVideoLink:after{
+=09=09=09background:url(/css/i/bgWatchVideo.png);
+=09=09=09content:" ";
+=09=09=09display:block;
+=09=09=09height:36px;
+=09=09=09left:50%;
+=09=09=09margin:-18px 0 0 -25px;
+=09=09=09position:absolute;
+=09=09=09top:50%;
+=09=09=09width:51px;
+=09=09}
+=09=09.talkMeta{
+=09=09=09color:#AAAAAA;
+=09=09=09font-size:12px;
+=09=09=09line-height:100%;
+=09=09}
+=09=09#quotes{
+=09=09=09background:#F7F5F3;
+=09=09=09border-bottom:1px solid #E5E4E2;
+=09=09=09border-top:1px solid #E5E4E2;
+=09=09}
+=09=09#quotesInner{
+=09=09=09border-bottom:1px solid #FFFFFF;
+=09=09=09border-top:1px solid #FFFFFF;
+=09=09}
+=09=09#quotesTitle{
+=09=09=09padding:40px 40px 10px 40px;
+=09=09}
+=09=09.quote{
+=09=09=09padding:0 40px 30px 40px;
+=09=09}
+=09=09.quoteBody{
+=09=09=09padding:18px 0 0 0;
+=09=09}
+=09=09.quoteMark{
+=09=09=09color:#AAAAAA;
+=09=09=09font-family:Arial;
+=09=09=09font-size:80px;
+=09=09=09margin-right:5px;
+=09=09=09margin-top:-14px;
+=09=09=09padding:0 5px 0 0;
+=09=09}
+=09=09.quoteMeta{
+=09=09=09margin-top:10px;
+=09=09}
+=09=09.quotePhoto{
+=09=09=09width:60px;
+=09=09}
+=09=09.quotePhoto img{
+=09=09=09border:5px solid #FFFFFF;
+=09=09}
+=09=09#playlist{
+=09=09=09background:#F7F5F3;
+=09=09=09border-bottom:1px solid #E5E4E2;
+=09=09=09border-top:1px solid #E5E4E2;
+=09=09}
+=09=09#playlistInner{
+=09=09=09border-bottom:1px solid #FFFFFF;
+=09=09=09border-top:1px solid #FFFFFF;
+=09=09}
+=09=09#playlistTitle{
+=09=09=09padding:20px 20px 0px 40px;
+=09=09}
+=09=09.playlist{
+=09=09=09padding:0 40px 0px 40px;
+=09=09}
+=09=09.playlistBody{
+=09=09=09padding:18px 0 0 0;
+=09=09}
+=09=09.playlistImage{
+=09=09=09width:140px;
+=09=09}
+=09=09.playlistImage img{
+=09=09=09border:5px solid #FFFFFF;
+=09=09=09margin-right:10px;
+=09=09}
+=09=09.playlistMeta{
+=09=09=09margin-top:10px;
+=09=09=09margin-bottom:40px;
+=09=09}
+=09=09.playlistTitle{
+=09=09=09text-decoration:none;
+=09=09}
+=09=09#bodyFooter{
+=09=09=09padding:40px 10px 0 10px;
+=09=09}
+=09=09#bodyFooterHack{
+=09=09=09clear:both;
+=09=09=09overflow:hidden;
+=09=09=09width:100%;
+=09=09}
+=09=09#featureHack{
+=09=09=09float:right;
+=09=09=09width:180px;
+=09=09}
+=09=09#linksHack{
+=09=09=09float:left;
+=09=09=09width:390px;
+=09=09}
+=09=09#featureWrapper{
+=09=09=09padding-bottom:40px;
+=09=09}
+=09=09#linksWrapper{
+=09=09=09padding-bottom:40px;
+=09=09}
+=09=09#links{
+=09=09=09min-width:390px;
+=09=09}
+=09=09.linkImage=2C.linkText{
+=09=09=09color:#000000;
+=09=09=09font-size:18px;
+=09=09=09line-height:140%;
+=09=09=09padding:10px;
+=09=09}
+=09=09.linkImage{
+=09=09=09width:16px;
+=09=09}
+=09=09.linkText{
+=09=09=09padding-left:0;
+=09=09}
+=09=09.linkText a=2C.linkText a:active=2C.linkText a:link=2C.linkText a:vi=
+sited=2C.linkText a:hover{
+=09=09=09color:#000000;
+=09=09=09font-weight:bold;
+=09=09}
+=09=09#footer{
+=09=09=09background-color:#707070;
+=09=09=09border-top:5px solid #FFFFFF;
+=09=09=09padding:20px 10px 20px 10px;
+=09=09}
+=09=09.footerContent{
+=09=09=09color:#FFFFFF;
+=09=09=09font-family:Helvetica;
+=09=09=09font-size:11px;
+=09=09=09line-height:150%;
+=09=09=09text-align:left;
+=09=09}
+=09=09.footerContent a=2C.footerContent a:active=2C.footerContent a:link=
+=2C.footerContent a:visited=2C.footerContent a:hover{
+=09=09=09color:#FFFFFF;
+=09=09=09font-weight:normal;
+=09=09=09text-decoration:underline;
+=09=09}
+=09=09.button{
+=09=09=09background-color:#2A9AE7;
+=09=09=09border:0;
+=09=09=09border-radius:3px;
+=09=09}
+=09=09.buttonContent{
+=09=09=09font-family:Helvetica;
+=09=09=09background-color:#B61D1D;
+=09=09=09border:0;
+=09=09=09border-radius:3px;
+=09=09=09padding:8px;
+=09=09=09text-align:center;
+=09=09=09background-image:linear-gradient(top=2C #DF4040 1%=2C #B61D1D 100=
+%);
+=09=09}
+=09=09.buttonContent a=2C.buttonContent a:active=2C.buttonContent a:link=
+=2C.buttonContent a:visited=2C.buttonContent a:hover{
+=09=09=09color:#FFFFFF;
+=09=09=09text-align:center;
+=09=09=09text-decoration:none;
+=09=09=09font-weight:normal;
+=09=09=09text-shadow:0 -1px 0 rgba(0=2C 0=2C 0=2C .2);
+=09=09}
+=09@media only screen and (max-width: 600px){
+=09=09table{
+=09=09=09width:100% !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09h1{
+=09=09=09font-size:28px !important;
+=09=09=09line-height:100% !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09h2{
+=09=09=09font-size:24px !important;
+=09=09=09line-height:100% !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09h3{
+=09=09=09font-size:24px !important;
+=09=09=09line-height:120% !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09h4{
+=09=09=09font-size:18px !important;
+=09=09=09line-height:100% !important;
+=09=09=09text-transform:uppercase !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09.button{
+=09=09=09width:auto !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[id=3Dpreheader]{
+=09=09=09display:none !important;
+=09=09=09padding:10px 20px 10px 20px !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[id=3Dcontents]{
+=09=09=09padding-bottom:0 !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[id=3Dheader]{
+=09=09=09padding:20px !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[id=3Dbody]{
+=09=09=09border-radius:0 !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[class~=3DbodyContent]{
+=09=09=09font-size:19px !important;
+=09=09=09line-height:125% !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[class~=3DbodyContent] p{
+=09=09=09margin:0 0 20px 0 !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[id=3Dtalks]{
+=09=09=09padding:0 0 20px !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[class~=3Dtalk]{
+=09=09=09padding:20px 20px 0 20px !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09.talkVideoScreen{
+=09=09=09width:100% !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09p[class~=3DtalkMeta]{
+=09=09=09font-size:16px !important;
+=09=09=09line-height:120% !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[id=3DquotesTitle]{
+=09=09=09padding:20px 20px 0 20px !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[class~=3Dquote]{
+=09=09=09padding:0 20px 20px 20px !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[id=3Dfooter]{
+=09=09=09padding:20px !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[class~=3DfooterContent]{
+=09=09=09font-size:13px !important;
+=09=09=09line-height:150% !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09#featureHack{
+=09=09=09float:none !important;
+=09=09=09width:auto !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09#linksHack{
+=09=09=09float:none !important;
+=09=09=09width:auto !important;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09#links{
+=09=09=09min-width:0;
+=09=09}
+
+}=09@media only screen and (max-width: 600px){
+=09=09td[class~=3DlinkImage]=2Ctd[class~=3DlinkText]{
+=09=09=09font-size:16px !important;
+=09=09}
+
+}</style></head>
+<body leftmargin=3D"0" marginwidth=3D"0" topmargin=3D"0" marginheight=3D"0=
+" offset=3D"0" style=3D"margin: 0;padding: 0;width: 100%;"><div itemscope=
+=3D"" itemtype=3D"http://schema.org/EmailMessage"><div itemprop=3D"publish=
+er" itemscope=3D"" itemtype=3D"http://schema.org/Organization"><meta itemp=
+rop=3D"name" content=3D"TED"><link itemprop=3D"url" content=3D"http://www.=
+ted.com/newsletter"></div><div itemprop=3D"about" itemscope=3D"" itemtype=
+=3D"http://schema.org/Offer"><link itemprop=3D"image" href=3D"https://pe.t=
+edcdn.com/images/ted/9ac45b947b9dcf2ca0fb227426ee162724fe6fe4_800x600.jpg"=
+></div></div>
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=3D"100%" sty=
+le=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0p=
+t;">
+
+=09<!-- Preheader -->
+=09<!--
+ -->
+=09<tr>
+=09=09<td id=3D"preheader" align=3D"center" style=3D"border-collapse: coll=
+apse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #707070=
+;border-bottom: 2px solid #5A5A5A;padding: 10px;">
+=09=09=09<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=3D"=
+600" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rs=
+pace: 0pt;">
+=09=09=09=09<tr>
+=09=09=09=09=09<td class=3D"preheaderContent" align=3D"right" style=3D"bor=
+der-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color:=
+ #FFFFFF;font-family: Helvetica;font-size: 11px;line-height: 125%;"><a hre=
+f=3D"https://us1.campaign-archive.com/?u=3D07487d1456302a286cf9c4ccc&id=3D=
+6938c067d4&e=3D714b53187b" target=3D"_blank" style=3D"color: #FFFFFF;font-we=
+ight: normal;text-decoration: underline;">View e-mail in browser.</a></td>
+=09=09=09=09</tr>
+=09=09=09</table>
+=09=09</td>
+=09</tr>
+=09<!--
+ -->
+
+=09<!-- Contents -->
+=09<tr>
+=09=09<td id=3D"contents" style=3D"border-collapse: collapse;mso-table-lsp=
+ace: 0pt;mso-table-rspace: 0pt;background: #EEEAE7;padding-bottom: 40px;">
+=09=09=09<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=3D"=
+100%" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-r=
+space: 0pt;">
+
+=09=09=09=09<!-- Header -->
+=09=09=09=09<tr>
+=09=09=09=09=09<td id=3D"header" align=3D"center" style=3D"border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-top: 0;borde=
+r-bottom: 0;padding: 30px 10px;">
+=09=09=09=09=09=09<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0"=
+ width=3D"600" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;ms=
+o-table-rspace: 0pt;">
+=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09<td class=3D"headerContent" align=3D"left" valign=
+=3D"center" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-t=
+able-rspace: 0pt;color: #FF2B06;font-family: Helvetica;font-size: 20px;fon=
+t-weight: bold;line-height: 100%;">
+=09=09=09=09=09=09=09=09=09<a href=3D"https://ted.us1.list-manage.com/trac=
+k/click?u=3D07487d1456302a286cf9c4ccc&id=3Dc96bb64f53&e=3D714b53187b">
+=09=09=09=09=09=09=09=09=09=09<img src=3D"http://pl.tedcdn.com/newsletter_=
+assets/daily/TEDlogo_80px.png" alt=3D"TED" border=3D"0" style=3D"margin: 0=
+;padding: 0;border: 0;height: auto;outline: none;">
+=09=09=09=09=09=09=09=09=09</a>
+=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09<td class=3D"headerContent" align=3D"right" valign=
+=3D"center" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-t=
+able-rspace: 0pt;color: #FF2B06;font-family: Helvetica;font-size: 20px;fon=
+t-weight: bold;line-height: 100%;">
+=09=09=09=09=09=09=09=09=09<h4 style=3D"font-family: Helvetica;font-size:=
+ 14px;font-style: normal;font-weight: bold;line-height: 100%;letter-spacin=
+g: normal;text-transform: uppercase;display: block;margin: 0;color: #AAAAA=
+A !important;">April 2=2C 2020</h4>
+=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09</table>
+=09=09=09=09=09</td>
+=09=09=09=09</tr>
+
+=09=09=09=09<!-- Body -->
+=09=09=09=09<tr>
+=09=09=09=09=09<td align=3D"center" style=3D"border-collapse: collapse;mso=
+-table-lspace: 0pt;mso-table-rspace: 0pt;">
+=09=09=09=09=09=09<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0"=
+ width=3D"600" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;ms=
+o-table-rspace: 0pt;">
+=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09<td id=3D"body" align=3D"left" style=3D"border-col=
+lapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;background: #F=
+FFFFF;border-radius: 5px;box-shadow: #d3d2d1 1px 3px 4px 0px;-moz-box-shad=
+ow: 1px 3px 4px #d3d2d1;-webkit-box-shadow: 1px 3px 4px #d3d2d1;-ms-filter=
+: &quot;progid:DXImageTransform.Microsoft.Shadow(Strength=3D4=2C Direction=
+=3D135=2C Color=3D'#d3d2d1')&quot;;filter: progid:DXImageTransform.Microso=
+ft.Shadow(Strength=3D4=2C Direction=3D135=2C Color=3D'#d3d2d1');">
+=09=09=09=09=09=09=09=09=09<table cellspacing=3D"0" cellpadding=3D"0" bord=
+er=3D"0" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-tabl=
+e-rspace: 0pt;">
+
+=09=09=09=09=09=09=09=09=09=09<!-- Talks -->
+=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09<td id=3D"talks" style=3D"border-collapse=
+: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;padding: 20px 0 20p=
+x 0;"><div itemprop=3D"publisher" itemscope=3D"" itemtype=3D"http://schema=
+=2Eorg/Organization"><meta itemprop=3D"name" content=3D"TED"></div>
+<link href=3D"https://www.ted.com" itemprop=3D"url">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" sty=
+le=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0p=
+t;"><!-- Talk Heading -->
+=09<tbody>
+=09=09<tr>
+=09=09=09<td class=3D"talk bodyContent" style=3D"border-collapse: collapse=
+;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: H=
+elvetica;font-size: 15px;line-height: 150%;text-align: left;padding: 20px=
+ 40px 0 40px;">
+=09=09=09<h4 style=3D"font-family: Helvetica;font-size: 14px;font-style: n=
+ormal;font-weight: bold;line-height: 100%;letter-spacing: normal;text-tran=
+sform: uppercase;display: block;margin: 0;color: #AAAAAA !important;">Toda=
+y&#39;s TED Talk</h4>
+=09=09=09</td>
+=09=09</tr>
+=09=09<!-- Talk -->
+=09=09<tr>
+=09=09=09<td class=3D"talk bodyContent" style=3D"border-collapse: collapse=
+;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: H=
+elvetica;font-size: 15px;line-height: 150%;text-align: left;padding: 20px=
+ 40px 0 40px;">
+=09=09=09<h3 class=3D"talkTitle" style=3D"font-family: Helvetica;font-size=
+: 20px;font-style: normal;font-weight: bold;line-height: 120%;letter-spaci=
+ng: normal;text-align: left;display: block;margin: 0;color: #505050 !impor=
+tant;">Why sleep matters now more than ever</h3>
+=09=09=09<a class=3D"talkVideoLink" href=3D"https://ted.us1.list-manage.co=
+m/track/click?u=3D07487d1456302a286cf9c4ccc&id=3Ddae843e5e9&e=3D714b53187b" style=3D"display: block;margin: 10px 0;position: relative;text-align: c=
+enter;color: #FF2B06;font-weight: normal;text-decoration: none;"><img clas=
+s=3D"talkVideoScreen" src=3D"https://pe.tedcdn.com/images/ted/9ac45b947b9d=
+cf2ca0fb227426ee162724fe6fe4_800x600.jpg" width=3D"520" style=3D"border: 0=
+;height: auto;outline: none;"> </a>
+
+=09=09=09<p class=3D"talkMeta" style=3D"color: #AAAAAA;font-size: 12px;lin=
+e-height: 100%;margin: 0 0 15px 0;">60:41 minutes &middot; TED Connects</p=
+>
+
+=09=09=09<p style=3D"margin: 0 0 15px 0;">A good night&#39;s sleep has per=
+haps never been more important. Sharing wisdom and debunking myths=2C slee=
+p scientist Matt Walker discusses the impact of sleep on mind and body --=
+ from unleashing your creative powers to boosting your memory and immune h=
+ealth -- and details practices you can start (and stop) doing tonight to g=
+et some rest. (This virtual conversation is part of the TED Connects serie=
+s=2C hosted by head of TED Chris Anderson and current affairs curator Whit=
+ney Pennington Rodgers. Recorded April 1=2C 2020)</p>
+
+=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+button" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table=
+-rspace: 0pt;background-color: #2A9AE7;border: 0;border-radius: 3px;">
+=09=09=09=09<tbody>
+=09=09=09=09=09<tr>
+=09=09=09=09=09=09<td class=3D"buttonContent" style=3D"background:#B61D1D=
+ linear-gradient(top=2C #DF4040 1%=2C #B61D1D 100%);border-collapse: colla=
+pse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-family: Helvetica;bac=
+kground-color: #B61D1D;border: 0;border-radius: 3px;padding: 8px;text-alig=
+n: center;background-image: linear-gradient(top=2C #DF4040 1%=2C #B61D1D 1=
+00%);"><a href=3D"https://ted.us1.list-manage.com/track/click?u=3D07487d14=
+56302a286cf9c4ccc&id=3Ddb8a9a4013&e=3D714b53187b" target=3D"_blank" style=
+=3D"color: #FFFFFF;font-weight: normal;text-decoration: none;text-align: c=
+enter;text-shadow: 0 -1px 0 rgba(0=2C 0=2C 0=2C .2);">Watch now &raquo;</a=
+></td>
+=09=09=09=09=09</tr>
+=09=09=09=09</tbody>
+=09=09=09</table>
+=09=09=09</td>
+=09=09</tr>
+=09</tbody>
+</table>
+</td>
+=09=09=09=09=09=09=09=09=09=09</tr>
+
+<!-- Playlist of the Day -->
+=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09<td id=3D"playlist" class=3D"" style=3D"b=
+order-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;backg=
+round: #F7F5F3;border-bottom: 1px solid #E5E4E2;border-top: 1px solid #E5E=
+4E2;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" id=3D"playli=
+stInner" width=3D"100%" style=3D"border-collapse: collapse;mso-table-lspac=
+e: 0pt;mso-table-rspace: 0pt;border-bottom: 1px solid #FFFFFF;border-top:=
+ 1px solid #FFFFFF;">
+=09<tbody>
+=09=09<tr>
+=09=09=09<td id=3D"playlistTitle" style=3D"border-collapse: collapse;mso-t=
+able-lspace: 0pt;mso-table-rspace: 0pt;padding: 20px 20px 0px 40px;">
+=09=09=09<h4 style=3D"font-family: Helvetica;font-size: 14px;font-style: n=
+ormal;font-weight: bold;line-height: 100%;letter-spacing: normal;text-tran=
+sform: uppercase;display: block;margin: 0;color: #AAAAAA !important;">Play=
+list of the Day</h4>
+=09=09=09=09</td>
+=09=09=09</tr>
+
+=09=09=09<!-- playlist -->
+=09=09=09<tr>
+=09=09=09=09<td class=3D"playlist" style=3D"border-collapse: collapse;mso-=
+table-lspace: 0pt;mso-table-rspace: 0pt;padding: 0 40px 0px 40px;">
+=09=09=09=09=09<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" sty=
+le=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0p=
+t;">
+=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09<td class=3D"playlistBody bodyContent" valign=3D"top"=
+ style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace=
+: 0pt;color: #505050;font-family: Helvetica;font-size: 15px;line-height: 1=
+50%;text-align: left;padding: 18px 0 0 0;">
+=09=09=09=09=09=09=09=09<table class=3D"playlistMeta" cellspacing=3D"0" ce=
+llpadding=3D"0" border=3D"0" width=3D"100%" style=3D"border-collapse: coll=
+apse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;margin-top: 10px;margin-b=
+ottom: 40px;">
+=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09<td class=3D"playlistImage" valign=3D"top" s=
+tyle=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace:=
+ 0pt;width: 140px;">
+=09=09=09=09=09=09=09=09=09=09=09<a href=3D"https://ted.us1.list-manage.co=
+m/track/click?u=3D07487d1456302a286cf9c4ccc&id=3D1c56714886&e=3D714b53187b" style=3D"color: #FF2B06;font-weight: normal;text-decoration: none;">
+=09=09=09=09=09=09=09=09=09=09=09=09<img src=3D"https://pf.tedcdn.com/imag=
+es/playlists/talks_to_form_better_habits_3390602217_146x146.jpg" width=3D"=
+140" height=3D"140" alt=3D"Talks to form better habits" style=3D"border: 5=
+px solid #FFFFFF;height: auto;outline: none;margin-right: 10px;">
+=09=09=09=09=09=09=09=09=09=09=09</a>
+=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09<td class=3D"playlistCite" valign=3D"top" st=
+yle=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0=
+pt;">
+=09=09=09=09=09=09=09=09=09=09=09<h3 style=3D"font-family: Helvetica;font-=
+size: 20px;font-style: normal;font-weight: bold;line-height: 120%;letter-s=
+pacing: normal;text-align: left;display: block;margin: 0;color: #505050 !i=
+mportant;">
+=09=09=09=09=09=09=09=09=09=09=09=09Talks to form better habits=09=09=09=
+=09=09=09=09=09=09=09=09</h3>
+=09=09=09=09=09=09=09=09=09=09=09<div>
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin: 0 0 15px 0;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09There's never a bad time to start a=
+ good habit. Let these talks set the framework for a healthier=2C happier=
+ life.
+=09=09=09=09=09=09=09=09=09=09=09=09=09<a href=3D"https://ted.us1.list-man=
+age.com/track/click?u=3D07487d1456302a286cf9c4ccc&id=3D3eb4372c8c&e=3D714b53187b" style=3D"color: #FF2B06;font-weight: normal;text-decoration: none=
+;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09Watch &raquo;
+=09=09=09=09=09=09=09=09=09=09=09=09=09</a>
+=09=09=09=09=09=09=09=09=09=09=09=09</p>
+=09=09=09=09=09=09=09=09=09=09=09=09<p class=3D"talkMeta" style=3D"color:=
+ #AAAAAA;font-size: 12px;line-height: 100%;margin: 0 0 15px 0;">
+=09=09=09=09=09=09=09=09=09=09=09=09=098 talks
+=09=09=09=09=09=09=09=09=09=09=09=09=09&middot;
+=09=09=09=09=09=09=09=09=09=09=09=09=09Total run time 1:37:41=09=09=09=09=
+=09=09=09=09=09=09=09=09</p>
+=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09</table></td></tr></table></td></tr></tbody>
+=09=09=09=09=09=09</table>
+=09=09=09=09=09=09
+=09=09=09=09=09
+=09=09=09=09
+=09=09=09
+=09=09=09
+=09=09
+=09
+
+</td>
+=09=09=09=09=09=09=09=09=09=09</tr>
+
+                                        <!-- Sponsor -->
+=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09<td id=3D"sponsor" align=3D"center" mc:la=
+bel=3D"sponsor" class=3D"" style=3D"border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;"><table border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%" style=3D"border-collapse: collapse;mso-tabl=
+e-lspace: 0pt;mso-table-rspace: 0pt;"><!-- Talk Heading -->
+=09<tbody>
+=09=09<tr>
+=09=09=09<td class=3D"talk bodyContent" style=3D"border-collapse: collapse=
+;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: H=
+elvetica;font-size: 15px;line-height: 150%;text-align: left;padding: 20px=
+ 40px 0 40px;">
+=09=09=09<h4 style=3D"font-family: Helvetica;font-size: 14px;font-style: n=
+ormal;font-weight: bold;line-height: 100%;letter-spacing: normal;text-tran=
+sform: uppercase;display: block;margin: 0;color: #AAAAAA !important;">New=
+ from TED-Ed</h4>
+=09=09=09</td>
+=09=09</tr>
+=09=09<!-- Talk -->
+=09=09<tr>
+=09=09=09<td class=3D"talk bodyContent" style=3D"border-collapse: collapse=
+;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: H=
+elvetica;font-size: 15px;line-height: 150%;text-align: left;padding: 20px=
+ 40px 0 40px;">
+=09=09=09<h3 class=3D"talkTitle" style=3D"font-family: Helvetica;font-size=
+: 20px;font-style: normal;font-weight: bold;line-height: 120%;letter-spaci=
+ng: normal;text-align: left;display: block;margin: 0;color: #505050 !impor=
+tant;">History vs. Sigmund Freud</h3>
+=09=09=09<a class=3D"talkVideoLink" href=3D"https://ted.us1.list-manage.co=
+m/track/click?u=3D07487d1456302a286cf9c4ccc&id=3D36d772c66c&e=3D714b53187b" style=3D"display: block;margin: 10px 0;position: relative;text-align: c=
+enter;color: #FF2B06;font-weight: normal;text-decoration: none;"><img clas=
+s=3D"talkVideoScreen" data-file-id=3D"53421" height=3D"292" src=3D"https:/=
+/mcusercontent.com/07487d1456302a286cf9c4ccc/images/100b8250-41a4-4428-a09=
+f-18fb64e849fd.jpg" width=3D"520" style=3D"border: 0;height: auto;outline:=
+ none;"> </a>
+
+=09=09=09<p class=3D"talkMeta" style=3D"color: #AAAAAA;font-size: 12px;lin=
+e-height: 100%;margin: 0 0 15px 0;">5:16&nbsp;minutes</p>
+
+=09=09=09<p style=3D"margin: 0 0 15px 0;">Working in Vienna at the turn of=
+ the 20th century=2C he began his career as a neurologist before pioneerin=
+g the discipline of psychoanalysis=2C and his influence towers above that=
+ of all other psychologists in the public eye. But was Sigmund Freud right=
+ about human nature? And were his methods scientific? Todd Dufresne puts t=
+his controversial figure on trial in History vs. Sigmund Freud.</p>
+
+=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+button" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table=
+-rspace: 0pt;background-color: #2A9AE7;border: 0;border-radius: 3px;">
+=09=09=09=09<tbody>
+=09=09=09=09=09<tr>
+=09=09=09=09=09=09<td class=3D"buttonContent" style=3D"background:#B61D1D=
+ linear-gradient(top=2C #DF4040 1%=2C #B61D1D 100%);border-collapse: colla=
+pse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-family: Helvetica;bac=
+kground-color: #B61D1D;border: 0;border-radius: 3px;padding: 8px;text-alig=
+n: center;background-image: linear-gradient(top=2C #DF4040 1%=2C #B61D1D 1=
+00%);"><a href=3D"https://ted.us1.list-manage.com/track/click?u=3D07487d14=
+56302a286cf9c4ccc&id=3Dcb18683471&e=3D714b53187b" target=3D"_blank" style=
+=3D"color: #FFFFFF;font-weight: normal;text-decoration: none;text-align: c=
+enter;text-shadow: 0 -1px 0 rgba(0=2C 0=2C 0=2C .2);">Watch now &raquo;</a=
+></td>
+=09=09=09=09=09</tr>
+=09=09=09=09</tbody>
+=09=09=09</table>
+=09=09=09</td>
+=09=09</tr>
+=09</tbody>
+</table>
+</td>
+=09=09=09=09=09=09=09=09=09=09</tr>
+
+=09=09=09=09=09=09=09=09=09=09<!-- Body Footer -->
+=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09<td id=3D"bodyFooter" class=3D"bodyConten=
+t" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspa=
+ce: 0pt;color: #505050;font-family: Helvetica;font-size: 15px;line-height:=
+ 150%;text-align: left;padding: 40px 10px 0 10px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<div id=3D"bodyFooterHack" style=3D"cl=
+ear: both;overflow: hidden;width: 100%;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09<!-- Links -->
+=09=09=09=09=09=09=09=09=09=09=09=09=09<div id=3D"linksHack" style=3D"floa=
+t: left;width: 390px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table cellspacing=3D"0" cellpad=
+ding=3D"0" border=3D"0" width=3D"100%" style=3D"border-collapse: collapse;=
+mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td id=3D"linksWrapper" st=
+yle=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0=
+pt;padding-bottom: 40px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table id=3D"links" cel=
+lspacing=3D"0" cellpadding=3D"0" border=3D"0" width=3D"100%" style=3D"bord=
+er-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;min-widt=
+h: 390px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td style=3D"bord=
+er-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><table=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"=
+border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+=09<tbody>
+=09=09<tr>
+=09=09=09<td class=3D"bodyContent linkText" style=3D"border-collapse: coll=
+apse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #000000;font-famil=
+y: Helvetica;font-size: 18px;line-height: 140%;text-align: left;padding: 1=
+0px;padding-left: 0;">&nbsp;</td>
+=09=09=09<td class=3D"bodyContent linkText" style=3D"border-collapse: coll=
+apse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #000000;font-famil=
+y: Helvetica;font-size: 18px;line-height: 140%;text-align: left;padding: 1=
+0px;padding-left: 0;">
+=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-r=
+space: 0pt;">
+=09=09=09=09<tbody>
+=09=09=09=09=09<tr>
+=09=09=09=09=09=09<td class=3D"linkImage" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #000000;font-size: 1=
+8px;line-height: 140%;padding: 10px;width: 16px;">
+=09=09=09=09=09=09<h4 style=3D"font-family: Helvetica;font-size: 14px;font=
+-style: normal;font-weight: bold;line-height: 100%;letter-spacing: normal;=
+text-transform: uppercase;display: block;margin: 0;color: #AAAAAA !importa=
+nt;">Download the <strong>TED app</strong></h4>
+=09=09=09=09=09=09</td>
+=09=09=09=09=09</tr>
+=09=09=09=09</tbody>
+=09=09=09</table>
+
+=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-r=
+space: 0pt;">
+=09=09=09=09<tbody>
+=09=09=09=09=09<tr>
+=09=09=09=09=09=09<td class=3D"linkImage" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #000000;font-size: 1=
+8px;line-height: 140%;padding: 10px;width: 16px;"><a href=3D"https://ted.u=
+s1.list-manage.com/track/click?u=3D07487d1456302a286cf9c4ccc&id=3Da8312db0=
+3c&e=3D714b53187b" target=3D"_blank" style=3D"color: #000000;font-weight:=
+ bold;text-decoration: none;"><img align=3D"none" alt=3D"App store" height=
+=3D"44" src=3D"https://gallery.mailchimp.com/07487d1456302a286cf9c4ccc/ima=
+ges/e1d7be97-0393-4754-be86-0f0876fc2536.png" style=3D"width: 150px;height=
+: 44px;float: left;margin: 0px;border: 0;outline: none;" width=3D"150"></a=
+></td>
+=09=09=09=09=09=09<td class=3D"bodyContent linkText" style=3D"border-colla=
+pse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #000000;f=
+ont-family: Helvetica;font-size: 18px;line-height: 140%;text-align: left;p=
+adding: 10px;padding-left: 0;"><a href=3D"https://ted.us1.list-manage.com/=
+track/click?u=3D07487d1456302a286cf9c4ccc&id=3Dbf299586b4&e=3D714b53187b"=
+ target=3D"_blank" style=3D"color: #000000;font-weight: bold;text-decorati=
+on: none;"><img align=3D"none" alt=3D"Google Play" height=3D"44" src=3D"ht=
+tps://gallery.mailchimp.com/07487d1456302a286cf9c4ccc/images/9b9ac56f-ab6c=
+-4fb8-8857-8e105f67d778.png" style=3D"width: 150px;height: 44px;float: lef=
+t;margin: 0px;border: 0;outline: none;" width=3D"150"></a></td>
+=09=09=09=09=09</tr>
+=09=09=09=09</tbody>
+=09=09=09</table>
+=09=09=09</td>
+=09=09</tr>
+=09</tbody>
+</table></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table><!-- /#links --=
+>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table><!-- /#linksWrapper -->
+=09=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09</table>
+=09=09=09=09=09</td>
+=09=09=09=09</tr>
+
+=09=09=09</table>
+=09=09</td>
+=09</tr>
+
+=09<!-- Footer -->
+=09<tr>
+=09=09<td id=3D"footer" align=3D"center" style=3D"border-collapse: collaps=
+e;mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #707070;bo=
+rder-top: 5px solid #FFFFFF;padding: 20px 10px 20px 10px;">
+=09=09=09<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=3D"=
+600" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rs=
+pace: 0pt;">
+=09=09=09=09<tr>
+=09=09=09=09=09<td class=3D"footerContent" style=3D"border-collapse: colla=
+pse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #FFFFFF;font-family=
+: Helvetica;font-size: 11px;line-height: 150%;text-align: left;">You are r=
+eceiving this email because you&#39;ve subscribed to our mailing list.<br>
+<br>
+<em>Copyright &copy; 2020 TED=2C All rights reserved.</em><br>
+ You're receiving the TED Talks daily email because you subscribed to it o=
+n TED.com. (Was this forwarded by a friend? You can sign up here: http://w=
+ww.ted.com/newsletter )<br>
+<br>
+<strong>Our mailing address is:</strong><br>
+<div class=3D"vcard"><span class=3D"org fn">TED</span><div class=3D"adr"><=
+div class=3D"street-address">330 Hudson Street</div><div class=3D"extended=
+-address">12th Floor</div><span class=3D"locality">New York</span>=2C <spa=
+n class=3D"region">NY</span>  <span class=3D"postal-code">10013</span></di=
+v><br><a href=3D"https://ted.us1.list-manage.com/vcard?u=3D07487d1456302a2=
+86cf9c4ccc&id=3D12ac513728" class=3D"hcard-download">Add us to your addres=
+s book</a></div>
+</td>
+=09=09=09=09</tr>
+=09=09=09=09<tr>
+=09=09=09=09=09<td class=3D"footerContent" style=3D"border-collapse: colla=
+pse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #FFFFFF;font-family=
+: Helvetica;font-size: 11px;line-height: 150%;text-align: left;">
+=09=09=09=09=09=09<br>
+=09=09=09=09=09=09<a href=3D"https://ted.us1.list-manage.com/unsubscribe?u=
+=3D07487d1456302a286cf9c4ccc&id=3D12ac513728&e=3D714b53187b&c=3D6938c067d4"=
+ style=3D"color: #FFFFFF;font-weight: normal;text-decoration: underline;">=
+unsubscribe from this list</a>&nbsp;&nbsp;
+=09=09=09=09=09=09<a href=3D"https://ted.us1.list-manage.com/profile?u=3D0=
+7487d1456302a286cf9c4ccc&id=3D12ac513728&e=3D714b53187b" style=3D"color: #FF=
+FFFF;font-weight: normal;text-decoration: underline;">update subscription=
+ preferences</a>&nbsp;&nbsp;
+=09=09=09=09=09=09<a href=3D"https://us1.campaign-archive.com/?u=3D07487d1=
+456302a286cf9c4ccc&id=3D6938c067d4&e=3D714b53187b" target=3D"_blank" style=
+=3D"color: #FFFFFF;font-weight: normal;text-decoration: underline;">view e=
+mail in browser</a>
+=09=09=09=09=09</td>
+=09=09=09=09</tr>
+=09=09=09=09<tr>
+=09=09=09=09=09<td class=3D"footerContent" style=3D"border-collapse: colla=
+pse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #FFFFFF;font-family=
+: Helvetica;font-size: 11px;line-height: 150%;text-align: left;">
+=09=09=09=09=09=09<br>
+=09=09=09=09=09=09
+=09=09=09=09=09</td>
+=09=09=09=09</tr>
+=09=09=09</table>
+=09=09</td>
+=09</tr>
+
+</table>
+<img src=3D"https://ted.us1.list-manage.com/track/open.php?u=3D07487d14563=
+02a286cf9c4ccc&id=3D6938c067d4&e=3D714b53187b" height=3D"1" width=3D"1"><=
+/body>
+</html>
+--_----------=_MCPart_1830494986--

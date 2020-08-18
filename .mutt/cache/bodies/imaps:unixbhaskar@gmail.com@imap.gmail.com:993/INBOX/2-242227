@@ -1,0 +1,84 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp3372518lfk;
+        Mon, 1 Jun 2020 17:11:32 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzOuY42NGDFcNEaJY/wNRihVx0/lprz5WJO6krvcoia7KKPSnIalUNw3uuB0OprnCjWvDur
+X-Received: by 2002:a17:906:d215:: with SMTP id w21mr20860867ejz.383.1591056692899;
+        Mon, 01 Jun 2020 17:11:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591056692; cv=none;
+        d=google.com; s=arc-20160816;
+        b=fMPKCp1+4YLee/BlBzw2IwXbeCFRSjNzc7sPc3iarECs+5jzOVagt3UhsviQGJ4uJp
+         s+KQss22WjGOl9uzawRKKGYCrejxNGG0iqrwHBzRLsDHEOHTi7IAOgaQHB4SXYnFlIjv
+         zUMY7wB7obuZv4qKIxiJIf+CEqwVk+1QmRZ53SE58YzH88L3xQ9k84ZOWbi5wHpDxTCE
+         X9wkFoEdIvw2lQ0mHS/if9DzLgEk25H/J1Sh8Jr/2qgCF4ApHrDIEkbqK1po66Z2FbhP
+         rxSICJMgAr8So5MX+7E052SQrY1i5jX2kvQEAGE5wVeP3SPcLL6hmMrN1l9YnrvA3QHa
+         bkzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=QG55bEruRftBQatpkWAkAk1bD2vjeRz8hlonIaw5Zh0=;
+        b=RZTsQB+92DlqWn2Jqb9069dwdWpfUZgQURTfL9QTOXnDgoFvb+lwEEy+WVWaZmUWaS
+         iE1JXXgJpIl1cJRvlMYUkk4qui5VtA+aWWOhJh+MG6VdeY1URf7N606VUNB1QdLOXn1v
+         S/VXHCTqz9VqVr4LopS7Bsdk/vLOP+64r+vjsry51A8fYBPuz22h9ObNayZNchgxqJwr
+         qL7q5tUcM3WNGp3/8HgZvG+bEgNS4vif4yLVIsLwIJyfUDWixIRj28k9InXc0ZheL+80
+         eQDSKH+npxZyOLabgK8p4+4ew1PyLuY6YKJiKSKCLkynPW6Vabtnn0K4v3Iro75ENw1U
+         WWLg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id dt7si127905ejb.395.2020.06.01.17.11.10;
+        Mon, 01 Jun 2020 17:11:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728344AbgFBAJu (ORCPT <rfc822;cafebabe4fun@gmail.com>
+        + 99 others); Mon, 1 Jun 2020 20:09:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725446AbgFBAJu (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 1 Jun 2020 20:09:50 -0400
+Received: from ZenIV.linux.org.uk (zeniv.linux.org.uk [IPv6:2002:c35c:fd02::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B5CC05BD43;
+        Mon,  1 Jun 2020 17:09:49 -0700 (PDT)
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.93 #3 (Red Hat Linux))
+        id 1jfuUz-001dqa-P2; Tue, 02 Jun 2020 00:09:45 +0000
+Date:   Tue, 2 Jun 2020 01:09:45 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Miklos Szeredi <mszeredi@redhat.com>
+Subject: Re: [git pull] vfs patches from Miklos
+Message-ID: <20200602000945.GI23230@ZenIV.linux.org.uk>
+References: <20200601184036.GH23230@ZenIV.linux.org.uk>
+ <CAHk-=wjQ8vRE3jSby=KOejXORsL2qgQ2g=KQ=Y10NvVoVBFtxQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHk-=wjQ8vRE3jSby=KOejXORsL2qgQ2g=KQ=Y10NvVoVBFtxQ@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Jun 01, 2020 at 04:46:45PM -0700, Linus Torvalds wrote:
+> On Mon, Jun 1, 2020 at 11:40 AM Al Viro <viro@zeniv.linux.org.uk> wrote:
+> >
+> >         Assorted patches from Miklos; an interesting part here is /proc/mounts
+> > stuff...
+> 
+> You know, this could really have done with more of a real description, Al...
+
+Umm...  Assorted VFS work:
+	* faster /proc/*/mount* iterator - insert a cursor into the list
+instead of rescan in event of any change
+	* several mount options parser cleanups
+	* statx patches, including the ability to report mnt_id on statx(2)
+	* introduction of faccessat2(2)
+	* utimensat(2) with AT_EMPTY_PATH
+	* allow creating whiteouts (via mknod(2)) for non-root
+	* an aio bugfix
+That stuff is really all over the place - there are several groups of related
+patches, but the above is about as far as it can be compacted...

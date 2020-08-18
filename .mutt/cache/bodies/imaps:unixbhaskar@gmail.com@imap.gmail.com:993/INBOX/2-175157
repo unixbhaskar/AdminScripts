@@ -1,0 +1,73 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp4486800lfb;
+        Tue, 9 Apr 2019 00:03:46 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx7rRoNIVOFeKXvSufv3iVVZ6tGA40/7F4EG5p7fYIuCmvEA6V81sqhFHNgHJcTzCQwFRfY
+X-Received: by 2002:a62:4290:: with SMTP id h16mr34597157pfd.8.1554793426330;
+        Tue, 09 Apr 2019 00:03:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1554793426; cv=none;
+        d=google.com; s=arc-20160816;
+        b=kV5M5kxraE5SnpqCkAN3RElvsnxZnbKNnNjHaBBoFfkaOAKbepCBJjlrCPnjk+n+2M
+         AMIg/4BFoGMpTW5pM8vZwdoag1Iz1gdkOLmDoHGjZrLuAOMrFGxHYfwyYOZT0yTrWb7s
+         g22wnNvBJJE81AwjQSkgEF/G/o1CDscDt3SYZQLUThH/agc+j6V5L9bSVzrp4IEst1Bu
+         21dTSFpsfBUkd3sksaFLcajEbMWham4ToCMe3Ys0Nq7aY1SEewtP/p01/Kx27YqWf7q+
+         E1nmpKKNsRQs0eitK9aEtGQB6erN+xN0XyyRMsJbeVxsWO5naNcQND0tOtTWKrv5kDZ7
+         0oOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:message-id:reply-to:subject:from:to;
+        bh=VgK8XnaXpIW+lqOGfPTmUL5mRHEheH2Q1W4anKyx77U=;
+        b=mAStmTInw0aO1nXUzL5YhW1AgM4zW0iKS2xlgvrg8BafC6xzGWaFjBaI5tA1VDxJ/D
+         smZdx1QTpCv4szBhPTbuCLGsUpzt1yCyoACaCiBxlkHSAYWfjkpQ84lxlWYadpzn2Qwd
+         I2qBv02DYFJ66znUi/k/sku7PKTsXney7d635GI5RpIjLHPygQN7wxwuzbXuZq7atnOI
+         tsPt05hX8W3YZxkylaT7+WyL01ujPlkbCYjPT1HXICkrCpq4pqwNcZQtNFCIO5kz5Ql7
+         FOs1sU4m66bzjpgfRmKZlL1nyTBNoMqm+ItmkJzDtnX2cHFx33i0xvfnR4GJ0cPDd3CQ
+         /7wA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of majordomo-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=Majordomo-Owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <Majordomo-Owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f9si28445878pgm.479.2019.04.09.00.03.46
+        for <unixbhaskar@gmail.com>;
+        Tue, 09 Apr 2019 00:03:46 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of majordomo-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of majordomo-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=Majordomo-Owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org id S1726352AbfDIHDc
+        for <unixbhaskar@gmail.com>; Tue, 9 Apr 2019 03:03:32 -0400
+To:     unixbhaskar@gmail.com
+From:   Majordomo@vger.kernel.org
+Subject: Majordomo results
+Reply-To: Majordomo@vger.kernel.org
+Message-Id: <S1726352AbfDIHDc/20190409070332Z+4@vger.kernel.org>
+Date:   Tue, 9 Apr 2019 03:03:32 -0400
+
+--
+
+>>>> subscribe bpf
+**** Your request to Majordomo@vger.kernel.org:
+**** 
+**** 	subscribe bpf unixbhaskar@gmail.com
+**** 
+**** must be authenticated.  To accomplish this, another request must be
+**** sent in with an authorization key, which has been sent to:
+**** 	unixbhaskar@gmail.com
+**** 
+**** If the message is not received, there is generally a problem with
+**** the address.  Before reporting this as a problem, please note the
+**** following:
+****
+**** You only need to give an address to the subscribe command if you want
+**** to receive list mail at a different address from where you sent the
+**** command.  Otherwise you can simply omit it.
+****
+**** If you do give an address to the subscribe command, it must be a legal
+**** address.  It should not consist solely of your name.  The address must
+**** point to a machine that is reachable from the list server.
+****
+**** If you have any questions about the policy of the list owner, please
+**** contact "bpf-approval@vger.kernel.org".
+**** 
+**** Thanks!
+**** 
+**** Majordomo@vger.kernel.org

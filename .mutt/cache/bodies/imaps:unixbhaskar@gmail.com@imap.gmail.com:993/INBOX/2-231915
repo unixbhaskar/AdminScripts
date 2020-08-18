@@ -1,0 +1,102 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp159175lfg;
+        Thu, 2 Apr 2020 20:20:38 -0700 (PDT)
+X-Google-Smtp-Source: APiQypLXRNJTDXXkFRKnyPw370ZfWgw1cYPsj1I/gPR4bNMAZFaeic/NnobrnFBLGh+h7L+xPexd
+X-Received: by 2002:aca:ab16:: with SMTP id u22mr1452629oie.133.1585884038076;
+        Thu, 02 Apr 2020 20:20:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585884038; cv=none;
+        d=google.com; s=arc-20160816;
+        b=yTOgDTAP6Exen/jCjwBIBllvD/mUaVUjJeANMNwiBmGOnBvStMRkYdWxrDuo+DJr1z
+         UvD9+DtGqEXdc8UGSsRXVX0qbExYvNJzDex1LWTWPCfMgusAn3dKaGepR6SyI9tmbpV/
+         Qngv+PUU8eilk565DnhnTOD2N+Hb7eO0JF7SHMtp7qa3J3wq7BntQBuYQkTuHlGJ6kxb
+         ENXW9I4ooII9IZJlK1oSgKml2fWVJfqU6Vgu4yhqnImdaZXCIRkBLlZC4i1M9sZTK8RX
+         y4sjs8yPpOmDju8hBqLv4+v9z4r49a5tGEBRFdrWja4h9xxTTRLs5rW8cFdvKVgDhQ+4
+         pE3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:to:subject:dkim-signature;
+        bh=XOG9i9h9wH5BxflLkb8p29SJ7IjpaH/ZwyrboCrvU4s=;
+        b=s9WlMNY6hdvCwg1abrsruKAgHvpbR3YpU7p9/hojqXROhRTF9pP+CVQzzmoHPGNKZ2
+         CHdUQByqrIikBrO5sof/6W68GzmMvE8V1AL9PjTQT4d5hdEbL4IH8LQpRiHFEgbjPGbx
+         d0gBAivihuYqjCwPnxO0XnzhXg9ldlx8Os6l2y9f8GoIdDuSMvmK6D59mrYDX5eaaFXm
+         9Vrutq1oIbhk/holIvtmtZ2UXr39l6VhgRyh85govGFCUfE9aGlEvUWGXU5ttV15j3wX
+         Ji/6Jy/Qm4PEC5BW17Scny8pzDFy8orbB/I+TEG2emzLUcWpjHTmhf2coxWvZzO6SYHL
+         ryMg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=OPL+2aKL;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id y1si3204078otq.87.2020.04.02.20.20.24;
+        Thu, 02 Apr 2020 20:20:38 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=OPL+2aKL;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2390242AbgDCDTa (ORCPT <rfc822;bluekernelvirtual@gmail.com>
+        + 99 others); Thu, 2 Apr 2020 23:19:30 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:35836 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388951AbgDCDT3 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 2 Apr 2020 23:19:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:
+        Subject:Sender:Reply-To:Cc:Content-ID:Content-Description;
+        bh=XOG9i9h9wH5BxflLkb8p29SJ7IjpaH/ZwyrboCrvU4s=; b=OPL+2aKLCcL2Zgkla4acmM2/4s
+        yac1OCIcGgrXlupwIk5VwV2Z6N3GDvTU5N4dd2QkLp5RF5XrK2KjBTP+OiZ4avbuEynHNDxXBPQ1G
+        GqYD09B+/WFVKQHccytBi2cF+6YhMn7e6+WvFC7g8CdFgcb7rHEjTbbiXsgmUv1wS0Fj5XhDRujFH
+        mFYizEZWLR+xjYdyMYxWyTvpG4yG/dbtEOSry77davYwJS+YgK268mYhlBSIBR1Y+d9byTfvcmA7v
+        1NyJbBCo6D5DoKfcr2wwjn1LvtoLV9KS/rl+oUHzcMeWSIlm0O1fCS+aup222Zm0CzzfQmYjZleMY
+        cctpsQ6g==;
+Received: from [2601:1c0:6280:3f0:897c:6038:c71d:ecac]
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1jKCrf-0002eS-CN; Fri, 03 Apr 2020 03:19:27 +0000
+Subject: Re: error fn f7 (asus)
+To:     "jack_solovey@ngs.ru" <jack_solovey@ngs.ru>,
+        linux-kernel@vger.kernel.org,
+        Platform Driver <platform-driver-x86@vger.kernel.org>,
+        =?UTF-8?Q?Jo=c3=a3o_Paulo_Rechi_Vita?= <jprvita@gmail.com>,
+        Andy Shevchenko <andy@infradead.org>,
+        Darren Hart <dvhart@infradead.org>
+References: <625e12e1-aee0-8b3c-8a4d-98e74739153c@ngs.ru>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <3440f96b-291f-cd5e-7fc3-c3e9c0959f22@infradead.org>
+Date:   Thu, 2 Apr 2020 20:19:26 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
+MIME-Version: 1.0
+In-Reply-To: <625e12e1-aee0-8b3c-8a4d-98e74739153c@ngs.ru>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+[adding Cc's]
+
+On 3/8/20 11:43 PM, jack_solovey@ngs.ru wrote:
+> Hello, sorry this machine translation.
+> 
+> Laptop  Asus N56V
+> Prior to kernel 5, the FN+F7 buttons turned off the laptop screen.
+> Starting with kernel 5, these buttons turn on standby mode.
+> I have to use core 4.18
+> 
+> Linux Asus-N56VB 4.18.0-25-generic #26~18.04.1-Ubuntu SMP Thu Jun 27 07:28:31 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+> 
+> Whether it is planned to return the legacy function to the fn+f7 buttons to disable the main monitor.
+
+Hi,
+
+Possibly caused by 78f3ac76d9e5219589718b9e4733bee21627b3f5
+(platform/x86: asus-wmi: Tell the EC the OS will handle the display off hotkey).
+
+-- 
+~Randy
+

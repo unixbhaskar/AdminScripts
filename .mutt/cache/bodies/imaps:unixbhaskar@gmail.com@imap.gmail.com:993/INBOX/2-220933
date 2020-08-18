@@ -1,0 +1,139 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp902974lfc;
+        Wed, 29 Jan 2020 11:11:14 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwa9yOhPkrCf8M2f77w+AvVL6waYh7eQUm4aiavR+R7pH9nCGz0Iymtc9QoX7sjKf3nnYji
+X-Received: by 2002:a9d:74c5:: with SMTP id a5mr612436otl.229.1580325073993;
+        Wed, 29 Jan 2020 11:11:13 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580325073; cv=none;
+        d=google.com; s=arc-20160816;
+        b=OiDt73xMPmV+4PsrWwtpcC9vvJl5jPYNTabW1H6RBimXK8ip/dNYcAL2YFvbM54tJy
+         Ye+YuLtL6Oh1id7gnBaxUaHrjSifaYFfbw/AH+YedaOFKd61Bcr6WJeZde3/yY4yQflU
+         lRFsixQxdJgoT5PvJUZPKYGj2SbUTYS8XMewaHq1bnHat/aiR8e5/P9IYP/dMuTZ+sGa
+         hl4z7/WUZHM8WjeRFTZeTl+p+JvKoyfM3Nxou6W1nHJlDa6CIp29TgZXT2D4ZSvyjfpt
+         /T6fy+l9V0dPNOTjA8yLsdtBitBEQ9Y0LPbyzEKEtzx27cJ6iJM2JI7JT9ORF5///Wqm
+         zH2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=02ZRS+PX7FQYAeZ4yNizHXrsol3AHhSPPT78jnWNZSI=;
+        b=EpjD+zIjzdscUGlIV+JXbrpvBJh62ycO5VMXqi9WsvNEhRzHP1HoZbG1IWCwTnVlQe
+         uXREL7KZG2MQLBbZDl0/3SfUZoOP1fw0+/aiA1u/U9hujZftAORtIINK4wxkyli98pDM
+         JyRehuNTKJJ9jlG000G7bjngwnwdiyBHFeNAueqz5O1vIu22Wts0ATPKejinBBhZ+kor
+         3rJQh2uhnfWo0bTG/tTKTbhCfseq4WsDg8UyNYVOE4NqgmG91ssDrzXy9ZLBfP0lvHkh
+         fMUXqrsRJozMOz2CEv8UvVA04y5sCv1KcXOvdmop26nFW6T2bKFhzfGDVlJ79Q3EYyhd
+         7AoQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=QLAygB4q;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id q25si1514453otg.128.2020.01.29.11.11.01;
+        Wed, 29 Jan 2020 11:11:13 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=QLAygB4q;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727273AbgA2SLs (ORCPT <rfc822;xiafei19960104@gmail.com>
+        + 99 others); Wed, 29 Jan 2020 13:11:48 -0500
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:41464 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726245AbgA2SLr (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 29 Jan 2020 13:11:47 -0500
+Received: by mail-lj1-f195.google.com with SMTP id h23so349465ljc.8
+        for <linux-kernel@vger.kernel.org>; Wed, 29 Jan 2020 10:11:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=02ZRS+PX7FQYAeZ4yNizHXrsol3AHhSPPT78jnWNZSI=;
+        b=QLAygB4qtDxvH7s7qkN9dHmEs4g1BPG63djXzdzgACGYT42ynfm9s9Lb6wl6JEcOYx
+         VHqjFnJu+fdebeORwwd797eZtr0k+l99ShChTTRKnqrNDUTgLoQC5F0yuP+ecv2VagFU
+         TSrC4G9MN5OF3GeHvZjnu2QPdx+V3So5512Dw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=02ZRS+PX7FQYAeZ4yNizHXrsol3AHhSPPT78jnWNZSI=;
+        b=QqeKPNZuPbmd+oRC9tKlkHHnKvYeOyg8ljHbW3e3nVQs+x7SQdrFU1VFw4xliwDuv6
+         CGZKrtXDY2Xhfm5BZw4vm2SA59rcj/r/djraHE1zwdcBx5D0kleGUc7s4UGioBQnfgTa
+         atLblRCB1C4bwzULhqPAkfPeZUy4vd0KzBD1hCoxbcAMh77dyll6WEbaGm+kIev29eNJ
+         dPq53zxlfe11GXGazmPi0eCoEhoe3D9oncq4ObBwwfOmU9YCJ6CfUo/i6UVYqcroyts1
+         vT4OyxdzElPu325Trfxch/s91HtIgAE0fdWHlq7gOOVXVe3qSjgd4jQdHJiHVHgozIJV
+         Q7yA==
+X-Gm-Message-State: APjAAAXNrlmCbCL+Hq7cBahyyIU/AjXGCHzY3RQcDHUCdFU4qSDR9tQc
+        i2yfFws3zphB+h94TkioKF4gABx12p0=
+X-Received: by 2002:a05:651c:38c:: with SMTP id e12mr234304ljp.142.1580321504683;
+        Wed, 29 Jan 2020 10:11:44 -0800 (PST)
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com. [209.85.167.42])
+        by smtp.gmail.com with ESMTPSA id u11sm1432768lfo.71.2020.01.29.10.11.43
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jan 2020 10:11:43 -0800 (PST)
+Received: by mail-lf1-f42.google.com with SMTP id y19so326830lfl.9
+        for <linux-kernel@vger.kernel.org>; Wed, 29 Jan 2020 10:11:43 -0800 (PST)
+X-Received: by 2002:a19:c7d8:: with SMTP id x207mr305234lff.142.1580321502988;
+ Wed, 29 Jan 2020 10:11:42 -0800 (PST)
+MIME-Version: 1.0
+References: <20200129101401.GA3858221@kroah.com>
+In-Reply-To: <20200129101401.GA3858221@kroah.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Wed, 29 Jan 2020 10:11:26 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wgwBfz0CtAFZMDy=A_Wz0+=dzrfWWiHESUD9CxnV=Xyjw@mail.gmail.com>
+Message-ID: <CAHk-=wgwBfz0CtAFZMDy=A_Wz0+=dzrfWWiHESUD9CxnV=Xyjw@mail.gmail.com>
+Subject: Re: [GIT PULL] USB/Thunderbolt/PHY patches for 5.6-rc1
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Wed, Jan 29, 2020 at 2:14 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+>
+> Here is the big USB and Thunderbolt and PHY driver updates for 5.6-rc1.
+
+Hmm. This actually causes a new warning even before I start building it:
+
+  WARNING: unmet direct dependencies detected for I2C_S3C2410
+    Depends on [n]: I2C [=y] && HAS_IOMEM [=y] && HAVE_S3C2410_I2C [=n]
+    Selected by [m]:
+    - PHY_EXYNOS5250_SATA [=m] && (SOC_EXYNOS5250 || COMPILE_TEST
+[=y]) && HAS_IOMEM [=y] && OF [=y]
+
+and the cause seems to be
+
+  203b7ee14d3a ("phy: Enable compile testing for some of drivers")
+
+where PHY_EXYNOS5250_SATA now has a
+
+  depends on SOC_EXYNOS5250 || COMPILE_TEST
+  depends on HAS_IOMEM
+  depends on OF
+
+and then blindly does a
+
+  select I2C_S3C2410
+
+without having the dependencies that I2C_S3C2410 has.
+
+How did this ever pass any testing in linux-next without being
+noticed, when I noticed within five seconds of pulling it? It
+literally warns immediately on "make allmodconfig".
+
+The warnings happen during the build too, as it does the silentconfig.
+So I'm not sure how this was missed.
+
+Stephen, does linux-next perhaps miss these config-time warnings?
+
+I have partially reverted that commit in my merge (removing the "||
+COMPILE_TEST" for that PHY_EXYNOS5250_SATA entry) because warnings are
+not acceptable.
+
+               Linus

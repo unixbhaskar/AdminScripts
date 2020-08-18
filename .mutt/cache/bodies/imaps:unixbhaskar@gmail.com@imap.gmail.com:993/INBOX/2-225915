@@ -1,0 +1,88 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:2382:0:0:0:0:0 with SMTP id j124csp1697161lfj;
+        Sun, 1 Mar 2020 14:08:11 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxy8BrQ7Ky9cJKb8jcfBOAkGI+5GyjfR57DhvS5YLC/HMX3bymHWKTlbBht4ZZamwxK+xTP
+X-Received: by 2002:a05:6830:98:: with SMTP id a24mr10458870oto.115.1583100491112;
+        Sun, 01 Mar 2020 14:08:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1583100491; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ee9gwDsYxxlltsdcY+4eBorYeBzaBQOPtwZKFfkqge3GIQm8kgjVOZSFvrVkTOpgiT
+         F21uAPN7IyqgsfeKKRbgLC8OD7Vlz0bWrjK7IZIeJFt8QQJVwuW0LKt6tHcWFxlYnaiq
+         oeq2KUfc7PmJAkhDqyQ0dgbgY+51S5rryjSu8NWmZ78yQOkX4ppMizSlbJhIkWvpi6cM
+         CGgoIeXWx6ntElBXZ7Bryxd6iXKz96kmduIL7Vmbxay3t9+KTTP2eJKjtxuQWVoVKjpy
+         W6JPqlzz8KNvBfXj35OiqKhZZfv2rcKDWC4Sz+OGPLWLb1t19ywPsmtMwZ/llrP1uXs3
+         8Oug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date;
+        bh=Bn8DbYFqeDqUm73W9hfWFDiacn4dhDIsm6JGCAECqBk=;
+        b=b83F44/cRfkgPdOrvXCseGyEJ+hZ8due99LtUipSqt66ccpdOdQbus4jBO5TZTTy5E
+         Fad1Wxma2RWOKVlX7kt8cJdaTEtMdVzq2mVN+FxgUGdvC88+zxXqCKu2OmJyh5xJTQrw
+         SN75HclqyMIvWkp49C3fRG7KahCbJBG9ocvcX+kr70rJDM7IpbAvqHLcEc3UF859fj4S
+         A9Ucz2WbNuMjBUlZYoxiAY9F4uRbv65cbH3SCwPz9ffGAZd8dTgcETSMjBZfcdhNigl5
+         eLt30EHm8GvyYodiGcGgRxcDGTnpWw9qEWAL1duY7Squj8HA4ovTtFOlrUZZhWNMo2o8
+         BQaQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id 2si5270350ois.221.2020.03.01.14.07.58;
+        Sun, 01 Mar 2020 14:08:11 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726592AbgCAWHM (ORCPT <rfc822;tmayfield1@gmail.com>
+        + 99 others); Sun, 1 Mar 2020 17:07:12 -0500
+Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:56881 "EHLO
+        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726050AbgCAWHL (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 1 Mar 2020 17:07:11 -0500
+Received: from callcc.thunk.org (pool-72-93-95-157.bstnma.fios.verizon.net [72.93.95.157])
+        (authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 021M78Ha029007
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 1 Mar 2020 17:07:08 -0500
+Received: by callcc.thunk.org (Postfix, from userid 15806)
+        id 355AB42045B; Sun,  1 Mar 2020 17:07:08 -0500 (EST)
+Date:   Sun, 1 Mar 2020 17:07:08 -0500
+From:   "Theodore Y. Ts'o" <tytso@mit.edu>
+To:     torvalds@linux-foundation.org
+Cc:     linux-kernel@vger.kernel.org, linux-ext4@vger.kernel.org
+Subject: [GIT PULL] more ext4 bug fixes for 5.6
+Message-ID: <20200301220708.GA91502@mit.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+The following changes since commit f8788d86ab28f61f7b46eb6be375f8a726783636:
+
+  Linux 5.6-rc3 (2020-02-23 16:17:42 -0800)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4.git tags/ext4_for_linus_stable
+
+for you to fetch changes up to 37b0b6b8b99c0e1c1f11abbe7cf49b6d03795b3f:
+
+  ext4: potential crash on allocation error in ext4_alloc_flex_bg_array() (2020-02-29 17:48:08 -0500)
+
+----------------------------------------------------------------
+Two more bug fixes (including a regression) for 5.6
+
+----------------------------------------------------------------
+Dan Carpenter (1):
+      ext4: potential crash on allocation error in ext4_alloc_flex_bg_array()
+
+Qian Cai (1):
+      jbd2: fix data races at struct journal_head
+
+ fs/ext4/super.c       | 6 +++---
+ fs/jbd2/transaction.c | 8 ++++----
+ 2 files changed, 7 insertions(+), 7 deletions(-)

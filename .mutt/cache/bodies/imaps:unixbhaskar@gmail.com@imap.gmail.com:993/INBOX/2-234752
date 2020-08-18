@@ -1,0 +1,130 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp2683346lfg;
+        Sun, 19 Apr 2020 05:51:14 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJESFTeRwZSGf5c20dNwbLtswdpQb9fiuwERUwWsQuWeYf0Icq6LAF4jnaYMog7bLtVCrB6
+X-Received: by 2002:a50:d1d7:: with SMTP id i23mr10657542edg.118.1587300674846;
+        Sun, 19 Apr 2020 05:51:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587300674; cv=none;
+        d=google.com; s=arc-20160816;
+        b=raIwVw2vwlYKR4V2RVE84PlL1Kb81KwsphBvw14mxYHVFj4XH32M9gZkah0Ul7DWs5
+         cWIs5iTlxImJREkJCpO5PPTbatPtc0ZSg41F/H43L2drLPxP5iESAIcIsfrkioqjhZJO
+         vEx0QG4g/8tGsHDhhOnUeclkz5d7U/auFEpyzLhQ2Qz22FmICd+4GjJicpp7aYmLxJmL
+         +/ueF3GyYK18a6W3MBn9mlgIlzDxrue3Lry4K7cHk1Z+tSpSZ0KS54uOkN8va11XwqXc
+         lnDccGfAUSqXcVm53ePKUSrT0xDt6t2OwFzL74vwiAcVI/7Hv81BtunGFz3Zk6KwfO+X
+         zoWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=AYt+mcQK2IJWTQzel0XUtUuuyfI4ZyCNH2D6GWZFNLQ=;
+        b=UU4K9ukdq0jrk/f64Eps3Awba2bIJOJF3tpph0UP7mfRdnnPbdPl4AlwWHwIfLjXpJ
+         chkJJjnsFIdMLPilYqRXgjjzZzVkJfwZIJIyLYHgWaygWiOgAJDe4GO1Zsn0av9nVMEM
+         NA4tv9aj2mnsH0hagPzv5A9dO9LptmiWROqBz2xzl5lGNSGLD7Kv1IUf9lgZqQJUeb6U
+         6QmpZIfDxJsWbCEQ0LR+PX7PqD2n7s0iSk/alAL5b83rLQ+Esb9Ee4UC0FIP4P1dqSHQ
+         ZVg9hVMZSLXkWF5skqN+V8xp+c8JMnonLO6CXlHMoSLxP12aswb6kxexJZJB1q4RdW8M
+         Wl0g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b="C/45LPFF";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id oh24si17505768ejb.531.2020.04.19.05.50.51;
+        Sun, 19 Apr 2020 05:51:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b="C/45LPFF";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1725988AbgDSMuT (ORCPT <rfc822;fengxinfreedom@gmail.com>
+        + 99 others); Sun, 19 Apr 2020 08:50:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38594 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725793AbgDSMuS (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 19 Apr 2020 08:50:18 -0400
+Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85389C061A0C;
+        Sun, 19 Apr 2020 05:50:18 -0700 (PDT)
+Received: by mail-yb1-xb43.google.com with SMTP id h205so3798967ybg.6;
+        Sun, 19 Apr 2020 05:50:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=AYt+mcQK2IJWTQzel0XUtUuuyfI4ZyCNH2D6GWZFNLQ=;
+        b=C/45LPFFt2lRvdCPuYYqsGrhrJ/ZHx5w8Nd52F3HprUEMnKgfqCKZ3QfQCkFdsIyWM
+         kc5QmbreqqJnkjdUKFX7ihj68kt061NltpxB6g7YE4dFephkO6IOQFJoXF441Ej6tnM4
+         3dlpS4nJNUOk8Hr3vRzach1oD0o7DI6/upSHKxN1WGVkc5KnZElHhbdmhMYUyx7Ian5I
+         XJkUX6Wc2UlTjNtGPFlVuNbYczOdSTEELb1wywkcbRiCZo9ekXgGnfT1wlB3CJlVd/yy
+         arpV2YHE/A6TGeledwjsmX4vqFDCX6J54LMxYe0yBfGjqoBVusWjaGLe68exkDG0H+Xc
+         zFPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=AYt+mcQK2IJWTQzel0XUtUuuyfI4ZyCNH2D6GWZFNLQ=;
+        b=AoA4wR2RDZxlpcoFFDSD0zi5VIj0Pag3woEyZVAEc6WeWdZNARYEKthsO4tGCTUiVm
+         X5cXmMLhmqBsVI5ovSsOLFa2QwXuX3RT8CWeQCjGkDwABeLc4aQyvHqIh9y2lILrhJ1N
+         YzEqO0cynHyGKH01PCMwh/5fYJ7dKRu8sWPyRhu9HGuDPoYUvm4fQTXCvzmjwT3Dd1Ca
+         +d5bha0NLQUb7GSawFCN7RARUqMgtkjHmW0aDhOUgBj/mb7+NEdoZDp5/VnNIlER+AcV
+         LItiZEcx/POJ0doifc+idbGj1tXj6LjnnDGJ1M4bA67Ob07tAXY5hA2jMiYOWBvRlgkp
+         HTTQ==
+X-Gm-Message-State: AGi0PuZi/eC/Q8bQZrX9TvL9FSDFI6IB1gn9+FtFDD1Tq1M6i3HjN8R6
+        FvYi5rYSpHM9ebRZzJLhp162dyNe5inOD0yeP1WMRMGAauE=
+X-Received: by 2002:a25:aa0c:: with SMTP id s12mr11835570ybi.183.1587300617572;
+ Sun, 19 Apr 2020 05:50:17 -0700 (PDT)
+MIME-Version: 1.0
+From:   Steve French <smfrench@gmail.com>
+Date:   Sun, 19 Apr 2020 07:50:06 -0500
+Message-ID: <CAH2r5mu13W-JJoTRnoDTBnPTRjOLRqbDdTeK6NfrfAFS7f+Rbw@mail.gmail.com>
+Subject: [GIT PULL] SMB3 Fixes
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     CIFS <linux-cifs@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Please pull the following changes since commit
+8f3d9f354286745c751374f5f1fcafee6b3f3136:
+
+  Linux 5.7-rc1 (2020-04-12 12:35:55 -0700)
+
+are available in the Git repository at:
+
+  git://git.samba.org/sfrench/cifs-2.6.git tags/5.7-rc-smb3-fixes
+
+for you to fetch changes up to 9692ea9d3288a201df762868a52552b2e07e1c55:
+
+  smb3: remove overly noisy debug line in signing errors (2020-04-16
+12:23:40 -0500)
+
+----------------------------------------------------------------
+Three small smb3 fixes: two debug related (helping network tracing for
+SMB2 mounts, and the other removing an unintended debug line on
+signing failures), and one fixing a performance problem with 64K pages
+
+Regression testing results:
+http://smb3-test-rhel-75.southcentralus.cloudapp.azure.com/#/builders/2/builds/344
+----------------------------------------------------------------
+Jones Syue (1):
+      cifs: improve read performance for page size 64KB & cache=strict
+& vers=2.1+
+
+Ronnie Sahlberg (1):
+      cifs: dump the session id and keys also for SMB2 sessions
+
+Steve French (1):
+      smb3: remove overly noisy debug line in signing errors
+
+ fs/cifs/cifssmb.c       |  4 ++++
+ fs/cifs/inode.c         |  2 +-
+ fs/cifs/smb2pdu.c       | 15 +++++++++++++++
+ fs/cifs/smb2transport.c |  4 ++--
+ 4 files changed, 22 insertions(+), 3 deletions(-)
+
+-- 
+Thanks,
+
+Steve

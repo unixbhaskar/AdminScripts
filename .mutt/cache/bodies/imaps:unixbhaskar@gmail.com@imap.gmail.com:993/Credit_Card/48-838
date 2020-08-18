@@ -1,0 +1,190 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp2249300lfb;
+        Fri, 10 May 2019 08:43:00 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwtIO+T7isoC4blfjR14K2zOm9wnCCuBCIN3g2Q9+boqV+IWjcpS+w4TdySZpmRrTpQHUTk
+X-Received: by 2002:a63:5c5b:: with SMTP id n27mr14761524pgm.52.1557502980770;
+        Fri, 10 May 2019 08:43:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1557502980; cv=none;
+        d=google.com; s=arc-20160816;
+        b=owpL5EOE+scUk63XHaqb3xDUL3RSZjNBhZAGShEc8Ny2C55sIKGpyWKO3s3BRRsU6j
+         f+4909Pr2+b5fxEkywXh5TQ/AkHmjQxInSBM6IUKX/Z5sWegCCRXS6mwjM47Bat9OEjZ
+         0tbcCMVQ5skFXXZ2tkJJ9VHyudgPsd1TeOfXwQVhaNCeR1w/Uk5SKkpvIVR7YrSfw8B5
+         6C/5nHAFHRjXa1kOknlv3obQasaJASxHGVPD4Q26Yd+dKekmx1J0DwoIkg2tDbvFKvY5
+         M6SA98+04258eDWrKJTFIpzSP5Sg7RsrdCW3F5YPNtYLpmOT2p6x3FnOvzAO8vj+vAMK
+         sZOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:subject:message-id:to:from:date:dkim-signature;
+        bh=T6+Clw6tlYE16gsrtqf5YPtSyrhRSbUauf4BfghdArM=;
+        b=zm/vaXIzr4fTtSd6mdcXpZDcsjRR//yv3F646agw7wNkrhuU17c2fxiFaqmnoo2l5T
+         yahuqbcQOuE0E9zLISa40KgDQv65WXrd2wlOyigFr7JxWczi5Ibis0yYzbpRdQO6D3Gg
+         aY9EbfmH6ZbvrN9PBVvW80LVXYnjLVAFBiI4ae17cl6QfFo/PTG7m7jMEdMIP6w7ozIi
+         lk9ryvaIVFf3mzRXSBevBRUF9koqXrqP80zjsNvDdJeTZbXwz0BR0FRrSvZ5z0X8hde6
+         539YgK/6mncOPT9Y0DxuHlHk84ZO82CLkXm3cW/EvQIFNlwiDjvat+n3jT0BabzhvCop
+         3MWw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@icicibank.com header.s=icicibank.com header.b="JTr/z8X4";
+       spf=pass (google.com: domain of credit_cards@icicibank.com designates 203.27.235.122 as permitted sender) smtp.mailfrom=credit_cards@icicibank.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=icicibank.com
+Return-Path: <credit_cards@icicibank.com>
+Received: from mlxmail4.icicibank.com (mlxmail4.icicibank.com. [203.27.235.122])
+        by mx.google.com with ESMTPS id j9si7464666plk.125.2019.05.10.08.43.00
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 May 2019 08:43:00 -0700 (PDT)
+Received-SPF: pass (google.com: domain of credit_cards@icicibank.com designates 203.27.235.122 as permitted sender) client-ip=203.27.235.122;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@icicibank.com header.s=icicibank.com header.b="JTr/z8X4";
+       spf=pass (google.com: domain of credit_cards@icicibank.com designates 203.27.235.122 as permitted sender) smtp.mailfrom=credit_cards@icicibank.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=icicibank.com
+Received: from MLXMASSSMTP01.icicibank.com ()
+	by mlxmail4.icicibank.com  with ESMTP id x4AFgwrL024156
+	for <unixbhaskar@gmail.com>; Fri, 10 May 2019 21:12:58 +0530 (IST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icicibank.com;
+	s=icicibank.com; t=1557502978;
+	bh=T6+Clw6tlYE16gsrtqf5YPtSyrhRSbUauf4BfghdArM=;
+	h=Date:From:To:Subject;
+	b=JTr/z8X4ztt5Q0qm5Mkfe/f2udIqyzsqPj6BReEFiFxV83ExK05SyVjT8vXRTXfqe
+	 txeJd3aE01rg6YCiXW+kd6++2pyGXypswViby4C8m/8egwi/RN2JPEjBEc++l8ONeE
+	 PuB2O/uAvmoPPzyeH1UkmhiJw0GY1UovRdZDQ1as=
+Received: from HYDIOPTAPPFB.icicibankltd.com ()
+	by MLXMASSSMTP01.icicibank.com  with ESMTP id x4AFgws4030405
+	for <unixbhaskar@gmail.com>; Fri, 10 May 2019 21:12:58 +0530
+Date: Fri, 10 May 2019 21:12:58 +0530
+From: credit_cards@icicibank.com
+To: unixbhaskar@gmail.com
+Message-ID: <810678813.15753.1557502978795.JavaMail.HYDIOPTAPPFB$@HYDIOPTAPPFB>
+Subject: Payment of INR 25000 received on your ICICI Bank Credit Card 4315
+ XXXX XXXX 8000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_15752_1330039148.1557502978795"
+
+------=_Part_15752_1330039148.1557502978795
+Content-Type: text/html; charset=Cp1252
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3.=
+org/1999/xhtml"><head><meta http-equiv=3D"Content-Type" content=3D"text/htm=
+l; charset=3DUTF-8" /><meta name=3D"viewport" content=3D"width=3Ddevice-wid=
+th, initial-scale=3D1.0, minimum-scale=3D1.0, maximum-scale=3D1.0" /><title=
+> </title><style type=3D"text/css">html{width:100%; margin:0; padding:0;}::=
+-moz-selection{background:#b40202;color:#fff}::selection{background:#b40202=
+;color:#fff}body{background:#ffffff;margin:0;padding:0}.ExternalClass,.Read=
+MsgBody{width:100%;background-color:#ffffff}a{color:#b40202;text-decoration=
+:underline;font-style:normal}a:hover{color:#b40202;text-decoration:none;fon=
+t-style:normal}div,p{margin:0!important}@media only screen and (max-width:6=
+50px){table table,td[class=3Dmain_body_width]{width:100%!important}table[cl=
+ass=3Dmobile_width]{width:650px!important;margin:0 auto!important}table[cla=
+ss=3Dfeatured_area]{width:650px!important;margin:0 auto!important}img[class=
+=3Dmobile_img_width]{width:100%!important;height:auto!important}table[class=
+=3Dhide_content],td[class=3Dhide_content]{display:none!important}td[class=
+=3Dcenter]{text-align:center!important}table[class=3Dmain_body]{width:400px=
+!important;margin-left:20px!important;margin-right:20px!important}}@media o=
+nly screen and (max-width:479px){table table,td[class=3Dmain_body_width]{wi=
+dth:100%!important}table[class=3Dmobile_width]{width:324px!important;margin=
+:0 auto!important}table[class=3Dfeatured_area]{width:290px!important;margin=
+:0 auto!important}img[class=3Dmobile_img_width]{width:100%!important;height=
+:auto!important}table[class=3Dhide_content],td[class=3Dhide_content]{displa=
+y:none!important}td[class=3Dcenter]{text-align:left!important; padding-left=
+:10px;}table[class=3Dmain_body]{width:240px!important;margin-left:20px!impo=
+rtant;margin-right:20px!important}td[class=3Dmaniabox]{padding-top:10px;!im=
+portant}}</style></head><body style=3D"background:#f1f1f1"><!-- START MAIN =
+BANNER BODY --><table width=3D"100%" bgcolor=3D"#f1f1f1" align=3D"center" c=
+ellpadding=3D"0" cellspacing=3D"0" border=3D"0">   <tbody>      <tr>       =
+  <td width=3D"100%">           <!-- START OF HEADER BLOCK-->           <ta=
+ble width=3D"100%" align=3D"center" bgcolor=3D"#f1f1f1" cellpadding=3D"0" c=
+ellspacing=3D"0" border=3D"0">            <tbody>               <tr><td wid=
+th=3D"100%"><table bgcolor=3D"#ffffff" class=3D"mobile_width" width=3D"650"=
+ align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0"><tbody><=
+tr>  <td width=3D"100%" height=3D"25">  <table width=3D"100%" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0">=09<tr>=09  <td style=3D"border-left:#e=
+56e2e solid 1px; border-right:#e56e2e solid 1px;">=09  <table width=3D"100%=
+" border=3D"0" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"mobile_width">=09=09<tbody>=09=09  <!-- START MAIN BANNER IMAGE -->=09=
+=09  <tr>=09=09=09<td width=3D"100%" align=3D"center" valign=3D"bottom">=09=
+=09=09<table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D=
+"0" class=3D"mobile_width" style=3D"font-size:0;">=09=09=09  <tbody>=09=09=
+=09=09<tr>=09=09=09=09  <td width=3D"100%" align=3D"center" valign=3D"botto=
+m"><img src=3D"https://www.icicibank.com/campaigns/mailers/2016-october/aut=
+o-debit/5/images/toplogo.JPG" width=3D"648" height=3D"96" class=3D"mobile_i=
+mg_width"  style=3D"display:block;"/></td>=09=09=09=09</tr>=09=09=09  </tbo=
+dy>=09=09=09</table></td>=09=09  </tr>=09=09  <tr>=09=09=09<td align=3D"cen=
+ter" style=3D"padding:20px;">=09=09=09 <table width=3D"580" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0">=09=09=09  <tr>=09=09=09=09<td height=3D"=
+15">=09=09=09=09  <table width=3D"100%" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"0">=09=09=09=09  <tr>=09=09=09=09=09<td align=3D"left">=09=09=09=
+=09=09<font face=3D"Zurich BT" color=3D"#000000" style=3D"font-size:14px">D=
+ear Customer,</font></td>=09=09=09=09=09<td align=3D"right">=09=09=09=09=09=
+<font face=3D"Zurich BT" color=3D"#000000" style=3D"font-size:14px"><u>May =
+10, 2019</u></font></td>=09=09=09=09  </tr>=09=09=09=09</table></td>=09=09=
+=09  </tr>=09=09=09  <tr>=09=09=09=09<td height=3D"15">&nbsp;</td>=09=09=09=
+  </tr>=09=09=09  <tr>=09=09=09<td align=3D"left" valign=3D"top" style=3D"t=
+ext-align:justify">=09=09=09<font face=3D"Zurich BT" color=3D"#000000" styl=
+e=3D"font-size:14px">Greetings from ICICI bank!<br /><br />=09=09=09We have=
+ received payment of INR 25000 on your ICICI Bank Credit Card account 4315 =
+XXXX XXXX 8000 on 10-MAY-19 through Click to Pay.<br><br>=09=09=09Thank you=
+.<br><br>=09=09=09Sincerely,<br>=09=09=09ICICI Bank Credit Cards Team.<BR><=
+BR>=09=09=09</font></td>=09=09  </tr>=09=09  <tr>=09=09=09<td></td>=09=09  =
+</tr>=09=09=09<tr>=09=09=09 <td height=3D"70" align=3D"center">=09=09=09 <i=
+mg src=3D"http://www.icicibank.com/campaigns/mailers/2015-may/mab/safebanki=
+ng-cc-payment.jpg"=09=09=09width=3D"570" height=3D"108"></td>=09=09=09</tr>=
+=09=09=09  <tr>=09=09=09=09<td height=3D"10"></td>=09=09=09  </tr>         =
+   <tr>              <td height=3D"1" bgcolor=3D"#ded7bd"></td>            =
+</tr>            <tr>              <td height=3D"10"></td>            </tr>=
+=09=09=09  <tr>=09=09=09<td style=3D"text-align:justify;"><font face=3D"Zur=
+ich BT" color=3D"#000000" style=3D"font-size:11px">=09=09=09This is a syste=
+m generated   mail. Please do not reply to this e-mail ID. <br /><br />=09=
+=09=09Discover a new way of paying your Credit Card bills from your bank ac=
+count anytime anywhere by using ICICI Bank iMobile. GPRS users, SMS iMobile=
+ to 56767661. For details, please=09=09=09<a href=3D"http://www.icicibank.c=
+om/campaigns/mailers/CCEmailalerts/DuereminderAutodebitnotificationMAD/HTML=
+/click.htm" target=3D"_blank">=09=09=09click here</a>. &nbsp;=09=09=09=09  =
+</font></td>=09=09=09  </tr>=09=09=09  <tr>=09=09=09=09<td height=3D"15"></=
+td>=09=09=09  </tr>=09=09=09  <tr>=09=09=09<td height=3D"6">=09=09=09=09<im=
+g src=3D"https://www.icicibank.com/campaigns/mailers/standalone-images/tran=
+saction-alert.png"=09=09=09=09width=3D"580" height=3D"124"  border=3D"0" />=
+</td>=09=09=09  </tr>=09=09=09  <tr>=09=09=09=09<td height=3D"15"></td>=09=
+=09=09  </tr>=09=09=09  <tr>=09=09=09=09<td height=3D"15" style=3D"text-ali=
+gn:justify;"><font face=3D"Zurich BT" color=3D"#000000" style=3D"font-size:=
+11px">The information provided herein regarding products, services/offers, =
+benefits etc. of ICICI Bank are governed by their detailed terms and condit=
+ions, internal policy guidelines as specified by ICICI Bank from time to ti=
+me and are subject to applicable laws and regulations. The information prov=
+ided herein above does not amount to an offer or sponsor or advice as regar=
+ds any products or services of ICICI Bank or any of its group companies and=
+ is not intended to create any rights or obligations. Any reference to serv=
+ice levels in this document are indicative and should not be construed to r=
+efer to any commitment by ICICI Bank and are subject to change at any time =
+at the sole discretion of ICICI Bank or its group companies as it case mayb=
+e. The use of any information set out herein is entirely at the recipient's=
+ own risk and discretion. The "ICICI Bank" and "i-man" logos are trade mark=
+ and property of ICICI Bank Ltd. Misuse of any intellectual property or any=
+ other content displayed herein is strictly prohibited. Images used herein =
+are for the purposes of illustration only.</font></td>=09=09=09  </tr>=09=
+=09=09</table></td>=09=09  </tr>=09=09 <tr>=09=09=09<td height=3D"25" align=
+=3D"center" bgcolor=3D"#e77817">&nbsp;</td>=09=09  </tr>=09=09  <!-- END MA=
+IN BANNER IMAGE -->=09=09</tbody>=09  </table></td>=09</tr>  </table></td><=
+/tr></tbody></table><table class=3D"mobile_width" align=3D"center" width=3D=
+"650" bgcolor=3D"#ffffff" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">=
+  <tbody>=09<tr>=09  <td width=3D"100%"><table class=3D"mobile_width" align=
+=3D"center" width=3D"650" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+bgcolor=3D"#e77817">=09=09<tr bgcolor=3D"#ffffff">=09=09  <td align=3D"righ=
+t" style=3D"padding:5px 10px; text-align:justify;"><font face=3D"Zurich BT"=
+ color=3D"#000000" style=3D"font-size:10px;"> CONFIDENTIALITY INFORMATION A=
+ND DISCLAIMER<br />=09This e-mail message and its attachments may contain c=
+onfidential, proprietary or legally privileged information and is intended =
+solely for the use of the individual or entity to whom it is addressed. If =
+you have erroneously received this message, please delete it immediately an=
+d notify the sender. If you are not the intended recipient of the e-mail me=
+ssage you should not disseminate, distribute or copy this e-mail. E-mail tr=
+ansmission cannot be guaranteed to be secure or error-free as information c=
+ould be intercepted, corrupted, lost, destroyed, incomplete or contain viru=
+ses and the ICICI Bank accepts no liability for any damage caused by the li=
+mitations of the e-mail transmission.<hr />=09If you do not wish to receive=
+ further marketing e-mails, please register under=09'<a href=3D"https://www=
+.icicibank.com/campaigns/mailers/2016-october/auto-debit/5/dnd.html" target=
+=3D"_blank">Do Not Call</a>'=09registry on www.icicibank.com.</font></td>=
+=09=09</tr>=09  </table></td>=09</tr>  </tbody></table></td></tr></tbody></=
+table></td></tr></tbody></table></body></html>
+------=_Part_15752_1330039148.1557502978795--

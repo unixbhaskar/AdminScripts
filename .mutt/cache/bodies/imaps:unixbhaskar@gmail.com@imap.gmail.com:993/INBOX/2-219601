@@ -1,0 +1,93 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp3945690lfc;
+        Tue, 21 Jan 2020 07:43:32 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzYoWfQ1EmBu0yf2B66s+0MUgNebk3KxG3NeLSW6NA90mYEbfj73P2wRPOm9BqM+HW4Jd8G
+X-Received: by 2002:aca:eb83:: with SMTP id j125mr3259951oih.153.1579621411448;
+        Tue, 21 Jan 2020 07:43:31 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579621411; cv=none;
+        d=google.com; s=arc-20160816;
+        b=P9DkrhZXusl2GJu4Q61gs0cPRIqYY+9Gx8WxLL9LfK3t3Zq+xxb8v3qDX0ma02YAHk
+         FMfP4FHXkf0Pe7XGXzUZd+/jrfPerVqe+eNeg4Q4lb+ztI0bz1xewNFQNI5ve04/5Zwl
+         k9NWDS0/mBjSZdZUIm0tMwUmFFj0w7DnFIIyhoh9vazYujc7bv7G1QMD0sKJnbH6+vfa
+         N3Vnax7M46GcLjdVlbpr75j+GlEkXGsM79N2RAxDtBcJQu8v40nDMoLGl49dDFNasksq
+         D3SZvxk2lDU8QUWHB/1orByEOGOl7SwHPrSwQeTbUmxbl+mph9NByxQ1IZ567qS9A7kq
+         vl9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=LqlaydX8NNZ8GDOJHbZOH2luNKjSXR3q0RkPFHU3yH4=;
+        b=CbhaKnBY/M7YkkCfcmxXf4BGvwXIQ0ENT+MXP1wolT0LeqBPIpFEj6ZEdGWMtMwqjB
+         Nj+MFCa6e5NkhJU48T8TVFraS22LDboog06mcQeAyhoftILgL7/CD/2uSDwOXuH7JF7w
+         rZYnO/2cuyXJivQ8n0BfnReniPNzEoo78InWS0hoscpiqlb/HUxRBpiI05sIuT8K8Jos
+         MOc260cvlFS2EUQjkAaVGJ9I13XUP9uluIUBalbbsRenKTNZ/2YA/DajTTtZWyRlEbdj
+         mMaZOvPoA3KmIYbatXeFlVnRDY3q+Ql9GMrok5mFlXxaFmmNmpBcTJ9n8Yvp6WZepFHA
+         5utQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b="x/tQI8lJ";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id 38si23335983otj.136.2020.01.21.07.43.18;
+        Tue, 21 Jan 2020 07:43:31 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b="x/tQI8lJ";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729137AbgAUPms (ORCPT <rfc822;auslij@gmail.com> + 99 others);
+        Tue, 21 Jan 2020 10:42:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34778 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727817AbgAUPmr (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 21 Jan 2020 10:42:47 -0500
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CAEC6207E0;
+        Tue, 21 Jan 2020 15:42:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1579621367;
+        bh=XFxVdvoPAuJ1iwI987V6w4EhmdrR0YxBJZYSGNu2ljE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=x/tQI8lJofEWRICGoADMClZDO4s5h3meL46SM30o72NslG0+c00XU00B5a4sfczEG
+         Yp/NiX5Ao0K38QGigKcNMhNqgh5tsF6ALo9iLinCiB1LVr260lX5hHdk9ZWWWh6Mu3
+         fmCtibKLMFcllf39Ri4O5GzPkuJ4HiAFosZXjVPY=
+Date:   Tue, 21 Jan 2020 16:42:45 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     "Theodore Y. Ts'o" <tytso@mit.edu>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Zhenzhong Duan <zhenzhong.duan@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: Question about dynamic minor number of misc device
+Message-ID: <20200121154245.GB588670@kroah.com>
+References: <CAFH1YnOad7aVjoX_PR6mLqT=pXQjpBW9ZDHkKYzNkeistFkA4A@mail.gmail.com>
+ <CAK8P3a3DwaZnRff7CCrJoSxP_MeVUn1S6nRd+hb5rHnv9dBgLQ@mail.gmail.com>
+ <CAFH1YnMDL1gBNT4vr+C=eGGoCYJvkVDnoXUVN8OL9Xs3668Z+Q@mail.gmail.com>
+ <CAK8P3a0aFr546fF+=LDm3rwZ-sK-xC8VLYTZjOEn+o6fVixRHg@mail.gmail.com>
+ <20200120221323.GJ15860@mit.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200120221323.GJ15860@mit.edu>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Jan 20, 2020 at 05:13:23PM -0500, Theodore Y. Ts'o wrote:
+> > - FLASH_MINOR move and rename to avoid conflict
+> > - change speakup to dynamic minors
+> > - support for high dynamic minor numbers if you are really motivated
+> >   (probably nobody needs these)
+> 
+> Are we sure that reassigning minor device number conflits isn't going
+> to break systems?  Especially those on random, older, architectures
+> they might not be using udev.
+
+Note, I do not think udev has been in charge of creating /dev/ nodes for
+well over 10 years now, that is up to devtmpfs.
+
+thanks,
+
+greg k-h

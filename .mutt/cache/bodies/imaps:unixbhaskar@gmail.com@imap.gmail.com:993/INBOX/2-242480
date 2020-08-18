@@ -1,0 +1,118 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp55104lfk;
+        Tue, 2 Jun 2020 19:09:12 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz8UKV/h+VcwLMON0Cvhr4Ol2XfvjQ3OhN6N0wknHQ33/q/b/TO2GEokFz2DnBGJNji1Toe
+X-Received: by 2002:a17:906:f44:: with SMTP id h4mr25573020ejj.38.1591150152614;
+        Tue, 02 Jun 2020 19:09:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1591150152; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Fs8KxfpF1Tb7wnkRnjwm8eZ71saSYanvwS17mrvLZ45JSx9sxNL/xhOdy5Z3Td1WIc
+         teTAGwsOp2cWaLfnTR791QW4gwYQHw5TjpP5gwmW1S1fxqPt1PKFCqXRVx5L8kCJIwtA
+         Lswva6nwBVUDWAWBTDEBNhuW5EF7KeKEKvi/F+86ZJIjrIN/PWuI71qJRfHJ/lVqsHyX
+         N7PvUnVl9p//fJ6J68p3vS/nocOdRfuxksMRxjwXoeDfjN4EJKukzOByc14NCNFvUK/c
+         FDdAE+OfmorSPlx+3af6Ag+RA/i2CsbfTTRCyY4xfI4z+hfCbPLBE10aukbuXQWiHU5c
+         mWhg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=05oZ75W4PAkbEc2W7bJ8bzylCGe8tKmwbPUEdrxK2MI=;
+        b=rK2bT9GLFZ35Vu0HtIkJF+79tZAb8b/bbLHNEQiUcsgZHp4U2738OOFJnLtwv13jIG
+         9sR4IIxRWtbkjtf2CGiA5tKhU5yXyiNINci/3B+rbA2VQq/Ko6UG8F8aTC6Sy+EVE6mN
+         DGXlGEVWUFfqoye8WkeqrgdAclIFR8nmfuhS3CrZWQqCCigzvPY8hf4KcCv+k0Qb8QJ5
+         zhMy6FQYkCP+O5PCgKQUOmSIxmKbSdyZtgGG459+s0d0krpb2dmZWLKxGzP6w+GLK0yd
+         wn+4P1Ol2UF2ghEwWXCpUxJ30Bu0t4oRByLZdnH129cwZEKWwqNZ8QpHMjKdb4Dh8diU
+         XLYg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel-dk.20150623.gappssmtp.com header.s=20150623 header.b=YgjDG2DO;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id k26si369875ejv.109.2020.06.02.19.08.49;
+        Tue, 02 Jun 2020 19:09:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel-dk.20150623.gappssmtp.com header.s=20150623 header.b=YgjDG2DO;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1725882AbgFCCHS (ORCPT <rfc822;tmayfield1@gmail.com>
+        + 99 others); Tue, 2 Jun 2020 22:07:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54268 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725789AbgFCCHS (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 2 Jun 2020 22:07:18 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06E98C08C5C0
+        for <linux-kernel@vger.kernel.org>; Tue,  2 Jun 2020 19:07:17 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id s10so681344pgm.0
+        for <linux-kernel@vger.kernel.org>; Tue, 02 Jun 2020 19:07:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kernel-dk.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=05oZ75W4PAkbEc2W7bJ8bzylCGe8tKmwbPUEdrxK2MI=;
+        b=YgjDG2DOa5fJsziE47TJOIqO8/01xtN5rj6XQhEyI58geqkjsw62uCrQ7ZmmhL1jkL
+         +kdgjXt7D4Aq84xaZGh0L81EUocGLPlyFYiHF2fvO1P9QWVrCSVyYbDEz9iL9hZEe4Ui
+         7YZAAfcJIdO1plU1NAB8hK7wr7/4flAHjNYD8hU0lNN7/8+Zkt4blJX442q/S/nA/vZh
+         ugEK+rcs2zZVVsFqei43wS/VJn57yAxbDa+HeKXRww6Cp4IUKjMn6uAQPi2N6jZB0j3A
+         bduC0KNOtfAW6NAb8ORPkEUhbnT2iM3J6BRWL+y5fs4WuBDMiQzfut9IcvNApvAQ/5b+
+         ACDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=05oZ75W4PAkbEc2W7bJ8bzylCGe8tKmwbPUEdrxK2MI=;
+        b=BTnF6RKtuwD07O1Q/MEwSZoBlx9gTOFB71XWY8NX4NIqpFbzC9y87dPzKWwmmsNx4X
+         JuyMiQm3YkTSPeDZRtjs0gkXV1zspxKp1rZthxs4AiLH/W87iynjinpEpaKPkn6kSIFl
+         I4YFTcOcoZJur948DROwES+DhKZ2jmGHRKCVftFFOTeW0pifEaJ7UkN69qm5CVGW2yuD
+         xUQkDVk/91QQztyAc1IGEsI5RTyqeVzpb1Y/swQMayZm2gokXtjLMtSJ4GQJgMTtTjLj
+         LoociHjWiyxFGNcYkZdsZfst9nnqJxbmNqR9dLuW6rwtCgXFShdaqIT4IKf1fUCBGhiY
+         VWuQ==
+X-Gm-Message-State: AOAM5332DfhQ9G+i1D1eyiEnMoHTdD1HJShC/erFO0GIWMw012fXtj+q
+        FrfugKhESHuOhoE+CFXTaEd1NjbXXJwGKA==
+X-Received: by 2002:a17:90a:d998:: with SMTP id d24mr2559305pjv.33.1591150036093;
+        Tue, 02 Jun 2020 19:07:16 -0700 (PDT)
+Received: from [192.168.1.188] ([66.219.217.173])
+        by smtp.gmail.com with ESMTPSA id k7sm216841pga.87.2020.06.02.19.07.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Jun 2020 19:07:14 -0700 (PDT)
+Subject: Re: [GIT PULL] io_uring updates for 5.8-rc1
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     io-uring <io-uring@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <dacd50ff-f674-956b-18cd-9d30e2221b09@kernel.dk>
+ <CAHk-=wjuAN_vgUN_TiPtzSpz2NX9XQq7-nJ1u=gHG=EKdRdrkA@mail.gmail.com>
+From:   Jens Axboe <axboe@kernel.dk>
+Message-ID: <237d782f-8163-dbc2-4505-ed5f88ce4362@kernel.dk>
+Date:   Tue, 2 Jun 2020 20:07:13 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
+MIME-Version: 1.0
+In-Reply-To: <CAHk-=wjuAN_vgUN_TiPtzSpz2NX9XQq7-nJ1u=gHG=EKdRdrkA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 6/2/20 5:03 PM, Linus Torvalds wrote:
+> On Mon, Jun 1, 2020 at 10:55 AM Jens Axboe <axboe@kernel.dk> wrote:
+>>
+>>   git://git.kernel.dk/linux-block.git for-5.8/io_uring-2020-06-01
+> 
+> I'm not sure why pr-tracker-bot didn't like your io_uring pull request.
+> 
+> It replied to your two other pull requests, but not to this one. I'm
+> not seeing any hugely fundamental differences between this and the two
+> others..
+
+Pretty sure that happened last time too, but I don't know why. For
+the incremental ones after the merge window, it seemed to work fine...
+
+-- 
+Jens Axboe
+

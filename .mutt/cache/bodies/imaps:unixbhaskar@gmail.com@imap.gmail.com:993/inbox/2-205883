@@ -1,0 +1,109 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:54b0:0:0:0:0:0 with SMTP id w16csp250381lfk;
+        Wed, 16 Oct 2019 15:11:49 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwt8/O555NHZx4lW8bBq3PbnoOkCyhnb/CnYnXraEl5OZYhAcexm8Goik9/keu2E+ohaqQf
+X-Received: by 2002:a17:906:6a4f:: with SMTP id n15mr562081ejs.19.1571263909882;
+        Wed, 16 Oct 2019 15:11:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1571263909; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wDsx75h2Jnkt/Cwnhcxk1SWMdJhKwVGLyJ4TcXuerVXPP6QRBLDe/fTLCfsLMh5OQ5
+         28+yE0mlQYat1TluQeQ5haHQjI2yYDC0ktSwCtmlQyhLRmj0tMRwDNr1IOVfg17M7GTa
+         aqW7Guf7CuAwqsXHoiJ/k+wbtVoJFd2vjakehcharw/elqcFTsXCU/jOtF6pE2kXf8Vm
+         HVnINxsTu7tL+kfNHCAAfxWrE3+Yogzv4z6fL+/MFgw6V+nPaE/UToS6whK6gsg43pxk
+         vRcuAyjaiSO4tSUxfwIZeL5MhDgTcN27yrBKQPC6mAg2vS37lJQq7DwjolbgC8GdCqMv
+         l6ig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:mime-version:user-agent:references
+         :message-id:in-reply-to:subject:cc:to:from:date;
+        bh=sp+TOI7hFkgBjviVfJR41zFXBwGqiD7LhdYiUqjtUsw=;
+        b=clNfxzze/qrSwQKkKHiZBFAeFaxj5kv0QSW2p34TmFims0TKLVfiyqePgfg5yvVt2d
+         SIetjRF/EDzlrm5fXEM+BaLJ+z7GftBi80JpEzR2s/xh5+Buy5cw+mWtwkMV5nK7zK+0
+         +WqOlQZnOUzILZavIBkbC8Rxkyl2T5pu1DNda0rQBHso2f6csc5cgMS/NwyveShBEjIY
+         VjFp2JGZ5c4S4Vo7Ic0QbeKJYCKpMHHapFQmuIZ6sOgXrOM1N9C+SJBPNGcYqlcea5lM
+         nVvWsRM/UPE5Gm3+ccTDh5VnNBM1z5bGxEK3k8knYxfljGvW84k8Zq1yMDbbadJfDaqK
+         bJVw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id d5si228117edq.60.2019.10.16.15.11.26;
+        Wed, 16 Oct 2019 15:11:49 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2393020AbfJPMYp (ORCPT <rfc822;muniyasamylinuxdev@gmail.com>
+        + 99 others); Wed, 16 Oct 2019 08:24:45 -0400
+Received: from Galois.linutronix.de ([193.142.43.55]:50136 "EHLO
+        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392991AbfJPMYo (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 16 Oct 2019 08:24:44 -0400
+Received: from [5.158.153.52] (helo=nanos.tec.linutronix.de)
+        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
+        (Exim 4.80)
+        (envelope-from <tglx@linutronix.de>)
+        id 1iKiLZ-0004qc-D2; Wed, 16 Oct 2019 14:24:09 +0200
+Date:   Wed, 16 Oct 2019 14:24:08 +0200 (CEST)
+From:   Thomas Gleixner <tglx@linutronix.de>
+To:     Al Viro <viro@zeniv.linux.org.uk>
+cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Ingo Molnar <mingo@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Darren Hart <dvhart@infradead.org>, linux-arch@vger.kernel.org
+Subject: Re: [RFC] change of calling conventions for
+ arch_futex_atomic_op_inuser()
+In-Reply-To: <20191016121232.GA28742@ZenIV.linux.org.uk>
+Message-ID: <alpine.DEB.2.21.1910161422200.2046@nanos.tec.linutronix.de>
+References: <20191010195504.GI26530@ZenIV.linux.org.uk> <CAHk-=wgWRQo0m7TUCK4T_J-3Vqte+p-FWzvT3CB1jJHgX-KctA@mail.gmail.com> <20191011001104.GJ26530@ZenIV.linux.org.uk> <CAHk-=wgg3jzkk-jObm1FLVYGS8JCTiKppEnA00_QX7Wsm5ieLQ@mail.gmail.com>
+ <20191013181333.GK26530@ZenIV.linux.org.uk> <CAHk-=wgrWGyACBM8N8KP7Pu_2VopuzM4A12yQz6Eo=X2Jpwzcw@mail.gmail.com> <20191013191050.GL26530@ZenIV.linux.org.uk> <CAHk-=wjJNE9hOKuatqh6SFf4nd65LG4ZR3gQSgg+rjSpVxe89w@mail.gmail.com> <20191013195949.GM26530@ZenIV.linux.org.uk>
+ <20191015180846.GA31707@ZenIV.linux.org.uk> <20191016121232.GA28742@ZenIV.linux.org.uk>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Wed, 16 Oct 2019, Al Viro wrote:
+> On Tue, Oct 15, 2019 at 07:08:46PM +0100, Al Viro wrote:
+> > [futex folks and linux-arch Cc'd]
+> 
+> > Another question: right now we have
+> >         if (!access_ok(uaddr, sizeof(u32)))
+> >                 return -EFAULT;
+> > 
+> >         ret = arch_futex_atomic_op_inuser(op, oparg, &oldval, uaddr);
+> >         if (ret)
+> >                 return ret;
+> > in kernel/futex.c.  Would there be any objections to moving access_ok()
+> > inside the instances and moving pagefault_disable()/pagefault_enable() outside?
+> > 
+> > Reasons:
+> > 	* on x86 that would allow folding access_ok() with STAC into
+> > user_access_begin().  The same would be doable on other usual suspects
+> > (arm, arm64, ppc, riscv, s390), bringing access_ok() next to their
+> > STAC counterparts.
+> > 	* pagefault_disable()/pagefault_enable() pair is universal on
+> > all architectures, really meant to by the nature of the beast and
+> > lifting it into kernel/futex.c would get the same situation as with
+> > futex_atomic_cmpxchg_inatomic().  Which also does access_ok() inside
+> > the primitive (also foldable into user_access_begin(), at that).
+> > 	* access_ok() would be closer to actual memory access (and
+> > out of the generic code).
+> > 
+> > Comments?
+> 
+> FWIW, completely untested patch follows; just the (semimechanical) conversion
+> of calling conventions, no per-architecture followups included.  Could futex
+> folks ACK/NAK that in principle?
+
+Makes sense and does not change any of the futex semantics. Go wild.
+
+Thanks,
+
+	tglx

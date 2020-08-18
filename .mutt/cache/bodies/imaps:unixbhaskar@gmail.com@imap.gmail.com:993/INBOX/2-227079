@@ -1,0 +1,97 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7707:0:0:0:0:0 with SMTP id s7csp4591048lfc;
+        Fri, 6 Mar 2020 10:23:33 -0800 (PST)
+X-Google-Smtp-Source: ADFU+vuxNLfxZIzAv14NzOVvXbZ/eT3pkP8wqoRGYIpJWrW3IMqAxujbFuli8G4v7Lm6+mzPOPkj
+X-Received: by 2002:aca:130c:: with SMTP id e12mr3492672oii.122.1583519013226;
+        Fri, 06 Mar 2020 10:23:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1583519013; cv=none;
+        d=google.com; s=arc-20160816;
+        b=QevLVPPV5z0y91jntam84Myab+pkJ0kHnxYCRegaikkHqYu47reKtflEjuT4bOMOQp
+         mSYzXXIepcACjVc8hyKnkKFQXpSbwXr3mUg1NN48mQ9TcHHkbdTPzinQ+OLZt5xHU4vV
+         yLDykh7fVi8yuA39J+hGtVMRNTNCCCBTXQA61advdhwqIAyDvV5q95u++tl9Y97QEh3/
+         +jtFhedcDiGsMTltisooihBwrf0RkC9Iu4K5U85o1Y0ji0RwrSubSF6HVJbv/r7fqUno
+         igQDtdTR8u86V81/uv5C9MugdjnyWzeaxncYJzsuBYWJTuvgPHViWH2gqqvCXQfod7+a
+         orYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=gjcMLMQ0YOmlfbrWMSlcaCd1DZoiex3FbrOJcHyyxFE=;
+        b=opo/GbYitVVWEF9QtkmeUALjA0bRil6aN9S1Vv+n+Q0kFiReGXJDS6+E2/w4SZXXLi
+         a/0KFvou8JcJEgIIWRAfHms4HDQcNxU/g7UUto4X2izOhxxRbYDW1vmpFsHqAdM5KJNS
+         RRjdCW87u9KWtGjQPI8zR1WqUlrtA/RvSpqjAyyrs9quI2Y0yckAHVOJ9gnGZ34YjoJZ
+         cJEkCvdST+2QouYx4XmIivmIIKQXgtBbf0Hf1lQMTVtTUZKcn8FBIWUa6/l/Kzt0PrB+
+         mrqTfv19D9tw0gyh2KATYHVaKB4RdgKohC52YkHMbl6p68auYj76geZAOnPkHLxd7gbu
+         p7yg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=GZhjSqMZ;
+       spf=pass (google.com: best guess record for domain of bpf-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=bpf-owner@vger.kernel.org
+Return-Path: <bpf-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id a64si89581oif.256.2020.03.06.10.23.23;
+        Fri, 06 Mar 2020 10:23:33 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of bpf-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=GZhjSqMZ;
+       spf=pass (google.com: best guess record for domain of bpf-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=bpf-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726083AbgCFSXE (ORCPT <rfc822;m.misono760@gmail.com>
+        + 60 others); Fri, 6 Mar 2020 13:23:04 -0500
+Received: from bombadil.infradead.org ([198.137.202.133]:48132 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725873AbgCFSXE (ORCPT <rfc822;bpf@vger.kernel.org>);
+        Fri, 6 Mar 2020 13:23:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=gjcMLMQ0YOmlfbrWMSlcaCd1DZoiex3FbrOJcHyyxFE=; b=GZhjSqMZZbIrSju7YQjqH/WhZm
+        VNdNpiUI3aY1YMngp/GkjF3q/4JSWbSwPfYhM7w5xDJKukla5piaxuN3Vw+1eUmRIkX68u/Ysheeg
+        ZA9uO3/uX5q44bUuRFBgZf7HqS0095BER+6kl0UKKi4QqQOolS+ZWBZbSWGxiOMREnJc1NYvTKvPt
+        nBrgkidp4c8E44KhUubrZezkZQqMXP+SDyouW2IEbeeW/B905Nb69tmfDpoD0lntnEZF2RrN16HDQ
+        YPln1saxQNZl9+MJGD7p8pPYedZlPHER3FqG81dcHs8Sj18KhuO5WHHBvI2MXPHvMYaWjaVPIII32
+        z1Q4TCmA==;
+Received: from willy by bombadil.infradead.org with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1jAHck-0001KR-GL; Fri, 06 Mar 2020 18:23:02 +0000
+Date:   Fri, 6 Mar 2020 10:23:02 -0800
+From:   Matthew Wilcox <willy@infradead.org>
+To:     James Bottomley <James.Bottomley@hansenpartnership.com>
+Cc:     Josef Bacik <josef@toxicpanda.com>,
+        lsf-pc <lsf-pc@lists.linuxfoundation.org>,
+        Linux FS Devel <linux-fsdevel@vger.kernel.org>,
+        linux-mm@kvack.org, linux-xfs@vger.kernel.org,
+        Btrfs BTRFS <linux-btrfs@vger.kernel.org>, bpf@vger.kernel.org,
+        linux-ext4@vger.kernel.org, linux-block@vger.kernel.org
+Subject: Re: [LSFMMBPF TOPIC] Killing LSFMMBPF
+Message-ID: <20200306182302.GA31215@bombadil.infradead.org>
+References: <b506a373-c127-b92e-9824-16e8267fc910@toxicpanda.com>
+ <20200306160548.GB25710@bombadil.infradead.org>
+ <1583516279.3653.71.camel@HansenPartnership.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1583516279.3653.71.camel@HansenPartnership.com>
+Sender: bpf-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <bpf.vger.kernel.org>
+X-Mailing-List: bpf@vger.kernel.org
+
+On Fri, Mar 06, 2020 at 09:37:59AM -0800, James Bottomley wrote:
+> Can I just inject a dose of reality here:  The most costly thing is
+> Venue rental (which comes with a F&B minimum) and the continuous Tea
+> and Coffee.  Last year for Plumbers, the venue cost us $37k and the
+> breaks $132k (including a lunch buffet, which was a requirement of the
+> venue rental).  Given we had 500 attendees, that, alone is $340 per
+> head already.  Now we could cut out the continuous tea and coffee ...
+> and the espresso machines you all raved about last year cost us about
+> $7 per shot.  But it's not just this, it's also AV (microphones and
+> projectors) and recording, and fast internet access.  That all came to
+> about $100k last year (or an extra $200 per head).  So you can see,
+> running at the level Plumbers does you're already looking at $540 a
+> head, which, co-incidentally is close to our attendee fee.  To get to
+> $300 per head, you lot will have to give up something in addition to
+> the espresso machines, what is it to be?
+
+I was basing that on https://www.bsdcan.org/2020/registration.php
+which is a ~200 person conference, charging $200 for 2 days.  They
+provide morning & afternoon snacks as well as lunch and coffee.

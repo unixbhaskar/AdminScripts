@@ -1,0 +1,191 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp27177lfj;
+        Mon, 3 Aug 2020 16:36:24 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyyhNJ5t0NYEggGcKm0/R8ziPQEdGchl8P/5AQqfoAma4PITlgD/WaFhrji5hdbxWtKQ6zm
+X-Received: by 2002:a17:906:1f53:: with SMTP id d19mr18524377ejk.327.1596497783943;
+        Mon, 03 Aug 2020 16:36:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596497783; cv=none;
+        d=google.com; s=arc-20160816;
+        b=JDQc5OZHZJsXiGGlTqqt+UFq8ERGWhZSajacA6NnsGMbILFV9uXOWp0Uix5D0uwv1b
+         HSodwR4ieqzv8kiHX3nSuh1e/nxOC+2/t4mHWlwnwKRkFe+aNPEbNsuG810mYIZEj+NX
+         Qi5nHS2egWgz1yZ7/hM6cHeZBrmkaQI4N4KqFgZQ3rppg+5zsJ8KUvEeBb++Sj/HThiD
+         rA7Ky/p1lkwr3LymiGvJI23tu3FdmQPmDY3p4yNebQ5AxRF99pWT5s72UUunJ1c0sTBS
+         JpYCnoN2F3JeX+b8a2Rqpecujj72EKVaGkOsiZ6X80y8svbftmY/iW8pPeoil+XQOLzw
+         +niA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=v8TTFTWbfKbzJ4mcB7seLc7/y2CHIUC97FgV8OkOono=;
+        b=LmgJtxDAMtOhhEDEM9HnrIK3Jg3VqNw6sAsqdbTlR0S2UcppztT2KXysoYIdggx7e9
+         HukgHDADp+MLuz3C0oXXDENclVdrlzFcNPN3FxZRZtW4UvQS+6KumpRT5H4vTVsk5SPS
+         kRbP/iZwI9X3JwL6O9VSg62UkG2WblDKt1v1Hcewf1zOWfcqxk2IgQgJ6+qaPHQP9ZPf
+         NCvw0ZMOL26ZUfkrNK7lDWkfsVyl0CU3fw89th/I6Db2gHEjO3JwMepoIyh4eBnEIdXM
+         /hRQxtC7x+MvxrYPRe3Ue364GB3Ha2RIVt/ggjVZQtuqiYlQCV8HIv6LYzkTb5fQoWwj
+         CCDw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=F+DIMYJh;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id z2si4326506eju.389.2020.08.03.16.36.15;
+        Mon, 03 Aug 2020 16:36:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=F+DIMYJh;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726964AbgHCXe3 (ORCPT <rfc822;zhaopan1989@gmail.com>
+        + 34 others); Mon, 3 Aug 2020 19:34:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60736 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726757AbgHCXe3 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 3 Aug 2020 19:34:29 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C23F7C061756
+        for <linux-kernel@vger.kernel.org>; Mon,  3 Aug 2020 16:34:28 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id i10so6764583ljn.2
+        for <linux-kernel@vger.kernel.org>; Mon, 03 Aug 2020 16:34:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=v8TTFTWbfKbzJ4mcB7seLc7/y2CHIUC97FgV8OkOono=;
+        b=F+DIMYJhv5KPMlGDUTa9T/vYKNhd4CXOo71c2kks4dabj/+B1XBvF+aGTQ/nTePvid
+         pK1HKnl+/vF74yKZh3I7XgnZjUrsPJ0JL1paxKh7jyAk1/Nb/kpbRlC6gRQdGMLRxJrW
+         iTMkXCCLr3T4gE/XyW10n4kVc9Vb0XMmu7ocs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=v8TTFTWbfKbzJ4mcB7seLc7/y2CHIUC97FgV8OkOono=;
+        b=iEda7v+m2p+zaBk+qNPzyyW/tBZQR/4nEKCbVKensXBB//mqytKml4D7p9Al6jVSDn
+         zDmL1PN7MaKu//DXEgro9QUjWxhWcKd8uvzMte7jbOP/HyOxxHXorC8F/gRzUYzXnNwX
+         jmdZFElhfOp/Wt7xo2OyVuCuDakxvw0wS703HlklpBih8818fxl8RQeTZkCxC6TlUceF
+         tzW0FtJ64nmKlhuDLiEStBHFf4cW/oJAkOasSO1MiwSq5KebofreYuJ6qScuIqS0JUC8
+         Oi7fOMhmLpRdqU/X/SAXF5tEG8V7UZom82tyRBy3UrQZP9OCzrJAOut5dOcaXXRXuWRM
+         X6wQ==
+X-Gm-Message-State: AOAM5329U14xNlQ0HgrpcrwtQBlBavKJlcpIfW4xU9xkeEXzy9NyujK6
+        6vneMdwvZrwZEM3k2hVMHTGdPjMc4XM=
+X-Received: by 2002:a05:651c:155:: with SMTP id c21mr9368530ljd.453.1596497666699;
+        Mon, 03 Aug 2020 16:34:26 -0700 (PDT)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
+        by smtp.gmail.com with ESMTPSA id q8sm5401693lfm.92.2020.08.03.16.34.25
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Aug 2020 16:34:26 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id i80so21350248lfi.13
+        for <linux-kernel@vger.kernel.org>; Mon, 03 Aug 2020 16:34:25 -0700 (PDT)
+X-Received: by 2002:a05:6512:3b7:: with SMTP id v23mr9734948lfp.10.1596497665541;
+ Mon, 03 Aug 2020 16:34:25 -0700 (PDT)
+MIME-Version: 1.0
+References: <50466810-9148-e245-7c1e-e7435b753582@kernel.dk>
+ <CAHk-=wgaxWMA7DVTQq+KxqaWHPDrXDuScX9orzRgxdi7SBfmoA@mail.gmail.com>
+ <cd478521-e6ec-a1aa-5f93-29ad13d2a8bb@kernel.dk> <56cb11b1-7943-086e-fb31-6564f4d4d089@kernel.dk>
+In-Reply-To: <56cb11b1-7943-086e-fb31-6564f4d4d089@kernel.dk>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Mon, 3 Aug 2020 16:34:09 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whUiXjy5=LPQzNf2ruT3U6eELtXv7Cp9icN4eB4ByjROQ@mail.gmail.com>
+Message-ID: <CAHk-=whUiXjy5=LPQzNf2ruT3U6eELtXv7Cp9icN4eB4ByjROQ@mail.gmail.com>
+Subject: Re: [GIT PULL] io_uring changes for 5.9-rc1
+To:     Jens Axboe <axboe@kernel.dk>
+Cc:     io-uring <io-uring@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Aug 3, 2020 at 4:18 PM Jens Axboe <axboe@kernel.dk> wrote:
+>
+>
+> I took a look at the rewrite you queued up, and made a matching change
+> on the io_uring side:
+
+Oh, no, you made it worse.
+
+Now you're tying your odd wakeup routine to entirely irrelevant things
+that can't even happen to you.
+
+That io_async_buf_func() will never be called for any entry that isn't
+your own, so testing
+
+        wait->flags & WQ_FLAG_EXCLUSIVE
+
+is completely pointless, because you never set that flag. And
+similarly, for you to then do
+
+        wait->flags |= WQ_FLAG_WOKEN;
+
+is equally pointless, because the only thing that cares and looks at
+that wait entry is you, and you don't care about the WOKEN flag.
+
+So that patch shows a fundamental misunderstanding of how the
+waitqueues actually work.
+
+Which is kind of my _point_. The io_uring code that hooked into the
+page wait queues really looks like complete cut-and-paste voodoo
+programming.
+
+It needs comments. It's hard to follow. Even somebody like me, who
+actually knows how the page wait queues really work, have a really
+hard time following how io_uring initializing a wait-queue entry and
+pointing to it in the io ctx then interacts with the (later) generic
+file reading path, and how it then calls back at unlock time to the
+io_uring callback _if_ the page was locked.
+
+And that patch you point to makes me 100% sure you don't quite
+understand the code either.
+
+So when you do
+
+    /*
+     * Only test the bit if it's an exclusive wait, as we know the
+     * bit is cleared for non-exclusive waits. Also see mm/filemap.c
+     */
+    if ((wait->flags & WQ_FLAG_EXCLUSIVE) &&
+        test_and_set_bit(key->bit_nr, &key->page->flags))
+              return -1;
+
+the first test guarantees that the second test is never done, which is
+good, because if it *had* been done, you'd have taken the lock and
+nothing you have actually expects that.
+
+So the fix is to just remove those lines entirely. If somebody
+unlocked the page you care about, and did a wakeup on that page and
+bit, then you know you should start the async worker. Noi amount of
+testing bits matters at all.
+
+And similarly, the
+
+    wait->flags |= WQ_FLAG_WOKEN;
+
+is a no-op because nothing tests that WQ_FLAG_WOKEN bit. That wait
+entry is _your_ wait entry. It's not the wait entry of some normal
+page locker - those use wake_page_function().
+
+Now *if* you had workers that actually expected to be woken up with
+the page lock already held, and owning it, then that kind of
+WQ_FLAG_EXCLUSIVE and WQ_FLAG_WOKEN logic would be a good idea. But
+that's not what you have.
+
+> and also queued a documentation patch for the retry logic and the
+> callback handler:
+>
+> https://git.kernel.dk/cgit/linux-block/commit/?h=io_uring-5.9&id=9541a9d4791c2d31ba74b92666edd3f1efd936a8
+
+Better. Although I find the first comment a bit misleading.
+
+You say
+
+    /* Invoked from our "page is now unlocked" handler when someone ..
+
+but that's not really the case. The function gets called by whoever
+unlocks the page after you've registered that page wait entry through
+lock_page_async().
+
+So there's no "our handler" anywhere, which I find misleading and
+confusing in the comment.
+
+         Linus

@@ -1,0 +1,234 @@
+Date: Mon, 15 Jul 2019 23:07:46 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: John Erry <jerry@gttit.com>
+Subject: Re: Our Client is looking for a Sr. Linux Systems Automation
+ Engineer in Somerville, MA - Onsite only
+Message-ID: <20190715173735.GA11883@ArchLinux>
+References: <1561863514.12921563198479596.JavaMail.admin@emailmerge23.jobdiva.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FL5UXtIhxfXey3p5"
+Content-Disposition: inline
+In-Reply-To: <1561863514.12921563198479596.JavaMail.admin@emailmerge23.jobdiva.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+
+
+--FL5UXtIhxfXey3p5
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+
+
+Well, thanks John for the note. One of noticible requirement of your postin=
+g is that one has to have a degree in specific decipline and unfortunately =
+I don't have one.
+
+But, having said that others stuff you mentioned ,I am very much aware and =
+done "hand on" with those barred few.
+
+So, I am not sure that I fit the bill,if I can or the employment policy or =
+your client are willing to take on person wholely based on the experience a=
+nd workability, then I am okay.=20
+
+Few other things also, I have come to an age ,where my personal life has go=
+t some singnificance in terms of time spend. I am strictly NOT avilable on =
+weekends and night shift.=20
+
+I know emergecy come , being in the industry and thick of it let me allow m=
+eseasure it very well. Okay, once in a while on wekends is absolutely fine =
+with me, been there done that.
+
+
+I am based out of India, I do believe ,you or your client would provide the=
+ work permit or visa facility to hire from other land.
+=20
+Thanks,
+Bhaskar
+
+
+On 09:47 Mon 15 Jul , John Erry wrote:
+>   Hello Bhaskar,
+>   Our Client is looking for a Sr. Linux Systems Automation Engineer in
+>   Somerville, MA
+>   Sr. Linux Systems Automation Engineer - 19-01014
+>
+>     * Location: Somerville, MA
+>     * Position Type: Right to Hire
+>
+>   Job Description
+>
+>   Client's Enterprise Research Infrastructure and Services is immediately
+>   seeking a Senior Linux Systems Engineer with extensive experience in
+>   Puppet.
+>   This position works within a multi-disciplinary Scientific Computing
+>   and Big-Data teams that architects, builds, maintains and supports the
+>   scientific computing and analytics systems IDEA (Integrated Data
+>   Environment for Analytics) and HPC Platforms for the research mission.
+>
+>   The role is responsible for the build and administration of our Linux
+>   High-Performance Computing (HPC) ecosystem and includes managing the
+>   systems from every aspect of Linux, the hardware and its network,
+>   deployment, automation, and technical troubleshooting.  The role is
+>   challenging and varied, requiring technical, interpersonal and
+>   problem-solving abilities.
+>
+>   Using your knowledge, you will develop and maintain the infrastructure
+>   needed to support high-throughput data analyses and further the
+>   research that includes translational and clinical studies needed to
+>   transition findings from the bench to the bedside. In the course of
+>   expanding and improving the service capability, you will interface with
+>   commercial hardware and software vendors, select and deploy new
+>   technologies and create how-to guides for end users.
+>
+>   We are seeking someone with eagerness to learn and apply technology,
+>   versatility, and breadth in Linux technical skills, and customer
+>   service skills. Ideal candidates must be able to demonstrate an
+>   interest in the fields of medical informatics, health sciences, and
+>   research and in working customers who are world-renowned leaders in
+>   their scientific field and the academic environment.
+>
+>   Principal Duties and
+>   Responsibilities
+>   Indicate key areas of responsibility, major job duties, special
+>   projects and key objectives for this position.  These items should be
+>   evaluated throughout the year and included in the written annual
+>   evaluation.
+>
+>     * Cluster and Systems Administration: Manage and administer
+>       production systems used by researchers and Research Centers.
+>     * Puppet Automation - Puppet code refactoring to deploy and maintain
+>       systems and applications. Evaluate and adapt Puppet Forge modules
+>       or write new classes and modules as necessary.
+>     * Analyzes result of server monitoring and implement changes to
+>       improve performance, processing and utilization. Proposes,
+>       maintains and enforces polices, practices and security procedures.
+>     * Analyze and resolve customer and technical problems: Tuning cluster
+>       scheduling parameters, memory / CPU contention, scientific
+>       application compilation and run-time issues.  Troubleshoot
+>       scheduler submission problems.
+>     * Configure job scheduling parameters for equitable resource sharing
+>       and optimum throughput.
+>     * Develop, publish and maintain knowledgebase articles and
+>       documentation on systems features, best practices and usage
+>       how-to's as well as training and reference materials for the
+>       community using the ERIS wiki and knowledge management tools.
+>     * Evaluate, select and deploy hardware and/or cloud solutions for
+>       research scientific computing. This includes CPU and GPU-based
+>       compute, high speed networking and data storage.
+>     * Field work within the corporate datacenter.
+>     * Responsible for the inventory and tracking of HPC computer related
+>       equipment.
+>     * Perform other duties as assigned or required by the situation and
+>       circumstances.
+>
+>   Qualifications (MUST be realistic, neither overstated nor understated,
+>   and related ot the essential function of the job).
+>
+>     * BA/BS/engineering degree required or equivalent combination of
+>       skills/experience. Advanced degree in engineering or related
+>       scientific discipline preferred.
+>     * 6 years of experience in managing/administering Linux server
+>       environments (CentOS/Red Hat are preferred).
+>     * 3 years of experience with automation and configuration management
+>       using Puppet is an absolute must-have (other automation tools like
+>       Ansible is a plus).
+>     * RHEL certifications a plus.
+>     * Puppet Professional Certification is a plus.
+>     * A combination of education and experience may be substituted for
+>       requirements.
+>
+>   Skills/Abilities/Competencies Required     (MUST be realistic, neither
+>   overstated nor understated, and related to the essential function of
+>   the job).
+>
+>     * Demonstrated ability in providing systems administration of up to
+>       several hundred Linux servers in an on-premise environment.
+>     * Hands-on experience writing, maintaining, refactoring and debugging
+>       Puppet code and using Hiera to retrieve class parameters.
+>     * Strong skills writing Linux shell scripts in (Bash). Familiarity
+>       with Ruby is a great plus.
+>     * Experience with monitoring software such as Nagios or Ganglia.
+>     * Understanding of DHCP, DNS, TCP/IP, NFS, SMB and HTTP network
+>       protocols.
+>     * Strong verbal and written communication, ability to write clear
+>       technical documentation.
+>     * High level of initiative and eagerness to learn new technologies.
+>     * Familiarity with information technology security and data privacy
+>       considerations applicable to a healthcare environment is
+>       advantageous.
+>     * Highly desired:
+>     * Knowledge of HPC job scheduling platforms like LSF, GridEngine or
+>       Slurm.
+>     * Experience with server deployment technologies (kickstart, PXE,
+>       IPMI).
+>     * Experience Kerberos authentication.
+>     * Experience providing support to research investigators with diverse
+>       computing needs.
+>
+>   Working Conditions : Describe the conditions in which the work is
+>   performed
+>
+>     * Standard office environment with travel to Hospital locations in
+>       the Boston Metro area including the data centers
+>     * As projects and priorities dictate, flexible work and off-hours are
+>       required including evening, night and weekend hours to cover
+>       events, roll-outs and special projects
+>     * Occasionally lift and carry supplies and equipment weighing up to
+>       25 pounds.
+>
+>   Supervisory Responsibility : List the number of FTE's supervised
+>
+>     * No direct reports; provides guidance to less seasoned and new staff
+>
+>   Fiscal Responsibility : Indicate financial "scope" information, (i.e.,
+>   size of budge, volume, revenue, etc.)
+>
+>     * Demonstrates fiscal responsibility by effectively using Client's
+>       resources
+>     * Meeting project estimated time is required.
+>
+>   Thank you so much for your time, I hope to hear back from you soon!
+>   Regards,
+>   John Erry, Talent Advocate
+>   Global Technical Talent, Inc. - [1]All current GTT Openings
+>   233 Vaughan Street, Suite 102
+>   Portsmouth, NH 03801
+>   Ph: (603) 516-4458 / Fax: 800-775-3135
+>   jerry@gttit.com / [2]www.gttit.com
+>   If you are interested in this position, please click [3]here.
+>   If you would like to unsubscribe from Global Technical Talent, LLC,
+>   please click [4]here.
+>   [5]Lookup Candidate
+>   [trackEmailMerge?a=3D01dFQRYAxRaWFIACm9bBVcXMFhBADBXXwNaUFhMGBU%3D]
+>
+>References
+>
+>   1. http://jobs.gttit.com/candidates/myjobs/searchjobsdone.jsp?a=3D5cjdn=
+wenzpqejkgxijtvgahld0va90009c0e3c8jutidwbg0unjxodtsm81az828
+>   2. http://www.gttit.com/
+>   3. http://jobs.gttit.com/jobseekers/myjobs/emailmerge_response.jsp?d=3D=
+156_1835126555343_12715891_2277324_1_John+Erry&t11=3D1563198479593
+>   4. http://jobs.gttit.com/optout.jsp?d=3D3135365f756e6978626861736b61724=
+0676d61696c2e636f6d&e=3D13c&t11=3D1563198479594
+>   5. http://jobs.gttit.com/employers/open_candidate.jsp?canid=3D082559971=
+218351265553431238350613&teamid=3D0&docids=3D-1&enc=3D1&rfqid=3D12715891
+
+
+--FL5UXtIhxfXey3p5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl0sudoACgkQsjqdtxFL
+KRV5zggAwZrVMiRAF5TbVBJyVE3PnHWNqHffySQj7+IjLs6LXTbWqaF6cmYZyFoM
+PKYxiJ3MIwu62dqm2LRidoPaWqbOHvv/VxvYwOxs34aOtSGyluMrRUAh1t2RiLSE
+dI/LdSMy8388Wx8ZdY9QU0MCoJNrFf+oEJ0BuVBDqZaqRdKQMmz6W/mKNQoj0NZH
+pa4jA3t+pN88vtURHRnfOYuD768amv5Sxyy9tutGUV/x6Zp61KxueFK7QNU0NH/G
+c4GBqhX1eHJ0Stkmmx0QdWNX85Iq/0kfbm5tA1GqNf6tWMdMqBoQfCOFIOK6iC+u
+ompMfFYlaQPgZHTSt4mu45tnYc3COg==
+=cIfC
+-----END PGP SIGNATURE-----
+
+--FL5UXtIhxfXey3p5--

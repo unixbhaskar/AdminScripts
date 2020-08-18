@@ -1,0 +1,75 @@
+Date: Thu, 6 Aug 2020 07:24:39 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: David Niklas <Hgntkwis@vfemail.net>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	LKML <linux-kernel@vger.kernel.org>,
+	Randy Dunlap <rdunlap@infradead.org>
+Subject: Re:Use the script already there.. Is anyone else getting a bad
+ signature from kernel.org's 5.8 sources+Greg's sign?
+Message-ID: <20200806015423.GA13702@Gentoo>
+Mail-Followup-To: Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+	David Niklas <Hgntkwis@vfemail.net>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	LKML <linux-kernel@vger.kernel.org>,
+	Randy Dunlap <rdunlap@infradead.org>
+References: <20200805205924.1f646d45@Phenom-II-x6.niklas.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="SUOF0GtieIMvvwua"
+Content-Disposition: inline
+In-Reply-To: <20200805205924.1f646d45@Phenom-II-x6.niklas.com>
+
+
+--SUOF0GtieIMvvwua
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+
+On 20:59 Wed 05 Aug 2020, David Niklas wrote:
+>Hello,
+>I downloaded the kernel sources from kernel.org using curl, then
+>opera, and finally lynx (to rule out an html parsing bug). I did the same
+>with the sign and I keep getting:
+>
+>%  gpg2 --verify linux-5.8.tar.sign linux-5.8.tar.xz
+>gpg: Signature made Mon Aug  3 00:19:13 2020 EDT
+>gpg:                using RSA key 647F28654894E3BD457199BE38DBBDC86092693E
+>gpg: BAD signature from "Greg Kroah-Hartman
+><gregkh@linuxfoundation.org>" [unknown]
+>
+>I did refresh all the keys just in case.
+>I believe this is important so I'm addressing this to the signer and only
+>CC'ing the list.
+>
+>If I'm made some simple mistake, feel free to send SIG666 to my terminal.
+>I did re-read the man page just in case.
+>
+>Thanks,
+>David
+
+You should be using this script to download and verify kernel from
+kernel.org ...it there for a reason , please use it...which take away
+all the manual labor ..
+
+Here is pointer to get the script :
+
+https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/tree/get-verified-tarball
+
+Thanks,
+Bhaskar
+
+--SUOF0GtieIMvvwua
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl8rYswACgkQsjqdtxFL
+KRUKLQf/crhY20tYe6N6vOlBSIH/Szm53+KL6S2NfnunnrG3ug8VsVT8DzP6rHlw
+dDfb2aoSde1QyayQxNb8Q0iMH8fgn2BLCCkD/va1yLhEXsVrG1WsECTMKIZxumL0
+Jgd1+oefsK3z9pQVKYTdoocXQBhpvRKK20SvOQbldgxeHLFR3zxJSxqSvmxgHTKB
+FCsDrr42kvleA/IUtCzeGLNVcADOzXjxPraCKFUiFmb3WystVafmR5I2zSzv5zvt
+uGhrT3ReJRuPcYMERmMUq02TkXURvyNbc2RH6FLknd4JzLHCxCtN+1vmuCMWUfOv
+eRDrHRyS0H1ZbBdKtsOujwhk/aPwxg==
+=kDWE
+-----END PGP SIGNATURE-----
+
+--SUOF0GtieIMvvwua--

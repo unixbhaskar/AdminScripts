@@ -1,0 +1,111 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp766135lfk;
+        Thu, 28 May 2020 12:11:32 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwqBXAyLxBYSd/MbIkU6UirIH6R1yRNbSHC3pSN//T9zw7xaETDnOwAazDP971y+K9k0nAA
+X-Received: by 2002:a17:906:15d8:: with SMTP id l24mr4341841ejd.479.1590693092722;
+        Thu, 28 May 2020 12:11:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590693092; cv=none;
+        d=google.com; s=arc-20160816;
+        b=OBE3K4bke0sv3/VDP+aE1DJwkwP19MtDwva0BDqyJL39G58nVSaGdARZr75ka0X4iJ
+         wbin5hKZa7OSjY0m/AbKnTtzqiiMX0cUQK4A962Du2PdAGLlvYcd7dgGC3CckvyKx4Ya
+         lJPORoL9tjuAAWcgcffHN8d3sG/m3Ik8+v/3tKTyRyY3piOlLN7eq2osqkuH8+KHBVn1
+         C7taKY/k01umoTlPJ05d6JvQiGbdHQU0z8cg6Sj5dqK5gfDIkFUmMO1387sMc0LTl0au
+         x7myIJiwfbnrp0eZ71QkZdY9Qtv/99O5yp7STeX0MALBVjlKj9EqnWhUKWskBj04Yrm/
+         1AWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=R5QaC7zkAZZvfEZZJnqo7rI0BwuGIzysoGf9yj6DhPY=;
+        b=ak9G7pb/3lfb1vExTPMFyrTtFFOlOK1EJEtsaWpFRizTnRFpsOngy//GmBLPUosGhe
+         IPvpeNGaMTFCDn7Q9qTzQlCNw1lOOUyQcsPITUHqKV3PjRd00o0lQgCRRs0BiFBojhNV
+         XndUQ0EqR5tCBFpe7GpqlFZJEVZQ0euJNX735uEHMnQwKjlG1znvSQ3ZNaaer5PGpYCs
+         lxCIrm4jf04r9VUpD/w3X6OpIz1ULAIADdJrz6F5MycB/3im/iPl+47Kp8kf9o8f/M+q
+         9QvRDN4CEZsrhtXIMl/yOAll4RaTkkihM3A9RLVOTHztikMrylqwESDeMUX5QyWKfXAx
+         hw1g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=Oyp8Kr58;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id za5si4554462ejb.698.2020.05.28.12.11.08;
+        Thu, 28 May 2020 12:11:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=Oyp8Kr58;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2406158AbgE1TKJ (ORCPT <rfc822;rowanlinux@gmail.com>
+        + 99 others); Thu, 28 May 2020 15:10:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57618 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406129AbgE1TKH (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 28 May 2020 15:10:07 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32EB9C08C5C6
+        for <linux-kernel@vger.kernel.org>; Thu, 28 May 2020 12:10:07 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id x27so17208806lfg.9
+        for <linux-kernel@vger.kernel.org>; Thu, 28 May 2020 12:10:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=R5QaC7zkAZZvfEZZJnqo7rI0BwuGIzysoGf9yj6DhPY=;
+        b=Oyp8Kr588/cPDx5RD8b3bsiUnE+YQ2WkW3H4H3gawu0qmPA/QFVO2d69AH2CX4ouxv
+         L5CwQD2ftmMzzRUoAsCynb9v1hxvuA+JFAHDHgIFfDweDYc0sdqPbJ1edenfzl6FfJkY
+         YDfT/dq7werTzLi2TQz9MpGnKaUzqLQeAzrKI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=R5QaC7zkAZZvfEZZJnqo7rI0BwuGIzysoGf9yj6DhPY=;
+        b=C3RG7D6qWCAqqLKU6kCLSKuQpgf019y+L8qEXAylRzWGrzh7vM58b6/aj+YVaj/ZtB
+         g0AXZXf409sOdJ1KCNcb109aW5wbDOVQ54CHETL691OkGp8m7SQg6HWG1e8zE24Fx5nJ
+         g7cko8xYEObKEb+osgLcDktbtgqJfSAmmu7pfjFzv0BuCHg+n7fpFuTOCirZ45XAnO7D
+         5ozpp1p4+B8LaSeCUHvRAqrA/EYyvBNFhPvduZofZW+iG0hSwciNQ4ByGeim8FF+RCkw
+         fM/6f6Nzbos9BIY//yOPecncxix+2JQh1CrjyAOIFz/gsbm5dtHCIexSdJOLODMXCMFT
+         87Ww==
+X-Gm-Message-State: AOAM532WLn1k7XjetxFUIvzxkf1XIY6+qnIywutfRRHmUdJrSn0F7I8P
+        /DU13X9ioREC675vxnGNCPhNSaNry6o=
+X-Received: by 2002:ac2:5314:: with SMTP id c20mr2399484lfh.75.1590693005303;
+        Thu, 28 May 2020 12:10:05 -0700 (PDT)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com. [209.85.167.49])
+        by smtp.gmail.com with ESMTPSA id f9sm1812475ljf.99.2020.05.28.12.10.04
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 May 2020 12:10:04 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id c12so17228058lfc.10
+        for <linux-kernel@vger.kernel.org>; Thu, 28 May 2020 12:10:04 -0700 (PDT)
+X-Received: by 2002:a05:6512:62:: with SMTP id i2mr2373367lfo.152.1590693004037;
+ Thu, 28 May 2020 12:10:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200527213447.GH23230@ZenIV.linux.org.uk> <20200528070255.GA790247@gmail.com>
+ <CAHk-=wgXqVTGA-HrzJZ_yboLrtQ4rK-qoz8AfwLV=PT7ke4fbA@mail.gmail.com> <20200528190555.GO23230@ZenIV.linux.org.uk>
+In-Reply-To: <20200528190555.GO23230@ZenIV.linux.org.uk>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Thu, 28 May 2020 12:09:48 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wi3dVgSn8xMC2Uqs8aahFfeqO0Wue2KqxnDYrbBM+6uZQ@mail.gmail.com>
+Message-ID: <CAHk-=wi3dVgSn8xMC2Uqs8aahFfeqO0Wue2KqxnDYrbBM+6uZQ@mail.gmail.com>
+Subject: Re: [git pull] coredump infoleak fix
+To:     Al Viro <viro@zeniv.linux.org.uk>
+Cc:     Ingo Molnar <mingo@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "the arch/x86 maintainers" <x86@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, May 28, 2020 at 12:06 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
+>
+> It doesn't fix all problems, though - you don't get an infoleak, but
+> you do get incorrect data...
+
+Oh, I'm not saying it should replace any fix to regset->get(). I'm
+just saying it is in addition to.
+
+So if a regset has a reason to return less than the asked-for data, it
+can do so and there's no leak.
+
+               Linus

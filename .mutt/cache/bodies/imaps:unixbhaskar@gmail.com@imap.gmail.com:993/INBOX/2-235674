@@ -1,0 +1,123 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp137188lfg;
+        Thu, 23 Apr 2020 21:24:01 -0700 (PDT)
+X-Received: by 2002:a02:211a:: with SMTP id e26mr6457335jaa.141.1587702241397;
+        Thu, 23 Apr 2020 21:24:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587702241; cv=none;
+        d=google.com; s=arc-20160816;
+        b=PzcxQnl6MRYB+2iqQM2XZGJ3xxi70upNL9QRUDnQZxggU+XuN+ViQMpTKiqt4EHXvo
+         Ek2lla7SZzaRBAAhJh7nKEfiFCVjvtOtl8x73p/H1Uech5t1ccP8QrEIfLohOScNSZvU
+         Ec4HZO+a6H0aMkOTBZGGtQrNbLXn2DMrHzmdKE1xAlrrG9ivTTr4KzEzFOpsMhtlAlWr
+         LlpAHLh0d5vUf0tZq2Y+SSOn9/RRgAgq06X1ZI3dYhs0/Ha10RMxDs0wQo7ROAyYB56D
+         btzRj2MNbgo4/W/0UOLje6Wl8De4mXPIDuAmBmEey8o4EcPx2Sp+ahvNUVP+CNRyxfwR
+         +z+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=EItfhx3hZtuK/HO+zBNc0joqSnvd3EW5WodXiqr0yFo=;
+        b=tUKC9W8aQDimVp9ODeVDh/aJVd1bbvRlDybpPTrU4P5tHypj8pRYA/4uBIa2xrjBFh
+         zvUOq+b/QuYPlW74xY+DFSzeGX1USM4Cm8/AhrftlTQmY4RRR3tTeDdsDZmbPg7aBUNB
+         uWgEgj96nvwtq4cPqgX+eBMGBrDce1yH6JMrPV4LPx7Uhqk1R6gcJtsXqiSjLSJEp3tn
+         8fEwpviJuKQGgXADRLjvesL1PnfrdghgmP0TH0sy2uSjbH56P6wgP4Mn+tGjaFzjDnnh
+         KMmQOWGRAUSi9xnn38GBXuMbmHgU+QMVjXkHAKiCltcmp3IW6tXImyv5lDt8lg24ckbE
+         cb0Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@bdmi-org.20150623.gappssmtp.com header.s=20150623 header.b=vBq5cDb3;
+       spf=pass (google.com: domain of admission@bdmi.org designates 209.85.220.65 as permitted sender) smtp.mailfrom=admission@bdmi.org
+Return-Path: <admission@bdmi.org>
+Received: from mail-sor-f65.google.com (mail-sor-f65.google.com. [209.85.220.65])
+        by mx.google.com with SMTPS id k4sor4932515iow.34.2020.04.23.21.24.01
+        for <unixbhaskar@gmail.com>
+        (Google Transport Security);
+        Thu, 23 Apr 2020 21:24:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of admission@bdmi.org designates 209.85.220.65 as permitted sender) client-ip=209.85.220.65;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@bdmi-org.20150623.gappssmtp.com header.s=20150623 header.b=vBq5cDb3;
+       spf=pass (google.com: domain of admission@bdmi.org designates 209.85.220.65 as permitted sender) smtp.mailfrom=admission@bdmi.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bdmi-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=EItfhx3hZtuK/HO+zBNc0joqSnvd3EW5WodXiqr0yFo=;
+        b=vBq5cDb31/bs+LoMjPZ01nnevI2BIp1iYbix+1SeU9460r7obR/0IBNY2GpXEAcPqn
+         VMjqd6IzPm8dda8rrzWuOuRQ/cr3460P0CV6mrNpHXuhGY+j4CjdHxQs1hukn3FGrpfq
+         lRATC+0RPYwGgO2JtlJgE3g1NlSqbtyEWcCPVtXQac/nL/z0NYQmFaBrB7JbGFtmKWl5
+         +XpStz5zkS5EPc6wdpfM0vZpuVPYweLTUDNsWg07pfeArTaTPFLgDNdHrQDBELcv7NSo
+         /nD5wXcQbe7HFDGLVh+p5YY62Pth5cvTBq96i4kknQPWviEM0qlA+F6pn+XQrCmmFc55
+         tC2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=EItfhx3hZtuK/HO+zBNc0joqSnvd3EW5WodXiqr0yFo=;
+        b=iW7vgvvMKqHMeWo5vSgcFNNZuFwa+8X7scHcgOidQlX+3DHMYRGeuBaYR4DceBHw06
+         Rsc0XZGOpeeiDLANeoXTwdKmeqy73ehyHvTEtXsjj60rJBKe/1mJPMpgmoB+Vkc5XAXj
+         gTS1UV61qCBftpiUdC/U9Fng9nrepG0mzeuXSZmazv6BkiLLp+2rvM33NfvYLMPqOfll
+         ixk1si1LhKY0i1jeLM4ID/q6Gh4zOI0R+d+0pODYKJI3qkmakl67B3NGJczf6Bm3KUor
+         lqExqXF5D13NTxs0jxrLnFVL8wInHcIf9A6REFNsqOeOceF1Db0lDOHwNOSgC0Z7G/fN
+         rmnQ==
+X-Gm-Message-State: AGi0PubyEufdU+HsFsNuVYueQEhUB/8+RGSBEQzXH3mMikv8ps7WCiVx
+	se/OJCjMF+/FMEQNkjmvNhow5TwwnVC/OPXY14N/LA==
+X-Google-Smtp-Source: APiQypJzlX/PDXDoXRiV2E1Z24Vrdk1RhB3sJE5CCXfQ6F0rysl6yI4bVFzT7Ps6CaeloyKc9UurK+eoEwg3eveJEus=
+X-Received: by 2002:a6b:3fc2:: with SMTP id m185mr6905206ioa.157.1587702240872;
+ Thu, 23 Apr 2020 21:24:00 -0700 (PDT)
+MIME-Version: 1.0
+From: ADMISSION INCHARGE <admission@bdmi.org>
+Date: Fri, 24 Apr 2020 09:53:26 +0530
+Message-ID: <CAOPPQo8MacdjZq_1w86jZve_YyqPJnROQCQiNkmz6oY50EbRAA@mail.gmail.com>
+Subject: NEW ADM NON BDMI CLASS 11 - Session 20-21
+To: cntkol@gmail.com, ranjitatgaria@gmail.com, mail9subhasish@gmail.com, 
+	anuskascience@gmail.com, das.kanakranjan.kanak@gmail.com, 
+	bipulbanerjee1971@gmail.com, ommaratri071@gmail.com, gautam_mondal@yahoo.com, 
+	ananyakundu2007@gmail.com, nabenduchakrabortypccght@gmail.com, 
+	santanuprdhn5@gmail.com, smswapan31@gmail.com, 
+	Pradipta Kumar Chatterjee <pradipta.k.chatterjee@gmail.com>, tapan74manna@gmail.com, 
+	sukumar.halder@yahoo.com, deb.chakrasheu@gmail.com, subhamoydas6@gmail.com, 
+	dipdhar.5571@gmail.com, adityaghosh8240@gmail.com, ranajitghosh.51@gmail.com, 
+	jay.gs.2014@gmail.com, sujoychatterjee2303@gmail.com, 
+	subirmazumder1966@gmail.com, triptesh3664@yahoo.co.in, 
+	pinakisengupta74@gmail.com, summaj@gmail.com, barsa27ghosh@gmail.com, 
+	joyhaldia1@gmail.com, arnav sanyal <arnavsanyal@rediffmail.com>, 
+	suraj_2602@rediffmail.com, anirbanroy@mail.com, toton1963@yahoo.com, 
+	unixbhaskar@gmail.com
+Cc: directorofeducation@bdmi.org, partham@bdmi.org, 
+	VIJAYA CHAUDHURI <principal@bdmi.org>
+Content-Type: multipart/alternative; boundary="00000000000013a21405a401bc75"
+
+--00000000000013a21405a401bc75
+Content-Type: text/plain; charset="UTF-8"
+
+Dear Student,
+
+Please click on the link and fill up the form and submit by Saturday
+(25/04/2020)
+
+https://docs.google.com/forms/d/e/1FAIpQLSdqvHSvBAEr_NMVx1t-Of_QzNc2y8jMQWjPXHs53HMVi0mosQ/viewform?usp=pp_url
+
+Thanks
+B.D.M.International
+
+--00000000000013a21405a401bc75
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail-gs" style=3D"margin:0px;padding:0px 0p=
+x 20px;width:882.017px;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-=
+serif;font-size:medium"><div class=3D"gmail-"><div id=3D"gmail-:xb" class=
+=3D"gmail-ii gmail-gt" style=3D"font-size:0.875rem;direction:ltr;margin:8px=
+ 0px 0px;padding:0px"><div id=3D"gmail-:xa" class=3D"gmail-a3s gmail-aXjCH"=
+ style=3D"overflow:hidden;font-variant-numeric:normal;font-variant-east-asi=
+an:normal;font-stretch:normal;font-size:small;line-height:1.5;font-family:A=
+rial,Helvetica,sans-serif"><div class=3D"gmail_quote"><div dir=3D"ltr"><div=
+>Dear Student,=C2=A0</div><div><br></div><div>Please click on the link and =
+fill up the form and submit by Saturday (25/04/2020)<br></div><div><br></di=
+v><div><a href=3D"https://docs.google.com/forms/d/e/1FAIpQLSdqvHSvBAEr_NMVx=
+1t-Of_QzNc2y8jMQWjPXHs53HMVi0mosQ/viewform?usp=3Dpp_url" rel=3D"noreferrer"=
+ target=3D"_blank">https://docs.google.com/forms/d/e/1FAIpQLSdqvHSvBAEr_NMV=
+x1t-Of_QzNc2y8jMQWjPXHs53HMVi0mosQ/viewform?usp=3Dpp_url</a></div><font col=
+or=3D"#888888"><div><br></div><div><div><div dir=3D"ltr"><div dir=3D"ltr"><=
+div>Thanks</div><div>B.D.M.International</div><div><br></div></div></div></=
+div></div></font></div><div class=3D"gmail-yj6qo"></div><div class=3D"gmail=
+-adL"></div></div><div class=3D"gmail-adL"></div></div></div><div class=3D"=
+gmail-hi" style=3D"border-bottom-left-radius:1px;border-bottom-right-radius=
+:1px;padding:0px;width:auto;background:rgb(242,242,242);margin:0px"></div><=
+/div></div><br class=3D"gmail-Apple-interchange-newline"></div>
+
+--00000000000013a21405a401bc75--

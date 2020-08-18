@@ -1,0 +1,116 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:f20e:0:0:0:0:0 with SMTP id q14csp724522lfh;
+        Sun, 10 May 2020 11:36:47 -0700 (PDT)
+X-Google-Smtp-Source: APiQypIjJMqto88msXesMVOQdJtMXGL+ZaeI3U6djFFMFlcZntfSnKm+P9dEi39+KkiC9QaEas97
+X-Received: by 2002:a17:906:2b96:: with SMTP id m22mr10255295ejg.330.1589135806973;
+        Sun, 10 May 2020 11:36:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1589135806; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WASvYWH5g0GZFGKUdTBk99+kUKBunU9B732AarUFwu1JO9anoHHaw0cr5PtRwVBxux
+         MjUpAqgu/BGAsC3mP1ksG+84Okf+MfC3qLXBoB5Upll2iYvjWJman2P2tlSKtINlE3to
+         5+k5MNC84dCrRvbHuXz4KcBxvnOrDuD487/tSxWZWWBtzavQ4HKfqDjK1lamWPh1vv73
+         xw7IoUVYZsx2FYLlcTfeUsfYoNz2fTuJbIG1iNreGY6o3ngjkKmJfIxjl98F/c4Gg6jc
+         SI7nvvqgGo7IIoyTUc1odcInG1IpQiYCQ/ICKCjkijk9KbKmh6ryQJC1VTzFDYwIJ6L7
+         2Bmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=jmGhiEm22t+3OQvDts0G7B0MglaOf7LPWER0GV6uNyI=;
+        b=s+TCMmSayMjWX3Kloo1m38Kz8nMwHA+f7CUj+J0VIPyw7rqQVcqgSVgfj3nCSgQ/xl
+         xkTYvPvrYNQlpNsuRvcoF/e+N+Gil05QYa/d92nSRdzMyVJVeVI+3Xn6sqGXYFw4GUaB
+         5IyYmnlJ45yfWfh4vgzHOX32dlxC5SWZ6eNoZzMVlZBMjRQp7B2kMFp3F2uTpnuOW4EI
+         TYxTMlS24pmiNItJ6EOnH1hYPw+jDRfZDSQed6GvFWxVSyMn/4cS4WGVNUP1TqoTtEnW
+         UtdJhDPgyPJgTp5ax+wreEoyAp//BfG2yCUvthjzToMZ0X9+rfozrREJ58AwVbYZzZgX
+         +F0g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=FnNwK+Fp;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id n16si4922657edv.252.2020.05.10.11.36.23;
+        Sun, 10 May 2020 11:36:46 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=FnNwK+Fp;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729124AbgEJSfK (ORCPT <rfc822;guilhem.herail@gmail.com>
+        + 99 others); Sun, 10 May 2020 14:35:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52084 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728123AbgEJSfJ (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 10 May 2020 14:35:09 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD5C0C061A0C
+        for <linux-kernel@vger.kernel.org>; Sun, 10 May 2020 11:35:07 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id x73so5591793lfa.2
+        for <linux-kernel@vger.kernel.org>; Sun, 10 May 2020 11:35:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jmGhiEm22t+3OQvDts0G7B0MglaOf7LPWER0GV6uNyI=;
+        b=FnNwK+FpYxSe49d2HF2HI88DOsvdX7SLIXAH4QIjADNVX8Unc9CioH4sANmElWVzRY
+         KS6OL4IOKrQpg/mOQkEYEEC5ONLCRvfQlJyTg25V777MtM2gNyAJHNG+qwbYKjOXD3bu
+         R1cqqjG57VB79qMeUjZa9gGCfcfb6/ox3xyGs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jmGhiEm22t+3OQvDts0G7B0MglaOf7LPWER0GV6uNyI=;
+        b=H8h2kOe74Kl7nZAKxBxQEg3o/VUBAiX2WHSEWPG7SbEVLz8+TR2fGs+FsEZR8OBInR
+         F+StZnnz78ZJ0AiINOxnI8qaAo+FxEClMvkgI2Zd2+xEP7k7uxISXdhNOLkj2AUEn9O1
+         YwZbv9VdSO1aMv6b23puYmAuPyClwh8jNpTkG4jmTe3etlbCCGbKiNMKn35hnhDRgPfw
+         JAGwJ3fstBUh61OQns6UjRnA0cs44eKxhPAqUutK41ODCfodi7XinIAI/1O2J0dhquK8
+         q0tRwCaYmiecqlR6Mj4nVL1CsiP7z2R6PiEU+i2ZXnxxAips3ZBHRhUcwvcM5cudUOLq
+         nLOw==
+X-Gm-Message-State: AOAM533/Azih7XaRU2hEuJAJIoejBo9NiQCn3+4R6tA9d5ft0kUSNv2M
+        dyy3TUKgfQ5hpTMUMDMgB1U5ifId8ic=
+X-Received: by 2002:a05:6512:691:: with SMTP id t17mr7602176lfe.85.1589135705963;
+        Sun, 10 May 2020 11:35:05 -0700 (PDT)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com. [209.85.167.49])
+        by smtp.gmail.com with ESMTPSA id j19sm7929123lfh.19.2020.05.10.11.35.05
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 May 2020 11:35:05 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id s9so5588403lfp.1
+        for <linux-kernel@vger.kernel.org>; Sun, 10 May 2020 11:35:05 -0700 (PDT)
+X-Received: by 2002:ac2:58c8:: with SMTP id u8mr8563575lfo.142.1589135704829;
+ Sun, 10 May 2020 11:35:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200510122634.GA32616@8bytes.org>
+In-Reply-To: <20200510122634.GA32616@8bytes.org>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 10 May 2020 11:34:49 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wht3yDtJ6zka=DNaB8Nymh-zmUMZhGaC8yFz29nuW-EsA@mail.gmail.com>
+Message-ID: <CAHk-=wht3yDtJ6zka=DNaB8Nymh-zmUMZhGaC8yFz29nuW-EsA@mail.gmail.com>
+Subject: Re: [git pull] IOMMU Fixes for Linux v5.7-rc4
+To:     Joerg Roedel <joro@8bytes.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        iommu <iommu@lists.linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, May 10, 2020 at 5:26 AM Joerg Roedel <joro@8bytes.org> wrote:
+>
+>            The first race condition was around
+>           the non-atomic update of the domain page-table root pointer
+>           and the variable containing the page-table depth (called
+>           mode). This is fixed now be merging page-table root and mode
+>           into one 64-bit field which is read/written atomically.
+
+This seems a bit odd.
+
+The pointer part is always page-aligned, and the "mode" is just three bits.
+
+Why isn't it just encoded as one pointer with the low three bits being the mode?
+
+The thing is, the 64-bit atomic reads/writes are very expensive on
+32-bit x86. If it was just a native pointer, it would be much cheaper
+than an "atomic64_t".
+
+                Linus

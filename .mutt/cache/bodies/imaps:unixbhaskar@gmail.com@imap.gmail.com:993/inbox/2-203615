@@ -1,0 +1,241 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp7716356lfj;
+        Mon, 30 Sep 2019 16:47:29 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx2ra7sTXtG9j9vTE/wbEsXXnJ6wdrpfS2uBwD/qE4HRwe96U3ICzw65AYfRSUwlwSvf5BG
+X-Received: by 2002:a17:906:839a:: with SMTP id p26mr12076242ejx.94.1569887249187;
+        Mon, 30 Sep 2019 16:47:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569887249; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XZjZQdbI1W+yPXwIv3aIQN9N66fNsdTclOD82TVldUFwLNsGL8fmjsZKhGpOUweTmF
+         wY4KumEOtMLY3mnp9Vomwr/ZJMfnRyFusZk2e+LBhfhw0xFodwYDzopqSsFrx+t3FrPa
+         h75TFulqgMtgIOw5Peph5bYXsZOlZI9qOeCLoTGoQ1P+7b4AzwVzcloKjTvGjEUyyZr1
+         j9egcUf9F0r5+P6rtoBJY43eQtsleQKpn7x/m8N4Pg5P1+PL3mCFz/nPPQBpgsp4+Tcw
+         HLufmOjLcbDmaMLW/3TfhVnEXMv+oHuya3JyKV39LfX/f5A66YDbdnedCmZMTfFhbL0a
+         yuvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=nSKZpc1o9LP12PjrgK6vt7bvkyHI1p54d0xQ6Z1/Oeo=;
+        b=UVFCI57Eq3AnSqNNdQwq65caiZB7xcHQ9/2x7E7uJBOU4Mrkz3qhtzEWfxdyUt2w1J
+         YYxEX82BzMLMlNHBqkqIi6JYHlQhMPaFuc3j9MlL6pfrwTHV8sAVa0Anw//KxEoC7soa
+         MLzOP1rpTFoKB71HoCnYNoQ1BsenN4EASUUAt2ptNlGY0CjPtMlZNYFW960yoJlIke5o
+         LJjfcDTbOdgcxd9Uo6LoDcoMmX8YQF7kDg6gRQ8rkx6snB3++YVD4yC82Q7uyF6MK0Oz
+         YxY3U271MACtiUIphvcTdkZcHwXmOgnkXX3VGlu7tLqUtDCLAq2ekrw5YDZxbJ2u6Nw+
+         JEcQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linaro.org header.s=google header.b=ACPo9GL0;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id d25si7722836edv.319.2019.09.30.16.47.03;
+        Mon, 30 Sep 2019 16:47:29 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linaro.org header.s=google header.b=ACPo9GL0;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1732270AbfI3XqD (ORCPT <rfc822;petrus.archlinux@gmail.com>
+        + 99 others); Mon, 30 Sep 2019 19:46:03 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:38340 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727535AbfI3XqC (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 30 Sep 2019 19:46:02 -0400
+Received: by mail-wr1-f65.google.com with SMTP id w12so13225549wro.5
+        for <linux-kernel@vger.kernel.org>; Mon, 30 Sep 2019 16:46:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nSKZpc1o9LP12PjrgK6vt7bvkyHI1p54d0xQ6Z1/Oeo=;
+        b=ACPo9GL0S9VP+pi/Bnj2WPydsO1u6H5sLnSLK442XLIhfDVYY9AD9r3ou9KU5mAXGB
+         9rNpGjMwADu5L/umMFSUFMDu5sWKNj2YBWDwW+c+8S9tqWXgA871zQryMazlo+w5rHB1
+         8nvKYclCV/o/V7XnpISx0M1PmzmKM04IpRSb1OpYDqN8iAdYN8yjvLyaTckRmwr2HCgr
+         J8jUrJjmJc7EMeYWjOcqYm85XLg1Q+Y0/xQtYYKRFousA4cnrm4Zva3HkqE0bYzQVrNq
+         PA2vfAblsBxHAI2GqjQCp4UGpDviNcIQ7yYbdg2iHng7PvhFFASf7E7HqP54YFIpNpwn
+         81TQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nSKZpc1o9LP12PjrgK6vt7bvkyHI1p54d0xQ6Z1/Oeo=;
+        b=QhE86+5vAhA3gCAY5yHmmY/LgckjS34CyTx9bq3Ok0EJmhRLu/beeHu3LSw/0YV9nk
+         yorcVJKn2HcSTG/MsK+sVX8aAEx4qrB9WVq3iFQIUkvao09VBgQgwbFm9YdMwHn/zvBc
+         lPCyLAgiPl5hG6IwIMkdFMqTeb/bZfhdpFxep6R5uiml22DSTA0OdZMpXohjyyirg2io
+         hS3p/qqTPPmhWy11Xg2Wo2qLLS8/kIJV95dUVXI1rhUyiRTz9BgBZiHCBUFgBCJHgrIL
+         fsoX6PtNfx78pI7LjGwJW5cgjER+uE0B+aw6gdf8S4hxtBsW+MSECh+rL0z2QLF2X7PL
+         UqVQ==
+X-Gm-Message-State: APjAAAWthw9UR9POscrxXZLW7E68GgLxlTqDLBbG+X/5RzzXWE92nA8X
+        oh3UuGz0CG9BF41aDCmc/30eEb6LBfMhZjdDb8k=
+X-Received: by 2002:adf:fb8e:: with SMTP id a14mr16192387wrr.304.1569887160028;
+ Mon, 30 Sep 2019 16:46:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190928123905.GA97048@gmail.com>
+In-Reply-To: <20190928123905.GA97048@gmail.com>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Mon, 30 Sep 2019 16:45:49 -0700
+Message-ID: <CANcMJZB9UrMaJv6OiScZy2e2UFGFOJsFRar9RZUE9HM-00ZXGg@mail.gmail.com>
+Subject: Re: [GIT PULL] scheduler fixes
+To:     Ingo Molnar <mingo@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Peter Zijlstra <a.p.zijlstra@chello.nl>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mathieu Desnoyers <mathieu.desnoyers@polymtl.ca>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Joel Fernandes <joelaf@google.com>,
+        Alistair Delva <adelva@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sat, Sep 28, 2019 at 5:40 AM Ingo Molnar <mingo@kernel.org> wrote:
+>
+> Please pull the latest sched-urgent-for-linus git tree from:
+>
+>    git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git sched-urgent-for-linus
+>
+>    # HEAD: 4892f51ad54ddff2883a60b6ad4323c1f632a9d6 sched/fair: Avoid redundant EAS calculation
+>
+> The changes are:
+>
+>  - Apply a number of membarrier related fixes and cleanups, which fixes a
+>    use-after-free race in the membarrier code.
+>
+>  - Introduce proper RCU protection for tasks on the runqueue - to get rid
+>    of the subtle task_rcu_dereference() interface that was easy to get
+>    wrong.
+>
+>  - Misc fixes, but also an EAS speedup.
+>
+>  Thanks,
+>
+>         Ingo
+>
+> ------------------>
+> Eric W. Biederman (4):
+>       tasks: Add a count of task RCU users
+>       tasks, sched/core: Ensure tasks are available for a grace period after leaving the runqueue
+>       tasks, sched/core: With a grace period after finish_task_switch(), remove unnecessary code
+>       tasks, sched/core: RCUify the assignment of rq->curr
+>
+> KeMeng Shi (1):
+>       sched/core: Fix migration to invalid CPU in __set_cpus_allowed_ptr()
+>
+> Mathieu Desnoyers (7):
+>       sched/membarrier: Fix private expedited registration check
+>       sched/membarrier: Remove redundant check
+>       sched/membarrier: Call sync_core only before usermode for same mm
+>       sched/membarrier: Fix p->mm->membarrier_state racy load
+>       selftests, sched/membarrier: Add multi-threaded test
+>       sched/membarrier: Skip IPIs when mm->mm_users == 1
+>       sched/membarrier: Return -ENOMEM to userspace on memory allocation failure
+>
+> Qian Cai (3):
+>       sched/fair: Remove unused cfs_rq_clock_task() function
+>       sched/core: Convert vcpu_is_preempted() from macro to an inline function
+>       sched/fair: Fix -Wunused-but-set-variable warnings
+>
+> Quentin Perret (1):
+>       sched/fair: Avoid redundant EAS calculation
+>
+> Valentin Schneider (2):
+>       sched/core: Fix preempt_schedule() interrupt return comment
+>       sched/core: Remove double update_max_interval() call on CPU startup
+
+Hey all,
+  After rebasing my hikey960 patches onto v5.4-rc1, I started seeing
+boot hangs/stalls trying boot AOSP:
+
+[    9.788182] ------------[ cut here ]------------
+[    9.792829] WARNING: CPU: 7 PID: 516 at
+kernel/rcu/tree_plugin.h:293 rcu_note_context_switch+0x48/0x4a8
+[    9.802229] Modules linked in:
+[    9.805298] CPU: 7 PID: 516 Comm: Jit thread pool Not tainted
+5.3.0-13104-g0dbefe07634f #1126
+[    9.813822] Hardware name: HiKey960 (DT)
+[    9.817742] pstate: 20400085 (nzCv daIf +PAN -UAO)
+[    9.822530] pc : rcu_note_context_switch+0x48/0x4a8
+[    9.827403] lr : rcu_note_context_switch+0x1c/0x4a8
+[    9.832273] sp : ffffffc012ee3a60
+[    9.835581] x29: ffffffc012ee3a60 x28: ffffff82192d4140
+[    9.840889] x27: 0000000000000000 x26: ffffff821f7b38c0
+[    9.846195] x25: 00000000efb51cf8 x24: ffffffc0117ba000
+[    9.851501] x23: 0000000000000000 x22: ffffff82192d4140
+[    9.856806] x21: 0000000000000000 x20: ffffff821f7b38c0
+[    9.862111] x19: ffffff821f7b44c0 x18: 0000000000000000
+[    9.867416] x17: 0000000000000000 x16: 0000000000000000
+[    9.872721] x15: 0000000000000000 x14: 0000000000000000
+[    9.878026] x13: 0000000000000000 x12: 0000000000000000
+[    9.883331] x11: 0000000000000000 x10: 0000000000000000
+[    9.888636] x9 : 0000000000000000 x8 : ffffffc012ee3c60
+[    9.893941] x7 : ffffffc012ee3c70 x6 : ffffff8219026788
+[    9.899246] x5 : 00000000014a2000 x4 : 0000000000000000
+[    9.904551] x3 : ffffffc20e1fe000 x2 : 0000000000000001
+[    9.909856] x1 : ffffffc0117ba428 x0 : 0000000000000023
+[    9.915163] Call trace:
+[    9.917605]  rcu_note_context_switch+0x48/0x4a8
+[    9.922134]  __schedule+0x90/0x7d8
+[    9.925530]  schedule+0x38/0xc0
+[    9.928667]  futex_wait_queue_me+0xc0/0x140
+[    9.932847]  futex_wait+0xe0/0x210
+[    9.936242]  do_futex+0x618/0xdf8
+[    9.939551]  __arm64_sys_futex_time32+0xfc/0x148
+[    9.944167]  el0_svc_common.constprop.1+0x64/0x188
+[    9.948955]  el0_svc_compat_handler+0x18/0x38
+[    9.953307]  el0_svc_compat+0x8/0x2c
+[    9.956876] ---[ end trace cdf2ffd45270a24d ]---
+
+Usually followed by:
+[   30.807092] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+[   30.813207] rcu:     Tasks blocked on level-0 rcu_node (CPUs 0-7): P521 P519
+[   30.819998]  (detected by 4, t=5255 jiffies, g=169, q=5967)
+[   30.825568] Jit thread pool S    0   521      1 0x00000000
+[   30.831050] Call trace:
+[   30.833498]  __switch_to+0xd4/0x230
+[   30.836984]  __schedule+0x320/0x7d8
+[   30.840464]  schedule+0x38/0xc0
+[   30.843600]  futex_wait_queue_me+0xc0/0x140
+[   30.847776]  futex_wait+0xe0/0x210
+[   30.851169]  do_futex+0x618/0xdf8
+[   30.854476]  __arm64_sys_futex+0xfc/0x148
+[   30.858479]  el0_svc_common.constprop.1+0x64/0x188
+[   30.863262]  el0_svc_handler+0x20/0x80
+[   30.867003]  el0_svc+0x8/0xc
+[   30.869876] Jit thread pool S    0   519      1 0x00400000
+[   30.875353] Call trace:
+[   30.877790]  __switch_to+0xd4/0x230
+[   30.881271]  __schedule+0x320/0x7d8
+[   30.884750]  schedule+0x38/0xc0
+[   30.887883]  futex_wait_queue_me+0xc0/0x140
+[   30.892057]  futex_wait+0xe0/0x210
+[   30.895450]  do_futex+0x618/0xdf8
+[   30.898755]  __arm64_sys_futex_time32+0xfc/0x148
+[   30.903364]  el0_svc_common.constprop.1+0x64/0x188
+[   30.908146]  el0_svc_compat_handler+0x18/0x38
+[   30.912494]  el0_svc_compat+0x8/0x2c
+[   31.711121] rcu: INFO: rcu_preempt detected expedited stalls on
+CPUs/tasks: { P521 P519 } 5440 jiffies s: 77 root: 0x0/T
+[   31.722030] rcu: blocking rcu_node structures:
+
+None of which seems particularly informative as to what might be going
+awry.  So I bisected the regression down to this merge.
+
+Reverting the following patches:
+  "sched/membarrier: Return -ENOMEM to userspace on memory allocation failure"
+  "sched/membarrier: Skip IPIs when mm->mm_users == 1"
+  "sched/membarrier: Fix p->mm->membarrier_state racy load"
+
+Seems to get things working again, but I've not been able to narrow it
+down further yet as I start hitting build issues.
+
+Not sure whats wrong here, but I'm happy to try any patches, or help
+with debugging this.
+
+thanks
+-john

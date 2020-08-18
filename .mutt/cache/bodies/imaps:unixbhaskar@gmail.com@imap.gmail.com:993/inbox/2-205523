@@ -1,0 +1,228 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp5046211lfj;
+        Mon, 14 Oct 2019 14:47:14 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwmsGahdA7RmbpSbxOcCmOjp4i+aPKxVSTtNtu+Yrs9jZXISdJpvhH16tAy23eBgze9dRbY
+X-Received: by 2002:a5d:8886:: with SMTP id d6mr28856046ioo.301.1571089634372;
+        Mon, 14 Oct 2019 14:47:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1571089634; cv=none;
+        d=google.com; s=arc-20160816;
+        b=p4kkK8Dlu77rU7Nw3RaFmk/7KKB6kiGvCknRhC3ElvJmUcJJswYr7GmxvvvGktwke0
+         OVqtImcee71Nlg5UOyXA3+b/yfK2Obug6ApHfLJiHxBG5rjKYFjMtqrDMJK3STbz2Op5
+         H4yYZcMRIe0+Wf5YYnB4gahlh5294V5F28rGxsNDYerLIDbIVReYSc3CYnXJ0InFUsoy
+         lDfrhlRdyNWsehTsIJyFU114JNe3a4sVNf2HgprrtuhLjzL1edMzxOS46aOcHR5K/X+H
+         S3xe6okDjNTHA3NmUSGBm9DgCc4Gozlddyp2lYakhyS9UfCIIBAnFTBEn3s6tPmmPdPC
+         QonA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-archive:list-post:list-owner:list-subscribe:list-id
+         :list-software:list-unsubscribe:list-help:reply-to:precedence
+         :errors-to:sender:mime-version:feedback-id:references:in-reply-to
+         :message-id:subject:from:to:date:delivered-to:dkim-signature
+         :dkim-signature;
+        bh=nm5nBD/a9nkYJKHIFLOXCAhuZNYZuKLjMJBjVytrq6k=;
+        b=voeF5nlGrCXn3a4s7CfHkkwlKXbDUFQsaeEVeINSEbkmbtRg6n43JHQ12xLA/IEUWC
+         dzfn83qpW0Qz7Pb7aeJUyKwX5+djwS4YM7pSPijvfS88A7hZEuahq0FOcwvrh5zq9xlU
+         tm/YGLfJQDPB6XNFDpuI9J9pgNFcimOevuPfb1qQUyjSd+0/foAx9q7ZZQElSQWqSVqB
+         vuYZ9QdW4Tg9qpjAvV8zA4YMeUtT4WT2MnNYsZ4lTwTpWKllVT8I5p6GsemdONdU+ld1
+         GVXznv3ONerVonWempa+wfoIx9oL8wJ1vCXHUpFPjzQp4HN54yk9zwxzuNdmoBxYsu8I
+         UGmg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=nHJw29pD;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=gDlCzTYB;
+       spf=pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) smtp.mailfrom=i3-discuss-bounce@freelists.org
+Return-Path: <i3-discuss-bounce@freelists.org>
+Received: from turing.freelists.org (turing.freelists.org. [206.53.239.180])
+        by mx.google.com with ESMTPS id c3si34490093jae.49.2019.10.14.14.47.13
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 14 Oct 2019 14:47:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) client-ip=206.53.239.180;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=nHJw29pD;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=gDlCzTYB;
+       spf=pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) smtp.mailfrom=i3-discuss-bounce@freelists.org
+Received: from localhost (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id E8F23256C8;
+	Mon, 14 Oct 2019 17:47:10 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=freelists.org;
+	s=turing; t=1571089631;
+	bh=nm5nBD/a9nkYJKHIFLOXCAhuZNYZuKLjMJBjVytrq6k=;
+	h=Date:To:From:Subject:In-Reply-To:References:Reply-To:List-Help:
+	 List-Unsubscribe:List-Id:List-Subscribe:List-Owner:List-post:
+	 List-Archive;
+	b=nHJw29pDkYkYoPOIEgVQPemYiwO/utla/0k8LQv1qnFvyxQVxe5/0eP3SUCGXyDoB
+	 TmJUeHe2viAF2BGn/KAmeJyYatJ0mHZXjHI/0b76k0ixO2IkE2JKlFOFpmk1XepHQa
+	 V3MY2agRpXUt+twX3aE3WljPkMoTrH3dUJkFlMro=
+X-Virus-Scanned: Debian amavisd-new at turing.freelists.org
+Received: from turing.freelists.org ([127.0.0.1])
+	by localhost (turing.freelists.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id pluJozE-Ytix; Mon, 14 Oct 2019 17:47:10 -0400 (EDT)
+Received: from turing.freelists.org (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id 56D8E2527F;
+	Mon, 14 Oct 2019 17:46:53 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=freelists.org;
+	s=turing; t=1571089630;
+	bh=nm5nBD/a9nkYJKHIFLOXCAhuZNYZuKLjMJBjVytrq6k=;
+	h=Date:To:From:Subject:In-Reply-To:References:Reply-To:List-Help:
+	 List-Unsubscribe:List-Id:List-Subscribe:List-Owner:List-post:
+	 List-Archive;
+	b=gDlCzTYBJsjJvPMBtH5SLLRIwNiodNv7+B1O8xFFdV66Q7cajfadq8ncqtt70AY+X
+	 unR7cHwYx+c8x4t3WU05EYCGyhQv+PzZsY52yEiBXdnKxXDfUqJx35ETcbz9dccayc
+	 W2lTwdEDHq16bkpBJ+lf/feCokZhhUILHpOCPZgo=
+Received: with ECARTIS (v1.0.0; list i3-discuss); Mon, 14 Oct 2019 17:46:53 -0400 (EDT)
+X-Original-To: i3-discuss@freelists.org
+Delivered-To: i3-discuss@freelists.org
+Received: from localhost (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id C0A3225323
+	for <i3-discuss@freelists.org>; Mon, 14 Oct 2019 17:46:52 -0400 (EDT)
+Authentication-Results: turing.freelists.org; dkim=pass
+	reason="1024-bit key; unprotected key"
+	header.d=protonmail.com header.i=@protonmail.com header.b=I+SBR9na;
+	dkim-adsp=pass; dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at turing.freelists.org
+Received: from turing.freelists.org ([127.0.0.1])
+	by localhost (turing.freelists.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 2q0Fi0ISl1lq for <i3-discuss@freelists.org>;
+	Mon, 14 Oct 2019 17:46:52 -0400 (EDT)
+Received: from mail2.protonmail.ch (mail2.protonmail.ch [185.70.40.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTPS id 065D32527F
+	for <i3-discuss@freelists.org>; Mon, 14 Oct 2019 17:46:51 -0400 (EDT)
+Date: Mon, 14 Oct 2019 21:46:44 +0000
+To: i3-discuss@freelists.org
+From: "" <dmarc-noreply@freelists.org> (Redacted sender "mail-login" for
+ DMARC)
+Subject: [i3-discuss] Re: Compare Operator != or some workaround
+Message-ID: <uWgnFf_KHAaQ9blkGXnh0SOWDYGmkTRq5P23ekTQjP7lEZhrJ9JIEejO4I8-L6M32_cnCd9JiCWbVZrcfwybfPPdfMGl9jMg3SxHYlQf0ko=@protonmail.com>
+In-Reply-To: <CANnVG6=-TnKtsssFLqTsHPFGJtg_Pw0ROHefW2-6zXeBsF+f8w@mail.gmail.com>
+References: <0mjjyIxHxNSIj5yBStpa0xmfXaNbQCIfBtf3cjxVEpoHBq23rIP-jiqEOBxTbM285dHkymtH-1vDHky95UhmEM41pMZCj3lsh731AFnKqCY=@protonmail.com>
+ <CANnVG6=-TnKtsssFLqTsHPFGJtg_Pw0ROHefW2-6zXeBsF+f8w@mail.gmail.com>
+Feedback-ID: SlKWfnOHLKiX_R7AvLnMx2Nr3FeeJAm5pGxQRPuVvQ09LX_8sDlu25j-8fFHY9dyxTzfd6IkHAwpTqvP_WH-Tg==:Ext:ProtonMail
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="b1_12fab943ec39e83904dffcf584dcaa4c"
+X-Spam-Status: No, score=-1.2 required=7.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,HTML_MESSAGE
+	autolearn=ham autolearn_force=no version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.protonmail.ch
+X-archive-position: 527
+X-ecartis-version: Ecartis v1.0.0
+Sender: i3-discuss-bounce@freelists.org
+Errors-to: i3-discuss-bounce@freelists.org
+X-original-sender: dmarc-noreply@freelists.org
+Precedence: normal
+Reply-To: i3-discuss@freelists.org
+List-Help: <mailto:ecartis@freelists.org?Subject=help>
+List-Unsubscribe: <mailto:i3-discuss-request@freelists.org?Subject=unsubscribe>
+List-software: Ecartis version 1.0.0
+List-Id: i3-discuss <i3-discuss.freelists.org>
+X-List-ID: i3-discuss <i3-discuss.freelists.org>
+List-Subscribe: <mailto:i3-discuss-request@freelists.org?Subject=subscribe>
+List-Owner: <mailto:>
+List-post: <mailto:i3-discuss@freelists.org>
+List-Archive: <http://www.freelists.org/archives/i3-discuss>
+X-list: i3-discuss
+
+This is a multi-part message in MIME format.
+
+--b1_12fab943ec39e83904dffcf584dcaa4c
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
+
+SGksCgpvaCwgSSB0b3RhbGx5IG1pc3NlZCB0aGF0IG9uZSAobWF5YmUsIHNpbmNlIEkgZG9uJ3Qg
+Y29kZSBpbiBwZXJsIGFuZCBJIHNlYXJjaGVkIGEgbG9uZyB0aW1lLCBidXQgSSBuZXZlciBmb3Vu
+ZCB0aGlzIHRocmVhZCkuIEJ1dCBub3cgaWYgSSB1c2UKW2NsYXNzPV4iKD8hY2xhc3NOYW1lMSki
+IGNsYXNzPV4iKD8hY2xhc3NOYW1ldykiIC4uLl0gc2NyYXRjaHBhZCBzaG93Cml0IHdpbGwgc2hv
+dyBtZSBldmVyeXRoaW5nIHRoYXQgaXMgb24gdGhlIHNjcmF0Y2hwYWQgZXhjbHVkaW5nIHRoZSBm
+ZXcgd2luZG93cy4gSXMgdGhlcmUgYSB3YXkgdG8gZ2V0IHRoaXMgdG8gY3ljbGUgdGhyb3VnaCB0
+aGVzZSB3aW5kb3dzPwoKQmVzdCB3aXNoZXMKCi0tLS0tLS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0t
+LS0tLS0KT24gT2N0IDE0LCAyMDE5LCAxMToxMyBQTSwgTWljaGFlbCBTdGFwZWxiZXJnIHdyb3Rl
+OgoKPiBJIHRoaW5rIHlvdeKAmXJlIGxvb2tpbmcgZm9yIG5lZ2F0aXZlIGxvb2thaGVhZDogaHR0
+cHM6Ly9mYXEuaTN3bS5vcmcvcXVlc3Rpb24vMjA2Ny9mb2N1cy1vbi1hLXdpbmRvdy1vZi1hLWNl
+cnRhaW4tY2xhc3MtdW5sZXNzLWl0LWhhcy1hLWNlcnRhaW4tdGl0bGUuMS5odG1sCj4KPiBPbiBN
+b24sIE9jdCAxNCwgMjAxOSBhdCAxMTowNiBQTSBSZWRhY3RlZCBzZW5kZXIgbWFpbC1sb2dpbiBm
+b3IgRE1BUkMgPGRtYXJjLW5vcmVwbHlAZnJlZWxpc3RzLm9yZz4gd3JvdGU6Cj4KPj4gSGksCj4+
+Cj4+IEknbSB1c2luZyBJMyBmb3Igc29tZSB0aW1lLCB1bnRpbCBub3cgdW5kZXIgdGhyZWUgZGlm
+ZmVyZW50IGRpc3RyaWJ1dGlvbnMgdG9vIGFuZCBpdCBpcyBwZXJmZWN0bHkgZmluZS4gQnV0IGlu
+IHRoZSBsYXN0IHdlZWtzIEkndmUgdHJpZWQgdG8gdXNlIHNvbWUga2luZCBvZiBhIGRyb3Bkb3du
+IHRlcm1pbmFsL2NhbGN1bGF0b3Ivb3JnYW5pemVyIChjYWxjdXJzZSkuIEkgc3RhcnQgdGhlbSwg
+bW92ZSB0aGUgdGVybWluYWwgZW11bGF0b3Igd2luZG93cyB0byB0aGUgc2NyYXRjaHBhZCBhbmQg
+SSBiaW5kIGYuIGUuICJtb2QrbyIgdG8gIltjbGFzcz1jbGFzc1RvQ29tcGFyZV0gc2NyYXRjaHBh
+ZCBzaG93IiB0byBtb3ZlIHRoZSB3aW5kb3cgYmV0d2VlbiBzY3JhdGNocGFkIGFuZCBhY3RpdmUg
+d29ya3NwYWNlLiBFdmVyeXRoaW5nIGlzIGZpbmUgdG8gdGhpcyBwb2ludC4gQnV0IG5vdyBJIHdh
+bnQgdG8gY3ljbGUgdGhyb3VnaCB0aGUgb3RoZXIgd2luZG93cyBvbiB0aGUgc2NyYXRjaHBhZCAo
+bWFudWFsbHkgbW92ZWQgdGhlcmUpIHRvby4gVGhpcyBjeWNsZXMgdGhyb3VnaCBteSAiZHJvcGRv
+d24iIGFwcGxpY2F0aW9ucyBhcyB3ZWxsIHdoaWNoIGlzIHdoYXQgSSB3YW50IHRvIGF2b2lkLiBU
+byBhdm9pZCB0aGlzIGEgY29tcGFyaXNvbiBvcGVyYXRvciBsaWtlICIhPSIgdG8gbWF0Y2ggYWxs
+IHdpbmRvd3MgZXhjZXB0IHRoZSB3aW5kb3dzIG9mIHRoZSAiZHJvcGRvd24iIGFwcGxpY2F0aW9u
+cyB3b3VsZCBiZSBtb3N0IHVzZWZ1bC4gRGlkIEkgbWlzcyB0aGlzIG9uZSBpbiBteSByZXNlYXJj
+aCBvciBpcyB0aGVyZSBhIHdvcmthcm91bmQgZm9yIHRoaXMgc3BlY2lmaWMgY2FzZT8gKEkgdHJp
+ZWQgdG8gbWFyayBhbGwgd2luZG93IGNyZWF0ZWQgYW5kIHJlbW92ZSB0aGlzIG1hcmsgZnJvbSB0
+aGUgd2luZG93cyBvZiB0aGUgImRyb3Bkb3duIiBhcHBsaWNhdGlvbnMgdG8gYmUgYWJsZSB0byBt
+YXRjaCB0aGUgbWFyayB3aGVuIGN5Y2xpbmcgdGhyb3VnaCB0aGUgc2NyYXRjaHBhZC4gQnV0IGFz
+IG9uZSBzaW5nbGUgbWFyayBjYW4gb25seSBvYnRhaW5lZCBieSBvbmUgc2luZ2xlIHdpbmRvdywg
+dGhpcyBkb2VzIG5vdCB3b3JrKQo+Pgo+PiBJZiBiZWNhdXNlIG9mIG15IEVuZ2xpc2ggd2hpY2gg
+aXMgbm90IHRoYXQgZ29vZCBteSBjYXNlIGRpZG4ndCBnZXQgY2xlYXIsIGRvbid0IGhlc2l0YXRl
+IHRvIGFzayA7KQo+Pgo+PiBCZXN0IHdpc2hlcwo+Cj4gLS0KPgo+IEJlc3QgcmVnYXJkcywKPiBN
+aWNoYWVs
+
+
+--b1_12fab943ec39e83904dffcf584dcaa4c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
+
+SGksPGJyPjxicj5vaCwgSSB0b3RhbGx5IG1pc3NlZCB0aGF0IG9uZSAobWF5YmUsIHNpbmNlIEkg
+ZG9uJ3QgY29kZSBpbiBwZXJsIGFuZCBJIHNlYXJjaGVkIGEgbG9uZyB0aW1lLCBidXQgSSBuZXZl
+ciBmb3VuZCB0aGlzIHRocmVhZCkuIEJ1dCBub3cgaWYgSSB1c2U8YnI+W2NsYXNzPV4iKD8hY2xh
+c3NOYW1lMSkiIGNsYXNzPV4iKD8hY2xhc3NOYW1ldykiIC4uLl0gc2NyYXRjaHBhZCBzaG93PGJy
+Pml0IHdpbGwgc2hvdyBtZSBldmVyeXRoaW5nIHRoYXQgaXMgb24gdGhlIHNjcmF0Y2hwYWQgZXhj
+bHVkaW5nIHRoZSBmZXcgd2luZG93cy4gSXMgdGhlcmUgYSB3YXkgdG8gZ2V0IHRoaXMgdG8gY3lj
+bGUgdGhyb3VnaCB0aGVzZSB3aW5kb3dzPzxicj48YnI+QmVzdCB3aXNoZXM8YnI+PGJyPi0tLS0t
+LS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0tLS0tLS08YnI+T24gT2N0IDE0LCAyMDE5LCAxMToxMyBQ
+TSwgTWljaGFlbCBTdGFwZWxiZXJnIDwgbWljaGFlbEBpM3dtLm9yZz4gd3JvdGU6PGJsb2NrcXVv
+dGUgY2xhc3M9InByb3Rvbm1haWxfcXVvdGUiPjxicj48ZGl2IGRpcj0ibHRyIj5JIHRoaW5rIHlv
+deKAmXJlIGxvb2tpbmcgZm9yIG5lZ2F0aXZlIGxvb2thaGVhZDogPGEgaHJlZj0iaHR0cHM6Ly9m
+YXEuaTN3bS5vcmcvcXVlc3Rpb24vMjA2Ny9mb2N1cy1vbi1hLXdpbmRvdy1vZi1hLWNlcnRhaW4t
+Y2xhc3MtdW5sZXNzLWl0LWhhcy1hLWNlcnRhaW4tdGl0bGUuMS5odG1sIj5odHRwczovL2ZhcS5p
+M3dtLm9yZy9xdWVzdGlvbi8yMDY3L2ZvY3VzLW9uLWEtd2luZG93LW9mLWEtY2VydGFpbi1jbGFz
+cy11bmxlc3MtaXQtaGFzLWEtY2VydGFpbi10aXRsZS4xLmh0bWw8L2E+PC9kaXY+PGJyPjxkaXYg
+Y2xhc3M9ImdtYWlsX3F1b3RlIj48ZGl2IGRpcj0ibHRyIiBjbGFzcz0iZ21haWxfYXR0ciI+T24g
+TW9uLCBPY3QgMTQsIDIwMTkgYXQgMTE6MDYgUE0gUmVkYWN0ZWQgc2VuZGVyIG1haWwtbG9naW4g
+Zm9yIERNQVJDICZsdDs8YSBocmVmPSJtYWlsdG86ZG1hcmMtbm9yZXBseUBmcmVlbGlzdHMub3Jn
+Ij5kbWFyYy1ub3JlcGx5QGZyZWVsaXN0cy5vcmc8L2E+Jmd0OyB3cm90ZTo8YnI+PC9kaXY+PGJs
+b2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAu
+OGV4O2JvcmRlci1sZWZ0OjFweCBzb2xpZCByZ2IoMjA0LDIwNCwyMDQpO3BhZGRpbmctbGVmdDox
+ZXgiPjxkaXY+SGksPGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+SSYjMzk7bSB1c2luZyBJ
+MyBmb3Igc29tZSB0aW1lLCB1bnRpbCBub3cgdW5kZXIgdGhyZWUgZGlmZmVyZW50DQpkaXN0cmli
+dXRpb25zIHRvbyBhbmQgaXQgaXMgcGVyZmVjdGx5IGZpbmUuDQpCdXQgaW4gdGhlIGxhc3Qgd2Vl
+a3MgSSYjMzk7dmUgdHJpZWQgdG8gdXNlIHNvbWUga2luZCBvZiBhIGRyb3Bkb3duDQp0ZXJtaW5h
+bC9jYWxjdWxhdG9yL29yZ2FuaXplciAoY2FsY3Vyc2UpLiBJIHN0YXJ0IHRoZW0sIG1vdmUgdGhl
+DQp0ZXJtaW5hbCBlbXVsYXRvciB3aW5kb3dzIHRvIHRoZSBzY3JhdGNocGFkIGFuZCBJIGJpbmQg
+Zi4gZS4gJnF1b3Q7bW9kK28mcXVvdDsgdG8NCiZxdW90O1tjbGFzcz1jbGFzc1RvQ29tcGFyZV0g
+c2NyYXRjaHBhZCBzaG93JnF1b3Q7IHRvIG1vdmUgdGhlIHdpbmRvdyBiZXR3ZWVuDQpzY3JhdGNo
+cGFkIGFuZCBhY3RpdmUgd29ya3NwYWNlLiBFdmVyeXRoaW5nIGlzIGZpbmUgdG8gdGhpcyBwb2lu
+dC4NCkJ1dCBub3cgSSB3YW50IHRvIGN5Y2xlIHRocm91Z2ggdGhlIG90aGVyIHdpbmRvd3Mgb24g
+dGhlIHNjcmF0Y2hwYWQNCihtYW51YWxseSBtb3ZlZCB0aGVyZSkgdG9vLiBUaGlzIGN5Y2xlcyB0
+aHJvdWdoIG15ICZxdW90O2Ryb3Bkb3duJnF1b3Q7DQphcHBsaWNhdGlvbnMgYXMgd2VsbCB3aGlj
+aCBpcyB3aGF0IEkgd2FudCB0byBhdm9pZC4gVG8gYXZvaWQgdGhpcyBhDQpjb21wYXJpc29uIG9w
+ZXJhdG9yIGxpa2UgJnF1b3Q7IT0mcXVvdDsgdG8gbWF0Y2ggYWxsIHdpbmRvd3MgZXhjZXB0IHRo
+ZSB3aW5kb3dzIG9mDQp0aGUgJnF1b3Q7ZHJvcGRvd24mcXVvdDsgYXBwbGljYXRpb25zIHdvdWxk
+IGJlIG1vc3QgdXNlZnVsLiBEaWQgSSBtaXNzIHRoaXMgb25lIGluDQpteSByZXNlYXJjaCBvciBp
+cyB0aGVyZSBhIHdvcmthcm91bmQgZm9yIHRoaXMgc3BlY2lmaWMgY2FzZT8NCihJIHRyaWVkIHRv
+IG1hcmsgYWxsIHdpbmRvdyBjcmVhdGVkIGFuZCByZW1vdmUgdGhpcyBtYXJrIGZyb20gdGhlDQp3
+aW5kb3dzIG9mIHRoZSAmcXVvdDtkcm9wZG93biZxdW90OyBhcHBsaWNhdGlvbnMgdG8gYmUgYWJs
+ZSB0byBtYXRjaCB0aGUgbWFyayB3aGVuDQpjeWNsaW5nIHRocm91Z2ggdGhlIHNjcmF0Y2hwYWQu
+IEJ1dCBhcyBvbmUgc2luZ2xlIG1hcmsgY2FuIG9ubHkgb2J0YWluZWQNCmJ5IG9uZSBzaW5nbGUg
+d2luZG93LCB0aGlzIGRvZXMgbm90IHdvcmspPGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+
+SWYgYmVjYXVzZSBvZiBteSBFbmdsaXNoIHdoaWNoIGlzIG5vdCB0aGF0IGdvb2QgbXkgY2FzZSBk
+aWRuJiMzOTt0IGdldA0KY2xlYXIsIGRvbiYjMzk7dCBoZXNpdGF0ZSB0byBhc2sgOyk8YnI+PC9k
+aXY+PGRpdj48YnI+PC9kaXY+PGRpdj5CZXN0IHdpc2hlczxicj48L2Rpdj48ZGl2PjxkaXY+PGJy
+PjwvZGl2PjxkaXY+PGJyPjwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2PjwvYmxvY2txdW90ZT48
+L2Rpdj48YnIgY2xlYXI9ImFsbCI+PGRpdj48YnI+PC9kaXY+LS0gPGJyPjxkaXYgZGlyPSJsdHIi
+IGNsYXNzPSJnbWFpbF9zaWduYXR1cmUiPkJlc3QgcmVnYXJkcyw8YnI+TWljaGFlbDwvZGl2Pg0K
+PC9kaXY+
+
+
+
+--b1_12fab943ec39e83904dffcf584dcaa4c--
+
+

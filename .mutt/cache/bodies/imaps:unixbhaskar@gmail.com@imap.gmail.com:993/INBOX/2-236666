@@ -1,0 +1,112 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp2241612lfg;
+        Thu, 30 Apr 2020 12:19:17 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKDMyCe8wT292fkkJT+8/3bEV5BI869JNKkYqOFtevItOIaTpaCBxdk8iByGPOkWC8uLgBw
+X-Received: by 2002:a50:b286:: with SMTP id p6mr498680edd.350.1588274357295;
+        Thu, 30 Apr 2020 12:19:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1588274357; cv=none;
+        d=google.com; s=arc-20160816;
+        b=NSNc7+jwKyumpU6LGzi3idvHe27oJtTEV6+0azSSgpPfHG8VnXdE988V5hGcroPsvA
+         KXYQQoqbTKqAx+G6u4tRY4ArinDx79/P66Ex6jYP4j1QZikkiOEDfp8JN9fSrgfvuay2
+         6mm6GO/43uE2GOK5N39gM5Rz2/H6hNsz57Vm+XM/vFwQRjIc3YaKER54dRdZb6NUrsD+
+         30pW4fHqUGHaXIfeog52xSKRGTXPBdZwjUYm1z6RfOMYI2LChykYT7LbC3Ift6u5fZUS
+         NkUHnthBF+5RkuCpPwwoqPVwZFR7QElwNQzLNSi/u6HXfHZO7IB1796POVM9vpJ9Iauz
+         MEkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:reply-to:message-id
+         :subject:cc:to:from:date:dkim-signature;
+        bh=H3yPRcm1mYys4yGHUjsjenm0Y/yqOLRMpfhzIF4C+ow=;
+        b=eyo/JVLwwWKUgJL1Wf2C0nAIdQ8EhvTYu1MbBofIRa01rCiJfAPfyAeIfZsGHz5cSs
+         Qn2H82EyT5KfKd9WR5yLFkm8NZe50qMT5WI1h7VylFerPF+mbSuqjGWUlCUDuBvxAwrT
+         qI18usYhxKAzPuza0m/kzL8/+7eDjdAih88UbIRIZADV5Ob0lk53VtOFAebE87YxKXDu
+         GccCd3vgBEBUlqgu4EonOGt1xC8tXUSiY3N6W7LzY7c2Hf65uVtyTbn0EF/6L0KreyuF
+         QDZyGMthEtrNtzDGm/BckWZYtQtY0HPuSK1k7JvdhPew+gjMcjjIgc7HJUGAj0JgORFF
+         5woA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b="iDwp/kRm";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id z18si320093edx.121.2020.04.30.12.18.53;
+        Thu, 30 Apr 2020 12:19:17 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b="iDwp/kRm";
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726548AbgD3TRZ (ORCPT <rfc822;robby.willer@gmail.com>
+        + 99 others); Thu, 30 Apr 2020 15:17:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43856 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726272AbgD3TRY (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 30 Apr 2020 15:17:24 -0400
+Received: from paulmck-ThinkPad-P72.home (50-39-105-78.bvtn.or.frontiernet.net [50.39.105.78])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 09D3F2070B;
+        Thu, 30 Apr 2020 19:17:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1588274244;
+        bh=rXMzlXWT/NZzWMEeZB4ZaKgn2FdWRyMIUrUb81WLeOI=;
+        h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
+        b=iDwp/kRmMh4wy3d9/eB3mnGdLNtderr+co7U1mV/vB1IUK1XRy58Jhhxf3HfU+TO7
+         eV+TrwacTeVc8RHyR/kkhe6cGCicO/KBwP4lY55hPy3pHlXtdNxTuVbhkip9CECM//
+         IddI4OHeVmUOD5DoaUw3lNWyDzlZMP4vwRtmEoy4=
+Received: by paulmck-ThinkPad-P72.home (Postfix, from userid 1000)
+        id D28C63522697; Thu, 30 Apr 2020 12:17:23 -0700 (PDT)
+Date:   Thu, 30 Apr 2020 12:17:23 -0700
+From:   "Paul E. McKenney" <paulmck@kernel.org>
+To:     Atul Kulkarni <Atul.Kulkarni@katerra.com>
+Cc:     linux-kernel@vger.kernel.org
+Subject: Re: Need help on "Self Detected Stall on CPU"
+Message-ID: <20200430191723.GX7560@paulmck-ThinkPad-P72>
+Reply-To: paulmck@kernel.org
+References: <BY5PR11MB4118B89CB3FAEB897AFC3819E0AA0@BY5PR11MB4118.namprd11.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BY5PR11MB4118B89CB3FAEB897AFC3819E0AA0@BY5PR11MB4118.namprd11.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Apr 30, 2020 at 06:47:20PM +0000, Atul Kulkarni wrote:
+> Dear Sir,
+> 
+> Hope you are doing well.  I have watched your various conference videos and have read technical papers.
+> We are facing an issue with CPU stall on our systems and I felt like there is no one better who can guide us on how we can deal with it.
+> 
+> I have attached logs for your reference. Towards end I have run couple of sysreq commands and have taken crash dump using sysreq which may help provide additional information.
+> Could you please guide us on how we could fix  this issue or identify what is going wrong here?
+
+Let's focus on the first few lines of your console message:
+
+[20526.345089] INFO: rcu_preempt self-detected stall on CPU
+[20526.351110]  0-...: (1051 ticks this GP) idle=1fe/140000000000002/0 softirq=146268/146268 fqs=0
+[20526.360163]   (t=2101 jiffies g=96468 c=96467 q=2)
+[20526.365535] rcu_preempt kthread starved for 2101 jiffies! g96468 c96467 f0x0 RCU_GP_WAIT_FQS(3) ->state=0x402 ->cpu=0
+
+The last line contains the hint, namely "rcu_preempt kthread starved for
+2101 jiffies!"  If you don't let RCU's kernel threads run, then RCU CPU
+stall warnings are expected behavior.
+
+The "RCU_GP_WAIT_FQS(3)" means that this kthread's last act was to sleep
+for three jiffies.  As you can see from earlier in that same line, that
+was 2101 jiffies ago.  The "->state=0x402" means that the scheduler
+believes that this kthread is blocked, that is not yet runnable.
+
+The usual way this sort of thing happens is a timer problem, be it a
+hardware configuration problem, a timer-driver bug, an interrupt-handling
+problem, and so on.  This sort of problem is especially common when
+bringing up new hardware or when modifying timer code or when modifying
+code on the interrupt/exception paths.
+
+So the question to ask yourself is "Why is the timer wakeup not reaching
+this kthread?", with special attention to changed code and new hardware.
+
+							Thanx, Paul

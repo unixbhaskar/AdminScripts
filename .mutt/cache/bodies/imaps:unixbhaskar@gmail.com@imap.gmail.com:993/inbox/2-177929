@@ -1,0 +1,114 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp2890977lfb;
+        Sun, 28 Apr 2019 10:01:53 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyqOwshttxRXHbaK6DCeKsJmNYIVjnRdrwPX/G1FMJydM58p4Cpxk1MR0O1VUFVzKOOeaSq
+X-Received: by 2002:a63:ee01:: with SMTP id e1mr44113515pgi.20.1556470912852;
+        Sun, 28 Apr 2019 10:01:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1556470912; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Y9RAUeJtVAJxguI6aC/jw9Fc2S41qrHb7KDOF6BdC6OVdvEVYQ/sHYgfBIt8NE5cqh
+         IZX+YhKGXvog8Yxv9pNSCB0HF0ona3VlCgvUHqJlv7JFcEFKH+l+8ThSAgJ7JQtoe/ZW
+         ZCeYPCIUDA3igLL1W//ucaxRj8BE8R+CpmTnzb52kiorhEDBwx8dKWexdLSgSlGZBLIN
+         KG9WthpWQSwJryqU3wy7BR2RoUW92saM7Vd/GT3PwWRfe2fF0kuB+Q44iRRDRJvahLyb
+         G7CfHPJACN0+QKPpwD2GDQ64M/7gvIU+GPzDMgYlR0cam6psqdMxHOzzblhVZhaods92
+         G5WA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=v9n7p8AKaL1Ow84inuud1G/Lxyp2SJrfAsXQfEX1Lsc=;
+        b=n8qK+QAsbYddShj+V2G1B67f614xcyY6YoW3bAFnuMIPp9A8jjADqoma2co9QKMd7h
+         0kvyzV2HMHI94jhAqup2C/Ybf6Lcb2WJh4wpps8qmsoUpt7zFqv161IEwdsu5LaRjQCF
+         jiM6nECCWF15la7L6Q3lny0o3b3a/XOsqJGjVFP+DW9lz9TRPA3XOMkboqhVFcx60Yxk
+         6opFj0nAM/um3UNJs7fZqErCUSS1Omd8xo4AiFgJRcCVDUUM8Fwl5TtJogUQQOnMJzIw
+         q46MqLkakfr7QYhV7MCWo5CnWnxvxdtiXQfGf0o7zJhb28jmmbjge6UuomPviVf9BSFM
+         iUuw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=J1onYtxn;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id b3si15844117pgl.294.2019.04.28.10.01.37;
+        Sun, 28 Apr 2019 10:01:52 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=J1onYtxn;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726977AbfD1RAP (ORCPT <rfc822;4ak.abc@gmail.com> + 99 others);
+        Sun, 28 Apr 2019 13:00:15 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:46226 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726674AbfD1RAP (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 28 Apr 2019 13:00:15 -0400
+Received: by mail-lf1-f65.google.com with SMTP id k18so5984271lfj.13
+        for <linux-kernel@vger.kernel.org>; Sun, 28 Apr 2019 10:00:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=v9n7p8AKaL1Ow84inuud1G/Lxyp2SJrfAsXQfEX1Lsc=;
+        b=J1onYtxnImkD1yCPEBS9gRLDZmeabFG1KQ2zd//GuygjdySPtdijgil8yhuvmqIlBz
+         vhB00quVwkLwhxbBRedTIz1L2NtTHT2V0SppiKXa/7ZkwlU43rJfzA+Rf1pRriD/B8lt
+         D9OMVrZFGZiWAvrgv2Lt6616X3D9jvjZDhuZU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=v9n7p8AKaL1Ow84inuud1G/Lxyp2SJrfAsXQfEX1Lsc=;
+        b=LfJOyD2aa1okgcFYrraLIfwbskWCZ5TjdvahNXmRHqEixL7TpnrwfxhKhOv1v+xZZV
+         m8zWtoY+uDvoNIpPMlp/I6RUF/HUwFOw4diMSyh7h4sMAvTIf3r7erNNulsGx6UywZs3
+         yHYfDBCFNzrtNtvVCMV55idD/EUKuNcZZZ/HNTzLsuFRCBZehmDiTp8j0BCm5krrRiKX
+         T8M1I5i2FHhypYdM96Nkx0ZmIo1N58BSFvhbJJSkYqgT0K2U5DVkvn/xaf7SslKqV9Bj
+         6Vt/jTiL+S3EPl5S/PwBDZUWPOfMdw2M8nzlybu6XuEduRwxNZER4rn/mxJwOkD7cyyk
+         92RA==
+X-Gm-Message-State: APjAAAVJtcgORcGzEQWhhkCpZvNprZm/TJzdN5/K4tMOufP40xxRgsWP
+        fY+O1a4N1rF8Ak0c0jKzoy1nbTPd+hE=
+X-Received: by 2002:a19:1949:: with SMTP id 70mr22020469lfz.103.1556470813235;
+        Sun, 28 Apr 2019 10:00:13 -0700 (PDT)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
+        by smtp.gmail.com with ESMTPSA id g6sm6432343lja.64.2019.04.28.10.00.12
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 28 Apr 2019 10:00:12 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id s7so4517717ljh.1
+        for <linux-kernel@vger.kernel.org>; Sun, 28 Apr 2019 10:00:12 -0700 (PDT)
+X-Received: by 2002:a2e:8090:: with SMTP id i16mr4985655ljg.135.1556470811917;
+ Sun, 28 Apr 2019 10:00:11 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190428115207.GA11924@ziepe.ca>
+In-Reply-To: <20190428115207.GA11924@ziepe.ca>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 28 Apr 2019 09:59:56 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wj4ay=jy6wuN4d9p9v+O32i0aH9SMfu39VKP-Ai7hKp=g@mail.gmail.com>
+Message-ID: <CAHk-=wj4ay=jy6wuN4d9p9v+O32i0aH9SMfu39VKP-Ai7hKp=g@mail.gmail.com>
+Subject: Re: [GIT PULL] Please pull RDMA subsystem changes
+To:     Jason Gunthorpe <jgg@mellanox.com>
+Cc:     Doug Ledford <dledford@redhat.com>,
+        "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, Apr 28, 2019 at 4:52 AM Jason Gunthorpe <jgg@mellanox.com> wrote:
+>
+> Nothing particularly special here. There is a small merge conflict
+> with Adrea's mm_still_valid patches which is resolved as below:
+
+I still don't understand *why* you play the crazy VM games to begin with.
+
+What's wrong with just returning SIGBUS? Why does that
+rdma_umap_fault() not just look like this one-liner:
+
+        return VM_FAULT_SIGBUS;
+
+without the crazy parts? Nobody ever explained why you'd want to have
+that silly "let's turn it into a bogus anonymous mapping".
+
+I've pulled this, but why do the rdma and SCSI people always do these
+strange and pointless things?
+
+                  Linus

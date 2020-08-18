@@ -1,0 +1,89 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp1967180lfc;
+        Sun, 19 Jan 2020 16:12:38 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwT+88+1+5v/fzmXGXCudq+xVIkuATYcBtd0eLY/CbHIQp9bLsyPoj5B8fCIYGeZ2S7nYz7
+X-Received: by 2002:aca:49d5:: with SMTP id w204mr4225682oia.40.1579479158484;
+        Sun, 19 Jan 2020 16:12:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579479158; cv=none;
+        d=google.com; s=arc-20160816;
+        b=HM/Q+Q09EvEcs7VyESA3pD5EgAHcsK/tN90h+IotmkeXFIsV/4JJskS7qFmYWYEAsK
+         5LtaYVDS6voWVjgCAzsA6mmoGS+6qjgEhstufQiU51iCL1RMoaDX8dyhXedHHboo2v0s
+         eL1ibKEPmFIvPpofUcVv4rblSh3vyNYh4DXowpKr0jpTlAUZGORwfrFl2VkR3bLAWrQS
+         bPz9kMGkn6Ffy/58sGkGFn1zZw6DUm2EQZxWvKAPFJg+R13SncPvTZ7NJ0FE6/dU3uv/
+         ibA1pM9o5tNWbGRoQnsQi+PnqZ8u+fuNKUVWg5KmyT+YxTi2ty0uLhqQMKwZOwr/dUuD
+         B9Lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date;
+        bh=7Ti0ELETOsrKxbNvQ3RyZNG9ouuNzdx/x3bu1whA6e0=;
+        b=kj7Yo3Xv++NTDcIK5vCdM57emmru6Xlvpm20qbBoISm2okdGIuqptYOE1vMXCHmQOZ
+         kvLI9509hb2Yu7kPuyzadH5Fo7riDtiEz51zrnElaVowh+ynqMCQQZWBTm1pZXFk0U+p
+         hNTqqxq+dL/lRMXZadh9QgpjhsDt5yEftSvRRERyFPKCaRw84C6JJBRpE3gkUFPZOhN4
+         GS8c0kog8K9R0m//O9n6KxpYTPEmGagCSIb7vBaIDlydG/XU81WZEjVMAJILN6KKsTm1
+         ZoSL9eNWQEC8r97LuILrye8h5LG+8KILeVfnTdRTvkkXsYrIzfxDD4Bb51wtft6IPqSQ
+         ++Ow==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id g8si16714300oia.262.2020.01.19.16.12.12;
+        Sun, 19 Jan 2020 16:12:38 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728981AbgATAJf (ORCPT <rfc822;goerzh01@gmail.com> + 99 others);
+        Sun, 19 Jan 2020 19:09:35 -0500
+Received: from zeniv.linux.org.uk ([195.92.253.2]:40428 "EHLO
+        ZenIV.linux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728841AbgATAJf (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 19 Jan 2020 19:09:35 -0500
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1itKdH-00BiuV-9B; Mon, 20 Jan 2020 00:09:31 +0000
+Date:   Mon, 20 Jan 2020 00:09:31 +0000
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali.rohar@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        "Theodore Y. Ts'o" <tytso@mit.edu>,
+        OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>,
+        Namjae Jeon <linkinjeon@gmail.com>,
+        Gabriel Krisman Bertazi <krisman@collabora.com>
+Subject: Re: vfat: Broken case-insensitive support for UTF-8
+Message-ID: <20200120000931.GX8904@ZenIV.linux.org.uk>
+References: <20200119221455.bac7dc55g56q2l4r@pali>
+ <20200119230809.GW8904@ZenIV.linux.org.uk>
+ <20200119233348.es5m63kapdvyesal@pali>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200119233348.es5m63kapdvyesal@pali>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Jan 20, 2020 at 12:33:48AM +0100, Pali Rohár wrote:
+
+> > Does the behaviour match how Windows handles that thing?
+> 
+> Linux behavior does not match Windows behavior.
+> 
+> On Windows is FAT32 (fastfat.sys) case insensitive and file names "č"
+> and "Č" are treated as same file. Windows does not allow you to create
+> both files. It says that file already exists.
+
+So how is the mapping specified in their implementation?  That's
+obviously the mapping we have to match.
+
+> > That's the only reason to support that garbage at all...
+> 
+> What do you mean by garbage?
+
+Case-insensitive anything... the only reason to have that crap at all
+is that native implementations are basically forcing it as fs
+image correctness issue.  It's worthless on its own merits, but
+we can't do something that amounts to corrupting fs image when
+we access it for write.

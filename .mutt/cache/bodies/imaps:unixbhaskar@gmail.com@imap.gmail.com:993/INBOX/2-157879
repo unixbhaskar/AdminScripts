@@ -1,0 +1,329 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.80.161.230 with SMTP id 93csp4326659edk;
+        Wed, 29 Nov 2017 03:12:20 -0800 (PST)
+X-Received: by 10.28.95.7 with SMTP id t7mr2343900wmb.86.1511953940899;
+        Wed, 29 Nov 2017 03:12:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1511953940; cv=none;
+        d=google.com; s=arc-20160816;
+        b=jiUAAKntTd8nq3H4HUxyevsoFKT4fZPx9wTNjiStBTzbGuBtp2KTWFcMLl5abRGVUT
+         P7mBNoveASrjQHjZ4Xoe7wFVo6te+et/n5LRLgQapOSh6H4K4W9Kptc7c9fm4ET9iaQd
+         qoQzFMGX6yC91ytg8N1G157F2RQi/R9dKacwjJhBQng1rjsvP/X8Klb9anzs9GXUz8I5
+         GXiLmODKanPIOuyny1SASzH9TUusqrkEcs2r44KLEBxAXbVE9ALA+A8rpLWp6neFrJSS
+         rOCmXG1gFIOEqes8g/dTABPUPWuzRJuuZNVw96UleAWLiFN+V4qxWTdW8k+KAgl51YBh
+         7SWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-subscribe:list-archive:list-help:list-post
+         :list-id:mailing-list:precedence:reply-to:date:message-id:subject
+         :from:to:mime-version:dkim-signature:arc-authentication-results;
+        bh=rhElX9tA1yayhKGI4XojBAU3WscgPv4u8p/dg5hDEAY=;
+        b=g4egRKS6yMoTT6xMOm/obhdVK9Gw/tB+4H6gBj4wUf2JM4qBfMl8CpYY/3R226Rntc
+         OeUnT9eKrqMZ6kturHQylBjG0Fdd2fSXd8aQCDtFlsi0H9htLTMV/h8TUJdiJQrQxQeV
+         OL7P9J3GyQACPM4zV5ZsBS4vEWB7wqibMvaHq5brh8NDdgnV9ohmtI0rYbI1UgBw3O97
+         wefzLQnB9UDva51gNjNJxY42F2124WUDoAfkJbYqrg/Ag1HYbadNl5QcNuzAbHsOWrEs
+         BH9lV5RuPMJF1ySofMZliYeJlK5gEFMrx5MSKDPqR1bj60A36QEprCCEDYlVQHQe1FQN
+         hm5Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@googlegroups.com header.s=20161025 header.b=sHsCupSu;
+       spf=pass (google.com: domain of puppet-users+bncbcv6vp4xtuprbcvm7liakgqef77xwba@googlegroups.com designates 209.85.220.55 as permitted sender) smtp.mailfrom=puppet-users+bncBCV6VP4XTUPRBCVM7LIAKGQEF77XWBA@googlegroups.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=googlegroups.com
+Return-Path: <puppet-users+bncBCV6VP4XTUPRBCVM7LIAKGQEF77XWBA@googlegroups.com>
+Received: from mail-sor-f55.google.com (mail-sor-f55.google.com. [209.85.220.55])
+        by mx.google.com with SMTPS id y142sor427380wmd.17.2017.11.29.03.12.20
+        (Google Transport Security);
+        Wed, 29 Nov 2017 03:12:20 -0800 (PST)
+Received-SPF: pass (google.com: domain of puppet-users+bncbcv6vp4xtuprbcvm7liakgqef77xwba@googlegroups.com designates 209.85.220.55 as permitted sender) client-ip=209.85.220.55;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@googlegroups.com header.s=20161025 header.b=sHsCupSu;
+       spf=pass (google.com: domain of puppet-users+bncbcv6vp4xtuprbcvm7liakgqef77xwba@googlegroups.com designates 209.85.220.55 as permitted sender) smtp.mailfrom=puppet-users+bncBCV6VP4XTUPRBCVM7LIAKGQEF77XWBA@googlegroups.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=googlegroups.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlegroups.com; s=20161025;
+        h=mime-version:to:from:subject:message-id:date:x-original-sender
+         :reply-to:precedence:mailing-list:list-id:list-post:list-help
+         :list-archive:list-subscribe:list-unsubscribe;
+        bh=rhElX9tA1yayhKGI4XojBAU3WscgPv4u8p/dg5hDEAY=;
+        b=sHsCupSuGAbV+8Om0q914YTkA/xbuI+mhh60kmTSILXrUoB0umVjkeVyoxwXomjj30
+         9CHKTSbkXelQyS5VlgaeJ6Cszrkdhl3yPZrFtTmmnIXbqs+AhTGi2pHJ3++9LWsEvq5+
+         GwzPhMS9wFZ8jY9OsKGYPJ+vTWbKOgebEUSAvhOfFO9+vN2LvghG8FFwnOFL1G9/ZOdH
+         4fsT2VZ62o9CGz2XK2LVdDCiASR+pZvNuu/YrBkzr61fh6IThZJae4R5VR2FVm3sgbR6
+         vO7PXwFpGtFEFV22jipHEA2f4FppFWsNfSiU26XXJE98WfgMbaWXQurlUrE7S/3IIxOt
+         AFVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:to:from:subject:message-id:date
+         :x-original-sender:reply-to:precedence:mailing-list:list-id
+         :list-post:list-help:list-archive:list-subscribe:list-unsubscribe;
+        bh=rhElX9tA1yayhKGI4XojBAU3WscgPv4u8p/dg5hDEAY=;
+        b=m5ScPgT7QjiA3fSwR7ZSn1Yy+d5r9nD6Rr9op1c/itCZrQnQZFwlsiZdRwb/cUZuI3
+         6wprDzj9NUjtz3olEGzMWqbDQDzeGoAGjSRumCP2kqPhnKjX3Ac1mA9aySd3X6Wwr3Mg
+         eFmq7kY0SPI7IdhZFJYMOUhFBepbYsNRmDWq/DGshGtytXgzSXBN+YsuPtzf4ox6OwoS
+         7iPzTJNHbR/BYdPShvMunoLPCyp8bnEvcFYzhEKNAUolsmUuHY6hx+XaB03LHTJEWtti
+         5mf8XdJYQTGeUQUN9S4rt6mxnnhwTPLbsYjR2/v+oXvYm+vKLA1WWYy/y3Iif7tjS3Sh
+         Ezvg==
+X-Gm-Message-State: AJaThX4cdrUDiPRz8y2R4V6XvgEAIhnl1Nt1k9HNR9No5rp6sB67iCPR
+	gomOADiWMqdxVkm9aeTAahA=
+X-Google-Smtp-Source: AGs4zMYZrSXYEcUOE8WD3IgzYg6ePgw+ndok9Z69KF+qUnPIZTIuNyntrqgw3riPc8SM179K4Gjh/w==
+X-Received: by 10.28.94.145 with SMTP id s139mr22684wmb.5.1511953940355;
+        Wed, 29 Nov 2017 03:12:20 -0800 (PST)
+X-BeenThere: puppet-users@googlegroups.com
+Received: by 10.223.199.201 with SMTP id y9ls5086621wrg.10.gmail; Wed, 29 Nov
+ 2017 03:12:10 -0800 (PST)
+X-Received: by 10.223.169.39 with SMTP id u36mr210346wrc.26.1511953930141;
+        Wed, 29 Nov 2017 03:12:10 -0800 (PST)
+MIME-Version: 1.0
+To: Abridged recipients <puppet-users@googlegroups.com>
+From: puppet-users@googlegroups.com
+Subject: [Puppet Users] Abridged summary of puppet-users@googlegroups.com - 2
+ updates in 2 topics
+Message-ID: <001a113c59e4ec3c69055f1d34e7@google.com>
+Date: Wed, 29 Nov 2017 11:12:10 +0000
+Content-Type: multipart/alternative; boundary=0016367f94b4b30060474d22062
+X-Original-Sender: puppet-users@googlegroups.com
+Reply-To: puppet-users@googlegroups.com
+Precedence: list
+Mailing-list: list puppet-users@googlegroups.com; contact puppet-users+owners@googlegroups.com
+List-ID: <puppet-users.googlegroups.com>
+X-Google-Group-Id: 1072985797931
+List-Post: <https://groups.google.com/group/puppet-users/post>, <mailto:puppet-users@googlegroups.com>
+List-Help: <https://groups.google.com/support/>, <mailto:puppet-users+help@googlegroups.com>
+List-Archive: <https://groups.google.com/group/puppet-users
+List-Subscribe: <https://groups.google.com/group/puppet-users/subscribe>, <mailto:puppet-users+subscribe@googlegroups.com>
+List-Unsubscribe: <mailto:googlegroups-manage+1072985797931+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/group/puppet-users/subscribe>
+
+--0016367f94b4b30060474d22062
+Content-Type: text/plain; charset="UTF-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: base64
+
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT0KVG9kYXkncyB0b3BpYyBzdW1tYXJ5Cj09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09CgpHcm91cDogcHVwcGV0LXVzZXJzQGdvb2dsZWdyb3Vwcy5jb20KVXJsOiAKICBodHRw
+czovL2dyb3Vwcy5nb29nbGUuY29tL2ZvcnVtLz91dG1fc291cmNlPWRpZ2VzdCZ1dG1fbWVkaXVt
+PWVtYWlsIyFmb3J1bS9wdXBwZXQtdXNlcnMvdG9waWNzCgoKICAtIFNNQkZTIFNoYXJlIGluIEZp
+bmRlciBTaWRlYmFyPyBbMSBVcGRhdGVdCiAgICBodHRwOi8vZ3JvdXBzLmdvb2dsZS5jb20vZ3Jv
+dXAvcHVwcGV0LXVzZXJzL3QvZjE2NjkzZDJmYjFkNGVlMwogIC0gaGllcmEgY2FuJ3QgZmluZCBm
+YWN0cyB0byByZWFkIGhpZXJhcmNoeSBmaWxlcz8gWzEgVXBkYXRlXQogICAgaHR0cDovL2dyb3Vw
+cy5nb29nbGUuY29tL2dyb3VwL3B1cHBldC11c2Vycy90L2Y0NTQxOGIwNmJhMDBmZWYKCgo9PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PQpUb3BpYzogU01CRlMgU2hhcmUgaW4gRmluZGVyIFNpZGViYXI/ClVy
+bDogaHR0cDovL2dyb3Vwcy5nb29nbGUuY29tL2dyb3VwL3B1cHBldC11c2Vycy90L2YxNjY5M2Qy
+ZmIxZDRlZTMKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCi0tLS0tLS0tLS0gMSBvZiAxIC0tLS0tLS0t
+LS0KRnJvbTogbXRheWxvckBseWdvcy5jb20KRGF0ZTogTm92IDI4IDA0OjQyUE0gLTA4MDAKVXJs
+OiBodHRwOi8vZ3JvdXBzLmdvb2dsZS5jb20vZ3JvdXAvcHVwcGV0LXVzZXJzL21zZy8yMWY0Y2U1
+ZmNmMzkKCkkgdHJpZWQgKm1hbnkqIGRpZmZlcmVudCBpbnZvY2F0aW9ucyBvZiB0aGUgbW91bnQg
+bW9kdWxlIGZyb20gdy9pIG15IA0KbWFuaWZlc3QgdG8gbm8gYXZhaWwuIA0KSG93ZXZlciwgSSBn
+b3QgaXQgd29ya2luZyBieSB3cml0aW5nIGFuIEFwcGxlc2NyaXB0IG9uZS1saW5lcjoNCg0KdGVs
+bCBhcHBsaWNhdGlvbiAiRmluZGVyIiB0byBvcGVuCgoKPT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KVG9w
+aWM6IGhpZXJhIGNhbid0IGZpbmQgZmFjdHMgdG8gcmVhZCBoaWVyYXJjaHkgZmlsZXM/ClVybDog
+aHR0cDovL2dyb3Vwcy5nb29nbGUuY29tL2dyb3VwL3B1cHBldC11c2Vycy90L2Y0NTQxOGIwNmJh
+MDBmZWYKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT0KCi0tLS0tLS0tLS0gMSBvZiAxIC0tLS0tLS0tLS0K
+RnJvbTogU2VhbiA8c21hbGRlcjczQGdtYWlsLmNvbT4KRGF0ZTogTm92IDI4IDAxOjUzUE0gLTA4
+MDAKVXJsOiBodHRwOi8vZ3JvdXBzLmdvb2dsZS5jb20vZ3JvdXAvcHVwcGV0LXVzZXJzL21zZy8x
+OGMyN2JlMDQ5MWUKCu+/vO+/vEhpLA0KSSdtIHF1aXRlIGNvbmZ1c2VkIGFib3V0IGhvdyBJIGNv
+dWxkIGhhdmUgY3JlYXRlZCB0aGlzIHByb2JsZW0uICBJIGhhdmUgYSANCm1vZHVsZSB3ZSdsbCBj
+YWxsIGl0ICJ0ZXN0IiB3aGljaCBoYXMgYmVlbiB1c2luZyBIaWVyYSB2NSBtb2R1bGUgZGF0YSBm
+b3IgDQp0aGUgbGFzdCBjb3VwbGUgb2YgcmVsZWFzZXMuLi50aGlzCgoKCgoKLS0KWW91IHJlY2Vp
+dmVkIHRoaXMgZGlnZXN0IGJlY2F1c2UgeW91J3JlIHN1YnNjcmliZWQgdG8gdXBkYXRlcyBmb3Ig
+dGhpcyBncm91cC4gWW91IGNhbiBjaGFuZ2UgeW91ciBzZXR0aW5ncyBvbiB0aGUgZ3JvdXAgbWVt
+YmVyc2hpcCBwYWdlOiAKICBodHRwczovL2dyb3Vwcy5nb29nbGUuY29tL2ZvcnVtLz91dG1fc291
+cmNlPWRpZ2VzdCZ1dG1fbWVkaXVtPWVtYWlsIyFmb3J1bS9wdXBwZXQtdXNlcnMvam9pbgouClRv
+IHVuc3Vic2NyaWJlIGZyb20gdGhpcyBncm91cCBhbmQgc3RvcCByZWNlaXZpbmcgZW1haWxzIGZy
+b20gaXQgc2VuZCBhbiBlbWFpbCB0byBwdXBwZXQtdXNlcnMrdW5zdWJzY3JpYmVAZ29vZ2xlZ3Jv
+dXBzLmNvbS4KCg==
+--0016367f94b4b30060474d22062
+Content-Type: text/html; charset="UTF-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+<div style=3D"border:1px solid #d3d3d3;max-width:850px;font-family:Arial,sa=
+ns-serif;color:#000000;">
+  <div style=3D"background-color:#f5f5f5;padding:10px 20px">
+    <table cellpadding=3D"0" cellspacing=3D"0" style=3D"width:100%">
+      <tbody>
+        <tr>
+          <td style=3D"width:70%">
+            <span style=3D"font:18px/20px arial;color:#333333">
+              <a href=3D"
+  https://groups.google.com/forum/?utm_source=3Ddigest&utm_medium=3Demail#!=
+forum/puppet-users/topics
+" style=3D"text-decoration:none; color:#333333">
+              puppet-users@googlegroups.com</a>
+            </span>
+          </td>
+          <td style=3D"text-align:right;width:30%">
+            <span style=3D"font:20px/24px arial"><a style=3D"color:#dd4b39;=
+ text-decoration:none;" href=3D"https://groups.google.com/forum/?utm_source=
+=3Ddigest&utm_medium=3Demail/#!overview" target=3D"_blank">Google Groups</a=
+></span>
+          </td>
+          <td style=3D"width:32px;">
+            <a href=3D"https://groups.google.com/forum/?utm_source=3Ddigest=
+&utm_medium=3Demail/#!overview" target=3D"_blank"><img style=3D"border:0;ve=
+rtical-align:middle"
+                src=3D"http://www.google.com/images/icons/product/groups-32=
+.png"></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style=3D"padding:20px; background-color: #f5f5f5;">
+
+
+<div style=3D"font-family: arial; color: #222222; padding: 0px">
+  <a name=3D"digest_top" style=3D"font-size:21px;">
+ =20
+    Today's topic summary
+ =20
+ =20
+  </a><br>
+  <span style=3D"font-size:11px">
+    <a style=3D"color:#1155cc;text-decoration:none" href=3D"
+  https://groups.google.com/forum/?utm_source=3Ddigest&utm_medium=3Demail#!=
+forum/puppet-users/topics
+">View all topics</a>
+  </span>
+</div>
+<div style=3D"font: 13px/18px arial; color:#222222; padding: 0px; margin-bo=
+ttom:30px">
+  <ul style=3D"margin-left:3px; padding-left:0px">
+ =20
+    <li>
+      <a style=3D"color:#1155cc;text-decoration:none" href=3D"#group_thread=
+_0">
+      SMBFS Share in Finder Sidebar?</a> -
+      <span style=3D"color:#777777">1 Update</span>
+    </li>
+ =20
+    <li>
+      <a style=3D"color:#1155cc;text-decoration:none" href=3D"#group_thread=
+_1">
+      hiera can&#39;t find facts to read hierarchy files?</a> -
+      <span style=3D"color:#777777">1 Update</span>
+    </li>
+ =20
+  </ul>
+</div>
+
+
+
+ =20
+  <a name=3D"group_thread_0"></a>
+  <div style=3D"display:inline-block; font-family: arial; padding: 4px 0 5p=
+x 0px;">
+ =20
+    <a target=3D"_blank" href=3D"http://groups.google.com/group/puppet-user=
+s/t/f16693d2fb1d4ee3?utm_source=3Ddigest&utm_medium=3Demail" style=3D"font-=
+size:21px; color:#1155CC; text-decoration:none">
+      SMBFS Share in Finder Sidebar?
+    </a>
+ =20
+  </div>
+
+  <table style=3D"border-collapse: collapse; width: 100%">
+   =20
+    <tr><td style=3D"background-color: #FFFFFF; color:#2E2E2E; font-family:=
+ arial; padding:10px 15px; border:1px solid #d3d3d3;">
+      <span style=3D"color:#B1B0B0; font-size: 15px;">
+        mtaylor@lygos.com: Nov 28 04:42PM -0800
+      </span>
+      <br /><br />
+      I tried *many* different invocations of the mount module from w/i my =
+<br />
+manifest to no avail. <br />
+However, I got it working by writing an Applescript one-liner:<br />
+&nbsp;<br />
+tell application &quot;Finder&quot; to open
+     =20
+        <span style=3D"font-size:11px;"><a style=3D"color:#1155cc;text-deco=
+ration:none" href=3D"http://groups.google.com/group/puppet-users/msg/21f4ce=
+5fcf39?utm_source=3Ddigest&utm_medium=3Demail">...more</a></span>
+        <br />
+     =20
+    </td></tr>
+   =20
+  </table>
+  <div style=3D"align:right; font-size:11px; margin-bottom: 40px; margin-to=
+p:5px;">
+    <a style=3D"color:#1155cc;text-decoration:none" href=3D"#digest_top">Ba=
+ck to top</a>
+  </div>
+
+
+ =20
+  <a name=3D"group_thread_1"></a>
+  <div style=3D"display:inline-block; font-family: arial; padding: 4px 0 5p=
+x 0px;">
+ =20
+    <a target=3D"_blank" href=3D"http://groups.google.com/group/puppet-user=
+s/t/f45418b06ba00fef?utm_source=3Ddigest&utm_medium=3Demail" style=3D"font-=
+size:21px; color:#1155CC; text-decoration:none">
+      hiera can&#39;t find facts to read hierarchy files?
+    </a>
+ =20
+  </div>
+
+  <table style=3D"border-collapse: collapse; width: 100%">
+   =20
+    <tr><td style=3D"background-color: #FFFFFF; color:#2E2E2E; font-family:=
+ arial; padding:10px 15px; border:1px solid #d3d3d3;">
+      <span style=3D"color:#B1B0B0; font-size: 15px;">
+        Sean &lt;smalder73@gmail.com&gt;: Nov 28 01:53PM -0800
+      </span>
+      <br /><br />
+      =EF=BF=BC=EF=BF=BCHi,<br />
+I&#39;m quite confused about how I could have created this problem.  I have=
+ a <br />
+module we&#39;ll call it &quot;test&quot; which has been using Hiera v5 mod=
+ule data for <br />
+the last couple of releases...this
+     =20
+        <span style=3D"font-size:11px;"><a style=3D"color:#1155cc;text-deco=
+ration:none" href=3D"http://groups.google.com/group/puppet-users/msg/18c27b=
+e0491e?utm_source=3Ddigest&utm_medium=3Demail">...more</a></span>
+        <br />
+     =20
+    </td></tr>
+   =20
+  </table>
+  <div style=3D"align:right; font-size:11px; margin-bottom: 40px; margin-to=
+p:5px;">
+    <a style=3D"color:#1155cc;text-decoration:none" href=3D"#digest_top">Ba=
+ck to top</a>
+  </div>
+
+
+
+
+  </div>
+  <div style=3D"background-color: #f5f5f5;padding: 5px 20px;">
+  <table cellpadding=3D"0" cellspacing=3D"0" style=3D"width:100%">
+  <tbody><tr>
+    <td style=3D"padding-top:4px;font-family:arial,sans-serif;color:#636363=
+;font-size:11px">
+     =20
+      You received this digest because you're subscribed to updates for thi=
+s group. You can change your settings on the <a href=3D"
+  https://groups.google.com/forum/?utm_source=3Ddigest&utm_medium=3Demail#!=
+forum/puppet-users/join
+" style=3D"color:#1155cc;text-decoration:none">group membership page</a>.<b=
+r/>
+      To unsubscribe from this group and stop receiving emails from it send=
+ an email to <a href=3D"mailto:puppet-users+unsubscribe@googlegroups.com">p=
+uppet-users+unsubscribe@googlegroups.com</a>.
+    </td>
+  </tr></tbody>
+  </table>
+  </div>
+</div>
+
+
+--0016367f94b4b30060474d22062--
+
+

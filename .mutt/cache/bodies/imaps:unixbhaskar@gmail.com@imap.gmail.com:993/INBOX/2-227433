@@ -1,0 +1,323 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:41c8:0:0:0:0:0 with SMTP id o191csp2744822lfa;
+        Mon, 9 Mar 2020 11:38:43 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vvnnKhrTUcZSJqJUYYbdNKycVaGhNcP/aDsMu8d2Wa2WPD2BEKgPInv2NAoC07LihTyEBuH
+X-Received: by 2002:a05:6830:23b6:: with SMTP id m22mr8538072ots.225.1583779123445;
+        Mon, 09 Mar 2020 11:38:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1583779123; cv=none;
+        d=google.com; s=arc-20160816;
+        b=UsljjZEFrnWuPzEmVNWLVez4HKWTld8bs4sOM//xJkzp2HLbbmyK3guDtKUuQy9MMP
+         Mp97vfoet5Bo+HIez9HE9qz7ItCAwvV/DWHqVOIdtVO0YLRW521vCE7I84iD0Vb/y9bL
+         OxXuS0Bs3dDJd5u1lb3cKEfzE+Wx7y8DVJ4+uEpr6ESuQLl3aFy5wCl9JelRVGXioaFq
+         D4o2mPEGsaq0dlcwPsc+xPq6k5S/2z6rpE2j8y+Kb3uQHj1R6VvLHTsNRXMLUBarY/cv
+         jlsL6epMApIIWvSm/udZ8WzQqELjXlOW1qXnhaiDnIZA3V85iGcCI/IgeTuHFVcrhM+B
+         TTDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:thread-index:thread-topic
+         :content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:from:date:dkim-signature:dkim-filter;
+        bh=LlMp/GiagSXQO14+DKtDRbpQgsE6J0YT3BptXSLeEE0=;
+        b=LJdBSBU0rdfbLzqHJnJEmub44aHbfZ5o5Knh1gbHlGZz/n22RyunFjt/PCA6fWYSZP
+         cPKfSXL7CA+dvnym5mIuWIKQwNpH8EFV4FSkz30uu2rEq8iCgG2gnY8IWJan9yAz50gS
+         /V0xN8RzkfQenzBo3WIpagS+CAnS5OTCadz9wkNZ12JEt4SZDIkHmP8JpedHB27B7dGm
+         vP2xMmHXxocC9wfl1QMf+YJC/qeHETTKojMVHqhV50sMiA2umVaIHSIsQC+uctYfRXp9
+         bqFROR/U8aMMYyAUQStLiHJs4lSBF3LyqjGeEhTKv9IbvueFt0eEUD2jfphZ26CLkvKl
+         4xYw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@efficios.com header.s=default header.b="E/dWLRr9";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=efficios.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id k80si181684oih.261.2020.03.09.11.38.35;
+        Mon, 09 Mar 2020 11:38:43 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@efficios.com header.s=default header.b="E/dWLRr9";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=efficios.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727467AbgCIShn (ORCPT <rfc822;ut0s.dev@gmail.com> + 69 others);
+        Mon, 9 Mar 2020 14:37:43 -0400
+Received: from mail.efficios.com ([167.114.26.124]:34780 "EHLO
+        mail.efficios.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727335AbgCIShn (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 9 Mar 2020 14:37:43 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.efficios.com (Postfix) with ESMTP id 13B9C26841E;
+        Mon,  9 Mar 2020 14:37:41 -0400 (EDT)
+Received: from mail.efficios.com ([127.0.0.1])
+        by localhost (mail03.efficios.com [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id GCS7b8QlowXb; Mon,  9 Mar 2020 14:37:40 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.efficios.com (Postfix) with ESMTP id 84ED3268618;
+        Mon,  9 Mar 2020 14:37:40 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.efficios.com 84ED3268618
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=efficios.com;
+        s=default; t=1583779060;
+        bh=LlMp/GiagSXQO14+DKtDRbpQgsE6J0YT3BptXSLeEE0=;
+        h=Date:From:To:Message-ID:MIME-Version;
+        b=E/dWLRr9nb4mhf7qiIQrr8pOkdvITE6IQAFGtTnM+Vq0MXZSOP/sL4pAooiGNlZTb
+         /d8TiGa2vg4QVetHEIzysqa8glGve42yESAlu9qryMhZAHygQMeEKzpN2w4koE26uz
+         XUZc84KZiC8E5Gy/wDj4oJjyiFoa7IMSKVdr2CDm1QlQiLbdZO/FRW3XEFnxXRXGr9
+         rgRpuRX6fFhoJTKBPW8WA12VANg3HuvNABY6NDlspOESsVZtMAYmLq2hiimOwF5Tu3
+         F7WjhQnC6Nz0TPNu88UQyx3fSCs/hAHRS55JzCIHP9Ox7qgB5YwBcmI/lzrdSF8sFp
+         l1MEV7zTjGWqw==
+X-Virus-Scanned: amavisd-new at efficios.com
+Received: from mail.efficios.com ([127.0.0.1])
+        by localhost (mail03.efficios.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id tegojSwnYypZ; Mon,  9 Mar 2020 14:37:40 -0400 (EDT)
+Received: from mail03.efficios.com (mail03.efficios.com [167.114.26.124])
+        by mail.efficios.com (Postfix) with ESMTP id 6A9BF26841D;
+        Mon,  9 Mar 2020 14:37:40 -0400 (EDT)
+Date:   Mon, 9 Mar 2020 14:37:40 -0400 (EDT)
+From:   Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+To:     Thomas Gleixner <tglx@linutronix.de>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        rostedt <rostedt@goodmis.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Alexei Starovoitov <ast@kernel.org>,
+        paulmck <paulmck@kernel.org>,
+        "Joel Fernandes, Google" <joel@joelfernandes.org>,
+        Frederic Weisbecker <frederic@kernel.org>
+Message-ID: <1403546357.21810.1583779060302.JavaMail.zimbra@efficios.com>
+In-Reply-To: <87mu8p797b.fsf@nanos.tec.linutronix.de>
+References: <87mu8p797b.fsf@nanos.tec.linutronix.de>
+Subject: Re: Instrumentation and RCU
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [167.114.26.124]
+X-Mailer: Zimbra 8.8.15_GA_3901 (ZimbraWebClient - FF73 (Linux)/8.8.15_GA_3895)
+Thread-Topic: Instrumentation and RCU
+Thread-Index: ICHphKJwuuoVM3BZQGg2yVi7BdLxrQ==
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+----- On Mar 9, 2020, at 1:02 PM, Thomas Gleixner tglx@linutronix.de wrote:
+
+> Folks,
+> 
+> I'm starting a new conversation because there are about 20 different
+> threads which look at that problem in various ways and the information
+> is so scattered that creating a coherent picture is pretty much
+> impossible.
+> 
+> There are several problems to solve:
+> 
+>   1) Fragile low level entry code
+> 
+>   2) Breakpoint utilization
+> 
+>   3) RCU idle
+> 
+>   4) Callchain protection
+> 
+> #1 Fragile low level entry code
+> 
+>   While I understand the desire of instrumentation to observe
+>   everything we really have to ask the question whether it is worth the
+>   trouble especially with entry trainwrecks like x86, PTI and other
+>   horrors in that area.
+> 
+>   I don't think so and we really should just bite the bullet and forbid
+>   any instrumentation in that code unless it is explicitly designed
+>   for that case, makes sense and has a real value from an observation
+>   perspective.
+> 
+>   This is very much related to #3..
+
+Do I understand correctly that you intend on moving all kernel low level
+entry/exit code into sections which cannot be instrumented by kprobes nor
+the function tracer, and require explicit whitelisting, either through
+annotations or use of explicit tracepoints ?
+
+> 
+> #2) Breakpoint utilization
+> 
+>    As recent findings have shown, breakpoint utilization needs to be
+>    extremly careful about not creating infinite breakpoint recursions.
+> 
+>    I think that's pretty much obvious, but falls into the overall
+>    question of how to protect callchains.
+
+I think there is another question that arises here: the lack of automated
+continuous testing of the kprobes coverage. We have performed some testing of
+various random permutations of kprobes instrumentation, and have succeeded in
+crashing the kernel in various ways. Unfortunately, that testing is not done
+on a continuous basis, and maintainers understandably have little spare time
+to play the whack-a-mole game of adding missing nokprobes annotations as
+the kernel code evolves.
+
+> 
+> #3) RCU idle
+> 
+>    Being able to trace code inside RCU idle sections is very similar to
+>    the question raised in #1.
+> 
+>    Assume all of the instrumentation would be doing conditional RCU
+>    schemes, i.e.:
+> 
+>    if (rcuidle)
+>    	....
+>    else
+>        rcu_read_lock_sched()
+> 
+>    before invoking the actual instrumentation functions and of course
+>    undoing that right after it, that really begs the question whether
+>    it's worth it.
+> 
+>    Especially constructs like:
+> 
+>    trace_hardirqs_off()
+>       idx = srcu_read_lock()
+>       rcu_irq_enter_irqson();
+>       ...
+>       rcu_irq_exit_irqson();
+>       srcu_read_unlock(idx);
+> 
+>    if (user_mode)
+>       user_exit_irqsoff();
+>    else
+>       rcu_irq_enter();
+> 
+>    are really more than questionable. For 99.9999% of instrumentation
+>    users it's absolutely irrelevant whether this traces the interrupt
+>    disabled time of user_exit_irqsoff() or rcu_irq_enter() or not.
+> 
+>    But what's relevant is the tracer overhead which is e.g. inflicted
+>    with todays trace_hardirqs_off/on() implementation because that
+>    unconditionally uses the rcuidle variant with the scru/rcu_irq dance
+>    around every tracepoint.
+
+I think one of the big issues here is that most of the uses of
+trace_hardirqs_off() are from sites which already have RCU watching,
+so we are doing heavy-weight operations for nothing.
+
+I strongly suspect that most of the overhead we've been trying to avoid when
+introducing use of SRCU in rcuidle tracepoints was actually caused by callsites
+which use rcuidle tracepoints while having RCU watching, just because there is a
+handful of callsites which don't have RCU watching. This is confirmed
+by the commit message of commit e6753f23d9 "tracepoint: Make rcuidle
+tracepoint callers use SRCU":
+
+   "In recent tests with IRQ on/off tracepoints, a large performance
+    overhead ~10% is noticed when running hackbench. This is root caused to
+    calls to rcu_irq_enter_irqson and rcu_irq_exit_irqson from the
+    tracepoint code. Following a long discussion on the list [1] about this,
+    we concluded that srcu is a better alternative for use during rcu idle.
+    Although it does involve extra barriers, its lighter than the sched-rcu
+    version which has to do additional RCU calls to notify RCU idle about
+    entry into RCU sections.
+[...]
+    Test: Tested idle and preempt/irq tracepoints."
+
+So I think we could go back to plain RCU for rcuidle tracepoints if we do
+the cheaper "rcu_is_watching()" check rather than invoking
+rcu_irq_{enter,exit}_irqson() unconditionally.
+
+>    Even if the tracepoint sits in the ASM code it just covers about ~20
+>    low level ASM instructions more. The tracer invocation, which is
+>    even done twice when coming from user space on x86 (the second call
+>    is optimized in the tracer C-code), costs definitely way more
+>    cycles. When you take the scru/rcu_irq dance into account it's a
+>    complete disaster performance wise.
+
+Part of the issue here is the current overhead of SRCU read-side lock,
+which contains memory barriers. The other part of the issue is the fact that
+rcu_irq_{enter,exit}_irqson() contains an atomic_add_return atomic instruction.
+
+We could use the approach proposed by Peterz's and Steven's patches to basically
+do a lightweight "is_rcu_watching()" check for rcuidle tracepoint, and only enable
+RCU for those cases. We could then simply go back on using regular RCU like so:
+
+#define __DO_TRACE(tp, proto, args, cond, rcuidle)                      \
+        do {                                                            \
+                struct tracepoint_func *it_func_ptr;                    \
+                void *it_func;                                          \
+                void *__data;                                           \
+                bool exit_rcu = false;                                  \
+                                                                        \
+                if (!(cond))                                            \
+                        return;                                         \
+                                                                        \
+                if (rcuidle && !rcu_is_watching()) {                    \
+                        rcu_irq_enter_irqson();                         \
+                        exit_rcu = true;                                \
+                }                                                       \
+                preempt_disable_notrace();                              \
+                it_func_ptr = rcu_dereference_raw((tp)->funcs);         \
+                if (it_func_ptr) {                                      \
+                        do {                                            \
+                                it_func = (it_func_ptr)->func;          \
+                                __data = (it_func_ptr)->data;           \
+                                ((void(*)(proto))(it_func))(args);      \
+                        } while ((++it_func_ptr)->func);                \
+                }                                                       \
+                preempt_enable_notrace();                               \
+                if (exit_rcu)                                           \
+                        rcu_irq_exit_irqson();                          \
+        } while (0)
+
+
+
+> #4 Protecting call chains
+> 
+>   Our current approach of annotating functions with notrace/noprobe is
+>   pretty much broken.
+> 
+>   Functions which are marked NOPROBE or notrace call out into functions
+>   which are not marked and while this might be ok, there are enough
+>   places where it is not. But we have no way to verify that.
+> 
+>   That's just a recipe for disaster. We really cannot request from
+>   sysadmins who want to use instrumentation to stare at the code first
+>   whether they can place/enable an instrumentation point somewhere.
+>   That'd be just a bad joke.
+> 
+>   I really think we need to have proper text sections which are off
+>   limit for any form of instrumentation and have tooling to analyze the
+>   calls into other sections. These calls need to be annotated as safe
+>   and intentional.
+
+If we go all the way into that direction, I suspect it might even make sense
+to duplicate some kernel functions so they can still be part of the code which
+can be instrumented, but provide tracing-specific copy which would be hidden
+from instrumentation. I wonder what would be the size cost of this duplication.
+
+In addition to splitting tracing code into a separate section, which I think
+makes sense, I can think of another alternative way to provide call chains
+protection: adding a "in_tracing" flag somewhere alongside each kernel stack.
+Each thread and interrupt stack would have its own flag. However, trap handlers
+should share the "in_tracing" flag with the context which triggers the trap.
+
+If a tracer recurses, or if a tracer attempts to trace another tracer, the
+instrumentation would break the recursion chain by preventing instrumentation
+from firing. If we end up caring about tracers tracing other tracers, we could
+have one distinct flag per tracer and let each tracer break the recursion chain.
+
+Having this flag per kernel stack rather than per CPU or per thread would
+allow tracing of nested interrupt handlers (and NMIs), but would break
+call chains both within the same stack or going through a trap. I think
+it could be a nice complementary safety net to handle mishaps in a non-fatal
+way.
+
+Thanks,
+
+Mathieu
+
+> 
+> Thoughts?
+> 
+> Thanks,
+> 
+>         tglx
+
+-- 
+Mathieu Desnoyers
+EfficiOS Inc.
+http://www.efficios.com

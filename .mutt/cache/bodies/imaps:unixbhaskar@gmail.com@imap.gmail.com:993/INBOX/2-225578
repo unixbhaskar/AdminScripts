@@ -1,0 +1,117 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:2382:0:0:0:0:0 with SMTP id j124csp145858lfj;
+        Thu, 27 Feb 2020 21:25:59 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwnWjPsXj4N9f8SHDF+4rO4Z40z0nkTDU5wQKDtGNuo5SG6WGtscGTZjpt3kK+TbscRHulN
+X-Received: by 2002:a05:6830:2110:: with SMTP id i16mr1895994otc.337.1582867559383;
+        Thu, 27 Feb 2020 21:25:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1582867559; cv=none;
+        d=google.com; s=arc-20160816;
+        b=RZcWM7sYYfKpwXmfQ+bOJG0+mvG1H1jHNQJa8gtt8i8Zfyp/kd9lh6UA5mzI7b9HoI
+         Y6iG+/FG4i37eHVXs+zktKwlBkYAAAzvmNa317Cs/575zhbSwIPiA0HXMF7ycmhAJKOm
+         SUXHG13JpArfKpxyR8REAxCSVjpHhrQDfT9ihKmHWeushJXEiysDTVuN29e9uC4GUKNP
+         PRTL9uzQpehvaMFxefUUMQY/O6FM1OtOawq73U7bNY/xWq9IkwzHDFq31idLU3xH2Pn9
+         EAAQQ5QLxuws3eUcjQtLIxIMAweD9NuZhAM+NDEdqlo5dZ7bFRK5UXRmZkq+4nzIDKl8
+         X+dQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=2bzBaMImUUqw0L+J8P9rtSZngszN+fBGxhpIiKPJlto=;
+        b=tBJCAPihUHd3NAfijo1+G27GJlvG7sUDkD117dgGu+jkQ5873O5aUTerIDs/+58wIh
+         7tma1wwtOWqEMxFR7BDqLndZ658W0w7ua5ZPKcWhEWQUc9NtII1CUUu7Qef1zSfaszYu
+         kYbfN0aNlxBN3Gn8kpEiM93J8AUc6v8cEmwykmjmJo79pRYbMD9GntvWCccKgNPZiT+q
+         QIu7q3MaOWNJ2b9c1VSh2DODYvvDxsfIW7+gi7fiIYSShH71L7iFBqkevNrvXcbUa9js
+         Ne2k+l90JV7aozC4hCLJw4fcaHpe3qXByVEXjSB9Ylh0iIu245RgYhnxuhBA8pkIP2Bo
+         LfNg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b="X+LQq/5d";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id j25si1157740oij.242.2020.02.27.21.25.47;
+        Thu, 27 Feb 2020 21:25:59 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b="X+LQq/5d";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726733AbgB1FXn (ORCPT <rfc822;beyondssmith@gmail.com>
+        + 99 others); Fri, 28 Feb 2020 00:23:43 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:44937 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725862AbgB1FXn (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 28 Feb 2020 00:23:43 -0500
+Received: by mail-wr1-f66.google.com with SMTP id m16so1467395wrx.11
+        for <linux-kernel@vger.kernel.org>; Thu, 27 Feb 2020 21:23:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2bzBaMImUUqw0L+J8P9rtSZngszN+fBGxhpIiKPJlto=;
+        b=X+LQq/5dc1+WU7IMxHldrauMIk+LSaWcqEIzBnnvOGwtu4AX/Jo3G+X6SAqG2ohP+U
+         qDue0EpDgQyxFA9Y+D15Tnbat/jxDMYUDj05V+b0NvlizGE+9e4sq/xwjzZDMO+JK/aP
+         VdqS2/Di9VaYTjQjzfPeQ5+Rvr+zWnH/bYmJ+8dlQwJlISNKXjWXHTem7aTaU3NhKFY4
+         Q11HFyXbV1D312U9lLyZUQB/Mc5/x5Bwnc+SsjaZTyPDcEvkKw5TY+qlYbED68s6TQqp
+         9KD0mzO9o0Knmpuv28m/3/EGYG9tIfBUvvcwIKYtMaAvqnRrgjF34woBECr6wIlcYmxI
+         MMpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2bzBaMImUUqw0L+J8P9rtSZngszN+fBGxhpIiKPJlto=;
+        b=GtY5PEc2Rv4jOD9VVEoh2Pb+NvANKQXiohHzrdQmOm7b0DoUHp/9Chb14yCnkdeaTD
+         wCYDuhnQiMywMyscgpuETc8RBuadu14SZf7Tb9SQDSc+ElhEepZTnk92f4Zt3XQlBnqq
+         rOqVrSKPI7WqvWKyHLV71YpzL2iqVlHRiSuORcpjdwrbL4TzYa7eMkSdlpy8Oitj2XWp
+         Tuzrs3o0tJheFPYchHtc8cTRNjdIyGvAWY8ZmEhlbVh0caEnnhF+3hkDMWrmLoVoWVjs
+         zFI1mjNxUo01SyjKgE5MSPSQvIvJ3DAKLFThf925N5k8Xrjw7pm8Zcnxbx1TOjt4+UQ7
+         uEIw==
+X-Gm-Message-State: APjAAAV9iZAB/aqgD/Ou2O33foqmy7SV5D6nYXk/ONpgNGJYkKURFHhs
+        ld1Iik0K/3tSnca6AdDR4zKnYIHqLOAkyeAHSSuD9Q==
+X-Received: by 2002:adf:dfcc:: with SMTP id q12mr2820380wrn.171.1582867420797;
+ Thu, 27 Feb 2020 21:23:40 -0800 (PST)
+MIME-Version: 1.0
+References: <20200228153532.1c0fa33f@canb.auug.org.au>
+In-Reply-To: <20200228153532.1c0fa33f@canb.auug.org.au>
+From:   Arjun Roy <arjunroy@google.com>
+Date:   Thu, 27 Feb 2020 21:23:29 -0800
+Message-ID: <CAOFY-A1C_VLqnjr3j6YUTvq_UM+6D8SvoYHJTJ7OYPdgoHTsWQ@mail.gmail.com>
+Subject: Re: linux-next: build warning after merge of the akpm tree
+To:     Stephen Rothwell <sfr@canb.auug.org.au>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Feb 27, 2020 at 8:35 PM Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+>
+> Hi all,
+>
+> After merging the akpm tree, today's linux-next build (sparc defconfig)
+> produced this warning:
+>
+> mm/memory.c:1463:12: warning: 'insert_page_in_batch_locked' defined but not used [-Wunused-function]
+>  static int insert_page_in_batch_locked(struct mm_struct *mm, pmd_t *pmd,
+>             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+>
+Well, that's certainly a step in the right direction if it compiles :)
+
+I guess having this function be within the ifdef is the way to make
+this warning go away.
+
+I'll, er, make a v3 patch.
+
+-Arjun
+
+> Introduced by commit
+>
+>   4a879e02dd49 ("mm/memory.c: add vm_insert_pages()")
+>
+> --
+> Cheers,
+> Stephen Rothwell

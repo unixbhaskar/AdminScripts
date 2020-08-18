@@ -1,0 +1,128 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp4043948lfj;
+        Mon, 2 Sep 2019 00:43:21 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxE+ar+tKIYd+79yyK/DVNyeKKnN6cP23QMkidAKL5D5JjqU9shvzsPplpMfRFq6ABQ9Vst
+X-Received: by 2002:a62:55c1:: with SMTP id j184mr12943819pfb.104.1567410201802;
+        Mon, 02 Sep 2019 00:43:21 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1567410201; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=KbdBQPQ9pCuIEGUoMy2F68h60/qW9N8aRArxko6XjQO8SbEXc1Z1pmHXHEGXhJVZRV
+         3mTXl0quwhYvI7idypvwb5eAGeNOV6JU45UwOBvEh1Xr8XeHO7tfcRUh2vRjAcOW6owN
+         IgRl+Rd1xAIOiK457lHacOClLULWGRdvUBzRpVXT9glh901XwaVDlhiq4W3ia0brURy2
+         TOp2beYBRMn33QZft1atdQ+MIghzABvRHthAsI3wX0LSagaaO4KxIIN6KTcL2L8A3Pl9
+         vEsRl09LhEjqMTAL78DK6zr3PUnHy7UCkW0pN41AZWThPqgHx7TQFA9ScyLv7zq5rfsI
+         kJ5w==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:user-agent
+         :subject:message-id:mime-version:to:cc:date:from:in-reply-to
+         :dkim-signature;
+        bh=JX2/x2Fpnilt3YxCUMwW5hYCNP+HOh2fh/yrCcqpfvQ=;
+        b=hYZrxn+9g+YDK8hHXYxAoI6JjEo2QtiVojkre5Mn+22zI2u7duopCy51wH7Arkl3jn
+         nBWo9DKgf+8ySk3t58yYSi26dpy41FOeBqr577Rkxih84I2Dcrypaa+9UwTPU7SBnLip
+         Hd+Pd7tjKWTc3WF1t9Z/rrR4hi2V1XXnF/z5usdQZxAbRcp6a26RkwneoaV+OIeHoalX
+         Pu8FhUX70Iw4ysxh0T8tEeoOQPLr6sPOLlfo/aUJCiu99xyQWZrnlZtAOgaRZvqM7Fn9
+         24tCdV4j0Gj6h38/PpEvd9X30IWHSYZVQRK/NkPrZ3g0/X9hgsftNSm+5zYR/UEiViE5
+         SvtA==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@nosthoff.rocks header.s=dkim header.b=J76ZiGdK;
+       arc=pass (i=1);
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nosthoff.rocks
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id v4si11211935pgf.470.2019.09.02.00.43.06;
+        Mon, 02 Sep 2019 00:43:21 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nosthoff.rocks header.s=dkim header.b=J76ZiGdK;
+       arc=pass (i=1);
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nosthoff.rocks
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729765AbfIBHmn (ORCPT <rfc822;arthaz1994@gmail.com>
+        + 99 others); Mon, 2 Sep 2019 03:42:43 -0400
+Received: from mail.heine.tech ([195.201.24.99]:59284 "EHLO mail.heine.tech"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726540AbfIBHmn (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 2 Sep 2019 03:42:43 -0400
+X-Greylist: delayed 593 seconds by postgrey-1.27 at vger.kernel.org; Mon, 02 Sep 2019 03:42:42 EDT
+Received: from localhost (localhost [127.0.0.1]) (Authenticated sender: michael@nosthoff.rocks)
+        by mail.heine.tech (Postcow) with ESMTPA id 0C7951814BA;
+        Mon,  2 Sep 2019 09:32:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nosthoff.rocks;
+        s=dkim; t=1567409568;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:  in-reply-to:in-reply-to;
+        bh=JX2/x2Fpnilt3YxCUMwW5hYCNP+HOh2fh/yrCcqpfvQ=;
+        b=J76ZiGdK8Y8frci+PP36sETn4Ys5AjkBijg1nzhyOTdG6TmXvQZduu0sdF+BzkCWj6NKTL
+        3vDsUbYcMOQzf20c+atRE0vudaSEg+GgfKFyP4gZWdmh4e42Sl5d5XqMRomOoMlon0lMci
+        xYBaboQ/h0/Lhk+Mj70Mh93gPlWeqnk=
+Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20190902071041.ukvc64tg5tjttk6w@earth.universe>
+From:   "Michael Nosthoff" <michael@nosthoff.rocks>
+Date:   Mon, 02 Sep 2019 09:32:47 +0200
+Cc:     "Stephen Rothwell" <sfr@canb.auug.org.au>,
+        "Linux Next Mailing List" <linux-next@vger.kernel.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>
+To:     "Sebastian Reichel" <sre@kernel.org>
+MIME-Version: 1.0
+Message-ID: <79b6-5d6cc580-3-35015040@57153312>
+Subject: =?utf-8?q?Re=3A?==?utf-8?q?_linux-next=3A?= Fixes tag needs some work in 
+ the battery tree
+User-Agent: SOGoMail 4.0.8
+Content-Transfer-Encoding: quoted-printable
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=nosthoff.rocks;
+        s=dkim; t=1567409568;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to; bh=JX2/x2Fpnilt3YxCUMwW5hYCNP+HOh2fh/yrCcqpfvQ=;
+        b=Z3HDkULOYVoIMvU9ddzW4tOX5r8fU2VGjP5iUEaAy3oD6pVKkWzOAERH+5erlX/84IKveH
+        vUzflOjvpzWAvMchDFjlZGIaIvZJbmdurvS4G+OlnBMyOC/AyFKBQ0UPIwLvC++NS9rPu+
+        dgz5hMMm3lIfktr2t9aw5/ZvjLN07Yw=
+ARC-Seal: i=1; s=dkim; d=nosthoff.rocks; t=1567409568; a=rsa-sha256;
+        cv=none;
+        b=VIBLveKhDw6arNCEsJeZylZEauLRE64oRt1XoM0Ch6zIaNIWMGBxcT5gX6tsSryxTDOyhT
+        BoCgieTBgKW8x7MBELA8m85jYytlmRRoMvGKs0Q2B2LTyjdmX1s/KP91sYon1Vj5Z68CWU
+        SGBj4udBNwFV2ufL8oV48vsbtHVePqI=
+ARC-Authentication-Results: i=1;
+        mail.heine.tech;
+        auth=pass smtp.mailfrom=michael@nosthoff.rocks
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+Hi Sebastian,
+
+I think you missed that the second commit
+
+38fa8b9f75ea ("power: supply: sbs-battery: use correct flags field")
+
+also needs this fix.
+
+
+Regards,
+Michael
+
+On Monday, September 02, 2019 09:10 CEST, Sebastian Reichel <sre@kernel=
+.org> wrote: 
+ 
+> Hi Stephen,
+> 
+> On Mon, Sep 02, 2019 at 09:31:31AM +1000, Stephen Rothwell wrote:
+> > In commit
+> > 
+> > b19aca4eb2d2 ("power: supply: sbs-battery: only return health when =
+battery present")
+> > 
+> > [...]
+> > 
+> > Please do not split Fixes tags over more than one line.
+> 
+> I have fixed this and rebased the branch, so the issue should be
+> gone tomororw. Thanks for the notice,
+> 
+> -- Sebastian
+

@@ -1,0 +1,81 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:710c:0:0:0:0:0 with SMTP id m12csp738771lfc;
+        Mon, 13 May 2019 22:18:55 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxQQTCwkpQx0Pv4OenTFh/T0fdNIgoGrVtD4O7bD7H7N1L5LECM3SDPsLP3nvyd67Kccsb5
+X-Received: by 2002:a17:902:8305:: with SMTP id bd5mr11632853plb.339.1557811135006;
+        Mon, 13 May 2019 22:18:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1557811135; cv=none;
+        d=google.com; s=arc-20160816;
+        b=DVW+E8QS13UPcUM8iDQ1vqn2HU5Ou62LVwWgJasu0uVhuYj9fRtdgtQVAPJI3OUtCz
+         jZX2Ly3/O4/tG6bR77eCgklvrRLk0/CruES/0W1WWV/GHiEeqoSESQ6rf1ReFLuBSJnf
+         hAlKuPpZjIEvZlhz2WY1Cb+bx70JNnOWzuQ+/V2qYD8KbPs/bc0Wd/isP+y2NDSgx18/
+         DQapvm6ipIPduqLww5oigDFSiq4J3+RUVa5v+S9u7ShQ6y9zWTX1eQK2urQHTyeeU4FS
+         3SNKXOHZISoLX01ceBvSWVV5kJ7Bepa1Hn9MTkWdmqe2+VK9j487G4jPo4f8WKQQeflS
+         zXsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=errors-to:sender:list-id:precedence:date:message-id:reply-to
+         :subject:to:from:content-transfer-encoding:mime-version;
+        bh=ZoOQZCPlvoaIKk9heFBmhIgdKJ9PUosUpMpLouhKeW0=;
+        b=ueUNknZkElBE87qQ9FA/0WjsmReZ2mg1cITvJvv7v/w0wtA28EGaObPwkui42zUCJA
+         b+7NO1+6roV85VdQw9gG+8e9ZMJpclbfdVLvKZ+FcbVRFX9OVLQy6JIchOfghNbh6bm3
+         a6zTL1wJIDSqYoBVs7olVAmif4igSGzmT6LSkDitfC7dSv0ThUt4I4R64viZMds+ntDn
+         KD0pT5adhoa88py7DjtPXGrrvupbc72a+B+nieErUI7zpYwQBCdlBwj0N+xjIHLaBXWK
+         RW0PxlOdqBRLHB0kOAMgCKNjGjFweB5KNyyvRzKp9ztSR/auu9/RDacQPoQrk+8GIEA2
+         n8jA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of ksummit-discuss-bounces@lists.linuxfoundation.org designates 140.211.169.12 as permitted sender) smtp.mailfrom=ksummit-discuss-bounces@lists.linuxfoundation.org
+Return-Path: <ksummit-discuss-bounces@lists.linuxfoundation.org>
+Received: from mail.linuxfoundation.org (mail.linuxfoundation.org. [140.211.169.12])
+        by mx.google.com with ESMTPS id s14si18073212pgs.343.2019.05.13.22.18.54
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 13 May 2019 22:18:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ksummit-discuss-bounces@lists.linuxfoundation.org designates 140.211.169.12 as permitted sender) client-ip=140.211.169.12;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of ksummit-discuss-bounces@lists.linuxfoundation.org designates 140.211.169.12 as permitted sender) smtp.mailfrom=ksummit-discuss-bounces@lists.linuxfoundation.org
+Received: from mail.linux-foundation.org (localhost [127.0.0.1])
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 03093B4B
+	for <unixbhaskar@gmail.com>; Tue, 14 May 2019 05:18:53 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+From: ksummit-discuss-confirm+62a22540e5f664c28f6e4f59042cba2d4837d9a5@lists.linuxfoundation.org
+To: unixbhaskar@gmail.com
+Subject: Your confirmation is required to join the Ksummit-discuss mailing
+ list
+Reply-To: ksummit-discuss-confirm+62a22540e5f664c28f6e4f59042cba2d4837d9a5@lists.linuxfoundation.org
+Message-ID: <mailman.0.1557811132.17530.ksummit-discuss@lists.linuxfoundation.org>
+Date: Tue, 14 May 2019 05:18:52 +0000
+Precedence: bulk
+X-BeenThere: ksummit-discuss@lists.linuxfoundation.org
+X-Mailman-Version: 2.1.12
+List-Id: <ksummit-discuss.lists.linuxfoundation.org>
+X-List-Administrivia: yes
+Sender: ksummit-discuss-bounces@lists.linuxfoundation.org
+Errors-To: ksummit-discuss-bounces@lists.linuxfoundation.org
+
+Mailing list subscription confirmation notice for mailing list
+Ksummit-discuss
+
+We have received a request from 103.231.91.38 for subscription of your
+email address, "unixbhaskar@gmail.com", to the
+ksummit-discuss@lists.linuxfoundation.org mailing list.  To confirm
+that you want to be added to this mailing list, simply reply to this
+message, keeping the Subject: header intact.  Or visit this web page:
+
+    https://lists.linuxfoundation.org/mailman/confirm/ksummit-discuss/62a22540e5f664c28f6e4f59042cba2d4837d9a5
+
+
+Or include the following line -- and only the following line -- in a
+message to ksummit-discuss-request@lists.linuxfoundation.org:
+
+    confirm 62a22540e5f664c28f6e4f59042cba2d4837d9a5
+
+Note that simply sending a `reply' to this message should work from
+most mail readers, since that usually leaves the Subject: line in the
+right form (additional "Re:" text in the Subject: is okay).
+
+If you do not wish to be subscribed to this list, please simply
+disregard this message.  If you think you are being maliciously
+subscribed to the list, or have any other questions, send them to
+ksummit-discuss-owner@lists.linuxfoundation.org.

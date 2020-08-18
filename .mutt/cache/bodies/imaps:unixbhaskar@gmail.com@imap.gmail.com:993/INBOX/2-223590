@@ -1,0 +1,117 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp4496001lfc;
+        Sun, 16 Feb 2020 18:26:12 -0800 (PST)
+X-Google-Smtp-Source: APXvYqyAwP+zMenUu2y6AZGZMR4c6ziGCB+q9Kww+RuARCN48yxsd+rq8cSqIJlu2y5WcUIXB4g2
+X-Received: by 2002:a9d:7dc9:: with SMTP id k9mr10489402otn.117.1581906372340;
+        Sun, 16 Feb 2020 18:26:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1581906372; cv=none;
+        d=google.com; s=arc-20160816;
+        b=s40tDAY2Hg3KRkuLYWBF/sYdkvy/piwzManhnN1iva9xM6LcH3c7I1FCDLEPeXPPAM
+         xDgikm0qnWPSCBA3IapEF9EfQ8v56dIv/jrMYQbG+ZAUW8L2L86IfDy4oQnCBqTNW7yq
+         1K+wwgDFQL1+zMBYBwAE/fmNxWcKfZqNExVht8+TCLlahlNyAwZh/PZwUYAl1E2zluSz
+         5sRQpkiP2vcRprD/imZ3jlX0grbdVdqhDyWH30dQpwMMsf3VqWR8npJjkhotYXWpjHNr
+         83pjkJWCu1QO7cLuXZOYL+3GJWfB20VaNcg9AjWbnwC3+YzUWoe4goWGOgv2qWVBu7AE
+         SEkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Kd654Jvi3N2A7MnCrIjpOQhY0mSWg+UvXc8Pmg/fHOE=;
+        b=p5zOO+9ctZHk/Omvyw5vQQvFRNMOqynRQIhyi9K2MOUtM4ZhCDx3phWCjZdcbbkMmq
+         SweX4jpbRYzj+d3mML2ccWLj5OYqHgI0hf43WcsIr+ToCyKaZAJ+6JAKK57ueaccglmJ
+         Oztfr4ObgydEjr2O3A0KWcUArMFk5Lnv++f6gli/sdsvKc/Dy3rxi0R7zpvIrwMoQfMl
+         wiblbuZm68TwVk+SwKRBopyvjVGuJHYxDup4EjgZPvU4nMOkSXh07z7n67KguA7xIQEX
+         zvOkbSLr7+Ntw+DWQ62miHiDh7V0XpFfX5AOpWvo1nIXRbkHQfE4UzmOoqBnjTPMeCFu
+         X18Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=SizI53Jr;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id i15si5872263oik.46.2020.02.16.18.26.01;
+        Sun, 16 Feb 2020 18:26:12 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=SizI53Jr;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726650AbgBQCZG (ORCPT <rfc822;bl0pbl33p@gmail.com> + 99 others);
+        Sun, 16 Feb 2020 21:25:06 -0500
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:40420 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726183AbgBQCZG (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 16 Feb 2020 21:25:06 -0500
+Received: by mail-lj1-f194.google.com with SMTP id n18so16984115ljo.7
+        for <linux-kernel@vger.kernel.org>; Sun, 16 Feb 2020 18:25:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Kd654Jvi3N2A7MnCrIjpOQhY0mSWg+UvXc8Pmg/fHOE=;
+        b=SizI53Jr4bgQgFG2aqNiwd0aB45h4wUff+q/c2ukT27TMTpfc6iCQKNgM0Wz/Y/21F
+         Y2xX3gWBcXEarwAnkIE98K7Gz/3GxQzL+dGroH95+ucTiB1Ogh9knxsQLDxAW8vA4qtT
+         qmeuaaO+jeogpF9niJkxhFKIRFwgW6Ocj7bAc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Kd654Jvi3N2A7MnCrIjpOQhY0mSWg+UvXc8Pmg/fHOE=;
+        b=m2gwS83oBpSKVryHiccXyaS7rZ8iGaLDrn7u8EspMdboeItlYxJ1bElEyQBXxjP0F6
+         OXOxw2jczW2bSpVvIaxttOC5X5czUq7GyIVvFMAN2q7RWaWTqk4qxOljWQ+GjWbEF2hX
+         Hxb70FmGO15BGkPCAaoXC9XYA/6M66Er82/KIWwAjtAexo0jEiIKa3G2BvYpS1RSA7qO
+         6qqHCEM0MRrdayjP6zbFL9iLEsIoL8y+vM1cfBsssCT3LFzjlDYrS6/rCLcR9zGRTvRj
+         tDuulG+/shB6yDT7eZhuiK9sNHffYsTeDFEYkr/040yIUDm3ufBU9o6FxHUCai31AYAO
+         nxng==
+X-Gm-Message-State: APjAAAWeoD6GW4ZGZXKHI1nRYnZIW/83H6h3LS/HBSozqN6cLSn162Hi
+        hyz6OEZmwgndk7sMXNX2vEFOiN8Q/K8=
+X-Received: by 2002:a2e:3609:: with SMTP id d9mr8588471lja.188.1581906303113;
+        Sun, 16 Feb 2020 18:25:03 -0800 (PST)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
+        by smtp.gmail.com with ESMTPSA id t21sm7727888ljh.14.2020.02.16.18.25.01
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Feb 2020 18:25:02 -0800 (PST)
+Received: by mail-lj1-f180.google.com with SMTP id w1so16985443ljh.5
+        for <linux-kernel@vger.kernel.org>; Sun, 16 Feb 2020 18:25:01 -0800 (PST)
+X-Received: by 2002:a2e:580c:: with SMTP id m12mr8568137ljb.150.1581906301551;
+ Sun, 16 Feb 2020 18:25:01 -0800 (PST)
+MIME-Version: 1.0
+References: <CAHk-=wgqwiBLGvwTqU2kJEPNmafPpPe_K0XgBU-A58M+mkwpgQ@mail.gmail.com>
+ <20200217020840.GA24821@codemonkey.org.uk>
+In-Reply-To: <20200217020840.GA24821@codemonkey.org.uk>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 16 Feb 2020 18:24:45 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wg5AkQk-9By-QeyT+5H_t6DLZD=25uOz-ujnV8oEv1Y5Q@mail.gmail.com>
+Message-ID: <CAHk-=wg5AkQk-9By-QeyT+5H_t6DLZD=25uOz-ujnV8oEv1Y5Q@mail.gmail.com>
+Subject: Re: Linux 5.6-rc2
+To:     Dave Jones <davej@codemonkey.org.uk>,
+        Josef Bacik <josef@toxicpanda.com>,
+        Filipe Manana <fdmanana@suse.com>,
+        David Sterba <dsterba@suse.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, Feb 16, 2020 at 6:08 PM Dave Jones <davej@codemonkey.org.uk> wrote:
+>
+> This didn't happen in rc1, but showed up when I booted into rc2 and
+> tried to and pull some stuff with rsync.
+>
+> [   70.794783] BUG: sleeping function called from invalid context at mm/slab.h:565
+> [   70.795459]  kmem_cache_alloc+0x1d3/0x290
+> [   70.795471]  alloc_extent_state+0x22/0x1c0
+> [   70.795544]  __clear_extent_bit+0x3ba/0x580
+> [   70.795569]  btrfs_truncate_inode_items+0x339/0xe50
+> [   70.795647]  btrfs_evict_inode+0x269/0x540
+
+At a guess (just by functions involved, and the timing between rc1 and
+rc2 - no actual analysis), this is probably due to
+
+    28553fa992cb ("Btrfs: fix race between shrinking truncate and fiemap")
+
+which is also marked for stable, so... Filipe?
+
+              Linus

@@ -1,0 +1,113 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a50:baae:0:0:0:0:0 with SMTP id x43-v6csp686726ede;
+        Fri, 27 Jul 2018 04:11:45 -0700 (PDT)
+X-Google-Smtp-Source: AAOMgpe1waoHaYLuwn9s2NIzMcCCVjDqqx6/UeWUi9lae9v3mbs1bgm73hzMM2kK73SEkkn+W+S8
+X-Received: by 2002:a50:91da:: with SMTP id h26-v6mr6609889eda.87.1532689905725;
+        Fri, 27 Jul 2018 04:11:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1532689905; cv=none;
+        d=google.com; s=arc-20160816;
+        b=oOvhllT6UG+HG0JWVY0KYernI6JkDnQW/jc19sHdoTFKKjNM/NT38R3tY6C3n6WzdH
+         77mZ6od8V+WyyzDCdDh6WqCE20kaFmyZ2aond2Gf5PLEPTZbDPBasJ6fq0X/wDdsq+oV
+         6DW8Jtz60eBcTm/QWqly9KxpH21NiA00HWVlT62yY4crNFrCk+1i0tEpc9e/AyG9VrsL
+         Bjo4F9u8skBXPS4g8E9p6jFrOtqSDB6JpZyc2Ivb3lcJethCptwooRmY8Q37NVdro9q6
+         dEGOxgBlh33BR04pAIB9ClOsroKxVKH1KWom1pDxPiWGPASmt87/pskGYjDo7kEYKHZo
+         QcNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:bounces-to:mime-version:subject:message-id:to:from
+         :dkim-signature:dkim-signature:arc-authentication-results;
+        bh=UQbpSphOKZt2LUlp3A0J0fzljx9N2n2J5SGDquhipmk=;
+        b=zyt95GvGSdx8cMkRCfQadGS3k+m3JcUTka0JFZ5O2/4KQsc8CK+r4XSNrRPPj+PZ+A
+         lmQZCb/1wd8+euxv7ObohCAAOpuCrZWdH3Qt3Wjpl6Pfb79MRovCh9CUsFBYr7/vCX99
+         7dYrTKomxuAub8JqmPgcCnq+bFezJ32MYcat4pzg1MaaEhrkOWouWK7sNhJdClr4DT9Z
+         oV5IT3/XWGUjqJr6M986ZIVo7g75D58M7TgVLeMjPjHP73cs4jvMROxQoZvIyGNfS5UC
+         nJcgNWxx95GzbUv4yawI3P9OesGCQKSt5+tIwo6jZdm8CNku3xmxgaKAVdRcmB6RkaB0
+         ESWQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@amazon.in header.s=qxt3zsw27twihfglkany7hmijh4iapgs header.b="Oc+9n/as";
+       dkim=pass header.i=@amazonses.com header.s=uku4taia5b5tsbglxyj6zym32efj7xqv header.b=br02IrW7;
+       spf=pass (google.com: domain of 2018072711114514489ad344c94eec935e6bdda080p0eu@bounces.amazon.in designates 54.240.1.11 as permitted sender) smtp.mailfrom=2018072711114514489ad344c94eec935e6bdda080p0eu@bounces.amazon.in;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=amazon.in
+Return-Path: <2018072711114514489ad344c94eec935e6bdda080p0eu@bounces.amazon.in>
+Received: from a1-11.smtp-out.eu-west-1.amazonses.com (a1-11.smtp-out.eu-west-1.amazonses.com. [54.240.1.11])
+        by mx.google.com with ESMTPS id v27-v6si322991eda.162.2018.07.27.04.11.45
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Fri, 27 Jul 2018 04:11:45 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 2018072711114514489ad344c94eec935e6bdda080p0eu@bounces.amazon.in designates 54.240.1.11 as permitted sender) client-ip=54.240.1.11;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@amazon.in header.s=qxt3zsw27twihfglkany7hmijh4iapgs header.b="Oc+9n/as";
+       dkim=pass header.i=@amazonses.com header.s=uku4taia5b5tsbglxyj6zym32efj7xqv header.b=br02IrW7;
+       spf=pass (google.com: domain of 2018072711114514489ad344c94eec935e6bdda080p0eu@bounces.amazon.in designates 54.240.1.11 as permitted sender) smtp.mailfrom=2018072711114514489ad344c94eec935e6bdda080p0eu@bounces.amazon.in;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=amazon.in
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=qxt3zsw27twihfglkany7hmijh4iapgs; d=amazon.in; t=1532689905;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date;
+	bh=UQbpSphOKZt2LUlp3A0J0fzljx9N2n2J5SGDquhipmk=;
+	b=Oc+9n/asPRZ/tPpLl774csMlLLUO5dtV1/jBXErXcXZ8hsn+Ha4riwO9Ef98RasI
+	fyqFxnTnvXXMzlH8kEVycmXyUp/wr43UYbEDss6X5w6eEEfmJOnakFWenWvIQrWxq3s
+	+GyhlO71D41fRqwr3s/egRLQ2wsarKmRHnp4aX8M=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1532689905;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date:Feedback-ID;
+	bh=UQbpSphOKZt2LUlp3A0J0fzljx9N2n2J5SGDquhipmk=;
+	b=br02IrW7pEcXUFVgfYws0dkfhKc9o9iG+LxOKjSZtgNt2Mn7Oz4e0sWUVheDSdaO
+	2g9RMr4aiRUob0yvgXDEnZDyXgehUbluvzGoKWnllSuWpAd5ryNMpf2J/1l5S4z/Ek4
+	5xdeD/Q/0gNqtOWMzEi4liI6uDKfPaZyMJDlnrzk=
+From: "Amazon.in" <no-reply@amazon.in>
+To: unixbhaskar@gmail.com
+Message-ID: <01020164db6ff6c8-174b937c-7e76-4cc1-8aca-9f223326a2df-000000@eu-west-1.amazonses.com>
+Subject: Important Information About Your AWS Kindle Books
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_50031353_1674883870.1532689905339"
+X-AMAZON-MAIL-RELAY-TYPE: notification
+Bounces-to: 2018072711114514489ad344c94eec935e6bdda080p0eu@bounces.amazon.in
+X-AMAZON-METADATA: CA=C3SYYJ5SU0WC7W-CU=A63QZFCWPB27C-RI=A1RYP49V0YJS0Y
+X-Original-MessageID: <urn.rtn.msg.2018072711114514489ad344c94eec935e6bdda080p0eu@1532689905339.rtn-svc-eu-back-m4l1c-a4d71e60.eu-west-1.amazon.com>
+Date: Fri, 27 Jul 2018 11:11:45 +0000
+X-SES-Outgoing: 2018.07.27-54.240.1.11
+Feedback-ID: 1.eu-west-1.UIAUrMfbpGrxavqnRE0yoZrAUBI9C7GRNUx/kUDo6B4=:AmazonSES
+
+------=_Part_50031353_1674883870.1532689905339
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+We=E2=80=99re writing to let you know about some recent changes to the way =
+we create and maintain our AWS documentation on Kindle. With these changes,=
+ you get:
+
+* More frequent content updates =09=20
+* Greater coverage of existing services
+* New services published more quickly
+
+To take advantage of these improvements, download a new copy of each guide =
+from Amazon Kindle eBooks (https://www.amazon.com/Amazon-Web-Services/e/B00=
+7R6MVQ6/ref=3Ddp_byline_cont_ebooks_1 .)
+
+Note the following:
+
+* The new guides have all been published or updated within the last 30 days=
+.=20
+* Going forward, you=E2=80=99ll receive automatic updates so that you get t=
+he most accurate and up-to-date information.=20
+* The old guide versions won=E2=80=99t be updated again.=20
+* Unfortunately, your bookmarks and notes will not migrate to the new guide=
+s. Going forward, your bookmarks and notes will persist through future upda=
+tes.
+
+We appreciate that you use our products, and hope that the improved quality=
+ of the Kindle documentation experience outweighs any inconvenience. If you=
+ need any assistance with this process, or have any questions about the mig=
+ration, contact us at https://docs.aws.amazon.com/forms/aws-doc-feedback?fe=
+edback_destination_id=3D46e70bfd-5ac2-4108-b1a4-b865ffd544ca
+
+Sincerely,
+
+Customer Service
+Amazon Web Services
+
+Note: This e-mail message was sent from a notification-only address that ca=
+nnot accept incoming e-mail. Please do not reply to this message.
+------=_Part_50031353_1674883870.1532689905339--

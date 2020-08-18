@@ -1,0 +1,130 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp3450818lfg;
+        Sun, 19 Apr 2020 23:57:22 -0700 (PDT)
+X-Google-Smtp-Source: APiQypJjLjLemxN0wFV3MpAVV63Ly7fi99vvzJ4OHVWxXSkbHndILppdqRy59eGUT4lZ5M+rBZm4
+X-Received: by 2002:a50:f390:: with SMTP id g16mr12602562edm.211.1587365842525;
+        Sun, 19 Apr 2020 23:57:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587365842; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Oy99meJi/pqu0W5FBUPTURIRnBzekklu4iLJGJW5c7VRgs+x1asXsE9NOp8oZOvn+J
+         pGVq1yJrtsZ4Ro4wfl3en28IF03df8GSek+Ffpp3TAsuxDWf2rU1bsNcJiSfDSRw4yDc
+         W28/y/vlOiw9UF9xR7ZvhIwvNZ/lg0Ewz0Cn8RM1449LvDgCQcaffAB4BdfZUm3pdIT1
+         4WbaPxJCYQzvlOpuSu1WbaP3VVhlyN8kfEOPCPVnI90E6QWfHgDqkVHoWiWvsSN9/uNe
+         EwjZExLS4GW5sjlxOeLEarPN3CjgaL7pC+t+gzLxA27s99vXo3pfksrOFNuCVWtwEuiy
+         ZdPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :references:in-reply-to:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=X/v8Z0YkHiHsX9OtsVssmTwi5zmYAXyf+YH2GZxvCKY=;
+        b=tEQVVSv8gGlxLVKVZ+gpRTWowtQ74X62ItHefwsZ+YQCdPdgjK8fD/HFFstzZ2Ag64
+         YcQUE9vSzFAIghEvTdvksY5EN0VppS1I4IfOl+5G0YxnABlshP+JeMPc4BjsTnTafBbo
+         r5oxE5kXdpGKtsDIe+3VcYvh6chlFi2rTHe0ltccsQLXS7+Ho6KVSawCMBpte0br049Z
+         LGqayhR2eweEXz9STYtVIAZLwxnVlK0WKpgdQorZt+8ZMQFH3ntEaQgbQwzMaClyhLVF
+         CrLECnJpwwpI3u7LjOKxdO9MUKJP1JRsMNEgEa4i7o5PCBDZraVICZyh2LhfgAJBAwVD
+         w6nQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=BmjMl8Qf;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-doc-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id f3si2304ejt.299.2020.04.19.23.56.50;
+        Sun, 19 Apr 2020 23:57:22 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=BmjMl8Qf;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726012AbgDTG4q (ORCPT <rfc822;cody.chan.cz@gmail.com>
+        + 99 others); Mon, 20 Apr 2020 02:56:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35752 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725959AbgDTG4q (ORCPT
+        <rfc822;linux-doc@vger.kernel.org>); Mon, 20 Apr 2020 02:56:46 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8366DC061A0C
+        for <linux-doc@vger.kernel.org>; Sun, 19 Apr 2020 23:56:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+        From:Date:Sender:Reply-To:Content-ID:Content-Description;
+        bh=X/v8Z0YkHiHsX9OtsVssmTwi5zmYAXyf+YH2GZxvCKY=; b=BmjMl8Qf3mmDrWUaea8RATT3R+
+        f65Eqv5E1WshwMgCWCAAZeRR36Vz/+EPv0V+mTR+Phi+0tk6KDLIN9ENtqwJ3CXhkhYnFl+iKkpto
+        MtGMJgidNqnpywWOnP0ILr9iNyvY8w9YP5qZV9rPEA6v0mb/LrQmic6L6lysUHOMjE9eCioYgKn59
+        QjWaGuKKs09DTiLa4D0GrQ+Z8jIaiUPNZG6xfw253OcsUnsW8Fmr52IVWhzwv8rrrbFXMUtIyytmS
+        hAGLqQMIPnOcdQwzoPuoVVOkmoxTpbeNdaL5RhSIZmvJXLvVshv8DBoSmRGPQuF9sWTwE98XFB9Tw
+        LcV4qEgA==;
+Received: from ip5f5ad4d8.dynamic.kabel-deutschland.de ([95.90.212.216] helo=coco.lan)
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1jQQMG-00031F-N9; Mon, 20 Apr 2020 06:56:45 +0000
+Date:   Mon, 20 Apr 2020 08:56:41 +0200
+From:   Mauro Carvalho Chehab <mchehab@kernel.org>
+To:     Saheed Bolarinwa <refactormyself@gmail.com>
+Cc:     skhan@linuxfoundation.org,
+        linux-kernel-mentees@lists.linuxfoundation.org,
+        linux-doc@vger.kernel.org
+Subject: Re: Clarification on the behaviour of checkpatch.pl
+Message-ID: <20200420085641.5d8f1a0b@coco.lan>
+In-Reply-To: <445b3e38-123e-eb72-2bbb-c40ac4ea9899@gmail.com>
+References: <445b3e38-123e-eb72-2bbb-c40ac4ea9899@gmail.com>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: linux-doc-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-doc.vger.kernel.org>
+X-Mailing-List: linux-doc@vger.kernel.org
+
+Em Mon, 20 Apr 2020 02:20:19 +0200
+Saheed Bolarinwa <refactormyself@gmail.com> escreveu:
+
+> Hello,
+> 
+> My experience is that checkpatch.pl will not flag some warnings when I use
+> 
+> the '-f' flag. This especially true for .rst files. My understanding is 
+> that this flag
+> 
+> is needed to use it with a raw source file instead of a patch.
+> 
+> Please, I will like to confirm if this is a normal behaviour or is it my 
+> system setup.
+> 
+> Below is an example from the current stable release linux-5.6.y
+> 
+>     [saheed@net linux-stable]$ perl ./scripts/checkpatch.pl -f
+>     ./Documentation/admin-guide/hw-vuln/tsx_async_abort.rst
+>     total: 0 errors, 0 warnings, 279 lines checked
+> 
+>     ./Documentation/admin-guide/hw-vuln/tsx_async_abort.rst has no
+>     obvious style problems and is ready for submission.
+> 
+> 
+>     [saheed@net linux-stable]$ perl ./scripts/checkpatch.pl
+>     ./Documentation/admin-guide/hw-vuln/tsx_async_abort.rst
+>     WARNING: Possible unwrapped commit description (prefer a maximum 75
+>     chars per line)
+>     #6:
+>     TAA is a hardware vulnerability that allows unprivileged speculative
+>     access to
+> 
+>     ERROR: Does not appear to be a unified-diff format patch
+> 
+>     total: 1 errors, 1 warnings, 0 lines checked
+
+If you don't use "-f" flag, then you need to pass a patch to checkpatch,
+e. g.:
+
+	git show --pretty=email | ./scripts/checkpatch.pl
+
+That's btw what you need to do with all patches you would submit upstream.
+
+The "-f" flag is used only when you want to run a check on an entire file
+(and not to the lines modified by a patch).
+
+
+Thanks,
+Mauro

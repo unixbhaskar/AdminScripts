@@ -1,0 +1,135 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1361880lfj;
+        Wed, 25 Sep 2019 16:48:47 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyRoZdV3MtQfnYoRKd9MEw2thRRGTx6n74OJvwPTO98sYEwIx1oY0ftLG6b3wDeGF0KQb3T
+X-Received: by 2002:a17:906:7e56:: with SMTP id z22mr654230ejr.294.1569455327222;
+        Wed, 25 Sep 2019 16:48:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569455327; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Gx4ecl/ozw2m0b9mrpJLRg21zLy/qFnbWOgHXvycZ/2ckBBwrXqy1teVMrbu0f3hi7
+         B+WQN5lBvrWIm6cPywtvv6A/TfnrSKdMq2t5fKzAgAPKb/G3qEwAO37Gm7AfGivLrzXi
+         9kPMX3QCs3ynILGKXHEY4PK1Ik3KbFtB5panjyXeiW2El86JEJkflXjhauCKaR9M6ACd
+         LuBfaB+h4uc5hajp7gsWMpStxOFyqwarbn3OQVwx7wbH46X4BnX6x3beBwI5ZOkpvhv6
+         TuR0CWtrr2gY5IlpK/NMLEnrK4evzyGCQH1OaQ62Fy57kUt39V7SZE4xJNlabLhSEdtv
+         8gVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:dkim-signature;
+        bh=mTa4bZT/5UrHG0lWADElPHHf/xGZTHN6ndQmHlpfS98=;
+        b=gzY/dRbNpzzcc9D1qiVjQqRgzvS2bMfqYw000jgMiy0kboKT59spL5PdePBTkQm9cU
+         jABzQoQh1pfubvnR79r3bdcBtZnHozDH7sUj0Skvvo/SUFpmdM7DpEKvTHk7co0z/5h0
+         +5SbN8Mana0jow790aAOoL4bowVaxSAiyPFKvuIxtg9KMjkCofSG3gpCLPH1OCtGtEb0
+         fUVyZOxSvCQnccUzlEHGsUVHTyZW+GiuAi1+8jJc/JngFKLWcmexncEqtcHUGDE0LjUF
+         ErNWAIfuf9PtiFGKKPz04MTZ9FGKuyNiYlk60+v5dPDVNV7Iz/iImn/pLunLTL8gStJ2
+         h5bg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@gmail.com header.s=20161025 header.b=sduTLnFA;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id u6si310125eds.173.2019.09.25.16.48.23;
+        Wed, 25 Sep 2019 16:48:47 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@gmail.com header.s=20161025 header.b=sduTLnFA;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2388070AbfIWUxb (ORCPT <rfc822;tavery321@gmail.com> + 99 others);
+        Mon, 23 Sep 2019 16:53:31 -0400
+Received: from mail-wm1-f54.google.com ([209.85.128.54]:51206 "EHLO
+        mail-wm1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387617AbfIWUxb (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 23 Sep 2019 16:53:31 -0400
+Received: by mail-wm1-f54.google.com with SMTP id 7so11501751wme.1;
+        Mon, 23 Sep 2019 13:53:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=mTa4bZT/5UrHG0lWADElPHHf/xGZTHN6ndQmHlpfS98=;
+        b=sduTLnFAc8Xd8b24ZwUXyRsIbyE9Kff7ORVmVe+3u08R7QFEthD6oVOIfccdH4/7BX
+         8jUgSssdJV0dIRNyqJeoFV+h0PkD1Bpjsk99MlvQW1/+ND7ewA0KtFyJQd9MAviTgU8T
+         7IRO8GB/HGOUqZMTA3Ldjn4P9yYyrjr1OMA1K4OtimxMrhGpjIhoPSnFm6h5/H8noUQ6
+         KJDUVhmCMrgFGXqU5nk+oMyiMY3TIjqfmub1VS22Qt/P+baD1n4CcKQ/f3qpvNe0UTEo
+         1pxM5Q/L3hyJOQ6VGoOKrlbgEfVjfZcMXa+ZqhpQqElbRUsMAHkkk4AbW2UcilEHR68C
+         eqUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mTa4bZT/5UrHG0lWADElPHHf/xGZTHN6ndQmHlpfS98=;
+        b=Ox9z1rM70qaeQgPPtn3vI42+5Zp8xBZYxvm2UCa+8hD0ROcB6ymc4HOF4FlPGMzTDL
+         /gpp/OV1DCVhuFUFigGOaaiszL6gbwVYmKz87rVcRpbyYgQMaJzFrXF8MGJouYDG2Noc
+         zQJ2/TATmV6Z2cRDf7ER39ZYOzpPRFPaR3me0ms1fK1UT5HPlutcQ/qJg+aE1kVATfM7
+         Fu2fqTkVYQOa433pX0y1mulBMaPAgMg1AQbyt+V1nUBY8DtKrELmdc13HP7N1LmhYpl2
+         AxtzQ1fUGdt3xZ1zfkKrP6B38kSS9q0xGcUAMFSs6aYnJ2gE7eAwhfNsIcK9YpgQHPIQ
+         Efmw==
+X-Gm-Message-State: APjAAAUrqPUv/luFXB0QHyylvd1WgEYtVXoqGj7VAgAtmjzY7IztM4u0
+        nnA4uuwpRFf3BD3z1r9RUMI=
+X-Received: by 2002:a05:600c:110a:: with SMTP id b10mr564127wma.18.1569272008807;
+        Mon, 23 Sep 2019 13:53:28 -0700 (PDT)
+Received: from gmail.com (2E8B0CD5.catv.pool.telekom.hu. [46.139.12.213])
+        by smtp.gmail.com with ESMTPSA id d78sm16630690wmd.47.2019.09.23.13.53.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Sep 2019 13:53:27 -0700 (PDT)
+Date:   Mon, 23 Sep 2019 22:53:25 +0200
+From:   Ingo Molnar <mingo@kernel.org>
+To:     Shuah Khan <skhan@linuxfoundation.org>
+Cc:     Randy Dunlap <rdunlap@infradead.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
+        Anders Roxell <anders.roxell@linaro.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [GIT PULL] Kselftest update for Linux 5.4-rc1
+Message-ID: <20190923205325.GA121000@gmail.com>
+References: <CAHk-=wgs+UoZWfHGENWSVBd57Z-Vp0Nqe68R6wkDb5zF+cfvDg@mail.gmail.com>
+ <CAKRRn-edxk9Du70A27V=d3Na73fh=fVvGEVsQRGROrQm05YRrA@mail.gmail.com>
+ <CAFd5g45ROPm-1SD5cD772gqESaP3D8RbBhSiJXZzbaA+2hFdHA@mail.gmail.com>
+ <CAHk-=wgMuNLBhJR_nFHrpViHbz2ErQ-fJV6B9o0+wym+Wk+r0w@mail.gmail.com>
+ <20190922112555.GB122003@gmail.com>
+ <20190922115247.GA2679387@kroah.com>
+ <0ab5da69-e4f2-8990-20f9-354461235581@linuxfoundation.org>
+ <20190923194322.GA55255@gmail.com>
+ <32d0e94d-bf9a-01e9-2548-1fc976c7f17b@infradead.org>
+ <f4c21702-f7b5-e6f9-b31d-8fc9e4d1c67d@linuxfoundation.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f4c21702-f7b5-e6f9-b31d-8fc9e4d1c67d@linuxfoundation.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+
+* Shuah Khan <skhan@linuxfoundation.org> wrote:
+
+> Right. What you suggesting is very similar to and more complete than 
+> what I have been thinking about and proposed at the KS kselftest track.
+> 
+> i.e move tools/testing/selftests to kselftest at the root level. I like 
+> your idea of moving tools/testing up to root and keep selftests under 
+> it.
+> 
+> If we are good with this kind of change, I would like to get this done 
+> sooner than later. There is some back-porting churn to worry about.
+
+I think the movement I suggested would be sufficient:
+
+  tools/testing/selftests/ =>  tools/selftests/
+
+I.e. let's not clutter up the top level directory.
+
+Thanks,
+
+	Ingo

@@ -1,0 +1,102 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7707:0:0:0:0:0 with SMTP id s7csp4700114lfc;
+        Fri, 6 Mar 2020 12:26:23 -0800 (PST)
+X-Google-Smtp-Source: ADFU+vu9k9H54Kbh7i0tuj8DWpG1aOc21bCMF2ADAhLU4xgEAWSJATXDhwjuJD4MJjJUh7S+ItQl
+X-Received: by 2002:a05:6808:907:: with SMTP id w7mr3801112oih.78.1583526383513;
+        Fri, 06 Mar 2020 12:26:23 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1583526383; cv=none;
+        d=google.com; s=arc-20160816;
+        b=nIcoEKnkrT6d1M5TklbwA2BzfGZt7Wv+aipSV6PNDIRHWIXgSi4J0noytA3hHDJcbL
+         BIpOT0gVQH7IFIkNyCNiYasAnd/ASLcKkeywHIbRkyuDXOKozuZF3smSbL+a3IfdhMro
+         yVKayxP9GdqJtDgVE106v4f4hB3iNGm4M/cW7wfDMwej8Jm9G2+VGYrc1OaE91fzGH2H
+         j0hnZmSOadQWQsX0ATf9ek61Amy9JQRh6jaL7DE/LbBvCciTSocs34TPbZ/bN+l6qMD7
+         uRK46wvXK2/LQM8LevqHdxsiJEoC94uczD+8kc+ifrT/lgA2zhflPv9R0EKQcHBr8e1a
+         eDow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=zdBQPAlhEfieaOONKDkDkKLE0s2QhMU+De7/qk+QJ8w=;
+        b=LqB9+7DuC5z3aJSqo/KXQIu2ff0kcE7r/NTsVVcdg7trxWMtSjGqAB+iqnlSXiwEFb
+         KN2uZk/JdKnvPtcftiLJAbzy8209MUP5Z8xBPMF+h4xcH92HJPONmUbi9MEU2Piv5+VQ
+         CUcqKClDWp2S+gkIsqjEWA1LTc7bEwC3KpwftFEob3iCEr0mBtp0J6FJzt7pow1TcbEo
+         i9X6mvUbfH3SJrppmJvjPdn90B5as5X1N4Yf25mTJEnE3dRGZlK/kEKmN9jYwVcw3iic
+         nTiNPvqgse23w+h7E1fC4K4QcMREAxNsLvgYUeGB04s2pS18vxRAkaGfWQcuQ3s0AL/F
+         kp8g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of bpf-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=bpf-owner@vger.kernel.org
+Return-Path: <bpf-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id a23si1924423otl.228.2020.03.06.12.26.07;
+        Fri, 06 Mar 2020 12:26:23 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of bpf-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of bpf-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=bpf-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726185AbgCFU0H (ORCPT <rfc822;m.misono760@gmail.com>
+        + 60 others); Fri, 6 Mar 2020 15:26:07 -0500
+Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:47118 "EHLO
+        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725873AbgCFU0H (ORCPT <rfc822;bpf@vger.kernel.org>);
+        Fri, 6 Mar 2020 15:26:07 -0500
+Received: from callcc.thunk.org (guestnat-104-133-0-105.corp.google.com [104.133.0.105] (may be forged))
+        (authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 026KPXT6005112
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 6 Mar 2020 15:25:34 -0500
+Received: by callcc.thunk.org (Postfix, from userid 15806)
+        id 113E242045B; Fri,  6 Mar 2020 15:25:33 -0500 (EST)
+Date:   Fri, 6 Mar 2020 15:25:32 -0500
+From:   "Theodore Y. Ts'o" <tytso@mit.edu>
+To:     James Bottomley <James.Bottomley@HansenPartnership.com>
+Cc:     Chris Mason <clm@fb.com>, Josef Bacik <josef@toxicpanda.com>,
+        lsf-pc <lsf-pc@lists.linuxfoundation.org>,
+        Linux FS Devel <linux-fsdevel@vger.kernel.org>,
+        linux-mm@kvack.org, linux-xfs@vger.kernel.org,
+        Btrfs BTRFS <linux-btrfs@vger.kernel.org>, bpf@vger.kernel.org,
+        linux-ext4@vger.kernel.org, linux-block@vger.kernel.org
+Subject: Re: [LSFMMBPF TOPIC] long live LFSMMBPF
+Message-ID: <20200306202532.GC12490@mit.edu>
+References: <b506a373-c127-b92e-9824-16e8267fc910@toxicpanda.com>
+ <76B62C4B-6ECB-482B-BF7D-95F42E43E7EB@fb.com>
+ <1583523705.3653.94.camel@HansenPartnership.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1583523705.3653.94.camel@HansenPartnership.com>
+Sender: bpf-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <bpf.vger.kernel.org>
+X-Mailing-List: bpf@vger.kernel.org
+
+On Fri, Mar 06, 2020 at 11:41:45AM -0800, James Bottomley wrote:
+> And, for everyone who gave us feedback in the Plumbers surveys that co-
+> locating with a big conference is *not* what you want because of
+> various problems like hallway track disruptions due to other conference
+> traffic and simply the difficulty of finding people, the current model
+> under consideration is one conference organization (the LF) but two
+> separate venues, sort of like OpenStack used to do for their big
+> conference and design summit to minimize disruption and increase
+> developer focus.
+
+Ths is what I tried to push last year, which was to colocate LSF/MM
+and KS/MS in Austin, at the same time as OSS 2020, but in a separate
+hotel so we didn't have to deal with the cast of thousands which go to
+OSS.  I also liked it because OSS 2020 is in June, so it would have
+been from a spacing perspective it would have been an easy way to
+start moving MS/KS from the second half of the year into first half of
+the year.
+
+But some folks pointed out (not without reason), that Palm Springs was
+a lot more fun than Austin, and OSS still has a somewhat bad
+reputation of having some really trashy talks, and so even in separate
+venue, there were people who really didn't like the idea.
+
+Because of this, when the LF (in December 2019) suggested moving the
+MS/KS to Austin as part of OSS, I didn't think we would have critical
+mass to overcome the reputation of talks like "#OSSummit: Seven
+Properties of Highly Secure IoT." and so I told Angela, "No, we really
+can't do this without something like LSF/MM to make sure we have
+critical mass for a second Linux systems conference."
+
+						- Ted

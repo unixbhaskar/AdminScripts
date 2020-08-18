@@ -1,0 +1,129 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp327303lfg;
+        Thu, 30 Apr 2020 23:56:04 -0700 (PDT)
+X-Google-Smtp-Source: APiQypLTrScsmbtjOkgw5Xw8MJxZpuZKQLc0hBKz9VyeWC6E3Miq+9CXf5NzRfMPJcqGAHLwqigT
+X-Received: by 2002:a17:906:496:: with SMTP id f22mr1831965eja.311.1588316164554;
+        Thu, 30 Apr 2020 23:56:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1588316164; cv=none;
+        d=google.com; s=arc-20160816;
+        b=V/oY5TxTHwXnrJBRPr22Br/AqQ6I6p5O/1ns+z3he9wUS12djg7RH9X2noorWi65iW
+         XQulgd0Xrz9jcxXRur7oKrzSo6I4YbSjLaQoYW5V+x04Jhx91Uy9kcHWJLrrM1VJZPyn
+         BUjIW4BGOangYGsFKED2G8xhADDXiNDjqJ/Eb2xZ54T3KtcXKwNnVYE0/LmeINfI/6kv
+         VnwipKG+vX+6SCoZLgbQuT1eKx7vBUcUHA5eCdkJEksDOCOezctgJQMsRjIlmJjUf7KG
+         rnh5U+6Jo61VGJdriLga5fbb4gOi7htyLLnNxH8s9od8ovmYSaSiGucnkV5i3v4tXX3L
+         2F6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature:dkim-signature;
+        bh=kmqR2R8N33Xggva+RT+PcI2on9IoOK26ShAjr/4Kync=;
+        b=mwss0+VaEBHF/d0tOJui2C3u929zT9xrsIkF6LXH9IMoTrPae9zqsZVqmzQP54akgB
+         NzGnSxobkMkdXOD8HTfGJpojTG7Vu1AdfDlnDoCkkihy7audL8SXpe+GEXwbIHzY1sR3
+         C5lUGTnrZ/tEqPncd8gxN7GLpfOpF16YvBaI6qDnh4Q4k5na13gLTA5+7cLhhxMLQNcH
+         L64iwlG8LjbFvXPwJ3iSDVlhkQ3Ne0odziyQbU1OUY8R9hZDu3T8meJrzyBoZ0TQO3Fs
+         p+phQkk/xN/GZISEJPw9DqfR40iM6eCKk6532o7Y5srEIy4KFkMEJlHh8mOQ5Pa4CBJU
+         m5sA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kroah.com header.s=fm3 header.b=SazpHWuj;
+       dkim=pass header.i=@messagingengine.com header.s=fm2 header.b="Vpx3e/q4";
+       spf=pass (google.com: domain of linux-next-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-next-owner@vger.kernel.org
+Return-Path: <linux-next-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id eb14si1566172edb.170.2020.04.30.23.55.32;
+        Thu, 30 Apr 2020 23:56:04 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-next-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kroah.com header.s=fm3 header.b=SazpHWuj;
+       dkim=pass header.i=@messagingengine.com header.s=fm2 header.b="Vpx3e/q4";
+       spf=pass (google.com: domain of linux-next-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-next-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728212AbgEAGza (ORCPT <rfc822;junchang5072@gmail.com>
+        + 99 others); Fri, 1 May 2020 02:55:30 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:59149 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728126AbgEAGza (ORCPT
+        <rfc822;linux-next@vger.kernel.org>); Fri, 1 May 2020 02:55:30 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id EBE7F5C009C;
+        Fri,  1 May 2020 02:55:28 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Fri, 01 May 2020 02:55:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=kmqR2R8N33Xggva+RT+PcI2on9I
+        oOK26ShAjr/4Kync=; b=SazpHWujaUpxMsMmwm42TypkWZNbeG4hKqaU8v0nqSe
+        vK/fqygmC6xhqs7xBPxjJX0rDLuVIaFMGk268ZEGOcFZo7LUEQOnF/Oy622FsdTx
+        ah3KtJgYWOhYDZVSq0cYXkY7xw56oLFbH0KRgI//0tM9pJF95S8gR/5fN+ODxxlp
+        ycaU6iSAsV1EjbiwJvuw2cllNjahSYs/4lslTefLl11i3d9qF/j0dCnmBlF+6mLP
+        oobDO9mexWuDWCR0B5EXtjgtgWOYzKl5d+LqDSKdHdqp7MLLFyGBaQMnvMxyNjo+
+        Vbsnaas3173YRisrEbgCQDul5kBb63dmX9xnuRN2KAQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=kmqR2R
+        8N33Xggva+RT+PcI2on9IoOK26ShAjr/4Kync=; b=Vpx3e/q4VUE3Q4SgaVrALa
+        lW1/1oSbMsh03RomhH1gdG/CEGguUxwsQhTl+FkatayHrdhyJPd4cNBdRelMAquo
+        pqAeaJEOBhpX/azf73Nu8i+6p7/2/VBmIZR5hpYqLQ8iQirftzkNF4HzuEBAaTh3
+        VJLqqg+NCZ0FxzHQL/5VK4lvRTSuovp13k5fazsnzHD0dAE+YN6mJERwvxSCOaJH
+        PmkHW1YSukTrnXTiYlR+Cxv/4Os3igL56GkjUVaR7uwOVpCzZLnrD69fpEPDBA7D
+        xn1GcsEUCeGogRGPkpoH/TpUZ5Op6gbmMx6RZdQYBhDKTyVWu5jYynxPW8xfLIsw
+        ==
+X-ME-Sender: <xms:4MerXpwxZd2-UdhlRDKj87MbwvbzdyEsnC3dZKH3sc_FgGukYv27Gw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrieeigdduuddtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpefirhgvghcu
+    mffjuceoghhrvghgsehkrhhorghhrdgtohhmqeenucggtffrrghtthgvrhhnpeevueehje
+    fgfffgiedvudekvdektdelleelgefhleejieeugeegveeuuddukedvteenucfkphepkeef
+    rdekiedrkeelrddutdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrg
+    hilhhfrhhomhepghhrvghgsehkrhhorghhrdgtohhm
+X-ME-Proxy: <xmx:4MerXvIGvjL5U4-8-v_wEo-kD-liDvCAUUrOU0q7xGZcEEz5Xd885A>
+    <xmx:4MerXlyBBjQH36IBVGPoIRPSFfigZhQ1iw5RekfK0hZDhBuDwV8GuQ>
+    <xmx:4MerXsqBIkFFdPfxSg0PIraFoGD_FoMBU6wJyjgmC546S6noFVsItA>
+    <xmx:4MerXoMrBti1L609HkzV4Ihvg9lZ7vUwC49sKCYWKtgfJYTkn7aqww>
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        by mail.messagingengine.com (Postfix) with ESMTPA id D602D3065F5D;
+        Fri,  1 May 2020 02:55:27 -0400 (EDT)
+Date:   Fri, 1 May 2020 08:55:26 +0200
+From:   Greg KH <greg@kroah.com>
+To:     Stephen Rothwell <sfr@canb.auug.org.au>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Jolly Shah <jolly.shah@xilinx.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: linux-next: build warning after merge of the char-misc tree
+Message-ID: <20200501065526.GA886609@kroah.com>
+References: <20200501162806.155c44ed@canb.auug.org.au>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200501162806.155c44ed@canb.auug.org.au>
+Sender: linux-next-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-next.vger.kernel.org>
+X-Mailing-List: linux-next@vger.kernel.org
+
+On Fri, May 01, 2020 at 04:28:06PM +1000, Stephen Rothwell wrote:
+> Hi all,
+> 
+> After merging the char-misc tree, today's linux-next build (x86_64
+> allmodconfig) produced this warning:
+> 
+> drivers/crypto/xilinx/zynqmp-aes-gcm.c: In function 'zynqmp_handle_aes_req':
+> drivers/crypto/xilinx/zynqmp-aes-gcm.c:137:5: warning: 'status' may be used uninitialized in this function [-Wmaybe-uninitialized]
+>   137 |  if (status) {
+>       |     ^
+> drivers/crypto/xilinx/zynqmp-aes-gcm.c:87:15: note: 'status' was declared here
+>    87 |  unsigned int status;
+>       |               ^~~~~~
+> 
+> Introduced by commit
+> 
+>   bc86f9c54616 ("firmware: xilinx: Remove eemi ops for aes engine")
+
+Rajan, can you send me a patch to fix this up please?
+
+thanks,
+
+greg k-h

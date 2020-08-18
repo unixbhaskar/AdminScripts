@@ -1,0 +1,94 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp2715636lfj;
+        Fri, 24 Jul 2020 10:34:00 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyvmj9mub3R69eNpz34Dwzn+bSRxSGaAlbm2wXEZFWLOVWxGB6AnbOFHszT4N/G1lzpJfSk
+X-Received: by 2002:a17:906:594c:: with SMTP id g12mr10138209ejr.255.1595612040045;
+        Fri, 24 Jul 2020 10:34:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1595612040; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Utjoe3SfQQ/wtSjv5JQrxn6Zl+0KB58C3951pWAAib8dVhOTs8it7im7CwFUrGaGkf
+         z8BtdDyz/N4j1yNWdACFFyBYeIX3NL1yhRl1D3TSxrn9hRJFzuEdXX3GSQ5dE8iKzx/h
+         +6NR5btiHyv91P27mnLTMtk4gp1MissrPKw5agCjCIv4p1kojhOK6jIzZqCtMgEKPh39
+         nOHVj7aq0VnTTy0iJGqNRpFyKUVd6dr9I59xCfsgcCquZDfuz73ZUXa/TWeF1AyGjLDL
+         HtXzjqt9CAg42RopNN40jcGUzY1QmSwwz15jcTWV2CSsm2krFddME0s+vSgKpGta1ggm
+         IJhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :organization:references:in-reply-to:message-id:subject:cc:to:from
+         :date;
+        bh=p4NoUTba1yJvvfkN2pNtWribKTR0YiaekRxehArHRjk=;
+        b=G5jjBBUH41HFkV0VhVrmg3xRWgZh6ngP8w5rZ3K1Uf742n0EZAwZUUfvkEggiR17gS
+         0bSWzR+nKu7U+Iq1XInhnWb2INCrZd1ZGp/wXxqjsQ01qLpmBxRYxVMKi660Xsgc3zLq
+         2Tt2qm9+washzH/8dlZaFFBAGwT5psGEQfuaKb3gV36lgutoSw+9NwuqVfiFZ5lOCE36
+         RZK45/wdMZp817eAjdyztwGM0CRJxswR3Zx1zDUG3wLjWZESs5D678DULThBMbXVLDXB
+         +qcw4wZaRuZIBJYSoAFipxT8zPNYI77Kx66z2ELnYPCL3jX13F8B9pWweWusaDaZE0H5
+         jHqw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Return-Path: <linux-doc-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id g13si1014968ejd.152.2020.07.24.10.33.36;
+        Fri, 24 Jul 2020 10:34:00 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-doc-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-doc-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726702AbgGXRd0 (ORCPT <rfc822;dwlsalmeida@gmail.com>
+        + 99 others); Fri, 24 Jul 2020 13:33:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47714 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726366AbgGXRd0 (ORCPT
+        <rfc822;linux-doc@vger.kernel.org>); Fri, 24 Jul 2020 13:33:26 -0400
+Received: from ms.lwn.net (ms.lwn.net [IPv6:2600:3c01:e000:3a1::42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A958EC0619D3;
+        Fri, 24 Jul 2020 10:33:26 -0700 (PDT)
+Received: from lwn.net (localhost [127.0.0.1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id 2ADB32BA;
+        Fri, 24 Jul 2020 17:33:26 +0000 (UTC)
+Date:   Fri, 24 Jul 2020 11:33:25 -0600
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     Steven Rostedt <rostedt@goodmis.org>
+Cc:     Peter Zijlstra <peterz@infradead.org>, linux-doc@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>, Neil Brown <neilb@suse.de>
+Subject: Re: Minor RST rant
+Message-ID: <20200724113325.44923f75@lwn.net>
+In-Reply-To: <20200724132200.51fd2065@oasis.local.home>
+References: <20200724132200.51fd2065@oasis.local.home>
+Organization: LWN.net
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
+Sender: linux-doc-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-doc.vger.kernel.org>
+X-Mailing-List: linux-doc@vger.kernel.org
+
+On Fri, 24 Jul 2020 13:22:00 -0400
+Steven Rostedt <rostedt@goodmis.org> wrote:
+
+> > It is tempting to describe the second kind as starting with a
+> > component, but that isn't always accurate: a pathname can lack both
+> > slashes and components, it can be empty, in other words.  This is
+> > generally forbidden in POSIX, but some of those "xxx``at``" system calls
+> > in Linux permit it when the ``AT_EMPTY_PATH`` flag is given.  For
+> > example, if you have an open file descriptor on an executable file you
+> > can execute it by calling `execveat() <execveat_>`_ passing
+> > the file descriptor, an empty path, and the ``AT_EMPTY_PATH`` flag.  
+> 
+> All those `` are throwing me off to understanding what is being written.
+
+Give people a tool, some of them will make more use of it than you might
+like. I do my best to push back against excessive markup (which all of the
+above qualifies as, as far as I'm concerned), but I can't really even do
+that will all that goes through my tree, much less all the docs stuff
+merged by others.
+
+The markup in question was seemingly added by Neil; I've added him to CC
+in case he wants to comment on it.
+
+I'm not sure what to do other than to continue to push for minimal use of
+intrusive markup.
+
+jon

@@ -1,0 +1,138 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp3946703lfj;
+        Sun, 9 Aug 2020 06:23:29 -0700 (PDT)
+X-Received: by 2002:adf:9d85:: with SMTP id p5mr19560618wre.286.1596979409204;
+        Sun, 09 Aug 2020 06:23:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596979409; cv=none;
+        d=google.com; s=arc-20160816;
+        b=g132N9T1iePCEPPZ9akCwIfqNzOS216gHFJdKmrMZr2SBDbJ03Fm+ZNA00Jltf6TL8
+         DEwzYtCeweEyyMxmkNetAYxwloKV7wUN3hMxbAi3CvzfPiNULZtX6VAeVos5OBLzVjHH
+         vPf+ZytBIGyUZs06O0nzjAsIESY9/fSrZVh0E72ykFJW7bljV5ESFqQ9qJ4mWqGk9PqA
+         kODIjQnxC/BOgS7JriMFvdOcrYoy9ZO9Gends+/zLASPslGpciFLONTCz3vIAxrP4OYK
+         iPovzX2G9xbH6TmJ3hPN2SUwsCJxoceJYSnMVGoPqCAJBMS9RkHXEDdwxIiPAwMkguen
+         vwIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:dkim-signature;
+        bh=mxMscfuXuobUmy56FdXlbUpvqiI08kAsY5msIXsz5Sw=;
+        b=jN0BVafhiV2Uc8zvErmc+It9+zid+Xk9mVsGnJNWIq36mtDo7xZ7BxosGi6GNSSl0+
+         Ky7Lvo9Sv2yX4o1o/n/YQsn94BoYfxHdzee7p+r7pgqk5oL/mr7cRH0ydonRXTyeLO1u
+         7VnzZEzjB1DfMH3jPYsA9rzFE0C369IrQ0jVhxudabTmhHrfUKbaE0bAPKaGFSGf03oF
+         JendtoLGjav1Fi6Fdsqq5MeqEyDKP7kDKV10vVb2/oXTOnH5b0IFk5hfkXumPC2X1+GG
+         gRfZ/TxpOsmT4Sw5AjiEAnJ2Iu/hC7WxrQ9gE6GJheFLy5PBIhrDYEv8gnU20SDR8Uq0
+         sc2Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=Vql8XQd+;
+       spf=pass (google.com: domain of salvatore.bonaccorso@gmail.com designates 209.85.220.65 as permitted sender) smtp.mailfrom=salvatore.bonaccorso@gmail.com
+Return-Path: <salvatore.bonaccorso@gmail.com>
+Received: from mail-sor-f65.google.com (mail-sor-f65.google.com. [209.85.220.65])
+        by mx.google.com with SMTPS id p10sor7764277wmg.24.2020.08.09.06.23.29
+        for <unixbhaskar@gmail.com>
+        (Google Transport Security);
+        Sun, 09 Aug 2020 06:23:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of salvatore.bonaccorso@gmail.com designates 209.85.220.65 as permitted sender) client-ip=209.85.220.65;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=Vql8XQd+;
+       spf=pass (google.com: domain of salvatore.bonaccorso@gmail.com designates 209.85.220.65 as permitted sender) smtp.mailfrom=salvatore.bonaccorso@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=mxMscfuXuobUmy56FdXlbUpvqiI08kAsY5msIXsz5Sw=;
+        b=Vql8XQd+S3jie+Kt82kw40pkO+vrxECY05AQZrEBkMYK15ZkIrjXV1F7eEmoqRdHn1
+         lD33nhNGSyPicrLb5SCl+wBceKvqIAtIKmlt3TGNVbj7ZkyVWbIKa9aUXdl1VeWaXQOT
+         UngpvwNhJ/ctEywfppmBQ9APfuqiojyTPG6zaL1FCTBg/LZ9rlL1QnKm7aIeIpXztJiG
+         0qkQaqA5Z6xj3YJKEI745573NetMX8xVkuZjqdxEZPthym4dXV6HlX/b3Q0IwxpdTFnz
+         +lq3MyAFanyt5AVfF7s3zMv8hvLU2wp3bkMUqvnDLfoHM5kjBPuov9D9aFyB33ImO2c2
+         1gcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=mxMscfuXuobUmy56FdXlbUpvqiI08kAsY5msIXsz5Sw=;
+        b=IDAkvMKezteZUFZ0g43NXuBspm/Zw8krktSSwMiewiw1ImwYFpIZ32woIDWcrD41OG
+         qyNef8kZHMdoFCNGeOKuJ/AFZy7CZVnRYMliMc6iBHkgaW23nK9eeMDY56h9UGcPKYzn
+         vo23qVyRVAFpsMqU8YO2aBY1eKUnG+S4F6Ye3JpE/itEruXKmGu1V5qzqgNKlugroa3/
+         dbC4ST0n726TIcsz48ImgDFD+BZbRsnZ5s21ojh8Pi4QWXoSsqF6Ae8e9sJS1El6JK47
+         afyR1nHbCfBuFkRWy3GvVuScuDASxyaUAQQT567SFx1F0CUtwmvYWEsQX5JOleroxrnY
+         Wnbg==
+X-Gm-Message-State: AOAM5331NF5gGBi+EaQ2/61JSrf1cWilMoWuIy/HWhxnxXjpYYLdxKSD
+	8nB8hrT2u/X/PgQBdcVwDuubcrr7ID4=
+X-Google-Smtp-Source: ABdhPJwiI8ekWORZPzcPGgKK1fVAwnHjIGLSLDh1YUHm59tAanDToqjHJDCtlVw4yURY48LbP+3BiA==
+X-Received: by 2002:a1c:2b04:: with SMTP id r4mr20000224wmr.76.1596979408960;
+        Sun, 09 Aug 2020 06:23:28 -0700 (PDT)
+Return-Path: <salvatore.bonaccorso@gmail.com>
+Received: from eldamar (80-218-24-251.dclient.hispeed.ch. [80.218.24.251])
+        by smtp.gmail.com with ESMTPSA id z66sm17579993wme.16.2020.08.09.06.23.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Aug 2020 06:23:27 -0700 (PDT)
+Sender: Salvatore Bonaccorso <salvatore.bonaccorso@gmail.com>
+Date: Sun, 9 Aug 2020 15:23:27 +0200
+From: Salvatore Bonaccorso <carnil@debian.org>
+To: Jonathan Corbet <corbet@lwn.net>
+Cc: Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+	LinuxKernel <linux-kernel@vger.kernel.org>,
+	linux-doc@vger.kernel.org
+Subject: Documentation: build failure with sphinx >= 3.0.0: exception: cannot
+ import name 'c_funcptr_sig_re' from 'sphinx.domains.c' (was: Re: Kernel
+ build failed ...SPHINX extension error)
+Message-ID: <20200809132327.GA145573@eldamar.local>
+References: <20200408113705.GB1924@ArchLinux>
+ <20200408132505.52e595bc@lwn.net>
+ <20200408233450.GA14923@debian>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200408233450.GA14923@debian>
+
+Hi 
+On Thu, Apr 09, 2020 at 05:04:54AM +0530, Bhaskar Chowdhury wrote:
+> On 13:25 Wed 08 Apr 2020, Jonathan Corbet wrote:
+> > On Wed, 8 Apr 2020 17:07:05 +0530
+> > Bhaskar Chowdhury <unixbhaskar@gmail.com> wrote:
+> > 
+> > > Extension error:
+> > > Could not import extension cdomain (exception: cannot import name
+> > > 'c_funcptr_sig_re' from 'sphinx.domains.c'
+> > > (/usr/lib/python3.8/site-packages/sphinx/domains/c.py))
+> > > Apr 08 16:48:46 enabling CJK for LaTeX builder
+> > > Apr 08 16:48:46   CC      kernel/power/poweroff.o
+> > > make[1]: *** [Documentation/Makefile:81: htmldocs] Error 2
+> > > make: *** [Makefile:1549: htmldocs] Error 2
+> > > make: *** Waiting for unfinished jobs....
+> > 
+> > This is weird, to say the least.  But I think the "python3.8" in the
+> > message above says everything you need to know.  If you're running with
+> > an unreleased version of Python, it's not entirely surprising that you
+> > might run into trouble with a complex package.
+> > 
+> > jon
+> 
+> Thank you Jon...will investigate more and keep your suggestion in mind.
+
+The problem is actually related to changes happening in Sphinx 3.0.0.
+There is the followign issue filled upstream:
+
+https://github.com/sphinx-doc/sphinx/issues/7421
+
+'c_funcptr_sig_re' was removed upstream in sphinx v3.0.0b1 and so the
+kernel documentation build fails. This is reproducible with a recent
+sphinx version (in attached case it is 3.2.0):
+
+$ make PYTHON=python3 xmldocs
+  SPHINX  xmldocs --> file:///home/build/linux/Documentation/output/xml
+make[2]: Nothing to be done for 'xml'.
+Running Sphinx v3.2.0
+
+Extension error:
+Could not import extension cdomain (exception: cannot import name 'c_funcptr_sig_re' from 'sphinx.domains.c' (/usr/lib/python3/dist-packages/sphinx/domains/c.py))
+make[1]: *** [Documentation/Makefile:115: xmldocs] Error 2
+make: *** [Makefile:1655: xmldocs] Error 2
+
+Distribution reports related to this issue:
+https://bugs.debian.org/963636
+https://bugs.archlinux.org/task/66178
+https://bugs.archlinux.org/task/66156
+
+Regards,
+Salvatore

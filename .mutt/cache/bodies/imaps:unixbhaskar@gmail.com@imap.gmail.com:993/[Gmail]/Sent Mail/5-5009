@@ -1,0 +1,84 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from Gentoo ([103.231.91.74])
+        by smtp.gmail.com with ESMTPSA id b29sm153319462pfr.159.2019.08.08.04.22.35
+        for <i3-discuss@freelists.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Aug 2019 04:22:37 -0700 (PDT)
+Date: Thu, 8 Aug 2019 16:52:28 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: i3-discuss@freelists.org
+Subject: Re: [i3-discuss] Which terminal programme you use?
+Message-ID: <20190808112225.GA25651@Gentoo>
+References: <xCWsT-hQqSQKtfSHHIKdCbsechrCfPPvje87lR8FTgqHIyUwe67UXbnkw4AbEFj9xYo6pQ8Fg6XjnHZXQQWfHvdHFS8hjh7ycPu2HxbLiyY=@protonmail.ch>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="gBBFr7Ir9EOA20Yy"
+Content-Disposition: inline
+In-Reply-To: <xCWsT-hQqSQKtfSHHIKdCbsechrCfPPvje87lR8FTgqHIyUwe67UXbnkw4AbEFj9xYo6pQ8Fg6XjnHZXQQWfHvdHFS8hjh7ycPu2HxbLiyY=@protonmail.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+
+--gBBFr7Ir9EOA20Yy
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+If you use terminal multiplexer like screen , you could easily achieve
+that by using below procedule.
+
+Once in screen ...do this
+
+CTRL+a then press ESC=20
+
+Now use the touchpad scrolling and all the text or specific selected
+text get copied into the buffer.
+
+Once you finish selecting text ,press ESC again to end the "copy mode"
+
+Then open a file  where you decided to put those
+copied text ...once it open then press ]=20
+
+voila! you made it ...
+
+Thanks,
+Bhaskar
+
+
+On 10:25 Thu 08 Aug 2019, Lu=EDs Moreira de Sousa wrote:
+>   Hi everyone,
+>
+>   I have been using i3 with some degree of success for a few months. As
+>   intended, I greatly reduced the use of the mouse. However, there is a
+>   programme I constantly use that often requires interaction with the
+>   mouse: GNOME terminal. To select output excerpts and copy them to the
+>   clipboard there is no alternative to the mouse.
+>
+>   What terminal programme(s) you use together with i3? Can you use a
+>   terminal fully without the mouse?
+>
+>   Thank you.
+>   --
+>   Lu=C3s
+>   Sent with [1]ProtonMail Secure Email.
+>
+>References
+>
+>   1. https://protonmail.com/
+
+--gBBFr7Ir9EOA20Yy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl1MBe4ACgkQsjqdtxFL
+KRUtyQgAgvmHcCXv62rrxMW1j+oFo6obrxMnTy1yrqW32/ls5qYzJxlCYLJYqtwD
+cnSs/5nJBROBu79jlkP2B6GhdGS1tDNKZQZ4igBczXvh+b2mNKx7Uv7+2V8QnhH3
+6yrSL99kEUSPU+HUxKR1dg1jk32fK1w+KDEmkc6p+rhuHaJfqV3P8PW1tsu8VphX
+ItFDO5Y6oPaftoTF+jfeVVmECGY8L80VpTX5jdAygT8MvGsbh0ZsC1YcESmivedJ
+Mr7OZgvqxUtdDPO7IhLYU9SevOkj1nd6i7A1oUs7Vd47Eax2tG9ySQgkQ5NTPA/x
+FbXw07bPpqHtqgIJrvwpzGfnnBdPhg==
+=fp7I
+-----END PGP SIGNATURE-----
+
+--gBBFr7Ir9EOA20Yy--

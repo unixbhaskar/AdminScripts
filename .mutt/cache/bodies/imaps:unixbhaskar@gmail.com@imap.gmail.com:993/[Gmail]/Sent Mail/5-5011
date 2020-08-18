@@ -1,0 +1,57 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from Gentoo ([103.231.91.70])
+        by smtp.gmail.com with UTF8SMTPSA id k64sm73819037pge.65.2019.08.08.21.34.38
+        for <ákw@thinkwiki.órg>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Aug 2019 21:34:40 -0700 (PDT)
+Date: Fri, 9 Aug 2019 10:04:29 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: ákw@thinkwiki.órg
+Subject: Can I have an account at ThinkWIKI?
+Message-ID: <20190809043427.GA828@Gentoo>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/04w6evG8XlLl3ft"
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+
+--/04w6evG8XlLl3ft
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+
+Hello,
+
+I am an avid Thinkpad user and maintaining several Linux distribution on
+it from ages.
+
+You can find my details here : https://about.me/unixbhaskar
+
+I believe , I could help people to poke and understand and maintain
+linux on Thinkpad , with whatever the knowledge I gained using it for
+long time .
+
+So , kindly allow me to have an account on ThinkWiKi.
+
+IMPORTANT : I would be liked to be know as "unixbhaskar" , which
+basically everywhere in interent I live. :)
+
+Thanks,
+Bhaskar
+
+--/04w6evG8XlLl3ft
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl1M984ACgkQsjqdtxFL
+KRWVYgf9ErjcwFZwqO/md6CszIaKnYG/9NwcHQhK3bIZRU6EaW7Ol1x6wsu5mwKs
+ZncEmRBlEKXf7mHlim8ntuGuTUbXGiEl2NG5MlBsatuZgGkTtiXG4SL3JCu+dns7
+uL5bkfLBi0GzrMShWhLcQoRcGaWIHt/3+BYe55p+dt0M3O2n0RmNAbLnYZUxgnGP
+tZGxjyZTi5NBiQjfagsQKFc7o9ecyrAUQxOSiDwgEZhqTNRPu2Pu5b7poGlZub/+
+C7lCaE8Zzreu5Q1/wKwSnlb9Q84V4AsKeMjXGHkRH+AEiX/i2+zNWKFFIcgMe3/P
+q4hP9kPf2b8qpaisNODi5A9jnZHMQA==
+=tXum
+-----END PGP SIGNATURE-----
+
+--/04w6evG8XlLl3ft--

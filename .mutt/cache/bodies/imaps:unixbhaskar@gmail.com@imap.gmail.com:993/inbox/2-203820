@@ -1,0 +1,253 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp355532lfj;
+        Tue, 1 Oct 2019 21:16:45 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwVeHXb9vYH2ZMyU4dGty2Z1cTq8zlNC/LN+aW89xl6czKdHZhHNi6ugTGyo+asRkBpFsV3
+X-Received: by 2002:a2e:924d:: with SMTP id v13mr811985ljg.226.1569989805649;
+        Tue, 01 Oct 2019 21:16:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569989805; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LcESpfWz+puLzjQbLNkz319I3OBL/8lwUBsRo/ETueKXMgJ/eIJdx4OGiIv/deTJp/
+         lWAmniAu2zmRnY1eq5QKQMvI+4/NJPE8keMHGytUQ9ObjBUDO3/yRz6Vb0dTg5gRzfa6
+         g/KjCt01Zi3xJJ2inHA6gtsPSQuzOIjLmv4fWqxzS3tHw1l488CImQxKu8rwhgV4MCQC
+         jLmSQpk05jYjfSEwPqoxPPg5/IFMdsL4tVpu/JQ9x/qaeCpQmzRk2WhvR8PVBCnSXLtS
+         6HHq1m688qaSLaVkg1GxLYcJrQ4LjRAmqMCg5a/lzYCjh+VavnF6mpWEwVfD5yU6hJS+
+         ey+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=dkim-signature:list-unsubscribe:message-id:references:in-reply-to
+         :subject:to:from:date:content-transfer-encoding:mime-version;
+        bh=KREIQwNdmAUboNbKx7fTItk2tEJsWD1Cc0IvVtSqmOg=;
+        b=lUkeo+FyWgC+PzpJAt3Kqa2bmV3gwZKCXoP4v3QyiUBrkex0NXRghs+Iv9EsE2LC/C
+         3o4gPjYA1kFmg7cOSVuRNx5Q8p/kV8WHNXcoaTJoExj7f2rEBCPrb1Mtb3AootXpum13
+         CuEw0JP/sHQaRW8vBneG/8cn9Ck94KUxBT+WdgOTmthnkjciYEYiOGOu+G5MUs1TjNXL
+         712Gbw/FURv0DaaKLRryDA3priYiK67/n/PRKHEmwxgpkDh5wJZFV8sCWzPrW4Su3sUh
+         RtB9no6PYZ+51sDdR9gom37xRkurG8VIu3xCLVfjrnMZ4DSyx8rATlP6S+NyCrLapXhp
+         aYUw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@livejournal.com header.s=ljcomprod header.b=GWnIzeHw;
+       spf=pass (google.com: domain of lj-notify@livejournal.com designates 81.19.74.144 as permitted sender) smtp.mailfrom=lj-notify@livejournal.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=livejournal.com
+Return-Path: <lj-notify@livejournal.com>
+Received: from livejournal.com (lj-massmail.livejournal.com. [81.19.74.144])
+        by mx.google.com with ESMTP id z26si17390197ljh.18.2019.10.01.21.16.45
+        for <unixbhaskar@gmail.com>;
+        Tue, 01 Oct 2019 21:16:45 -0700 (PDT)
+Received-SPF: pass (google.com: domain of lj-notify@livejournal.com designates 81.19.74.144 as permitted sender) client-ip=81.19.74.144;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@livejournal.com header.s=ljcomprod header.b=GWnIzeHw;
+       spf=pass (google.com: domain of lj-notify@livejournal.com designates 81.19.74.144 as permitted sender) smtp.mailfrom=lj-notify@livejournal.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=livejournal.com
+Received: from localhost (theschwartz [127.0.0.1])
+	by livejournal.com (TheSchwartzMTA) with ESMTP id 00wrk15.lj.rambler.tech-16044-1569989805;
+	Wed, 2 Oct 2019 04:16:45 +0000 (UTC)
+MIME-Version: 1.0
+Content-Transfer-Encoding: binary
+Content-Type: multipart/alternative; boundary="_----------=_1569989805160442885"
+X-Mailer: MIME::Lite 3.027 (F2.77; T1.28; A; B3.08; Q3.08)
+Date: Wed, 2 Oct 2019 04:16:45 +0000
+From: "paulmck - LJ Comment" <lj-notify@livejournal.com>
+To: unixbhaskar@gmail.com
+Subject: Re: Congrats Paul! 
+In-Reply-To: <comment-18342169-452710@livejournal.com>
+X-Lj-Recipient: ext_3740166
+X-Lj-Journal: paulmck
+X-Esn-Debug-00: c=FiredEvent j=35238670550 f=0 t=1569989804 g=1569990104 p=21526 h=kr-wrk06.lj.rambler.tech ep=2:18342169:1769
+References: <entry-18342169-53350@livejournal.com> <comment-18342169-452710@livejournal.com>
+Message-Id: <comment-18342169-452966@livejournal.com>
+X-Esn-Debug-01: c=ProcessSub j=35238670558 f=0 t=1569989805 g=1569990105 p=16044 h=kr-wrk15.lj.rambler.tech uid=78185621 sub=(u=78185621,s=10,i=0,j=0,e=25,a1=0,a2=0,n=2,c=1468212479,x=0,f=0)
+List-Unsubscribe: https://www.livejournal.com/manage/subscriptions/unsubscribe.bml?user=ext_3740166&hash=06b1dd975f724d544be8df189349a261&etypeid=25&journalid=18342169
+DKIM-Signature: v=1; a=rsa-sha1; q=dns/txt; l=8461; s=ljcomprod;
+	c=simple/simple;
+	h=From:To;
+	d=livejournal.com; i=@livejournal.com;
+	bh=rX10QT5NRYqyJBMKBVovB2oZmNg=;
+	b=GWnIzeHwdNBEaswV2siHRVuUXOeGKo73Sv8tIk2QNxFTi3R2i4K/xir8OJvw+AbX6pDsyuHyD/Su93wl7qRT4nWFsJTJJB2NAaA80KA0ay0AECL76eZ5qnC1t6fQzlDJe9/iYhQGBGJxoz6mdTZUaZ6b0w5HgZLJNNPlAm76fJJE8ZbQ0otgrPzcdTS9eil2nEz78hu6F2DySItaNTOBooIB73ceukV9MyvCiQ+POiEuUv0JL1+g7gsvrlw0pMV1
+
+This is a multi-part message in MIME format.
+
+--_----------=_1569989805160442885
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+paulmck (paulmck) replied to a comment you left in a LiveJournal post
+(https://paulmck.livejournal.com/53350.html). The comment they replied to
+was:
+
+> Facebook is lucky enough to have you. I heard that Facebook is doing an
+> awesome job in the Linux space, adding you just enhance it more.=20
+
+> I wish you all the luck(do you really need one??) for your new endeavor.
+
+> Thanks, Bhaskar
+
+Their reply was:
+
+ Subject: Re: Congrats Paul!=20
+
+  Thank you, Bhaskar, and I am very much looking forward to it!
+
+From here, you can:
+
+  - View the thread starting from this comment:
+    https://paulmck.livejournal.com/53350.html?thread=3D452966#t452966
+  - View the entire thread this comment is a part of:
+    https://paulmck.livejournal.com/53350.html?thread=3D452710#t452710
+  - View all comments to this entry:
+    https://paulmck.livejournal.com/53350.html?view=3Dcomments
+  - Reply at the webpage:
+    https://paulmck.livejournal.com/53350.html?replyto=3D452966
+
+
+--_----------=_1569989805160442885
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+
+<head><meta http-equiv=3D"Content-Type" content=3D"text/html" /></head><bod=
+y><table><tr valign=3D'top'><td><img src=3D"https://l-userpic.livejournal.c=
+om/108549024/18342169" align=3D'absmiddle' width=3D'72' height=3D'100' hspa=
+ce=3D'1' vspace=3D'2' alt=3D'' /> </td><td width=3D'100%'>paulmck (<a href=
+=3D"https://paulmck.livejournal.com/profile">paulmck</a>) replied to a comm=
+ent you left in <a href=3D"https://paulmck.livejournal.com/53350.html">a Li=
+veJournal post</a>. The comment they replied to was:</td></tr></table>
+<blockquote style=3D'border-left: #000040 2px solid; margin-left: 0px; marg=
+in-right: 0px; padding-left: 15px; padding-right: 0px'>Facebook is lucky en=
+ough to have you. I heard that Facebook is doing an awesome job in the Linu=
+x space, adding you just enhance it more. <br /><br />I wish you all the lu=
+ck(do you really need one??) for your new endeavor.<br /><br />Thanks,<br /=
+>Bhaskar</blockquote>
+
+Their reply was:
+
+<blockquote style=3D'border-left: #000040 2px solid; margin-left: 0px; marg=
+in-right: 0px; padding-left: 15px; padding-right: 0px'><b>Subject:</b> Re: =
+Congrats Paul! <br />Thank you, Bhaskar, and I am very much looking forward=
+ to it!</blockquote><p style=3D'Margin: 0; margin-top: 32px; margin-bottom:=
+ 32px;'><a href=3D'https://paulmck.livejournal.com/53350.html?replyto=3D452=
+966' style=3D'Margin: 0; border: 1px solid; border-radius: 2px; display: in=
+line-block; margin: 0; min-width: 80px; padding: 8px; line-height: 1; text-=
+align: center; text-decoration: none;'>Reply</a></p>From here, you can:
+
+<ul><li><a href=3D"https://paulmck.livejournal.com/53350.html?thread=3D4529=
+66#t452966">View the thread</a> starting from this comment</li><li><a href=
+=3D"https://paulmck.livejournal.com/53350.html?thread=3D452710#t452710">Vie=
+w the entire thread</a> this comment is a part of</li><li><a href=3D"https:=
+//paulmck.livejournal.com/53350.html?view=3Dcomments">View all comments</a>=
+ to this entry</li></ul>
+</body>
+<div style=3D"clear: both; margin-top: 30px; padding-top: 20px; border-top:=
+ 2px solid;">
+    <h3 style=3D"font-size: 26px; line-height: 28px; margin: 0 0 20px; font=
+-weight: normal;">
+        Latest entries of paulmck
+    </h3>
+
+    <ul style=3D"padding: 0; list-style: none;">
+=20=20=20=20=20=20=20=20
+            <li style=3D"margin-bottom: 20px; padding: 0 0 20px; border-bot=
+tom: 1px solid #CCC;">
+                <h4 style=3D"margin: 0 0 5px; font-size: 16px; line-height:=
+ 20px; font-weight: bold;">
+                    <a href=3D"https://paulmck.livejournal.com/53350.html?u=
+tm_source=3D3userpost_email" style=3D"text-decoration: none !important;" >
+                        Announcement: Change of Venue
+                    </a>
+                </h4>
+                <div style=3D"margin: 0 0 15px; font-size: 13px; line-heigh=
+t: 16px;  font-style: italic; color: #555;"
+                >1 Oct 2019, 08:24</div>
+
+                <p style=3D"margin: 0 0 10px; line-height: 150%; font-size:=
+ 15px;"
+                >This week of September 30th marks my last week at IBM, and=
+ I couldn't be more excited to be moving on to the next phase of my career =
+by joining a great team at Facebook! Yes, yes, I am bringing with me my mai=
+ntainership of both Linux-kernel RCU and the Linux-kernel memory model, my =
+editing of "Is=E2=80=A6</p>
+
+                <a
+                    href=3D"https://paulmck.livejournal.com/53350.html?utm_=
+source=3D3userpost_email"
+                    target=3D"_blank"
+                    style=3D"text-decoration: none !important; font-size: 1=
+5px;"
+                >
+                    Read more
+                </a>
+            </li>
+=20=20=20=20=20=20=20=20
+            <li style=3D"margin-bottom: 20px; padding: 0 0 20px; border-bot=
+tom: 1px solid #CCC;">
+                <h4 style=3D"margin: 0 0 5px; font-size: 16px; line-height:=
+ 20px; font-weight: bold;">
+                    <a href=3D"https://paulmck.livejournal.com/53002.html?u=
+tm_source=3D3userpost_email" style=3D"text-decoration: none !important;" >
+                        Confessions of a Recovering Proprietary Programmer,=
+ Part XVI
+                    </a>
+                </h4>
+                <div style=3D"margin: 0 0 15px; font-size: 13px; line-heigh=
+t: 16px;  font-style: italic; color: #555;"
+                >10 Apr 2019, 07:37</div>
+
+                <p style=3D"margin: 0 0 10px; line-height: 150%; font-size:=
+ 15px;"
+                >I build quite a few Linux kernels, mostly in support of my=
+ deep and abiding rcutorture habit. These builds can take some time, even o=
+n modern laptops, but they are nevertheless amazingly fast compared to the =
+build times of the much smaller projects I worked on in decades past. Addit=
+ionally, build=E2=80=A6</p>
+
+                <a
+                    href=3D"https://paulmck.livejournal.com/53002.html?utm_=
+source=3D3userpost_email"
+                    target=3D"_blank"
+                    style=3D"text-decoration: none !important; font-size: 1=
+5px;"
+                >
+                    Read more
+                </a>
+            </li>
+=20=20=20=20=20=20=20=20
+            <li style=3D"margin-bottom: 20px; padding: 0 0 20px; border-bot=
+tom: 1px solid #CCC;">
+                <h4 style=3D"margin: 0 0 5px; font-size: 16px; line-height:=
+ 20px; font-weight: bold;">
+                    <a href=3D"https://paulmck.livejournal.com/52753.html?u=
+tm_source=3D3userpost_email" style=3D"text-decoration: none !important;" >
+                        Parallel Programming: March 2018 deferred-processin=
+g query
+                    </a>
+                </h4>
+                <div style=3D"margin: 0 0 15px; font-size: 13px; line-heigh=
+t: 16px;  font-style: italic; color: #555;"
+                >5 Mar 2019, 02:45</div>
+
+                <p style=3D"margin: 0 0 10px; line-height: 150%; font-size:=
+ 15px;"
+                >TL;DR: Do you know of additional publicly visible producti=
+on uses of sequnce locking, hazard pointers, or RCU not already called out =
+in the remainder of this blog post? I am updating the deferred-processing c=
+hapter of  Is Parallel Programming Hard, And, If So, What Can You Do About =
+It?=E2=80=A6</p>
+
+                <a
+                    href=3D"https://paulmck.livejournal.com/52753.html?utm_=
+source=3D3userpost_email"
+                    target=3D"_blank"
+                    style=3D"text-decoration: none !important; font-size: 1=
+5px;"
+                >
+                    Read more
+                </a>
+            </li>
+=20=20=20=20=20=20=20=20
+    </ul>
+</div><br /><br />Read the latest LiveJournal news at http://news.livejourn=
+al.com/<br/><br/><div style=3D"font-size: 9px;">If you=E2=80=99d like to un=
+subscribe from this notification, please click <a href=3D"https://www.livej=
+ournal.com/manage/subscriptions/unsubscribe.bml?user=3Dext_3740166&subs_id=
+=3D10&hash=3D06b1dd975f724d544be8df189349a261">here</a>.</div><br/>=
+
+--_----------=_1569989805160442885--
+

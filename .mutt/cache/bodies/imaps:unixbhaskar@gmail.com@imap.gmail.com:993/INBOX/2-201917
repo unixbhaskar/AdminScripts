@@ -1,0 +1,104 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp58824lfj;
+        Wed, 18 Sep 2019 15:37:43 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwiEOSdcmyfhG5fyhozM6Dtco/imoHHGveVX8ZOB6BgAKsDLBCZAs62J27K66KzM+VmbSTy
+X-Received: by 2002:a17:906:6403:: with SMTP id d3mr11191315ejm.99.1568846263432;
+        Wed, 18 Sep 2019 15:37:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568846263; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Kx1sMoFHo0Ev8DRQsEQK0EirzJF1iJyzAPO4s2C31sHlyEt1hGZFyINugwNpXHoP9g
+         6MTDpcebx2Nebbt1YkHvo/nKoonvfe7zaSbCVr6L7DccXe4LRJYndDJfgGP/epq/UksM
+         fgYEz5hIu2lTqe8KtiPEuonDDVxkscyM2Qg4fK9riWiSGGdEMtlDbzMveo6sxQbtJ5OP
+         qFTbta/0Yl1XDNeRzyxtXOJl1Bt3xNNhoL44wmb9es3xjIzSeAPqgjMrQ9e+N4GgHa+i
+         G0VniAF9hTU8EQTrX9W1y/FmsDcu48K4caSAMDftskyNzxtJn86ey/BeE/6ezEAe1XkA
+         QLnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=01Y6x1zvemzBJQWLxE4DBoZbhxORfd/lyc86dODNTds=;
+        b=0nuk1N5BhXuywy7/zhJanWPXnJdWL9lFOqMRvXrvnkoGV4jtuJGRcKWRGaLtMejc27
+         nJrFr+kpRvOvmi4zOPD2RNaiiuc0jLH1n3QpIpiXRg4Ere5Vo0sbd7htNxEw5kp5ZB9u
+         jxB3E0p8bQP3Lf97DtcFzkrvCJgBR+M4OpquI+oIeaztsxG5+0yrlVv2WKPTaP7sJaQ1
+         MLc3+xLKIUHWFHpTqgHIa1dO99hxf61XJ9dwaofOaCOI4jkzM4x5LElt3VcN74ZlAyZx
+         tsrHZ6aZpZDwe2lsUx8tfLDGxvlINXdAD7kEBfry68UN6mvgKv3HZWPP4Mo57BJyobQd
+         gVag==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=TgS0uVH2;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id r8si1934405ejr.33.2019.09.18.15.37.19;
+        Wed, 18 Sep 2019 15:37:43 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=TgS0uVH2;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2389953AbfIRUEm (ORCPT <rfc822;rfried.dev@gmail.com>
+        + 99 others); Wed, 18 Sep 2019 16:04:42 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:38076 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389938AbfIRUEl (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 18 Sep 2019 16:04:41 -0400
+Received: by mail-lf1-f66.google.com with SMTP id u28so590228lfc.5
+        for <linux-kernel@vger.kernel.org>; Wed, 18 Sep 2019 13:04:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=01Y6x1zvemzBJQWLxE4DBoZbhxORfd/lyc86dODNTds=;
+        b=TgS0uVH24w0R1Fkx0c26UZGHv0NIDmFwVNEVRMK1sKN+11sFoguy/eWP2GRt5ktatK
+         UA1N2CCdZVRk0AzXAIkyAiGcU+CQMl7qwnLRwXX/dvh+2CuQv3QJ6XM8shRLCQNTFIMt
+         V4BgdJc75+s4V8iriJV0BM7ZT7q18LRacAIfg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=01Y6x1zvemzBJQWLxE4DBoZbhxORfd/lyc86dODNTds=;
+        b=TrO2kb2t4KHGlnrGFtuQcdm3tsCuo2gEjTJeLFrtJJurDT4lT0muL4BmkFhDepJuiR
+         FD26WfWVeI7jbWvvnAkDQeJAnrX233XXsPRwhN7VCG8OB0dG8RskudTEQZHmQy08OLSY
+         2pz/kuB/pKyKPFbPSz7ScfBBnG3MrpXx+kUDeRme1IezDicob7iQwc8c+be/VyXuorPM
+         dXQZOitcodTP7UmduUy/ecZhov3F4+DF6hjASC6pJmw6zNerrtvcNLwQF4EQZONvkJfR
+         7mnCRSwwp/hGnIsfeQBm/ql7E49n3vWfqpSKLmAwFmme7dL85UhCWMmLW97/mXgvsIq7
+         /2Fw==
+X-Gm-Message-State: APjAAAVkUz03EIrVGj+lx2mAojoJJZV0oBQw/hAAxbvCP5h2kqKqk+1R
+        m/mftct3jI2VFVmEdN9AkJYuCzuWU50=
+X-Received: by 2002:ac2:558e:: with SMTP id v14mr2934741lfg.161.1568837078907;
+        Wed, 18 Sep 2019 13:04:38 -0700 (PDT)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
+        by smtp.gmail.com with ESMTPSA id i17sm1194745ljd.2.2019.09.18.13.04.37
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Sep 2019 13:04:37 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id 7so1186674ljw.7
+        for <linux-kernel@vger.kernel.org>; Wed, 18 Sep 2019 13:04:37 -0700 (PDT)
+X-Received: by 2002:a2e:8943:: with SMTP id b3mr3228332ljk.165.1568837077303;
+ Wed, 18 Sep 2019 13:04:37 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190917013548.GD1131@ZenIV.linux.org.uk>
+In-Reply-To: <20190917013548.GD1131@ZenIV.linux.org.uk>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Wed, 18 Sep 2019 13:04:21 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgKEdDnCBE40D-S=ZdekJjhU_WJAjnXq3LCGZLgE5SU_w@mail.gmail.com>
+Message-ID: <CAHk-=wgKEdDnCBE40D-S=ZdekJjhU_WJAjnXq3LCGZLgE5SU_w@mail.gmail.com>
+Subject: Re: [git pull] vfs.git #work.namei
+To:     Al Viro <viro@zeniv.linux.org.uk>
+Cc:     linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Sep 16, 2019 at 6:35 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
+>
+>         pathwalk-related stuff
+
+That could have done with a few more words of explanation.
+
+I added "Audit-related cleanups, misc simplifications, and easier to
+follow nd->root refcounts"
+
+            Linus

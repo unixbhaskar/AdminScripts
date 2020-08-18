@@ -1,0 +1,145 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2058910lfj;
+        Thu, 12 Sep 2019 04:00:53 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyW7h+EoCcSjUf1+PNZEjQBbJmIi11VgqMI1KOwD04qbsZYfrEnhB0Fw7sbj9rASwrEueHC
+X-Received: by 2002:a17:902:b696:: with SMTP id c22mr35190778pls.199.1568286053126;
+        Thu, 12 Sep 2019 04:00:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568286053; cv=none;
+        d=google.com; s=arc-20160816;
+        b=fMzCvt42yQNsZgDPLn9t8s2H5AQJw1o/O2/5j+HMkR41uVD6PV22e/zTylMZyvkV6v
+         1IUfTZ0LoUQQtuJzbX1FtsyJ0XKaFK3UWIQ/gHuYJbSEwiHdhsPsrB2txHBWHGnGHzpt
+         XgA5xXvyckYyAZUIYZgZ9Gh1A+AAY+RZBlTAUSuV23/ok3Ee0Q+7taS12df7m6UexD8R
+         /mROcjj0nkHyIjYfZMhIZVzM4zfSZaXGUBdgSI92xOvh4O6hsiRFJyKp6CvCPS8R6L6y
+         yuA5Uq2l22jCLLbgGnk/CcPhMj1heqCEqEe3M2Q7wYw588Xul+KyiI0wFl7x8DDU55+U
+         a9Uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=errors-to:sender:content-transfer-encoding:list-subscribe:list-help
+         :list-post:list-archive:list-unsubscribe:list-id:precedence:subject
+         :user-agent:content-disposition:mime-version:message-id:to:from:date
+         :delivered-to;
+        bh=QpLcH5UUvlUvo59kADKDOUf8pjvCfD4SyPj406675M0=;
+        b=fajIv1AsL6LoxXWhKvnpBbzY1QHVwVSJFoLRUr3O3HrwSOrhPKG3usB+cJ7wF2b1Tw
+         77FFFmzDbLJtUC8Mi/8fqZAMcgzs/Xh+fioNvPo0v1jZmHdzjm+yev2dCDcO94DEn/Hh
+         s0JrHJ2KoaudOUDgXnvZcp6lmIWMVzCVoSqs+87ixau7Zut8gnNBIlkllMfpMTQUQ2Ky
+         oxUhmOSnQ+zYvSC7pGXy3sG0aqx1p+/ApIMQXJSdyV+kPFbmAcbUJWbUp2OiC55QnKhs
+         qMArz2h5AyIEQQBp/D+aKykM2L2UWgG5EC6olf54+BJrOG6oepRow8huDCqcB3lSdr84
+         tDGA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of ksummit-discuss-bounces@lists.linuxfoundation.org designates 140.211.169.12 as permitted sender) smtp.mailfrom=ksummit-discuss-bounces@lists.linuxfoundation.org
+Return-Path: <ksummit-discuss-bounces@lists.linuxfoundation.org>
+Received: from mail.linuxfoundation.org (mail.linuxfoundation.org. [140.211.169.12])
+        by mx.google.com with ESMTPS id h3si1098924plt.227.2019.09.12.04.00.52
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 12 Sep 2019 04:00:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ksummit-discuss-bounces@lists.linuxfoundation.org designates 140.211.169.12 as permitted sender) client-ip=140.211.169.12;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of ksummit-discuss-bounces@lists.linuxfoundation.org designates 140.211.169.12 as permitted sender) smtp.mailfrom=ksummit-discuss-bounces@lists.linuxfoundation.org
+Received: from mail.linux-foundation.org (localhost [127.0.0.1])
+	by mail.linuxfoundation.org (Postfix) with ESMTP id 47F92D95;
+	Thu, 12 Sep 2019 11:00:44 +0000 (UTC)
+X-Original-To: ksummit-discuss@lists.linuxfoundation.org
+Delivered-To: ksummit-discuss@mail.linuxfoundation.org
+Received: from smtp1.linuxfoundation.org (smtp1.linux-foundation.org
+	[172.17.192.35])
+	by mail.linuxfoundation.org (Postfix) with ESMTPS id 2035DD85
+	for <ksummit-discuss@lists.linuxfoundation.org>;
+	Thu, 12 Sep 2019 11:00:42 +0000 (UTC)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.7.6
+Received: from outgoing.mit.edu (outgoing-auth-1.mit.edu [18.9.28.11])
+	by smtp1.linuxfoundation.org (Postfix) with ESMTPS id 9E87F89B
+	for <ksummit-discuss@lists.linuxfoundation.org>;
+	Thu, 12 Sep 2019 11:00:41 +0000 (UTC)
+Received: from callcc.thunk.org (38.85.69.148.rev.vodafone.pt [148.69.85.38]
+	(may be forged)) (authenticated bits=0)
+	(User authenticated as tytso@ATHENA.MIT.EDU)
+	by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x8CB0cYD014606
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT); Thu, 12 Sep 2019 07:00:40 -0400
+Received: by callcc.thunk.org (Postfix, from userid 15806)
+	id 8726242049E; Thu, 12 Sep 2019 07:00:37 -0400 (EDT)
+Date: Thu, 12 Sep 2019 07:00:37 -0400
+From: "Theodore Y. Ts'o" <tytso@mit.edu>
+To: ksummit-discuss@lists.linuxfoundation.org
+Message-ID: <20190912110037.GA24843@mit.edu>
+MIME-Version: 1.0
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	smtp1.linux-foundation.org
+Subject: [Ksummit-discuss] Maintainer's Summit Agenda (V2)
+X-BeenThere: ksummit-discuss@lists.linuxfoundation.org
+X-Mailman-Version: 2.1.12
+Precedence: list
+List-Id: <ksummit-discuss.lists.linuxfoundation.org>
+List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/ksummit-discuss>,
+	<mailto:ksummit-discuss-request@lists.linuxfoundation.org?subject=unsubscribe>
+List-Archive: <http://lists.linuxfoundation.org/pipermail/ksummit-discuss/>
+List-Post: <mailto:ksummit-discuss@lists.linuxfoundation.org>
+List-Help: <mailto:ksummit-discuss-request@lists.linuxfoundation.org?subject=help>
+List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/ksummit-discuss>,
+	<mailto:ksummit-discuss-request@lists.linuxfoundation.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: ksummit-discuss-bounces@lists.linuxfoundation.org
+Errors-To: ksummit-discuss-bounces@lists.linuxfoundation.org
+
+			 Maintainer's Summit
+	     Ametista Room at the Corinthia Hotel Lisbon
+			  September 12, 2019
+
+
+9:00  Hot breakfast and morning refreshments (sponsored by IBM)
+      <Room available for hacking and informal discussions>
+12:00 Lunch (sponsored by Intel)
+13:00 Agenda Bashing
+13:15 Reflections on Kernel Development Process (Dmitry Vyukov)
+14:00 Dealing with the high volume of automated bug finders (Shuah Kahn)
+14:30 Stable Kernel Process Automation and Improvement (Sasha Levin)
+15:00 Afternoon Break (Sponsored by IBM)
+15:30 Is Linus Happy?
+16:30 Depth of the "pull network" (James Bottomley)
+17:00 HW Security Update
+17:15 Maintainer Summit: What went well, what can we do better?
+17:30 Group Photo
+18:30 Bus Transportation to Evening Event
+
+
+Attendee List
+-------------
+Alexei Starovoitov
+Andrew Morton
+Bjorn Helgaas
+Christoph Hellwig
+Dan Williams
+Daniel Borkmann
+David Airlie
+David Miller
+Dmtiry Vyukov
+Greg Kroah-Hartman
+Jan Kara
+Jiri Kosina
+Jonathan Corbet
+Kees Cook
+Konstantin Ryabitsev
+Laura Abbott
+Linus Torvalds
+Linus Walleij
+Michael Ellerman
+Olof Johansson
+Peter Zijlstra
+Rafael Wysocki
+Sasha Levin
+Shuah Khan
+Stephen Rothwell
+Steven Rostedt
+Takashi Iwai
+Theodore Ts'o
+Thomas Gleixner
+Vasily Gorbik
+Will Deacon
+_______________________________________________
+Ksummit-discuss mailing list
+Ksummit-discuss@lists.linuxfoundation.org
+https://lists.linuxfoundation.org/mailman/listinfo/ksummit-discuss

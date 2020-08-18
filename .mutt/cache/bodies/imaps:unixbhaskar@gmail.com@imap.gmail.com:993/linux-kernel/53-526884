@@ -1,0 +1,87 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp332477lfj;
+        Tue, 11 Aug 2020 22:56:28 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyOtwhFAon7vo7C4nTW+EcL1BOl0FU+UxVRwR3PjsBkQsxB3YVLgcrLd0PNuFdV8wpGmSHI
+X-Received: by 2002:a17:906:f290:: with SMTP id gu16mr28915197ejb.502.1597211788737;
+        Tue, 11 Aug 2020 22:56:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597211788; cv=none;
+        d=google.com; s=arc-20160816;
+        b=lgfD9QiyIyGRD2bUJ0Z/b5H3KWSQKvwR+UUsIhJ0nszyHPQH6Rmo1sK2WQ3Z1PWMof
+         l5LRwsA0Igl3TeKLdacsJxlwIkomXHsgvUdR2TOXDP8OliWMo8HP2f1hsw6lI048OP9X
+         D/q/AXBmYdkBwzdjBy5zM6OfGwau+wxHn/fd78zZcZaq2Lay0fbLlOQbykkLjyvBaUGU
+         9rjJR28L6E1qOaf84xMD/pkYJC2ZIppwOyCmFFNagOTnKZtAhpxO51lf+IWO19EGB1nJ
+         ic0QoZB3uw1hXTvn0LL5gdBcyNeUTY5q0sYqVCfJzpY0O0yBi+A5WkmOHy6EVm7BJeGB
+         B0Yw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=dScU+9Mk7+ACqhOyPVHqf5bL7bWOWA/ZPbZGnEmVgCc=;
+        b=i2EU1eL16fDmOsxlI009+HIW7iKGYtYOH4XB/NCbPq0dBQkR52cqXalimUG4Qaav1m
+         ktxIbwGSxerbozzI1nP1qthmmZPiTXOEVdx0B98/ilKDqqOCpSfE2FxYMrQIr0w1Y29x
+         jBRrxEHz4hSQJULK4BCod0o0o8Y0trHi+45rcaWZ7VN7cz7b2syoRlfHknVlua5lmHZp
+         ggYBf6tAWBPPwxmRIKk5A1uSDaACTC1ytqo8rYPUitxLTAIHH9D2Lyf1hkD6FINN6iKY
+         MrOEwVRcbFPlU2p7RTLDxwGPLpORL/1LWIvz9n1OvwGxZAE0ztW1WhZexFHnWj/Q+NsF
+         etZw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id d10si601525edq.275.2020.08.11.22.56.05;
+        Tue, 11 Aug 2020 22:56:28 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726621AbgHLF4C (ORCPT <rfc822;petrus.archlinux@gmail.com>
+        + 99 others); Wed, 12 Aug 2020 01:56:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52240 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726255AbgHLF4B (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 12 Aug 2020 01:56:01 -0400
+Received: from ZenIV.linux.org.uk (zeniv.linux.org.uk [IPv6:2002:c35c:fd02::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 993F4C06174A;
+        Tue, 11 Aug 2020 22:56:01 -0700 (PDT)
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1k5jjy-00Dv7D-61; Wed, 12 Aug 2020 05:55:58 +0000
+Date:   Wed, 12 Aug 2020 06:55:58 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Christian Brauner <christian.brauner@ubuntu.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Linux API <linux-api@vger.kernel.org>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Dominik Brodowski <linux@dominikbrodowski.net>,
+        syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
+        syzbot <syzbot+bbeb1c88016c7db4aa24@syzkaller.appspotmail.com>
+Subject: Re: [PATCH] Re: KASAN: use-after-free Read in path_init (2)
+Message-ID: <20200812055558.GP1236603@ZenIV.linux.org.uk>
+References: <000000000000f0724405aca59f64@google.com>
+ <20200812041518.GO1236603@ZenIV.linux.org.uk>
+ <CAHk-=wgHZF+GbPS0=+9C7NWb1QUw4sPKL0t90yPGs07jJ0eczQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHk-=wgHZF+GbPS0=+9C7NWb1QUw4sPKL0t90yPGs07jJ0eczQ@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Aug 11, 2020 at 09:29:47PM -0700, Linus Torvalds wrote:
+> On Tue, Aug 11, 2020 at 9:15 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
+> >
+> > fix breakage in do_rmdir()
+> >
+> > putname() should happen only after we'd *not* branched to
+> > retry, same as it's done in do_unlinkat().
+> 
+> Looks obviously correct.
+> 
+> Do you want me to apply directly, or do you have other fixes pending
+> and I'll get a pull request?
+
+Not at the moment - I can throw it into #fixes and send a pull request
+if you wish, but there won't be anything else in it...

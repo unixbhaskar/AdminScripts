@@ -1,0 +1,270 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp1904366lfg;
+        Sat, 4 Apr 2020 09:03:36 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKN4HUHryGeY5hxKWMZqoNebobj7rqYSCQdv7Migyka4mKRMB6vO3bgxsNFJT7zv+lvmiUy
+X-Received: by 2002:a05:620a:1014:: with SMTP id z20mr13451720qkj.56.1586016216817;
+        Sat, 04 Apr 2020 09:03:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586016216; cv=none;
+        d=google.com; s=arc-20160816;
+        b=fbfIAZUjgtIGL7/n7T/4NEFjxiD5KyFDkl8x31hk9ahMKytCTgqePICGCErxn5rsUQ
+         oEBTHqBJVvCvCwGdVxxp42NF8N3gjpGeDrL98MgDnekyOYI/FbR9+XAdlZudKDN6C2tT
+         M0VU+t0HFSDLngww1UJVerjjirO/Ty5n37D4UwZKqIqLMNIUKVVbteYxxoggLWFvtBN2
+         Pcn4gXK5vZXr2m8aEm4AgjxBHxQ9PU5M8o73yLZZtKfmyI3OiqH5PSg3W50FOa0QDLZ6
+         gbjuQGsQECO+nzPDWADXaHzWzgRo8j6YzT5GNaRFh4vEMo+sqR3not1IhcI0cTzIhUkT
+         TyHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:bounces-to:mime-version:subject:message-id:to:from
+         :dkim-signature:dkim-signature;
+        bh=X45nqzKfqgQIDTLzTYgwaN+sPD10CMgK20aTlc4mKWM=;
+        b=PghJdd/RULzweCVFRfLxgJBAUMaUYqEosy/W2TCE43TuOWfEZhvNxGINUy6zA7pVnK
+         kcRXKr3TTH8SmzJ/gWb2Gac3GggUErfkgpR/tjK8EDOF1DbxEYD+Y1AsK7dYMfZ2pn2t
+         uSJH3KOj2om2fvsg4bzPHhxCH1EOp1D0wOBUFHPt65uNwx8aA2bDAV8tHJZkjDM4YPRt
+         Z2VHOe9LAl/RtuZm+GwK11jyCTooAwCbDh9bibore5I9XSPhfVwJCYlxvcpT1pXXE1Jw
+         cD+Cjm3Qv6KiCbZpbI7sNYTDr3lUSWCmShJfAw2tJk/nLQi7NkM3g3YVbab2YiC5Nzm3
+         HItg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mail.goodreads.com header.s=rcu5dmexvhyio6d7zrvo6fi7gyaundyu header.b=XlzjI7aG;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=AelZpfMX;
+       spf=pass (google.com: domain of 20200404160336c4e79264f98147fe9359b7c3fd80p0na@bounces.mail.goodreads.com designates 54.240.13.94 as permitted sender) smtp.mailfrom=20200404160336c4e79264f98147fe9359b7c3fd80p0na@bounces.mail.goodreads.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=mail.goodreads.com
+Return-Path: <20200404160336c4e79264f98147fe9359b7c3fd80p0na@bounces.mail.goodreads.com>
+Received: from a13-94.smtp-out.amazonses.com (a13-94.smtp-out.amazonses.com. [54.240.13.94])
+        by mx.google.com with ESMTPS id g4si7057141qth.216.2020.04.04.09.03.36
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sat, 04 Apr 2020 09:03:36 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 20200404160336c4e79264f98147fe9359b7c3fd80p0na@bounces.mail.goodreads.com designates 54.240.13.94 as permitted sender) client-ip=54.240.13.94;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mail.goodreads.com header.s=rcu5dmexvhyio6d7zrvo6fi7gyaundyu header.b=XlzjI7aG;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=AelZpfMX;
+       spf=pass (google.com: domain of 20200404160336c4e79264f98147fe9359b7c3fd80p0na@bounces.mail.goodreads.com designates 54.240.13.94 as permitted sender) smtp.mailfrom=20200404160336c4e79264f98147fe9359b7c3fd80p0na@bounces.mail.goodreads.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=mail.goodreads.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=rcu5dmexvhyio6d7zrvo6fi7gyaundyu; d=mail.goodreads.com;
+	t=1586016216;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date;
+	bh=zie2fAgx6yANr3Gdo1rahhlOg8JkpeFPOoYJSRL0KI8=;
+	b=XlzjI7aG+Ms3CR4ZgWHafACEbYSXTl876EaMaZNRLI+WL1xJqilGY3KFeJGJnfou
+	U+gjSsf9M1nRLDXYawU/qL72QyRFGviTtJtICe3ZtSJENaTfehollLypaj+iI6aI5V8
+	t8ooY75U/WrbKgG9Qm47mhjhKN8XKznj/5lWkXt0=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1586016216;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date:Feedback-ID;
+	bh=zie2fAgx6yANr3Gdo1rahhlOg8JkpeFPOoYJSRL0KI8=;
+	b=AelZpfMXNiebDgfvoTJbOOUvXrNUoYJTrGhNOsM+R+UhXuX9dwK9Oj2JA4ZTeIhQ
+	/dAzUBO21/YKdo1SvBVf9HsdjZEKPpvoylHXKXruGNUcvYlGtopmD4DdKdedd9HJiXQ
+	1FaN9jLL69yKdK99mfkad5ExQ1QgfW19WWvU0u6c=
+From: Goodreads <no-reply@mail.goodreads.com>
+To: unixbhaskar@gmail.com
+Message-ID: <0100017145eee4f8-0b73c0b1-b20d-4e2e-9254-cdecf6141ac2-000000@email.amazonses.com>
+Subject: Mohana Datta is now following your reviews
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_20255893_201911663.1586016216308"
+X-AMAZON-MAIL-RELAY-TYPE: notification
+Bounces-to: 20200404160336c4e79264f98147fe9359b7c3fd80p0na@bounces.mail.goodreads.com
+X-AMAZON-METADATA: CA=C3JF9GNGVVFJYZ-CU=A1Z1KLTPAPZOJS
+X-Original-MessageID: <urn.rtn.msg.20200404160336c4e79264f98147fe9359b7c3fd80p0na@1586016216308.rtn-svc-na-back-c42xl1f-ad337da3.us-east-1.amazon.com>
+Date: Sat, 4 Apr 2020 16:03:36 +0000
+X-SES-Outgoing: 2020.04.04-54.240.13.94
+Feedback-ID: 1.us-east-1.ZHcGJK6s+x+i9lRHKog4RW3tECwWIf1xzTYCZyUaiec=:AmazonSES
+
+------=_Part_20255893_201911663.1586016216308
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hi Bhaskar,
+
+Mohana Datta is now following your reviews on Goodreads. There is now 1 person following your reviews.
+
+View Mohana Datta's profile:
+https://www.goodreads.com/user/show/62525348-mohana-datta?utm_medium=email&utm_source=follower
+
+You can follow Mohana Datta's reviews by clicking the 'follow reviews' button on Mohana Datta's profile. If you don't want Mohana Datta to follow you, you can remove them from your follower's page: 
+https://www.goodreads.com/user/47198624-bhaskar-chowdhury/followers?utm_medium=email&utm_source=follower
+
+
+_____________________________
+
+
+This email was sent by request to unixbhaskar@gmail.com.
+To unsubscribe, go to:
+https://www.goodreads.com/user/unsubscribe_email?ale=BDYJqci_QPM6IoNKszvT7FlfvQDO8dQs55373H02xTHViEKl&email_name=Follows&flag=follower_noti&utm_content=unsubscribe&utm_medium=email&utm_source=follower
+
+(c) 2020 Goodreads, Inc.
+188 Spear Street, Suite 250, San Francisco, CA 94105
+
+
+Privacy policy:
+https://www.goodreads.com/about/privacy?utm_content=_privacy&utm_medium=email&utm_source=follower
+
+------=_Part_20255893_201911663.1586016216308
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<style>
+  /*<![CDATA[*/
+    /* Yahoo fix: attribute selector format required so that Yahoo! Mail
+       doesn't override inline styles with media-defined ones */
+    @media only screen and (max-device-width: 640px) {
+      table[class=3DdeviceWidth] { width:440px!important; padding:0; }
+      table[class=3Dcontainer] { padding: 0px 10px 0px 10px !important; }
+    }
+   =20
+    @media only screen and (max-device-width: 480px) {
+      table[class=3DdeviceWidth] { width:280px!important; padding:0; }
+      table[class=3Dcontainer] { padding: 0px 10px 0px 10px !important; }
+    }
+  /*]]>*/
+</style>
+</head>
+<body><img width=3D"1" height=3D"1" src=3D"https://rd.goodreads.com/gp/r.ht=
+ml?C=3DIAS28QUJZYTX&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20200404160336c4e7926=
+4f98147fe9359b7c3fd80p0na&R=3D2B7SIPZCIPQ0G&T=3DO&U=3Dhttps%3A%2F%2Fimages-=
+na.ssl-images-amazon.com%2Fimages%2FG%2F01%2Fnav%2Ftransp.gif&H=3DEORXWRKKK=
+0MEF9QG9C1CAHAAFSIA&ref_=3Dpe_7171740_475469890_opens" />
+<img alt=3D'' height=3D'0' src=3D'https://goodreads.com/images/blank.gif' s=
+tyle=3D'float:left;' width=3D'0'>
+<table class=3D'container' style=3D'background-color: #F6F6EE; width: 100%;=
+ border: 0; padding: 0px 30px 0px 30px;'>
+<tr>
+<td>
+<table class=3D'deviceWidth' style=3D'width: 600px; margin-left: auto; marg=
+in-right: auto; border: 0;'>
+<tr>
+<td>
+<a href=3D"https://www.goodreads.com/gp/r.html?C=3DIAS28QUJZYTX&K=3D2Q78DTK=
+7WWYPO&M=3Durn:rtn:msg:20200404160336c4e79264f98147fe9359b7c3fd80p0na&R=3D2=
+QEZJ7ZGQAA7A&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2F%3Futm_medium%3Dem=
+ail%26utm_source%3Dfollower%26utm_campaign%3D%26utm_content%3D_logo%26ref_%=
+3Dpe_7171740_475469890&H=3DUAIG9YHHTYBACJV38QFIAW7OXPQA&ref_=3Dpe_7171740_4=
+75469890"><img style=3D"padding: 20px 0px 20px 20px;" alt=3D"" src=3D"https=
+://www.goodreads.com/images/layout/goodreads_logo_140.png" /></a>
+</td>
+</tr>
+<tr>
+<td style=3D'padding: 20px 20px 20px 20px; background-color: #FFFFFF; color=
+: #000000; text-align: center; border: 0;'>
+Hi Bhaskar,
+
+<p>
+  <strong><a href=3D"https://www.goodreads.com/gp/r.html?C=3DIAS28QUJZYTX&K=
+=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20200404160336c4e79264f98147fe9359b7c3fd80=
+p0na&R=3D2YXID7UP2ZY27&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fuser%2Fs=
+how%2F62525348-mohana-datta%3Futm_medium%3Demail%26utm_source%3Dfollower%26=
+ref_%3Dpe_7171740_475469890&H=3DEBRJZ6HPUZTFXRP8OZSJNAU5CYKA&ref_=3Dpe_7171=
+740_475469890">Mohana Datta</a></strong>
+  is now following your reviews on Goodreads.
+  There is now
+  1 person following your reviews.
+</p>
+
+<div style=3D"border: 1px solid #ddd; padding: 10px;">
+  <div style=3D"float: left; padding-right: 10px; margin-right: 20px;">
+    <a href=3D"https://www.goodreads.com/gp/r.html?C=3DIAS28QUJZYTX&K=3D2Q7=
+8DTK7WWYPO&M=3Durn:rtn:msg:20200404160336c4e79264f98147fe9359b7c3fd80p0na&R=
+=3D3KRN6ERX59NR2&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fuser%2Fshow%2F=
+62525348-mohana-datta%3Futm_medium%3Demail%26utm_source%3Dfollower%26ref_%3=
+Dpe_7171740_475469890&H=3D5MX5ZCPPILO8HRGAFMLTFG0XFDQA&ref_=3Dpe_7171740_47=
+5469890"><img style=3D"border:0" alt=3D"" src=3D"https://images.gr-assets.c=
+om/users/1517945243p2/62525348.jpg" /></a>
+  </div>
+  <div style=3D"float: left;">
+    <strong><a href=3D"https://www.goodreads.com/gp/r.html?C=3DIAS28QUJZYTX=
+&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20200404160336c4e79264f98147fe9359b7c3fd=
+80p0na&R=3D21QCNUXM0PBII&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fuser%2=
+Fshow%2F62525348-mohana-datta%3Futm_medium%3Demail%26utm_source%3Dfollower%=
+26ref_%3Dpe_7171740_475469890&H=3DSBWDSPSDJHYM4LOTUJBWYKAWXRCA&ref_=3Dpe_71=
+71740_475469890">Mohana Datta</a></strong><br/><br/>
+    <a href=3D"https://www.goodreads.com/gp/r.html?C=3DIAS28QUJZYTX&K=3D2Q7=
+8DTK7WWYPO&M=3Durn:rtn:msg:20200404160336c4e79264f98147fe9359b7c3fd80p0na&R=
+=3D2HOS1X7ELURRY&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Freview%2Flist%=
+2F62525348%3Futm_medium%3Demail%26utm_source%3Dfollower%26ref_%3Dpe_7171740=
+_475469890&H=3DSHLATRJDOBGZLHCABIPA6KA0IGYA&ref_=3Dpe_7171740_475469890">25=
+ books</a><br/>
+  =09<a href=3D"https://www.goodreads.com/gp/r.html?C=3DIAS28QUJZYTX&K=3D2Q=
+78DTK7WWYPO&M=3Durn:rtn:msg:20200404160336c4e79264f98147fe9359b7c3fd80p0na&=
+R=3D3ESRQOTUGNNZK&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Ffriend%2Fuser=
+%2F62525348%3Futm_medium%3Demail%26utm_source%3Dfollower%26ref_%3Dpe_717174=
+0_475469890&H=3D0XUJ9L76NANJPE5LH9A3UFSOSUCA&ref_=3Dpe_7171740_475469890">1=
+ friends</a><br/>
+  </div>
+  <div style=3D"clear: left;"></div>
+</div>
+
+<p>
+  You can follow Mohana Datta's reviews by clicking the 'follow reviews' bu=
+tton on
+  <a href=3D"https://www.goodreads.com/gp/r.html?C=3DIAS28QUJZYTX&K=3D2Q78D=
+TK7WWYPO&M=3Durn:rtn:msg:20200404160336c4e79264f98147fe9359b7c3fd80p0na&R=
+=3D1UPT4YJ4M75R4&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fuser%2Fshow%2F=
+62525348-mohana-datta%3Futm_medium%3Demail%26utm_source%3Dfollower%26ref_%3=
+Dpe_7171740_475469890&H=3D7TQBDADBEAPKLMSVVBM2KAJWI4EA&ref_=3Dpe_7171740_47=
+5469890">their profile</a>.
+  If you don't want Mohana Datta to follow you, you can remove them on your=
+ <a href=3D"https://www.goodreads.com/gp/r.html?C=3DIAS28QUJZYTX&K=3D2Q78DT=
+K7WWYPO&M=3Durn:rtn:msg:20200404160336c4e79264f98147fe9359b7c3fd80p0na&R=3D=
+2BHIIP3Q7H4RX&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fuser%2F47198624%2=
+Ffollowers%3Futm_medium%3Demail%26utm_source%3Dfollower%26ref_%3Dpe_7171740=
+_475469890&H=3DLXDXZLR3IISWKGAAQI5ZD7JEUA0A&ref_=3Dpe_7171740_475469890">fo=
+llowers page</a>.
+</p>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style=3D'padding-top: 20px; text-align: center; font-family: Helvetica,=
+ Arial, sans-serif; font-size: 11px; line-height: 14px; color: #999999;'>
+<table class=3D'deviceWidth' style=3D'margin-left: auto; margin-right: auto=
+; width: 600px; border: 0;'>
+<tr>
+<td style=3D'text-align: center; font-family: Helvetica, Arial, sans-serif;=
+ font-size: 11px; line-height: 14px; color: #999999;'>
+This email was sent by request to
+<a style=3D"color: #999999" href=3D"mailto:unixbhaskar@gmail.com">unixbhask=
+ar@gmail.com</a>
+<br>
+<a style=3D"color: #999999 !important;" href=3D"https://www.goodreads.com/g=
+p/r.html?C=3DIAS28QUJZYTX&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20200404160336c=
+4e79264f98147fe9359b7c3fd80p0na&R=3D3K1EOLQZA3XE1&T=3DC&U=3Dhttps%3A%2F%2Fw=
+ww.goodreads.com%2Fuser%2Funsubscribe_email%3Fale%3DBDYJqci_QPM6IoNKszvT7Fl=
+fvQDO8dQs55373H02xTHViEKl%26email_name%3DFollows%26flag%3Dfollower_noti%26u=
+tm_content%3Dunsubscribe%26utm_medium%3Demail%26utm_source%3Dfollower%26ref=
+_%3Dpe_7171740_475469890&H=3D9CT4YFA7O3ORDQFAERGFY7DOTGKA&ref_=3Dpe_7171740=
+_475469890">Unsubscribe</a>
+</td>
+</tr>
+<tr>
+<td style=3D'padding: 20px 0px 30px 0px; text-align: center; font-family: H=
+elvetica, Arial, sans-serif; font-size: 11px; color: #999999;'>
+=C2=A9 2020 Goodreads Inc
+<br>
+188 Spear Street, Suite 250, San Francisco, CA 94105
+
+<br>
+<a style=3D"color: #999999 !important;" href=3D"https://www.goodreads.com/g=
+p/r.html?C=3DIAS28QUJZYTX&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20200404160336c=
+4e79264f98147fe9359b7c3fd80p0na&R=3D2KT0VLBYVFENK&T=3DC&U=3Dhttps%3A%2F%2Fw=
+ww.goodreads.com%2Fabout%2Fprivacy%3Futm_content%3D_privacy%26utm_medium%3D=
+email%26utm_source%3Dfollower%26ref_%3Dpe_7171740_475469890&H=3DDHWXUDCMXSA=
+DAOSMCJVI06QSW7WA&ref_=3Dpe_7171740_475469890">Privacy Policy</a>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+<img width=3D"1" height=3D"1" src=3D"https://rd.goodreads.com/gp/r.html?C=
+=3DIAS28QUJZYTX&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20200404160336c4e79264f98=
+147fe9359b7c3fd80p0na&R=3D2RGG46L8MJF8E&T=3DE&U=3Dhttps%3A%2F%2Fimages-na.s=
+sl-images-amazon.com%2Fimages%2FG%2F01%2Fnav%2Ftransp.gif&H=3DCNG5B7LTD4API=
+UMTXUNNIDN99GUA&ref_=3Dpe_7171740_475469890_open" /></body>
+</html>
+
+------=_Part_20255893_201911663.1586016216308--

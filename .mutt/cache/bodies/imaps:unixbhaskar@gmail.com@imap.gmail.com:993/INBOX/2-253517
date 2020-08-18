@@ -1,0 +1,515 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp2031198lfj;
+        Sun, 16 Aug 2020 14:03:35 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxf0RKg7fsqaoG3qC++eJ7ER4eObPc0y7+Z8w4c/i2zHsRSkV6ddDYdyrdo//uvdTMhXwUA
+X-Received: by 2002:a05:6402:212:: with SMTP id t18mr12552360edv.124.1597611815167;
+        Sun, 16 Aug 2020 14:03:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597611815; cv=none;
+        d=google.com; s=arc-20160816;
+        b=AANN1cJU52VZW63BnGFbV8mrTK+2bvU+xKzh60Dj1ExPibqE+yhv3YeCa5ZCAwxLDA
+         BkGNIgEEHj94o/5YgjjVo1WL4MdYRBGTtmwGrgO6NM4HhNy07pqaBxi7/S1/USnda1EX
+         /8SRwhOPLrSvj3PzriKB139LyMDQakYfzG/6s2ZXmsByBKitlXT5eeQx5qQmWG95MBKh
+         NJAG54DkfJOPkWFmSrww5RoSRQKLIl7l+bAWc5UG4RiYp2XsjClIZAxzsY9w9C8dPsQs
+         Zd6T3tHjWHJBHXxLyWnb72YAfqNU7k8pkTcHq1eO0P5yc1aFhDItbQryF1BUX6WYPmYA
+         ZLNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=eBLKpEpJQwR5nVyuGs07TdR9hmR1unpEBJ9WEwD3US4=;
+        b=odKc/Sio0s9JlcwfgKrCz45da0U6dJTHffwjyZfts4Swiu31kFZHqOkOYM9v7fLAh3
+         MozDZ2PXu6SytOFqH98yc0sN5+hPRSlZFCNipZqS7EEXnRIZNuZ7WGPMrM4ypXorrU21
+         wIhQvQp3h3m85RFCSHS8w8LUHkHbos6khZuXKLa1LkuZt1P8IxUyYCaCDQyAxf0nrNR6
+         hET3jQBg6rNDd0U2KT08j12LlCmBHFeOjVSV8Y5eWsqdpNMYNzWcgf0MxIQSNsUSedXF
+         xJ2Orb1LldeBJE4Ole2Fbi8jWhHvPMVty3+wQOvUE3DUZf9Djatg0XMM+pkRP0kA9RRT
+         zQnA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=UJ3i3KJ0;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id qk10si9677749ejb.487.2020.08.16.14.03.12;
+        Sun, 16 Aug 2020 14:03:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=UJ3i3KJ0;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728099AbgHPUvR (ORCPT <rfc822;linuxmails.chen@gmail.com>
+        + 99 others); Sun, 16 Aug 2020 16:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58920 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726288AbgHPUvM (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 16 Aug 2020 16:51:12 -0400
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB33EC061786
+        for <linux-kernel@vger.kernel.org>; Sun, 16 Aug 2020 13:51:11 -0700 (PDT)
+Received: by mail-lj1-x243.google.com with SMTP id m22so15249250ljj.5
+        for <linux-kernel@vger.kernel.org>; Sun, 16 Aug 2020 13:51:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=eBLKpEpJQwR5nVyuGs07TdR9hmR1unpEBJ9WEwD3US4=;
+        b=UJ3i3KJ0eXnhTRNg9xZNSuh3InLv7ADqTYS11UTHmSfn5Z/gVWr0MBZ8K7kkUq3SlY
+         9dUtZBItuaf00xN1bXpKuCpn5Rc01h55YpZvJ4JAFEfHAMGl4gXQ5rUsEbcHZjOmdx9L
+         x16Adbw8dhBglcnfoT8Lo9bNf81C+APkEGn7E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=eBLKpEpJQwR5nVyuGs07TdR9hmR1unpEBJ9WEwD3US4=;
+        b=rribPmbteRDXnc1+mq+pYKN76D5RA/Btv2ApSahSKw3a3NXazpDfMy4fn9XGsSLbhh
+         5G/6Bm8sJLOr8mYNgjnALsSt3dOMG6+mH9h9DHTjsKU30jye1RUCmSG5Lt9bCYJ6hDAo
+         LrDJquzC8LNEMZh47ZfMyrgALHyByITkZFJrrWoi14+aTlzbVmf8zbqQFgldMXc5NQZ5
+         7orGqcNH2kxZb+Gxi24GCAk5Z0/YK1F8cXhVSntwXgkCouYd4yyHFKXU1HZwSDvqBVmV
+         EqMx3I7BCzdRtwkaSzK1UC5R0oxb03HLmc3oqIeHsB0jM54TguQC7+8L54kG2Q12rAG/
+         HWZQ==
+X-Gm-Message-State: AOAM5327INwGoPF2btGkHLllP/S+pgZmJMa0iUonOBrTgE/tXaKBP/sy
+        oMGfUrL0i4rkZ94ib/rz6hWRglBlc8tOmw==
+X-Received: by 2002:a05:651c:555:: with SMTP id q21mr5593055ljp.6.1597611069198;
+        Sun, 16 Aug 2020 13:51:09 -0700 (PDT)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
+        by smtp.gmail.com with ESMTPSA id d20sm4500221lfn.85.2020.08.16.13.51.08
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Aug 2020 13:51:08 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id d2so7355167lfj.1
+        for <linux-kernel@vger.kernel.org>; Sun, 16 Aug 2020 13:51:08 -0700 (PDT)
+X-Received: by 2002:a19:408d:: with SMTP id n135mr5872392lfa.192.1597611068015;
+ Sun, 16 Aug 2020 13:51:08 -0700 (PDT)
+MIME-Version: 1.0
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Sun, 16 Aug 2020 13:50:51 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wiwfkKp93C+yLqKWAU0ChBdeBDUhgOk09_=UQ8gOKbV3w@mail.gmail.com>
+Message-ID: <CAHk-=wiwfkKp93C+yLqKWAU0ChBdeBDUhgOk09_=UQ8gOKbV3w@mail.gmail.com>
+Subject: Linux 5.9-rc1
+To:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+This merge window felt a lot more normal than 5.8, and all the stats
+confirm thar it seems to be the usual size.
+
+The only thing that stands out is yet another AMD GPU header file
+drop, but by now that almost counts as "usual" too. It does mean that
+the diff stats are dominated by those AMD updates, and almost exactly
+half of the diff is under drivers/gpu/drm/amd/, but it's the usual big
+register definitions (presumably once more generated from the hw
+files) and doesn't really matter in the big picture.
+
+If you ignore that, stats look very normal. Even ignoring the AMD GPU
+updates, drivers are still about 60% of the patch, and it's all over.
+Outside of drivers, it's the usual mix of architecture updates,
+documentation, core networking, tooling and filesystem updates.
+
+"Normal size" is still obviously pretty big, so the appended is just
+my merge-log as usual. For details, dig down into whichever area
+excites you in the git tree...
+
+                      Linus
+
+---
+
+Al Viro (6):
+    ptrace regset updates
+    init and set_fs() cleanups
+    fdpick coredump update
+    mount leak fix
+    misc vfs updates
+    regset conversion fix
+
+Alex Williamson (1):
+    VFIO updates
+
+Alexandre Belloni (1):
+    RTC updates
+
+Andreas Gruenbacher (1):
+    gfs2 updates
+
+Andrew Morton (3):
+    misc updates
+    more updates
+    even more updates
+
+Andy Shevchenko (1):
+    x86 platform driver updates
+
+Arnaldo Carvalho de Melo (2):
+    perf tools updates
+    more perf tools updates
+
+Arnd Bergmann (5):
+    ARM defconfig updates
+    ARM SoC DT updates
+    ARM SoC updates
+    ARM SoC driver updates
+    new ARM SoC support
+
+Benson Leung (1):
+    chrome platform updates
+
+Bjorn Andersson (3):
+    rpmsg update
+    remoteproc updates
+    hwspinlock updates
+
+Bjorn Helgaas (1):
+    PCI updates
+
+Casey Schaufler (1):
+    smack updates
+
+Catalin Marinas (3):
+    arm64 and cross-arch updates
+    arm64 fixes
+    arm64 fix
+
+Christian Brauner (4):
+    thread updates
+    fork cleanups
+    checkpoint-restore updates
+    close_range() implementation
+
+Christoph Hellwig (2):
+    uuid update
+    dma-mapping updates
+
+Chuck Lever (1):
+    NFS server updates
+
+Corey Minyard (1):
+    IPMI updates
+
+Damien Le Moal (1):
+    zonefs update
+
+Daniel Lezcano (1):
+    thermal updates
+
+Darrick Wong (3):
+    iomap updates
+    xfs updates
+    xfs fixes
+
+Dave Airlie (2):
+    drm updates
+    drm fixes
+
+David Miller (2):
+    networking updates
+    networking fixes
+
+David Sterba (2):
+    btrfs updates
+    more btrfs updates
+
+David Teigland (1):
+    dlm updates
+
+Dmitry Torokhov (1):
+    input updates
+
+Dominique Martinet (1):
+    9p updates
+
+Eric Biederman (1):
+    execve updates
+
+Eric Biggers (2):
+    fscrypt updates
+    fsverity update
+
+Gao Xiang (1):
+    erofs updates
+
+Geert Uytterhoeven (1):
+    m68k updates
+
+Greg KH (5):
+    char/misc driver updates
+    driver core updates
+    USB/Thunderbolt updates
+    staging/IIO driver updates
+    tty/serial updates
+
+Greg Ungerer (1):
+    m68knommu updates
+
+Guenter Roeck (1):
+    hwmon updates
+
+Guo Ren (1):
+    arch/csky updates
+
+Heiko Carstens (2):
+    s390 updates
+    more s390 updates
+
+Helge Deller (2):
+    parisc updates
+    more parisc updates
+
+Herbert Xu (2):
+    crypto updates
+    crypto fix
+
+Ilya Dryomov (1):
+    ceph updates
+
+Ingo Molar (1):
+    x86 cpu updates
+
+Ingo Molnar (26):
+    irq fixes
+    debugobjects cleanup
+    header cleanup
+    RCU updates
+    locking updates
+    objtool updates
+    perf event updates
+    scheduler updates
+    x86/alternatives update
+    x86 asm updates
+    x86 boot updates
+    x86 build updates
+    x86 cleanups
+    x86 debug fixlets
+    x86 FPU selftest
+    x86 microcode update
+    x86 MSR filtering
+    x86 mmm update
+    x86 platform updates
+    x86 timer update
+    x86 RAS updates
+    sched/fifo updates
+    locking fixlets
+    perf fixes
+    scheduler fixes
+    x86 fixes
+
+Jaegeuk Kim (1):
+    f2fs updates
+
+James Bottomley (2):
+    SCSI updates
+    more SCSI updates
+
+James Morris (1):
+    security subsystem updates
+
+Jan Kara (2):
+    ext2, udf, reiserfs, quota cleanups and minor fixes
+    fsnotify updates
+
+Jarkko Sakkinen (1):
+    tpm updates
+
+Jason Gunthorpe (2):
+    hmm updates
+    rdma updates
+
+Jassi Brar (1):
+    mailbox updates
+
+Jeff Layton (1):
+    file locking fix
+
+Jens Axboe (6):
+    core block updates
+    io_uring updates
+    block driver updates
+    block stacking updates
+    block fixes
+    io_uring fixes
+
+Jessica Yu (1):
+    module updates
+
+Jiri Kosina (1):
+    HID updates
+
+Joerg Roedel (1):
+    iommu updates
+
+Jonathan Corbet (2):
+    documentation updates
+    documentation fixes
+
+Juergen Gross (2):
+    xen updates
+    more xen updates
+
+Julia Lawall (1):
+    coccinelle updates
+
+Kees Cook (8):
+    pstore update
+    gcc plugin updates
+    automatic variable initialization updates
+    tasklets API update
+    uninitialized_var() macro removal
+    seccomp updates
+    seccomp fix
+    sysfs module section fix
+
+Lee Jones (2):
+    backlight updates
+    MFD updates
+
+Linus Walleij (2):
+    GPIO updates
+    pin control updates
+
+Mark Brown (3):
+    regulator updates
+    spi updates
+    regmap updates
+
+Masahiro Yamada (2):
+    Kbuild updates
+    Kconfig updates
+
+Mauro Carvalho Chehab (1):
+    media updates
+
+Max Filippov (1):
+    Xtensa updates
+
+Michael Ellerman (2):
+    powerpc updates
+    powerpc fix
+
+Michael Tsirkin (1):
+    virtio updates
+
+Miguel Ojeda (1):
+    auxdisplay update
+
+Mike Marshall (1):
+    orangefs updates
+
+Mike Rapoport (1):
+    unicore32 removal
+
+Mike Snitzer (1):
+    device mapper updates
+
+Mimi Zohar (1):
+    integrity updates
+
+Miquel Raynal (1):
+    mtd updates
+
+Namjae Jeon (1):
+    exfat updates
+
+Palmer Dabbelt (2):
+    RISC-V updates
+    RISC-V fix
+
+Paolo Bonzini (2):
+    KVM updates
+    more KVM updates
+
+Paul Moore (2):
+    selinux updates
+    audit updates
+
+Pavel Machek (1):
+    LED updates
+
+Petr Mladek (2):
+    printk updates
+    livepatching updates
+
+Rafael Wysocki (5):
+    power management updates
+    ACPI updates
+    more power management updates
+    one more power management update
+    more ACPI updates
+
+Rich Felker (1):
+    arch/sh updates
+
+Richard Weinberger (2):
+    mtd fix
+    JFFS2, UBI and UBIFS updates
+
+Rob Herring (2):
+    Devicetree updates
+    devicetree fixes
+
+Russell King (1):
+    ARM updates
+
+Sebastian Reichel (1):
+    power supply and reset updates
+
+Shuah Khan (1):
+    kunit updates
+
+Stafford Horne (1):
+    OpenRISC updates
+
+Stephen Boyd (2):
+    clk updates
+    more clk updates
+
+Steve French (2):
+    cifs updates
+    cifs fixes
+
+Steven Rostedt (2):
+    tracing updates
+    ktest updates
+
+Takashi Iwai (2):
+    sound updates
+    sound fixes
+
+Thierry Reding (1):
+    pwm updates
+
+Thomas Bogendoerfer (1):
+    MIPS upates
+
+Thomas Gleixner (9):
+    irq updates
+    timer updates
+    generic kernel entry/exit code
+    x86 conversion to generic entry code
+    x86 fsgsbase
+    locking updates
+    irq fixes
+    more timer updates
+    timekeeping updates
+
+Tony Luck (2):
+    EDAC updates
+    edac fix
+
+Trond Myklebust (1):
+    NFS client updates
+
+Ulf Hansson (1):
+    MMC updates
+
+Vinod Koul (1):
+    dmaengine updates
+
+Vishal Verma (1):
+    libnvdimm updayes
+
+Wei Liu (2):
+    hyperv updates
+    hyper-v fixes
+
+Wim Van Sebroeck (1):
+    watchdog updates
+
+Wolfram Sang (1):
+    i2c updates

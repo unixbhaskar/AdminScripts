@@ -1,0 +1,111 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp5119677lfj;
+        Mon, 16 Sep 2019 23:22:17 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqw7Ml0lil99j+M26UX3kIm5J/drP03JAkSy3Kw1iX7GVppfCNu7YdRocXN0G/on35N3o/h2
+X-Received: by 2002:a17:906:b84e:: with SMTP id ga14mr374562ejb.215.1568701337182;
+        Mon, 16 Sep 2019 23:22:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568701337; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ZS1LkQiYZw9DXtS61kD3JDjK7ND1Y9xiUCYXpmSnNAeDGo5fO7MISZaw0zDOgkWZT3
+         deh0BnU+6E8J0OGC7On3gZrb1UV83kdEJ0IJEq6OJuPP03tzFkMsNsRrRwU4cpR9/R0V
+         azneTaE50fV9npseUS4lrgesru8HxOTHh1pW+AtQpcl3jONyQ0w+OXXDpi5z7bGV0x9P
+         ME9MuFhPZ1sSoG3ma6KH54/n156iyRru7v1mr5bQhLW16imxID3SWBqn6Vz5bUr9GnYT
+         mWiHqiPFLRO9uuL2vtqZeqeY7G0DpPmFZSAxZ2xg4TKlgYWj/DMMAdfj16yP+462Y+Dt
+         bBEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=me/tNrvpc38oLBmNgQpuGD2wwLksgIc0n84g04Pq6UM=;
+        b=zVC7caOK8l8nyZ9Qi3EB9vUX0Avb65ao2H3K7y6eeZ5KLm7bGnTYxw4j6po4Ez2Td3
+         tj3kP7Zt4dz3T6DlidEXscSBD7l7fpyY8UwktfjJGTKvEkXMYIQzpmyu2fAcOd2dnyZX
+         jtyPI7tep2BkPglicFUphbKn2KxtSWyk4bD3lNVOFC7BzCB2bez99Et9msXAGGs69lhU
+         XfqQg/n3qzCNg/4cPboGBsd+OrGKB42z4yAK0pv3TmbcpQhBGMFi9EGEVm4gTiPp67mA
+         0Bbzy+Ve2LMf6a8GoBbigXKTvFPUKpCFhz5FADRqX/UVMmirNLNR/8lsKi8s9J04RQlh
+         Y69w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=hFnsr4SQ;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id z5si754536edr.96.2019.09.16.23.21.53;
+        Mon, 16 Sep 2019 23:22:17 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=hFnsr4SQ;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2391409AbfIPUil (ORCPT <rfc822;cryosay@gmail.com> + 99 others);
+        Mon, 16 Sep 2019 16:38:41 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:46562 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387499AbfIPUik (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 16 Sep 2019 16:38:40 -0400
+Received: by mail-lj1-f194.google.com with SMTP id e17so1188958ljf.13
+        for <linux-kernel@vger.kernel.org>; Mon, 16 Sep 2019 13:38:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=me/tNrvpc38oLBmNgQpuGD2wwLksgIc0n84g04Pq6UM=;
+        b=hFnsr4SQxJjjqereCuTP+xGrGqVFwwB7+2ShWDl5Qp8pLxb4+MV1NinHIOPm4UaO/I
+         66LHrIpJRtRLDqw3UxiqboGbOYFJm3hraDsxkxsG2zVzCjIxcW00JkhtL3B0fbXwayOw
+         0lnLYFaWHXA2YaW+8dkcHiVuHzVd/UG+TSCPY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=me/tNrvpc38oLBmNgQpuGD2wwLksgIc0n84g04Pq6UM=;
+        b=tlwdpBl/JWxkEGCK869cS2M1i3rGT2b+RswYdFv1Idn4kw7GWIuVsgbgBBuVcaITWE
+         2RKQSJ1j1tFpYFIMO0atJ/aGOp9uLdOW+4YQxGHGG/z/1iqtTjnvlfwUNY7dIhDC17Q3
+         mdzh3KovoZua9KfhRy+V5EnXufyIqXcQ1/k4xOxzuQ2SfDJ9yoZ+c+XXUNvQxGUrHwMd
+         mDoRYfuKx6YqOaY8LEMGWjwO227EF1wGbByKH4cvgh6ZeBPrTtZ416Rn85uUe4NadnbA
+         3JJsqeZ/smM4AgIeNqn2s5fja4nsXcWQrQD5AALS4Rh0HLb+/kCSxDJk4OW13ytFmraR
+         A/GQ==
+X-Gm-Message-State: APjAAAUn3nC1ZoZVEukCMq4zwyZzy0HY9enpwGnQOAH0afow6E8++r50
+        ZRr6bqCBjpJJZUGrNm37WdkuujOawkA=
+X-Received: by 2002:a2e:5c09:: with SMTP id q9mr843599ljb.4.1568666317468;
+        Mon, 16 Sep 2019 13:38:37 -0700 (PDT)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
+        by smtp.gmail.com with ESMTPSA id w17sm9222708lfl.43.2019.09.16.13.38.36
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Sep 2019 13:38:36 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id y23so1252760ljn.5
+        for <linux-kernel@vger.kernel.org>; Mon, 16 Sep 2019 13:38:36 -0700 (PDT)
+X-Received: by 2002:a2e:5b9a:: with SMTP id m26mr801701lje.90.1568666316121;
+ Mon, 16 Sep 2019 13:38:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <1568237365.5783.39.camel@linux.ibm.com>
+In-Reply-To: <1568237365.5783.39.camel@linux.ibm.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Mon, 16 Sep 2019 13:38:20 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whuzoK+sP+feizU520p7ChHqdX8pmwyCnnKTyUNJKngZA@mail.gmail.com>
+Message-ID: <CAHk-=whuzoK+sP+feizU520p7ChHqdX8pmwyCnnKTyUNJKngZA@mail.gmail.com>
+Subject: Re: [GIT PULL] integrity subsystem updates for v5.4
+To:     Mimi Zohar <zohar@linux.ibm.com>
+Cc:     linux-security-module <linux-security-module@vger.kernel.org>,
+        linux-integrity <linux-integrity@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Wed, Sep 11, 2019 at 2:29 PM Mimi Zohar <zohar@linux.ibm.com> wrote:
+>
+> The major feature in this pull request is IMA support for measuring
+> and appraising appended file signatures.  In addition are a couple of
+> bug fixes and code cleanup to use struct_size().
+
+How is the file signature any different from (and/or better than) the
+fs-verity support?
+
+The fs-verity support got fairly extensively discussed, and is
+apparently going to actually be widely used by Android, and it an
+independent feature of any security model.
+
+What does the IMA version bring to the table?
+
+             Linus

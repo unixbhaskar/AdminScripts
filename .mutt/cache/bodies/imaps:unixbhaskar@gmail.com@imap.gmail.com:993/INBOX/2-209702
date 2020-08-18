@@ -1,0 +1,112 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a17:90a:8d81:0:0:0:0 with SMTP id d1csp373855pjo;
+        Mon, 11 Nov 2019 11:01:59 -0800 (PST)
+X-Google-Smtp-Source: APXvYqykdWNPOEfuJr0zOcfD6r7rPl87cZQW3k98p3VKvXQ0z50Cgi7QZ4/ZpS6f5jMQ32YSrJZd
+X-Received: by 2002:a50:9908:: with SMTP id k8mr27734313edb.75.1573498919545;
+        Mon, 11 Nov 2019 11:01:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1573498919; cv=none;
+        d=google.com; s=arc-20160816;
+        b=z9EQy0SIEF+ruuBQdyMao2Q1yOalam2dPV4pOwAYzAg88rO/6OxFTqq8c3MBKh+yKQ
+         SNUiJVhYr4oPK96ZgzK7CKBKRRpXiKoceTMj8NmNvgzstItkBHFpFBDrmov/Aw3tfRhq
+         t+pFg2Vb0/6fQjJjBT0NbsUHr0v1nrCgYOIkztolO5AOI/X4wJavLOQdct8WifxIF0iK
+         N4cRljO6ngXCLmaVCJCPP3dSyIkmGVxhJf8X95bJKokVyvbE9VX42mGFN5bZBGT+08QT
+         6Nni1Mhd57liYd/bcc6+5w9tnmfTilVoss15guIfquz98NoyPUMo7vjW1Uh2Ad2teaTA
+         VnIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=WGvx3izZbFGPfmHpTzf+7OBf9luhXuuKiVs0MgvxepI=;
+        b=zQKPT9E1ZrPQ/cHfA1J0pHqpxqBBlfmwovyxwE8+Z5Z2lyBlH+FzRtFE7lMl3Qp4BL
+         yYP/bi0YWZS+8kckYR7Jo3eN5mPQKAWXvxuECcc86WTM2CB2h97D4HPPEoWw76KwijGs
+         vhKFJOtGdG2xHf7qy7jWBvt5cB/q3T/GbmlHAl9eJP1eyEPB9BmiuPEDIeYV0mw2nznc
+         08c0WR5/lyUqyqW2nucJU+Kcne+EMgBqOEbwJHtDYBrVlBhWlRUGwIwNpS32pRHH2Hs9
+         p1CsA6yMgd7DTthlI2DnI4zHqY/ps58Pz1yDwnbbnFF4dGzMIsF549rW9bC9OCyHPL1j
+         /eFw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=GBX1Myr4;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id ga20si6571669ejb.14.2019.11.11.11.01.42;
+        Mon, 11 Nov 2019 11:01:59 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=GBX1Myr4;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1730333AbfKKTAM (ORCPT <rfc822;kerneldrwho@gmail.com>
+        + 67 others); Mon, 11 Nov 2019 14:00:12 -0500
+Received: from mail-il1-f171.google.com ([209.85.166.171]:36603 "EHLO
+        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729568AbfKKTAL (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 11 Nov 2019 14:00:11 -0500
+Received: by mail-il1-f171.google.com with SMTP id s75so13056765ilc.3
+        for <linux-kernel@vger.kernel.org>; Mon, 11 Nov 2019 11:00:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WGvx3izZbFGPfmHpTzf+7OBf9luhXuuKiVs0MgvxepI=;
+        b=GBX1Myr4/EEVjz5Vb/HzUXNoAYfrM++Xv2+dIwNg/RscbmfvDOiDwQ02WAb6KP3jV7
+         d61Z50AxiPwxcAEN96zBwrLDvW+3aQ/stoEL94alWqSIFWzMHtL66h/QIgToqPdRrYVp
+         dLe67Yop326tdkSjKj7mDMEn5wS9UdFPThUQB6slmBb2YnI9spILMCByCuzBbILE6/B2
+         XlGr2Gup2l4mHBQ+RDaY/uquwBsMqbW5p2c5AF4mlU3tfxF7OiGdGXT5fRGWoDQ/+zzg
+         zMBQu042zzmwZaT3sNHfbyiXX7KbvdL/37mmy3WZs07q7kInzBRWtoxl+/uHXVtIRBWN
+         Dsrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WGvx3izZbFGPfmHpTzf+7OBf9luhXuuKiVs0MgvxepI=;
+        b=aPj8v4W4g/MjWby1hw/bhim/1d7NRdFuwtCXaRqzMUztdSVzbuagDZktEUpqVeqqnn
+         bKlYeu5t0RQT/xWrGoYdkudy20Z/6zVWMK3ziSNLIE01+dTfhAIj2e43wT9bisq+8doP
+         T1u1OJOIQXGQm6Cl3H/K+G6rgTrWzhvycmQ4uhIox2+9KSRow4FF4pUN/+Asf3umAhV+
+         EYcibN10BEWU6m0zx223Ci3ESVJxUzmS82t+0EMR1YlSpeUnsyCKnmgMUhEdNxmuHQ4I
+         lEHFUi2Fajl71sVcVkPbWudbvepES2Orq1XYB5NHKb2pVhQHvMBhuHBnAxetdIToDtza
+         I2zA==
+X-Gm-Message-State: APjAAAWDX2iecr1sntDPwzE6ZmCmjfA4YMz4qpty/t5bsFy2JelOFz0B
+        Xt9qF3gVXN9sRCf35kkOJPO1FCgy3Xu/2wMCGuh3VA==
+X-Received: by 2002:a92:109c:: with SMTP id 28mr31505069ilq.142.1573498809674;
+ Mon, 11 Nov 2019 11:00:09 -0800 (PST)
+MIME-Version: 1.0
+References: <CANpmjNMvTbMJa+NmfD286vGVNQrxAnsujQZqaodw0VVUYdNjPw@mail.gmail.com>
+ <Pine.LNX.4.44L0.1911111030410.12295-100000@netrider.rowland.org>
+ <CAHk-=wjp6yR-gBNYXPzrHQHq+wX_t6WfwrF_S3EEUq9ccz3vng@mail.gmail.com>
+ <CANn89i+OBZOq-q4GWAxKVRau6nHYMo3v4y-c1vUb_O8nvra1RQ@mail.gmail.com>
+ <CAHk-=wg6Zaf09i0XNgCmOzKKWnoAPMfA7WX9OY1Ow1YtF0ZP3A@mail.gmail.com>
+ <CANn89i+hRhweL2N=r1chMpWKU2ue8fiQO=dLxGs9sgLFbgHEWQ@mail.gmail.com> <CAHk-=wgWf7Ma+iWuJTTr9HW1-yP26vEswC1Gids-A=eOP7LaOQ@mail.gmail.com>
+In-Reply-To: <CAHk-=wgWf7Ma+iWuJTTr9HW1-yP26vEswC1Gids-A=eOP7LaOQ@mail.gmail.com>
+From:   Eric Dumazet <edumazet@google.com>
+Date:   Mon, 11 Nov 2019 10:59:58 -0800
+Message-ID: <CANn89iK1+m2CuOD9CYCQanKLWx4JsXw22YCbkSEcYYKw211Ztg@mail.gmail.com>
+Subject: Re: KCSAN: data-race in __alloc_file / __alloc_file
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Alan Stern <stern@rowland.harvard.edu>,
+        Marco Elver <elver@google.com>,
+        Eric Dumazet <eric.dumazet@gmail.com>,
+        syzbot <syzbot+3ef049d50587836c0606@syzkaller.appspotmail.com>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
+        Al Viro <viro@zeniv.linux.org.uk>,
+        Andrea Parri <parri.andrea@gmail.com>,
+        "Paul E. McKenney" <paulmck@kernel.org>,
+        LKMM Maintainers -- Akira Yokosawa <akiyks@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Nov 11, 2019 at 10:50 AM Linus Torvalds
+<torvalds@linux-foundation.org> wrote:
+
+> Yeah, if it hasn't shown any real bugs so far, that just strengthens
+> the "it needs much fewer false positives to be useful".
+>
+
+It definitely has shown real bugs, some of them being still addressed
+(not yet fixed)

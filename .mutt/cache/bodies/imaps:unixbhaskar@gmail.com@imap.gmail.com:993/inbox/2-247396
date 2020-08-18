@@ -1,0 +1,121 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:c3c5:0:0:0:0:0 with SMTP id t188csp2029089lff;
+        Thu, 2 Jul 2020 22:47:40 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwpAlHF+fd1kMMxhsGwwYlOmWk/u6S3NAIWJBHLBccMV5je4+I9WLb8TO0e+IRJnrD1KqC0
+X-Received: by 2002:a17:906:1a54:: with SMTP id j20mr30227760ejf.455.1593755260671;
+        Thu, 02 Jul 2020 22:47:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1593755260; cv=none;
+        d=google.com; s=arc-20160816;
+        b=auR+oQjEtC+O03xsyWmlPhsB0JxMyCy+zplTH4CviXJzvfIg417QYKCwtxMxcYNly4
+         XiWYCchOZmn1ic3+Eo5lJzqtOSfkokJ5kw5N3sXP0b6Y2ZWPcCtO9g3ZEf3Ve9lKeDZg
+         FPElFJBlqnz5MnqxPbPMAAFwvHNCtZEOu1lrwSHN1dhuFULseGWPVArty5ZjRXg1AMKL
+         MneBEyIztvBTLGJpSY/z4gQtmSAgoNJMwJpwh5uAWX9LPsc2R7pkmVf2OqMYrQ67jAVm
+         YdN2U9Y7RJgvmRuCbMpIpv4FR6os3hPJitmPRjfGdRpV9m+qXBpGngoy1BC1vvc/XGPL
+         k74A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=F0A3vDVM1SsTuHA9lwQs5oLr1c/ypIMHHQvVuoSvrWY=;
+        b=cY686gsctzSVYw0bjjWB3iu1IzlDzLUAKM5w4Wkq4L+27swEMjh2Krpbqn/SsUBizb
+         0bAxwb8svS7/j8gf8n8KYpKaMncjLBv9QqkMpXqvyztr12s5MtdCp/LXr8X/rjK2m9Sg
+         dvRTXuacPjqcTyeIXpLPNXNCA4WmztmztM/4xUnH4IZtc42Bi1Bdkc2gUEJ1AU5PkKh9
+         4aZ6URBFKDXjOnVanDcjz90w2cT/Trc5PmuGK8npOzqk3T0l4TQ/oSbca1aL2UgX2p1Z
+         dJlrjw6O3WjQrC3tjPSLe0SCwiPTA0OrTEKOER/z0SB+8cqy3/xoVp7muQrln2Hsi3hj
+         tXIA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=ACJ7KSWN;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id pg6si7372554ejb.739.2020.07.02.22.47.17;
+        Thu, 02 Jul 2020 22:47:40 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=ACJ7KSWN;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726098AbgGCFpo (ORCPT <rfc822;2014014876lha@gmail.com>
+        + 99 others); Fri, 3 Jul 2020 01:45:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725779AbgGCFpn (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 3 Jul 2020 01:45:43 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332CAC08C5C1
+        for <linux-kernel@vger.kernel.org>; Thu,  2 Jul 2020 22:45:43 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id e4so35519269ljn.4
+        for <linux-kernel@vger.kernel.org>; Thu, 02 Jul 2020 22:45:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=F0A3vDVM1SsTuHA9lwQs5oLr1c/ypIMHHQvVuoSvrWY=;
+        b=ACJ7KSWNHjIkmPj+v99ndLC48oahHjDdlpQzL4u/QJko56jn5VObA5HkpRdKTxndhw
+         /eQ8PRZzG2sA0B3mCJgKb1lqxkWyhhcDpCIe6upIqKg2YLcobbJzuhLCmqf8rJzieKm2
+         UTx3TUz7fE0+yuKp/LiUiTAlqsRTvp/LXbmrI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=F0A3vDVM1SsTuHA9lwQs5oLr1c/ypIMHHQvVuoSvrWY=;
+        b=FHjpYrKg6EBJtrFiozlKvTeHLWfLhDgn1h9b7InhDlVN/YbMc1GH/pI/yjlOgew9Zz
+         AlzCUN7tzZORThBsJFjKGY9RRdgfUmwVFfMAj71PsJ/tDxIGKN/kAGAq8MzdBjtXlZyj
+         pKMpy9tFiOdcN/hnSwGGZwrQnXutCze7YNfb6brl8aWNTR7+o2OZguxbO/JnemF/cq2F
+         3jLocn4jgVZnukbIfvrcerpcJ1cTutqWk9lYQzwuPewlrywcJ5VOtUAYDH3yxdMItyhw
+         XldjpnS5tEpkusQ//29WiIKbnIr6TJa4wUAy+OQ5CchlezB1oaQCLsNAiSYdCot88akF
+         7Crg==
+X-Gm-Message-State: AOAM530xEFJ3RArWGoPZwZT5mtGh+Pz060KWtoL9DQ2r52qnayeh2E0o
+        vYQ3KOMxquwZrB9gsl3OGAupqNOPyyk=
+X-Received: by 2002:a2e:6816:: with SMTP id c22mr6381302lja.378.1593755141312;
+        Thu, 02 Jul 2020 22:45:41 -0700 (PDT)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com. [209.85.167.48])
+        by smtp.gmail.com with ESMTPSA id h18sm3712297lji.136.2020.07.02.22.45.40
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jul 2020 22:45:40 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id t74so17784910lff.2
+        for <linux-kernel@vger.kernel.org>; Thu, 02 Jul 2020 22:45:40 -0700 (PDT)
+X-Received: by 2002:ac2:5a5e:: with SMTP id r30mr20869931lfn.30.1593755139952;
+ Thu, 02 Jul 2020 22:45:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200702204732.1114343-1-christian.brauner@ubuntu.com>
+In-Reply-To: <20200702204732.1114343-1-christian.brauner@ubuntu.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Thu, 2 Jul 2020 22:45:24 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wheF6DDWZa0nvopnVLbBjoL_rTmfoTmw1mJRhkR_bKH5w@mail.gmail.com>
+Message-ID: <CAHk-=wheF6DDWZa0nvopnVLbBjoL_rTmfoTmw1mJRhkR_bKH5w@mail.gmail.com>
+Subject: Re: [GIT PULL] fixes for v5.8-rc4
+To:     Christian Brauner <christian.brauner@ubuntu.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Jul 2, 2020 at 1:51 PM Christian Brauner
+<christian.brauner@ubuntu.com> wrote:
+>
+> A few comments on this since doing a grep data_race() reveals that currently
+> only kernel/rcu/* is making use of this new annotation and this seems to be the
+> first annotation in core kernel: when this was first sent to me I was obviously
+> aware of the existence of KCSAN but not whether we had established a consenus
+> around annotating places in the (core) kernel where we currently have benign
+> data races that KCSAN complains about. I don't know whether we have reached a
+> consensus in general yet or we're just doing this subsystem specific.
+
+I'm not sure there's any consensus, and it depends on the quality of
+the KCSAN bug reports (and the reporters). There were some KCSAN
+reports that seemed to not actually be real data races as much as
+"KCSAN was being stupid and not understanding idempotent value
+setting".
+
+It also depends on the quality of the patch and the description. If
+KCSAN patches end up being "just shut up the tool", I will stop taking
+them.
+
+But in this case, as you say, we already had the comment about the
+situation, and telling the tool about it obviously won't hurt.
+
+            Linus

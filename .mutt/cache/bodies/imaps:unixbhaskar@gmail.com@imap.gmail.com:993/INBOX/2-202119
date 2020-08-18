@@ -1,0 +1,109 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1456586lfj;
+        Thu, 19 Sep 2019 15:20:12 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzYI5kBxvFEWVik/iVA7Yd9W+E0nToBzoWij6ttEPnPlTSoXUB9cthnqOmwRh708CLzVgY0
+X-Received: by 2002:a17:906:1941:: with SMTP id b1mr16060696eje.141.1568931612299;
+        Thu, 19 Sep 2019 15:20:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568931612; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Y7ucYNM/7+ihF72y2/kc8w2uAiYW71FFA6G6VRT+PABeQ7bZkCi7rxrryKFOUSdE0P
+         nm3gN/j3h75p8+4uYsGPQZNZYO1KB85NYRO9buY2iJmfXKWkBuoB1yh41y4XlLBlPJ4S
+         KxAIOaVoZmVAf45mgKlKehIRWZ3EPFFkp3n8Enj22s8l6Lo9k5FgQ7JJvA3Xm3iBqCmI
+         EEvJhj3YlT1LRCvY0FlARs4jlnuQt403IlgCNu09hUAaG8pKLnYs25GQsdbbS3qfvWqN
+         UxfsXfVAXleyrSll0CRvJIuo5wcwqfHbHuJfitJpxv0AqLoLkpX/DZIuu8KdWH29FAtY
+         wApw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=mFlQqPMwF2oKRoCy99o/0fcbEkaEzqDPgo54HkJjGwo=;
+        b=ixI+GYWO1xSl30MSciJCA/yVz38JrqzBV3z23ZkhaRCQyVc7ua7yT1pImVA8UgeFoF
+         twgfpw1oJlOuSC9/8MOzfWFy7vtcAKZSm5B+ZDHYykoukDz/7ZnrLmv/yeRNT5d2H+Zq
+         GEDrh6jnBDsOdZeNwM9CgqXA4anufKq65VX7BDwel+NT+jy9C03CdC5xLdrzE7ACXpL6
+         Q3cyQZHXC2UbDJuMeyYDMQn0ozYR3pw0INCgI4kfhzbDN8S84s+SKovprWCKF43zSBgF
+         yLXGIOQjgFZuUD+uR7IYSuNo96mzdmwQX1HXLaMohhd+DPEzfjRAX2OszE4AAPX8dQH6
+         0BLQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=QYGEBRfB;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id s20si5290265eja.63.2019.09.19.15.19.48;
+        Thu, 19 Sep 2019 15:20:12 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=QYGEBRfB;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2390929AbfISVZw (ORCPT <rfc822;hari.prasath50250@gmail.com>
+        + 99 others); Thu, 19 Sep 2019 17:25:52 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:37131 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390868AbfISVZu (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 19 Sep 2019 17:25:50 -0400
+Received: by mail-lf1-f66.google.com with SMTP id w67so3454473lff.4
+        for <linux-kernel@vger.kernel.org>; Thu, 19 Sep 2019 14:25:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mFlQqPMwF2oKRoCy99o/0fcbEkaEzqDPgo54HkJjGwo=;
+        b=QYGEBRfB218lq3Cke9eCjqIiN6Wf0j2td7002hFcAjOvsFYVECsjYFCUkApgWn3no8
+         gEApY84ExYwT1UuZmVMX50F9llaHaFWKCUWUK9WH5z38tbwkYt1iwCfqojcLmUe2Dc24
+         DkNvqa74UAADSQNKgmT2moNbWhaBqIMeGf5Vg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mFlQqPMwF2oKRoCy99o/0fcbEkaEzqDPgo54HkJjGwo=;
+        b=PikMZtsnl9xC58R3OmkECyfYjkQk3oRjoi0vuc5Ne+2FQM2IIc3CZDUzcl1IVlAoBQ
+         yDgLwubed5eGrA4QEoyc75tulSjkiET2iV0/u9LbIF4Me9bnq+4LFKTAoNVpamS4aSQ8
+         NuU89MnUpozXRIdDOnLNV5qEjeH+FgdEM0ameF3aEtirHutcUw9wIs8GOPz3Vh5FbMiF
+         f5zTEkVJaoMQIQ2hW9akGOKwySA99Bu0bgry4FJFLaPNQ0K6tlw5cscfqEu70ZEUCJW2
+         7IUWvsEiDkjF4rShR3wRAwJZMrxFYozWrhhT4Hced4o3Ic4bKZ6eMRu3faDNiYlvJrYb
+         6Ijw==
+X-Gm-Message-State: APjAAAUmomBJNoxZ9a/ZI/mz9BJbSPE2AwJWJXEqaiAzBC7UfrdFSpRG
+        FiGXCfliYQ/zDTTiI/9FxQzHR4OG8V8=
+X-Received: by 2002:ac2:4853:: with SMTP id 19mr5906481lfy.69.1568928348258;
+        Thu, 19 Sep 2019 14:25:48 -0700 (PDT)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
+        by smtp.gmail.com with ESMTPSA id z14sm1441813ljz.10.2019.09.19.14.25.46
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Sep 2019 14:25:46 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id a22so5102315ljd.0
+        for <linux-kernel@vger.kernel.org>; Thu, 19 Sep 2019 14:25:46 -0700 (PDT)
+X-Received: by 2002:a2e:1208:: with SMTP id t8mr4478514lje.84.1568928346030;
+ Thu, 19 Sep 2019 14:25:46 -0700 (PDT)
+MIME-Version: 1.0
+References: <CACRpkdaHfhNjR-3GJOO-47rqopmO1SE9dLAU+AiCaWTuLje=8w@mail.gmail.com>
+In-Reply-To: <CACRpkdaHfhNjR-3GJOO-47rqopmO1SE9dLAU+AiCaWTuLje=8w@mail.gmail.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Thu, 19 Sep 2019 14:25:29 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjjP4YuM8myHkb20avZA8r=KCN3wLi2piWuPKBTH4T3vQ@mail.gmail.com>
+Message-ID: <CAHk-=wjjP4YuM8myHkb20avZA8r=KCN3wLi2piWuPKBTH4T3vQ@mail.gmail.com>
+Subject: Re: [GIT PULL] pin control bulk changes for v5.4
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-m68k <linux-m68k@lists.linux-m68k.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Sep 19, 2019 at 2:08 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> Alernatively you can wait for the m68k tree to come in first. Or we nudge Geert
+> to send the changes ASAP. The usage of a wildly different pin
+> controller on Atari hardware is only a compile testing artifact so
+> we didn't drill deeper into this.
+
+The m68k tree came in days ago, long before your pull request. It was
+already merged on the first day of the merge window.
+
+So no need to nudge Geert. We should be ok.
+
+              Linus

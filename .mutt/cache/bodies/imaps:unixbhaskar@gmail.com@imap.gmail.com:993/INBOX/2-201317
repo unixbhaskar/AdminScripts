@@ -1,0 +1,136 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp4691139lfj;
+        Mon, 16 Sep 2019 14:09:20 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxgiMXRu5KvigGmAFA0BwEv0UC3SnPSnZSzx5U8BXlXRrwxH1WsWLWPenHIs2AL8iTvvSd7
+X-Received: by 2002:a6b:400f:: with SMTP id k15mr307823ioa.153.1568668160459;
+        Mon, 16 Sep 2019 14:09:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568668160; cv=none;
+        d=google.com; s=arc-20160816;
+        b=KCsLSg89kBhGMD8vmuop4hF07higqXyswxTQ2uOX6T5IdcK+z+3o+8zdkaPqQ6ZvDj
+         68Lf/Vq62ZhY/rDAw6Ja+Qqa2hSLFhMJ8PxV6lhdrmFwiFgx4a224EBZOYWs1SlAgsXf
+         0RNUbb4edTckuTs18YNOpMfRgQ4E6FCgZW7GBnyfcgqdFJzq+sOcUQY8dwWF/M6bLIsN
+         Pko55iQDADEeel1yfnE5J7Q7Jcl7p3QF/5uabFAt/Rd54CBFl/3N8DaUZahq/cdkA0Z5
+         7HdnnIFlY2XA9DBrJxDjZ2CSQqCjTtste70vm4ev7cV0pPEnUhEi49QMapoKuSXsNkjL
+         tB3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-archive:list-post:list-owner:list-subscribe:list-id
+         :list-software:list-unsubscribe:list-help:reply-to:precedence
+         :errors-to:sender:user-agent:content-disposition:mime-version
+         :message-id:subject:to:from:date:delivered-to:dkim-signature
+         :dkim-signature;
+        bh=fUZ4lK3680VcWviWoy/N5FRm0Ra/4DeDhbYrVXXwTXc=;
+        b=jlGqKQBT0lt0EN3P4mHm8kbYrsE1wi5sPo56wMA78TcnKYZferC0UxZ7CPYSgsrnuj
+         Vqo5jgitrlHpptwNZySiQAMWiDXqBT3pKpIV8+gWvn8ad/o5sbu1KFNiVtUDshiec/3M
+         jXHE7KJ2aKkBCr12BNsTvP6rvgGEt9COkxy53G9X62j0jjgsSaj+OZ3hzc2E103dQJW7
+         uBBt0gN4fz9I/9lre8PctE0l3OyY0xrG2WpNMw5bKPSbmA2T23t4yNmZ6bWZ7GMAKfhZ
+         oTGzAzgxpViJ3QaTTHrTeM/sUyoZaa8imXbo4efAlpDNHZCF/glo5NI37ssljXOCE2wc
+         r/1A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=syOd8nXT;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=rRJxuUo1;
+       spf=pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) smtp.mailfrom=i3-discuss-bounce@freelists.org
+Return-Path: <i3-discuss-bounce@freelists.org>
+Received: from turing.freelists.org (turing.freelists.org. [206.53.239.180])
+        by mx.google.com with ESMTPS id g10si97004iom.18.2019.09.16.14.09.19
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 16 Sep 2019 14:09:20 -0700 (PDT)
+Received-SPF: pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) client-ip=206.53.239.180;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=syOd8nXT;
+       dkim=pass header.i=@freelists.org header.s=turing header.b=rRJxuUo1;
+       spf=pass (google.com: domain of i3-discuss-bounce@freelists.org designates 206.53.239.180 as permitted sender) smtp.mailfrom=i3-discuss-bounce@freelists.org
+Received: from localhost (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id 9025020E71;
+	Mon, 16 Sep 2019 17:09:18 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=freelists.org;
+	s=turing; t=1568668158;
+	bh=l//xb6Knsd9OJwozWQTX6Y4C6jXpyz288w3avcKgTD8=;
+	h=Date:From:To:Subject:Reply-To:List-Help:List-Unsubscribe:List-Id:
+	 List-Subscribe:List-Owner:List-post:List-Archive;
+	b=syOd8nXTudJz7jrrOYfgtgSVlgurcBbIw2D6EipNpaqTDDf5k1GFgC3GFaiJpPWU1
+	 Xyy69t1cyVQcdGYiIOJbilxwj6jsWO8a4YTMB4sGGYhY+o0DGo9aq19mnLxQJHa07O
+	 IIa6yP2scW8oM/yV31jpE13rrpIrxvR7k1W92dgI=
+X-Virus-Scanned: Debian amavisd-new at turing.freelists.org
+Received: from turing.freelists.org ([127.0.0.1])
+	by localhost (turing.freelists.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Cz0QZL6tlfnx; Mon, 16 Sep 2019 17:09:18 -0400 (EDT)
+Received: from turing.freelists.org (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id C535B23747;
+	Mon, 16 Sep 2019 17:09:00 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=freelists.org;
+	s=turing; t=1568668157;
+	bh=l//xb6Knsd9OJwozWQTX6Y4C6jXpyz288w3avcKgTD8=;
+	h=Date:From:To:Subject:Reply-To:List-Help:List-Unsubscribe:List-Id:
+	 List-Subscribe:List-Owner:List-post:List-Archive;
+	b=rRJxuUo12EGZAfLJAwMX2AWp6xIN0XxOGqSqAfflKv1zfi5QF/Ht5KEpgrctBHZvU
+	 zbSQqSsR5YQhbh6bhvg9cfIW60whvO52NZGDOomSxJZRrpJebiqCxlpcSZxMb/ahVG
+	 Oknq5Rsr6yH6FcgCsZb/0uJHd+G+ZkaxSBe3Pu/k=
+Received: with ECARTIS (v1.0.0; list i3-discuss); Mon, 16 Sep 2019 17:09:00 -0400 (EDT)
+X-Original-To: i3-discuss@freelists.org
+Delivered-To: i3-discuss@freelists.org
+Received: from localhost (localhost [127.0.0.1])
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTP id 38B66243CA
+	for <i3-discuss@freelists.org>; Mon, 16 Sep 2019 17:09:00 -0400 (EDT)
+X-Virus-Scanned: Debian amavisd-new at turing.freelists.org
+Received: from turing.freelists.org ([127.0.0.1])
+	by localhost (turing.freelists.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id afc7dwNWG5T6 for <i3-discuss@freelists.org>;
+	Mon, 16 Sep 2019 17:09:00 -0400 (EDT)
+Received: from einhorn-mail.in-berlin.de (einhorn-mail.in-berlin.de [217.197.80.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by turing.freelists.org (Avenir Technologies Mail Multiplex) with ESMTPS id 8818C23747
+	for <i3-discuss@freelists.org>; Mon, 16 Sep 2019 17:08:59 -0400 (EDT)
+X-Envelope-From: oliver@first.in-berlin.de
+X-Envelope-To: <i3-discuss@freelists.org>
+Received: from authenticated.user (localhost [127.0.0.1]) by einhorn.in-berlin.de  with ESMTPSA id x8GL8v7B016829
+        (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT)
+        for <i3-discuss@freelists.org>; Mon, 16 Sep 2019 23:08:57 +0200
+Date: Mon, 16 Sep 2019 23:08:57 +0200
+From: Oliver Bandel <oliver@first.in-berlin.de>
+To: i3-discuss@freelists.org
+Subject: [i3-discuss] Content of workspaces (screen background) visible on others
+Message-ID: <20190916210857.lwemtzewetlkghau@first.in-berlin.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+User-Agent: NeoMutt/20180716
+X-archive-position: 512
+X-ecartis-version: Ecartis v1.0.0
+Sender: i3-discuss-bounce@freelists.org
+Errors-to: i3-discuss-bounce@freelists.org
+X-original-sender: oliver@first.in-berlin.de
+Precedence: normal
+Reply-To: i3-discuss@freelists.org
+List-Help: <mailto:ecartis@freelists.org?Subject=help>
+List-Unsubscribe: <mailto:i3-discuss-request@freelists.org?Subject=unsubscribe>
+List-software: Ecartis version 1.0.0
+List-Id: i3-discuss <i3-discuss.freelists.org>
+X-List-ID: i3-discuss <i3-discuss.freelists.org>
+List-Subscribe: <mailto:i3-discuss-request@freelists.org?Subject=subscribe>
+List-Owner: <mailto:>
+List-post: <mailto:i3-discuss@freelists.org>
+List-Archive: <http://www.freelists.org/archives/i3-discuss>
+X-list: i3-discuss
+
+Hello,
+
+since a while (I think since last update of i3-wm), the window-contents of one
+workspace can be seen on another workspace, if after switching to the
+new workspace, the updated content does not fill the whole secreen.
+
+For example if I'm on workspace 1 and have the browser there filling the
+whole window, the  changing to worskpace 2, wher mplayer just updates a
+smaller region of the screen, then around the mplayer-content the
+browser-stuff from workspace 1 is frame around the updated contents.
+
+Before this behaviour occured, the screen was always set to black at
+unused parts of a selected workspace.
+
+Is this a bug or intended behaviour?
+Is there a new option that must be set, so that theold blackening
+behaviour comes back?
+
+Ciao,
+  Oliver
+

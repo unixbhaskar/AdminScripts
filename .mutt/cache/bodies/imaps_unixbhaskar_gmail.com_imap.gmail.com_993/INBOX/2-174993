@@ -1,0 +1,1530 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp749514lfb;
+        Wed, 3 Apr 2019 13:48:59 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxZ0Yl+mLo0Y45o6L5fcP9evZDHSMLbs4IvhIb7qNXvM4aIIzGGy+FcUQ6LaanUil2Qtofk
+X-Received: by 2002:ac8:74d5:: with SMTP id j21mr2067493qtr.232.1554324539166;
+        Wed, 03 Apr 2019 13:48:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1554324539; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ctScJTdki9K52PPDFsD2lG3xr7nAKdO5YkDjFg41Ui0S3apTKpkSDpcqA+jAmk0CKt
+         z+iEZftAWZpvpO43Xqw9Rg3roQrkg4U/ASUIkXYIe+OHD7SaJgkVjJYBnYM4qKFPAWgb
+         tf3rh3FcBSrhKW33Nax5TB+YLOxnQYdS2uyFz7HlR1Zn5NfvRbUbpF7CxqA+t0/0wcIl
+         UTn5xERmqJ0BuQJ8iZUSdjO5u0llJ1m1JIwr+G+mDXDK905AIJIge46fU47tLtGa7oRg
+         VKhRDmgGVSdWc4PbH7jXySUSJSe6BMDSoq7EI2A7xt95esqQ3+TXNWRq+F/0TBIF54rk
+         ajvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:bounces-to:mime-version:subject:message-id:to:from
+         :dkim-signature:dkim-signature;
+        bh=sXvWmU7IryoibXecKgRDfERP6v69Je2Eg69HuDWXhZ8=;
+        b=jGOc/pG2/KNKGUylcLyy3A1viDfYXAM7Qejr2O/2DLr4vY2lpeoj6/mRXY77e6HCRP
+         Nm5BM2x1fmRlkHjl9HuIhzcjiLXqkvY7aIj44iIxpzIzVpkidZSCZa1Ag/XLRBch7Zt1
+         ZxhxpWRGGdbF01dhnyNX0SclSKNZMOhL8tbmMHV2kYmzaAT+U0/UhQ217haJ45yKrXKC
+         sgCW4AmLdhudzWTPb48Ws/8chVWZ27EBTPfqoXsJQjPX3TZY7cAZbeQyf6g8NTU6B8l4
+         8z7N6ttVvyL2AEVupmXBzT/tgJ14aRg1LxnMCSfnek5PuHbpGwXV5MfAqBsM48Y1/ew9
+         NICw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@goodreads.com header.s=34hopjibjrkzebkm3h5ghq6l2ecbdoca header.b=GUiWnmvs;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=WOyUw2Jw;
+       spf=pass (google.com: domain of 201904032048583953a788553e4d03b09ec3bef100p0na-c2ge3wl9vjqnj@bounces.mail.goodreads.com designates 54.240.15.185 as permitted sender) smtp.mailfrom=201904032048583953a788553e4d03b09ec3bef100p0na-C2GE3WL9VJQNJ@bounces.mail.goodreads.com
+Return-Path: <201904032048583953a788553e4d03b09ec3bef100p0na-C2GE3WL9VJQNJ@bounces.mail.goodreads.com>
+Received: from a15-185.smtp-out.amazonses.com (a15-185.smtp-out.amazonses.com. [54.240.15.185])
+        by mx.google.com with ESMTPS id o185si10281583qkb.48.2019.04.03.13.48.58
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 03 Apr 2019 13:48:59 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 201904032048583953a788553e4d03b09ec3bef100p0na-c2ge3wl9vjqnj@bounces.mail.goodreads.com designates 54.240.15.185 as permitted sender) client-ip=54.240.15.185;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@goodreads.com header.s=34hopjibjrkzebkm3h5ghq6l2ecbdoca header.b=GUiWnmvs;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=WOyUw2Jw;
+       spf=pass (google.com: domain of 201904032048583953a788553e4d03b09ec3bef100p0na-c2ge3wl9vjqnj@bounces.mail.goodreads.com designates 54.240.15.185 as permitted sender) smtp.mailfrom=201904032048583953a788553e4d03b09ec3bef100p0na-C2GE3WL9VJQNJ@bounces.mail.goodreads.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=34hopjibjrkzebkm3h5ghq6l2ecbdoca; d=goodreads.com; t=1554324538;
+	i=@mail.goodreads.com;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date;
+	bh=NKWdvZ6qhdN20xsoO5y+E4t1VwuJg+HYFj3wsxvJHPE=;
+	b=GUiWnmvskNwq8UCiJyqCnjclrvnMLNwgLAhcCO2du/Dd0IFkoZKMp6EDb+JnYj96
+	Gk0v2bc9qxivNaLecO7hEIXROjJfmxFXzGVLJGyYzCL9K4q+KdJ3IIT8HvbaA4Jog+4
+	CP99fyGg+6YyWIfKQJEiwyXYbreSjg1tfBz1lqyM=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1554324538;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date:Feedback-ID;
+	bh=NKWdvZ6qhdN20xsoO5y+E4t1VwuJg+HYFj3wsxvJHPE=;
+	b=WOyUw2JwgFXrSUw8etQfTsXBFtN5a2xKiNRtvjY46U5X1FkAV4pZ1wqokWoVoFIC
+	duUHqcIbG80oIipPpSBHd9X10jV+1P4vaJxDWnso2CGtk0b32jya2D+sdhF4e7CY5Sl
+	2A3QsrbSrzi1oguEi96tDFTXR8EynthwkNmZ2xxQ=
+From: Goodreads <no-reply@mail.goodreads.com>
+To: unixbhaskar@gmail.com
+Message-ID: <01000169e4f644d3-b85de5fb-0f2e-45b2-98c9-9502df93edaa-000000@email.amazonses.com>
+Subject: Celebrating Mysteries and Thrillers on Goodreads
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_610342_702327996.1554324538541"
+X-AMAZON-MAIL-RELAY-TYPE: notification
+Bounces-to: 201904032048583953a788553e4d03b09ec3bef100p0na-C2GE3WL9VJQNJ@bounces.mail.goodreads.com
+X-AMAZON-METADATA: CA=C2GE3WL9VJQNJ-CU=A1Z1KLTPAPZOJS
+X-Original-MessageID: <urn.rtn.msg.201904032048583953a788553e4d03b09ec3bef100p0na@1554324538555.rtn-na-mktng-m4l1e-f251a201.us-east-1.amazon.com>
+Date: Wed, 3 Apr 2019 20:48:58 +0000
+X-SES-Outgoing: 2019.04.03-54.240.15.185
+Feedback-ID: 1.us-east-1.+gzE1S+MWTFXXYmwxo7wkk651GMxMPAUFYiyN/09X40=:AmazonSES
+
+------=_Part_610342_702327996.1554324538541
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Join the fun with book picks from the My Favorite Murder podcasters, classic capers, riveting new releases, and more!
+ 
+  
+         
+ 
+ Goodreads
+[http://images.gr-assets.com/misc/1501097225-1501097225_goodreads_misc.png]
+[https://www.goodreads.com?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=header]
+
+
+Hi Bhaskar,
+
+ We've put together the clues and connected the dots to bring a pulse-pounding special-edition newsletter to mystery and thriller fans like you.   
+         
+ 
+ 
+
+The Most Wanted
+
+
+
+https://www.goodreads.com/blog/show/1522
+
+25 of Spring&#x27;s Most Anticipated Mysteries &amp; Thrillers 
+[https://images.gr-assets.com/misc/1553539008-1553539008_goodreads_misc.jpg]
+
+25 of Spring&#x27;s Most Anticipated Mysteries &amp; Thrillers
+
+It's a new season of murder and mayhem. With upcoming books from debut authors and fan favorites, including <a href="https://www.goodreads.com/author/show/12455?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=harris">Thomas Harris</a> and <a href="https://www.goodreads.com/author/show/15292?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=caine">Rachel Caine</a>,  make sure to add what catches your eye to your <a href="https://www.goodreads.com/review/list?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=WTR">Want to Read shelf</a>.
+Read More
+  
+         
+ 
+ 
+
+The Who&#x27;s Who(dunits)
+
+
+
+https://www.goodreads.com/blog/show/1525-the-top-12
+
+The Top Mysteries &amp; Thrillers of 2019 (So Far) 
+[https://images.gr-assets.com/misc/1553896301-1553896301_goodreads_misc.jpg]
+
+The Best Mysteries &amp; Thrillers of 2019 (So Far)
+
+We dug into the data to uncover the buzziest titles beyond a reasonable doubt. From <a href="https://www.goodreads.com/book/show/39938177?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=noexit">locked-room mysteries</a> to <a href="https://www.goodreads.com/book/show/40097951?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=silent">psychological thrillers featuring psychologists</a>, these are the books that are keeping readers up at night.
+Read More
+  
+         
+ 
+  
+         
+ 
+ 
+
+Calling All Murderinos!
+
+
+
+https://www.goodreads.com/blog/show/1544
+
+My Favorite Murder Hosts Share True-Crime Reads 
+[https://images.gr-assets.com/misc/1553540261-1553540261_goodreads_misc.jpg]
+
+&lt;i&gt;My Favorite Murder&lt;/i&gt; Hosts Share True-Crime Reads
+
+To celebrate <a href="https://www.goodreads.com/book/show/41066983?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april42018&utm_content=staysexy">their first book</a>, the masterminds behind the <i>My Favorite Murder</i> podcast, <a href="https://www.goodreads.com/author/show/13438660?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=karen">Karen Kilgariff</a> and <a href="https://www.goodreads.com/author/show/10804019?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april42018&utm_content=georgia">Georgia Hardstark</a>, share their must-read recommendations for true-crime-solving aficionados.
+Read More
+  
+         
+ 
+ 
+
+Sleuths on Screen
+
+
+
+https://www.goodreads.com/blog/show/1532
+
+The Top Mystery &amp; Thriller Adaptations Since &#x27;Gone Girl&#x27; 
+[https://images.gr-assets.com/misc/1553540527-1553540527_goodreads_misc.jpg]
+
+The Most Chilling Adaptations Since &lt;i&gt;Gone Girl&lt;/i&gt;
+
+Grab the popcorn, readers. We've rounded up the top mystery and thriller adaptations since <a href="https://www.goodreads.com/book/show/19288043?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=gonegirl">"Amazing Amy"</a> took Hollywood by storm.
+Read More
+  
+         
+ 
+ 
+
+Nefarious Newcomers
+
+
+
+https://www.goodreads.com/blog/show/1535
+
+Meet the Newest Voices in Mystery &amp; Thriller 
+[https://images.gr-assets.com/misc/1553540569-1553540569_goodreads_misc.jpg]
+
+Meet the Newest Voices of the Genre
+
+For the experts already familiar with <a href="https://www.goodreads.com/author/show/123715?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=agatha">Dame Agatha Christie</a> and <a href="https://www.goodreads.com/author/show/9355?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=dean">Dean Koontz</a>, here are the most recent rising stars of the mystery and thriller genre.
+Read More
+  
+         
+ 
+  
+         
+ 
+ 
+
+The Usual Suspects
+
+
+
+https://www.goodreads.com/blog/show/1216
+
+Readers&#x27; Top 100 Mysteries &amp; Thrillers on Goodreads 
+[https://images.gr-assets.com/misc/1553540607-1553540607_goodreads_misc.jpg]
+
+The Top 100 Mysteries &amp; Thrillers on Goodreads
+
+From <a href="https://www.goodreads.com/series/49996?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=sherlock">Sherlock Holmes</a> to <a href="https://www.goodreads.com/series/43040-stephanie-plum?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=plum">Stephanie Plum</a>, we've brought you 100 of our members' most beloved mystery and thriller books of all time.
+Read More
+  
+         
+ 
+ 
+
+The Girl on the...
+
+
+
+https://www.goodreads.com/blog/show/1562
+
+What&#x27;s Your Ominous Mystery Title? 
+[https://images.gr-assets.com/misc/1553540459-1553540459_goodreads_misc.png]
+
+Name Your Bestselling Mystery
+
+If you've ever wondered what the title of your bestselling mystery should be, play along with our generator to discover which foreboding words should grace its cover.
+Read More
+  
+         
+ 
+  
+     Book Ends
+
+ * Want more? See which mysteries and thrillers <a href="https://www.goodreads.com/genres/most_read/mystery?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=bookend1
+">your fellow readers are currently diving into</a>.
+
+ * These <a href="https://www.goodreads.com/list/show/9797?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=bookend2">worldly mysteries and thrillers</a> could inspire your next vacation destination.
+
+ * Check out our interviews with the authors of some of the year's most eagerly awaited for mysteries and thrillers: <a href="https://www.goodreads.com/interviews/show/1434?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=harlan">Harlan Coben</a>, <a href="https://www.goodreads.com/interviews/show/1427?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=jane">Jane Harper</a>, and <a href="https://www.goodreads.com/interviews/show/1437?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=sally">Sally Hepworth</a>.
+
+      
+ 
+  
+    
+
+Currently Reading
+
+Currently Reading book cover [https://d.gr-assets.com/books/1348572669l/515603.jpg]
+
+Software Tools
+
+
+
+Update Progress
+[https://www.goodreads.com/book/show/515603?utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=botm]
+        
+ 
+  
+         
+ 
+  
+      Follow Goodreads on:
+Facebook
+[http://images.gr-assets.com/misc/1498251411-1498251411_goodreads_misc.png]
+[https://www.facebook.com/Goodreads]
+Twitter
+[http://images.gr-assets.com/misc/1498251493-1498251493_goodreads_misc.png]
+[https://twitter.com/goodreads]
+Instagram
+[http://images.gr-assets.com/misc/1501010182-1501010182_goodreads_misc.png]
+[https://www.instagram.com/goodreads/]
+Pinterest
+[http://images.gr-assets.com/misc/1498253544-1498253544_goodreads_misc.png]
+[http://www.pinterest.com/goodreads/]
+GET THE APP
+Goodreads on App Store
+[http://images.gr-assets.com/misc/1499369331-1499369331_goodreads_misc.png]
+[https://itunes.apple.com/us/app/goodreads-book-recommendations-and-reviews/id355833469/]
+Goodreads on Google Play
+[http://images.gr-assets.com/misc/1499369367-1499369367_goodreads_misc.png]
+[https://play.google.com/store/apps/details?id=com.goodreads]
+
+
+
+For more great
+content, check out our blog
+[http://www.goodreads.com/blog?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=footer]
+.
+
+This email was sent to unixbhaskar@gmail.com. 
+
+Unsubscribe
+[https://www.goodreads.com/unsubscribe/subscriptions/o/1DbdhhkEG-OZCw-mm8dN2uLhE1pYNtDNRM0hjhTzOyUzj7URWrZh6JZt3-qtNPmpa?rto=x_gr_e_nl_mystery&utm_medium=email&utm_source=mystery_newsletter&utm_campaign=april32019&utm_content=unsubscribe]
+
+
+
+Copyright 2019 Goodreads | 188 Spear Street, San Francisco, CA 94105
+    
+
+------=_Part_610342_702327996.1554324538541
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html><html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:=
+schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:offi=
+ce"><head><title></title><!--[if !mso]><!-- --><meta http-equiv=3D"X-UA-Com=
+patible" content=3D"IE=3Dedge"><!--<![endif]--><meta http-equiv=3D"Content-=
+Type" content=3D"text/html; charset=3DUTF-8"><meta name=3D"viewport" conten=
+t=3D"width=3Ddevice-width,initial-scale=3D1"><style type=3D"text/css">#outl=
+ook a { padding: 0; }  .ReadMsgBody { width: 100%; }  .ExternalClass { widt=
+h: 100%; }  .ExternalClass * { line-height:100%; }  body { margin: 0; paddi=
+ng: 0; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }  table=
+, td { border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; }  img { border: 0; height: auto; line-height: 100%; outline: none; tex=
+t-decoration: none; -ms-interpolation-mode: bicubic; }  p { display: block;=
+ margin: 13px 0; }</style><!--[if !mso]><!--><style type=3D"text/css">@medi=
+a only screen and (max-width:480px) { @-ms-viewport { width:320px; } @viewp=
+ort { width:320px; }  }</style><!--<![endif]--><!--[if mso]><xml><o:OfficeD=
+ocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:Offic=
+eDocumentSettings></xml><![endif]--><!--[if lte mso 11]><style type=3D"text=
+/css">.outlook-group-fix { width:100% !important;  }</style><![endif]--><!-=
+-[if !mso]><!--><link href=3D"https://fonts.googleapis.com/css?family=3DLat=
+o:400,700" rel=3D"stylesheet" type=3D"text/css"><link href=3D"https://fonts=
+.googleapis.com/css?family=3DMerriweather:400,700" rel=3D"stylesheet" type=
+=3D"text/css"><style type=3D"text/css">@import url(https://fonts.googleapis=
+.com/css?family=3DLato:400,700);  @import url(https://fonts.googleapis.com/=
+css?family=3DMerriweather:400,700);</style><!--<![endif]--><style type=3D"t=
+ext/css">@media all and (max-width: 479px) { .bomcl { border-bottom: 1px so=
+lid #D8D8D8; } .tcl { border-bottom: 1px solid #D8D8D8; } .cw { text-align:=
+ center; } .ci { margin-top: 5px; } .gmc123 { width: 33%!important; } .gmc4=
+5 { display: none!important; } .icfw td { width: 480px !important; } .sd { =
+display: none !important; } } @media all and (min-width: 480px) { .bomcl { =
+border-right: 1px solid #D8D8D8; min-height: 435px; } .tcl { border-right: =
+1px solid #D8D8D8; } .gmd { display: none!important; } .uib { display:inlin=
+e-block; } } * { color: #333333; } i { color: inherit; } .lns { color: inhe=
+rit; text-decoration: none; } .l { direction: ltr; } .fl { font-weight: bol=
+d; text-decoration: none; color: #00635D; } .lc a { font-weight: bold; text=
+-decoration: none; color: #04A89E; } .bcl { margin: 7px 0; } .ci { display:=
+ inline-block; text-align: left; } .ct { font-family: Merriweather; font-si=
+ze: 22px; line-height: 25px; margin: 0 0 5px 0; } .cg { text-align: center!=
+important; } a[href^=3D"x-apple-data-detectors:"] { color: inherit; text-de=
+coration: inherit; }</style><style type=3D"text/css">@media only screen and=
+ (min-width:480px) { .mcp100 { width:100%!important; } .mcp100 { width:100%=
+!important; } .mcp33 { width:33.333333333333336%!important; } .mcp49 { widt=
+h:49%!important; } .mcp25 { width:25%!important; } .mcp50 { width:50%!impor=
+tant; } .mcp19 { width:19%!important; } .mcp33 { width:33%!important; } .mc=
+p48 { width:48%!important; } .mcp3 { width:3%!important; } .mcp85 { width:8=
+5%!important; } .mcp175 { width:175px!important; }  }</style></head><body><=
+img width=3D"1" height=3D"1" src=3D"https://rd.goodreads.com/gp/r.html?C=3D=
+1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4=
+d03b09ec3bef100p0na&R=3D1ZP2HS3I2NH6K&T=3DO&U=3Dhttps%3A%2F%2Fimages-na.ssl=
+-images-amazon.com%2Fimages%2FG%2F01%2Fnav%2Ftransp.gif&H=3DYKNLNWVWAUFSSZH=
+JKAW9ZWMAO6UA&ref_=3Dpe_3652430_404120840_opens" /><div style=3D"display:no=
+ne;font-size:1px;color:#ffffff;line-height:1px;max-height:0;max-width:0;opa=
+city:0;overflow:hidden">Join the fun with book picks from the My Favorite M=
+urder podcasters, classic capers, riveting new releases, and more!</div><di=
+v  class=3D"mc"><!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"720" align=3D"center" style=
+=3D"width:720px;"><tr><td style=3D"line-height:0;font-size:0;mso-line-heigh=
+t-rule:exactly;"><![endif]--><table role=3D"presentation" cellpadding=3D"0"=
+ cellspacing=3D"0" style=3D"font-size:0;width:100%" border=3D"0"><tr><td><d=
+iv style=3D"margin:0 auto;max-width:720px"><table role=3D"presentation" cel=
+lpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%" align=3D"=
+center" border=3D"0"><tr><td style=3D"text-align:center;vertical-align:top;=
+font-size:0;padding:0 20px"><!--[if mso | IE]><table role=3D"presentation" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=3D"width:720=
+px;"><![endif]-->                <table role=3D"presentation" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%;"  border=3D"0"><t=
+r><td><div style=3D"margin:0 auto;max-width:720px;"><table role=3D"presenta=
+tion" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%;"=
+ align=3D"center" border=3D"0"><tr><td style=3D"text-align:center;vertical-=
+align:top;font-size:0;padding:35px 0;"><!--[if mso | IE]><table role=3D"pre=
+sentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=
+=3D"vertical-align:middle;width:720px;"><![endif]--><div class=3D"mcp100 og=
+f" style=3D"vertical-align:middle;display:inline-block;font-size:13px;text-=
+align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0" cell=
+spacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=3D"0">=
+<tr><td style=3D"word-wrap:break-word;font-size:0;padding:0;" align=3D"cent=
+er"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border-collapse:collapse;border-spacing:0;" align=3D"center" border=3D"=
+0"><tr><td style=3D"width:720px;"><a=20
+href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WW=
+YPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D1Q0R=
+1RWBB09UV&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%3Frto%3Dx_gr_e_nl_myste=
+ry%26utm_medium%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3D=
+april32019%26utm_content%3Dheader%26ref_%3Dpe_3652430_404120840&H=3DCZQXMD7=
+YBXFFIXYQRW9XJTG8ANWA&ref_=3Dpe_3652430_404120840" ><img alt=3D"Goodreads" =
+ src=3D"https://images.gr-assets.com/misc/1552947846-1552947846_goodreads_m=
+isc.jpg" style=3D"border:none;border-radius:0;display:block;font-size:13px;=
+outline:none;text-decoration:none;width:100%;" width=3D"720"></a></td></tr>=
+</table></td></tr>   </table></div><!--[if mso | IE]></td></tr></table><![e=
+ndif]--></td></tr></table></div></td></tr></table><!--[if mso | IE]></td></=
+tr><tr><td style=3D"width:720px;"><![endif]--> <table role=3D"presentation"=
+ cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%;"  bor=
+der=3D"0"><tr><td><div=20
+style=3D"margin:0 auto;max-width:720px;"><table role=3D"presentation" cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%;" align=3D"c=
+enter" border=3D"0"><tr><td style=3D"text-align:center;vertical-align:top;f=
+ont-size:0;padding:0 0 35px 0;"><!--[if mso | IE]><table role=3D"presentati=
+on" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=3D"verti=
+cal-align:top;width:720px;"><![endif]--><div class=3D"mcp100 ogf" style=3D"=
+vertical-align:top;display:inline-block;font-size:13px;text-align:left;widt=
+h:100%;"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%" border=3D"0"><tr class=3D"lc"><td style=3D"word-wrap:break-wo=
+rd;font-size:0;padding:0;"=20
+align=3D"left"><div style=3D"font-family:Merriweather;font-size:14px;line-h=
+eight:22px;text-align:left;">Hi Bhaskar,<br><br> We've put together the clu=
+es and connected the dots to bring a pulse-pounding special-edition newslet=
+ter to mystery and thriller fans like you.</div></td></tr></table></div><!-=
+-[if mso | IE]></td></tr></table><![endif]--></td></tr></table></div></td><=
+/tr></table><!--[if mso | IE]></td></tr><tr><td style=3D"width:720px;"><![e=
+ndif]-->                 <table role=3D"presentation" cellpadding=3D"0" cel=
+lspacing=3D"0" style=3D"font-size:0;width:100%"  border=3D"0"><tr><td><div =
+style=3D"margin:0 auto;max-width:720px"><table role=3D"presentation" cellpa=
+dding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%" align=3D"cen=
+ter" border=3D"0"><tr><td style=3D"text-align:center;vertical-align:top;fon=
+t-size:0;padding:0 0 35px 0"><!--[if mso | IE]><table role=3D"presentation"=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=3D"vertical=
+-align:top;width:720px;"><![endif]--><div class=3D"mcp100 ogf" style=3D"ver=
+tical-align:top;display:inline-block;font-size:0;line-height:0;text-align:l=
+eft;width:100%"><!--[if mso | IE]><table  role=3D"presentation" border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=3D"vertical-align:middl=
+e;width:240px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertical-alig=
+n:middle;display:inline-block;font-size:13px;text-align:left;width:33%"><ta=
+ble role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"vert=
+ical-align:middle" width=3D"100%" border=3D"0"><tr><td style=3D"word-wrap:b=
+reak-word;font-size:0;padding:10px 25px;padding-right:5px;padding-left:0"><=
+p style=3D"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:1=
+00%"></p><!--[if mso | IE]><table role=3D"presentation" align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:1px;margi=
+n:0 auto;border-top:1px solid #6F6F6F;width:100%;" width=3D"240"><tr><td st=
+yle=3D"height:0;line-height:0;">=C2=A0</td></tr></table><![endif]--></td></=
+tr></table></div><!--[if mso | IE]></td><td style=3D"vertical-align:middle;=
+width:240px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertical-align:=
+middle;display:inline-block;font-size:13px;text-align:left;width:33%"><tabl=
+e role=3D"presentation" cellpadding=3D"0"=20
+cellspacing=3D"0" style=3D"vertical-align:middle" width=3D"100%" border=3D"=
+0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"ce=
+nter"><div style=3D"color:#333333;font-family:Merriweather;font-size:16px;f=
+ont-weight:bold;line-height:22px;text-align:center">The Most Wanted</div></=
+td></tr></table></div><!--[if mso | IE]></td><td style=3D"vertical-align:mi=
+ddle;width:240px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertical-a=
+lign:middle;display:inline-block;font-size:13px;text-align:left;width:33%">=
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"v=
+ertical-align:middle" width=3D"100%" border=3D"0"><tr><td=20
+style=3D"word-wrap:break-word;font-size:0;padding:10px 25px;padding-right:0=
+;padding-left:5px"><p style=3D"font-size:1px;margin:0 auto;border-top:1px s=
+olid #6F6F6F;width:100%"></p><!--[if mso | IE]><table role=3D"presentation"=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%;" widt=
+h=3D"240"><tr><td style=3D"height:0;line-height:0;">=C2=A0</td></tr></table=
+><![endif]--></td></tr></table></div><!--[if mso | IE]></td></tr></table><!=
+[endif]--></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr><=
+/table></div></td></tr></table><!--[if mso | IE]></td></tr><tr><td style=3D=
+"width:720px;"><![endif]-->   <a style=3D"color:inherit;text-decoration:non=
+e;" href=3Dhttps://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK=
+7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D1=
+RAB79HKT4DTP&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fblog%2Fshow%2F1522=
+%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_news=
+letter%26utm_campaign%3Dapril32019%26utm_content%3Dspring-mysteries%26ref_%=
+3Dpe_3652430_404120840&H=3DF6AS9MKSOUAMPDMEXPLVQMOYVXOA&ref_=3Dpe_3652430_4=
+04120840><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" s=
+tyle=3D"font-size:0;width:100%"  border=3D"0"><tr><td><div style=3D"margin:=
+0 auto;max-width:720px"><table role=3D"presentation" cellpadding=3D"0" cell=
+spacing=3D"0" style=3D"font-size:0;width:100%" align=3D"center" border=3D"0=
+"><tr><td=20
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0"><!--[i=
+f mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;"><![endif]-=
+-><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-bloc=
+k;font-size:13px;text-align:left;width:100%"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr><td styl=
+e=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"center"><table ro=
+le=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-col=
+lapse:collapse;border-spacing:0" align=3D"center" border=3D"0"><tr><td styl=
+e=3D"width:720px"><img=20
+alt=3D"25 of Spring&#x27;s Most Anticipated Mysteries &amp; Thrillers"  src=
+=3D"https://images.gr-assets.com/misc/1553539008-1553539008_goodreads_misc.=
+jpg" style=3D"border:none;border-radius:0;display:block;font-size:13px;outl=
+ine:none;text-decoration:none;width:100%;" width=3D"720"></td></tr></table>=
+</td></tr><tr><td style=3D"word-wrap:break-word;font-size:0;padding:16px 0 =
+8px 0" align=3D"left"><div style=3D"font-family:Merriweather;font-size:24px=
+;line-height:32px;text-align:left">25 of Spring's Most Anticipated Mysterie=
+s & Thrillers</div></td></tr></table></div><!--[if mso | IE]></td></tr></ta=
+ble><![endif]--></td></tr></table></div></td></tr></table><!--[if mso | IE]=
+></td></tr><tr><td style=3D"width:720px;"><![endif]--></a><table role=3D"pr=
+esentation"=20
+cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%"  borde=
+r=3D"0"><tr><td><div style=3D"margin:0 auto;max-width:720px"><table role=3D=
+"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;wid=
+th:100%" align=3D"center" border=3D"0"><tr><td style=3D"text-align:center;v=
+ertical-align:top;font-size:0;padding:0 0 35px 0"><!--[if mso | IE]><table =
+role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr>=
+<td style=3D"vertical-align:top;width:720px;"><![endif]--><div class=3D"mcp=
+100 ogf" style=3D"vertical-align:top;display:inline-block;font-size:13px;te=
+xt-align:left;width:100%"><table role=3D"presentation" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%" border=3D"0"><tr class=3D"lc"><td style=3D"w=
+ord-wrap:break-word;font-size:0;padding:0" align=3D"left"><div style=3D"fon=
+t-family:Lato;font-size:14px;line-height:16px;text-align:left"> It's a new =
+season of murder and mayhem. With upcoming books from debut authors and fan=
+ favorites, including <a href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WI=
+NBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03=
+b09ec3bef100p0na&R=3D35QZBLZ2KAQ7B&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.co=
+m%2Fauthor%2Fshow%2F12455%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26=
+utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26utm_content%3=
+Dharris%26ref_%3Dpe_3652430_404120840&H=3DJ1EAHXKWL7LXU0NYLVLGGYXRAXAA&ref_=
+=3Dpe_3652430_404120840">Thomas Harris</a> and <a href=3D"https://rd.goodre=
+ads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20190=
+4032048583953a788553e4d03b09ec3bef100p0na&R=3D2T2W0D24ZSHCA&T=3DC&U=3Dhttps=
+%3A%2F%2Fwww.goodreads.com%2Fauthor%2Fshow%2F15292%3Frto%3Dx_gr_e_nl_myster=
+y%26utm_medium%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Da=
+pril32019%26utm_content%3Dcaine%26ref_%3Dpe_3652430_404120840&H=3DW4QS6KI7R=
+MBAPMALNPGNLGUKAGIA&ref_=3Dpe_3652430_404120840">Rachel Caine</a>,  make su=
+re to add what catches your eye to your <a href=3D"https://rd.goodreads.com=
+/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201904032048=
+583953a788553e4d03b09ec3bef100p0na&R=3DAU9S61S0DGIC&T=3DC&U=3Dhttps%3A%2F%2=
+Fwww.goodreads.com%2Freview%2Flist%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3=
+Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26utm_=
+content%3DWTR%26ref_%3Dpe_3652430_404120840&H=3DACWCRVUYCAAP24NOWKAYPTTDKJW=
+A&ref_=3Dpe_3652430_404120840">Want to Read shelf</a>.</div></td></tr><tr><=
+td style=3D"word-wrap:break-word;font-size:0;padding:16px 0 0 0" align=3D"c=
+enter"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" sty=
+le=3D"border-collapse:separate;width:140px" align=3D"center" border=3D"0"><=
+tr><td style=3D"border:1px solid #D8302E;border-radius:4px;color:#ffffff;he=
+ight:18px;padding:8px 0" align=3D"center"=20
+valign=3D"middle" bgcolor=3D"#D8302E"><a href=3D"https://rd.goodreads.com/g=
+p/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20190403204858=
+3953a788553e4d03b09ec3bef100p0na&R=3D2DPHYUH0QI9MI&T=3DC&U=3Dhttps%3A%2F%2F=
+www.goodreads.com%2Fblog%2Fshow%2F1522%3Frto%3Dx_gr_e_nl_mystery%26utm_medi=
+um%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26=
+utm_content%3Dspring-mysteries%26ref_%3Dpe_3652430_404120840&H=3DFBA43YYYGR=
+XJYXOLXTAXLDWTS34A&ref_=3Dpe_3652430_404120840" style=3D"text-decoration:no=
+ne;background:#D8302E;color:#ffffff;font-family:Lato;font-size:14px;font-we=
+ight:normal;line-height:120%;text-transform:none;margin:0" >Read More</a></=
+td></tr></table></td></tr></table></div><!--[if mso | IE]></td></tr></table=
+><![endif]--></td></tr></table></div></td></tr></table><!--[if mso | IE]></=
+td></tr><tr><td style=3D"width:720px;"><![endif]-->                  <table=
+ role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-si=
+ze:0;width:100%"  border=3D"0"><tr><td><div style=3D"margin:0 auto;max-widt=
+h:720px"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" s=
+tyle=3D"font-size:0;width:100%" align=3D"center" border=3D"0"><tr><td style=
+=3D"text-align:center;vertical-align:top;font-size:0;padding:0 0 35px 0"><!=
+--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;"><![end=
+if]--><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-=
+block;font-size:0;line-height:0;text-align:left;width:100%"><!--[if mso | I=
+E]><table  role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0"><tr><td style=3D"vertical-align:middle;width:240px;"><![endif]--><di=
+v class=3D"mcp33 ogf" style=3D"vertical-align:middle;display:inline-block;f=
+ont-size:13px;text-align:left;width:33%"><table role=3D"presentation" cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"vertical-align:middle" width=3D"100=
+%" border=3D"0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:1=
+0px 25px;padding-right:5px;padding-left:0"><p style=3D"font-size:1px;margin=
+:0 auto;border-top:1px solid #6F6F6F;width:100%"></p><!--[if mso | IE]><tab=
+le role=3D"presentation" align=3D"center" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" style=3D"font-size:1px;margin:0 auto;border-top:1px solid #=
+6F6F6F;width:100%;" width=3D"240"><tr><td style=3D"height:0;line-height:0;"=
+>=C2=A0</td></tr></table><![endif]--></td></tr></table></div><!--[if mso | =
+IE]></td><td style=3D"vertical-align:middle;width:240px;"><![endif]--><div =
+class=3D"mcp33 ogf" style=3D"vertical-align:middle;display:inline-block;fon=
+t-size:13px;text-align:left;width:33%"><table role=3D"presentation" cellpad=
+ding=3D"0"=20
+cellspacing=3D"0" style=3D"vertical-align:middle" width=3D"100%" border=3D"=
+0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"ce=
+nter"><div style=3D"color:#333333;font-family:Merriweather;font-size:16px;f=
+ont-weight:bold;line-height:22px;text-align:center">The Who&#x27;s Who(duni=
+ts)</div></td></tr></table></div><!--[if mso | IE]></td><td style=3D"vertic=
+al-align:middle;width:240px;"><![endif]--><div class=3D"mcp33 ogf" style=3D=
+"vertical-align:middle;display:inline-block;font-size:13px;text-align:left;=
+width:33%"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0"=
+ style=3D"vertical-align:middle" width=3D"100%" border=3D"0"><tr><td=20
+style=3D"word-wrap:break-word;font-size:0;padding:10px 25px;padding-right:0=
+;padding-left:5px"><p style=3D"font-size:1px;margin:0 auto;border-top:1px s=
+olid #6F6F6F;width:100%"></p><!--[if mso | IE]><table role=3D"presentation"=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%;" widt=
+h=3D"240"><tr><td style=3D"height:0;line-height:0;">=C2=A0</td></tr></table=
+><![endif]--></td></tr></table></div><!--[if mso | IE]></td></tr></table><!=
+[endif]--></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr><=
+/table></div></td></tr></table><!--[if mso | IE]></td></tr><tr><td style=3D=
+"width:720px;"><![endif]-->   <a style=3D"color:inherit;text-decoration:non=
+e;" href=3Dhttps://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK=
+7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D3=
+MG49RXJXE9IX&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fblog%2Fshow%2F1525=
+-the-top-12%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dm=
+ystery_newsletter%26utm_campaign%3Dapril32019%26utm_content%3Dtop-mysteries=
+%26ref_%3Dpe_3652430_404120840&H=3DMXO24KBJAHA9AOFR0TJ8BQLOLVYA&ref_=3Dpe_3=
+652430_404120840><table role=3D"presentation" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-size:0;width:100%"  border=3D"0"><tr><td><div style=3D=
+"margin:0 auto;max-width:720px"><table role=3D"presentation" cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"font-size:0;width:100%" align=3D"center" bor=
+der=3D"0"><tr><td=20
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0"><!--[i=
+f mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;"><![endif]-=
+-><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-bloc=
+k;font-size:13px;text-align:left;width:100%"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr><td styl=
+e=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"center"><table ro=
+le=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-col=
+lapse:collapse;border-spacing:0" align=3D"center" border=3D"0"><tr><td styl=
+e=3D"width:720px"><img=20
+alt=3D"The Top Mysteries &amp; Thrillers of 2019 (So Far)"  src=3D"https://=
+images.gr-assets.com/misc/1553896301-1553896301_goodreads_misc.jpg" style=
+=3D"border:none;border-radius:0;display:block;font-size:13px;outline:none;t=
+ext-decoration:none;width:100%;" width=3D"720"></td></tr></table></td></tr>=
+<tr><td style=3D"word-wrap:break-word;font-size:0;padding:16px 0 8px 0" ali=
+gn=3D"left"><div style=3D"font-family:Merriweather;font-size:24px;line-heig=
+ht:32px;text-align:left">The Best Mysteries & Thrillers of 2019 (So Far)</d=
+iv></td></tr></table></div><!--[if mso | IE]></td></tr></table><![endif]-->=
+</td></tr></table></div></td></tr></table><!--[if mso | IE]></td></tr><tr><=
+td style=3D"width:720px;"><![endif]--></a><table role=3D"presentation"=20
+cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%"  borde=
+r=3D"0"><tr><td><div style=3D"margin:0 auto;max-width:720px"><table role=3D=
+"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;wid=
+th:100%" align=3D"center" border=3D"0"><tr><td style=3D"text-align:center;v=
+ertical-align:top;font-size:0;padding:0 0 35px 0"><!--[if mso | IE]><table =
+role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr>=
+<td style=3D"vertical-align:top;width:720px;"><![endif]--><div class=3D"mcp=
+100 ogf" style=3D"vertical-align:top;display:inline-block;font-size:13px;te=
+xt-align:left;width:100%"><table role=3D"presentation" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%" border=3D"0"><tr class=3D"lc"><td style=3D"w=
+ord-wrap:break-word;font-size:0;padding:0" align=3D"left"><div style=3D"fon=
+t-family:Lato;font-size:14px;line-height:16px;text-align:left"> We dug into=
+ the data to uncover the buzziest titles beyond a reasonable doubt. From <a=
+ href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7W=
+WYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D3M2=
+OZLCI27VIP&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fbook%2Fshow%2F399381=
+77%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_ne=
+wsletter%26utm_campaign%3Dapril32019%26utm_content%3Dnoexit%26ref_%3Dpe_365=
+2430_404120840&H=3DH5AKCDUYYBJCKQST76HO7AYAKFGA&ref_=3Dpe_3652430_404120840=
+">locked-room mysteries</a> to <a href=3D"https://rd.goodreads.com/gp/r.htm=
+l?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a78=
+8553e4d03b09ec3bef100p0na&R=3D2DT1Z7N7Z4SWA&T=3DC&U=3Dhttps%3A%2F%2Fwww.goo=
+dreads.com%2Fbook%2Fshow%2F40097951%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%=
+3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26utm=
+_content%3Dsilent%26ref_%3Dpe_3652430_404120840&H=3DRQU85R8AKXEY6ZYBA14XPW3=
+ZRUAA&ref_=3Dpe_3652430_404120840">psychological thrillers featuring psycho=
+logists</a>, these are the books that are keeping readers up at night.</div=
+></td></tr><tr><td style=3D"word-wrap:break-word;font-size:0;padding:16px 0=
+ 0 0" align=3D"center"><table role=3D"presentation" cellpadding=3D"0" cells=
+pacing=3D"0" style=3D"border-collapse:separate;width:140px" align=3D"center=
+" border=3D"0"><tr><td style=3D"border:1px solid #D8302E;border-radius:4px;=
+color:#ffffff;height:18px;padding:8px 0" align=3D"center"=20
+valign=3D"middle" bgcolor=3D"#D8302E"><a href=3D"https://rd.goodreads.com/g=
+p/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20190403204858=
+3953a788553e4d03b09ec3bef100p0na&R=3D2VI8F6PSTEBGC&T=3DC&U=3Dhttps%3A%2F%2F=
+www.goodreads.com%2Fblog%2Fshow%2F1525-the-top-12%3Frto%3Dx_gr_e_nl_mystery=
+%26utm_medium%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dap=
+ril32019%26utm_content%3Dtop-mysteries%26ref_%3Dpe_3652430_404120840&H=3DO6=
+A8DUHOUKHO5Y3MQ973RX7BXEMA&ref_=3Dpe_3652430_404120840" style=3D"text-decor=
+ation:none;background:#D8302E;color:#ffffff;font-family:Lato;font-size:14px=
+;font-weight:normal;line-height:120%;text-transform:none;margin:0" >Read Mo=
+re</a></td></tr></table></td></tr></table></div><!--[if mso | IE]></td></tr=
+></table><![endif]--></td></tr></table></div></td></tr></table><!--[if mso =
+| IE]></td></tr><tr><td style=3D"width:720px;"><![endif]-->                =
+                <table role=3D"presentation" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-size:0;width:100%"  border=3D"0"><tr><td><div style=3D=
+"margin:0 auto;max-width:720px"><table role=3D"presentation" cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"font-size:0;width:100%" align=3D"center" bor=
+der=3D"0"><tr><td style=3D"text-align:center;vertical-align:top;font-size:0=
+;padding:0 0 35px 0"><!--[if mso | IE]><table role=3D"presentation" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=3D"vertical-align:=
+top;width:720px;"><![endif]--><div class=3D"mcp100 ogf" style=3D"vertical-a=
+lign:top;display:inline-block;font-size:0;line-height:0;text-align:left;wid=
+th:100%"><!--[if mso | IE]><table  role=3D"presentation" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0"><tr><td style=3D"vertical-align:middle;width=
+:240px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertical-align:middl=
+e;display:inline-block;font-size:13px;text-align:left;width:33%"><table rol=
+e=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"vertical-al=
+ign:middle" width=3D"100%" border=3D"0"><tr><td style=3D"word-wrap:break-wo=
+rd;font-size:0;padding:10px 25px;padding-right:5px;padding-left:0"><p style=
+=3D"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%"></=
+p><!--[if mso | IE]><table role=3D"presentation" align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:1px;margin:0 aut=
+o;border-top:1px solid #6F6F6F;width:100%;" width=3D"240"><tr><td style=3D"=
+height:0;line-height:0;">=C2=A0</td></tr></table><![endif]--></td></tr></ta=
+ble></div><!--[if mso | IE]></td><td style=3D"vertical-align:middle;width:2=
+40px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertical-align:middle;=
+display:inline-block;font-size:13px;text-align:left;width:33%"><table role=
+=3D"presentation" cellpadding=3D"0"=20
+cellspacing=3D"0" style=3D"vertical-align:middle" width=3D"100%" border=3D"=
+0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"ce=
+nter"><div style=3D"color:#333333;font-family:Merriweather;font-size:16px;f=
+ont-weight:bold;line-height:22px;text-align:center">Calling All Murderinos!=
+</div></td></tr></table></div><!--[if mso | IE]></td><td style=3D"vertical-=
+align:middle;width:240px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"ve=
+rtical-align:middle;display:inline-block;font-size:13px;text-align:left;wid=
+th:33%"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"vertical-align:middle" width=3D"100%" border=3D"0"><tr><td=20
+style=3D"word-wrap:break-word;font-size:0;padding:10px 25px;padding-right:0=
+;padding-left:5px"><p style=3D"font-size:1px;margin:0 auto;border-top:1px s=
+olid #6F6F6F;width:100%"></p><!--[if mso | IE]><table role=3D"presentation"=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%;" widt=
+h=3D"240"><tr><td style=3D"height:0;line-height:0;">=C2=A0</td></tr></table=
+><![endif]--></td></tr></table></div><!--[if mso | IE]></td></tr></table><!=
+[endif]--></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr><=
+/table></div></td></tr></table><!--[if mso | IE]></td></tr><tr><td style=3D=
+"width:720px;"><![endif]-->   <a style=3D"color:inherit;text-decoration:non=
+e;" href=3Dhttps://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK=
+7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D1=
+KW49SFF39UKP&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fblog%2Fshow%2F1544=
+%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_news=
+letter%26utm_campaign%3Dapril32019%26utm_content%3Dmurderinos%26ref_%3Dpe_3=
+652430_404120840&H=3DVYIYU5DYSOGFWTM1LVYOC3T1JLWA&ref_=3Dpe_3652430_4041208=
+40><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"font-size:0;width:100%"  border=3D"0"><tr><td><div style=3D"margin:0 au=
+to;max-width:720px"><table role=3D"presentation" cellpadding=3D"0" cellspac=
+ing=3D"0" style=3D"font-size:0;width:100%" align=3D"center" border=3D"0"><t=
+r><td=20
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0"><!--[i=
+f mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;"><![endif]-=
+-><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-bloc=
+k;font-size:13px;text-align:left;width:100%"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr><td styl=
+e=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"center"><table ro=
+le=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-col=
+lapse:collapse;border-spacing:0" align=3D"center" border=3D"0"><tr><td styl=
+e=3D"width:720px"><img=20
+alt=3D"My Favorite Murder Hosts Share True-Crime Reads"  src=3D"https://ima=
+ges.gr-assets.com/misc/1553540261-1553540261_goodreads_misc.jpg" style=3D"b=
+order:none;border-radius:0;display:block;font-size:13px;outline:none;text-d=
+ecoration:none;width:100%;" width=3D"720"></td></tr></table></td></tr><tr><=
+td style=3D"word-wrap:break-word;font-size:0;padding:16px 0 8px 0" align=3D=
+"left"><div style=3D"font-family:Merriweather;font-size:24px;line-height:32=
+px;text-align:left"><i>My Favorite Murder</i> Hosts Share True-Crime Reads<=
+/div></td></tr></table></div><!--[if mso | IE]></td></tr></table><![endif]-=
+-></td></tr></table></div></td></tr></table><!--[if mso | IE]></td></tr><tr=
+><td style=3D"width:720px;"><![endif]--></a><table role=3D"presentation"=20
+cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%"  borde=
+r=3D"0"><tr><td><div style=3D"margin:0 auto;max-width:720px"><table role=3D=
+"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;wid=
+th:100%" align=3D"center" border=3D"0"><tr><td style=3D"text-align:center;v=
+ertical-align:top;font-size:0;padding:0 0 35px 0"><!--[if mso | IE]><table =
+role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr>=
+<td style=3D"vertical-align:top;width:720px;"><![endif]--><div class=3D"mcp=
+100 ogf" style=3D"vertical-align:top;display:inline-block;font-size:13px;te=
+xt-align:left;width:100%"><table role=3D"presentation" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%" border=3D"0"><tr class=3D"lc"><td style=3D"w=
+ord-wrap:break-word;font-size:0;padding:0" align=3D"left"><div style=3D"fon=
+t-family:Lato;font-size:14px;line-height:16px;text-align:left"> To celebrat=
+e <a href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78D=
+TK7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=
+=3DR5HA8OQZQLSI&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fbook%2Fshow%2F4=
+1066983%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmyste=
+ry_newsletter%26utm_campaign%3Dapril42018%26utm_content%3Dstaysexy%26ref_%3=
+Dpe_3652430_404120840&H=3DCIYAUKI2ANKCSTGX4JQ2EWZWJS0A&ref_=3Dpe_3652430_40=
+4120840">their first book</a>, the masterminds behind the <i>My Favorite Mu=
+rder</i> podcast, <a href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS=
+2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09e=
+c3bef100p0na&R=3D1UI6ATXISEGZK&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2F=
+author%2Fshow%2F13438660%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26u=
+tm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26utm_content%3D=
+karen%26ref_%3Dpe_3652430_404120840&H=3D6EVA0HDMAEVP0JJBEJCBVHF9SXQA&ref_=
+=3Dpe_3652430_404120840">Karen Kilgariff</a> and <a href=3D"https://rd.good=
+reads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201=
+904032048583953a788553e4d03b09ec3bef100p0na&R=3DKCA0KEZGJUHT&T=3DC&U=3Dhttp=
+s%3A%2F%2Fwww.goodreads.com%2Fauthor%2Fshow%2F10804019%3Frto%3Dx_gr_e_nl_my=
+stery%26utm_medium%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign=
+%3Dapril42018%26utm_content%3Dgeorgia%26ref_%3Dpe_3652430_404120840&H=3D65M=
+41CILOVAER1VWH8L2XLNOYZAA&ref_=3Dpe_3652430_404120840">Georgia Hardstark</a=
+>, share their must-read recommendations for true-crime-solving aficionados=
+.</div></td></tr><tr><td style=3D"word-wrap:break-word;font-size:0;padding:=
+16px 0 0 0" align=3D"center"><table role=3D"presentation" cellpadding=3D"0"=
+ cellspacing=3D"0" style=3D"border-collapse:separate;width:140px" align=3D"=
+center" border=3D"0"><tr><td style=3D"border:1px solid #D8302E;border-radiu=
+s:4px;color:#ffffff;height:18px;padding:8px 0" align=3D"center"=20
+valign=3D"middle" bgcolor=3D"#D8302E"><a href=3D"https://rd.goodreads.com/g=
+p/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20190403204858=
+3953a788553e4d03b09ec3bef100p0na&R=3D3J5TA0ND8V0CY&T=3DC&U=3Dhttps%3A%2F%2F=
+www.goodreads.com%2Fblog%2Fshow%2F1544%3Frto%3Dx_gr_e_nl_mystery%26utm_medi=
+um%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26=
+utm_content%3Dmurderinos%26ref_%3Dpe_3652430_404120840&H=3D3VLCOA6BEORA98PC=
+Y74JX8O87RYA&ref_=3Dpe_3652430_404120840" style=3D"text-decoration:none;bac=
+kground:#D8302E;color:#ffffff;font-family:Lato;font-size:14px;font-weight:n=
+ormal;line-height:120%;text-transform:none;margin:0" >Read More</a></td></t=
+r></table></td></tr></table></div><!--[if mso | IE]></td></tr></table><![en=
+dif]--></td></tr></table></div></td></tr></table><!--[if mso | IE]></td></t=
+r><tr><td style=3D"width:720px;"><![endif]-->                  <table role=
+=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;=
+width:100%"  border=3D"0"><tr><td><div style=3D"margin:0 auto;max-width:720=
+px"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"font-size:0;width:100%" align=3D"center" border=3D"0"><tr><td style=3D"=
+text-align:center;vertical-align:top;font-size:0;padding:0 0 35px 0"><!--[i=
+f mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;"><![endif]-=
+-><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-bloc=
+k;font-size:0;line-height:0;text-align:left;width:100%"><!--[if mso | IE]><=
+table  role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0"><tr><td style=3D"vertical-align:middle;width:240px;"><![endif]--><div cl=
+ass=3D"mcp33 ogf" style=3D"vertical-align:middle;display:inline-block;font-=
+size:13px;text-align:left;width:33%"><table role=3D"presentation" cellpaddi=
+ng=3D"0" cellspacing=3D"0" style=3D"vertical-align:middle" width=3D"100%" b=
+order=3D"0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:10px =
+25px;padding-right:5px;padding-left:0"><p style=3D"font-size:1px;margin:0 a=
+uto;border-top:1px solid #6F6F6F;width:100%"></p><!--[if mso | IE]><table r=
+ole=3D"presentation" align=3D"center" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" style=3D"font-size:1px;margin:0 auto;border-top:1px solid #6F6F=
+6F;width:100%;" width=3D"240"><tr><td style=3D"height:0;line-height:0;">=C2=
+=A0</td></tr></table><![endif]--></td></tr></table></div><!--[if mso | IE]>=
+</td><td style=3D"vertical-align:middle;width:240px;"><![endif]--><div clas=
+s=3D"mcp33 ogf" style=3D"vertical-align:middle;display:inline-block;font-si=
+ze:13px;text-align:left;width:33%"><table role=3D"presentation" cellpadding=
+=3D"0"=20
+cellspacing=3D"0" style=3D"vertical-align:middle" width=3D"100%" border=3D"=
+0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"ce=
+nter"><div style=3D"color:#333333;font-family:Merriweather;font-size:16px;f=
+ont-weight:bold;line-height:22px;text-align:center">Sleuths on Screen</div>=
+</td></tr></table></div><!--[if mso | IE]></td><td style=3D"vertical-align:=
+middle;width:240px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertical=
+-align:middle;display:inline-block;font-size:13px;text-align:left;width:33%=
+"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"vertical-align:middle" width=3D"100%" border=3D"0"><tr><td=20
+style=3D"word-wrap:break-word;font-size:0;padding:10px 25px;padding-right:0=
+;padding-left:5px"><p style=3D"font-size:1px;margin:0 auto;border-top:1px s=
+olid #6F6F6F;width:100%"></p><!--[if mso | IE]><table role=3D"presentation"=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%;" widt=
+h=3D"240"><tr><td style=3D"height:0;line-height:0;">=C2=A0</td></tr></table=
+><![endif]--></td></tr></table></div><!--[if mso | IE]></td></tr></table><!=
+[endif]--></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr><=
+/table></div></td></tr></table><!--[if mso | IE]></td></tr><tr><td style=3D=
+"width:720px;"><![endif]-->   <a style=3D"color:inherit;text-decoration:non=
+e;" href=3Dhttps://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK=
+7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D1=
+MXA9VQ85BSAZ&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fblog%2Fshow%2F1532=
+%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_news=
+letter%26utm_campaign%3Dapril32019%26utm_content%3Dadaptations-mysteries%26=
+ref_%3Dpe_3652430_404120840&H=3DDEJ2J3PORNP1WQGKE83BQNKNNU4A&ref_=3Dpe_3652=
+430_404120840><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D=
+"0" style=3D"font-size:0;width:100%"  border=3D"0"><tr><td><div style=3D"ma=
+rgin:0 auto;max-width:720px"><table role=3D"presentation" cellpadding=3D"0"=
+ cellspacing=3D"0" style=3D"font-size:0;width:100%" align=3D"center" border=
+=3D"0"><tr><td=20
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0"><!--[i=
+f mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;"><![endif]-=
+-><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-bloc=
+k;font-size:13px;text-align:left;width:100%"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr><td styl=
+e=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"center"><table ro=
+le=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-col=
+lapse:collapse;border-spacing:0" align=3D"center" border=3D"0"><tr><td styl=
+e=3D"width:720px"><img=20
+alt=3D"The Top Mystery &amp; Thriller Adaptations Since &#x27;Gone Girl&#x2=
+7;"  src=3D"https://images.gr-assets.com/misc/1553540527-1553540527_goodrea=
+ds_misc.jpg" style=3D"border:none;border-radius:0;display:block;font-size:1=
+3px;outline:none;text-decoration:none;width:100%;" width=3D"720"></td></tr>=
+</table></td></tr><tr><td style=3D"word-wrap:break-word;font-size:0;padding=
+:16px 0 8px 0" align=3D"left"><div style=3D"font-family:Merriweather;font-s=
+ize:24px;line-height:32px;text-align:left">The Most Chilling Adaptations Si=
+nce <i>Gone Girl</i></div></td></tr></table></div><!--[if mso | IE]></td></=
+tr></table><![endif]--></td></tr></table></div></td></tr></table><!--[if ms=
+o | IE]></td></tr><tr><td style=3D"width:720px;"><![endif]--></a><table rol=
+e=3D"presentation"=20
+cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%"  borde=
+r=3D"0"><tr><td><div style=3D"margin:0 auto;max-width:720px"><table role=3D=
+"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;wid=
+th:100%" align=3D"center" border=3D"0"><tr><td style=3D"text-align:center;v=
+ertical-align:top;font-size:0;padding:0 0 35px 0"><!--[if mso | IE]><table =
+role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr>=
+<td style=3D"vertical-align:top;width:720px;"><![endif]--><div class=3D"mcp=
+100 ogf" style=3D"vertical-align:top;display:inline-block;font-size:13px;te=
+xt-align:left;width:100%"><table role=3D"presentation" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%" border=3D"0"><tr class=3D"lc"><td style=3D"w=
+ord-wrap:break-word;font-size:0;padding:0" align=3D"left"><div style=3D"fon=
+t-family:Lato;font-size:14px;line-height:16px;text-align:left"> Grab the po=
+pcorn, readers. We've rounded up the top mystery and thriller adaptations s=
+ince <a href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q=
+78DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&=
+R=3D61ZZ293WDJ8K&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fbook%2Fshow%2F=
+19288043%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmyst=
+ery_newsletter%26utm_campaign%3Dapril32019%26utm_content%3Dgonegirl%26ref_%=
+3Dpe_3652430_404120840&H=3DQTUFJMEFY8KFPO957RQCRVIVYKUA&ref_=3Dpe_3652430_4=
+04120840">"Amazing Amy"</a> took Hollywood by storm.</div></td></tr><tr><td=
+ style=3D"word-wrap:break-word;font-size:0;padding:16px 0 0 0" align=3D"cen=
+ter"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border-collapse:separate;width:140px" align=3D"center" border=3D"0"><tr=
+><td style=3D"border:1px solid #D8302E;border-radius:4px;color:#ffffff;heig=
+ht:18px;padding:8px 0" align=3D"center"=20
+valign=3D"middle" bgcolor=3D"#D8302E"><a href=3D"https://rd.goodreads.com/g=
+p/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20190403204858=
+3953a788553e4d03b09ec3bef100p0na&R=3D2LW2G9AJ8J7DV&T=3DC&U=3Dhttps%3A%2F%2F=
+www.goodreads.com%2Fblog%2Fshow%2F1532%3Frto%3Dx_gr_e_nl_mystery%26utm_medi=
+um%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26=
+utm_content%3Dadaptations-mysteries%26ref_%3Dpe_3652430_404120840&H=3D40QIZ=
+CFONTFTL6YNS5ME0MWQ274A&ref_=3Dpe_3652430_404120840" style=3D"text-decorati=
+on:none;background:#D8302E;color:#ffffff;font-family:Lato;font-size:14px;fo=
+nt-weight:normal;line-height:120%;text-transform:none;margin:0" >Read More<=
+/a></td></tr></table></td></tr></table></div><!--[if mso | IE]></td></tr></=
+table><![endif]--></td></tr></table></div></td></tr></table><!--[if mso | I=
+E]></td></tr><tr><td style=3D"width:720px;"><![endif]-->                  <=
+table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"fo=
+nt-size:0;width:100%"  border=3D"0"><tr><td><div style=3D"margin:0 auto;max=
+-width:720px"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D=
+"0" style=3D"font-size:0;width:100%" align=3D"center" border=3D"0"><tr><td =
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0 0 35px =
+0"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;">=
+<![endif]--><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:i=
+nline-block;font-size:0;line-height:0;text-align:left;width:100%"><!--[if m=
+so | IE]><table  role=3D"presentation" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0"><tr><td style=3D"vertical-align:middle;width:240px;"><![endif]=
+--><div class=3D"mcp33 ogf" style=3D"vertical-align:middle;display:inline-b=
+lock;font-size:13px;text-align:left;width:33%"><table role=3D"presentation"=
+ cellpadding=3D"0" cellspacing=3D"0" style=3D"vertical-align:middle" width=
+=3D"100%" border=3D"0"><tr><td style=3D"word-wrap:break-word;font-size:0;pa=
+dding:10px 25px;padding-right:5px;padding-left:0"><p style=3D"font-size:1px=
+;margin:0 auto;border-top:1px solid #6F6F6F;width:100%"></p><!--[if mso | I=
+E]><table role=3D"presentation" align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"font-size:1px;margin:0 auto;border-top:1p=
+x solid #6F6F6F;width:100%;" width=3D"240"><tr><td style=3D"height:0;line-h=
+eight:0;">=C2=A0</td></tr></table><![endif]--></td></tr></table></div><!--[=
+if mso | IE]></td><td style=3D"vertical-align:middle;width:240px;"><![endif=
+]--><div class=3D"mcp33 ogf" style=3D"vertical-align:middle;display:inline-=
+block;font-size:13px;text-align:left;width:33%"><table role=3D"presentation=
+" cellpadding=3D"0"=20
+cellspacing=3D"0" style=3D"vertical-align:middle" width=3D"100%" border=3D"=
+0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"ce=
+nter"><div style=3D"color:#333333;font-family:Merriweather;font-size:16px;f=
+ont-weight:bold;line-height:22px;text-align:center">Nefarious Newcomers</di=
+v></td></tr></table></div><!--[if mso | IE]></td><td style=3D"vertical-alig=
+n:middle;width:240px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertic=
+al-align:middle;display:inline-block;font-size:13px;text-align:left;width:3=
+3%"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"vertical-align:middle" width=3D"100%" border=3D"0"><tr><td=20
+style=3D"word-wrap:break-word;font-size:0;padding:10px 25px;padding-right:0=
+;padding-left:5px"><p style=3D"font-size:1px;margin:0 auto;border-top:1px s=
+olid #6F6F6F;width:100%"></p><!--[if mso | IE]><table role=3D"presentation"=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%;" widt=
+h=3D"240"><tr><td style=3D"height:0;line-height:0;">=C2=A0</td></tr></table=
+><![endif]--></td></tr></table></div><!--[if mso | IE]></td></tr></table><!=
+[endif]--></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr><=
+/table></div></td></tr></table><!--[if mso | IE]></td></tr><tr><td style=3D=
+"width:720px;"><![endif]-->   <a style=3D"color:inherit;text-decoration:non=
+e;" href=3Dhttps://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK=
+7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D3=
+GFJ8GQFIGWL7&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fblog%2Fshow%2F1535=
+%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_news=
+letter%26utm_campaign%3Dapril32019%26utm_content%3Dvoices-mystery%26ref_%3D=
+pe_3652430_404120840&H=3D8GIOFX6UG6KIATA6LSLYJ2MENFGA&ref_=3Dpe_3652430_404=
+120840><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" sty=
+le=3D"font-size:0;width:100%"  border=3D"0"><tr><td><div style=3D"margin:0 =
+auto;max-width:720px"><table role=3D"presentation" cellpadding=3D"0" cellsp=
+acing=3D"0" style=3D"font-size:0;width:100%" align=3D"center" border=3D"0">=
+<tr><td=20
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0"><!--[i=
+f mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;"><![endif]-=
+-><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-bloc=
+k;font-size:13px;text-align:left;width:100%"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr><td styl=
+e=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"center"><table ro=
+le=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-col=
+lapse:collapse;border-spacing:0" align=3D"center" border=3D"0"><tr><td styl=
+e=3D"width:720px"><img=20
+alt=3D"Meet the Newest Voices in Mystery &amp; Thriller"  src=3D"https://im=
+ages.gr-assets.com/misc/1553540569-1553540569_goodreads_misc.jpg" style=3D"=
+border:none;border-radius:0;display:block;font-size:13px;outline:none;text-=
+decoration:none;width:100%;" width=3D"720"></td></tr></table></td></tr><tr>=
+<td style=3D"word-wrap:break-word;font-size:0;padding:16px 0 8px 0" align=
+=3D"left"><div style=3D"font-family:Merriweather;font-size:24px;line-height=
+:32px;text-align:left">Meet the Newest Voices of the Genre</div></td></tr><=
+/table></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></ta=
+ble></div></td></tr></table><!--[if mso | IE]></td></tr><tr><td style=3D"wi=
+dth:720px;"><![endif]--></a><table role=3D"presentation"=20
+cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%"  borde=
+r=3D"0"><tr><td><div style=3D"margin:0 auto;max-width:720px"><table role=3D=
+"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;wid=
+th:100%" align=3D"center" border=3D"0"><tr><td style=3D"text-align:center;v=
+ertical-align:top;font-size:0;padding:0 0 35px 0"><!--[if mso | IE]><table =
+role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr>=
+<td style=3D"vertical-align:top;width:720px;"><![endif]--><div class=3D"mcp=
+100 ogf" style=3D"vertical-align:top;display:inline-block;font-size:13px;te=
+xt-align:left;width:100%"><table role=3D"presentation" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%" border=3D"0"><tr class=3D"lc"><td style=3D"w=
+ord-wrap:break-word;font-size:0;padding:0" align=3D"left"><div style=3D"fon=
+t-family:Lato;font-size:14px;line-height:16px;text-align:left"> For the exp=
+erts already familiar with <a href=3D"https://rd.goodreads.com/gp/r.html?C=
+=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a78855=
+3e4d03b09ec3bef100p0na&R=3D1GQGOV3V3SA3S&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodre=
+ads.com%2Fauthor%2Fshow%2F123715%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3De=
+mail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26utm_co=
+ntent%3Dagatha%26ref_%3Dpe_3652430_404120840&H=3DT1PNNQISNKC9S1JOTFEQLAKC7X=
+CA&ref_=3Dpe_3652430_404120840">Dame Agatha Christie</a> and <a href=3D"htt=
+ps://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn=
+:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D37EWXWCPUN5VF&T=
+=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fauthor%2Fshow%2F9355%3Frto%3Dx_g=
+r_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_newsletter%26utm=
+_campaign%3Dapril32019%26utm_content%3Ddean%26ref_%3Dpe_3652430_404120840&H=
+=3DI6CRKQJGKPL2GN0EXREBKVNAT24A&ref_=3Dpe_3652430_404120840">Dean Koontz</a=
+>, here are the most recent rising stars of the mystery and thriller genre.=
+</div></td></tr><tr><td style=3D"word-wrap:break-word;font-size:0;padding:1=
+6px 0 0 0" align=3D"center"><table role=3D"presentation" cellpadding=3D"0" =
+cellspacing=3D"0" style=3D"border-collapse:separate;width:140px" align=3D"c=
+enter" border=3D"0"><tr><td style=3D"border:1px solid #D8302E;border-radius=
+:4px;color:#ffffff;height:18px;padding:8px 0" align=3D"center"=20
+valign=3D"middle" bgcolor=3D"#D8302E"><a href=3D"https://rd.goodreads.com/g=
+p/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20190403204858=
+3953a788553e4d03b09ec3bef100p0na&R=3D1DEBZYLPSS78B&T=3DC&U=3Dhttps%3A%2F%2F=
+www.goodreads.com%2Fblog%2Fshow%2F1535%3Frto%3Dx_gr_e_nl_mystery%26utm_medi=
+um%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26=
+utm_content%3Dvoices-mystery%26ref_%3Dpe_3652430_404120840&H=3DRM3XV7RI229D=
+AENOVGF0NALVGJAA&ref_=3Dpe_3652430_404120840" style=3D"text-decoration:none=
+;background:#D8302E;color:#ffffff;font-family:Lato;font-size:14px;font-weig=
+ht:normal;line-height:120%;text-transform:none;margin:0" >Read More</a></td=
+></tr></table></td></tr></table></div><!--[if mso | IE]></td></tr></table><=
+![endif]--></td></tr></table></div></td></tr></table><!--[if mso | IE]></td=
+></tr><tr><td style=3D"width:720px;"><![endif]-->                          =
+      <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"font-size:0;width:100%"  border=3D"0"><tr><td><div style=3D"margin:0 a=
+uto;max-width:720px"><table role=3D"presentation" cellpadding=3D"0" cellspa=
+cing=3D"0" style=3D"font-size:0;width:100%" align=3D"center" border=3D"0"><=
+tr><td style=3D"text-align:center;vertical-align:top;font-size:0;padding:0 =
+0 35px 0"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0"><tr><td style=3D"vertical-align:top;width:72=
+0px;"><![endif]--><div class=3D"mcp100 ogf" style=3D"vertical-align:top;dis=
+play:inline-block;font-size:0;line-height:0;text-align:left;width:100%"><!-=
+-[if mso | IE]><table  role=3D"presentation" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0"><tr><td style=3D"vertical-align:middle;width:240px;"><![=
+endif]--><div class=3D"mcp33 ogf" style=3D"vertical-align:middle;display:in=
+line-block;font-size:13px;text-align:left;width:33%"><table role=3D"present=
+ation" cellpadding=3D"0" cellspacing=3D"0" style=3D"vertical-align:middle" =
+width=3D"100%" border=3D"0"><tr><td style=3D"word-wrap:break-word;font-size=
+:0;padding:10px 25px;padding-right:5px;padding-left:0"><p style=3D"font-siz=
+e:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%"></p><!--[if ms=
+o | IE]><table role=3D"presentation" align=3D"center" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" style=3D"font-size:1px;margin:0 auto;border-top=
+:1px solid #6F6F6F;width:100%;" width=3D"240"><tr><td style=3D"height:0;lin=
+e-height:0;">=C2=A0</td></tr></table><![endif]--></td></tr></table></div><!=
+--[if mso | IE]></td><td style=3D"vertical-align:middle;width:240px;"><![en=
+dif]--><div class=3D"mcp33 ogf" style=3D"vertical-align:middle;display:inli=
+ne-block;font-size:13px;text-align:left;width:33%"><table role=3D"presentat=
+ion" cellpadding=3D"0"=20
+cellspacing=3D"0" style=3D"vertical-align:middle" width=3D"100%" border=3D"=
+0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"ce=
+nter"><div style=3D"color:#333333;font-family:Merriweather;font-size:16px;f=
+ont-weight:bold;line-height:22px;text-align:center">The Usual Suspects</div=
+></td></tr></table></div><!--[if mso | IE]></td><td style=3D"vertical-align=
+:middle;width:240px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertica=
+l-align:middle;display:inline-block;font-size:13px;text-align:left;width:33=
+%"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"vertical-align:middle" width=3D"100%" border=3D"0"><tr><td=20
+style=3D"word-wrap:break-word;font-size:0;padding:10px 25px;padding-right:0=
+;padding-left:5px"><p style=3D"font-size:1px;margin:0 auto;border-top:1px s=
+olid #6F6F6F;width:100%"></p><!--[if mso | IE]><table role=3D"presentation"=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%;" widt=
+h=3D"240"><tr><td style=3D"height:0;line-height:0;">=C2=A0</td></tr></table=
+><![endif]--></td></tr></table></div><!--[if mso | IE]></td></tr></table><!=
+[endif]--></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr><=
+/table></div></td></tr></table><!--[if mso | IE]></td></tr><tr><td style=3D=
+"width:720px;"><![endif]-->   <a style=3D"color:inherit;text-decoration:non=
+e;" href=3Dhttps://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK=
+7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3DE=
+IZGOH8DWTLX&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fblog%2Fshow%2F1216%=
+3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_newsl=
+etter%26utm_campaign%3Dapril32019%26utm_content%3D100-mysteries%26ref_%3Dpe=
+_3652430_404120840&H=3DCP4L7SPDOVAZ2VRAUTT3ALGH4F8A&ref_=3Dpe_3652430_40412=
+0840><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"font-size:0;width:100%"  border=3D"0"><tr><td><div style=3D"margin:0 au=
+to;max-width:720px"><table role=3D"presentation" cellpadding=3D"0" cellspac=
+ing=3D"0" style=3D"font-size:0;width:100%" align=3D"center" border=3D"0"><t=
+r><td=20
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0"><!--[i=
+f mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;"><![endif]-=
+-><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-bloc=
+k;font-size:13px;text-align:left;width:100%"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr><td styl=
+e=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"center"><table ro=
+le=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-col=
+lapse:collapse;border-spacing:0" align=3D"center" border=3D"0"><tr><td styl=
+e=3D"width:720px"><img=20
+alt=3D"Readers&#x27; Top 100 Mysteries &amp; Thrillers on Goodreads"  src=
+=3D"https://images.gr-assets.com/misc/1553540607-1553540607_goodreads_misc.=
+jpg" style=3D"border:none;border-radius:0;display:block;font-size:13px;outl=
+ine:none;text-decoration:none;width:100%;" width=3D"720"></td></tr></table>=
+</td></tr><tr><td style=3D"word-wrap:break-word;font-size:0;padding:16px 0 =
+8px 0" align=3D"left"><div style=3D"font-family:Merriweather;font-size:24px=
+;line-height:32px;text-align:left">The Top 100 Mysteries & Thrillers on Goo=
+dreads</div></td></tr></table></div><!--[if mso | IE]></td></tr></table><![=
+endif]--></td></tr></table></div></td></tr></table><!--[if mso | IE]></td><=
+/tr><tr><td style=3D"width:720px;"><![endif]--></a><table role=3D"presentat=
+ion"=20
+cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%"  borde=
+r=3D"0"><tr><td><div style=3D"margin:0 auto;max-width:720px"><table role=3D=
+"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;wid=
+th:100%" align=3D"center" border=3D"0"><tr><td style=3D"text-align:center;v=
+ertical-align:top;font-size:0;padding:0 0 35px 0"><!--[if mso | IE]><table =
+role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr>=
+<td style=3D"vertical-align:top;width:720px;"><![endif]--><div class=3D"mcp=
+100 ogf" style=3D"vertical-align:top;display:inline-block;font-size:13px;te=
+xt-align:left;width:100%"><table role=3D"presentation" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%" border=3D"0"><tr class=3D"lc"><td style=3D"w=
+ord-wrap:break-word;font-size:0;padding:0" align=3D"left"><div style=3D"fon=
+t-family:Lato;font-size:14px;line-height:16px;text-align:left"> From <a hre=
+f=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO=
+&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D3SM7XY5=
+YZ3EKZ&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fseries%2F49996%3Frto%3Dx=
+_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_newsletter%26u=
+tm_campaign%3Dapril32019%26utm_content%3Dsherlock%26ref_%3Dpe_3652430_40412=
+0840&H=3DR3H9NUSAHYXLWOMVQCBVPLDK8AUA&ref_=3Dpe_3652430_404120840">Sherlock=
+ Holmes</a> to <a href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KB=
+L1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3b=
+ef100p0na&R=3D1XDDN760NY7P4&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fser=
+ies%2F43040-stephanie-plum%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%2=
+6utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26utm_content%=
+3Dplum%26ref_%3Dpe_3652430_404120840&H=3DC3EVQV0KSZ4CHRWDY7V5VPDAC3EA&ref_=
+=3Dpe_3652430_404120840">Stephanie Plum</a>, we've brought you 100 of our m=
+embers' most beloved mystery and thriller books of all time.</div></td></tr=
+><tr><td style=3D"word-wrap:break-word;font-size:0;padding:16px 0 0 0" alig=
+n=3D"center"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"=
+0" style=3D"border-collapse:separate;width:140px" align=3D"center" border=
+=3D"0"><tr><td style=3D"border:1px solid #D8302E;border-radius:4px;color:#f=
+fffff;height:18px;padding:8px 0" align=3D"center"=20
+valign=3D"middle" bgcolor=3D"#D8302E"><a href=3D"https://rd.goodreads.com/g=
+p/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20190403204858=
+3953a788553e4d03b09ec3bef100p0na&R=3D3CYTQ09NJOD1B&T=3DC&U=3Dhttps%3A%2F%2F=
+www.goodreads.com%2Fblog%2Fshow%2F1216%3Frto%3Dx_gr_e_nl_mystery%26utm_medi=
+um%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26=
+utm_content%3D100-mysteries%26ref_%3Dpe_3652430_404120840&H=3DLAUPAHOYWK6PV=
+1GVN3SEPNNM6VKA&ref_=3Dpe_3652430_404120840" style=3D"text-decoration:none;=
+background:#D8302E;color:#ffffff;font-family:Lato;font-size:14px;font-weigh=
+t:normal;line-height:120%;text-transform:none;margin:0" >Read More</a></td>=
+</tr></table></td></tr></table></div><!--[if mso | IE]></td></tr></table><!=
+[endif]--></td></tr></table></div></td></tr></table><!--[if mso | IE]></td>=
+</tr><tr><td style=3D"width:720px;"><![endif]-->                  <table ro=
+le=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:=
+0;width:100%"  border=3D"0"><tr><td><div style=3D"margin:0 auto;max-width:7=
+20px"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"font-size:0;width:100%" align=3D"center" border=3D"0"><tr><td style=3D=
+"text-align:center;vertical-align:top;font-size:0;padding:0 0 35px 0"><!--[=
+if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;"><![endif]=
+--><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-blo=
+ck;font-size:0;line-height:0;text-align:left;width:100%"><!--[if mso | IE]>=
+<table  role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0"><tr><td style=3D"vertical-align:middle;width:240px;"><![endif]--><div c=
+lass=3D"mcp33 ogf" style=3D"vertical-align:middle;display:inline-block;font=
+-size:13px;text-align:left;width:33%"><table role=3D"presentation" cellpadd=
+ing=3D"0" cellspacing=3D"0" style=3D"vertical-align:middle" width=3D"100%" =
+border=3D"0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:10px=
+ 25px;padding-right:5px;padding-left:0"><p style=3D"font-size:1px;margin:0 =
+auto;border-top:1px solid #6F6F6F;width:100%"></p><!--[if mso | IE]><table =
+role=3D"presentation" align=3D"center" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" style=3D"font-size:1px;margin:0 auto;border-top:1px solid #6F6=
+F6F;width:100%;" width=3D"240"><tr><td style=3D"height:0;line-height:0;">=
+=C2=A0</td></tr></table><![endif]--></td></tr></table></div><!--[if mso | I=
+E]></td><td style=3D"vertical-align:middle;width:240px;"><![endif]--><div c=
+lass=3D"mcp33 ogf" style=3D"vertical-align:middle;display:inline-block;font=
+-size:13px;text-align:left;width:33%"><table role=3D"presentation" cellpadd=
+ing=3D"0"=20
+cellspacing=3D"0" style=3D"vertical-align:middle" width=3D"100%" border=3D"=
+0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"ce=
+nter"><div style=3D"color:#333333;font-family:Merriweather;font-size:16px;f=
+ont-weight:bold;line-height:22px;text-align:center">The Girl on the...</div=
+></td></tr></table></div><!--[if mso | IE]></td><td style=3D"vertical-align=
+:middle;width:240px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertica=
+l-align:middle;display:inline-block;font-size:13px;text-align:left;width:33=
+%"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"vertical-align:middle" width=3D"100%" border=3D"0"><tr><td=20
+style=3D"word-wrap:break-word;font-size:0;padding:10px 25px;padding-right:0=
+;padding-left:5px"><p style=3D"font-size:1px;margin:0 auto;border-top:1px s=
+olid #6F6F6F;width:100%"></p><!--[if mso | IE]><table role=3D"presentation"=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%;" widt=
+h=3D"240"><tr><td style=3D"height:0;line-height:0;">=C2=A0</td></tr></table=
+><![endif]--></td></tr></table></div><!--[if mso | IE]></td></tr></table><!=
+[endif]--></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr><=
+/table></div></td></tr></table><!--[if mso | IE]></td></tr><tr><td style=3D=
+"width:720px;"><![endif]-->    <a style=3D"color:inherit;text-decoration:no=
+ne;" href=3Dhttps://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DT=
+K7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D=
+3VEAKCYWD5YTF&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fblog%2Fshow%2F156=
+2%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_new=
+sletter%26utm_campaign%3Dapril32019%26utm_content%3Dgenerator%26ref_%3Dpe_3=
+652430_404120840&H=3DF2SSYCJONEP0MRVDNBSQKFFYPDKA&ref_=3Dpe_3652430_4041208=
+40><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"font-size:0;width:100%"  border=3D"0"><tr><td><div style=3D"margin:0 au=
+to;max-width:720px"><table role=3D"presentation" cellpadding=3D"0" cellspac=
+ing=3D"0" style=3D"font-size:0;width:100%" align=3D"center" border=3D"0"><t=
+r><td=20
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0 0 35px =
+0"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px;">=
+<![endif]--><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:i=
+nline-block;font-size:13px;text-align:left;width:100%"><table role=3D"prese=
+ntation" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><t=
+r><td style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"center"=
+><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"=
+border-collapse:collapse;border-spacing:0" align=3D"center" border=3D"0"><t=
+r><td style=3D"width:720px"><img=20
+alt=3D"What&#x27;s Your Ominous Mystery Title?"  src=3D"https://images.gr-a=
+ssets.com/misc/1553540459-1553540459_goodreads_misc.png" style=3D"border:no=
+ne;border-radius:0;display:block;font-size:13px;outline:none;text-decoratio=
+n:none;width:100%;" width=3D"720"></td></tr></table></td></tr><tr><td style=
+=3D"word-wrap:break-word;font-size:0;padding:16px 0 8px 0" align=3D"left"><=
+div style=3D"font-family:Merriweather;font-size:24px;line-height:32px;text-=
+align:left">Name Your Bestselling Mystery</div></td></tr><tr class=3D"lc"><=
+td style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"left"><div=
+ style=3D"font-family:Lato;font-size:14px;line-height:16px;text-align:left"=
+> If you've ever wondered what the title of your bestselling mystery should=
+ be, play along with our generator to discover which foreboding words shoul=
+d grace its cover.</div></td></tr><tr><td style=3D"word-wrap:break-word;fon=
+t-size:0;padding:16px 0 0 0" align=3D"center"><table role=3D"presentation" =
+cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse:separate;width=
+:140px" align=3D"center" border=3D"0"><tr><td style=3D"border:1px solid #D8=
+302E;border-radius:4px;color:#ffffff;height:18px;padding:8px 0" align=3D"ce=
+nter" valign=3D"middle" bgcolor=3D"#D8302E"><p=20
+style=3D"text-decoration:none;background:#D8302E;color:#ffffff;font-family:=
+Lato;font-size:14px;font-weight:normal;line-height:120%;text-transform:none=
+;margin:0">Read More</p></td></tr></table></td></tr></table></div><!--[if m=
+so | IE]></td></tr></table><![endif]--></td></tr></table></div></td></tr></=
+table><!--[if mso | IE]></td></tr><tr><td style=3D"width:720px;"><![endif]-=
+-></a>                         <table role=3D"presentation" cellpadding=3D"=
+0" cellspacing=3D"0" style=3D"font-size:0;width:100%" border=3D"0"><tr><td>=
+<div style=3D"margin:0 auto;max-width:720px"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%" align=
+=3D"center" border=3D"0"><tr><td style=3D"text-align:center;vertical-align:=
+top;font-size:0;padding:0 0 35px 0"><!--[if mso | IE]><table role=3D"presen=
+tation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=3D"v=
+ertical-align:top;width:720px"><![endif]--><div class=3D"mcp100 ogf" style=
+=3D"vertical-align:top;display:inline-block;font-size:0;line-height:0;text-=
+align:left;width:100%"><!--[if mso | IE]><table role=3D"presentation" borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=3D"vertical-align=
+:middle;width:240px"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertical=
+-align:middle;display:inline-block;font-size:13px;text-align:left;width:33%=
+"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"vertical-align:middle" width=3D"100%" border=3D"0"><tr><td style=3D"word-w=
+rap:break-word;font-size:0;padding:10px 25px;padding-right:5px;padding-left=
+:0"><p style=3D"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;wi=
+dth:100%"></p>
+<!--[if mso | IE]><table role=3D"presentation" align=3D"center" border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:1px;margin:0 auto;=
+border-top:1px solid #6F6F6F;width:100%" width=3D"240"><tr><td style=3D"hei=
+ght:0;line-height:0">=C2=A0</td></tr></table><![endif]--></td></tr></table>=
+</div><!--[if mso | IE]><td style=3D"vertical-align:middle;width:240px"><![=
+endif]--><div class=3D"mcp33 ogf" style=3D"vertical-align:middle;display:in=
+line-block;font-size:13px;text-align:left;width:33%"><table role=3D"present=
+ation" cellpadding=3D"0" cellspacing=3D"0" style=3D"vertical-align:middle" =
+width=3D"100%" border=3D"0"><tr><td style=3D"word-wrap:break-word;font-size=
+:0;padding:0" align=3D"center"><div=20
+style=3D"color:#333333;font-family:Merriweather;font-size:16px;font-weight:=
+bold;line-height:22px;text-align:center">Book Ends</div></td></tr></table><=
+/div><!--[if mso | IE]><td style=3D"vertical-align:middle;width:240px"><![e=
+ndif]--><div class=3D"mcp33 ogf" style=3D"vertical-align:middle;display:inl=
+ine-block;font-size:13px;text-align:left;width:33%"><table role=3D"presenta=
+tion" cellpadding=3D"0" cellspacing=3D"0" style=3D"vertical-align:middle" w=
+idth=3D"100%" border=3D"0"><tr><td style=3D"word-wrap:break-word;font-size:=
+0;padding:10px 25px;padding-right:0;padding-left:5px"><p style=3D"font-size=
+:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%"></p>
+<!--[if mso | IE]><table role=3D"presentation" align=3D"center" border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:1px;margin:0 auto;=
+border-top:1px solid #6F6F6F;width:100%" width=3D"240"><tr><td style=3D"hei=
+ght:0;line-height:0">=C2=A0</td></tr></table><![endif]--></td></tr></table>=
+</div><!--[if mso | IE]><![endif]--></div><!--[if mso | IE]><![endif]--></t=
+d></tr></table></div></td></tr></table><!--[if mso | IE]><tr><td style=3D"w=
+idth:720px"><![endif]--><table role=3D"presentation" cellpadding=3D"0" cell=
+spacing=3D"0" style=3D"font-size:0;width:100%" border=3D"0"><tr><td><div st=
+yle=3D"margin:0 auto;max-width:720px"><table role=3D"presentation" cellpadd=
+ing=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%" align=3D"cente=
+r" border=3D"0"><tr><td=20
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0 0 35px =
+0"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0"><tr><td style=3D"vertical-align:top;width:720px"><=
+![endif]--><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:in=
+line-block;font-size:13px;text-align:left;width:100%"><table role=3D"presen=
+tation" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr=
+><td style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"left"><d=
+iv style=3D"font-family:Lato;font-size:14px;line-height:16px;text-align:lef=
+t"><ul class=3D"bcl lc"><li>Want more? See which mysteries and thrillers <a=
+ href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7W=
+WYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D1CN=
+BA4VVBQQKI&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Fgenres%2Fmost_read%2=
+Fmystery%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmyst=
+ery_newsletter%26utm_campaign%3Dapril32019%26utm_content%3Dbookend1%26ref_%=
+3Dpe_3652430_404120840&H=3DWTZO7GLVXBTWKBAAPBPENFX0YU4A&ref_=3Dpe_3652430_4=
+04120840">your fellow readers are currently diving into</a>.</li></ul></div=
+></td></tr> <tr><td style=3D"word-wrap:break-word;font-size:0;padding:0" al=
+ign=3D"left"><div style=3D"font-family:Lato;font-size:14px;line-height:16px=
+;text-align:left"><ul class=3D"bcl lc"><li>These <a href=3D"https://rd.good=
+reads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201=
+904032048583953a788553e4d03b09ec3bef100p0na&R=3D3EEYOJ7GG19OU&T=3DC&U=3Dhtt=
+ps%3A%2F%2Fwww.goodreads.com%2Flist%2Fshow%2F9797%3Frto%3Dx_gr_e_nl_mystery=
+%26utm_medium%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dap=
+ril32019%26utm_content%3Dbookend2%26ref_%3Dpe_3652430_404120840&H=3D9JMMALN=
+SLJCIDIZW2JAM5E7A7SGA&ref_=3Dpe_3652430_404120840">worldly mysteries and th=
+rillers</a> could inspire your next vacation destination.</li></ul></div></=
+td></tr> <tr><td style=3D"word-wrap:break-word;font-size:0;padding:0" align=
+=3D"left"><div style=3D"font-family:Lato;font-size:14px;line-height:16px;te=
+xt-align:left"><ul class=3D"bcl lc"><li>Check out our interviews with the a=
+uthors of some of the year's most eagerly awaited for mysteries and thrille=
+rs: <a href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q7=
+8DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=
+=3D216YK7WKJLHXX&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Finterviews%2Fs=
+how%2F1434%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmy=
+stery_newsletter%26utm_campaign%3Dapril32019%26utm_content%3Dharlan%26ref_%=
+3Dpe_3652430_404120840&H=3DB2APO8LARMSOAFCG5IGGJ4AP5OYA&ref_=3Dpe_3652430_4=
+04120840">Harlan Coben</a>, <a href=3D"https://rd.goodreads.com/gp/r.html?C=
+=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a78855=
+3e4d03b09ec3bef100p0na&R=3D2TWJ37J3DREXQ&T=3DC&U=3Dhttps%3A%2F%2Fwww.goodre=
+ads.com%2Finterviews%2Fshow%2F1427%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3=
+Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019%26utm_=
+content%3Djane%26ref_%3Dpe_3652430_404120840&H=3DIBAH7YDHJYMKDLHQVTF608QQSQ=
+GA&ref_=3Dpe_3652430_404120840">Jane Harper</a>, and <a href=3D"https://rd.=
+goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg=
+:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D2HP6T6UQPXFBG&T=3DC&U=
+=3Dhttps%3A%2F%2Fwww.goodreads.com%2Finterviews%2Fshow%2F1437%3Frto%3Dx_gr_=
+e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_newsletter%26utm_c=
+ampaign%3Dapril32019%26utm_content%3Dsally%26ref_%3Dpe_3652430_404120840&H=
+=3DVFALVADN3A3NDRFIQN0KU0IUFPIA&ref_=3Dpe_3652430_404120840">Sally Hepworth=
+</a>.</li></ul></div></td></tr> </table></div><!--[if mso | IE]><![endif]--=
+></td></tr></table></div></td></tr></table><!--[if mso | IE]><tr><td style=
+=3D"width:720px"><![endif]-->              <table role=3D"presentation" cel=
+lpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100%"  border=
+=3D"0"><tr><td><div style=3D"margin:0 auto;max-width:720px"><table role=3D"=
+presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;widt=
+h:100%"=20
+align=3D"center" border=3D"0"><tr><td style=3D"text-align:center;vertical-a=
+lign:top;font-size:0;padding:0 0 35px 0"><!--[if mso | IE]><table role=3D"p=
+resentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=
+=3D"vertical-align:top;width:720px;"><![endif]--><div class=3D"mcp100 ogf" =
+style=3D"vertical-align:top;display:inline-block;font-size:0;line-height:0;=
+text-align:left;width:100%"><!--[if mso | IE]><table  role=3D"presentation"=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td style=3D"vertical=
+-align:middle;width:240px;"><![endif]--><div class=3D"mcp33 ogf"=20
+style=3D"vertical-align:middle;display:inline-block;font-size:13px;text-ali=
+gn:left;width:33%"><table role=3D"presentation" cellpadding=3D"0" cellspaci=
+ng=3D"0" style=3D"vertical-align:middle" width=3D"100%" border=3D"0"><tr><t=
+d style=3D"word-wrap:break-word;font-size:0;padding:10px 25px;padding-right=
+:5px;padding-left:0"><p style=3D"font-size:1px;margin:0 auto;border-top:1px=
+ solid #6F6F6F;width:100%"></p><!--[if mso | IE]><table role=3D"presentatio=
+n" align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%;" w=
+idth=3D"240"><tr><td style=3D"height:0;line-height:0;">=C2=A0</td></tr></ta=
+ble><![endif]--></td></tr></table></div><!--[if mso | IE]></td><td style=3D=
+"vertical-align:middle;width:240px;"><![endif]--><div class=3D"mcp33 ogf" s=
+tyle=3D"vertical-align:middle;display:inline-block;font-size:13px;text-alig=
+n:left;width:33%"><table role=3D"presentation" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"vertical-align:middle" width=3D"100%" border=3D"0"><tr><td=
+ style=3D"word-wrap:break-word;font-size:0;padding:0" align=3D"center"><div=
+ style=3D"color:#333333;font-family:Merriweather;font-size:16px;font-weight=
+:bold;line-height:22px;text-align:center">Currently Reading</div></td></tr>=
+</table></div><!--[if mso | IE]></td><td style=3D"vertical-align:middle;wid=
+th:240px;"><![endif]--><div  class=3D"mcp33 ogf" style=3D"vertical-align:mi=
+ddle;display:inline-block;font-size:13px;text-align:left;width:33%"><table =
+role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"vertical=
+-align:middle" width=3D"100%" border=3D"0"><tr><td style=3D"word-wrap:break=
+-word;font-size:0;padding:10px 25px;padding-right:0;padding-left:5px"><p st=
+yle=3D"font-size:1px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%"=
+></p><!--[if mso | IE]><table role=3D"presentation" align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:1px;margin:0 =
+auto;border-top:1px solid #6F6F6F;width:100%;" width=3D"240"><tr><td style=
+=3D"height:0;line-height:0;">=C2=A0</td></tr></table><![endif]--></td></tr>=
+</table></div><!--[if mso | IE]></td></tr></table><![endif]--></div><!--[if=
+ mso | IE]></td></tr></table><![endif]--></td></tr></table></div></td></tr>=
+</table><!--[if mso | IE]></td></tr><tr><td style=3D"width:720px;"><![endif=
+]--><a style=3D"color:inherit;text-decoration:none;" href=3Dhttps://rd.good=
+reads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201=
+904032048583953a788553e4d03b09ec3bef100p0na&R=3DXOR58QIB82Y0&T=3DC&U=3Dhttp=
+s%3A%2F%2Fwww.goodreads.com%2Fbook%2Fshow%2F515603%3Frto%3Dx_gr_e_nl_myster=
+y%26utm_medium%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Da=
+pril32019%26utm_content%3DcurrentlyReading%26ref_%3Dpe_3652430_404120840&H=
+=3DEZHXNJQTOOUE21VP0P8QG3OFSSUA&ref_=3Dpe_3652430_404120840"><table role=3D=
+"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;wid=
+th:100%"  border=3D"0"><tr><td><div style=3D"margin:0 auto;max-width:720px"=
+><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0"=20
+style=3D"font-size:0;width:100%" align=3D"center" border=3D"0"><tr><td styl=
+e=3D"text-align:center;vertical-align:top;font-size:0;padding:0 0 30px 0"><=
+!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0"><tr><td style=3D"vertical-align:top;width:180px;"><![en=
+dif]--><div class=3D"mcp25 ogf" style=3D"vertical-align:top;display:inline-=
+block;font-size:13px;text-align:left;width:100%"><table role=3D"presentatio=
+n" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr><td =
+style=3D"word-wrap:break-word;font-size:0;padding:10px 25px;padding-top:0;p=
+adding-bottom:5px" align=3D"center"><table role=3D"presentation" cellpaddin=
+g=3D"0" cellspacing=3D"0"=20
+style=3D"border-collapse:collapse;border-spacing:0" align=3D"center" border=
+=3D"0"><tr><td style=3D"width:120px"><img alt=3D"Currently Reading book cov=
+er"  src=3D"https://d.gr-assets.com/books/1348572669l/515603.jpg" style=3D"=
+border:none;border-radius:0;display:block;font-size:13px;outline:none;text-=
+decoration:none;width:100%;height:auto" width=3D"120"></td></tr></table></t=
+d></tr></table></div><!--[if mso | IE]></td><td style=3D"vertical-align:top=
+;width:237px;"><![endif]--><div class=3D"mcp33 ogf" style=3D"vertical-align=
+:top;display:inline-block;font-size:13px;text-align:left;width:100%"><table=
+ role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" b=
+order=3D"0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:0 0 5=
+px 5px" align=3D"left"><div=20
+style=3D"font-family:Lato;font-size:14px;line-height:22px;text-align:left">=
+<center><div class=3D"cw"><div class=3D"ci"><div style=3D"width:250px;displ=
+ay:inline-block"><p class=3D"ct">Software Tools</p> </div></div></div></cen=
+ter></div></td></tr><tr class=3D"uib"><td style=3D"word-wrap:break-word;fon=
+t-size:0;padding:5px 0 0 5px" align=3D"center"><table role=3D"presentation"=
+ cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse:separate;widt=
+h:150px" align=3D"center" border=3D"0"><tr><td style=3D"border:1px solid #0=
+0635D;border-radius:4px;color:#ffffff;padding:10px" align=3D"center" valign=
+=3D"middle" bgcolor=3D"#00635D"><p style=3D"text-decoration:none;background=
+:#00635D;color:#ffffff;font-family:Lato;font-size:14px;font-weight:normal;l=
+ine-height:120%;text-transform:none;margin:0">Update Progress</p></td></tr>=
+</table></td></tr></table></div><!--[if mso | IE]></td></tr></table><![endi=
+f]--></td></tr></table></div></td></tr></table><!--[if mso | IE]></td></tr>=
+<tr><td style=3D"width:720px;"><![endif]--></a>                            =
+      <div style=3D"margin:0 auto;background:#F5F5F5" ><table role=3D"prese=
+ntation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0;width:100=
+%;background:#F5F5F5" align=3D"center" border=3D"0"><tr><td style=3D"text-a=
+lign:center;vertical-align:top;font-size:0;padding:5px 0"><!--[if mso | IE]=
+><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0"><tr><td style=3D"width:NaNpx;"><![endif]--><div style=3D"margin:0 auto"=
+><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"=
+font-size:0;width:100%" align=3D"center" border=3D"0"><tr><td=20
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0"><!--[i=
+f mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0"><tr><td style=3D"vertical-align:top;width:NaNpx;"><![endif]-=
+-><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-bloc=
+k;font-size:13px;text-align:left;width:100%"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr><td styl=
+e=3D"word-wrap:break-word;font-size:0;padding:10px 0 8px 0" align=3D"center=
+"><div style=3D"font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:=
+16px;line-height:22px;text-align:center">Follow Goodreads on:</div></td></t=
+r></table></div><div style=3D"display:inline-block;width:30px;margin:0 8px"=
+><a href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DT=
+K7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D=
+XM7K3Z46RM7O&T=3DC&U=3Dhttps%3A%2F%2Fwww.facebook.com%2FGoodreads&H=3DW4RQU=
+ZCOSXG7A6VPKKRER6NBD5YA"><img alt=3D"Facebook" src=3D"http://images.gr-asse=
+ts.com/misc/1498251411-1498251411_goodreads_misc.png" style=3D"border-radiu=
+s:30px;text-decoration:none;width:100%" width=3D"30"></a></div><div style=
+=3D"display:inline-block;width:30px;margin:0 8px"><a href=3D"https://rd.goo=
+dreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20=
+1904032048583953a788553e4d03b09ec3bef100p0na&R=3D21MMNNHMMS2XD&T=3DC&U=3Dht=
+tps%3A%2F%2Ftwitter.com%2Fgoodreads&H=3D1SQMJ86M0MBSF9EMVPJR2CBNCH0A"><img =
+alt=3D"Twitter" src=3D"http://images.gr-assets.com/misc/1498251493-14982514=
+93_goodreads_misc.png" style=3D"border-radius:30px;text-decoration:none;wid=
+th:100%" width=3D"30"></a></div><div style=3D"display:inline-block;width:30=
+px;margin:0 8px"><a href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2=
+KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec=
+3bef100p0na&R=3DDCHR7RB5ITU3&T=3DC&U=3Dhttps%3A%2F%2Fwww.instagram.com%2Fgo=
+odreads%2F&H=3DJ9WCNYNCFAMIPILAYB2O5NXUSVQA"><img alt=3D"Instagram" src=3D"=
+http://images.gr-assets.com/misc/1501010182-1501010182_goodreads_misc.png"=
+=20
+style=3D"border-radius:30px;text-decoration:none;width:100%" width=3D"30"><=
+/a></div><div style=3D"display:inline-block;width:30px;margin:0 8px"><a hre=
+f=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO=
+&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3D3JIGAX1=
+5IE9ZX&T=3DC&U=3Dhttp%3A%2F%2Fwww.pinterest.com%2Fgoodreads%2F&H=3DZKHMJ6DC=
+B2CD5LUSYPPBLRHAJIEA"><img alt=3D"Pinterest" src=3D"http://images.gr-assets=
+.com/misc/1498253544-1498253544_goodreads_misc.png" style=3D"border-radius:=
+30px;text-decoration:none;width:100%" width=3D"30"></a></div><!--[if mso | =
+IE]></td></tr></table><![endif]--></td></tr></table></div><!--[if mso | IE]=
+></td></tr><tr><td style=3D"width:NaNpx;"><![endif]--><div style=3D"margin:=
+0 auto"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"font-size:0;width:100%" align=3D"center" border=3D"0"><tr><td=20
+style=3D"text-align:center;vertical-align:top;font-size:0;padding:0"><!--[i=
+f mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0"><tr><td style=3D"vertical-align:top;width:NaNpx;"><![endif]-=
+-><div class=3D"mcp100 ogf" style=3D"vertical-align:top;display:inline-bloc=
+k;font-size:13px;text-align:left;width:100%"><table role=3D"presentation" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr><td styl=
+e=3D"word-wrap:break-word;font-size:0;padding:8px 0 0 0" align=3D"center"><=
+div style=3D"color:#999999;font-family:Ubuntu, Helvetica, Arial, sans-serif=
+;font-size:13px;line-height:22px;text-align:center">GET THE APP</div></td><=
+/tr></table></div><!--[if mso | IE]></td><td style=3D"vertical-align:top;wi=
+dth:175px;"><![endif]--><div class=3D"mcp175 ogf" style=3D"vertical-align:t=
+op;display:inline-block;font-size:13px;text-align:left;width:100%"><table r=
+ole=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" bor=
+der=3D"0"><tr><td style=3D"word-wrap:break-word;font-size:0;padding:5px" al=
+ign=3D"center"><table role=3D"presentation" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"border-collapse:collapse;border-spacing:0" align=3D"center"=
+ border=3D"0"><tr><td style=3D"width:165px"><a href=3D"https://rd.goodreads=
+.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:20190403=
+2048583953a788553e4d03b09ec3bef100p0na&R=3D1BEH3XEHUULL3&T=3DC&U=3Dhttps%3A=
+%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fgoodreads-book-recommendations-and-revi=
+ews%2Fid355833469%2F&H=3D6Q4TSWZDOZTARAAENFXPDUETMSQA" ><img alt=3D"Goodrea=
+ds on App Store" =20
+src=3D"http://images.gr-assets.com/misc/1499369331-1499369331_goodreads_mis=
+c.png" style=3D"border:none;border-radius:0;display:block;font-size:13px;ou=
+tline:none;text-decoration:none;width:100%;" width=3D"165"></a></td></tr></=
+table></td></tr></table></div><!--[if mso | IE]></td><td style=3D"vertical-=
+align:top;width:175px;"><![endif]--><div class=3D"mcp175 ogf" style=3D"vert=
+ical-align:top;display:inline-block;font-size:13px;text-align:left;width:10=
+0%"><table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" border=3D"0"><tr><td style=3D"word-wrap:break-word;font-size:0;pa=
+dding:5px" align=3D"center"><table role=3D"presentation" cellpadding=3D"0" =
+cellspacing=3D"0"=20
+style=3D"border-collapse:collapse;border-spacing:0" align=3D"center" border=
+=3D"0"><tr><td style=3D"width:165px"><a href=3D"https://rd.goodreads.com/gp=
+/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:201904032048583=
+953a788553e4d03b09ec3bef100p0na&R=3D1KSLDDLGPB96W&T=3DC&U=3Dhttps%3A%2F%2Fp=
+lay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.goodreads&H=3DIQCQE10UOA=
+NVTVI6SRQFRFAUIYGA" ><img alt=3D"Goodreads on Google Play"  src=3D"http://i=
+mages.gr-assets.com/misc/1499369367-1499369367_goodreads_misc.png" style=3D=
+"border:none;border-radius:0;display:block;font-size:13px;outline:none;text=
+-decoration:none;width:100%;" width=3D"165"></a></td></tr></table></td></tr=
+></table></div><!--[if mso | IE]></td><td style=3D"vertical-align:top;width=
+:NaNpx;"><![endif]--><div class=3D"mcp85 ogf" style=3D"vertical-align:top;d=
+isplay:inline-block;font-size:13px;text-align:left;width:100%"><table role=
+=3D"presentation"=20
+cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=3D"0"><tr><td sty=
+le=3D"word-wrap:break-word;font-size:0;padding:0;padding-right:1px" align=
+=3D"center"><div style=3D"font-family:Ubuntu, Helvetica, Arial, sans-serif;=
+font-size:14px;line-height:22px;text-align:center"> <p style=3D"margin:0 au=
+to">For more great content, check out our <a href=3D"https://rd.goodreads.c=
+om/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WWYPO&M=3Durn:rtn:msg:2019040320=
+48583953a788553e4d03b09ec3bef100p0na&R=3DQOJS69TPII3G&T=3DC&U=3Dhttp%3A%2F%=
+2Fwww.goodreads.com%2Fblog%3Ftab%3Demails%26rto%3Dx_gr_e_nl_mystery%26utm_m=
+edium%3Demail%26utm_source%3Dmystery_newsletter%26utm_campaign%3Dapril32019=
+%26utm_content%3Dfooter%26ref_%3Dpe_3652430_404120840&H=3DRZSUB5JKF5U0AAYUU=
+OO5UD7PD3OA&ref_=3Dpe_3652430_404120840" class=3D"fl">blog</a>.</p><p style=
+=3D"margin:0 auto">This email was sent to unixbhaskar@gmail.com.</p><a clas=
+s=3D"fl"=20
+href=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78DTK7WW=
+YPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=3DLVXG=
+EDEU8YMF&T=3DX&U=3Dhttps%3A%2F%2Fwww.goodreads.com%2Funsubscribe%2Fsubscrip=
+tions%2Fo%2F1DbdhhkEG-OZCw-mm8dN2uLhE1pYNtDNRM0hjhTzOyUzj7URWrZh6JZt3-qtNPm=
+pa%3Frto%3Dx_gr_e_nl_mystery%26utm_medium%3Demail%26utm_source%3Dmystery_ne=
+wsletter%26utm_campaign%3Dapril32019%26utm_content%3Dunsubscribe&H=3DU327IS=
+EWIJMYH9UBIBWCPUJFKEKA">Unsubscribe</a><p></p></div></td></tr><tr><td style=
+=3D"word-wrap:break-word;font-size:0;padding:5px 0"><p style=3D"font-size:1=
+px;margin:0 auto;border-top:1px solid #6F6F6F;width:100%"></p><!--[if mso |=
+ IE]><table role=3D"presentation" align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"font-size:1px;margin:0 auto;border-top:1p=
+x solid #6F6F6F;width:100%;" width=3D"85"><tr><td style=3D"height:0;line-he=
+ight:0;">=C2=A0</td></tr></table><![endif]--></td></tr><tr><td style=3D"wor=
+d-wrap:break-word;font-size:0;padding:0 5px" align=3D"center"><div=20
+style=3D"font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;li=
+ne-height:22px;text-align:center">Copyright 2019 Goodreads | 188 Spear Stre=
+et, San Francisco, CA 94105</div></td></tr></table></div><!--[if mso | IE]>=
+</td></tr></table><![endif]--></td></tr></table></div><!--[if mso | IE]></t=
+d></tr></table><![endif]--></td></tr></table></div>     <!--[if mso | IE]><=
+/td></tr></table><![endif]--></td></tr></table></div></td></tr></table><!--=
+[if mso | IE]></td></tr></table><![endif]--></div><img width=3D"1" height=
+=3D"1" src=3D"https://rd.goodreads.com/gp/r.html?C=3D1WINBYS2KBL1Q&K=3D2Q78=
+DTK7WWYPO&M=3Durn:rtn:msg:201904032048583953a788553e4d03b09ec3bef100p0na&R=
+=3DMHGYUGAT1MHR&T=3DE&U=3Dhttps%3A%2F%2Fimages-na.ssl-images-amazon.com%2Fi=
+mages%2FG%2F01%2Fnav%2Ftransp.gif&H=3DACS3QUK8DZBEIRISGD5KRT8GRQ4A&ref_=3Dp=
+e_3652430_404120840_open" /></body></html>
+------=_Part_610342_702327996.1554324538541--

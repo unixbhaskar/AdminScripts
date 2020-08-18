@@ -1,0 +1,139 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp2708370lfg;
+        Sun, 19 Apr 2020 06:19:16 -0700 (PDT)
+X-Google-Smtp-Source: APiQypLrIg+Q4wMhregL9BcvoBsNK/+UWcDaKUtCOa2rQFgWHCgPaWkmr0X4EPfEAkMlHHaao3kw
+X-Received: by 2002:a50:ec0c:: with SMTP id g12mr3854918edr.140.1587302356143;
+        Sun, 19 Apr 2020 06:19:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587302356; cv=none;
+        d=google.com; s=arc-20160816;
+        b=V9ALQAU/pc9SKRxf2LYRa+R7nKxrnbI4y4R0c8lN5Rtz5Aj2EeBIrK0TFzMbyRvlbH
+         XQlNfBEgADn9OYUaIntD/fjDW3f4LwJ/9J6wc+YNgfoB6n52nA30uS5AGe6d2B/LmCnK
+         iM3FRWl7S4OzQfm8oEtrBd1y7cVUXBhcZnoQV3xYM1udFZos/gwIOMscQ7RJFJdXz4+D
+         J+xa3NeQ+ThZzpSXV+KpaaEng33EMxLC9m9tP7YxWNsJNr4egX6+HAjkWD6ayAe+B0Vs
+         F3+rnoNsilBN39k9jcXviJy+nv6SkFuhkvaOuxXOuXGoKXA0eUZHQbXaKCWwtYMe5Y+f
+         YENg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=1AYioC5knc5kevTaajyMgC2WAAQUGKkxBPHp7TSz11M=;
+        b=InFBCuK2GDKvsEmkqPQipCkj6f5vILqnS15l41wWh6O0U41DTMC26An/1CGNJwv7kD
+         nKR8ZIuIe8G+Z3w2+967bLwnGoyJLmFYsK3muapNtzXMM4yR3CmvZlFOkLolERWHa3Cc
+         ioESa2nmmbrm48CAXzIrk1Q13P9gEL2P0go2rP35wxfDUesRf4r39s4Xk4SId2VtsPcn
+         TaqCkkLN6T39u881z2cS6n/Ml36zlMc7Nlx6+R6YHNqvnLak380F7dG2QhZ7o9rZAECt
+         uU70CeiNR/L1g+0GybrEUP818uPQkeugB+P6CET5SNQVKsVrpgyBZ76V3MPgNd5xJGuB
+         dXJw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=xussM8gG;
+       spf=pass (google.com: domain of linux-efi-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-efi-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-efi-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id p9si6859735ejf.493.2020.04.19.06.19.03;
+        Sun, 19 Apr 2020 06:19:16 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-efi-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=xussM8gG;
+       spf=pass (google.com: domain of linux-efi-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-efi-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1725949AbgDSNSV (ORCPT <rfc822;unixbhaskar@gmail.com>
+        + 45 others); Sun, 19 Apr 2020 09:18:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48212 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725905AbgDSNSU (ORCPT <rfc822;linux-efi@vger.kernel.org>);
+        Sun, 19 Apr 2020 09:18:20 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1B67E20724
+        for <linux-efi@vger.kernel.org>; Sun, 19 Apr 2020 13:18:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1587302300;
+        bh=1AYioC5knc5kevTaajyMgC2WAAQUGKkxBPHp7TSz11M=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=xussM8gGNDqS0uFUtjAHGOlsI8xekfQQlG8b1xXJIR9MHZOHjBccWZ/Wo3xyaODHB
+         H14Q5ZgFD02EMTgOyB4uFwM2zNsL0DFDNh/mMo5rbk2twjOkttFqpIyUofVl/3CISp
+         8PV+91IeQZ3ZmnOOP5NiK0TGdreBfmW8FAT1pZfE=
+Received: by mail-io1-f48.google.com with SMTP id i3so7712950ioo.13
+        for <linux-efi@vger.kernel.org>; Sun, 19 Apr 2020 06:18:20 -0700 (PDT)
+X-Gm-Message-State: AGi0Puafye5qBsGXCVql/3QjZrHrgd/3tppMB6Km5gttIRzO/avpHa2I
+        xzHSjCmYt/6xBnz/CK8/WBd9/wl4KfHaEfFOqOU=
+X-Received: by 2002:a6b:ef03:: with SMTP id k3mr11601332ioh.203.1587302299527;
+ Sun, 19 Apr 2020 06:18:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <bf17f4c7-f7a8-01c1-f7a9-bf0a499c502c@redhat.com>
+ <CAMj1kXEdjqph0d96o6j=avT+Zt41ibegiyTKHK+RCmGaZVeTpA@mail.gmail.com> <caf85ef9-5231-9d2f-356b-375a46c2cb42@redhat.com>
+In-Reply-To: <caf85ef9-5231-9d2f-356b-375a46c2cb42@redhat.com>
+From:   Ard Biesheuvel <ardb@kernel.org>
+Date:   Sun, 19 Apr 2020 15:18:08 +0200
+X-Gmail-Original-Message-ID: <CAMj1kXGzEByRf2qmD=4+N_b8KfSr7PHrpM-rVQmqFU1VhxMJkg@mail.gmail.com>
+Message-ID: <CAMj1kXGzEByRf2qmD=4+N_b8KfSr7PHrpM-rVQmqFU1VhxMJkg@mail.gmail.com>
+Subject: Re: Starting with kernel 5.6 deleting efibootmgr entries no longer
+ works (efivarfs regresson)
+To:     Hans de Goede <hdegoede@redhat.com>
+Cc:     linux-efi <linux-efi@vger.kernel.org>, russianneuromancer@ya.ru
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-efi-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-efi.vger.kernel.org>
+X-Mailing-List: linux-efi@vger.kernel.org
+
+On Sun, 19 Apr 2020 at 14:55, Hans de Goede <hdegoede@redhat.com> wrote:
+>
+> Hi,
+>
+> On 4/19/20 1:59 PM, Ard Biesheuvel wrote:
+> > On Sun, 19 Apr 2020 at 13:41, Hans de Goede <hdegoede@redhat.com> wrote:
+> >>
+> >> Hi Ard,
+> >>
+> >> I got a bug report by email that "grub-install" was throwing errors
+> >> on 32 bit UEFI (64 bit kernel, mixed mode) systems starting with 5.6 .
+> >> After that I noticed that the Fedora installer also threw an error about
+> >> it being unable to setup the bootloader (which I could luckily skip), this
+> >> was also a 32 bit UEFI mixed-mode system.
+> >>
+> >> So I've been running some tests with efibootmgr from the shell. Adding
+> >> new entries works, but removing an entry involves unlinking the EFI var
+> >> for the old which fails, here is the relevant part from a strace run:
+> >>
+> >> unlink("/sys/firmware/efi/efivars/Boot0000-8be4df61-93ca-11d2-aa0d-00e098032b8c") = -1 EINVAL (Invalid argument)
+> >>
+> >> With kernel 5.5 the same unlink succeeds, I guess this is also the
+> >> cause for the grub-install and Fedora 32 installer errors. At least
+> >> the Fedora 32 install error was seen on a system which already had
+> >> a "Fedora" efibootmgr entry, so likely the installer tried to remove
+> >> the old entry first and that caused the failure.
+> >>
+> >> I've also tried removing efibootmgr entires on a 64 bit UEFI system running
+> >> 5.6.4 and that works fine. On 32 bit UEFI mixed-mode systems the problem
+> >> persists with 5.7-rc1.
+> >>
+> >> Ard, any idea where to start with pinpointing the cause of this
+> >> regression ?
+> >>
+> >
+> > Can you start by trying this patch please?
+> >
+> > https://git.kernel.org/pub/scm/linux/kernel/git/efi/efi.git/commit/?h=urgent&id=9461aa3b44ac21668100067939d24a6ffa810eae
+>
+> Cool, I can confirm that this fixes deleting boot entries with
+> efibootmgr.
+>
+
+Thanks for confirming, and apologies for the breakage.
+
+> Regards,
+>
+> Hans
+>
+>
+> p.s.
+>
+> In Torvald's tree this seems to have gotten a different commit-id:
+> a4b81ccfd4caba017d2b84720b6de4edd16911a0
+>
+
+Yes, as you know, Ingo prefers to re-apply EFI patches piecemeal
+rather than merging my branches directly, so the branches in the EFI
+tree are not stable, unfortunately.

@@ -1,0 +1,102 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp8877144lfc;
+        Thu, 16 Jan 2020 15:23:44 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxm+GJeG4FKAROtAFuvWx7pK0bs4554Vk7nOZEYLfOKlgH+i88+BrDHOO6YnauHZU8sveT0
+X-Received: by 2002:a05:6808:319:: with SMTP id i25mr1360919oie.128.1579217024448;
+        Thu, 16 Jan 2020 15:23:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1579217024; cv=none;
+        d=google.com; s=arc-20160816;
+        b=HjlzAiRAa1F2dKOYjgUaQkKapV4hVmkiRIDmaSnIBR+e3PJBd7HD0EZx6J78pmqGtL
+         AOMtooz21szM44eeeDcXbmejT3UGTOfOjn/zASKG/7dKr4AGveEcFGH5dqryOZGtWdo0
+         vPkBh7cgSbDn26jbN1JtG1Lwb0e8BKTPUd4rLxyhl4APR2nUkAHDHBQJYyZKmEfXjlBt
+         wre8o3qBZD346Fg86BQi9mp67S15xq1EBV+9j36N0FmBizB11RAnML4K9+gX/dv6cYC9
+         8Uo6IZjlrqcAbE7FzXHtjR5zPWowIxrQ5Kq01ayeEXYoCjQd4fXJdS2Iqir+xNBHMvW7
+         cvfQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=z00KHyyiDDAvCIlx1wyiixQwKAkkKamRadoV/e+nBtY=;
+        b=OadJmmKL8BJ8iq+5l8dQNdeeyeD4nDTDGf0xTEtvQ8hTSUBkCK1MrOTiwZjHA5gO34
+         8xjGVB2vnr+sl6lIHRnuVJSP1ON8rZAG/JeiVXskPWvDfpJLBxWJNt5r1o2isXrORA06
+         EZhYWAHWXhK2fRf4+TevIWZ/AksDl46yiw5REoibaodEIfIlyqPHDI2Agnx5R6CxHuQW
+         qnhbUJ/ckf53qyrIVniGLzLHDis4pkZjiOR+mfRb6fYOIuSUud04Fajf+Ova8zRk1u3P
+         TAWQKmnTnysmpRueeWTxEg8lz49yR1GDbG6iubcqK1jzqORiYTFoRuUGEg3fPORNKglo
+         mkmw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=0u3rY60H;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id d7si11760706otf.84.2020.01.16.15.23.32;
+        Thu, 16 Jan 2020 15:23:44 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=0u3rY60H;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1732652AbgAPTz6 (ORCPT <rfc822;philjo5000@gmail.com>
+        + 99 others); Thu, 16 Jan 2020 14:55:58 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50834 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730342AbgAPTz6 (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 16 Jan 2020 14:55:58 -0500
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 621EA2072B;
+        Thu, 16 Jan 2020 19:55:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1579204557;
+        bh=zM7/G9ohZ7x8DUpojw8GrOGYq51OWhRQLpYwpfjjy0w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=0u3rY60HIEMozuN0foQT8KUIpmrYCrzo7TtX6Dz4//bc9UoDTlwXD7V1f1zkVreZ2
+         Zy8GNaJnVlI5xVu8DzkZlg9ajwE6vBbN9YJ21kmTw2OvnWv9AcOxxPyWsrQH+FKeSc
+         lCqU6x71qo6drhhU0++qEZwskiHykkdQ7vi5R1MM=
+Date:   Thu, 16 Jan 2020 20:55:24 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     linux-kernel@vger.kernel.org
+Subject: Re: [GIT PULL] PHY: For 5.6
+Message-ID: <20200116195524.GA1096827@kroah.com>
+References: <20200116110515.20480-1-kishon@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200116110515.20480-1-kishon@ti.com>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Jan 16, 2020 at 04:35:15PM +0530, Kishon Vijay Abraham I wrote:
+> Hi Greg,
+> 
+> Please find the pull request for 5.6 merge window below.
+> 
+> PHY core now creates a device link between PHY consumer and PHY
+> provider required for suspend/resume ordering and also adds support
+> for DisplayPort controller to pass configuration parameters to PHY.
+> 
+> It includes new PHY drivers for TI's J721E SoC (PCIe and USB), eMMC
+> PHY driver for Intel's LGM SoC and USB PHY driver for Broadcom
+> SoC.
+> 
+> For the detailed list of changes, please see the tag message below.
+> All these changes have been in linux -next for a while now.
+> Consider merging this for the next merge window and let me know if I
+> have to change something.
+
+I got the following warning, which linux-next should also reported:
+Commit: 56b337ef505d ("phy: ti: j721e-wiz: Fix return value check in wiz_probe()")
+	Fixes tag: Fixes: b46f531313a4 ("phy: ti: j721e-wiz: Add support for WIZ module present in TI J721E SoC")
+	Has these problem(s):
+	        - Target SHA1 does not exist
+
+Maybe I am merging into the wrong tree?
+
+Anyway, I'll take this, hopefully that id shows up somewhere :)
+
+thanks,
+
+greg k-h

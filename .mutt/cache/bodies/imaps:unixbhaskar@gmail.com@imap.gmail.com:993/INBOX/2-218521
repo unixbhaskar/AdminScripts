@@ -1,0 +1,136 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp5986528lfc;
+        Tue, 14 Jan 2020 13:14:02 -0800 (PST)
+X-Google-Smtp-Source: APXvYqx4jz1jUlgvVzO6XmVp7j7diBvln+F6Bg3e3oKg2k82cMYKLBxYRf0z3F6KHEbQCLLxlXi3
+X-Received: by 2002:aca:a9c5:: with SMTP id s188mr18543326oie.154.1579036442365;
+        Tue, 14 Jan 2020 13:14:02 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1579036442; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=yrrV/AwvlpOKoA4u9TEw3uaqNiOhGwJ6SNqeFcR5j6bRECXQpT4OlcpSdU9QQQ/TqC
+         NExAIUjpUSgwisLCEr8ADyMH2eF9L3gMiaYRa5IRHS+EQUZOgqhLi8Uk+Qp/SkRqmEHr
+         TX9E6ho8OCBH6bm2AXImMdgzwvZFaJSfUf0IZC/vwTe9mWYGNrupzg2e5b48w0ckAvV8
+         BPdQCNn3g2K/2Qt8fhb/LpSGn7cnEkXisG1H7RdHOwNkPOiUxo7ka+huTRBLFuPintpW
+         lhY2o3a/kB268w6+08TTgZExYC0Gv0XnKDd2yrCt00spUCWjUA4dwKxQ2YduFzooRg3h
+         g9+w==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:mime-version:content-transfer-encoding
+         :content-id:user-agent:content-language:accept-language:message-id
+         :date:thread-index:thread-topic:subject:cc:to:from:dkim-signature;
+        bh=Yub2Zdnl1Af/j6vo7pPrfth3s4Inj0UPjQ1YC4WrmWE=;
+        b=yqhrJLXsYSfWmuRcyfrnL4SzUO8UnEk/P7QxbkP1BrtAFlcgdxToOyZM0eP3mBYigB
+         UeqYcKDaf/Ay6PZp8iJcjS3vxIRhzUWti+MDXsfKj/BUvDc5hPnZ1gVLwKoZPhrkdMdd
+         M+amkWg01212k83ORsI4TdcAQ674W64qyYRzzpTpe/HKVH7T17RzrrmPif4jGsjH8Lpz
+         bmeN1Y6SoyEYTqwbDXKM6TZZqqvVjatnl7fgRrik/vFTlqeVkGLBqZEPF3sn13TazUzY
+         H4v3OuPGFQl9hf6lihca9Z7x/EFY/Ie7EL1gn0vP/cmgKJaSHSGcdiA1EIAGeo7ygnH3
+         n+5A==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@netapp.onmicrosoft.com header.s=selector1-netapp-onmicrosoft-com header.b=Tg6ZGATO;
+       arc=pass (i=1 spf=pass spfdomain=netapp.com dkim=pass dkdomain=netapp.com dmarc=pass fromdomain=netapp.com);
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id k4si8111464oiw.55.2020.01.14.13.13.48;
+        Tue, 14 Jan 2020 13:14:02 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@netapp.onmicrosoft.com header.s=selector1-netapp-onmicrosoft-com header.b=Tg6ZGATO;
+       arc=pass (i=1 spf=pass spfdomain=netapp.com dkim=pass dkdomain=netapp.com dmarc=pass fromdomain=netapp.com);
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728877AbgANVM7 (ORCPT <rfc822;huszaghmatt@gmail.com>
+        + 99 others); Tue, 14 Jan 2020 16:12:59 -0500
+Received: from mail-bn7nam10on2042.outbound.protection.outlook.com ([40.107.92.42]:3297
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727285AbgANVM6 (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 14 Jan 2020 16:12:58 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Yw1j185vXAhBSi7mEKbGmoC/CKlQ0vAk7DI2TlB7Cx/8hBFpBsn/c7ppxQb5IVFdOUnjInGOeoTeSDhYtGH9Shta+lm3t0146rtRjtYZ6bF8Budduk4bzEpzKAemM3uZjeqGovLhyr2VxALklkOuAE06J+5felwUez8RMXhFQZz574Q11qnh+UK/fXNW95N0J+qxJadYZsUzGlc5xrTlBbGJTnfj0Jvit9A0khrDT6rRZJNKALQOkeJ1Tjpp4zt7BZ4l+yZF8SdLMj4WG8LvYyZ236bpFfUDa6wIZ7sULg/++jgamVIo1GrL6l6O5UFuLj7oNXDITKpwApJdM/sYQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Yub2Zdnl1Af/j6vo7pPrfth3s4Inj0UPjQ1YC4WrmWE=;
+ b=nstTfmcj3DkkraE/q81XjCF69tQ2GrgJGTKTnbjAEkNIiwZYncSXK0dtBWalI4aZNHDiftAg/SebtpKXbV4SX3ArZeKYTCR7427MhErDxWkU/6m3b0y3WnkAsyGhs53gW8Qxi9FxYxDhibNuzkCbt2bE1W7PLPagTLS1bOAtwMjn6tAfqpe5uGCbFqsafjK1UlaUt2ZTVTzhxIuXnv1/Zqt4BzbjOfQkJhDdlKOKRannWJX0bFyJ6so4YIpCu8so2PIN2nofUezORNjzhDGC82UqjJXpSRik/i+1f47EH98/YTiv5VonZUOOt8L38c1gFB6tuTQ47RDDhdeIupcJag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=netapp.com; dmarc=pass action=none header.from=netapp.com;
+ dkim=pass header.d=netapp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=netapp.onmicrosoft.com; s=selector1-netapp-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Yub2Zdnl1Af/j6vo7pPrfth3s4Inj0UPjQ1YC4WrmWE=;
+ b=Tg6ZGATOvRuwcDnaoeJ9V+NL7yTtv1l2iwrNpkXQaN9IuYJMjY5Vzx8kPvQ5QFinNzNqPQf7eFw6meFA5TlbK23xv98rQufTx+Q90WbceYUPQnyhSuDJc5nt1LRdLTk1WwZ1P6g8TmXDwjVDEutT1kvQW4Ss8HCLdatm0LbbRaI=
+Received: from BL0PR06MB4370.namprd06.prod.outlook.com (10.167.241.142) by
+ BL0PR06MB5010.namprd06.prod.outlook.com (10.167.240.161) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2623.10; Tue, 14 Jan 2020 21:12:56 +0000
+Received: from BL0PR06MB4370.namprd06.prod.outlook.com
+ ([fe80::dd54:50fb:1e98:46a1]) by BL0PR06MB4370.namprd06.prod.outlook.com
+ ([fe80::dd54:50fb:1e98:46a1%6]) with mapi id 15.20.2623.017; Tue, 14 Jan 2020
+ 21:12:56 +0000
+From:   "Schumaker, Anna" <Anna.Schumaker@netapp.com>
+To:     "torvalds@linux-foundation.org" <torvalds@linux-foundation.org>
+CC:     "linux-nfs@vger.kernel.org" <linux-nfs@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: [GIT PULL] Please pull NFS over RDMA fixes for 5.5-rc7
+Thread-Topic: [GIT PULL] Please pull NFS over RDMA fixes for 5.5-rc7
+Thread-Index: AQHVyx9kMsm4XdMa3kWezrCFNNhLcA==
+Date:   Tue, 14 Jan 2020 21:12:56 +0000
+Message-ID: <e85791e49b772b5641b65c09b75fad4cee62218b.camel@netapp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.34.3 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Anna.Schumaker@netapp.com; 
+x-originating-ip: [68.32.74.190]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5addf27b-c2f5-41bf-ae4d-08d799368696
+x-ms-traffictypediagnostic: BL0PR06MB5010:
+x-microsoft-antispam-prvs: <BL0PR06MB50100C846AAEC52118D2F3B4F8340@BL0PR06MB5010.namprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:923;
+x-forefront-prvs: 028256169F
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(346002)(396003)(376002)(366004)(39860400002)(199004)(189003)(81166006)(26005)(54906003)(186003)(6916009)(4326008)(316002)(2616005)(2906002)(6486002)(86362001)(4744005)(6512007)(66446008)(71200400001)(36756003)(5660300002)(81156014)(64756008)(66476007)(66946007)(8936002)(66556008)(91956017)(76116006)(6506007)(478600001)(8676002);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR06MB5010;H:BL0PR06MB4370.namprd06.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: netapp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: YaYBpeRNWxBypLAefavrkLTYwm+M3T++6IKEQ677hWX84gaadEeGg6j+ENOj/Rd6IYDQrQ5dYTGajc1vhg57dJI/A67nKCovVMYFYOz5Ubc04ZDQjaDUkDlv+fpRex9a0911kj5TBSBrAPv2dSrozRfPTjfkPgnb8Ohg93kermsz4ae58H6/AegLkul6xJvOkokqF7oemFzHc95pKUSQnq+2zGYRRtfC0hez4IG2+Zuj8RwZGqFkQExO4eYfr6zc4aMqImxBR3uKyqgShi+hx8aQTXYT0wT8+ON9C0suc9gDPBXbvv8C2egmPgKPCannH7pCifCjK0sghop7A0zH2kjx51RbmG8HFRNoNfcXVvjvcUX2xQmeiffbSi0ymZYAY3NDxwCnwTfKRjkoftjezY1hsVxrjGq5Gpyy3qbrMexPZySkqNkhc0cLL5b4BZ2z
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <4D78F84E06986B44967E565A8448A97B@namprd06.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: netapp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5addf27b-c2f5-41bf-ae4d-08d799368696
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jan 2020 21:12:56.0780
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 4b0911a0-929b-4715-944b-c03745165b3a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: IllcVQw/AIkyVuysAxxglHcJTA4yXV/Nq5I/sH5d55cul0IpQbaad6VoKdsmjH3mes1XE7FVJzxPgKVFaIWDUw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR06MB5010
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+SGkgTGludXMsDQoNClRoZSBmb2xsb3dpbmcgY2hhbmdlcyBzaW5jZSBjb21taXQgYjNhOTg3YjAy
+NjRkM2RkYmIyNDI5M2ViZmYxMGVkZGZjNDcyZjY1MzoNCg0KICBMaW51eCA1LjUtcmM2ICgyMDIw
+LTAxLTEyIDE2OjU1OjA4IC0wODAwKQ0KDQphcmUgYXZhaWxhYmxlIGluIHRoZSBHaXQgcmVwb3Np
+dG9yeSBhdDoNCg0KICBnaXQ6Ly9naXQubGludXgtbmZzLm9yZy9wcm9qZWN0cy9hbm5hL2xpbnV4
+LW5mcy5naXQgdGFncy9uZnMtZm9yLTUuNS0yDQoNCmZvciB5b3UgdG8gZmV0Y2ggY2hhbmdlcyB1
+cCB0byA2NzFjNDUwYjZmZTA2ODBlYTFjYjFjZjE1MjZkNzY0ZmRkNWEzZDNmOg0KDQogIHhwcnRy
+ZG1hOiBGaXggb29wcyBpbiBSZWNlaXZlIGhhbmRsZXIgYWZ0ZXIgZGV2aWNlIHJlbW92YWwgKDIw
+MjAtMDEtMTQNCjEzOjMwOjI0IC0wNTAwKQ0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpUaGVzZSBhcmUgdGhyZWUgTkZT
+IG92ZXIgUkRNQSBmaXhlcyBmb3IgYnVncyBDaHVjayBmb3VuZCB0aGF0IGNhbg0KYmUgaGl0IGR1
+cmluZyBkZXZpY2UgcmVtb3ZhbC4NCg0KVGhhbmtzLA0KQW5uYQ0KDQotLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpDaHVjayBM
+ZXZlciAoMyk6DQogICAgICB4cHJ0cmRtYTogRml4IGNyZWF0ZV9xcCBjcmFzaCBvbiBkZXZpY2Ug
+dW5sb2FkDQogICAgICB4cHJ0cmRtYTogRml4IGNvbXBsZXRpb24gd2FpdCBkdXJpbmcgZGV2aWNl
+IHJlbW92YWwNCiAgICAgIHhwcnRyZG1hOiBGaXggb29wcyBpbiBSZWNlaXZlIGhhbmRsZXIgYWZ0
+ZXIgZGV2aWNlIHJlbW92YWwNCg0KIG5ldC9zdW5ycGMveHBydHJkbWEvdmVyYnMuYyAgICAgfCAy
+OSArKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLQ0KIG5ldC9zdW5ycGMveHBydHJkbWEveHBy
+dF9yZG1hLmggfCAgMiArKw0KIDIgZmlsZXMgY2hhbmdlZCwgMjQgaW5zZXJ0aW9ucygrKSwgNyBk
+ZWxldGlvbnMoLSkNCg==

@@ -1,0 +1,122 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp5219498lfj;
+        Tue, 17 Sep 2019 01:30:11 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzhRaSaQ8Tp49GC4L8aGi0BeEUo6PUoWJsHYrTkufSx+TokLlHg8U5HcurtqLi4zlCYfYpa
+X-Received: by 2002:a17:906:f2d3:: with SMTP id gz19mr3589982ejb.306.1568709011022;
+        Tue, 17 Sep 2019 01:30:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568709011; cv=none;
+        d=google.com; s=arc-20160816;
+        b=PzxaCutqTCRXkNEInhGdIb2w797u2WARlxJxfauNhvOzDFEEHAnr7L5Vxw7hIcr1vr
+         z+izhsVU8L6Xjc07hVVF2OjUhClK+X2b1hpO6sldKEDh/Safvu6JWcEPAW+yD5SqYXQO
+         9TH7huy9QeeHNwa/lX5n6mrNGvEc/872/ZgrXtw+9zbPi+q2qynojipGqOE2BkKnkTj0
+         koN2H0zFWUz1Dixsn5/L8NRPFbDVZ7UbKyvElFkCpb9QhlPFcYA0Oz++ArdVMax024fT
+         3fdyUYNN/LOQd8QGQBsvho+F1ROHhT1NtBvcQ/xZR4ItVvcLN31UeQ0/609LncrSuvMT
+         oqGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:subject:message-id:from:cc:to
+         :content-transfer-encoding:mime-version:references:in-reply-to
+         :user-agent:date:dkim-signature;
+        bh=vVkn2O/9lGVNrbPzlDo6XOPFmZ8O6RHYGV95uzIF1K4=;
+        b=b+EudbVkoC0MWOVcK0tbs5TwHJnpg/zT0sZCcjrmvMEQUUFhzXr36CFHwwTPAhe+34
+         nP046qCZcQsBXEu4daz7zdAtGlVhEVptoKB3gbSjY9gIE29NDHUI6k0q+GTjgRSltxtq
+         idbzR2EY/jwncg8Zx6kWyal5Do/ATzFV+tu8yELCvhwHGHd200AH7I5gz7fNTXjp/bdA
+         92P+f5GIhsrOaR8+Vjf3B/YUs51gsX4BqTbCzfDRLjN9E7qF374uHUF6hZ++up5r1CvP
+         Wj0PyXOmkCGHVtyn+2DhEgfMDgMnqcUWc8xVkyaWchfKr4AU4eyQDaZhOMp0UTl9/mEv
+         kMHg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@codon.org.uk header.s=63138784 header.b=xHErRN1q;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id l22si728545ejz.239.2019.09.17.01.29.47;
+        Tue, 17 Sep 2019 01:30:11 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@codon.org.uk header.s=63138784 header.b=xHErRN1q;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2391957AbfIQCHP (ORCPT <rfc822;cryosay@gmail.com> + 99 others);
+        Mon, 16 Sep 2019 22:07:15 -0400
+Received: from cavan.codon.org.uk ([93.93.128.6]:48057 "EHLO
+        cavan.codon.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728556AbfIQCHP (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 16 Sep 2019 22:07:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=codon.org.uk; s=63138784; h=Subject:Message-ID:From:CC:To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:
+        Date:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=vVkn2O/9lGVNrbPzlDo6XOPFmZ8O6RHYGV95uzIF1K4=; b=xHErRN1qIc/xI/5awjhwSFsV39
+        Jd9w5VmsEBkVcocyN4+byYKC0GvQw6HOLfxqIGFvGkmhMLkHpkK7APEYxO1WvsGH0CUhzKlGGbygr
+        RAUxRzG0L+yl27dmbBDl2HOHvXNGY76txjx0WFC6l+aRu4i59Oek1fIlAqQE5MpUQLhE=;
+Received: from 199-83-223-235.public.monkeybrains.net ([199.83.223.235] helo=[192.168.1.141])
+        by cavan.codon.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <mjg59@srcf.ucam.org>)
+        id 1iA2tG-000305-SF; Tue, 17 Sep 2019 03:06:53 +0100
+Date:   Mon, 16 Sep 2019 18:46:07 -0700
+User-Agent: K-9 Mail for Android
+In-Reply-To: <CAHk-=whfPwei+yf9vBgfSuG5HDtiYmt3nOu9Js+vkTYSrMf2ow@mail.gmail.com>
+References: <20190916042952.GB23719@1wt.eu> <CAHk-=wg4cONuiN32Tne28Cg2kEx6gsJCoOVroqgPFT7_Kg18Hg@mail.gmail.com> <20190916061252.GA24002@1wt.eu> <CAHk-=wjWSRzTjwN9F5gQcxtPkAgaRHJOOOTUjVakqP-Nzg9BXA@mail.gmail.com> <20190916172117.GB15263@mit.edu> <CAHk-=wgs65hez6ctK7J2k46BdQzvKU5avExPOTTJsZu6iqA-ow@mail.gmail.com> <20190916230217.vmgvsm6o2o4uq5j7@srcf.ucam.org> <CAHk-=whwSt4RqzqM7cA5SAhj+wkORfr1bG=+yydTJPtayQ0JwQ@mail.gmail.com> <20190916231103.bic65ab4ifv7vhio@srcf.ucam.org> <CAHk-=wjwJDznDUsiaXH=UCxFRQxNEpj2tTCa0GvZm2WB4+hJ4A@mail.gmail.com> <20190916232922.GA7880@darwi-home-pc> <CAHk-=wh2PuYtuUVt523j20cTceN+ps8UNJY=uRWQuRaDeDyLQw@mail.gmail.com> <BEF07E89-E36D-480F-AB1E-25C80C9DABE7@srcf.ucam.org> <CAHk-=whfPwei+yf9vBgfSuG5HDtiYmt3nOu9Js+vkTYSrMf2ow@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+CC:     "Ahmed S. Darwish" <darwish.07@gmail.com>,
+        "Theodore Y. Ts'o" <tytso@mit.edu>, Willy Tarreau <w@1wt.eu>,
+        Vito Caputo <vcaputo@pengaru.com>,
+        Lennart Poettering <mzxreary@0pointer.de>,
+        Andreas Dilger <adilger.kernel@dilger.ca>,
+        Jan Kara <jack@suse.cz>, Ray Strode <rstrode@redhat.com>,
+        William Jon McCann <mccann@jhu.edu>,
+        "Alexander E. Patrakov" <patrakov@gmail.com>,
+        zhangjs <zachary@baishancloud.com>, linux-ext4@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>
+From:   Matthew Garrett <mjg59@srcf.ucam.org>
+Message-ID: <C4F7DC65-50B9-4D70-8E9B-0A6FF5C1070A@srcf.ucam.org>
+X-SA-Do-Not-Run: Yes
+X-SA-Exim-Connect-IP: 199.83.223.235
+X-SA-Exim-Mail-From: mjg59@srcf.ucam.org
+Subject: Re: Linux 5.3-rc8
+X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
+X-SA-Exim-Scanned: No (on cavan.codon.org.uk); Unknown failure
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 16 September 2019 18:41:36 GMT-07:00, Linus Torvalds <torvalds@linux-fou=
+ndation=2Eorg> wrote:
+>On Mon, Sep 16, 2019 at 6:24 PM Matthew Garrett <mjg59@srcf=2Eucam=2Eorg>
+>wrote:
+>>
+>> Exactly the scenario where you want getrandom() to block, yes=2E
+>
+>It *would* block=2E Just not forever=2E
+
+It's already not forever - there's enough running in the background of tha=
+t system that it'll unblock eventually=2E=20
+
+>And btw, the whole "generate key at boot when nothing else is going
+>on" is already broken, so presumably nobody actually does it=2E
+
+If nothing ever did this, why was getrandom() designed in a way to protect=
+ against this situation?=20
+
+>See why I'm saying "hypothetical"? You're doing it again=2E
+>
+>> >Then you have to ignore the big warning too=2E
+>>
+>> The big warning that's only printed in dmesg?
+>
+>Well, the patch actually made getrandom() return en error too, but you
+>seem more interested in the hypotheticals than in arguing actualities=2E
+
+If you want to be safe, terminate the process=2E
+
+
+--=20
+Matthew Garrett | mjg59@srcf=2Eucam=2Eorg

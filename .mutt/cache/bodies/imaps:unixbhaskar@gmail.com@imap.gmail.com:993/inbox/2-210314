@@ -1,0 +1,123 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:57c1:0:0:0:0:0 with SMTP id k1csp11616272lfo;
+        Thu, 14 Nov 2019 18:28:49 -0800 (PST)
+X-Google-Smtp-Source: APXvYqy37Fz/MJeT0r5j0fDejzPVOOuO5Jji+Jy9eaoKYcJGdtOtiQiJlDczfyWWR4DuOqGt2HVW
+X-Received: by 2002:a17:906:4d58:: with SMTP id b24mr10104798ejv.277.1573784928927;
+        Thu, 14 Nov 2019 18:28:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1573784928; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Nz9RhMw5ap/kEudkAOagYGlqOCigt+Zrth6oG0vy1FCQ+2jGdg7akXCUoBUtUE+x+1
+         icyg53Qe0KIDWh38RqZoEEFqo90g49pNVcmMumbAxCEmJGfGxgDUaViMa/MxZD/9UyNm
+         yzrS3bwLS8BVvC/u8x2Hcak6GRmkHMoG+AaO9yxkpBsrVLFB87sNmSCV0SbxZYBRqetJ
+         y6kI4zHBv7/rFLW4d/fQI+4zxKqymKM+X3BgvGy9RqWea7lPB3qJE6CgI8Sj6rbRyVTy
+         vex/s3w22FsYrAIGkOzJPYJGpqwWzhV2++XGrZth+ATcqL81mhS6eb9u4ZXFAxmN3C2S
+         nftw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:to:subject:dkim-signature;
+        bh=ISaYPON1vGFntbrhcVpZEFaBbyVPL4wL9MWKN8HpUjY=;
+        b=x26HOlEt39EM6xPnMjnTX4tqiF6UX8WI2ugWhjmyjAkcnfdM3glCXMVmVlhHylVZmU
+         sQlhvN6UbYO/GeGh4QNQg/46gINtJyNtbbfNXifnPISQHSjoSNv9TV/wtgq0iOv3q3e2
+         EeFe3upGHb9uz1oIUiMfbWXtSkZTxYuh5e793y+epiopvcVB8FaXQKt0Tt/qDTDJHR2v
+         2DROWei31T4L/YOuirVRIL1vIqeDf3GAZXeFC8EOSMf69Y+oD+HUBOgYqzxA0xs2Tl/C
+         YQkY7GtjWRKujzgffKlzRJOv3TM+XUpdEDG56RaBF3qbBbFa0Wt01wSR+RhsKPwo5nSr
+         KVcQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=ooPZ7LYN;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id ck15si4775251ejb.358.2019.11.14.18.28.16;
+        Thu, 14 Nov 2019 18:28:48 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=bombadil.20170209 header.b=ooPZ7LYN;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726986AbfKOC2M (ORCPT <rfc822;unixbhaskar@gmail.com>
+        + 99 others); Thu, 14 Nov 2019 21:28:12 -0500
+Received: from bombadil.infradead.org ([198.137.202.133]:41064 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726533AbfKOC2M (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 14 Nov 2019 21:28:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:
+        Subject:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=ISaYPON1vGFntbrhcVpZEFaBbyVPL4wL9MWKN8HpUjY=; b=ooPZ7LYNuKQhHb99nuwHdi+l9
+        SAa+fsOMVzwKuwMScD+K56KNmarhjpk49l7bhWYm3a2SrR5jGVW4VP7o6iPmq0+br6/ArhoawBZOd
+        Abt15t1gMobT7dxeRwNqgOto6NocFwB98jQDuyQJl5dChxksNxW6LG07lnOblqFNYx+1vtXg07orY
+        +4RqopCsKZHw3eJhs80O18RKQ389aUbBMia0RGPeeUOkDtWqCmdt4srHdyyBL3Zr1e7kk/gHhJg9E
+        V2zaaLz49oBJPQ3ixntnMryLQsE2iZ9stFofb9dp8W5wo7Wvlo18r/YJptJpn34kgt9JnueGu9wYM
+        +BWnc2sWg==;
+Received: from [2601:1c0:6280:3f0::5a22]
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1iVRLE-0001NS-9u; Fri, 15 Nov 2019 02:28:08 +0000
+Subject: Re: mmotm 2019-11-14-17-24 uploaded (UML mm/vmalloc.c)
+To:     akpm@linux-foundation.org, broonie@kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org, linux-next@vger.kernel.org, mhocko@suse.cz,
+        mm-commits@vger.kernel.org, sfr@canb.auug.org.au,
+        richard -rw- weinberger <richard.weinberger@gmail.com>,
+        Shile Zhang <shile.zhang@linux.alibaba.com>
+References: <20191115012505.5C2YGloIj%akpm@linux-foundation.org>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <25f8266e-bba5-d3a3-00e9-d1855e5483c6@infradead.org>
+Date:   Thu, 14 Nov 2019 18:28:06 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
+MIME-Version: 1.0
+In-Reply-To: <20191115012505.5C2YGloIj%akpm@linux-foundation.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 11/14/19 5:25 PM, akpm@linux-foundation.org wrote:
+> The mm-of-the-moment snapshot 2019-11-14-17-24 has been uploaded to
+> 
+>    http://www.ozlabs.org/~akpm/mmotm/
+> 
+> mmotm-readme.txt says
+> 
+> README for mm-of-the-moment:
+> 
+> http://www.ozlabs.org/~akpm/mmotm/
+> 
+> This is a snapshot of my -mm patch queue.  Uploaded at random hopefully
+> more than once a week.
+> 
+> You will need quilt to apply these patches to the latest Linus release (5.x
+> or 5.x-rcY).  The series file is in broken-out.tar.gz and is duplicated in
+> http://ozlabs.org/~akpm/mmotm/series
+> 
+> The file broken-out.tar.gz contains two datestamp files: .DATE and
+> .DATE-yyyy-mm-dd-hh-mm-ss.  Both contain the string yyyy-mm-dd-hh-mm-ss,
+> followed by the base kernel version against which this patch series is to
+> be applied.
+
+UML on i386 has build errors (defconfig):
+
+  CC      mm/vmalloc.o
+../mm/vmalloc.c: In function ‘__purge_vmap_area_lazy’:
+../mm/vmalloc.c:1286:8: error: ‘SHARED_KERNEL_PMD’ undeclared (first use in this function); did you mean ‘PAGE_KERNEL_RO’?
+   if (!SHARED_KERNEL_PMD && boot_cpu_has(X86_FEATURE_PTI))
+        ^~~~~~~~~~~~~~~~~
+        PAGE_KERNEL_RO
+../mm/vmalloc.c:1286:8: note: each undeclared identifier is reported only once for each function it appears in
+../mm/vmalloc.c:1286:29: error: implicit declaration of function ‘boot_cpu_has’; did you mean ‘get_cpu_mask’? [-Werror=implicit-function-declaration]
+   if (!SHARED_KERNEL_PMD && boot_cpu_has(X86_FEATURE_PTI))
+                             ^~~~~~~~~~~~
+                             get_cpu_mask
+
+
+-- 
+~Randy
+

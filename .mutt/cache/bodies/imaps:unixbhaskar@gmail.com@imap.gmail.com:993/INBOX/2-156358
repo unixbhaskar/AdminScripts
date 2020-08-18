@@ -1,0 +1,241 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.194.70.3 with SMTP id i3csp6288519wju;
+        Sun, 3 Jan 2016 20:49:48 -0800 (PST)
+X-Received: by 10.50.61.209 with SMTP id s17mr78886963igr.40.1451882988694;
+        Sun, 03 Jan 2016 20:49:48 -0800 (PST)
+Return-Path: <bhaskar.chowdhury@heymath.com>
+Received: from mail-ig0-x234.google.com (mail-ig0-x234.google.com. [2607:f8b0:4001:c05::234])
+        by mx.google.com with ESMTPS id b67si38418545ioj.123.2016.01.03.20.49.48
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 03 Jan 2016 20:49:48 -0800 (PST)
+Received-SPF: softfail (google.com: domain of transitioning bhaskar.chowdhury@heymath.com does not designate 2607:f8b0:4001:c05::234 as permitted sender) client-ip=2607:f8b0:4001:c05::234;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning bhaskar.chowdhury@heymath.com does not designate 2607:f8b0:4001:c05::234 as permitted sender) smtp.mailfrom=bhaskar.chowdhury@heymath.com;
+       dkim=pass header.i=@heymath-com.20150623.gappssmtp.com
+Received: by mail-ig0-x234.google.com with SMTP id to18so213288213igc.0
+        for <unixbhaskar@gmail.com>; Sun, 03 Jan 2016 20:49:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=heymath-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :cc:content-type;
+        bh=UBDT3m/1PrIxWf+4Ix6KLpYkOX3x7qCtkpOz4l/poiY=;
+        b=tGe/jhoxKh8a0+zjSjgIM5TxPOAoIih8DAUtiGU/ru3mE9iv6h1x6VkwoaSo55bXG6
+         SRZHJoIRMpWU8VeJlT09elZiG08m+G3U41dmzBeGldLy6Igl/v0jvzi7dIoD6hhZtQ7D
+         jEYFZZjAJ+Nz30v+T15IgfzvTNaupLpKNkOdajQyoL+U74LLyHVH/8yarADwmNiDDHwB
+         bUgClnC8jknzfzwk5P7Pw8rbEoxeaiwGPEObrb5o0tjSg/vgsdMs7ZURK0LSWX6Q4dZB
+         KVDereHv7KCu3M6QXXwFBW/z/5/oHZS+zrXNkNFg36/4rEWqR6iK62r3iHulWCWYyc0x
+         Q+sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:in-reply-to:references:date
+         :message-id:subject:from:to:cc:content-type;
+        bh=UBDT3m/1PrIxWf+4Ix6KLpYkOX3x7qCtkpOz4l/poiY=;
+        b=W+m5boeZS+4hSN6AGW7q8yHOTmrTu/Chip1spDhy4YyYll2GwDrKntR/T7IzxCUJxp
+         nJ4X+vXEV91SHr6irla/5lkxZ2RgcPvvj0qf67GQH8aoNjh1jMdgN+ZM97Nb4s0HE3S/
+         4g2sYK+M5lT2IYKJEZzlMAeZENTUovCIW6N9m+lICpvkDMxK4RzVwKCFT4OiIx+qiM3T
+         22l8mdo20I/CLLIwy0Jqei/toeVnYPY013VoO6fel7zw3HkBG3jWeJiy4QvTmSb0mPga
+         yis4DAU1ybNi35Cpj+zlvDIgVZw/pU6QSMydcPaUs0MW3kB0v0hZ1fnqRST0xHYeE8lO
+         O9Ng==
+X-Gm-Message-State: ALoCoQm/EtR1+s7w03HD2hXm56+QhVvHm+O6/dOSCzyok+aRa8gdKqZXa5VhV3cPnY9qmDKaPKj0rnZdpAVEigh5GejWMlYPrg==
+MIME-Version: 1.0
+X-Received: by 10.50.61.132 with SMTP id p4mr81437441igr.55.1451882988384;
+ Sun, 03 Jan 2016 20:49:48 -0800 (PST)
+Received: by 10.50.241.18 with HTTP; Sun, 3 Jan 2016 20:49:48 -0800 (PST)
+In-Reply-To: <003b01d146a9$ea30d060$be927120$@heymath.com>
+References: <003b01d146a9$ea30d060$be927120$@heymath.com>
+Date: Mon, 4 Jan 2016 10:19:48 +0530
+Message-ID: <CADA2Kr=FG8dUHc_2DeXW-0G2682qVfPDExU294L0GN6pcLR6kA@mail.gmail.com>
+Subject: Re: FW: Consulting Agreement with HeyMath!
+From: Bhaskar Chowdhury <bhaskar.chowdhury@heymath.com>
+To: Sivakumar <sivakumar.p@heymath.com>
+Cc: Bhaskar Chowdhury <unixbhaskar@gmail.com>, 
+	Ranjan Ray Chaudhuri <ranjanray.chaudhuri1@heymath.com>, Alok Panda <alok.panda@heymath.com>
+Content-Type: multipart/alternative; boundary=047d7bdc15eac7516505287ad910
+
+--047d7bdc15eac7516505287ad910
+Content-Type: text/plain; charset=UTF-8
+
+Ah..the idea is not so vivid to me.It seems you guys needs to think clear
+and straight.
+
+
+
+Thanks,
+Bhaskar
+
+Consultant GNU/Linux and Infrastructure
+http://www.catb.org/~esr/faqs/smart-questions.html#intro
+
+Musing with GNU/Linux!!
+
+Blog : https://unixbhaskar.wordpress.com
+Blog : http://unixbhaskar.blogspot.in
+Hand Phone: 9940290893
+
+*Sankhyaa Learning (P) Ltd. - **Hey**Math!*
+Steeple Reach, 1st Floor, 25, Cathedral Road, Chennai - 600086.
+
+On Mon, Jan 4, 2016 at 10:09 AM, Sivakumar <sivakumar.p@heymath.com> wrote:
+
+> Dear Bhaskar
+>
+>
+>
+> We would like to extend the Consulting agreement till the end of this
+> January 2016 (29th January).
+>
+>
+>
+> Further details about handover and knowledge transfer will be explained by
+> Alok.
+>
+>
+>
+> Thanks,
+>
+> Sivakumar
+>
+>
+>
+> *From:* Sivakumar [mailto:sivakumar.p@heymath.com
+> <sivakumar.p@heymath.com>]
+> *Sent:* 30 September 2015 12:24
+> *To:* unixbhaskar@gmail.com
+> *Cc:* Ranjan Ray Chaudhuri (ranjanray.chaudhuri@heymath.com);
+> alok.panda@heymath.com
+> *Subject:* Consulting Agreement with HeyMath!
+>
+>
+>
+> Dear Bhaskar,
+>
+>
+>
+> Please find the scanned copy of Consulting agreement along with NDA
+> attached herewith. Kindly acknowledge your acceptance by signing and
+> sending across the scanned copy of the Agreement.
+>
+>
+>
+> All the Best!
+>
+>
+>
+> Rgds
+> Sivakumar
+> Senior Executive - Human Capital Mgt
+> +91 96267 18422 M
+> sivakumar.p@heymath.com <cynthia.pramola@heymath.com>
+>
+> *HeyMath!*
+> Sankhyaa Learning  (P) Ltd.
+> Steeple Reach, 1st Floor,
+> 25, Cathedral Road,
+> Chennai 600086, INDIA
+> www.heymath.com
+>
+>
+>
+>
+>
+
+--047d7bdc15eac7516505287ad910
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Ah..the idea is not so vivid to me.It seems you guys =
+needs to think clear and straight.<br><br></div><br></div><div class=3D"gma=
+il_extra"><br clear=3D"all"><div><div class=3D"gmail_signature"><div dir=3D=
+"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div>Thanks,<br></di=
+v>Bhaskar<br><br>Consultant GNU/Linux and Infrastructure<br><a href=3D"http=
+://www.catb.org/~esr/faqs/smart-questions.html#intro" target=3D"_blank">htt=
+p://www.catb.org/~esr/faqs/smart-questions.html#intro</a><br><br></div>Musi=
+ng with GNU/Linux!!<br><br></div><div>Blog : <a href=3D"https://unixbhaskar=
+.wordpress.com" target=3D"_blank">https://unixbhaskar.wordpress.com</a><br>=
+</div><div>Blog : <a href=3D"http://unixbhaskar.blogspot.in" target=3D"_bla=
+nk">http://unixbhaskar.blogspot.in</a><br></div><div>Hand Phone: 9940290893=
+<br></div><div dir=3D"ltr"><br><b style=3D"color:rgb(80,0,80)"><span style=
+=3D"font-size:11pt;font-family:Calibri,sans-serif;color:navy">Sankhyaa Lear=
+ning (P) Ltd. -=C2=A0</span></b><b style=3D"color:rgb(80,0,80)"><span style=
+=3D"font-family:&quot;Arial Narrow&quot;,sans-serif;color:rgb(153,51,0)">He=
+y</span></b><b style=3D"color:rgb(80,0,80)"><span style=3D"font-family:&quo=
+t;Arial Narrow&quot;,sans-serif;color:rgb(0,51,102)">Math!</span></b><span =
+style=3D"color:navy;font-size:10pt;font-family:Calibri,sans-serif"></span><=
+span style=3D"font-size:10pt;font-family:Calibri,sans-serif"><font color=3D=
+"#674ea7"><br>Steeple Reach, 1st Floor, 25, Cathedral Road, Chennai - 60008=
+6.</font></span><br></div></div></div></div></div></div></div>
+<br><div class=3D"gmail_quote">On Mon, Jan 4, 2016 at 10:09 AM, Sivakumar <=
+span dir=3D"ltr">&lt;<a href=3D"mailto:sivakumar.p@heymath.com" target=3D"_=
+blank">sivakumar.p@heymath.com</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div link=3D"blue" vlink=3D"purple" lang=3D"EN-IN"><div><p cl=
+ass=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,&quot;sans-serif&quot;;color:#1f497d">Dear Bhaskar<u></u><u></u></sp=
+an></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&=
+quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></=
+u></span></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-fa=
+mily:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">We would lik=
+e to extend the Consulting agreement till the end of this January 2016 (29<=
+sup>th</sup> January). <u></u><u></u></span></p><p class=3D"MsoNormal"><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-seri=
+f&quot;;color:#1f497d"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal=
+"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;san=
+s-serif&quot;;color:#1f497d">Further details about handover and knowledge t=
+ransfer will be explained by Alok.<u></u><u></u></span></p><p class=3D"MsoN=
+ormal"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quo=
+t;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></span></p><p class=
+=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&qu=
+ot;,&quot;sans-serif&quot;;color:#1f497d">Thanks,<u></u><u></u></span></p><=
+p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Sivakumar<u></u><u></u></s=
+pan></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:=
+&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u><=
+/u></span></p><div><div style=3D"border:none;border-top:solid #b5c4df 1.0pt=
+;padding:3.0pt 0cm 0cm 0cm"><p class=3D"MsoNormal"><b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;" lang=3D"E=
+N-US">From:</span></b><span style=3D"font-size:10.0pt;font-family:&quot;Tah=
+oma&quot;,&quot;sans-serif&quot;" lang=3D"EN-US"> Sivakumar [<a href=3D"mai=
+lto:sivakumar.p@heymath.com" target=3D"_blank">mailto:sivakumar.p@heymath.c=
+om</a>] <br><b>Sent:</b> 30 September 2015 12:24<br><b>To:</b> <a href=3D"m=
+ailto:unixbhaskar@gmail.com" target=3D"_blank">unixbhaskar@gmail.com</a><br=
+><b>Cc:</b> Ranjan Ray Chaudhuri (<a href=3D"mailto:ranjanray.chaudhuri@hey=
+math.com" target=3D"_blank">ranjanray.chaudhuri@heymath.com</a>); <a href=
+=3D"mailto:alok.panda@heymath.com" target=3D"_blank">alok.panda@heymath.com=
+</a><br><b>Subject:</b> Consulting Agreement with HeyMath!<u></u><u></u></s=
+pan></p></div></div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=
+=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&qu=
+ot;,&quot;sans-serif&quot;">Dear Bhaskar,<u></u><u></u></span></p><p class=
+=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&qu=
+ot;,&quot;sans-serif&quot;"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoN=
+ormal"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quo=
+t;sans-serif&quot;">Please find the scanned copy of Consulting agreement al=
+ong with NDA attached herewith. Kindly acknowledge your acceptance by signi=
+ng and sending across the scanned copy of the Agreement.<u></u><u></u></spa=
+n></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&q=
+uot;Calibri&quot;,&quot;sans-serif&quot;"><u></u>=C2=A0<u></u></span></p><p=
+ class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cali=
+bri&quot;,&quot;sans-serif&quot;">All the Best!<u></u><u></u></span></p><p =
+class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Calib=
+ri&quot;,&quot;sans-serif&quot;"><u></u>=C2=A0<u></u></span></p><p class=3D=
+"MsoNormal">Rgds<br><span style=3D"font-size:10.0pt;font-family:&quot;Arial=
+&quot;,&quot;sans-serif&quot;">Sivakumar<br></span><span style=3D"font-size=
+:9.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Senior Executi=
+ve - Human Capital Mgt<br>+91 96267 18422 M<br></span><a href=3D"mailto:cyn=
+thia.pramola@heymath.com" target=3D"_blank"><span style=3D"font-size:9.0pt"=
+>sivakumar.p@heymath.com</span></a><span style=3D"font-size:9.0pt;font-fami=
+ly:&quot;Arial&quot;,&quot;sans-serif&quot;"><br></span><span style=3D"font=
+-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;"><br><b><=
+span style=3D"color:#ff6600">Hey</span><span style=3D"color:#3333ff">Math!<=
+/span></b><br></span><span style=3D"font-size:9.0pt;font-family:&quot;Arial=
+&quot;,&quot;sans-serif&quot;">Sankhyaa Learning =C2=A0(P) Ltd.<br>Steeple =
+Reach, 1st Floor,<br>25, Cathedral Road,<br>Chennai 600086, INDIA<br></span=
+><a href=3D"http://www.heymath.com" target=3D"_blank"><span style=3D"font-s=
+ize:9.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">www.heymath=
+.com</span></a><span style=3D"color:black"><u></u><u></u></span></p><p clas=
+s=3D"MsoNormal"><span style=3D"color:#1f497d"><u></u>=C2=A0<u></u></span></=
+p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;=
+Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></s=
+pan></p></div></div></blockquote></div><br></div>
+
+--047d7bdc15eac7516505287ad910--

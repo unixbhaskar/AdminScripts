@@ -1,0 +1,111 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp921758lfk;
+        Fri, 29 May 2020 16:56:52 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy4ydlXY5d4J6ogEHF05Ku9PZE+E+gZOlFyAaVCcgqzQjXHdcLTMzfBCg6sFRxdQodLt1wH
+X-Received: by 2002:aa7:d90e:: with SMTP id a14mr10672708edr.284.1590796612616;
+        Fri, 29 May 2020 16:56:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590796612; cv=none;
+        d=google.com; s=arc-20160816;
+        b=oXWsVqND29yW1VfezjrstD9Aqg1WZ/QF6JAeZGEiuXUAYi7jIgKgnj7Jt8RxrMZcVs
+         iZDnFKAnCK6dBpH3zRLy9Zni7+3c7erAlRqHoKYICnbDia5bQ5PXgvuPlwEhnVSFLAD0
+         v7eHm6MijfvCwS8cm2wGy45Ymupc8X7BWetkJmsU1fDQgWjQA8eprAvSQh5ewU1m43ll
+         K8MD/lNlKJKB1S1RP99VqUcv5BQWlDdDi+uyVGEc3rd9RzKkvHDT3Xz+MqX5s6Y93wVS
+         QOEc2WjFi5SxykwBGpLfkOvFN1myFeeCeCRBvW41Pf7TrvbeYAPxRd9RxS2Ls7tVcZPY
+         +C8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=5/D552LPCtYn3hG6mSDy6RFyAOe2Q9CIedgAxscSO/w=;
+        b=Ydd1BOYAR30BB9hN3iRCKNR1GKezrpO0qM8Unx/LHVmLfws45/w6mdV6VYx2FuPTKY
+         EtjtMaRBKywZjdTmU7ElZw7zk99nR2DVfbWI70GOMQfaE4Xv9DUmuhZtxGXudeLC+Dsw
+         3dfhQAzvvnDkiNaYfNRnVx4NbPybSXXEXJTvLnbMxf7i8f3NNyktJ05DiljARrzQVIOC
+         EaS6dNmCfgUqlQ+gqCH/o2DfLGxGVFoe1STQ9JGuRpMDz8vLsELZygFGyZVBFGCmlxue
+         KHPBTH47P6bc9pgbr6sqTrPukRh5Md+Ho0VEQqd/tYyFgenOdro6rrHpkgzIWyRBVicm
+         4qxA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=TrTI7pxg;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id x16si6869058ejc.712.2020.05.29.16.56.29;
+        Fri, 29 May 2020 16:56:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=TrTI7pxg;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728499AbgE2Xyz (ORCPT <rfc822;rfried.dev@gmail.com>
+        + 99 others); Fri, 29 May 2020 19:54:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728293AbgE2Xyy (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 29 May 2020 19:54:54 -0400
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84089C03E969
+        for <linux-kernel@vger.kernel.org>; Fri, 29 May 2020 16:54:54 -0700 (PDT)
+Received: by mail-lj1-x244.google.com with SMTP id k5so1287923lji.11
+        for <linux-kernel@vger.kernel.org>; Fri, 29 May 2020 16:54:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5/D552LPCtYn3hG6mSDy6RFyAOe2Q9CIedgAxscSO/w=;
+        b=TrTI7pxgWN2mRJvQkgrZJSOALr9y0VXSLbhGTXjJTOtPxbRpbuM221ekLHghLwRPKc
+         4yruvpBjvjMt7Oc/t4BfFsds7Qc0MkS9/2zCmCg1DGzxkyZxxItJlKqSru+OURADfLEF
+         pbowajAyg5bitEYsnjEo+hF/SUbK91s47IjLc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5/D552LPCtYn3hG6mSDy6RFyAOe2Q9CIedgAxscSO/w=;
+        b=kjcRzIcyeOJJ4EYvbR3dTD0ecya76E/YFpJl+8B7iPM1pnul/pas6WHhrIlG0CEeYf
+         NXyNjI7Bh3xu26fD8hrCQd1Xkw6/fEXIbngBAml5iTdGBEJgIV6w/JCfUsXPIz4nz5Gq
+         z8x7cJaf3hFKbhRpPfNleMIY003VGmzk1XXMvwQooTe6UW3AAOQdP2m19gMeQynk4Ioh
+         AEHCEWT8t0qLZmCYZUF7xedHr65ZbjYh+g+SDJGQDNLYUkje6E18OgTrcBqQnWckl4we
+         X3qIpuyhVNzLKH5TgEdvsMzfOflRg5X7obtHPp8bXssJlrHjPlSIofqgFW0q/g1KtzHj
+         h8kg==
+X-Gm-Message-State: AOAM530mLNE/OXxaX3IwY3+UlMvjsVUVq6WteF/B3XcPihG75kpSuQwj
+        Rmc7B7D/DmkXPBXfLBO5bwz0Q84fIY8=
+X-Received: by 2002:a2e:9455:: with SMTP id o21mr5259959ljh.415.1590796492507;
+        Fri, 29 May 2020 16:54:52 -0700 (PDT)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
+        by smtp.gmail.com with ESMTPSA id z13sm2585810lfd.7.2020.05.29.16.54.51
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 May 2020 16:54:51 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id c11so1352725ljn.2
+        for <linux-kernel@vger.kernel.org>; Fri, 29 May 2020 16:54:51 -0700 (PDT)
+X-Received: by 2002:a2e:b16e:: with SMTP id a14mr4908890ljm.70.1590796491384;
+ Fri, 29 May 2020 16:54:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200528234025.GT23230@ZenIV.linux.org.uk> <20200529232615.GK23230@ZenIV.linux.org.uk>
+In-Reply-To: <20200529232615.GK23230@ZenIV.linux.org.uk>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Fri, 29 May 2020 16:54:35 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgzwp5U4csNhy6rz6CF6tDrnoNOM0tzg_6GhrCzBNRjXQ@mail.gmail.com>
+Message-ID: <CAHk-=wgzwp5U4csNhy6rz6CF6tDrnoNOM0tzg_6GhrCzBNRjXQ@mail.gmail.com>
+Subject: Re: [PATCHES] uaccess misc
+To:     Al Viro <viro@zeniv.linux.org.uk>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-fsdevel <linux-fsdevel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, May 29, 2020 at 4:26 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
+>
+> The stuff that doesn't fit anywhere else.  Hopefully
+> saner marshalling for weird 7-argument syscalls (pselect6()),
+
+That looked fine to me, btw. Looks like an improvement even outside
+the "avoid __get_user()" and double STAC/CLAC issue.
+
+> low-hanging fruit in several binfmt, unsafe_put_user-based
+> x86 cp_stat64(), etc. - there's really no common topic here.
+
+My only complaint was that kvm thing that I think should have gone even further.
+
+           Linus

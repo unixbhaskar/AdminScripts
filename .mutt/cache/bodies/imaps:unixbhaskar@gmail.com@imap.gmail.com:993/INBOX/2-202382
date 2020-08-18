@@ -1,0 +1,101 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp1822176lfj;
+        Sun, 22 Sep 2019 12:09:53 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzACHFSDBndwCyVyuIM+k5cm93inQNRDD5iFgMBJesZuWpCe55sn+Iuss3DB6SD6oDXVwKI
+X-Received: by 2002:a05:6402:1adc:: with SMTP id ba28mr34545769edb.103.1569179393687;
+        Sun, 22 Sep 2019 12:09:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1569179393; cv=none;
+        d=google.com; s=arc-20160816;
+        b=UyIfV0imYhYXkHc5gaEPFWHOl/+YPedKzubKufoZDyY4EaSm+RBelLBeH7BX160qKJ
+         uFhDRwHdEgTrlGozVt01zxZogAKSTJpIHD7Tcw3jFoTuVeP2Gt2EL36F+Uu5g32rdRx7
+         EEZHhdT5CG2LcfXGdO8t1lsGXnOdX5URtRXdRKXV6LjDJ9ra62OUBfmdTghFk3EaMmZb
+         Phhv6f26bjBrhzYm7mpqa5mYFOtfFEuI2HF0MmKuOjJpoAQlHiwknZN+EsH2FKYAec+H
+         66hhTatD4FB3IdXODGofZ4pccyBDjCnXnGrb0v8L3Ia0325vUkJErZ1nhZz48oJoGt/J
+         qkOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date;
+        bh=N7wNxfmxFLaa4FpQSSKwahir2bW8+rB8aUacYFRmVkg=;
+        b=uS1+k4RzIQ0GROsPijaWWZyCTZX9U9UtDh3ZkFN6pd8En/36neVtCJB3RShgXAT5zz
+         jsfM2yODMOV4sQJxew0q8ffPhqdHET8Sf0AQVsbzkcxsGtwlsJLrUiaPqtp5XhwnDWyl
+         N7yIpy6bbXH6Mkz5fI4XkCxlsZQhnuooCww7/yXok9j9A20l2EISLMTZsCAdb6GnXBjv
+         2NUeH7z5FlQdbtxMtIV/4+S7lZmWKUHxC6hp6aUtBb/tsC/QcuxIskIzutTcSigGVWOW
+         yRr/t3d0aU3HWixidNy4kIi6YfBlfXgzMoze/qPbv5YttjgwLXFMVKi2MJIIOHOugE52
+         thWw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id a30si5527300eda.39.2019.09.22.12.09.29;
+        Sun, 22 Sep 2019 12:09:53 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2407082AbfITXMe (ORCPT <rfc822;hari.prasath50250@gmail.com>
+        + 99 others); Fri, 20 Sep 2019 19:12:34 -0400
+Received: from zeniv.linux.org.uk ([195.92.253.2]:44278 "EHLO
+        ZenIV.linux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407072AbfITXMe (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 20 Sep 2019 19:12:34 -0400
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.2 #3 (Red Hat Linux))
+        id 1iBS4n-0003Hd-G9; Fri, 20 Sep 2019 23:12:33 +0000
+Date:   Sat, 21 Sep 2019 00:12:33 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org
+Subject: [RFC] microoptimizing hlist_add_{before,behind}
+Message-ID: <20190920231233.GP1131@ZenIV.linux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.12.0 (2019-05-25)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+	Neither hlist_add_before() nor hlist_add_behind() should ever
+be called with both arguments pointing to the same hlist_node.
+However, gcc doesn't know that, so it ends up with pointless reloads.
+AFAICS, the following generates better code, is obviously equivalent
+in case when arguments are different and actually even in case when
+they are same, the end result is identical (if the hlist hadn't been
+corrupted even earlier than that).
+
+	Objections?
+
+Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+---
+diff --git a/include/linux/list.h b/include/linux/list.h
+index 85c92555e31f..aee8232e6827 100644
+--- a/include/linux/list.h
++++ b/include/linux/list.h
+@@ -793,21 +793,21 @@ static inline void hlist_add_head(struct hlist_node *n, struct hlist_head *h)
+ static inline void hlist_add_before(struct hlist_node *n,
+ 					struct hlist_node *next)
+ {
+-	n->pprev = next->pprev;
++	struct hlist_node *p = n->pprev = next->pprev;
+ 	n->next = next;
+ 	next->pprev = &n->next;
+-	WRITE_ONCE(*(n->pprev), n);
++	WRITE_ONCE(*p, n);
+ }
+ 
+ static inline void hlist_add_behind(struct hlist_node *n,
+ 				    struct hlist_node *prev)
+ {
+-	n->next = prev->next;
++	struct hlist_node *p = n->next = prev->next;
+ 	prev->next = n;
+ 	n->pprev = &prev->next;
+ 
+-	if (n->next)
+-		n->next->pprev  = &n->next;
++	if (p)
++		p->pprev  = &n->next;
+ }
+ 
+ /* after that we'll appear to be on some hlist and hlist_del will work */

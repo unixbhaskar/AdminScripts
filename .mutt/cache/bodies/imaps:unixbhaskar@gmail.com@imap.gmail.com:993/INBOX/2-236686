@@ -1,0 +1,122 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp1806lfg;
+        Thu, 30 Apr 2020 16:46:05 -0700 (PDT)
+X-Google-Smtp-Source: APiQypIYOH202fIdMSNzrbc0KsirbBJv3z65K7iONamH7ZXdW9APX71omwz6YnXLsz24OrVE24+t
+X-Received: by 2002:a17:906:78c:: with SMTP id l12mr802970ejc.189.1588290365113;
+        Thu, 30 Apr 2020 16:46:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1588290365; cv=none;
+        d=google.com; s=arc-20160816;
+        b=bJpckzTpgffuVerzbz5ID5KaphH8XT21SoATKe96jvl6GGwvW/jQmak0a6LbZbklrq
+         BM+AuYVkwBxiMnCw1CPGIMvf4m9EbVYAwdpR2fEsxkAvQqHXX5dwLq2nhLp24T4K/C71
+         rxxLZj5sTBQQ5WEli6kh+djm2hBks9N7BZa0l4OzgmPoe+hZTjG7osm6Gj+9UkmwAbJf
+         lphgfkcMSbJ0dmfhqaWXacGxwO9FLL55TFR7Wx2HC19uMEkXXhkW60mlDvj5GVsVvbys
+         Ai64h36oi26su8gLYXgg2BYY8jcd8WYxM4e6qTsQMVbrtvwFyJfj0S1rZtmRomkIYA+Z
+         O33Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=05oH2K+vg7L8+W/HnHl99DKxppRnrgZq0ok6k+htQb4=;
+        b=JDkBGZxRKW7x1asDBqXzBv9O/Pn5ocEdabHGEFhFmh91vqeIUxDJyLwwM+AL0lkjdE
+         Hg2ZtMzsBTJyWk8PRO7xOa9/dp4BBF5vfaUTMudj5IUEv8S3vSwhhX0y0PI3fnXa0M4b
+         3Ugz5HbsTqeVEYP4hw8ZW2IjRhDchhCJWag9eyjU3P3OoyLAHQUOYCeRlbfMCqD1Nuof
+         ica38hiZbX+YFKGvBa0LPq/7iKzvxUSj5N0LE/g3tNcB8i9vgVVDU1RsxnLQXDaHLuzN
+         fiXWaeZiwTdOkJHwxxgAeFc4aBsr6khxpFs28Hzy/VUgYSwEbd4KpensU7WTAQUEAI3H
+         TsmA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=XzR5U2YY;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id n8si637939edt.33.2020.04.30.16.45.26;
+        Thu, 30 Apr 2020 16:46:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=XzR5U2YY;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727869AbgD3Xne (ORCPT <rfc822;robby.willer@gmail.com>
+        + 99 others); Thu, 30 Apr 2020 19:43:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35052 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726473AbgD3Xnd (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Thu, 30 Apr 2020 19:43:33 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D255EC035494
+        for <linux-kernel@vger.kernel.org>; Thu, 30 Apr 2020 16:43:31 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id v28so2710807lfp.6
+        for <linux-kernel@vger.kernel.org>; Thu, 30 Apr 2020 16:43:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=05oH2K+vg7L8+W/HnHl99DKxppRnrgZq0ok6k+htQb4=;
+        b=XzR5U2YYxGN3xRIy/aE1u4RGhXZsY5P7C3x/9LAExW27SSRvRKmF6+7yld5rqLUCv5
+         M+dioQa6yfzUT++eQic0svhLMLCzka1EJVAEfccNUEanl2fjcKkS8eyuWdKS+/VR23fR
+         Rs2nhDJNGyWO2uVcPFWhrX9jZNEPFduLjHMXU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=05oH2K+vg7L8+W/HnHl99DKxppRnrgZq0ok6k+htQb4=;
+        b=ngeGCHDx7mMW/5R4B7bdz2XpjW+4iaOWIMFesPtY9iV3mhxicQDi+7wf62XBeQYMIl
+         PUNtRCVZs+ddOnbmdAmuYj7rHfiZaLKZpzR+duT1ehw+6ZcOo7uc1NkuB2XlxyIKgtDI
+         kQrUmxaj7x7YZIk0en239Dxk9npNvBUgaX1cAdqGPqRkjfBQ3i1fkRgjX58Hhge+bGIq
+         tOYCEbShYTlISPvhvPxNiufSMfSlopdnfen3LpmUATuD5961WLpaL3e4PBpbllEWEPTo
+         aFflRixsZQX4WKnrSUGWhswCEH8a+AMohEotnRRZBK8jCa9y9Pz4ylLHEEmb1dIC88bg
+         ypRg==
+X-Gm-Message-State: AGi0PuahTEf0cHtYa0hXvnaFUCSL++f7+PGg85/whSUqNx1k1ZgT1D7n
+        pclOEtsJ1u+Np9CaXkXwvQiExqYKiQY=
+X-Received: by 2002:a19:6b03:: with SMTP id d3mr681406lfa.209.1588290209667;
+        Thu, 30 Apr 2020 16:43:29 -0700 (PDT)
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com. [209.85.167.44])
+        by smtp.gmail.com with ESMTPSA id a10sm856570ljp.16.2020.04.30.16.43.28
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Apr 2020 16:43:28 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id d25so2708403lfi.11
+        for <linux-kernel@vger.kernel.org>; Thu, 30 Apr 2020 16:43:28 -0700 (PDT)
+X-Received: by 2002:ac2:4da1:: with SMTP id h1mr692273lfe.152.1588290208226;
+ Thu, 30 Apr 2020 16:43:28 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAHC9VhTu3YWPmwtA7RERHDRhQt0wAkmN4GJCmaRY7KSFRwtACQ@mail.gmail.com>
+In-Reply-To: <CAHC9VhTu3YWPmwtA7RERHDRhQt0wAkmN4GJCmaRY7KSFRwtACQ@mail.gmail.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Thu, 30 Apr 2020 16:43:12 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whGjVLwTnYT8euAb_Lzqxd=-TFnJU-k2uu+Fn_hBfMc+w@mail.gmail.com>
+Message-ID: <CAHk-=whGjVLwTnYT8euAb_Lzqxd=-TFnJU-k2uu+Fn_hBfMc+w@mail.gmail.com>
+Subject: Re: [GIT PULL] SELinux fixes for v5.7 (#2)
+To:     Paul Moore <paul@paul-moore.com>
+Cc:     selinux@vger.kernel.org,
+        LSM List <linux-security-module@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Thu, Apr 30, 2020 at 2:24 PM Paul Moore <paul@paul-moore.com> wrote:
+>
+> Two more SELinux patches to fix problems in the v5.7-rcX releases.
+> Wei Yongjun's patch fixes a return code in an error path, and my patch
+> fixes a problem where we were not correctly applying access controls
+> to all of the netlink messages in the netlink_send LSM hook.
+
+Side note: could we plan on (not for 5.7, but future) moving the "for
+each message" part of that patch into the generic security layer (ie
+security_netlink_send()), so that if/when other security subsystems
+start doing that netlink thing, they won't have to duplicate that
+code?
+
+Obviously the "for each message" thing should only be done if there is
+any security  hook at all..
+
+Right now selinux is the only one that does this, so there's no
+duplication of effort, but it seems a mistake to do this at the
+low-level security level.
+
+Or is there some fundamental reason why a security hook would want to
+look at a single skb rather than the individual messages?
+
+                Linus

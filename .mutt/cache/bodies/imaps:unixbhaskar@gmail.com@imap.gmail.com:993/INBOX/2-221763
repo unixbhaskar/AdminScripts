@@ -1,0 +1,101 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp5253177lfc;
+        Tue, 4 Feb 2020 05:48:16 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwgY7ZklP85+x37wVQq+QNntCdnRVQ71dOtzwuLVTm9A5yS2KqPMIRO/0SaP9snxqCAixd+
+X-Received: by 2002:a05:6830:112:: with SMTP id i18mr3226555otp.253.1580824096095;
+        Tue, 04 Feb 2020 05:48:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580824096; cv=none;
+        d=google.com; s=arc-20160816;
+        b=lPJA+pSvxoeOnwmTHkjuzGKeYNd6Xjzyxnm2AI3RoiqSMbmnAsDtpiSKlFdBkO9pZF
+         ezCJz8napDJdLIBtnA7xuJ0ZY5VxlTxrPTsuBk086daOo0EufbQ3BKJNR0Q6Gbekapxh
+         lq/1oz5m0SJ4a/R2MkuLZndfkNdvCCSI8633LZgZz3swTFfZteo4JGqLKrW5plg8VWtC
+         SItf3JuJ1DK7t94vEGCP+B2eCzciIx1YyrmNXiM/IjqzPTKUlS/BFtgNzYXTSzocOC7I
+         LDc9L3s6dy0GG8H5kRsu1fH7OUpaOIyZwiEPRpZBEuBXqEko4xkW7Qm68Bv8ByFIO9sa
+         7CFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :references:in-reply-to:message-id:subject:cc:to:from:date;
+        bh=fch1m3Tb9hjuyUI0z0irTCbJeVmPjWJ0XEkXAj7eyPs=;
+        b=wfR34Sfhy2DpePBUtjZqf++CXcMk+v6TO2+GLtWLtAo8FnjLy9tI3MPADk4zrkVJUU
+         /LTuZ8Jv/ihdSwRfmZ1u47BVXNbXxfSjfROnm+jbElzLOMiCw7S9wkMYmxRmEaqnRFLL
+         modwbmuH4ahDNfAEoErKGUo3rF3id2uJYzpKf6yS0XBmHSOdt0S+vOxNSLStjrLQtwgW
+         M1A4aZO4Ob//zqD7C8M/qmcfr+kbl+Wz140x/ppGSdngEFB6GMTckjRdgdSSZectaMLt
+         bY2zz37gkG6FXHJ77qyOgJj6rEfuiA3bu6pkbdWhdIGjqhQj4Z2AdE5UhV1qMolW7OsK
+         ukow==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id l21si11092120oic.126.2020.02.04.05.48.04;
+        Tue, 04 Feb 2020 05:48:16 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727303AbgBDNqu (ORCPT <rfc822;l814699480@gmail.com>
+        + 99 others); Tue, 4 Feb 2020 08:46:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46422 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727183AbgBDNqt (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 4 Feb 2020 08:46:49 -0500
+Received: from oasis.local.home (unknown [212.187.182.164])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9E7D320730;
+        Tue,  4 Feb 2020 13:46:47 +0000 (UTC)
+Date:   Tue, 4 Feb 2020 08:46:42 -0500
+From:   Steven Rostedt <rostedt@goodmis.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Tom Zanussi <zanussi@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>
+Subject: Re: [GIT PULL] tracing: Changes for 5.6
+Message-ID: <20200204084642.450b6ebd@oasis.local.home>
+In-Reply-To: <CAHk-=wg2Wk9ZgVBDCBHa3-b0fSfByiRJnGA_F8snMy=3HHg_gw@mail.gmail.com>
+References: <20200204053155.127c3f1e@oasis.local.home>
+        <CAHk-=wjfjO+h6bQzrTf=YCZA53Y3EDyAs3Z4gEsT7icA3u_Psw@mail.gmail.com>
+        <20200204072856.0da60613@oasis.local.home>
+        <CAHk-=wg2Wk9ZgVBDCBHa3-b0fSfByiRJnGA_F8snMy=3HHg_gw@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, 4 Feb 2020 13:19:06 +0000
+Linus Torvalds <torvalds@linux-foundation.org> wrote:
+
+> 
+> Because it strikes me that the bootconfig should be the special case
+> (ie "bootconfig does setup for boot-time tracing"), and that you
+> should explicitly say "I want you to read the extended config" on the
+> regular kernel command line.
+> 
+> So from looking at this, I do have to say that I'd have a slight
+> preference for simply making this be an option like
+> "config=bootconfig" that says "extend cmdline with the data from the
+> 'bootconfig' file".
+
+OK, I like this idea. As the current approach "silently" adds the boot
+config, it may be surprising to someone that the configs are changing
+(if they don't know to look for /proc/bootconfig).
+
+Having a "config=bootconfig" required for reading makes it implicit
+that a bootconfig is added to the existing command line, from just
+looking at /proc/cmdline, and removing an added "config=bootconfig" 
+
+> 
+> Would that be horribly painful for your uses?
+> 
+
+I have no problem with this approach. Masami, are you OK with this?
+
+I'll send a v2 implementing this change shortly.
+
+-- Steve

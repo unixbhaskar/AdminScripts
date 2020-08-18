@@ -1,0 +1,132 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp5209774lfj;
+        Tue, 17 Sep 2019 01:17:10 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyeH5Ad2RT01w7EGwBXapR2Xnv8yr99PKA8NE2Nkn1BPzsYdMLlbiAiiFEAkqxgFAzhsnMc
+X-Received: by 2002:a17:906:90c1:: with SMTP id v1mr3468038ejw.259.1568708230019;
+        Tue, 17 Sep 2019 01:17:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568708230; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WMz516De7dvKPyWEDU8/GgSnlc8PnQcX9jwGwbrVK0sj9KWTUDFylIEnm7cStE+w6Q
+         Uc61ow9oto0+b91IZQs2bxJnAZOAxDyP5gD2Wxm1hvUyexmy9VvR+IjqY8vm5yy/ST/G
+         qSr5C+N+BRti3O8ZC6hpQgGAe6xzvi9UnMWxE04HFdFWSos0D97U7rc3sdbaE7BQyHik
+         /uej/tmMw3HcPG9Ll1shY1lkGBMCM6C9RnJXcsvjeOdYjqOOzLqZYvciMTenuycaLjrD
+         VQJEh7MM27HLThph/vCYgmGOosvle1HSHnHe7P7+n2ukXdzqT5vhdpheUyGYfuOFd83/
+         t0mw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=vGY772lMZRO+RxPe3yiKJ2HFEo5jrkt8czVBRCefa98=;
+        b=MzHXQUS5Cj7uSgQXxCJzsm8LGDvDDg2w2KCRGMkR7+Ynz6Q+H2Itkk6ADFWKFIBzWk
+         +GKzd/ukBDUNtvTpC7yIRzqK86q4horSlmYzWErKGF8UibB9uUaZovzLerRWdnBvlHR8
+         eDW/ssrr3gCf8elEgzjibTj4bB0gx1OlxnKnNKEvb3A9/PJ01vvaq1k+e+/vdkjS7Zon
+         1nz2RVZ/1lDmO6qgfSfD3Gll8qXF8twOJNLiWI5gPG2cE6F7G5aYfLvu0rymTNkfjAA1
+         LwOF+JQK9PYCubc5SukCtGYCOZ8O4u1zA0TauOv7iI6xnZwRVnViYHxCkkKEIhNS//li
+         ewDA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=Q7JCqBOj;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f14si975302edf.102.2019.09.17.01.16.46;
+        Tue, 17 Sep 2019 01:17:09 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=Q7JCqBOj;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2389960AbfIPXGN (ORCPT <rfc822;cryosay@gmail.com> + 99 others);
+        Mon, 16 Sep 2019 19:06:13 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:34752 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389813AbfIPXGN (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 16 Sep 2019 19:06:13 -0400
+Received: by mail-lj1-f194.google.com with SMTP id h2so1563975ljk.1
+        for <linux-kernel@vger.kernel.org>; Mon, 16 Sep 2019 16:06:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vGY772lMZRO+RxPe3yiKJ2HFEo5jrkt8czVBRCefa98=;
+        b=Q7JCqBOjFHRpAm3IIWECi7V0+z1iWHaDOFZaCm6UHZvTzYhkaHhwj14043bgrTO5+M
+         irDuUsnCTLlLSkR5eaTGatxvVbFnXqaZCYAJkoMxi8+1pB0mDlKmdUInEOq+UcizHb9i
+         e+qtbtq9xxZIz3FByFamlLpdLYhAncsgzI69k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vGY772lMZRO+RxPe3yiKJ2HFEo5jrkt8czVBRCefa98=;
+        b=S1/agzqMYnUQK6OshWkRZ6dGHyz2pm5vtJxHebaIgKnJalzee3ynPAb68Bkn7kgnSS
+         eTVJWN4v8Mm5MKoZ1Fn2J7NSmty3UBoD59SCSdbEhGDAiH+LAWFjtis4zDh4Z0Uk2N61
+         PIa6tKTTAELgovdqr6WWpT4XM5SF2Q2xtoS/BTLL1Kh+bZgfcPHzKC4m1ZZIkm597wWc
+         t6D5LMvi2Nb4eCzixiplcL/cOyWyGuYwbp6SrMtatxtEiY+/Hp7UZPQLHhrYcio18N6B
+         cT/OMA4yE5fSHoJ7TPbF5RYG9pWiCq1TvimX7IxUOk6Qs2Go+g51OoEc9i3i+8O28cLr
+         3Ryw==
+X-Gm-Message-State: APjAAAXp9GprdImoLzUKOvb/MnBy22/Xp7ImKWdyQwBYVTnV9RxjFRD2
+        0nx+cBckKbWG99wGdskN6+agbPjbWI8=
+X-Received: by 2002:a2e:9981:: with SMTP id w1mr136915lji.155.1568675166125;
+        Mon, 16 Sep 2019 16:06:06 -0700 (PDT)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com. [209.85.167.49])
+        by smtp.gmail.com with ESMTPSA id r27sm55656ljn.60.2019.09.16.16.06.04
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Sep 2019 16:06:04 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id r134so1234523lff.12
+        for <linux-kernel@vger.kernel.org>; Mon, 16 Sep 2019 16:06:04 -0700 (PDT)
+X-Received: by 2002:ac2:5c11:: with SMTP id r17mr319536lfp.61.1568675164042;
+ Mon, 16 Sep 2019 16:06:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAHk-=wiDNRPzuNE-eXs7QOpgPVLXsZOXEMQE9RmAWABiiZrSAQ@mail.gmail.com>
+ <20190916014050.GA7002@darwi-home-pc> <20190916014833.cbetw4sqm3lq4x6m@shells.gnugeneration.com>
+ <20190916024904.GA22035@mit.edu> <20190916042952.GB23719@1wt.eu>
+ <CAHk-=wg4cONuiN32Tne28Cg2kEx6gsJCoOVroqgPFT7_Kg18Hg@mail.gmail.com>
+ <20190916061252.GA24002@1wt.eu> <CAHk-=wjWSRzTjwN9F5gQcxtPkAgaRHJOOOTUjVakqP-Nzg9BXA@mail.gmail.com>
+ <20190916172117.GB15263@mit.edu> <CAHk-=wgs65hez6ctK7J2k46BdQzvKU5avExPOTTJsZu6iqA-ow@mail.gmail.com>
+ <20190916230217.vmgvsm6o2o4uq5j7@srcf.ucam.org>
+In-Reply-To: <20190916230217.vmgvsm6o2o4uq5j7@srcf.ucam.org>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Mon, 16 Sep 2019 16:05:47 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whwSt4RqzqM7cA5SAhj+wkORfr1bG=+yydTJPtayQ0JwQ@mail.gmail.com>
+Message-ID: <CAHk-=whwSt4RqzqM7cA5SAhj+wkORfr1bG=+yydTJPtayQ0JwQ@mail.gmail.com>
+Subject: Re: Linux 5.3-rc8
+To:     Matthew Garrett <mjg59@srcf.ucam.org>
+Cc:     "Theodore Y. Ts'o" <tytso@mit.edu>, Willy Tarreau <w@1wt.eu>,
+        Vito Caputo <vcaputo@pengaru.com>,
+        "Ahmed S. Darwish" <darwish.07@gmail.com>,
+        Lennart Poettering <mzxreary@0pointer.de>,
+        Andreas Dilger <adilger.kernel@dilger.ca>,
+        Jan Kara <jack@suse.cz>, Ray Strode <rstrode@redhat.com>,
+        William Jon McCann <mccann@jhu.edu>,
+        "Alexander E. Patrakov" <patrakov@gmail.com>,
+        zhangjs <zachary@baishancloud.com>, linux-ext4@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, Sep 16, 2019 at 4:02 PM Matthew Garrett <mjg59@srcf.ucam.org> wrote:
+>
+> The semantics many people want for secure key generation is urandom, but
+> with a guarantee that it's seeded.
+
+And that is exactly what I'd suggest GRND_SECURE should do.
+
+The problem with:
+
+> getrandom()'s default behaviour at present provides that
+
+is that exactly because it's the "default" (ie when you don't pass any
+flags at all), that behavior is what all the random people get who do
+*not* really intentionally want it, they just don't think about it.
+
+> Changing the default (even with kernel warnings) seems like
+> it risks people generating keys from an unseeded prng, and that seems
+> like a bad thing?
+
+I agree that it's a horrible thing, but the fact that the default 0
+behavior had that "wait for entropy" is what now causes boot problems
+for people.
+
+             Linus

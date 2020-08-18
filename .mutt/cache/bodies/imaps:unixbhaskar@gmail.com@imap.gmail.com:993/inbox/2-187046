@@ -1,0 +1,571 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:6752:0:0:0:0:0 with SMTP id e18csp4881437lfj;
+        Tue, 25 Jun 2019 00:56:27 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyeR0UR6CsW+4sWlZuuJkgqqhWvn/z/yzj5b7onID3AFldk5d+y1yTmSp3sfN02l7ORGqiO
+X-Received: by 2002:a17:902:da4:: with SMTP id 33mr87955130plv.209.1561449387271;
+        Tue, 25 Jun 2019 00:56:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1561449387; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LAjNzYl+Iv4DZVmMecrYsAJAGo3ovCQ5HiTwPe8WUZz5oz4SI3vzUWcRrFhfmhYXnp
+         jrqPTQ7j1oszGGEWMOg0/mbBEhB0iuVT0ceyyG4cCjU6Bh33THhMtIHESnOYvdccmIVj
+         BJbuWbX/SYna6wP8nr9dCp0EhwG0qcLqCbCOlz5LGJwwRN7c7OOOy0F/tm8uDwP7dsrL
+         i1RXL+7mgN0rwqxze6MpLfNhPbwcsGtt4hsNzqqdo5r4FEnGZSnwrMBNigQUSNWU3ga4
+         naybgO0WWnUliatFTNG/1AZ0yQX05kTOr/Q2Pj+cA9MRN7duhNjQTMVF8V4sSA28p9JL
+         9mUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date:dkim-signature;
+        bh=ZudAEuJJyxctfnJO5JlGE281l3Iho88Eg3pOWukUctc=;
+        b=rBSU5r6B9CFWBqOMfYb+E/mzCoDF+Zvc0beWd9eluTbvrr/MJMhV9WoczorFyPO+gz
+         WuPG+auaCB7d3P0xVEPpgELspmZVAf1Mo9oxZsuJy0YRENkG9udM+tqRuM7mfixPIU+b
+         I/4tXuXJmjxYMWVGZy3ASgojjvcXR4GueES1DiyWjo3dhVRCFYXRWyhRaUzXIHrISawd
+         wnAelCZaH+CmNWYTsfKHfH7XFkDGrzJN3u4JiNG4cn4KBfoP3vbBxhihZyX1llP7D9Qf
+         SXuDUk2d/fGPx2g6aQTEmWXndlf3u08iSriUEIWRsupP07Hpz0tcM/HT3TwIVwxdjm1p
+         AgZg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=GX3iCS+K;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id y8si11991856plk.428.2019.06.25.00.56.12;
+        Tue, 25 Jun 2019 00:56:27 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=GX3iCS+K;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729991AbfFYHwk (ORCPT <rfc822;yassershalabi@gmail.com>
+        + 99 others); Tue, 25 Jun 2019 03:52:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39238 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726419AbfFYHwj (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 25 Jun 2019 03:52:39 -0400
+Received: from localhost (f4.8f.5177.ip4.static.sl-reverse.com [119.81.143.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 67E2F20659;
+        Tue, 25 Jun 2019 07:52:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561449156;
+        bh=yQAp5Oj7AI7sdDFmC6xHXx1vHfT6qQDdAxcOZbe+ERA=;
+        h=Date:From:To:Cc:Subject:From;
+        b=GX3iCS+KHXuKDqgl4sZvoCMffLlnf9xkyUOwQVK0jqpqSz6UE2wFahwJigQf6xzUy
+         1n6wZuGHuDFOvG/0iXPxNofrjT5YQCg8ne4OJ3AmZqCrnjzWNAJQ9BfsGOi7N9opMS
+         akPVZCkm0JYIRSMzK0hOqrgvMQakJ/+/HnCRt1tM=
+Date:   Tue, 25 Jun 2019 15:51:56 +0800
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     linux-kernel@vger.kernel.org,
+        Andrew Morton <akpm@linux-foundation.org>,
+        torvalds@linux-foundation.org, stable@vger.kernel.org
+Cc:     lwn@lwn.net, Jiri Slaby <jslaby@suse.cz>
+Subject: Linux 5.1.15
+Message-ID: <20190625075156.GA27224@kroah.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="dDRMvlgZJXvWKvBx"
+Content-Disposition: inline
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+
+--dDRMvlgZJXvWKvBx
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+I'm announcing the release of the 5.1.15 kernel.
+
+All users of the 5.1 kernel series must upgrade.
+
+The updated 5.1.y git tree can be found at:
+	git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linu=
+x-5.1.y
+and can be browsed at the normal kernel.org git web browser:
+	https://git.kernel.org/?p=3Dlinux/kernel/git/stable/linux-stable.git;a=3Ds=
+ummary
+
+thanks,
+
+greg k-h
+
+------------
+
+ Makefile                                                   |    2=20
+ arch/arc/boot/dts/hsdk.dts                                 |    4=20
+ arch/arc/include/asm/cmpxchg.h                             |   14 -
+ arch/arc/mm/tlb.c                                          |   13 -
+ arch/arm/boot/dts/am57xx-idk-common.dtsi                   |    1=20
+ arch/arm/boot/dts/dra76x-mmc-iodelay.dtsi                  |   40 +--
+ arch/arm/configs/mvebu_v7_defconfig                        |    1=20
+ arch/arm/mach-imx/cpuidle-imx6sx.c                         |    3=20
+ arch/arm64/Makefile                                        |    1=20
+ arch/arm64/include/uapi/asm/ptrace.h                       |    8=20
+ arch/arm64/kernel/ssbd.c                                   |    1=20
+ arch/mips/include/asm/ginvt.h                              |    2=20
+ arch/mips/kernel/uprobes.c                                 |    3=20
+ arch/parisc/math-emu/cnv_float.h                           |    8=20
+ arch/powerpc/include/asm/ppc-opcode.h                      |    1=20
+ arch/powerpc/mm/mmu_context_book3s64.c                     |   46 +++
+ arch/powerpc/net/bpf_jit.h                                 |    2=20
+ arch/powerpc/net/bpf_jit_comp64.c                          |    8=20
+ arch/riscv/mm/fault.c                                      |   13 +
+ arch/sparc/kernel/mdesc.c                                  |    2=20
+ arch/sparc/kernel/perf_event.c                             |    4=20
+ arch/x86/entry/vdso/vclock_gettime.c                       |   15 +
+ arch/x86/kernel/cpu/resctrl/rdtgroup.c                     |    2=20
+ arch/x86/kvm/mmu.c                                         |   16 -
+ arch/xtensa/kernel/setup.c                                 |    3=20
+ crypto/hmac.c                                              |    4=20
+ drivers/android/binder.c                                   |   16 +
+ drivers/dma-buf/udmabuf.c                                  |    1=20
+ drivers/dma/dma-jz4780.c                                   |   32 +-
+ drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c             |    3=20
+ drivers/dma/mediatek/mtk-cqdma.c                           |    4=20
+ drivers/dma/sprd-dma.c                                     |   29 +-
+ drivers/fpga/dfl-afu-dma-region.c                          |    2=20
+ drivers/fpga/dfl.c                                         |   16 +
+ drivers/fpga/stratix10-soc.c                               |    6=20
+ drivers/gpu/drm/arm/hdlcd_crtc.c                           |   14 -
+ drivers/gpu/drm/arm/malidp_drv.c                           |   13 -
+ drivers/gpu/drm/i915/intel_display.c                       |   38 ++-
+ drivers/gpu/drm/vmwgfx/vmwgfx_msg.c                        |  146 ++++++++=
++--
+ drivers/hwmon/hwmon.c                                      |    2=20
+ drivers/hwmon/pmbus/pmbus_core.c                           |   34 ++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h                    |    2=20
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c               |   25 +-
+ drivers/iio/temperature/mlx90632.c                         |    9=20
+ drivers/infiniband/hw/hfi1/chip.c                          |   14 +
+ drivers/infiniband/hw/hfi1/chip.h                          |    1=20
+ drivers/infiniband/hw/hfi1/fault.c                         |    5=20
+ drivers/infiniband/hw/hfi1/sdma.c                          |    9=20
+ drivers/infiniband/hw/hfi1/tid_rdma.c                      |    4=20
+ drivers/infiniband/hw/hfi1/user_exp_rcv.c                  |    3=20
+ drivers/infiniband/hw/hfi1/user_sdma.c                     |   12=20
+ drivers/infiniband/hw/hfi1/user_sdma.h                     |    1=20
+ drivers/infiniband/hw/hfi1/verbs.c                         |    2=20
+ drivers/infiniband/hw/hfi1/verbs_txreq.c                   |    2=20
+ drivers/infiniband/hw/hfi1/verbs_txreq.h                   |    3=20
+ drivers/infiniband/hw/qib/qib_verbs.c                      |    2=20
+ drivers/infiniband/sw/rdmavt/mr.c                          |    2=20
+ drivers/infiniband/sw/rdmavt/qp.c                          |    3=20
+ drivers/input/misc/uinput.c                                |   22 +
+ drivers/input/mouse/synaptics.c                            |    2=20
+ drivers/input/touchscreen/silead.c                         |    1=20
+ drivers/misc/habanalabs/memory.c                           |    6=20
+ drivers/misc/lkdtm/usercopy.c                              |   10=20
+ drivers/mmc/core/core.c                                    |    5=20
+ drivers/mmc/core/sdio.c                                    |   13 -
+ drivers/mmc/core/sdio_io.c                                 |   77 ++++++
+ drivers/mmc/core/sdio_irq.c                                |    4=20
+ drivers/mmc/host/mtk-sd.c                                  |   39 +--
+ drivers/mmc/host/renesas_sdhi_core.c                       |    9=20
+ drivers/mmc/host/sdhci-pci-o2micro.c                       |    5=20
+ drivers/net/can/flexcan.c                                  |    2=20
+ drivers/net/can/xilinx_can.c                               |    2=20
+ drivers/net/dsa/mv88e6xxx/chip.c                           |    2=20
+ drivers/net/ethernet/hisilicon/hns/hns_ethtool.c           |    4=20
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c                |   15 -
+ drivers/net/ipvlan/ipvlan_main.c                           |    2=20
+ drivers/net/phy/phylink.c                                  |   13 -
+ drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c    |   17 -
+ drivers/nvme/host/core.c                                   |    3=20
+ drivers/nvme/target/io-cmd-bdev.c                          |    1=20
+ drivers/parport/share.c                                    |    2=20
+ drivers/s390/net/qeth_l2_main.c                            |    2=20
+ drivers/s390/net/qeth_l3_main.c                            |   32 ++
+ drivers/scsi/smartpqi/smartpqi_init.c                      |    6=20
+ drivers/scsi/ufs/ufshcd-pltfrm.c                           |   11=20
+ drivers/scsi/ufs/ufshcd.c                                  |    3=20
+ drivers/staging/erofs/erofs_fs.h                           |   13 -
+ drivers/staging/erofs/internal.h                           |    2=20
+ drivers/staging/erofs/super.c                              |   19 +
+ drivers/usb/chipidea/udc.c                                 |   20 +
+ drivers/usb/host/xhci-ring.c                               |   15 +
+ drivers/usb/host/xhci.c                                    |   25 +-
+ drivers/usb/host/xhci.h                                    |    9=20
+ fs/btrfs/reada.c                                           |    5=20
+ fs/cifs/cifsfs.c                                           |    1=20
+ fs/cifs/cifsglob.h                                         |    5=20
+ fs/cifs/connect.c                                          |    2=20
+ fs/cifs/file.c                                             |    8=20
+ fs/cifs/smb2maperror.c                                     |    2=20
+ fs/namespace.c                                             |    1=20
+ fs/overlayfs/inode.c                                       |   60 ++++
+ fs/overlayfs/namei.c                                       |    8=20
+ fs/overlayfs/overlayfs.h                                   |    3=20
+ fs/overlayfs/ovl_entry.h                                   |    6=20
+ fs/overlayfs/super.c                                       |  161 ++++++++=
++++--
+ fs/overlayfs/util.c                                        |   12=20
+ fs/pnode.c                                                 |    1=20
+ include/linux/mmc/host.h                                   |    1=20
+ include/linux/mmc/sdio_func.h                              |    6=20
+ include/net/bluetooth/hci_core.h                           |    3=20
+ include/net/cfg80211.h                                     |    3=20
+ kernel/trace/trace.c                                       |    6=20
+ kernel/trace/trace.h                                       |   18 +
+ kernel/trace/trace_kdb.c                                   |    6=20
+ net/bluetooth/hci_conn.c                                   |   10=20
+ net/bluetooth/l2cap_core.c                                 |   33 ++
+ net/can/af_can.c                                           |    1=20
+ net/mac80211/ieee80211_i.h                                 |    3=20
+ net/mac80211/mlme.c                                        |   12=20
+ net/mac80211/rx.c                                          |    2=20
+ net/mac80211/tdls.c                                        |   23 +
+ net/mac80211/util.c                                        |    4=20
+ net/mac80211/wpa.c                                         |    7=20
+ net/wireless/core.c                                        |    8=20
+ net/wireless/nl80211.c                                     |   12=20
+ scripts/checkstack.pl                                      |    2=20
+ scripts/package/Makefile                                   |    2=20
+ security/apparmor/include/policy.h                         |   11=20
+ security/apparmor/policy_unpack.c                          |   49 +++
+ tools/testing/selftests/cgroup/test_core.c                 |    7=20
+ tools/testing/selftests/cgroup/test_memcontrol.c           |    4=20
+ tools/testing/selftests/net/forwarding/router_broadcast.sh |    5=20
+ tools/testing/selftests/pidfd/pidfd_test.c                 |    4=20
+ tools/testing/selftests/vm/Makefile                        |    2=20
+ tools/testing/selftests/vm/userfaultfd.c                   |    2=20
+ 135 files changed, 1278 insertions(+), 328 deletions(-)
+
+Alakesh Haloi (1):
+      userfaultfd: selftest: fix compiler warning
+
+Alex Shi (3):
+      kselftest/cgroup: fix unexpected testing failure on test_memcontrol
+      kselftest/cgroup: fix unexpected testing failure on test_core
+      kselftest/cgroup: fix incorrect test_core skip
+
+Alexander Mikhaylenko (1):
+      Input: synaptics - enable SMBus on ThinkPad E480 and E580
+
+Alexandra Winter (1):
+      s390/qeth: fix VLAN attribute in bridge_hostnotify udev event
+
+Amir Goldstein (2):
+      ovl: detect overlapping layers
+      ovl: make i_ino consistent with st_ino in more cases
+
+Andrey Smirnov (1):
+      Input: uinput - add compat ioctl number translation for UI_*_FF_UPLOAD
+
+Andy Lutomirski (1):
+      x86/vdso: Prevent segfaults due to hoisted vclock reads
+
+Andy Strohman (1):
+      nl80211: fix station_info pertid memory leak
+
+Anisse Astier (2):
+      arm64/sve: <uapi/asm/ptrace.h> should not depend on <uapi/linux/prctl=
+=2Eh>
+      arm64: ssbd: explicitly depend on <linux/prctl.h>
+
+Anssi Hannula (1):
+      can: xilinx_can: use correct bittiming_const for CAN FD core
+
+Arnd Bergmann (1):
+      ovl: fix bogus -Wmaybe-unitialized warning
+
+Avri Altman (1):
+      scsi: ufs: Check that space was properly alloced in copy_query_respon=
+se
+
+Baolin Wang (2):
+      dmaengine: sprd: Fix the possible crash when getting descriptor status
+      dmaengine: sprd: Add validation of current descriptor in irq handler
+
+Christian Brauner (2):
+      tests: fix pidfd-test compilation
+      fs/namespace: fix unprivileged mount propagation
+
+Colin Ian King (1):
+      dmaengine: dw-axi-dmac: fix null dereference when pointer first is nu=
+ll
+
+Crt Mori (1):
+      iio: temperature: mlx90632 Relax the compatibility check
+
+Dan Carpenter (2):
+      dmaengine: mediatek-cqdma: sleeping in atomic context
+      scsi: smartpqi: unlock on error in pqi_submit_raid_request_synchronou=
+s()
+
+Daniel Smith (1):
+      Input: silead - add MSSL0017 to acpi_device_id
+
+Dave Martin (1):
+      arm64: Silence gcc warnings about arch ABI drift
+
+Douglas Anderson (5):
+      mmc: core: API to temporarily disable retuning for SDIO CRC errors
+      mmc: core: Add sdio_retune_hold_now() and sdio_retune_release()
+      Revert "brcmfmac: disable command decode in sdio_aos"
+      brcmfmac: sdio: Disable auto-tuning around commands expected to fail
+      brcmfmac: sdio: Don't tune while the card is off
+
+Eduardo Valentin (1):
+      hwmon: (core) add thermal sensors only if dev->of_node is present
+
+Eric Biggers (2):
+      crypto: hmac - fix memory leak in hmac_init_tfm()
+      cfg80211: fix memory leak of wiphy device name
+
+Eric Long (3):
+      dmaengine: sprd: Fix the incorrect start for 2-stage destination chan=
+nels
+      dmaengine: sprd: Fix block length overflow
+      dmaengine: sprd: Fix the right place to configure 2-stage transfer
+
+Fabio Estevam (1):
+      ARM: imx: cpuidle-imx6sx: Restrict the SW2ISO increase to i.MX6SX
+
+Faiz Abbas (2):
+      ARM: dts: dra76x: Update MMC2_HS200_MANUAL1 iodelay values
+      ARM: dts: am57xx-idk: Remove support for voltage switching for SD card
+
+Gao Xiang (1):
+      staging: erofs: add requirements field in superblock
+
+Gen Zhang (1):
+      mdesc: fix a missing-check bug in get_vdev_port_node_info()
+
+George G. Davis (1):
+      scripts/checkstack.pl: Fix arm64 wrong or unknown architecture
+
+Greg Kroah-Hartman (1):
+      Linux 5.1.15
+
+Guenter Roeck (1):
+      xtensa: Fix section mismatch between memblock_reserve and mem_reserve
+
+Helge Deller (1):
+      parisc: Fix compiler warnings in float emulation code
+
+Jaesoo Lee (1):
+      nvme: Fix u32 overflow in the number of namespace list calculation
+
+James Morse (1):
+      x86/resctrl: Don't stop walking closids when a locksetup group is fou=
+nd
+
+Jan Kundr=E1t (1):
+      ARM: mvebu_v7_defconfig: fix Ethernet on Clearfog
+
+Jann Horn (1):
+      apparmor: enforce nullbyte at end of tag string
+
+Joakim Zhang (1):
+      can: flexcan: fix timeout when set small bitrate
+
+Johannes Berg (1):
+      mac80211: drop robust management frames from unknown TA
+
+John Johansen (1):
+      apparmor: fix PROFILE_MEDIATES for untrusted input
+
+Jose Abreu (2):
+      ARC: [plat-hsdk]: Add missing multicast filter bins number to GMAC no=
+de
+      ARC: [plat-hsdk]: Add missing FIFO size entry in GMAC node
+
+Jouni Malinen (1):
+      mac80211: Do not use stack memory with scatterlist for GMAC
+
+Julian Wiedmann (2):
+      s390/qeth: handle limited IPv4 broadcast in L3 TX path
+      s390/qeth: check dst entry before use
+
+Kaike Wan (1):
+      IB/hfi1: Validate fault injection opcode user input
+
+Kamenee Arumugam (1):
+      IB/hfi1: Validate page aligned for a given virtual address
+
+Kees Cook (1):
+      lkdtm/usercopy: Moves the KERNEL_DS test to non-canonical
+
+Lorenzo Bianconi (1):
+      iio: imu: st_lsm6dsx: fix PM support for st_lsm6dsx i2c controller
+
+Lucas Stach (1):
+      udmabuf: actually unmap the scatterlist
+
+Manikanta Pubbisetty (1):
+      {nl,mac}80211: allow 4addr AP operation on crypto controlled devices
+
+Marcel Holtmann (2):
+      Bluetooth: Align minimum encryption key size for LE and BR/EDR connec=
+tions
+      Bluetooth: Fix regression with minimum encryption key size alignment
+
+Masahiro Yamada (1):
+      MIPS: mark ginvt() as __always_inline
+
+Mathias Nyman (2):
+      xhci: detect USB 3.2 capable host controllers correctly
+      usb: xhci: Don't try to recover an endpoint if port is in error state.
+
+Miaohe Lin (1):
+      net: ipvlan: Fix ipvlan device tso disabled while NETIF_F_IP_CSUM is =
+set
+
+Michael Ellerman (1):
+      powerpc/mm/64s/hash: Reallocate context ids on fork
+
+Miguel Ojeda (1):
+      tracing: Silence GCC 9 array bounds warning
+
+Mike Marciniszyn (7):
+      IB/hfi1: Close PSM sdma_progress sleep window
+      IB/hfi1: Avoid hardlockup with flushlist_lock
+      IB/hfi1: Correct tid qp rcd to match verbs context
+      IB/hfi1: Silence txreq allocation warnings
+      IB/rdmavt: Fix alloc_qpn() WARN_ON()
+      IB/hfi1: Insure freeze_work work_struct is canceled on shutdown
+      IB/{qib, hfi1, rdmavt}: Correct ibv_devinfo max_mr value
+
+Mike Salvatore (1):
+      apparmor: reset pos on failure to unpack for various functions
+
+Miklos Szeredi (1):
+      ovl: don't fail with disconnected lower NFS
+
+Minwoo Im (1):
+      nvmet: fix data_len to 0 for bdev-backed write_zeroes
+
+Naohiro Aota (1):
+      btrfs: start readahead also in seed devices
+
+Naresh Kamboju (1):
+      selftests: vm: install test_vmalloc.sh for run_vmtests
+
+Naveen N. Rao (1):
+      powerpc/bpf: use unsigned division instruction for 64-bit operations
+
+Nikita Yushchenko (1):
+      net: dsa: mv88e6xxx: avoid error message on remove from VLAN 0
+
+Oded Gabbay (1):
+      habanalabs: fix bug in checking huge page optimization
+
+Paul Cercueil (1):
+      dmaengine: jz4780: Fix transfers being ACKed too soon
+
+Peter Chen (1):
+      usb: chipidea: udc: workaround for endpoint conflict issue
+
+Raul E Rangel (1):
+      mmc: sdhci: sdhci-pci-o2micro: Correctly set bus width when tuning
+
+Robert Hancock (1):
+      hwmon: (pmbus/core) Treat parameters as paged if on multiple pages
+
+Robin Murphy (2):
+      drm/arm/hdlcd: Actually validate CRTC modes
+      drm/arm/hdlcd: Allow a bit of clock tolerance
+
+Ronnie Sahlberg (2):
+      cifs: add spinlock for the openFileList to cifsInodeInfo
+      cifs: fix GlobalMid_Lock bug in cifs_reconnect
+
+Russell King (1):
+      net: phylink: avoid reducing support mask
+
+Scott Wood (2):
+      fpga: dfl: afu: Pass the correct device to dma_mapping_error()
+      fpga: dfl: Add lockdep classes for pdata->lock
+
+Sean Christopherson (1):
+      KVM: x86/mmu: Allocate PAE root array when using SVM's 32-bit NPT
+
+Sean Wang (2):
+      net: ethernet: mediatek: Use hw_feature to judge if HWLRO is supported
+      net: ethernet: mediatek: Use NET_IP_ALIGN to judge if HW RX_2BYTE_OFF=
+SET is enabled
+
+ShihPo Hung (1):
+      riscv: mm: synchronize MMU after pte change
+
+Stanley Chu (1):
+      scsi: ufs: Avoid runtime suspend possibly being blocked forever
+
+Steve French (1):
+      SMB3: retry on STATUS_INSUFFICIENT_RESOURCES instead of failing write
+
+Thomas Hellstrom (1):
+      drm/vmwgfx: Use the backdoor port if the HB port is not available
+
+Todd Kjos (1):
+      binder: fix possible UAF when freeing buffer
+
+Trevor Bourget (1):
+      kbuild: tar-pkg: enable communication with jobserver
+
+Ulf Hansson (1):
+      mmc: core: Prevent processing SDIO IRQs when the card is suspended
+
+Ville Syrj=E4l=E4 (1):
+      drm/i915: Don't clobber M/N values during fastset check
+
+Vineet Gupta (1):
+      ARC: fix build warnings
+
+Wen He (1):
+      drm/arm/mali-dp: Add a loop around the second set CVAL and try 5 times
+
+Wen Yang (1):
+      fpga: stratix10-soc: fix use-after-free on s10_init()
+
+Willem de Bruijn (1):
+      can: purge socket error queue on sock destruct
+
+Wolfram Sang (1):
+      mmc: sdhi: disallow HS400 for M3-W ES1.2, RZ/G2M, and V3H
+
+Xin Long (1):
+      selftests: set sysctl bc_forwarding properly in router_broadcast.sh
+
+Yonglong Liu (1):
+      net: hns: Fix loopback test failed at copper ports
+
+Young Xiao (1):
+      sparc: perf: fix updated event period in response to PERF_EVENT_IOC_P=
+ERIOD
+
+Yu Wang (1):
+      mac80211: handle deauthentication/disassociation from TDLS peer
+
+YueHaibing (2):
+      parport: Fix mem leak in parport_register_dev_model
+      MIPS: uprobes: remove set but not used variable 'epc'
+
+jjian zhou (2):
+      mmc: mediatek: fix SDIO IRQ interrupt handle flow
+      mmc: mediatek: fix SDIO IRQ detection issue
+
+
+--dDRMvlgZJXvWKvBx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEZH8oZUiU471FcZm+ONu9yGCSaT4FAl0R0pwACgkQONu9yGCS
+aT64Pg//VZr4uk9hljqilNtKApcj6tjYsYY92WKxKB20kXnoYtcsEMTQNV1hV9un
+Vd7C8Y+gbeSEOFPDhEHBeO3BEjd8jywXsT9M8oB3N5uCCxfvA0PWxxFnN/dhRKmb
+tGoOAEsAUZBvsosANZIfrKLKAu5R/6O6qxIz0yeQlOVfz+cn+3aGXbIpo0xk3qVn
+q+Pxx0k0qzFRHK39+6UPHdicJxo50jrdnpTmbzyJw3wlChNAQca6L7x9LKYm3U8a
+W0tUSfVCXzt/8eTMflsuf/56XD7kPJpe+XgEG5m1aCI0/WS/f32+yOAuHGoug3Sr
+6EhmrCCML0L6lKQPvQiVHG5VvEc4OQiVR1knRUT5owQjJjC4SJFbE8fsepalbtqI
+JCi+iHwX89hZX0WIyAFXRLudV8y0XVu0hqqpjJPg4ntfodYURkH+vezGx3IZtf3r
+njP4tw1nda0GF5Wv4Fe8Du4/kx8YEB2D2fbbmwlMEo2IWiV+/xURUbGlRpGJ9Nkp
+aNvraafYvsJByhHH+GfpcUZlqLMiyECOQPM3vtfB4o0n2ob9Q5gID+W01ra+Eafj
+FT234fdqnzOVvod8s900LzeRFA+LUt1MoffMyLTwI77BRkfSww2ZdO7txSiv6LqT
+f5r9ZePfhB+GWP+tgZFeJ40mRzDYV3/WPl3uqTrSNyHSlFG1JBc=
+=Tbcj
+-----END PGP SIGNATURE-----
+
+--dDRMvlgZJXvWKvBx--

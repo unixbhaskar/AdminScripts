@@ -1,0 +1,123 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp59822lfj;
+        Wed, 4 Sep 2019 18:47:37 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqz712O7nL648/MR+a9bN1+bgEnq+043/zBK8e4HbZQRkYmI8vw5Is6IKNlaWwHirgM9dbag
+X-Received: by 2002:ac8:2ba6:: with SMTP id m35mr1097405qtm.91.1567648057283;
+        Wed, 04 Sep 2019 18:47:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1567648057; cv=none;
+        d=google.com; s=arc-20160816;
+        b=PoeNcEY81ZxFXGdT/H5oQXe3PS3wnj7zIRqw1/AzM83T0xzZVayQMPNTZKI/Os4gq8
+         hx6bmiv6oXlI6uOmArLSBOnYa5RIuHpNzVPSmtdIKX/ue6/UP5yDLCIsPtC8s9KHakZj
+         qdMcjDdto9ykZuoxc6jtEul+iuia//nv6WxYowTBGZutuBTKqiBmTUxh7zNbnwDbHpY2
+         vOuTz61Y8pTG3Mw1taUISMjw3VXXb+7meIipJDKcmrt1DRubi5qQWN6BqR8WVNa4QTit
+         hv31+xC9prJnAtTQTlw+cr1UOAIWHK6ZrMX3pIwwBNvrOzcqySHCa3tO2YgXHN1+fDYE
+         WPpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-post:list-archive:list-id:precedence
+         :content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:reply-to:from:dkim-signature:date;
+        bh=iHsZWqnw6AUOtYhws4D1wRExAQ1051OG7pY7u4Xp7LM=;
+        b=FRVVAeLZxyFXbaNAgTmhFLQmorHNOcFWmH83SoAT2w1e6ZkGMLIWqcPklXwWKtSz6D
+         PDyK3rq5bZa9lH1XVC/4jlZUYXDzxxiLSZt0y8elY4b4s6iC9fiqni4o7y3xGLN2jbFK
+         0tknJCmHqqr3dgBgXidxsrXQHKr/zSGmamS/tsz/rGC0XyPQ/2ieIYZDyoQ+QHBWjoCS
+         66XPAUA+yoGu3tFR5IN0/gnfaB8S6hj0cCCtiw1aKZ2vRHQWQTwyhyVYo+RneLPNR2Ay
+         KANQNHCEAKuCjwKOluCu79Q6g9T1w4+1nTj+dEt25eEJcLTPupupq3IOJ+rC3WJR2j+u
+         uYtQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=ppOno6eG;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.206 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-23.smtp.github.com (out-23.smtp.github.com. [192.30.252.206])
+        by mx.google.com with ESMTPS id q9si358478qta.365.2019.09.04.18.47.37
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 04 Sep 2019 18:47:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.206 as permitted sender) client-ip=192.30.252.206;
+Authentication-Results: mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=ppOno6eG;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.206 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Date: Wed, 04 Sep 2019 18:47:36 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2014; t=1567648056;
+	bh=iHsZWqnw6AUOtYhws4D1wRExAQ1051OG7pY7u4Xp7LM=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:From;
+	b=ppOno6eGYmQ8spappBWIXZmY8TPNXBCUZ3U7pf7rea3vtVqbGG97AJafpFXkuPRp+
+	 ar6EfkViZMPfnYm8TF34AIU53UOoh4UIku4jKIkx3Ipro/AGo2zCNy4MN0dxgPzIiu
+	 Q1osh763H0cX1M1H7gzmQk0NVWuCd6uIF7Qtcu3A=
+From: Adrian Salido <notifications@github.com>
+Reply-To: joelagnel/ngit <reply+AAA3X2ZTIL2LR2QHKEIHRS53PWU4REVBNHHBZJ3VIM@reply.github.com>
+To: joelagnel/ngit <ngit@noreply.github.com>
+Cc: Bhaskar Chowdhury <unixbhaskar@gmail.com>, 
+ Mention <mention@noreply.github.com>
+Message-ID: <joelagnel/ngit/issues/1/528160329@github.com>
+In-Reply-To: <joelagnel/ngit/issues/1@github.com>
+References: <joelagnel/ngit/issues/1@github.com>
+Subject: Re: [joelagnel/ngit] [Support] Is that much better than tig? (#1)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5d706938e0d34_39013f8860ecd95c1575f1";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: adriansm
+X-GitHub-Recipient: unixbhaskar
+X-GitHub-Reason: mention
+List-ID: joelagnel/ngit <ngit.joelagnel.github.com>
+List-Archive: https://github.com/joelagnel/ngit
+List-Post: <mailto:reply+AAA3X2ZTIL2LR2QHKEIHRS53PWU4REVBNHHBZJ3VIM@reply.github.com>
+List-Unsubscribe: <mailto:unsub+AAA3X2ZTIL2LR2QHKEIHRS53PWU4REVBNHHBZJ3VIM@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/AAA3X24EF3W7OVK6WGIG2GLQIBQLRANCNFSM4ILV7Y3Q>
+X-Auto-Response-Suppress: All
+X-GitHub-Recipient-Address: unixbhaskar@gmail.com
+
+
+----==_mimepart_5d706938e0d34_39013f8860ecd95c1575f1
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+> This requires staging commits. Why not 'git commit -as --fixup=' ?
+
+I'd rather explicitly stage the changes I want to add instead of making assumption that everything goes (with -a). Stage view (bound to s key) makes this easy.
+
+The -s is not really needed given you don't really need sign-off for a fixup (commit text would get dropped anyway)
+
+
+-- 
+You are receiving this because you were mentioned.
+Reply to this email directly or view it on GitHub:
+https://github.com/joelagnel/ngit/issues/1#issuecomment-528160329
+----==_mimepart_5d706938e0d34_39013f8860ecd95c1575f1
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<blockquote>
+<p>This requires staging commits. Why not 'git commit -as --fixup=' ?</p>
+</blockquote>
+<p>I'd rather explicitly stage the changes I want to add instead of making assumption that everything goes (with -a). Stage view (bound to s key) makes this easy.</p>
+<p>The -s is not really needed given you don't really need sign-off for a fixup (commit text would get dropped anyway)</p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />You are receiving this because you were mentioned.<br />Reply to this email directly, <a href="https://github.com/joelagnel/ngit/issues/1?email_source=notifications&amp;email_token=AAA3X26MYEAI652RKO2ZAMDQIBQLRA5CNFSM4ILV7Y32YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOD55RMSI#issuecomment-528160329">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/AAA3X23WEM6LSIJFLB4ZTCTQIBQLRANCNFSM4ILV7Y3Q">mute the thread</a>.<img src="https://github.com/notifications/beacon/AAA3X22Q4KHDV6F2SOHNBELQIBQLRA5CNFSM4ILV7Y32YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOD55RMSI.gif" height="1" width="1" alt="" /></p>
+<script type="application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/joelagnel/ngit/issues/1?email_source=notifications\u0026email_token=AAA3X26MYEAI652RKO2ZAMDQIBQLRA5CNFSM4ILV7Y32YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOD55RMSI#issuecomment-528160329",
+"url": "https://github.com/joelagnel/ngit/issues/1?email_source=notifications\u0026email_token=AAA3X26MYEAI652RKO2ZAMDQIBQLRA5CNFSM4ILV7Y32YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOD55RMSI#issuecomment-528160329",
+"name": "View Issue"
+},
+"description": "View this Issue on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>
+----==_mimepart_5d706938e0d34_39013f8860ecd95c1575f1--

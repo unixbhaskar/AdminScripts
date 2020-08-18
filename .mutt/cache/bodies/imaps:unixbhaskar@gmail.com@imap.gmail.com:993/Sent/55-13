@@ -1,0 +1,837 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from [10.87.10.6] ([103.231.90.174])
+        by smtp.gmail.com with ESMTPSA id n1sm37039728pgv.19.2019.04.09.01.57.20
+        for <support@privateinternetaccess.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 09 Apr 2019 01:57:22 -0700 (PDT)
+Subject: Re: Payment getting failed for upgrade to two years plan
+To: "Jerry L." <support@privateinternetaccess.com>
+References: <TICKET-SMFMKJXBQ5MDB4RARMK.1@debba96764c8bfb349b8f36b8b78776f>
+ <PTAC-SMFMKJXBQ5MDB4RARMK.5cac5d1c0db013.01590589-1@debba96764c8bfb349b8f36b8b78776f>
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=unixbhaskar@gmail.com; prefer-encrypt=mutual; keydata=
+ mQENBFdtMWUBCADcg5hz3Ry1hucVfzBbltx5vlAFi/LAj1BhWnq2lCbrbBehMRJgZjXIvHwa
+ 6IfNRqBDbq40soT1atmVX4gzZx4Nzspdmj/J2JjoHbPqo8tadNpKN4DkXuWI68S4JQabyDce
+ /87VOnlnmAprN8RyrE+g4HmahqXs4b3HsDpsVDhiwc7BgqQJLcP/CJrnIPXNObAG5IZWWaex
+ P+KuiN3ddspAS+yRwYqSd+5Mp2kY2HTT1Pphttq2AZUYK804KtEQ24MN9V75P9rjBgqUoa2B
+ 9RskgB3x5B7KWwVjXIjSiolI23eM5xIZoZ1r0P+YU+HWmodKQ2vid/o4USu45JdLGSoLABEB
+ AAG0Q0JoYXNrYXIgQ2hvd2RodXJ5IChNdXNpbmdfd2l0aF9HTlUvTGludXghISkgPHVuaXhi
+ aGFza2FyQGdtYWlsLmNvbT6JATcEEwEIACEFAldtMWUCGwMFCwkIBwIGFQgJCgsCBBYCAwEC
+ HgECF4AACgkQsjqdtxFLKRWOIAgArUlozmvzTjTJsofSJtGncqYw2ynk1TjBbs9XEpiXvAIR
+ 0M6gXNOYfwaiYLA6QlSO1rYhyQdT+KKq2FUwXQG8DFKDRD2Ps+ta9LDR+m4yWBke7CoPeLGn
+ V+/cUn7FSH+qtOBxNnWv6jTnoy8f3s0peNBi+iK++DmIyZhCVRwY67h0vtIYXcE4p1RhlU8N
+ Sgkh1FfQMkrDej2y9kE/nV65OL6aWt3ldM73oGzhVC9SMKvyTiRnkUMGlDzaQUjt/jECgDZw
+ o/YkQcVTqVJV61QOQt+oepf8ACRbUZ6qlQJ9HjPfiyYiJxCq/mkSIYi4ikuMYAefRl23BKVt
+ 8eJQc6ZqGbkBDQRXbTFlAQgAuCGQ+5n6DPyyTcYDK272sutcaqEchOrsrQ8Yy2AIV/6ol+l5
+ idAAPvcB8gBkCamHHWuTILXnLSttpOuzJC0+0anzUkG/swMXNm90a8eff3uO560ipZ2HjGkN
+ MCcP9kO4UiMNNoj0DdcAnBkgSiELcEHmlvQ6TyxrztUWhQZV0LUlnlekr+YKlDjsNC8C86mr
+ hI+/l1iNb0ZpOzvQj/0QJt5rM4S+WmpWjG7AHFZQ8IDCqDWveYFrJeQplYoij4OoZDJ017zI
+ NJpoOTODTzT17lD56pAlhP56WjP3nvb11PPF16y/yi3lCJct5XhLv/5bjTAH/fGLgwuOb4ZE
+ F2UP+wARAQABiQEfBBgBCAAJBQJXbTFlAhsMAAoJELI6nbcRSykVIs4H/RQyi4w5zqugSyKh
+ 5b1z1F7ow/QgfUZg/ZRMm5K0gM+jUwrmSN2g5K2UYp0+L3bCJ8HMbEB9GL4ffKZOT91obfNU
+ 97nAcV4+g+biQlusLPKlw4q8eVWtoqJB1HdrrUMtxd4T0fUrw2SozkZznRbZb5ovytt/dlVj
+ ZXp3ockdcTQHp54jpPDVYVtyk8L+gFJGJ6asWJtoN05FxVb08CJ/mZJRHOsCWZWjXLIWZ5ml
+ jySL/S62rS3YykbOM1mfuHzz0uDDSRLiuM2FjMg/9+fV5WYb+kwymLir+ruNoE/Lv8ubwYFp
+ D5IZdyIz6OapumFfxps7uqDzJhIFiwaPHW7I0Io=
+Message-ID: <31bd606b-01ed-ae27-34ed-f0adfaa04eb5@gmail.com>
+Date: Tue, 9 Apr 2019 14:27:14 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <PTAC-SMFMKJXBQ5MDB4RARMK.5cac5d1c0db013.01590589-1@debba96764c8bfb349b8f36b8b78776f>
+Content-Type: multipart/alternative;
+ boundary="------------B2D26BC9656C2C73CC65667B"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------B2D26BC9656C2C73CC65667B
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+Thanks , a bunch Jerry.
+
+
+Though I am not sure how the mistake happen!! I do believe I have
+entered the correct info ...anyway , will follow what you said...putting
+an remiander on my handphone. Before doing payment I will certainly
+cross check one more time with the detains.
+
+I believe my existing connection will not get interrupted ,it is due to
+end on 11 th on this month...
+
+
+Thanks,
+
+Bhaskar
+
+On 4/9/19 2:22 PM, Jerry L. wrote:
+>  
+>  
+> Private Internet Access
+> <https://www.privateinternetaccess.com/helpdesk/> ·
+> https://www.privateinternetaccess.com/helpdesk/
+> Hello Bhaskar,
+>
+> Thank you for your reply.
+>
+> I do apologize, but there is no way to remove the lock on the update
+> button. The credit card details can only be updated once every 15 days
+> for security reasons. As a one time courtesy, I have added 10 days to
+> your account to allow for the 15 days to pass on the update. Please be
+> sure to update your credit card details on April 24th (place a
+> reminder in your phone or your calendar if needed), and be sure to
+> make no mistakes on the next entry as your account will expire and
+> terminate if another mistake is made.
+>
+> Please let us know if we can further assist you.
+>
+> Thank you for being a PIA customer,
+>
+> *Jerry L.*
+> Customer Support Agent
+> /A+, Net+
+> /
+> Was this message helpful?   Yes  
+> <https://www.privateinternetaccess.com/helpdesk/ticket-rate/DC2-201904-00031/KJXBQ5MDB4RARMK/924647?setrating=1>
+>   It was OK  
+> <https://www.privateinternetaccess.com/helpdesk/ticket-rate/DC2-201904-00031/KJXBQ5MDB4RARMK/924647?setrating=0>
+>   No  
+> <https://www.privateinternetaccess.com/helpdesk/ticket-rate/DC2-201904-00031/KJXBQ5MDB4RARMK/924647?setrating=-1>
+>
+>
+>
+> On Tue, 9th Apr 2019 at 2:34 am, Bhaskar Chowdhury
+> <unixbhaskar@gmail.com> wrote:
+> Thanks, Jerry.
+> Would you be able to reactivate the "update credit card" info link ?
+> It is now deactivated because I have changed it in morning IST.
+> I have got a message from the bank that I have putted wrong info about
+> the card ,so the payment got declined .
+>
+> So, please re-activate the link "update credit card" ,then will change
+> that info and cross check.
+>
+> Thanks,
+> Bhaskar
+> On 4/9/19 1:55 PM, Jerry L. wrote:
+>
+>
+>     - *Information entered incorrectly*
+>
+>  
+> On Tue, 9th Apr 2019 at 2:24 am, Jerry L. wrote:
+> Hello Bhaskar,
+>
+> Thank you for reaching out to us for support.
+>
+> I apologize you are experiencing difficulties with updating your
+> payment. If the error associated with your payment failure is
+> occurring on the card submission form, the following are the most
+> likely causes of failure: 
+>
+>  - *Incompatible card type: *We accept all forms of Visa, Mastercard,
+> American Express, Discover, and JCB, including prepaid cards. 
+>
+> - *Information entered incorrectly: *Please ensure that you are
+> entering all of the billing information for the card correctly, even a
+> single error can cause the transaction to fail. If this is a prepaid
+> card, ensure that it's been registered with the issuer for at least 24
+> hours, and that you are entering the registered address into our
+> billing system when signing up.
+>
+> - *Bank has incorrect information: *Please ensure that the bank/card
+> issuer has the same information on file that you are trying to enter.
+> Again, even a single error can cause the transaction to fail. 
+>
+> -* Autofill/pasting text: *The credit card number needs to be in the
+> format with spacing between groups of digits as it appear on the card.
+> This is done automatically when the digits are entered manually.
+> Autofill or pasting can bypass this formatting, causing the entry to
+> fail. If you are entering card info on our site, I would advise
+> temporarily disabling autofill in your browser. If the error is
+> occurring after submitting the payment, the following are the most
+> likely causes of failure: 
+>
+> - *VPN/proxy use:* If the IP address tied to the payment is associated
+> with a VPN/proxy service, this may have caused the transaction to be
+> flagged, and the email address used to be blocked from further payments. 
+>
+> - *Payment interference by a financial institution:* When purchasing
+> online subscriptions, many credit card services will delay payment for
+> processing as an anti-fraud feature. Such delays will generally cause
+> payment failure, as our billing system cannot accept delayed credit
+> card payments. You may need to specifically instruct your bank to
+> allow charges to go through without any delay for these transactions
+> to succeed.
+>
+> - *Insufficient Funds:* Please double check that your card balance
+> will cover the necessary purchase cost. Note that our pricing is in US
+> dollars, and currency exchange fees by your card provider would apply.
+> If none of the above seems to apply, please consider using that card
+> to fund a new PayPal or Amazon based account. (Please be aware,
+> however, that Paypal will not accept -prepaid- credit cards for
+> subscription purposes that do not allow registration of a full mailing
+> address). 
+>
+> Please let us know if there are further questions.
+>
+> Thank you for being a PIA customer,
+>
+>
+> *Jerry L.*
+> Customer Support Agent
+> /A+, Net+
+> /
+>
+>  
+> On Mon, 8th Apr 2019 at 11:23 pm, Bhaskar Chowdhury
+> <unixbhaskar@gmail.com> wrote:
+> Hey,
+>
+> Why the hell it failed?? When I tried to upgrade to two years plan
+> with the update CC information.
+>
+> Please do let me know.
+>
+> Thanks,
+> Bhaskar
+>
+>  
+>  
+> Private Internet Access
+> <https://www.privateinternetaccess.com/helpdesk/> ·
+> https://www.privateinternetaccess.com/helpdesk/
+>
+> (#SMFMKJXBQ5MDB4RARMK)
+>
+>     
+
+--------------B2D26BC9656C2C73CC65667B
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Thanks , a bunch Jerry. <br>
+    </p>
+    <p><br>
+    </p>
+    <p>Though I am not sure how the mistake happen!! I do believe I have
+      entered the correct info ...anyway , will follow what you
+      said...putting an remiander on my handphone. Before doing payment
+      I will certainly cross check one more time with the detains.</p>
+    <p>I believe my existing connection will not get interrupted ,it is
+      due to end on 11 th on this month...<br>
+    </p>
+    <p><br>
+    </p>
+    <p>Thanks,</p>
+    <p>Bhaskar<br>
+    </p>
+    <div class="moz-cite-prefix">On 4/9/19 2:22 PM, Jerry L. wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:PTAC-SMFMKJXBQ5MDB4RARMK.5cac5d1c0db013.01590589-1@debba96764c8bfb349b8f36b8b78776f">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <div class="dp-wrap" style="font-family: Calibri, Helvetica,
+        Arial, sans-serif; line-height: 125%; color: #242424; font-size:
+        14px;">
+        <a class="DP_TOP_MARK DP_USER_EMAIL dp_marker_link"
+          id="DP_TOP_MARK DP_USER_EMAIL" name="DP_TOP_MARK
+          DP_USER_EMAIL" style="color: #000; text-decoration: none;
+          font-size: 1px; line-height: 1px; height: 1px; overflow:
+          hidden; margin: 0; padding: 0; cursor: default; display:
+          inline;" moz-do-not-send="true"> </a>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+            <tr>
+              <td class="DP_TOP_MARK DP_USER_EMAIL" name="DP_TOP_MARK
+                DP_USER_EMAIL" style="padding: 0; font-family: Calibri,
+                Helvetica, Arial, sans-serif; line-height: 125%; color:
+                #242424; font-size: 14px;">
+                <table width="100%" cellspacing="0" cellpadding="0"
+                  border="0">
+                  <tbody>
+                    <tr>
+                      <td class="dp-layout-content" style="padding: 0;
+                        font-family: Calibri, Helvetica, Arial,
+                        sans-serif; line-height: 125%; color: #242424;
+                        font-size: 14px;" valign="top">
+                        <div class="dp-hr" style="font-family: Calibri,
+                          Helvetica, Arial, sans-serif; line-height:
+                          100%; color: #242424; font-size: 12px;
+                          padding: 0; margin-top: 15px; border-top: 2px
+                          solid #C5C5C5;"> </div>
+                        <a
+                          href="https://www.privateinternetaccess.com/helpdesk/"
+                          style="color: #0065A3; text-decoration:
+                          underline;" moz-do-not-send="true">Private
+                          Internet Access</a> · <a
+                          href="https://www.privateinternetaccess.com/helpdesk/"
+                          style="color: #0065A3; text-decoration:
+                          underline;" moz-do-not-send="true">https://www.privateinternetaccess.com/helpdesk/</a>
+                        <!-- DP_MESSAGE_BEGIN -->
+                        <div dir="ltr" name="dp_message_924647_begin"
+                          class="dp_message_924647_begin" lang="en">
+                          <div>Hello Bhaskar,</div>
+                          <div><br>
+                          </div>
+                          <div>Thank you for your reply.</div>
+                          <div><br>
+                          </div>
+                          <div>I do apologize, but there is no way to
+                            remove the lock on the update button. The
+                            credit card details can only be updated once
+                            every 15 days for security reasons. As a one
+                            time courtesy, I have added 10 days to your
+                            account to allow for the 15 days to pass on
+                            the update. Please be sure to update your
+                            credit card details on April 24th (place a
+                            reminder in your phone or your calendar if
+                            needed), and be sure to make no mistakes on
+                            the next entry as your account will expire
+                            and terminate if another mistake is made.</div>
+                          <div><br>
+                          </div>
+                          <div>Please let us know if we can further
+                            assist you.</div>
+                          <div><br>
+                          </div>
+                          <div>Thank you for being a PIA customer,</div>
+                          <div><br>
+                          </div>
+                          <b>Jerry L.</b><br>
+                          Customer Support Agent<br>
+                          <i>A+, Net+<br>
+                          </i></div>
+                        <!-- DP_MESSAGE_END -->
+                        <a name="dp_message_924647_end"
+                          class="dp_message_924647_end dp_marker_link"
+                          style="color: #000; text-decoration: none;
+                          font-size: 1px; line-height: 1px; height: 1px;
+                          overflow: hidden; margin: 0; padding: 0;
+                          cursor: default; display: inline;"
+                          moz-do-not-send="true"></a>
+                        <div class="rate-link" style="font-family:
+                          Calibri, Helvetica, Arial, sans-serif;
+                          line-height: 125%; color: #ABABAB; font-size:
+                          11px; margin-top: 10px; font-style: italic;">
+                          Was this message helpful? <a
+href="https://www.privateinternetaccess.com/helpdesk/ticket-rate/DC2-201904-00031/KJXBQ5MDB4RARMK/924647?setrating=1"
+                            style="color: #ABABAB; text-decoration:
+                            none; border: 1px solid #DADADA;
+                            margin-right: 3px; border-radius: 3px;
+                            -moz-border-radius: 3px;
+                            -webkit-border-radius: 3px;"
+                            moz-do-not-send="true">  Yes  </a> <a
+href="https://www.privateinternetaccess.com/helpdesk/ticket-rate/DC2-201904-00031/KJXBQ5MDB4RARMK/924647?setrating=0"
+                            style="color: #ABABAB; text-decoration:
+                            none; border: 1px solid #DADADA;
+                            margin-right: 3px; border-radius: 3px;
+                            -moz-border-radius: 3px;
+                            -webkit-border-radius: 3px;"
+                            moz-do-not-send="true">  It was OK  </a> <a
+href="https://www.privateinternetaccess.com/helpdesk/ticket-rate/DC2-201904-00031/KJXBQ5MDB4RARMK/924647?setrating=-1"
+                            style="color: #ABABAB; text-decoration:
+                            none; border: 1px solid #DADADA;
+                            margin-right: 3px; border-radius: 3px;
+                            -moz-border-radius: 3px;
+                            -webkit-border-radius: 3px;"
+                            moz-do-not-send="true">  No  </a>
+                        </div>
+                        <br>
+                        <br>
+                        <table cellspacing="0" cellpadding="3"
+                          border="0">
+                          <tbody>
+                            <tr>
+                              <td style="padding: 0; font-family:
+                                Calibri, Helvetica, Arial, sans-serif;
+                                line-height: 125%; color: #242424;
+                                font-size: 14px;">
+                                <div class="dp-author-row"
+                                  style="font-family: Calibri,
+                                  Helvetica, Arial, sans-serif;
+                                  line-height: 125%; color: #ABABAB;
+                                  font-size: 14px; padding-bottom: 2px;">
+                                  On Tue, 9th Apr 2019 at 2:34 am,
+                                  Bhaskar Chowdhury
+                                  <a class="moz-txt-link-rfc2396E" href="mailto:unixbhaskar@gmail.com">&lt;unixbhaskar@gmail.com&gt;</a> wrote: </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 0; font-family:
+                                Calibri, Helvetica, Arial, sans-serif;
+                                line-height: 125%; color: #242424;
+                                font-size: 14px;">
+                                <table width="100%" cellspacing="0"
+                                  cellpadding="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td style="padding: 0;
+                                        font-family: Calibri, Helvetica,
+                                        Arial, sans-serif; line-height:
+                                        125%; color: #242424; font-size:
+                                        14px;">
+                                        <div data-dp-type="blockquote"
+                                          class="dp-quoted-message"
+                                          style="font-family: Calibri,
+                                          Helvetica, Arial, sans-serif;
+                                          line-height: 125%; color:
+                                          #00174B; font-size: 14px;
+                                          border-left: 1px solid
+                                          #00174B; padding-left: 8px;
+                                          margin-left: 2px;">
+                                          <!-- DP_MESSAGE_BEGIN -->
+                                          <div dir="ltr"
+                                            name="dp_message_924631_begin"
+class="dp_message_924631_begin" lang="en">
+                                            <div>Thanks, Jerry.</div>
+                                            <div>Would you be able to
+                                              reactivate the "update
+                                              credit card" info link ?
+                                              It is now deactivated
+                                              because I have changed it
+                                              in morning IST. <br>
+                                            </div>
+                                            <div>I have got a message
+                                              from the bank that I have
+                                              putted wrong info about
+                                              the card ,so the payment
+                                              got declined .</div>
+                                            <div><br>
+                                            </div>
+                                            <div>So, please re-activate
+                                              the link "update credit
+                                              card" ,then will change
+                                              that info and cross check.</div>
+                                            <div><br>
+                                            </div>
+                                            <div>Thanks,</div>
+                                            <div>Bhaskar<br>
+                                            </div>
+                                            <div>On 4/9/19 1:55 PM,
+                                              Jerry L. wrote:<br>
+                                            </div>
+                                            <blockquote><br>
+                                              <span>- <b>Information
+                                                  entered incorrectly</b></span></blockquote>
+                                          </div>
+                                          <!-- DP_MESSAGE_END -->
+                                          <a
+                                            name="dp_message_924631_end"
+                                            class="dp_message_924631_end
+                                            dp_marker_link"
+                                            style="color: #000;
+                                            text-decoration: none;
+                                            font-size: 1px; line-height:
+                                            1px; height: 1px; overflow:
+                                            hidden; margin: 0; padding:
+                                            0; cursor: default; display:
+                                            inline;"
+                                            moz-do-not-send="true"></a>
+                                          <!-- DP_MESSAGE_END --> </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="dp-spacer" style="font-family:
+                          Calibri, Helvetica, Arial, sans-serif;
+                          line-height: 125%; color: #242424; font-size:
+                          1px; padding: 6px; height: 6px; overflow:
+                          hidden;"> </div>
+                        <table cellspacing="0" cellpadding="3"
+                          border="0">
+                          <tbody>
+                            <tr>
+                              <td style="padding: 0; font-family:
+                                Calibri, Helvetica, Arial, sans-serif;
+                                line-height: 125%; color: #242424;
+                                font-size: 14px;">
+                                <div class="dp-author-row"
+                                  style="font-family: Calibri,
+                                  Helvetica, Arial, sans-serif;
+                                  line-height: 125%; color: #ABABAB;
+                                  font-size: 14px; padding-bottom: 2px;">
+                                  On Tue, 9th Apr 2019 at 2:24 am, Jerry
+                                  L. wrote: </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 0; font-family:
+                                Calibri, Helvetica, Arial, sans-serif;
+                                line-height: 125%; color: #242424;
+                                font-size: 14px;">
+                                <table width="100%" cellspacing="0"
+                                  cellpadding="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td style="padding: 0;
+                                        font-family: Calibri, Helvetica,
+                                        Arial, sans-serif; line-height:
+                                        125%; color: #242424; font-size:
+                                        14px;">
+                                        <div data-dp-type="blockquote"
+                                          class="dp-quoted-message"
+                                          style="font-family: Calibri,
+                                          Helvetica, Arial, sans-serif;
+                                          line-height: 125%; color:
+                                          #00174B; font-size: 14px;
+                                          border-left: 1px solid
+                                          #00174B; padding-left: 8px;
+                                          margin-left: 2px;">
+                                          <!-- DP_MESSAGE_BEGIN -->
+                                          <div dir="ltr"
+                                            name="dp_message_924623_begin"
+class="dp_message_924623_begin" lang="en">
+                                            <div>Hello Bhaskar,</div>
+                                            <div><br>
+                                            </div>
+                                            <div>Thank you for reaching
+                                              out to us for support.</div>
+                                            <div><br>
+                                            </div>
+                                            <div>I apologize you are
+                                              experiencing difficulties
+                                              with updating your
+                                              payment.<span
+                                                style="font-size:13px;"> If
+                                                the error associated
+                                                with your payment
+                                                failure is occurring on
+                                                the card submission
+                                                form, the following are
+                                                the most likely causes
+                                                of failure: </span></div>
+                                            <div><br>
+                                            </div>
+                                            <div>
+                                              <div><span> - <b>Incompatible
+                                                    card type: </b>We
+                                                  accept all forms of
+                                                  Visa, Mastercard,
+                                                  American Express,
+                                                  Discover, and JCB,
+                                                  including prepaid
+                                                  cards. </span><br>
+                                                <br>
+                                                <span>- <b>Information
+                                                    entered
+                                                    incorrectly: </b>Please
+                                                  ensure that you are
+                                                  entering all of the
+                                                  billing information
+                                                  for the card
+                                                  correctly, even a
+                                                  single error can cause
+                                                  the transaction to
+                                                  fail. If this is a
+                                                  prepaid card, ensure
+                                                  that it's been
+                                                  registered with the
+                                                  issuer for at least 24
+                                                  hours, and that you
+                                                  are entering the
+                                                  registered address
+                                                  into our billing
+                                                  system when signing
+                                                  up.</span><br>
+                                                <br>
+                                                <span>- <b>Bank has
+                                                    incorrect
+                                                    information: </b>Please
+                                                  ensure that the
+                                                  bank/card issuer has
+                                                  the same information
+                                                  on file that you are
+                                                  trying to enter.
+                                                  Again, even a single
+                                                  error can cause the
+                                                  transaction to fail. </span><br>
+                                                <br>
+                                                <span>-<b> Autofill/pasting
+                                                    text: </b>The credit
+                                                  card number needs to
+                                                  be in the format with
+                                                  spacing between groups
+                                                  of digits as it appear
+                                                  on the card. This is
+                                                  done automatically
+                                                  when the digits are
+                                                  entered manually.
+                                                  Autofill or pasting
+                                                  can bypass this
+                                                  formatting, causing
+                                                  the entry to fail. If
+                                                  you are entering card
+                                                  info on our site, I
+                                                  would advise
+                                                  temporarily disabling
+                                                  autofill in your
+                                                  browser.
+                                                  If the error is
+                                                  occurring after
+                                                  submitting the
+                                                  payment, the following
+                                                  are the most likely
+                                                  causes of failure: </span><br>
+                                                <br>
+                                                <span>- <b>VPN/proxy
+                                                    use:</b> If the IP
+                                                  address tied to the
+                                                  payment is associated
+                                                  with a VPN/proxy
+                                                  service, this may have
+                                                  caused the transaction
+                                                  to be flagged, and the
+                                                  email address used to
+                                                  be blocked from
+                                                  further payments. </span><br>
+                                                <br>
+                                                <span>- <b>Payment
+                                                    interference by a
+                                                    financial
+                                                    institution:</b>
+                                                  When purchasing online
+                                                  subscriptions, many
+                                                  credit card services
+                                                  will delay payment for
+                                                  processing as an
+                                                  anti-fraud feature.
+                                                  Such delays will
+                                                  generally cause
+                                                  payment failure, as
+                                                  our billing system
+                                                  cannot accept delayed
+                                                  credit card payments.
+                                                  You may need to
+                                                  specifically instruct
+                                                  your bank to allow
+                                                  charges to go through
+                                                  without any delay for
+                                                  these transactions to
+                                                  succeed.</span><br>
+                                                <br>
+                                                <span>- <b>Insufficient
+                                                    Funds:</b> Please
+                                                  double check that your
+                                                  card balance will
+                                                  cover the necessary
+                                                  purchase cost. Note
+                                                  that our pricing is in
+                                                  US dollars, and
+                                                  currency exchange fees
+                                                  by your card provider
+                                                  would apply.
+                                                  If none of the above
+                                                  seems to apply, please
+                                                  consider using that
+                                                  card to fund a new
+                                                  PayPal or Amazon based
+                                                  account. (Please be
+                                                  aware, however, that
+                                                  Paypal will not accept
+                                                  -prepaid- credit cards
+                                                  for subscription
+                                                  purposes that do not
+                                                  allow registration of
+                                                  a full mailing
+                                                  address). </span><br>
+                                                <br>
+                                                <span>Please let us know
+                                                  if there are further
+                                                  questions.</span><br>
+                                              </div>
+                                              <div><span><br>
+                                                </span></div>
+                                              <div><span>Thank you for
+                                                  being a PIA customer,</span></div>
+                                              <br>
+                                            </div>
+                                            <div><br>
+                                            </div>
+                                            <b>Jerry L.</b><br>
+                                            Customer Support Agent<br>
+                                            <i>A+, Net+<br>
+                                            </i></div>
+                                          <!-- DP_MESSAGE_END -->
+                                          <a
+                                            name="dp_message_924623_end"
+                                            class="dp_message_924623_end
+                                            dp_marker_link"
+                                            style="color: #000;
+                                            text-decoration: none;
+                                            font-size: 1px; line-height:
+                                            1px; height: 1px; overflow:
+                                            hidden; margin: 0; padding:
+                                            0; cursor: default; display:
+                                            inline;"
+                                            moz-do-not-send="true"></a>
+                                          <!-- DP_MESSAGE_END --> </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="dp-spacer" style="font-family:
+                          Calibri, Helvetica, Arial, sans-serif;
+                          line-height: 125%; color: #242424; font-size:
+                          1px; padding: 6px; height: 6px; overflow:
+                          hidden;"> </div>
+                        <table cellspacing="0" cellpadding="3"
+                          border="0">
+                          <tbody>
+                            <tr>
+                              <td style="padding: 0; font-family:
+                                Calibri, Helvetica, Arial, sans-serif;
+                                line-height: 125%; color: #242424;
+                                font-size: 14px;">
+                                <div class="dp-author-row"
+                                  style="font-family: Calibri,
+                                  Helvetica, Arial, sans-serif;
+                                  line-height: 125%; color: #ABABAB;
+                                  font-size: 14px; padding-bottom: 2px;">
+                                  On Mon, 8th Apr 2019 at 11:23 pm,
+                                  Bhaskar Chowdhury
+                                  <a class="moz-txt-link-rfc2396E" href="mailto:unixbhaskar@gmail.com">&lt;unixbhaskar@gmail.com&gt;</a> wrote: </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 0; font-family:
+                                Calibri, Helvetica, Arial, sans-serif;
+                                line-height: 125%; color: #242424;
+                                font-size: 14px;">
+                                <table width="100%" cellspacing="0"
+                                  cellpadding="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td style="padding: 0;
+                                        font-family: Calibri, Helvetica,
+                                        Arial, sans-serif; line-height:
+                                        125%; color: #242424; font-size:
+                                        14px;">
+                                        <div data-dp-type="blockquote"
+                                          class="dp-quoted-message"
+                                          style="font-family: Calibri,
+                                          Helvetica, Arial, sans-serif;
+                                          line-height: 125%; color:
+                                          #00174B; font-size: 14px;
+                                          border-left: 1px solid
+                                          #00174B; padding-left: 8px;
+                                          margin-left: 2px;">
+                                          <!-- DP_MESSAGE_BEGIN -->
+                                          <div dir="ltr"
+                                            name="dp_message_924491_begin"
+class="dp_message_924491_begin" lang="en">
+                                            <div>Hey,</div>
+                                            <div><br>
+                                            </div>
+                                            <div>Why the hell it
+                                              failed?? When I tried to
+                                              upgrade to two years plan
+                                              with the update CC
+                                              information.</div>
+                                            <div><br>
+                                            </div>
+                                            <div>Please do let me know.</div>
+                                            <div><br>
+                                            </div>
+                                            <div>Thanks,</div>
+                                            <div>Bhaskar<br>
+                                            </div>
+                                          </div>
+                                          <!-- DP_MESSAGE_END -->
+                                          <a
+                                            name="dp_message_924491_end"
+                                            class="dp_message_924491_end
+                                            dp_marker_link"
+                                            style="color: #000;
+                                            text-decoration: none;
+                                            font-size: 1px; line-height:
+                                            1px; height: 1px; overflow:
+                                            hidden; margin: 0; padding:
+                                            0; cursor: default; display:
+                                            inline;"
+                                            moz-do-not-send="true"></a>
+                                          <!-- DP_MESSAGE_END --> </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="dp-spacer" style="font-family:
+                          Calibri, Helvetica, Arial, sans-serif;
+                          line-height: 125%; color: #242424; font-size:
+                          1px; padding: 6px; height: 6px; overflow:
+                          hidden;"> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="dp-layout-bottom" style="padding: 0;
+                        font-family: Calibri, Helvetica, Arial,
+                        sans-serif; line-height: 125%; color: #ABABAB;
+                        font-size: 14px;" valign="top">
+                        <div class="dp-layout-bottom"
+                          style="font-family: Calibri, Helvetica, Arial,
+                          sans-serif; line-height: 125%; color: #ABABAB;
+                          font-size: 14px;">
+                          <div class="dp-hr" style="font-family:
+                            Calibri, Helvetica, Arial, sans-serif;
+                            line-height: 100%; color: #ABABAB;
+                            font-size: 12px; padding: 0; margin-top:
+                            15px; border-top: 2px solid #C5C5C5;"> </div>
+                          <a
+                            href="https://www.privateinternetaccess.com/helpdesk/"
+                            style="color: #ABABAB; text-decoration:
+                            underline;" moz-do-not-send="true">Private
+                            Internet Access</a> · <a
+                            href="https://www.privateinternetaccess.com/helpdesk/"
+                            style="color: #ABABAB; text-decoration:
+                            underline;" moz-do-not-send="true">https://www.privateinternetaccess.com/helpdesk/</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <span class="dp-replycode" style="font-family: Calibri,
+                  Helvetica, Arial, sans-serif; line-height: 125%;
+                  color: #E8E8E8; font-size: 1px;">(#SMFMKJXBQ5MDB4RARMK)</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--DP_TOP_MARK DP_USER_EMAIL--><a class="DP_TOP_MARK
+        DP_USER_EMAIL dp_marker_link DP_NEWMSG_AS_NOTE" id="DP_TOP_MARK
+        DP_USER_EMAIL DP_NEWMSG_AS_NOTE" name="DP_TOP_MARK DP_USER_EMAIL
+        DP_NEWMSG_AS_NOTE" style="color: #000; text-decoration: none;
+        font-size: 1px; line-height: 1px; height: 1px; overflow: hidden;
+        margin: 0; padding: 0; cursor: default; display: inline;"
+        moz-do-not-send="true"> </a>
+      <!--DP_BOTTOM_MARK--><a class="DP_BOTTOM_MARK dp_marker_link
+        DP_NEWMSG_AS_NOTE" id="DP_BOTTOM_MARK DP_NEWMSG_AS_NOTE"
+        name="DP_BOTTOM_MARK DP_NEWMSG_AS_NOTE" style="color: #000;
+        text-decoration: none; font-size: 1px; line-height: 1px; height:
+        1px; overflow: hidden; margin: 0; padding: 0; cursor: default;
+        display: inline;" moz-do-not-send="true"> </a>
+    </blockquote>
+  </body>
+</html>
+
+--------------B2D26BC9656C2C73CC65667B--

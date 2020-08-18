@@ -1,0 +1,508 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp4514779lfb;
+        Tue, 9 Apr 2019 00:40:27 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwXJb2c/x/OOtJLSr6+gC2lHr03/EppNKlr1x0Jitfea6IfUfU3nHke3o3D2mDxZdR3g28B
+X-Received: by 2002:a62:4e86:: with SMTP id c128mr34967224pfb.39.1554795626905;
+        Tue, 09 Apr 2019 00:40:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1554795626; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Q5u/aB8PJ3AcmIXMQRkRPHvHKkDcHy6n+TfXUxvewEgbFtmhvQTSZVl/9sk8vxSRAv
+         87Oroem5Auhz9pWDjzaUdTkRvnhwdKkcat6IoHtAypCfyMcITcTc6kRLNoMv48GxJmHd
+         WVrtDbY3DdOO1ZQajEc+wkuLGRiAQmf6q9qHW8d5u+jKPtfxuZithOvZoWSgOVz28afk
+         94Tyt+pfo+R25zzV2GSEAgAQ4Lm1dp18EHcfA4kLldeMxcGWmjzeY3O0Xnx51REbSSeP
+         DHmhbPe93UzgXnJkaHUnFNCRAEwJEVlDrI3oPGHQRsZ+nB+hFNLUfHpRvXkJ/EvMlk9Q
+         kj8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:sender:message-id:subject
+         :from:to:date;
+        bh=5TJZYa/WvpqD2AKZ5duz3yUpAZdD2myjM+BrqhEuCvQ=;
+        b=qPbFlzORLjnPzy3ZF8+ujD4AtxN4h6yl/Rs3z+DVxibkGn00gVZ5i1PmHwl1yQ8lqb
+         erKV5x1hgAC1bXwpyblNG79LSG8qbkhMPuc2pNRgOvVSA+yf/U/cj0vTPYUTkhvgQ7Q2
+         glauC6n2vhDZfSdhtqQXLCpul25wN+ZOyZHU2SEJLq3QRo+l/JYe6GLV04Kt5AliH8LL
+         A5Sosor39PqRpsVlFylC038/zR+f4/1eqDU3z2OuI6jPxtw51TUPQ1uMJ3+qxGq+H9Vg
+         zafNgV3kWyr5v0XBXirFx9KVNHNn2qq3+/UtqxVMjqx3g96Lzn2AWYO/udQSaE7J0KLl
+         62sQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of info@naukri.com designates 103.214.115.103 as permitted sender) smtp.mailfrom=info@naukri.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=naukri.com
+Return-Path: <info@naukri.com>
+Received: from nmail-103-214-115-103.naukri.com (nmail-103-214-115-103.naukri.com. [103.214.115.103])
+        by mx.google.com with ESMTPS id v16si28294330plo.33.2019.04.09.00.40.25
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 09 Apr 2019 00:40:26 -0700 (PDT)
+Received-SPF: pass (google.com: domain of info@naukri.com designates 103.214.115.103 as permitted sender) client-ip=103.214.115.103;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of info@naukri.com designates 103.214.115.103 as permitted sender) smtp.mailfrom=info@naukri.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=naukri.com
+Return-Path: <info@naukri.com>
+Received: from [172.10.115.135] ([172.10.115.135:60718] helo=n5plnjobdb22.ieil.net)
+	by n5plimla01.ieil.net (envelope-from <info@naukri.com>)
+	(ecelerity 3.6.13.50539 r(Core:3.6.13.0)) with ESMTP
+	id B2/6B-61791-2FB4CAC5; Tue, 09 Apr 2019 13:08:26 +0530
+Date: Tue, 9 Apr 2019 13:08:26 +0530
+To: unixbhaskar@gmail.com
+From: "Naukri.com info" <info@naukri.com>
+Subject: 18 recruiter(s) expressed interest in your Naukri profile
+Message-ID: <c1cba8da878dfa4543102d9f775d3383@n5plnjobdb22.ieil.net>
+X-Priority: 3
+X-Mailer: Naukri Mailer
+Sender: 
+MIME-Version: 1.0
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+=0A=0A=0A=0A=0A=09=0A        =0A=09=09    =0A=09=09        =0A=09=09       =
+ =0A=09=09    =0A        =0A    =0A        =0A    =0A        =0A    =0A    =
+    =0A    =0A        =0A    =0A        =0A    =0A        =0A    =0A       =
+ =0A    =0A        =0A    =0A        =0A    =0A        =0A    =0A        =
+=0A    =0A        =0A    =0A        =0A    =0A        =0A    =0A        =0A=
+    =0A        =0A    =0A=0A=0A=0A=0A=0A=0A=0A=0A=09=0A=09    =0A    =0A=09=
+    =0A=09        =0A            =0A=09    =0A    =0A=09    =0A    =0A=09  =
+  =0A    =0A=09    =0A    =0A=09    =0A    =0A=09    =0A    =0A=09    =0A  =
+  =0A=09    =0A    =0A=09    =0A    =0A=09    =0A    =0A=09    =0A    =0A=
+=09    =0A    =0A=09    =0A    =0A=09    =0A    =0A=09    =0A    =0A=09    =
+=0A    =0A=0A=0A=0A=0A=0A=0A=0A=0A=09=0A=09    =0A=09        =0A           =
+ =0A=09    =0A    =0A=0A=0A=0A<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 =
+Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"=
+>=0A<html xmlns=3D"http://www.w3.org/1999/xhtml">=0A<head>=0A<meta http-equ=
+iv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" />=0A<meta name=
+=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.0, maximum=
+-scale=3D1.0, user-scalable=3Dno">=0A<link href=3D"https://fonts.googleapis=
+.com/css?family=3DRoboto:400,500" rel=3D"stylesheet">=0A</head>=0A<body>=0A=
+<table width=3D"100%" height=3D"100%" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" bgcolor=3D"#eff2f7" align=3D"center" style=3D"border-collapse:c=
+ollapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">=0A         <tr>=0A=
+            <td valign=3D"top" align=3D"center" height=3D"30"></td>=0A     =
+    </tr>=0A         <tr>=0A            <td valign=3D"top" align=3D"center"=
+ width=3D"600">=0A               <table border=3D"0" align=3D"center" cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"max-width:600px; border-collapse:co=
+llapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border:1px solid #f0f=
+1f6;">=0A                  <tr>=0A                     <td width=3D"600" va=
+lign=3D"top" bgcolor=3D"#FFFFFF" align=3D"center" style=3D"max-width:600px;=
+">=0A                        <table width=3D"100%" border=3D"0" align=3D"ce=
+nter" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse:collapse=
+; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">=0A                       =
+    <tr>=0A                             <td valign=3D"top" align=3D"center"=
+ bgcolor=3D"#f7f8fa">=0A                              <table width=3D"95%" =
+align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"=
+border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">=0A =
+                                   <tr>=0A                                 =
+      <td valign=3D"top" height=3D"18"></td>=0A                            =
+        </tr>=0A                                    <tr>=0A                =
+                       <td valign=3D"top">=0A                              =
+   <table width=3D"105" align=3D"left" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" style=3D"border-collapse:collapse; mso-table-lspace:0pt; mso-t=
+able-rspace:0pt;">=0A                                             <tr>=0A  =
+                                              <td height=3D"29"><a href=3D"=
+https://www.naukri.com/" target=3D"_blank" style=3D"font-size:13px; text-al=
+ign:left; color:#006ab9; text-decoration:none;">=0A                        =
+                        <img src=3D"https://static.naukimg.com/s/4/100/i/na=
+ukri_Logo.png" alt=3D"naukri.com" border=3D"0" style=3D"font-family:'Roboto=
+', Arial; font-size:13px; text-align:left; color:#006ab9;" /></a>=0A       =
+                                         </td>=0A                          =
+                   </tr>=0A                                          </tabl=
+e>=0A                                          <table align=3D"right" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"border-collapse:collap=
+se; mso-table-lspace:0pt; mso-table-rspace:0pt;">=0A                       =
+                      <tr>=0A                                              =
+   <td valign=3D"top" align=3D"right"><a href=3D"https://www.naukri.com/mnj=
+user/homepage" target=3D"_blank">=0A                                       =
+          <img src=3D"https://p.naukimg.com/jphoto/s19017bdb4fe2a037fad5873=
+bf7614a06b9206e941d57498a3b7871f55cdd1a32c1" width=3D"29" alt=3D"" border=
+=3D"0" style=3D"border-radius: 50%; -moz-border-radius: 50%; -webkit-border=
+-radius: 50%;" /></a></td>=0A                                              =
+  <td width=3D"7"></td>=0A                                             </tr=
+>=0A                                          </table>=0A                  =
+                     </td>=0A                                    </tr>=0A  =
+                                  <tr>=0A                                  =
+     <td valign=3D"top" height=3D"15"></td>=0A                             =
+       </tr>=0A                                 </table>=0A                =
+              </td>=0A                           </tr>=0A                  =
+         <tr>=0A                              <td valign=3D"top" align=3D"c=
+enter">=0A                                 <table width=3D"93%" border=3D"0=
+" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-coll=
+apse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">=0A            =
+                        <!-- JOB Satrt  -->=0A                             =
+       <tr>=0A                                       <td height=3D"28"></td=
+>=0A                                    </tr>=0A                           =
+         <tr>=0A                                       <td valign=3D"top" a=
+lign=3D"center" style=3D"font-family:'Roboto', Arial; font-size:18px; text-=
+align:center; color:#333333; font-weight:600; line-height:24px;">18 Recruit=
+er(s) shown interest in your profile</td>=0A                               =
+     </tr>=0A                                    <tr>=0A                   =
+                    <td height=3D"27"></td>=0A                             =
+       </tr>=0A                                    <tr>=0A                 =
+                      <td align=3D"left" style=3D"font-family:'Roboto', Ari=
+al; text-align:left; font-size:13px; color:#666666; line-height:20px;">Dear=
+ Bhaskar Chowdhury,<br />18 recruiter(s) viewed or expressed interest in yo=
+ur Naukri profile in the last 3 days.</td>=0A                              =
+      </tr>=0A                                    <tr>=0A                  =
+                     <td height=3D"20"></td>=0A                            =
+        </tr>=0A                                    <tr>=0A                =
+                       <td valign=3D"top" align=3D"center">=0A             =
+                             <table align=3D"center" border=3D"0" cellspaci=
+ng=3D"0" cellpadding=3D"0" style=3D"border-collapse:collapse; mso-table-lsp=
+ace:0pt; mso-table-rspace:0pt;">=0A                                        =
+     <tr>=0A                                                <td width=3D"27=
+5" height=3D"40" align=3D"center" bgcolor=3D"#429FFC">=0A                  =
+                                 <a href=3D"https://www.naukri.com/mnjuser/=
+performance?utm_campaign=3Drvm&utm_medium=3Drvmmailer&utm_source=3Dviewdeta=
+ils" target=3D"_blank" style=3D"font-family:'Roboto', Arial; font-weight:60=
+0; font-size:14px; color:#ffffff; text-decoration:none; display:block; line=
+-height:40px; text-transform:uppercase;">VIEW DETAILS</a>=0A               =
+                                 </td>=0A                                  =
+           </tr>=0A                                          </table>=0A   =
+                                    </td>=0A                               =
+     </tr>=0A                                    <tr>=0A                   =
+                    <td height=3D"9" style=3D"border-bottom:1px solid #eeee=
+ee;"></td>=0A                                    </tr>=0A                  =
+                  <tr>=0A                                       <td height=
+=3D"29"></td>=0A                                    </tr>=0A               =
+                     <tr>=0A                                       <td alig=
+n=3D"left" style=3D"font-family:'Roboto', Arial; font-weight:600; text-alig=
+n:left; font-size:15px; color:#333333; line-height:18px;">Your current prof=
+ile information as seen by recruiter.</td>=0A                              =
+      </tr>=0A                                    <tr>=0A                  =
+                     <td valign=3D"top" align=3D"left" height=3D"24"></td>=
+=0A                                    </tr>=0A                            =
+        <tr>=0A                                       <td valign=3D"top" al=
+ign=3D"left">=0A                                          <table width=3D"1=
+00%" border=3D"0" align=3D"left" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;=
+">=0A                                             <tr>=0A                  =
+                              <td width=3D"89" valign=3D"top">=0A          =
+                                         <table width=3D"100%" align=3D"lef=
+t" cellpadding=3D"0" cellspacing=3D"0">=0A                                 =
+                  <tr>=0A                                                  =
+       <td valign=3D"top" width=3D"75" align=3D"left" style=3D"font-family:=
+'Roboto', Arial; text-align:left; font-size:13px; color:#999999; line-heigh=
+t:15px;"><img src=3D"https://p.naukimg.com/jphoto/s39017bdb4fe2a037fad5873b=
+f7614a06b9206e941d57498a3b7871f55cdd1a32c1" width=3D"59" style=3D"border-ra=
+dius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%;" alt=3D"" /=
+></td>=0A                                                         <td width=
+=3D"14"></td>=0A                                                         <t=
+d valign=3D"top" align=3D"left" style=3D"font-family:'Roboto', Arial; text-=
+align:left; font-size:13px; color:#999999; line-height:15px;"><table width=
+=3D"100%" align=3D"left" cellpadding=3D"0" cellspacing=3D"0">=0A  <tr>=0A  =
+<td valign=3D"top" align=3D"left" style=3D"font-family:'Roboto', Arial; fon=
+t-weight:600; text-align:left; font-size:20px; color:#333333; line-height:2=
+4px;">=0A   =0A=0A  Bhaskar Chowdhury=0A   =0A   =0A   </td>=0A  </tr>=0A  =
+<tr>=0A    <td height=3D"6"></td>=0A  </tr>=0A  <tr>=0A   <td valign=3D"top=
+" align=3D"left" style=3D"font-family:'Roboto', Arial; text-align:left; fon=
+t-size:13px; color:#666666; line-height:20px;">=0A      =0A      OS: GNU/Li=
+nux=0A WebServer: Apache,Tomcat,Mongrel.Zope=0A Monitoring Tools: Nagios,Ga=
+nglia,Cacti,Tripwire,perf=0A Database:MySQL=0ARemote protocol : SSH ,NFS=0A=
+Collaboration Tool: Samba=0AContainers : Docker , Kubernetes,=0A      =0A  =
+ </td>=0A  </tr>=0A</table>=0A</td>=0A                                     =
+                </tr>=0A                                                   =
+   <tr>=0A                                                         <td cols=
+pan=3D"3" height=3D"9"></td>=0A                                            =
+          </tr>=0A                                                      <tr=
+>=0A                                                         <td valign=3D"=
+top" width=3D"75" align=3D"left" style=3D"font-family:'Roboto', Arial; text=
+-align:left; font-size:13px; color:#999999; line-height:15px;">Experience</=
+td>=0A                                                         <td width=3D=
+"14"></td>=0A                                                         =0A=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09    =0A                          =
+                                  <td valign=3D"top" align=3D"left" style=
+=3D"font-family:'Roboto', Arial; text-align:left; font-size:13px; color:#66=
+6666; line-height:15px;">9.0 Year(s)</td>=0A=0A                            =
+                             =0A                                           =
+           </tr>=0A                                                      <t=
+r>=0A                                                         <td colspan=
+=3D"3" height=3D"11"></td>=0A                                              =
+        </tr>=0A                                                      <tr>=
+=0A                                                         <td valign=3D"t=
+op" width=3D"75" align=3D"left" style=3D"font-family:'Roboto', Arial; text-=
+align:left; font-size:13px; color:#999999; line-height:15px;">Salary</td>=
+=0A                                                         <td width=3D"14=
+"></td>=0A                                                         =0A     =
+                                                    =0A                    =
+                                     =0A                                   =
+                           =0A                                             =
+            =0A                                                         <td=
+ valign=3D"top" align=3D"left" style=3D"font-family:'Roboto', Arial; text-a=
+lign:left; font-size:13px; color:#666666; line-height:15px;">=0A           =
+                                                 INR 12 Lakh(s)  </td>  =0A=
+                                                        =0A                =
+                                      </tr>=0A                             =
+                         <tr>=0A                                           =
+              <td colspan=3D"3" height=3D"11"></td>=0A                     =
+                                 </tr>=0A                                  =
+                    <tr>=0A                                                =
+         <td valign=3D"top" width=3D"75" align=3D"left" style=3D"font-famil=
+y:'Roboto', Arial; text-align:left; font-size:13px; color:#999999; line-hei=
+ght:15px;">Location</td>=0A                                                =
+         <td width=3D"14"></td>=0A                                         =
+                =0A                                                        =
+ <td valign=3D"top" align=3D"left" style=3D"font-family:'Roboto', Arial; te=
+xt-align:left; font-size:13px; color:#666666; line-height:15px;">Chennai</t=
+d>=0A                                                         =0A          =
+                                            </tr>=0A                       =
+                               <tr>=0A                                     =
+                    <td colspan=3D"3" height=3D"11"></td>=0A               =
+                                       </tr>=0A                            =
+                          <tr>=0A                                          =
+               <td valign=3D"top" width=3D"75" align=3D"left" style=3D"font=
+-family:'Roboto', Arial; text-align:left; font-size:13px; color:#999999; li=
+ne-height:15px;">Current Organization</td>=0A=0A=0A                        =
+                                 <td width=3D"14"></td>=0A                 =
+                                        =0A                                =
+                         =0A                                               =
+          <td valign=3D"top" align=3D"left" style=3D"font-family:'Roboto', =
+Arial; text-align:left; font-size:13px; color:#666666; line-height:15px;">S=
+enior Linux System Administrator  at  Looking for an employer to work with.=
+</td>=0A                                                         =0A       =
+                                               </tr>=0A                    =
+                                  <tr>=0A                                  =
+                       <td colspan=3D"3" height=3D"11"></td>=0A            =
+                                          </tr>=0A                         =
+                             <tr>=0A                                       =
+                  <td valign=3D"top" width=3D"75" align=3D"left" style=3D"f=
+ont-family:'Roboto', Arial; text-align:left; font-size:13px; color:#999999;=
+ line-height:15px;">Previous Organization</td>=0A                          =
+                               <td width=3D"14"></td>=0A=0A=0A             =
+                                            =0A                            =
+                             =0A                                           =
+              <td valign=3D"top" align=3D"left" style=3D"font-family:'Robot=
+o', Arial; text-align:left; font-size:13px; color:#666666; line-height:15px=
+;">Senior Linux System Administrator  at  Looking for an employer to work w=
+ith.</td>=0A                                                         =0A   =
+                                                   </tr>=0A                =
+                                      <tr>=0A                              =
+                           <td colspan=3D"3" height=3D"11"></td>=0A        =
+                                              </tr>=0A                     =
+                                 <tr>=0A                                   =
+                      <td valign=3D"top" width=3D"75" align=3D"left" style=
+=3D"font-family:'Roboto', Arial; text-align:left; font-size:13px; color:#99=
+9999; line-height:15px;">Education</td>=0A                                 =
+                        <td width=3D"14"></td>=0A=0A=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09 =0A                                                  =
+       <td valign=3D"top" align=3D"left" style=3D"font-family:'Roboto', Ari=
+al; text-align:left; font-size:13px; color:#666666; line-height:15px;">=0AD=
+iploma/Computers  - Redhat 2010 </td>=0A                                   =
+                      =0A                                                  =
+       =0A                                                      </tr>=0A   =
+                                                   <tr>=0A                 =
+                                        <td colspan=3D"3" height=3D"11"></t=
+d>=0A                                                      </tr>=0A        =
+                                              <tr>=0A                      =
+                                   <td valign=3D"top" width=3D"75" align=3D=
+"left" style=3D"font-family:'Roboto', Arial; text-align:left; font-size:13p=
+x; color:#999999; line-height:15px;">Pref Location</td>=0A                 =
+                                        <td width=3D"14"></td>=0A=09=09=09=
+=09=09=09=09=09=09=09=09=09=09     =0A=09=09=09=09=09=09                   =
+             =0A=09=09=09=09=09=09                                =0A=09=09=
+=09=09=09=09                                =0A=09=09=09=09=09=09          =
+                      =0A=09=09=09=09=09=09                                =
+    =0A=09=09=09=09=09=09                                =0A=09=09=09=09=09=
+=09                                =0A=09=09=09=09=09=09                   =
+                 =0A=09=09=09=09=09=09                                =0A=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=0A=09=09=09=09=09=09            =
+                        =0A=09=09=09=09=09=09                              =
+  =0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09=0A=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=0A=09=09=
+=09=09=09=09                                =0A=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=0A=09=09=09=
+=09=09=09                                =0A=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=0A=09=09=09=09=
+=09=09                                =0A=0A                               =
+                          =0A                                              =
+           <td valign=3D"top" align=3D"left" style=3D"font-family:'Roboto',=
+ Arial; text-align:left; font-size:13px; color:#666666; line-height:15px;">=
+Chennai, Hyderabad, Tamil Nadu - Other</td>=0A                             =
+                            =0A                                            =
+          </tr>=0A                                                      <tr=
+>=0A                                                         <td colspan=3D=
+"3" height=3D"11"></td>=0A                                                 =
+     </tr>=0A                                                      <tr>=0A =
+                                                        <td width=3D"75" al=
+ign=3D"left" valign=3D"top" style=3D"font-family:'Roboto', Arial; text-alig=
+n:left; font-size:13px; color:#999999; line-height:15px;">Keyskills</td>=0A=
+                                                         <td width=3D"14"><=
+/td>=0A                                                         =0A        =
+                                                 <td valign=3D"top" align=
+=3D"left" style=3D"font-family:'Roboto', Arial; text-align:left; font-size:=
+13px; color:#666666; line-height:15px;word-wrap: break-word;">linux , kuber=
+netes, git, apache, mysql, nagios, dns, ldap, cacti, tripwire, ssh, nfs, je=
+nkins, continuous integration, continuous delivery, devops, puppet, docker<=
+/td>=0A                                                         =0A        =
+                                              </tr>=0A                     =
+                                 <tr>=0A                                   =
+                      <td colspan=3D"3" height=3D"11"></td>=0A             =
+                                         </tr>=0A                          =
+                            <tr>=0A                                        =
+                 <td valign=3D"top" width=3D"75" align=3D"left" style=3D"fo=
+nt-family:'Roboto', Arial; text-align:left; font-size:13px; color:#999999; =
+line-height:15px;">Phone</td>=0A                                           =
+              <td width=3D"14"></td>=0A                                    =
+                     =0A                                                   =
+      <td valign=3D"top" align=3D"left" style=3D"font-family:'Roboto', Aria=
+l; text-align:left; font-size:13px; color:#666666; line-height:15px;">99402=
+90893</td>=0A                                                         =0A  =
+                                                    </tr>=0A               =
+                                       <tr>=0A                             =
+                            <td colspan=3D"3" height=3D"11"></td>=0A       =
+                                               </tr>=0A                    =
+                                  <tr>=0A                                  =
+                       <td valign=3D"top" width=3D"75" align=3D"left" style=
+=3D"font-family:'Roboto', Arial; text-align:left; font-size:13px; color:#99=
+9999; line-height:15px;">E mail</td>=0A                                    =
+                     <td width=3D"14"></td>=0A                             =
+                            =0A                                            =
+             <td valign=3D"top" align=3D"left" style=3D"font-family:'Roboto=
+', Arial; text-align:left; font-size:13px; color:#666666; line-height:15px;=
+">unixbhaskar@gmail.com</td>=0A                                            =
+             =0A                                                      </tr>=
+=0A                                                   </table>=0A          =
+                                      </td>=0A                             =
+                </tr>=0A                                          </table>=
+=0A                                       </td>=0A                         =
+           </tr>=0A                                    <tr>=0A             =
+                          <td valign=3D"top" align=3D"left" height=3D"14"><=
+/td>=0A                                    </tr>=0A                        =
+            <!-- JOB End  -->=0A                                    <!-- JO=
+B Seperator  -->=0A                                    <tr>=0A             =
+                          <td align=3D"center" style=3D"font-family:'Roboto=
+', Arial; text-align:left; font-size:11px; text-align:center; color:#999999=
+; line-height:13px;">"You last updated your profile on <span style=3D"color=
+:#151515;">27 Mar 2019</span>. Please note, employers view recently updated=
+ profiles first."</td>=0A                                    </tr>=0A      =
+                              <tr>=0A                                      =
+ <td valign=3D"top" align=3D"left" height=3D"25"></td>=0A                  =
+                  </tr>=0A                                    <tr>=0A      =
+                                 <td align=3D"center"> <a href=3D"https://w=
+ww.naukri.com/mnjuser/profile?&utm_campaign=3Drvm&utm_medium=3Drvmmailer&ut=
+m_source=3Dupdateprofile" target=3D"_blank" style=3D"font-family:'Roboto', =
+Arial; font-weight:600; font-size:14px; color:#4A90E2; text-decoration:none=
+; text-transform:uppercase;">UPDATE PROFILE</a></td>=0A                    =
+                </tr>=0A                                    <tr>=0A        =
+                               <td height=3D"18" style=3D"border-bottom:1px=
+ solid #eeeeee;"></td>=0A                                    </tr>=0A      =
+                              <!-- End -->=0A                              =
+      <tr>=0A                                       <td height=3D"23"></td>=
+=0A                                    </tr>=0A                            =
+        <tr>=0A                             <td valign=3D"top" align=3D"cen=
+ter"><table width=3D"92%" border=3D"0" align=3D"center" cellpadding=3D"0" c=
+ellspacing=3D"0" style=3D"border-collapse:collapse; mso-table-lspace:0pt; m=
+so-table-rspace:0pt;">=0A  <!-- JOB Search  -->=0A                         =
+           =0A                                    <tr>=0A                  =
+                     <td valign=3D"top" align=3D"center" bgcolor=3D"#F7F8FA=
+">=0A                                          <table width=3D"80%" align=
+=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"borde=
+r-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">=0A    =
+                                         <tr>=0A                           =
+                     <td valign=3D"top" height=3D"14"></td>=0A             =
+                                </tr>=0A                                   =
+          <tr>=0A                                                <td valign=
+=3D"top" align=3D"center" style=3D"font-family:'Roboto', Arial; text-align:=
+center; font-size:12px; color:#666666; line-height:17px;">Good luck for Job=
+ search!<br />Team Naukri</td>=0A                                          =
+   </tr>=0A                                             <tr>=0A            =
+                                    <td valign=3D"top" height=3D"14"></td>=
+=0A                                             </tr>=0A                   =
+                          <tr>=0A                                          =
+      <td valign=3D"top" align=3D"center" style=3D"font-family:'Roboto', Ar=
+ial; font-size:12px; color:#666666; opacity: 0.7; letter-spacing: 0.12px; l=
+ine-height:16px;">Enjoy personalized job searching experience</td>=0A      =
+                                       </tr>=0A                            =
+                 <tr>=0A                                                <td=
+ valign=3D"top" height=3D"25"></td>=0A                                     =
+        </tr>=0A                                             <tr>=0A       =
+                                         <td valign=3D"top" align=3D"center=
+">=0A                                                   <table width=3D"242=
+" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=
+=3D"border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">=
+=0A                                                      <tr>=0A           =
+                                              <td width=3D"127" align=3D"le=
+ft">=0A                    <a href=3D"http://www.naukri.com/tieups/tieups.p=
+hp?othersrcp=3D30551" target=3D"_blank">=0A                                =
+                         <img src=3D"http://ieplads.com/mailers/2018/naukri=
+/9may/images/app-store.png" alt=3D"App Store" border=3D"0" style=3D"font-fa=
+mily:'Roboto', Arial; font-weight:400; font-size:12px; color:#666666; text-=
+align:center;" /></a></td>=0A                                              =
+           <td><a href=3D"http://www.naukri.com/tieups/tieups.php?othersrcp=
+=3D30547" target=3D"_blank">=0A                                            =
+             <img src=3D"http://ieplads.com/mailers/2018/naukri/9may/images=
+/google-play.png" alt=3D"Google play" border=3D"0" style=3D"font-family:'Ro=
+boto', Arial; font-weight:400; font-size:12px; color:#666666; text-align:ce=
+nter;"/></a></td>=0A                                                      <=
+/tr>=0A                                                   </table>=0A      =
+                                          </td>=0A                         =
+                    </tr>=0A                                             <t=
+r>=0A                                                <td valign=3D"top" hei=
+ght=3D"24"></td>=0A                                             </tr>=0A   =
+                                       </table>=0A                         =
+              </td>=0A                                    </tr>=0A         =
+                           <!-- End  -->=0A                                =
+    =0A                                    <!-- JOB Terms  -->=0A          =
+                          <tr>=0A                                       <td=
+ valign=3D"top" align=3D"center">=0A                                       =
+   <table width=3D"100%" border=3D"0" align=3D"center" cellpadding=3D"0" ce=
+llspacing=3D"0" style=3D"border-collapse:collapse; mso-table-lspace: 0pt; m=
+so-table-rspace: 0pt;">=0A                                             <tr>=
+=0A                                                <td height=3D"13"></td>=
+=0A                                             </tr>=0A                   =
+                          <tr>=0A                                          =
+      <td valign=3D"top" align=3D"center">=0A                              =
+                     <table border=3D"0" align=3D"center" cellpadding=3D"0"=
+ cellspacing=3D"0" style=3D"border-collapse:collapse; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt;">=0A                                              =
+        <tr>=0A                                                         <td=
+ valign=3D"top" align=3D"center" style=3D"font-family:'Roboto', Arial; text=
+-align:center; font-size:11px; line-height:11px; color:#4A90E2;"><span styl=
+e=3D"color:#4c91e2;"><a href=3D"https://www.naukri.com/mnjuser/settings/com=
+munication" style=3D"color:#4c91e2; text-decoration:none;" target=3D"_blank=
+">Unsubscribe</a></span></td>=0A                                           =
+              <td width=3D"12"></td>=0A                                    =
+                     <td width=3D"12" style=3D"border-left:1px solid #5d5d5=
+d;" height=3D"12"></td>=0A                                                 =
+        <td width=3D"4"></td>=0A                                           =
+              <td valign=3D"top" align=3D"left" style=3D"font-family:'Robot=
+o', Arial; text-align:left; font-size:11px; line-height:11px; color:#4A90E2=
+;"><span style=3D"color:#4c91e2;"><a href=3D"http://w5.naukri.com/fdbck/mai=
+n/feedback.php" style=3D"color:#4c91e2; text-decoration:none;" target=3D"_b=
+lank">Report a Problem</a></span></td>=0A                                  =
+                    </tr>=0A                                               =
+    </table>=0A                                                </td>=0A    =
+                                         </tr>=0A                          =
+                   <tr>=0A                                                <=
+td height=3D"20"></td>=0A                                             </tr>=
+=0A                                             <tr>=0A                    =
+                            <td valign=3D"top" align=3D"center" style=3D"fo=
+nt-family:'Roboto', Arial; font-weight:400; text-align:center; font-size:11=
+px; color:#999999; line-height:13px; letter-spacing:0.21px;">You have recei=
+ved this mail because your e-mail ID is registered with Naukri.com. This is=
+ a system-generated e-mail regarding your Naukri account preferences, pleas=
+e don't reply to this message. The jobs sent in this mail have been posted =
+by the clients of Naukri.com. And we have enabled auto-login for your conve=
+nience, you are strongly advised not to forward this email to protect your =
+account from unauthorized access. IEIL has taken all reasonable steps to en=
+sure that the information in this mailer is authentic. Users are advised to=
+ research bonafides of advertisers independently. Please do not pay any mon=
+ey to anyone who promises to find you a job. IEIL shall not have any respon=
+sibility in this regard. We recommend that you visit our <span style=3D"col=
+or:#4c91e2;"><a href=3D"https://www.naukri.com/termsconditions" style=3D"co=
+lor:#4c91e2; text-decoration:none;" target=3D"_blank">Terms & Conditions</a=
+></span> and the <span style=3D"color:#4c91e2;"><a href=3D"https://company.=
+naukri.com/landing-page/fakejobtrend/new/index.html" style=3D"color:#4c91e2=
+; text-decoration:none;" target=3D"_blank">Security Advice</a></span> for m=
+ore comprehensive information.=0A                                          =
+      </td>=0A                                             </tr>=0A        =
+                                  </table>=0A                              =
+         </td>=0A                                    </tr>=0A              =
+                      <!-- End  -->=0A                           <tr>=0A   =
+                                    <td height=3D"30"></td>=0A             =
+                       </tr>=0A  </table>=0A</td>=0A                       =
+    </tr>=0A                                 </table>=0A                   =
+           </td>=0A                           </tr>=0A                     =
+   </table>=0A                     </td>=0A                  </tr>=0A      =
+         </table>=0A            </td>=0A         </tr>=0A         <tr>=0A  =
+          <td valign=3D"top" align=3D"center" height=3D"30"></td>=0A       =
+  </tr>=0A      </table>=0A      <img src=3D"https://logs.naukri.com/collec=
+torapi/v1/uba?data=3D%7B%22deviceType%22%3A%22WEB%22%2C%22encEmail%22%3A%22=
+unixbhaskar%40gmail.com%22%2C%22mailType%22%3A%22rvm%22%2C%22mailerId%22%3A=
+%22rvm_20190409%22%2C%22tenantId%22%3A%221%22%2C%22eventName%22%3A%22commun=
+icationOpen%22%2C%22communicationType%22%3A%22mail%22%7D" height=3D"0px" wi=
+dth=3D"0px"/>=0A   </body>=0A</html>

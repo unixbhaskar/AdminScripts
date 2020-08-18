@@ -1,0 +1,85 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp444785lfj;
+        Wed, 18 Sep 2019 23:53:19 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyRgnCNUtmtJEy8J7sJanRAGw/nnblesbQTlyW2fUzIJJIiCJaYICWaOl0tKlVQPFlmG3z6
+X-Received: by 2002:aa7:d9d5:: with SMTP id v21mr13498071eds.106.1568875999661;
+        Wed, 18 Sep 2019 23:53:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568875999; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vWwZxL3YthaASgqjp5J/tqvV8BZ0XuqT7/2kUsh5NhvHfh6H5TCF/abWLYreEDEPaS
+         I5qr1JlEfQDegm6onOO1E5xAtzn6pV2KzF3IgcIAbpaDoFXKiCjuCDzR7VhKccz27ncH
+         4n1sg7CkZJPb9Gyd897YSjlkecenPSL5aggszm4d8vwTKT2o4sajMUetFSLeoYNUCd0F
+         LYWEgEBgYBJo17C8gIlsxNCxmKcA3O3+rskC+AFpKG+c1h1hOvJQ1yshBxZ4IAOBcGZL
+         tqyHXaGWt0RaYx9NTL0TY+oqkJ+AR0sUb2QlrgVcNk+YK4ar0NysgMpdGVBlkfQq2R/z
+         phKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date;
+        bh=WeKPnxQd6zRyERfVlYs2ezGN2ehHC21MBis+wRw/IJ8=;
+        b=0e7j56RqSc52vKvmFER1EsjvBqh3lyNCThhRAbEgjvzpY2KZ92AoDsvqHy6gV/aYik
+         Qpaa9mAi2nXs49jPvbvWTM8Ee2iipnLpzumIHc4heFdpNztKFzLDvwxKaDNC9ZCVVQMn
+         HrUMnOtRV+Kyrh20vn6peXEyNE2zu2+0NK0jUP9nytjv/3YIylas2QESUjkrbWhQfLww
+         s0UxHswUnyMYRFTAuj+oVt1amZbUObTcSiROG33Ox3ey1I5DplE7LnVq6DbLXbDkvHnJ
+         iq4uvrP59o9GnVg4H1q3btHhdEiEsNkLqFvc8cg7HWJ4o6db571Cf776CE4y7+TRf6ag
+         Elpg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id w1si520505eda.214.2019.09.18.23.52.55;
+        Wed, 18 Sep 2019 23:53:19 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2387427AbfISCLO (ORCPT <rfc822;rfried.dev@gmail.com>
+        + 99 others); Wed, 18 Sep 2019 22:11:14 -0400
+Received: from zeniv.linux.org.uk ([195.92.253.2]:39756 "EHLO
+        ZenIV.linux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726812AbfISCLO (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 18 Sep 2019 22:11:14 -0400
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.2 #3 (Red Hat Linux))
+        id 1iAluZ-0005e0-L3; Thu, 19 Sep 2019 02:11:11 +0000
+Date:   Thu, 19 Sep 2019 03:11:11 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Ian Kent <raven@themaw.net>, linux-kernel@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org
+Subject: [git pull] autofs-related stuff
+Message-ID: <20190919021111.GK1131@ZenIV.linux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.12.0 (2019-05-25)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+	The most interesting part here is getting rid of the last trylock
+loop on dentry->d_lock - the ones in fs/dcache.c had been dealt with
+several years ago, but there'd been leftovers in fs/autofs/expire.c
+
+The following changes since commit 5f9e832c137075045d15cd6899ab0505cfb2ca4b:
+
+  Linus 5.3-rc1 (2019-07-21 14:05:38 -0700)
+
+are available in the git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs.git work.autofs
+
+for you to fetch changes up to 5f68056ca50fdd3954a93ae66fea7452abddb66f:
+
+  autofs_lookup(): hold ->d_lock over playing with ->d_flags (2019-07-27 10:03:14 -0400)
+
+----------------------------------------------------------------
+Al Viro (3):
+      autofs: simplify get_next_positive_...(), get rid of trylocks
+      get rid of autofs_info->active_count
+      autofs_lookup(): hold ->d_lock over playing with ->d_flags
+
+ fs/autofs/autofs_i.h |   1 -
+ fs/autofs/expire.c   | 103 ++++++++++++++++-----------------------------------
+ fs/autofs/root.c     |  44 ++++++----------------
+ 3 files changed, 44 insertions(+), 104 deletions(-)

@@ -1,0 +1,203 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp3095807lfj;
+        Tue, 21 Jul 2020 08:15:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxiMa2C2Xb58iefRddtTCj9P9eMOz7gmJwDVHlhYVKyNT8X6kvJLTIRiZ8aHP9Rxi/Y1Tss
+X-Received: by 2002:a17:906:4558:: with SMTP id s24mr7337330ejq.144.1595344555097;
+        Tue, 21 Jul 2020 08:15:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1595344555; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wI64voKk+Wrl8N6+2lyQ0o/+2E3Uxxg3bHFp9MMl93zqWroZWIOKE/m2APTiYKvgRm
+         vIQRR1skwHCcPZuyseACtZPSEPOJZcQQ/sdPq2VoP1cHwN0o9TO6AsqPlK98HV33Dn3F
+         k6QOrSs7g6blslWEOGKKrpRF92FbJ0GB8PsmOw3gDO/gwLYL+R8+ySYmqvczJavdL+0C
+         n/HsDaaXtg6/mCPFG1Mmdw/NkbjU3tFvt3Y9Aje0wqOUwAShL7B1v4r8jGS3yun7wFMe
+         +yBC7PZFdpXKjG1A5wP437l46ubuif2LOFNNknsS+sYHWJoVYV7KlHkS8G9AfFvw6iIC
+         Xutw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:list-unsubscribe:feedback-id:precedence:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=phYzhZKlEFwsOFb1DfkFU3Nb2kZ4Cy+PnLs34evXAYA=;
+        b=mxTEN9qnaFswzjj+cD1DPBH2tKniuvzZdmM/herCB38Etvb/3JbyNECfqy9PpNzgpe
+         DVb1jFPFBTvSZemebF1qMTF8Wm3rs87oO4/2ujQqC0KmwpdSTlP05J0uKBjV2PYf2YlO
+         oXKHFmkIhR0E1Ko7z+izU2nyYc+qyoILc7S2vUflWVWEaCo2TFJGWm5Fy5j20xrhDi55
+         eTiunZTy6gEsJSlH/cxVHyNxxG6z7b5c190diuLWqi5zvXfCup4dG3LqXxHeVvmE/TlM
+         7Lq6Ku8HK4wWT1U3p4CZnsMCvD3VvgtQuu67LI1dAuIhN84XQ5C1IuiIo13VwZ3ZCUs4
+         JTNg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=f4O1ymH7;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b="MmI/HC6n";
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.30.32 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+Return-Path: <bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com>
+Received: from o15.ck.n.convertkit.com (o15.ck.n.convertkit.com. [167.89.30.32])
+        by mx.google.com with ESMTPS id u29si12480729edi.469.2020.07.21.08.15.54
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jul 2020 08:15:55 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.30.32 as permitted sender) client-ip=167.89.30.32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=f4O1ymH7;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b="MmI/HC6n";
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.30.32 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=n.convertkit.com;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=s1; bh=phYzhZKlEFwsOFb1DfkFU3Nb2kZ4Cy+PnLs34evXAYA=;
+	b=f4O1ymH7kMcc9yL9+qID7qdXm9Lyj9RGk18RdAZJ8VHiMrmn86iBBbTwmL8LQnrWABq2
+	xu+IDYA69vqDun2a1/YJxY1uEFfxP7S6J8B3tGSMAbOQ8SmtNrqQANnm6ISoVTIu4ksfgN
+	dqLL4DvDhFIVDMduR1H1gi2L3HVBPRpVU=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=smtpapi; bh=phYzhZKlEFwsOFb1DfkFU3Nb2kZ4Cy+PnLs34evXAYA=;
+	b=MmI/HC6niEJwguGJHLn0AE/Y7DbO8k7Va5huuppdhcoIioiSzN7mtBFywtzg2kOhPfY3
+	1kri6ZOJZafj/r0Z8rgaDOgyp/SB7rQL8ONMeCUFSMRk9w3aoeMcw3DcrSCrlv3oRxKHxZ
+	y5o3hIGmm18H/ZINDJGG5zsanIQ1onWvo=
+Received: by filterdrecv-p3las1-7754f7d4cc-h4ckv with SMTP id filterdrecv-p3las1-7754f7d4cc-h4ckv-20-5F1706A9-52
+        2020-07-21 15:15:53.52817627 +0000 UTC m=+2235737.172468108
+Received: from ODc1MTQ5Mw (unknown)
+	by geopod-ismtpd-5-0 (SG) with HTTP
+	id KaJ7QEi2RIu8-z8by-OK7g
+	Tue, 21 Jul 2020 15:15:53.350 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=f75971663be2cccdc791a320f4d12fe63c75bbf9e383491650130ba6e9aa
+Date: Tue, 21 Jul 2020 15:15:53 +0000 (UTC)
+From: Jovica <contact@jovicailic.org>
+Mime-Version: 1.0
+Message-ID: <wvu869rlgva6u32lk8s7@convertkit-mail.com>
+Subject: Mastering Vim Quickly #49
+Precedence: bulk
+Feedback-ID: 1919868:35692:emailtemplate:CK
+List-Unsubscribe: 
+ <https://unsubscribe.convertkit-mail.com/wvu869rlgva6u32lk8s7>
+X-Report-Spam: <abuse@convertkit.com>
+X-Report-Abuse: <abuse@convertkit.com>
+X-Feedback-ID: 8751493:SG
+X-SG-EID: 
+ =?us-ascii?Q?Z9YfueylEVxjF1sQk2=2Fm3hKaryiKObExs9bv2OnpmyOMnYytH=2FVZZIu+ZraDDs?=
+ =?us-ascii?Q?hn3FKIJFLMYch7V9FxPHe9XiPD2QGEEuh1zBOlS?=
+ =?us-ascii?Q?4LQDPQFI7UuG=2FYP0cDXHeuNMWz5AYFdyieDeC3i?=
+ =?us-ascii?Q?KREqtGJzwDakLtX2ZjjubyV01yq4QEIDB6mGLtP?=
+ =?us-ascii?Q?q3w3BR5Tc2bySwfceO62vnOThojw2dVnRKmSKCb?=
+ =?us-ascii?Q?Mqp+fFu6Sv5gWIC0JWspoig2UpnJHCsnqD=2F0O+?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FJHjDFAea1uZocvZojyqe?=
+ =?us-ascii?Q?AD1IV=2FLxfq9m3wH1C2QpExsU17CJ24YHYztQP9F?=
+ =?us-ascii?Q?JEobY0AKVjI5WZp1BwR21iU+EP+wpFelt4JKG1k?=
+ =?us-ascii?Q?A6iW7xvYQiGEdNTFtCgo0U=2FiLYX502=2F2tGrV28X?=
+ =?us-ascii?Q?8o5VH8uYgjm2GtgRdffms5PtlCDE6xdWsfmAvpL?=
+ =?us-ascii?Q?bal25uHW0S7GfVd42qqd+PnzBahbfcpwAkM9KnJ?=
+ =?us-ascii?Q?J4GUw75UZ=2F+b0kpRUTJQ6yRrpNHiqFXMk=2FX4cTL?=
+ =?us-ascii?Q?PNQV3oJYitJJm59jr8AzQefcQS0Fe+lEbPLNHQ5?=
+ =?us-ascii?Q?2mx+fWcctDdLqMhvC2FvzoTlHlME=3D?=
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+
+--f75971663be2cccdc791a320f4d12fe63c75bbf9e383491650130ba6e9aa
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0
+
+Hello Bhaskar Chowdhury,
+
+I have two quick tips for you today which I found useful last
+week.
+
+#1 tip
+
+You should already know that if you run:
+
+vim +2806 big_file.txt
+
+you'll open up this file with cursor positioned on line 2806.
+
+What if you know that you'll be editing a file at the end of it,
+but you have no idea how many lines is has? Or it might be a very
+big file.
+
+Well, if you don't specify a number after +, Vim will do exactly
+that.
+
+vim + big_file.txt
+
+will open big_file.txt with cursor positioned at the last line of
+the file.
+
+#2 tip
+
+Did you know you can navigate the cursor to a specific column of
+the current line using | character?
+
+For example, hitting 28| in Normal mode will take your cursor to
+the 28th column of the current line. If your number exceeds the
+number of columns on the line, your cursor will end up on the
+last column.
+
+That's all for today Bhaskar Chowdhury.
+I wish you a great week! :)
+
+Cheers,
+Jovica
+
+Unsubscribe (
+https://unsubscribe.convertkit-mail.com/wvu869rlgva6u32lk8s7 ) |
+Update your profile (
+https://preferences.convertkit-mail.com/wvu869rlgva6u32lk8s7 ) |
+113 Cherry St #92768, Seattle, WA 98104-2205
+--f75971663be2cccdc791a320f4d12fe63c75bbf9e383491650130ba6e9aa
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=us-ascii
+Mime-Version: 1.0
+
+
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"><d=
+iv class=3D"message-content" style=3D"max-width:600px">
+<p style=3D"margin-bottom:1em"><br>  Hello Bhaskar Chowdhury,<br></p>
+<p style=3D"margin-bottom:1em">I have two quick tips for you today which I =
+found useful last week.</p>
+<p style=3D"margin-bottom:1em"><strong>#1 tip</strong></p>
+<p style=3D"margin-bottom:1em">You should already know that if you run:</p>
+<p style=3D"margin-bottom:1em"><strong>vim +2806 big_file.txt </strong></p>
+<p style=3D"margin-bottom:1em">you'll open up this file with cursor positio=
+ned on line 2806.</p>
+<p style=3D"margin-bottom:1em">What if you know that you'll be editing a fi=
+le at the end of it, but you have no idea how many lines is has? Or it migh=
+t be a very big file. </p>
+<p style=3D"margin-bottom:1em">Well, if you don't specify a number after <s=
+trong>+</strong>, Vim will do exactly that.</p>
+<p style=3D"margin-bottom:1em"><strong>vim + big_file.txt</strong></p>
+<p style=3D"margin-bottom:1em">will open <em>big_file.txt</em> with cursor =
+positioned at the last line of the file.<br></p>
+<p style=3D"margin-bottom:1em"><span class=3D"redactor-invisible-space"></s=
+pan></p>
+<p style=3D"margin-bottom:1em"><strong><br></strong></p>
+<p style=3D"margin-bottom:1em"><strong>#2 tip</strong></p>
+<p style=3D"margin-bottom:1em">Did you know you can navigate the cursor to =
+a specific column of the current line using <strong>|</strong> character?</=
+p>
+<p style=3D"margin-bottom:1em">For example, hitting <strong>28| </strong><s=
+pan class=3D"redactor-invisible-space">in Normal mode will take your cursor=
+ to the 28th column of the current line. If your number exceeds the number =
+of columns on the line, your cursor will end up on the last column.</span><=
+/p>
+<p style=3D"margin-bottom:1em"><span class=3D"redactor-invisible-space"><br=
+></span></p>
+<p style=3D"margin-bottom:1em"><span class=3D"redactor-invisible-space">Tha=
+t's all for today Bhaskar Chowdhury. <br>I wish you a great week! :)</span>=
+</p>
+<p style=3D"margin-bottom:1em"><span class=3D"redactor-invisible-space">Che=
+ers,<br>Jovica</span></p>
+<br>
+<br>
+<small>
+<a href=3D"https://unsubscribe.convertkit-mail.com/wvu869rlgva6u32lk8s7">Un=
+subscribe</a> | <a href=3D"https://preferences.convertkit-mail.com/wvu869rl=
+gva6u32lk8s7">Update your profile</a> | 113 Cherry St #92768, Seattle, WA 9=
+8104-2205
+<br>
+</small>
+</div>
+
+<!-- -->
+  <img src=3D"https://el2.convertkit-mail.com/o/wvu869rlgva6u32lk8s7" alt=
+=3D"">
+
+
+--f75971663be2cccdc791a320f4d12fe63c75bbf9e383491650130ba6e9aa--

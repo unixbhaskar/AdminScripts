@@ -1,0 +1,2155 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp757263lfb;
+        Wed, 3 Apr 2019 13:59:54 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzWBbg2Lugv0UYbKOOOxAaVfwN8koehVp5sDGLkCJt/1oXy/Q3HTYDAp9/iV8lsXr1Je+7P
+X-Received: by 2002:a81:1ed2:: with SMTP id e201mr1352432ywe.49.1554325194144;
+        Wed, 03 Apr 2019 13:59:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1554325194; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Tc9PZOG7Wf+9720j4z6xVDSLRPC7H30uOCeQWwHQJpu1ScUjITi1mYon0PT2UhHLGq
+         vUW5LZorkXCHXeuZZV6+fEcE8iTOLXnM+utoQlmhwlfYzEttVWke/W7Xu8vkYSxwp3lq
+         Rr1d3/Y9sLLmIPn0lVUnq5a2gLjFNEdwxIZSzyxmfU/sqB94+5v3XR98LRtYXyEqaETb
+         lJTwxFYHjGr9gzoFgHqbDnKB5C3bY3TX8ea6fHMb9gm7lH2Ec22wFimfUubllYbv3Y6q
+         vLvi6cYLbfhROBouRNjPgEyoH5fA1oD/dBiT6QIOdmDrICLWdcaH7wR0QBDM1A+89pRt
+         AtoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:list-unsubscribe-post:list-unsubscribe:list-id
+         :feedback-id:message-id:date:to:reply-to:from:subject:dkim-signature
+         :dkim-signature;
+        bh=vpzN18x3dVIsJ76g+Mw8+o6sMhyfP2UMhz4iWKDy5Ic=;
+        b=zLpt0JVm3emGzPquv0khQBwf41L7O8XNsUA2FXRQlnDShGiwx74Sif0y87J0qd6JOH
+         6wc6zimd6+ELP4od34eC4PiKoysaHe/wWj/a8deJtfXt3IEd+G7O+wFjtqkWP93M1aAD
+         xOPK9PVjvFya5m5woy8NmrIEFVA4Ogg1N3FKONXaAn+R9jTdioTDJrOlvTN1oH8f9jsx
+         PVlcp5TSx+UO22K4w6TmK5iAWN9S7hVqgfSxZGpPSGG3S78lRuTSeTPXPpL8dC9wFuZn
+         Kq+n119uWtCR9URjMiftGzqhyaWhKPHq12CgI/2TzUHvpeuAu9ngzVKUsLtpl82EpjSX
+         lpEA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.mcsv.net header.s=k1 header.b=MjMthxoz;
+       dkim=pass header.i=@newsletters.sourceforge.net header.s=k1 header.b=DZ4bmh9b;
+       spf=pass (google.com: domain of bounce-mc.us15_69641729.225051-unixbhaskar=gmail.com@mail3.suw131.mcsv.net designates 198.2.188.3 as permitted sender) smtp.mailfrom="bounce-mc.us15_69641729.225051-unixbhaskar=gmail.com@mail3.suw131.mcsv.net";
+       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=sourceforge.net
+Return-Path: <bounce-mc.us15_69641729.225051-unixbhaskar=gmail.com@mail3.suw131.mcsv.net>
+Received: from mail3.suw131.mcsv.net (mail3.suw131.mcsv.net. [198.2.188.3])
+        by mx.google.com with ESMTPS id v187si10267394ywc.140.2019.04.03.13.59.53
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Apr 2019 13:59:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-mc.us15_69641729.225051-unixbhaskar=gmail.com@mail3.suw131.mcsv.net designates 198.2.188.3 as permitted sender) client-ip=198.2.188.3;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.mcsv.net header.s=k1 header.b=MjMthxoz;
+       dkim=pass header.i=@newsletters.sourceforge.net header.s=k1 header.b=DZ4bmh9b;
+       spf=pass (google.com: domain of bounce-mc.us15_69641729.225051-unixbhaskar=gmail.com@mail3.suw131.mcsv.net designates 198.2.188.3 as permitted sender) smtp.mailfrom="bounce-mc.us15_69641729.225051-unixbhaskar=gmail.com@mail3.suw131.mcsv.net";
+       dmarc=pass (p=QUARANTINE sp=NONE dis=NONE) header.from=sourceforge.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.mcsv.net;
+	s=k1; t=1554324886; bh=vpzN18x3dVIsJ76g+Mw8+o6sMhyfP2UMhz4iWKDy5Ic=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:Feedback-ID:List-ID:
+	 List-Unsubscribe:Content-Type:MIME-Version;
+	b=MjMthxoz420pnkkAWgbqTIgKf9XR8tUZddyTz2+SOdMGzVe2MsoDcqfxbfJ1ExfUr
+	 5zHFaPGCxH5M4PCcp1M2ZqBC7R5fs+uVENlCptWQr4xXOcqSLWuyIo3xlB9Js5KT06
+	 m8eg4RrFUvuAFWcTics30EMAK5NOICWlFmk+ZfgM=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=newsletters.sourceforge.net; s=k1; t=1554324886;
+	i=sourceforge@newsletters.sourceforge.net;
+	bh=vpzN18x3dVIsJ76g+Mw8+o6sMhyfP2UMhz4iWKDy5Ic=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:List-ID:List-Unsubscribe:
+	 Content-Type:MIME-Version;
+	b=DZ4bmh9buaK1yVnrMU5aXLnf39SNp9iWB3nNR6NJ896TaXDvvRO8cg/bP0GTqHQDp
+	 yMxsQbj6cIKIbH0Vb6UzSQaN+j7f/scF0E94fdtsywlJK803lwZPku2u/fQbGH2yam
+	 IpVk8+99Yp5eSdPUTeEKSXY9SuVXPumoe5deD4rI=
+Received: from localhost (localhost [127.0.0.1])
+	by mail3.suw131.mcsv.net (MailChimp) with ESMTP id 44ZJH96PG3z6CY0dg
+	for <unixbhaskar@gmail.com>; Wed,  3 Apr 2019 20:54:45 +0000 (GMT)
+x-mcpf-jobid: mc.us15_69641729.225051.5ca51d4f98126.full_000001
+Subject: =?utf-8?Q?April=202019=2C=20=E2=80=9CCommunity=20Choice=E2=80=9D=20Project=20of=20the=20Month?=
+From: =?utf-8?Q?SourceForge.net=20Update?= <sourceforge@newsletters.sourceforge.net>
+Reply-To: =?utf-8?Q?SourceForge.net=20Update?= <sourceforge@newsletters.sourceforge.net>
+To: <unixbhaskar@gmail.com>
+Date: Wed,  3 Apr 2019 20:54:27 +0000
+Message-ID: <aab6529d3675bd877963a652d.192baef745.20190403205354.e84a2d58f3.1fa2d478@mail3.suw131.mcsv.net>
+X-Mailer: MailChimp Mailer - **CIDe84a2d58f3192baef745**
+X-Campaign: mailchimpaab6529d3675bd877963a652d.e84a2d58f3
+X-campaignid: mailchimpaab6529d3675bd877963a652d.e84a2d58f3
+X-Report-Abuse: Please report abuse for this campaign here: https://mailchimp.com/contact/abuse/?u=aab6529d3675bd877963a652d&id=e84a2d58f3&e=192baef745
+X-MC-User: aab6529d3675bd877963a652d
+Feedback-ID: 69641729:69641729.225051:us15:mc
+List-ID: aab6529d3675bd877963a652dmc list <aab6529d3675bd877963a652d.21829.list-id.mcsv.net>
+X-Accounttype: pr
+List-Unsubscribe: <https://sourceforge.us15.list-manage.com/unsubscribe?u=aab6529d3675bd877963a652d&id=268c4f594a&e=192baef745&c=e84a2d58f3>, <mailto:unsubscribe-mc.us15_aab6529d3675bd877963a652d.e84a2d58f3-192baef745@mailin.mcsv.net?subject=unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Content-Type: multipart/alternative; boundary="_----------=_MCPart_773512974"
+MIME-Version: 1.0
+
+This is a multi-part message in MIME format
+
+--_----------=_MCPart_773512974
+Content-Type: text/plain; charset="utf-8"; format="fixed"
+Content-Transfer-Encoding: quoted-printable
+
+April Project of the month=2C featured article and Sourceforge deals --
+
+https://sourceforge.net
+
+
+** Issue #51 - April 3=2C 2019
+------------------------------------------------------------
+
+
+** View in browser (https://mailchi.mp/newsletters/april-2019-community-ch=
+oice-project-of-the-month?e=3D192baef745)
+------------------------------------------------------------
+
+
+** Share (http://us15.forward-to-friend.com/forward?u=3Daab6529d3675bd8779=
+63a652d&id=3De84a2d58f3&e=3D192baef745)
+------------------------------------------------------------
+
+
+**
+https://www.facebook.com/sourceforgenet/ https://twitter.com/sourceforge h=
+ttps://www.linkedin.com/company-beta/638555/ https://plus.google.com/u/1/c=
+ommunities/108980648585760076156
+------------------------------------------------------------
+
+
+** Featured Business Software
+------------------------------------------------------------
+------------------------------------------------------------
+
+Choosing the right CMMS for your maintenance department can be a tough pro=
+cess. We're here to make it easier for you. Here's everything you need to=
+ know about CMMS software. (https://www.hippocmms.com/)
+
+
+** Community Choice Project of the Month for April
+------------------------------------------------------------
+------------------------------------------------------------
+
+For our April 2019 =E2=80=9CCommunity Choice=E2=80=9D Project of the Month=
+=2C the community elected Asuswrt-Merlin (https://sourceforge.net/projects=
+/asuswrt-merlin/) =2C an alternative firmware for Asus wireless routers. D=
+eveloper Eric Sauvageau shared some thoughts about the project=E2=80=99s h=
+istory=2C purpose=2C and direction. Check out the whole interview on our b=
+log here. (https://sourceforge.net/blog/april-2019-community-choice-projec=
+t-month-asuswrt-merlin/)
+
+
+** Vote For May's Project of the Month
+------------------------------------------------------------
+------------------------------------------------------------
+
+The vote for the May 2019 Community Choice SourceForge Project of the Mont=
+h is now available=2C (https://sourceforge.net/p/potm/discussion/vote/thre=
+ad/e6bee64bc8/) and will run until April 15=2C 2019 12:00 UTC.
+
+
+** The candidates for SourceForge Project of the Month for May 2019 are:
+------------------------------------------------------------
+------------------------------------------------------------
+https://sourceforge.net/projects/digicamcontrol/
+
+
+** digiCamControl (https://sourceforge.net/projects/digicamcontrol/)
+------------------------------------------------------------
+
+Allows you to transfer images directly from your camera to your computer a=
+s you take each shot and allow to control camera shooting parameters.
+
+https://sourceforge.net/projects/sacddecoder/
+
+
+** Super Audio CD Decoder (https://sourceforge.net/projects/sacddecoder/)
+------------------------------------------------------------
+
+Input plugin for foobar2000
+
+https://sourceforge.net/projects/superioros/
+
+
+** Superior OS (https://sourceforge.net/projects/superioros/)
+------------------------------------------------------------
+
+AOSP based ROM that works on android OS 92
+
+https://sourceforge.net/projects/revolutionos-miui/
+
+
+** RevolutionOS-MIUI (https://sourceforge.net/projects/revolutionos-miui/)
+------------------------------------------------------------
+
+MIUI Custom ROM for Xiaomi Devices
+
+https://sourceforge.net/projects/winflexbison/
+
+
+** Win flex-bison (https://sourceforge.net/projects/winflexbison/)
+------------------------------------------------------------
+
+A port Flex & Bison tools to the Windows platform
+
+https://sourceforge.net/projects/arrow-os/
+
+
+** Arrow OS (https://sourceforge.net/projects/arrow-os/)
+------------------------------------------------------------
+
+AOSP based project with an aim of keeping things clean
+
+https://sourceforge.net/projects/dotos-downloads/
+
+
+** dotOS-downloads (https://sourceforge.net/projects/dotos-downloads/)
+------------------------------------------------------------
+
+Custom Android firmware
+
+https://sourceforge.net/projects/archgeotux/
+
+
+** ArchGeoTux (https://sourceforge.net/projects/archgeotux/)
+------------------------------------------------------------
+
+Repository of Geospatial packages for Arch Linux
+
+https://sourceforge.net/projects/dispcalgui/
+
+
+**
+------------------------------------------------------------
+
+Display Calibration and Characterization powered by Argyll CMS
+
+
+** Featured Article
+------------------------------------------------------------
+------------------------------------------------------------
+
+SourceForge recently caught up with Adi Hirschtein=2C the Director of Prod=
+uct at Iguazio=2C to talk about the value of data science and data analyti=
+cs in modern enterprises. Hirschtein also shares his expertise on how to s=
+uccessfully build a data pipeline and offers some insights into the future=
+ of data science and data analytics. Check out the full article here. (htt=
+ps://sourceforge.net/articles/qa-iguazio-data-science-analytics-serverless=
+/)
+
+
+** Featured SourceForge Deals
+------------------------------------------------------------
+------------------------------------------------------------
+
+
+** The Essential PC Utility Bundle Feat. Defrag 22 (https://deals.sourcefo=
+rge.net/sales/powerpack-bundle?utm_source=3Dsourceforge&utm_medium=3Dbimon=
+thlynewsletter&utm_campaign=3Dpowerpack-bundle)
+------------------------------------------------------------
+
+Backup Your Files=2C Optimize Your Drives=2C Protect Your Data & More with=
+ 4 Essential PC Apps.
+
+
+Don=E2=80=99t let a slow computer get in the way of your workflow! You can=
+ optimize your PC=E2=80=99s performance and reach speeds up to 100% faster=
+ by defragmenting your computer with O&O Defrag 22. When you defragment=2C=
+ the files that Windows splits up when saving documents across the hard di=
+sk or SSD are arranged in order again=2C ultimately boosting performance.=
+ Defrag 22 is capable of defragmenting hard disks and solid state drives (=
+SSD) alike and comes with extra tools for identifying and removing unneces=
+sary files.
+
+SourceForge Deals (https://deals.sourceforge.net/) is an online storefront=
+ with merchandise that's chosen=2C stocked=2C and fulfilled by a third par=
+ty with products that are intended to be of interest to you. See more deal=
+s. (https://deals.sourceforge.net/)
+
+
+** Featured Busienss Software Category
+------------------------------------------------------------
+------------------------------------------------------------
+
+
+** Compare IT Management Software
+------------------------------------------------------------
+https://sourceforge.net/software/it-management?pk_campaign=3DSFNewsletterA=
+pril3
+
+Compare IT Management software using the SourceForge software compare tabl=
+e. IT Management Software helps companies manage their IT infrastructure=
+=2C utilize technology resources=2C and enforce best practices to get the=
+ most from highly complex data centers. Compare IT Management Software her=
+e. (https://sourceforge.net/software/it-management?pk_campaign=3DSFNewslet=
+terApril3)
+
+
+** Conferences and Events
+------------------------------------------------------------
+------------------------------------------------------------
+MarTech (https://martechconf.com/west/expo-plus-pass?utm_source=3Dsdot&utm=
+_medium=3Dmisc&utm_campaign=3Dmt+west+2019&utm_content=3Dsdotpromo)
+
+April 3-5=2C 2019
+
+Meet the top marketing technology vendors=2C attend sessions on the Soluti=
+ons Track and in the Discover MarTech Theater=2C and network with peers...
+OpenStack Summit (https://www.openstack.org/summit/denver-2019/)
+
+April 29-May 5=2C 2019
+
+In addition to OpenStack-related sessions=2C the event features Kata Conta=
+iners=2C Ansible=2C Ceph=2C Kubernetes=2C ONAP=2C and more projects. Featu=
+red topics include CI/CD=2C container infrastructure=2C edge computing=2C=
+ HPC/GPU/AI=2C open source community=2C private and hybrid cloud=2C public=
+ cloud=2C telecom and NFV.
+LinuxFest Northwest (https://linuxfestnorthwest.org/conferences/2019)
+
+April 28-29=2C 2019
+
+LinuxFest Northwest=2C the oldest community-run open source conference=2C=
+ turns 20 in 2019. Like SCALE=2C it has something for everyone. Last year=
+=E2=80=99s conference=2C for instance=2C included sessions like =E2=80=9CI=
+ntroduction to Git (even for non-developers)=2C=E2=80=9D =E2=80=9CLessons=
+ learned from civic hacking=2C=E2=80=9D and =E2=80=9CIncompossibilities: L=
+imitations and trade-offs in technology design.=E2=80=9D
+
+
+** Today in Tech
+------------------------------------------------------------
+------------------------------------------------------------
+
+On this day in 1973 American engineer Martin Cooper made the first cell ph=
+one call from a New York City street. Cooper and his team had created the=
+ first handheld=2C personal mobile phone for Motorola a couple of months b=
+ack=2C and was presenting it to the media in New York when he decided to g=
+ive them a real demonstration by making a call. That first call was to Dr.=
+ Joel Engel=2C who was then running a program for their rival company AT&T=
+=2E Find out more about the first cell phone call ever made here. (https://s=
+ourceforge.net/blog/today-tech-april-3/)
+
+
+** Help Wanted
+------------------------------------------------------------
+------------------------------------------------------------
+
+C Programmers Wanted for PDOS - public domain operating system (https://so=
+urceforge.net/p/forge/helpwanted/programmers/thread/3b3aadf921/)
+
+If you are looking for an Open Source project to contribute your time to=
+=2C or if you are someone who wants to advertise your skills=2C check out=
+ the Help Wanted page (https://sourceforge.us15.list-manage.com/track/clic=
+k?u=3Daab6529d3675bd877963a652d&id=3D2aeb5cfd5d&e=3D0b520187bc) or Project=
+ Wanted page. (https://sourceforge.us15.list-manage.com/track/click?u=3Daa=
+b6529d3675bd877963a652d&id=3D2ce3bbf691&e=3D0b520187bc)
+
+
+** Final Thoughts
+------------------------------------------------------------
+------------------------------------------------------------
+
+If you know someone who is not getting this mailing=2C encourage them to s=
+ign up (https://sourceforge.net/user/registration) .
+
+If you want to change your newsletter frequency to monthly=2C go here (htt=
+ps://sourceforge.us15.list-manage.com/profile?u=3Daab6529d3675bd877963a652=
+d&id=3D268c4f594a&e=3D192baef745) .
+
+Thanks for being part of the SourceForge community! And=2C if you need to=
+ get in touch directly=2C feel free to send us an email at CommunityTeam@s=
+ourceforge.net (mailto:CommunityTeam@sourceforge.net) .
+
+Newsletter (https://sourceforge.net/user/newsletters/)
+
+Resources (https://library.slashdotmedia.com/)
+
+Blog (https://sourceforge.net/blog/)
+
+View Web Version (https://mailchi.mp/newsletters/april-2019-community-choi=
+ce-project-of-the-month?e=3D192baef745)
+
+Internet Speedtest (https://sourceforge.net/speedtest/)
+
+Slashdot (https://slashdot.org/)
+
+Privacy Policy (http://slashdotmedia.com/privacy-statement/)
+
+Update Preferences (https://sourceforge.us15.list-manage.com/profile?u=3Da=
+ab6529d3675bd877963a652d&id=3D268c4f594a&e=3D192baef745)
+
+Unsubscribe (https://sourceforge.us15.list-manage.com/unsubscribe?u=3Daab6=
+529d3675bd877963a652d&id=3D268c4f594a&e=3D192baef745&c=3De84a2d58f3)
+
+https://sourceforge.net
+
+=C2=A9 2019 Slashdot Media. All Rights Reserved
+
+SourceForge | 101 W Broadway Ste #1420 | San Diego=2C CA 92101
+--_----------=_MCPart_773512974
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www=
+=2Ew3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang=3D"en">
+  <head>
+    <title>SourceForge</title>
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-=
+8">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width=2C initial-sca=
+le=3D1">
+    <meta http-equiv=3D"x-ua-compatible" content=3D"IE=3Dedge">
+    <style type=3D"text/css">
+      /* BOILERPLATE STYLES */
+      #outlook a {
+        padding:0;
+      }
+
+      .ReadMsgBody {
+        width:100%;
+      }
+
+      .ExternalClass {
+        width:100%;
+      }
+
+      .ExternalClass=2C.ExternalClass span=2C.ExternalClass td=2C.External=
+Class div {
+        line-height:100%;
+      }
+
+      body=2Ctable=2Ctd=2Ca {
+        -webkit-text-size-adjust:100%;
+        -ms-text-size-adjust:100%;
+      }
+
+      table=2Ctd {
+        mso-table-lspace:0;
+        mso-table-rspace:0;
+      }
+
+      img {
+        -ms-interpolation-mode:bicubic;
+      }
+
+      body {
+        height:100% !important;
+        margin:0 !important;
+        padding:0 !important;
+        width:100% !important;
+        background-color:#CCCCCC;
+      }
+
+      img {
+        border:0;
+        height:auto;
+        line-height:100%;
+        outline:none;
+        text-decoration:none;
+      }
+
+      a {
+        color:#0099CC;
+      }
+
+      a[x-apple-data-detectors] {
+        color:inherit !important;
+        text-decoration:none !important;
+        font-size:inherit !important;
+        font-family:inherit !important;
+        font-weight:inherit !important;
+        line-height:inherit !important;
+      }
+
+      .link-hover:hover {
+        text-decoration:none !important;
+      }
+
+      .ptop50 {
+        padding-top:15px !important;
+      }
+
+      * [lang~=3D"x-ptop50"] {
+        padding-top:25px !important;
+      }
+
+      .ptop60 {
+        padding-top:30px !important;
+      }
+
+      * [lang~=3D"x-ptop60"] {
+        padding-top:30px !important;
+      }
+
+      @media screen and (max-width: 650px) {
+        .ptop50=2C.ptop60 {
+          padding-top:15px !important;
+        }
+
+        .logo {
+          text-align:left;
+          padding:0 !important;
+        }
+
+        .mobile-hide {
+          display:none !important;
+        }
+
+        .mobile-show {
+          display:inline-block !important;
+          width:auto !important;
+          height:auto !important;
+          max-width:none !important;
+          max-height:none !important;
+          overflow:visible !important;
+        }
+
+        .logo img {
+          margin:0 auto !important;
+        }
+
+        .img-max {
+          max-width:100%;
+          height:auto;
+        }
+
+        .padding {
+          padding:10px 5% 15px !important;
+        }
+
+        .padding2 {
+          padding:10px 5% !important;
+          text-align:left;
+        }
+
+        .section-padding {
+          padding:15px 10px !important;
+        }
+
+        .section-padding2 {
+          padding:0 15px !important;
+        }
+
+        .responsive-table {
+          width:100% !important;
+          max-width:100% !important;
+        }
+
+        .max-width-full=2C.max-width-full2 {
+          max-width:100% !important;
+        }
+      }
+
+      @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        .webkit-hide {
+          display:none !important;
+        }
+
+        .webkit-show {
+          height:auto !important;
+          width:auto !important;
+          max-width:none !important;
+          max-height:none !important;
+          overflow:auto !important;
+          visibility:visible !important;
+          display:block !important;
+        }
+
+        #font-weight-normal {
+          font-weight:normal !important;
+        }
+      }
+
+      @media only screen and (max-width: 599px) {
+        td[class=3D"pattern"] table {
+          width:100%;
+        }
+
+        td[class=3D"pattern"] .col {
+          width:33%;
+        }
+      }
+
+      @media only screen and (max-width: 500px) {
+        td[class=3D"pattern"] .col {
+          width:100%;
+          display:block;
+        }
+
+        td[class=3D"pattern"] .col-left=2Ctd[class=3D"pattern"] .col-mid=
+ {
+          margin-bottom:0;
+        }
+
+        td[class=3D"pattern"] .header-orange {
+          width:50%;
+          display:inline-block;
+        }
+
+        td[class=3D"pattern"] .browser-view td {
+          text-align:right;
+        }
+
+        td[class=3D"pattern"] .social-media td {
+          text-align:left;
+        }
+      }
+
+      @media yahoo {
+        * {
+          overflow:visible !important;
+        }
+
+        .max-width-full {
+          min-width:300px !important;
+        }
+
+        .max-width-full2 {
+          min-width:280px !important;
+        }
+      }
+
+      div[style*=3D"margin: 5px 0;"] {
+        margin:0 !important;
+      }
+
+      h1 {
+        text-align:left;
+        font-size:40px;
+        font-weight:normal;
+      }
+
+      h2 {
+        text-align:left;
+        font-size:20px;
+        padding:7px 0;
+        margin:0;
+        font-weight:normal;
+        line-height:100%;
+        margin-bottom:0;
+      }
+
+      h3 {
+        font-size:16px;
+        padding:0;
+        margin:0;
+        font-weight:normal;
+        line-height:100%;
+        margin-bottom:0;
+      }
+
+      h4 {
+        font-size:14px;
+        padding:7px 0 3px;
+        margin:0;
+        font-weight:normal;
+        line-height:18px;
+        margin-bottom:0;
+      }
+
+      h5 {
+        font-size:12px;
+        padding:5px 0;
+        margin:0;
+        font-weight:normal;
+        line-height:100%;
+        margin-bottom:0;
+      }
+
+      h6 {
+        font-size:13px;
+        padding:0;
+        margin:0;
+        font-weight:normal;
+        line-height:18px;
+        margin-bottom:0;
+      }
+
+      @media screen and (min-width: 768px) {
+        .rwd-line {
+          display:inline;
+        }
+      }
+
+      tr.border_bottom td {
+        border-bottom:1pt solid #CCCCCC;
+      }
+
+      .dropbtn {
+        background-color:#4CAF50;
+        color:white;
+        padding:16px;
+        font-size:16px;
+        border:none;
+        cursor:pointer;
+      }
+
+      .dropdown {
+        position:relative;
+        display:inline-block;
+      }
+
+      .dropdown-content {
+        display:none;
+        position:absolute;
+        background-color:#f9f9f9;
+        min-width:160px;
+        box-shadow:0 8px 16px 0 rgba(0=2C0=2C0=2C0.2);
+        z-index:1;
+      }
+
+      .dropdown-content a {
+        color:black;
+        padding:12px 16px;
+        text-decoration:none;
+        display:block;
+      }
+
+      .dropdown-content a:hover {
+        background-color:#f1f1f1;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display:block;
+      }
+
+      .dropdown:hover .dropbtn {
+        background-color:#3e8e41;
+      }/* BOILERPLATE STYLES */
+      #outlook a {
+        padding:0;
+      }
+
+      .ReadMsgBody {
+        width:100%;
+      }
+
+      .ExternalClass {
+        width:100%;
+      }
+
+      .ExternalClass=2C.ExternalClass span=2C.ExternalClass td=2C.External=
+Class div {
+        line-height:100%;
+      }
+
+      body=2Ctable=2Ctd=2Ca {
+        -webkit-text-size-adjust:100%;
+        -ms-text-size-adjust:100%;
+      }
+
+      table=2Ctd {
+        mso-table-lspace:0;
+        mso-table-rspace:0;
+      }
+
+      img {
+        -ms-interpolation-mode:bicubic;
+      }
+
+      body {
+        height:100% !important;
+        margin:0 !important;
+        padding:0 !important;
+        width:100% !important;
+        background-color:#CCCCCC;
+      }
+
+      img {
+        border:0;
+        height:auto;
+        line-height:100%;
+        outline:none;
+        text-decoration:none;
+      }
+
+      a {
+        color:#0099CC;
+      }
+
+      a[x-apple-data-detectors] {
+        color:inherit !important;
+        text-decoration:none !important;
+        font-size:inherit !important;
+        font-family:inherit !important;
+        font-weight:inherit !important;
+        line-height:inherit !important;
+      }
+
+      .link-hover:hover {
+        text-decoration:none !important;
+      }
+
+      .ptop50 {
+        padding-top:15px !important;
+      }
+
+      * [lang~=3D"x-ptop50"] {
+        padding-top:25px !important;
+      }
+
+      .ptop60 {
+        padding-top:30px !important;
+      }
+
+      * [lang~=3D"x-ptop60"] {
+        padding-top:30px !important;
+      }
+
+      @media screen and (max-width: 650px) {
+        .ptop50=2C.ptop60 {
+          padding-top:15px !important;
+        }
+
+        .logo {
+          text-align:left;
+          padding:0 !important;
+        }
+
+        .mobile-hide {
+          display:none !important;
+        }
+
+        .mobile-show {
+          display:inline-block !important;
+          width:auto !important;
+          height:auto !important;
+          max-width:none !important;
+          max-height:none !important;
+          overflow:visible !important;
+        }
+
+        .logo img {
+          margin:0 auto !important;
+        }
+
+        .img-max {
+          max-width:100%;
+          height:auto;
+        }
+
+        .padding {
+          padding:10px 5% 15px !important;
+        }
+
+        .padding2 {
+          padding:10px 5% !important;
+          text-align:left;
+        }
+
+        .section-padding {
+          padding:15px 10px !important;
+        }
+
+        .section-padding2 {
+          padding:0 15px !important;
+        }
+
+        .responsive-table {
+          width:100% !important;
+          max-width:100% !important;
+        }
+
+        .max-width-full=2C.max-width-full2 {
+          max-width:100% !important;
+        }
+      }
+
+      @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        .webkit-hide {
+          display:none !important;
+        }
+
+        .webkit-show {
+          height:auto !important;
+          width:auto !important;
+          max-width:none !important;
+          max-height:none !important;
+          overflow:auto !important;
+          visibility:visible !important;
+          display:block !important;
+        }
+
+        #font-weight-normal {
+          font-weight:normal !important;
+        }
+      }
+
+      @media only screen and (max-width: 599px) {
+        td[class=3D"pattern"] table {
+          width:100%;
+        }
+
+        td[class=3D"pattern"] .col {
+          width:33%;
+        }
+      }
+
+      @media only screen and (max-width: 500px) {
+        td[class=3D"pattern"] .col {
+          width:100%;
+          display:block;
+        }
+
+        td[class=3D"pattern"] .col-left=2Ctd[class=3D"pattern"] .col-mid=
+ {
+          margin-bottom:0;
+        }
+
+        td[class=3D"pattern"] .header-orange {
+          width:50%;
+          display:inline-block;
+        }
+
+        td[class=3D"pattern"] .browser-view td {
+          text-align:right;
+        }
+
+        td[class=3D"pattern"] .social-media td {
+          text-align:left;
+        }
+      }
+
+      @media yahoo {
+        * {
+          overflow:visible !important;
+        }
+
+        .max-width-full {
+          min-width:300px !important;
+        }
+
+        .max-width-full2 {
+          min-width:280px !important;
+        }
+      }
+
+      div[style*=3D"margin: 5px 0;"] {
+        margin:0 !important;
+      }
+
+      h1 {
+        text-align:left;
+        font-size:40px;
+        font-weight:normal;
+      }
+
+      h2 {
+        text-align:left;
+        font-size:20px;
+        padding:7px 0;
+        margin:0;
+        font-weight:normal;
+        line-height:100%;
+        margin-bottom:0;
+      }
+
+      h3 {
+        font-size:16px;
+        padding:0;
+        margin:0;
+        font-weight:normal;
+        line-height:100%;
+        margin-bottom:0;
+      }
+
+      h4 {
+        font-size:14px;
+        padding:7px 0 3px;
+        margin:0;
+        font-weight:normal;
+        line-height:18px;
+        margin-bottom:0;
+      }
+
+      h5 {
+        font-size:12px;
+        padding:5px 0;
+        margin:0;
+        font-weight:normal;
+        line-height:100%;
+        margin-bottom:0;
+      }
+
+      h6 {
+        font-size:13px;
+        padding:0;
+        margin:0;
+        font-weight:normal;
+        line-height:18px;
+        margin-bottom:0;
+      }
+
+      @media screen and (min-width: 768px) {
+        .rwd-line {
+          display:inline;
+        }
+      }
+
+      tr.border_bottom td {
+        border-bottom:1pt solid #CCCCCC;
+      }
+
+      .dropbtn {
+        background-color:#4CAF50;
+        color:white;
+        padding:16px;
+        font-size:16px;
+        border:none;
+        cursor:pointer;
+      }
+
+      .dropdown {
+        position:relative;
+        display:inline-block;
+      }
+
+      .dropdown-content {
+        display:none;
+        position:absolute;
+        background-color:#f9f9f9;
+        min-width:160px;
+        box-shadow:0 8px 16px 0 rgba(0=2C0=2C0=2C0.2);
+        z-index:1;
+      }
+
+      .dropdown-content a {
+        color:black;
+        padding:12px 16px;
+        text-decoration:none;
+        display:block;
+      }
+
+      .dropdown-content a:hover {
+        background-color:#f1f1f1;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display:block;
+      }
+
+      .dropdown:hover .dropbtn {
+        background-color:#3e8e41;
+      }
+
+      .link-hover:hover {
+        text-decoration:none !important;
+      }
+    </style>
+  </head>
+  <body style=3D"margin: 0; padding: 0; background-color: #CCCCCC;">
+    <!-- PRE-HEADER TEXT -->
+    <span style=3D"visibility:hidden;overflow:hidden;mso-hide:all; display=
+:none; font-size:0px;opacity:0;">April Project of the month=2C featured ar=
+ticle and Sourceforge deals -- </span>
+    <!-- HEADER -->
+    <table style=3D"table-layout:fixed;" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%">
+      <tr>
+        <td bgcolor=3D"#333333" style=3D"font-family:Roboto=2C Helvetica=
+=2C Arial=2C sans-serif;padding:5px 10px 5px 10px;" class=3D"section-paddi=
+ng" align=3D"center">
+          <!--[if (gte mso 9)|(IE)]>
+          <table align=3D"center" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"600">
+            <tr>
+              <td align=3D"center" valign=3D"top" width=3D"600">
+                <![endif]-->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" class=3D"max-width" style=3D"max-width:600px;">
+            <tr>
+              <td style=3D"font-family:Roboto=2C Helvetica=2C Arial=2C san=
+s-serif;padding:0px 0px 0px 0px;" align=3D"center" class=3D"logo">
+                <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wi=
+dth=3D"100%">
+                  <tr>
+                    <td align=3D"center" style=3D"font-family:Roboto=2C He=
+lvetica=2C Arial=2C sans-serif;">
+                      <a href=3D"https://sourceforge.us15.list-manage.com/=
+track/click?u=3Daab6529d3675bd877963a652d&id=3D0e5ee738e6&e=3D192baef745"=
+ target=3D"_blank"><img src=3D"https://library.slashdotmedia.com/wp-conten=
+t/uploads/2017/04/sf-logo-orange-white-nl-1-e1495036445664.png" width=3D"1=
+88" alt=3D"SourceForge" style=3D"display:block;border:0px;font-family:'Rob=
+oto'=2C Helvetica=2C Arial=2C sans-serif;display: block; border: 0px; colo=
+r: #ffffff; font-family: 'Roboto'=2C Arial=2C sans-serif;"></a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!--[if (gte mso 9)|(IE)]>
+        </td>
+      </tr>
+    </table>
+    <![endif]-->
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor=3D"#FF6600" style=3D"font-family:Roboto=2C Helvetica=
+=2C Arial=2C sans-serif;" class=3D"section-padding" align=3D"center">
+          <!--[if (gte mso 9)|(IE)]>
+          <table align=3D"center" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"600">
+            <tr>
+              <td align=3D"center" valign=3D"top" width=3D"600">
+                <![endif]-->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" class=3D"max-width" style=3D"max-width:600px;">
+            <tr>
+              <td class=3D"pattern" width=3D"600" align=3D"center">
+                <table cellpadding=3D"0" cellspacing=3D"0">
+                  <tr>
+                    <td class=3D"col col-left header-orange date" width=3D=
+"200" align=3D"left" valign=3D"top">
+                      <table cellpadding=3D"0" cellspacing=3D"0">
+                        <tr>
+                          <td align=3D"left">
+                            <table cellpadding=3D"0" cellspacing=3D"0">
+                              <tr>
+                                <td align=3D"left" style=3D"font-family:Ro=
+boto=2C Helvetica=2C Arial=2C sans-serif;">
+                                  <!--------------ISSUE # AND DATE -------=
+------->
+                                  <h4><span style=3D"color: #000000;paddin=
+g-left:0px;padding-right:0px;">Issue #51 - April 3=2C 2019</span>
+                                </h4>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td class=3D"col col-mid header-orange browser-view" wid=
+th=3D"200" align=3D"center" valign=3D"top">
+                    <table cellpadding=3D"0" cellspacing=3D"0">
+                      <tr>
+                        <td align=3D"left">
+                          <table cellpadding=3D"0" cellspacing=3D"0">
+                            <tr>
+                              <td align=3D"left" style=3D"font-family:Robo=
+to=2C Helvetica=2C Arial=2C sans-serif;">
+                                <h4><span style=3D"color: #ffffff;;padding=
+-left:0px;padding-right:30px;"><a href=3D"https://mailchi.mp/newsletters/a=
+pril-2019-community-choice-project-of-the-month?e=3D192baef745" target=3D"_b=
+lank" style=3D"color:#FFFFFF;text-decoration:none;">View in browser</a></s=
+pan>
+                              </h4>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td class=3D"col header-orange social-media" width=3D"200"=
+ align=3D"center" valign=3D"top">
+                  <table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%=
+">
+                    <tr>
+                      <td align=3D"right">
+                        <table cellpadding=3D"0" cellspacing=3D"0">
+                          <tr>
+                            <td align=3D"right" style=3D"font-family:Robot=
+o=2C Helvetica=2C Arial=2C sans-serif;">
+                              <h4 style=3D"font-weight:normal;display:inli=
+ne-block;vertical-align:top;padding-top:9px;padding-right:3px;"><span styl=
+e=3D"color: #ffffff;;padding-left:0px;padding-right:0px;"><a href=3D"http:=
+//us15.forward-to-friend.com/forward?u=3Daab6529d3675bd877963a652d&id=3De8=
+4a2d58f3&e=3D192baef745" target=3D"_blank" style=3D"color:#FFFFFF;text-decor=
+ation:none;">Share</a></span>
+                            </h4>
+                            <h4 style=3D"display:inline-block;"><span styl=
+e=3D"color: #ffffff">
+                              <div style=3D"text-align:left;font-family:Ro=
+boto=2C Helvetica=2C Arial=2C sans-serif;font-size:15px;margin-bottom:0;ma=
+rgin-top:0px;color:#f8f9fc;line-height:90%;">
+                                <a href=3D"https://sourceforge.us15.list-m=
+anage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D8a95318d5d&e=3D192baef745" target=3D"_blank"><img alt=3D"Facebook" src=3D"https://library.=
+slashdotmedia.com/wp-content/uploads/2017/03/sf_social_facebook_default.pn=
+g" border=3D"0" width=3D"20" style=3D"display:inline-block;padding-right:2=
+px;"></a>
+                                <a href=3D"https://sourceforge.us15.list-m=
+anage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D46d33fc65d&e=3D192baef745" class=3D"twitter" target=3D"_blank"><img alt=3D"Twitter" src=3D=
+"https://library.slashdotmedia.com/wp-content/uploads/2017/03/sf_social_tw=
+itter_default.png" border=3D"0" width=3D"20" style=3D"display:inline-block=
+;padding-right:2px"></a>
+                                <a href=3D"https://sourceforge.us15.list-m=
+anage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D381986114c&e=3D192baef745" target=3D"_blank"><img alt=3D"LinkedIn" src=3D"https://library.=
+slashdotmedia.com/wp-content/uploads/2017/03/sf_social_linkedin_default.pn=
+g" border=3D"0" width=3D"20" style=3D"display:inline-block;padding-right:2=
+px"></a>
+                                <a href=3D"https://sourceforge.us15.list-m=
+anage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D2c04595079&e=3D192baef745" target=3D"_blank"><img alt=3D"Google +" src=3D"https://library.=
+slashdotmedia.com/wp-content/uploads/2017/03/sf_social_g_default-2.png" bo=
+rder=3D"0" width=3D"20" style=3D"display:inline-block"></a>
+                              </div>
+                            </span>
+                          </h4>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+
+      <!-- <td style=3D"font-family:Roboto=2C Helvetica=2C Arial=2C sans-s=
+erif;padding:0px 0px 0px 0px;" align=3D"center"> -->
+      <!-- <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"> -->
+      <!-- <tr> -->
+      <!-- <td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=2C=
+ Arial=2C sans-serif;width:230px;">  -->
+      <!-- <h4><span style=3D"color: #000000;border: 1px solid #CCCCCC; bo=
+rder-width: 0 0px 0 0px;padding-left:0px;padding-right:0px;">Issue #27 - A=
+pril 4=2C 2018</span>
+    </h4> -->
+      <!-- </td> -->
+      <!-- <td align=3D"right" style=3D"font-family:Roboto=2C Helvetica=2C=
+ Arial=2C sans-serif;width:91px;">  -->
+      <!-- <h4><span style=3D"color: #ffffff;border: 1px solid #CCCCCC; bo=
+rder-width: 0 0px 0 0;padding-left:0px;padding-right:0px;"><a href=3D"http=
+s://mailchi.mp/newsletters/april-2019-community-choice-project-of-the-mont=
+h?e=3D192baef745" target=3D"_blank" style=3D"color:#FFFFFF;text-decoration:n=
+one;">View in Browser</a></span>
+    </h4> -->
+      <!-- </td> -->
+      <!-- <td align=3D"right" style=3D"font-family:Roboto=2C Helvetica=2C=
+ Arial=2C sans-serif;width:40px;">  -->
+      <!-- <h4><span style=3D"color: #ffffff;border: 1px solid #CCCCCC; bo=
+rder-width: 0 0px 0 0;padding-left:0px;padding-right:0px;"><a href=3D"http=
+://us15.forward-to-friend.com/forward?u=3Daab6529d3675bd877963a652d&id=3De=
+84a2d58f3&e=3D192baef745" target=3D"_blank" style=3D"color:#FFFFFF;text-deco=
+ration:none;">Share</a></span>
+    </h4> -->
+      <!-- </td> -->
+      <!-- <td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=2C=
+ Arial=2C sans-serif;width:73px;">  -->
+      <!-- <h4><span style=3D"color: #ffffff"> -->
+      <!-- <div style=3D"text-align:center;font-family:Roboto=2C Helvetica=
+=2C Arial=2C sans-serif;font-size:15px;margin-bottom:0;margin-top:0px;colo=
+r:#f8f9fc;line-height:90%;"> -->
+      <!-- <a href=3D"https://www.facebook.com/sourceforgenet/" target=3D"=
+_blank"><img alt=3D"Facebook" src=3D"https://library.slashdotmedia.com/wp-=
+content/uploads/2017/03/sf_social_facebook_default.png" border=3D"0" width=
+=3D"22" style=3D"display:inline-block;padding-right:2px;"></a> -->
+      <!-- <a href=3D"https://twitter.com/sourceforge" class=3D"twitter" t=
+arget=3D"_blank"><img alt=3D"Twitter" src=3D"https://library.slashdotmedia=
+=2Ecom/wp-content/uploads/2017/03/sf_social_twitter_default.png" border=3D"0=
+" width=3D"22" style=3D"display:inline-block;padding-right:2px"></a> -->
+      <!-- <a href=3D"https://www.linkedin.com/topic/sourceforge" target=
+=3D"_blank"><img alt=3D"LinkedIn" src=3D"https://library.slashdotmedia.com=
+/wp-content/uploads/2017/03/sf_social_linkedin_default.png" border=3D"0" w=
+idth=3D"22" style=3D"display:inline-block"></a> -->
+      <!-- <a href=3D"https://plus.google.com/u/1/communities/108980648585=
+760076156" target=3D"_blank"><img alt=3D"Google +" src=3D"https://library.=
+slashdotmedia.com/wp-content/uploads/2017/03/sf_social_g_default-2.png" bo=
+rder=3D"0" width=3D"20" style=3D"display:inline-block"></a> -->
+      <!-- </div> -->
+      <!-- </span>
+    </h4> -->
+      <!-- </td> -->
+      <!-- </tr> -->
+      <!-- </table> -->
+      <!-- </td> -->
+    </tr>
+  </table>
+  <!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+
+</tr>
+<tr>
+<td bgcolor=3D"#FFFFFF" align=3D"center" style=3D"font-family:Roboto=2C He=
+lvetica=2C Arial=2C sans-serif;padding:0px 15px 30px 15px;" class=3D"secti=
+on-padding">
+  <!--[if (gte mso 9)|(IE)]>
+  <table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ width=3D"600">
+    <tr>
+      <td align=3D"center" valign=3D"top" width=3D"600">
+        <![endif]-->
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" s=
+tyle=3D"max-width:600px;">
+    <tr>
+      <td align=3D"center" style=3D"font-family:Roboto=2C Helvetica=2C Ari=
+al=2C sans-serif;">
+        <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0">
+          <tr>
+            <td bgcolor=3D"#ffffff" style=3D"font-family:Roboto=2C Helveti=
+ca=2C Arial=2C sans-serif;">
+              <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" align=3D"left" class=3D"responsive-table1">
+                <!-------------- BEGIN COMMUNITY CHOICE PROJECT ----------=
+---->
+                <tr>
+                  <td bgcolor=3D"#FFFFFF" align=3D"center" style=3D"font-f=
+amily:Roboto=2C Helvetica=2C Arial=2C sans-serif;padding:0px 15px 30px 15p=
+x;" class=3D"section-padding">
+                    <!--[if (gte mso 9)|(IE)]>
+                    <table align=3D"center" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" width=3D"600">
+                      <tr>
+                        <td align=3D"center" valign=3D"top" width=3D"600">
+                          <![endif]-->
+                    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%" style=3D"max-width:600px;">
+                      <tr>
+                        <td align=3D"center" style=3D"font-family:Roboto=
+=2C Helvetica=2C Arial=2C sans-serif;">
+                          <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0">
+                            <tr>
+                              <td bgcolor=3D"#ffffff" style=3D"font-family=
+:Roboto=2C Helvetica=2C Arial=2C sans-serif;">
+                                <table width=3D"100%" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0" align=3D"left" class=3D"responsive-table1">
+                                  <!-------------- BEGIN SPONSOR AD SLOT A=
+ -------------->
+                                  <tr>
+                                    <td align=3D"left" style=3D"font-famil=
+y:Roboto=2C Helvetica=2C Arial=2C sans-serif;font-size:15px;line-height:23=
+px;">
+                                      <h2 style=3D"font-family:Roboto=2C A=
+rial=2C sans-serif;padding-top:0px;padding-bottom:0;padding-right:0;paddin=
+g-left:0;color:#00CC00;font-size:14px;font-weight:normal;margin-top:20px;m=
+argin-bottom:3px;margin-right:0;margin-left:0;">Featured Business Software=
+</h2>
+                                      <hr style=3D"border-style:none;margi=
+n-top:0px;margin-bottom:5px;margin-right:0;margin-left:0;border-top-width:=
+1px;border-top-style:solid;border-top-color:#9b9b9b;">
+                                      <table align=3D"left" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse:collapse;borde=
+r:1px solid #FFFFFF;">
+                                        <tr>
+                                          <td align=3D"left" style=3D"font=
+-size:15px;line-height:23px;font-family:Roboto=2C Helvetica=2C Arial=2C sa=
+ns-serif;">
+                                            <div style=3D"margin:20px;">
+                                              <!--[if mso]>
+                                              <table align=3D"left" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"mso-table-rspace:7pt;b=
+order-collapse:collapse;border:1px solid #FFFFFF;">
+                                                <tr>
+                                                  <td style=3D"padding:0 1=
+5px 0 10px;">
+                                                    <![endif]-->
+
+                                              <!--[if mso]>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                        <![endif]-->
+                                              <p style=3D"margin:0;text-al=
+ign:left;">Choosing the right CMMS for your maintenance department can be=
+ a tough process. We're here to make it easier for you. Here's everything=
+ you need to know about <a href=3D"https://sourceforge.us15.list-manage.co=
+m/track/click?u=3Daab6529d3675bd877963a652d&id=3Da00a8b3b0b&e=3D192baef745">CMMS software.</a>
+                                              <br>
+                                            </p>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <!-------------- END COMMUNITY CHOICE PROJ=
+ECT -------------->
+                                <!-------------- BEGIN COMMUNITY CHOICE PR=
+OJECT -------------->
+                                <tr>
+                                  <td align=3D"left" style=3D"font-family:=
+Roboto=2C Helvetica=2C Arial=2C sans-serif;font-size:15px;line-height:23px=
+;">
+                                    <h2 style=3D"font-family:Roboto=2C Ari=
+al=2C sans-serif;padding-top:0px;padding-bottom:0;padding-right:0;padding-=
+left:0;color:#00CC00;font-size:14px;font-weight:normal;margin-top:20px;mar=
+gin-bottom:3px;margin-right:0;margin-left:0;">Community Choice Project of=
+ the Month for April</h2>
+                                    <hr style=3D"border-style:none;margin-=
+top:0px;margin-bottom:5px;margin-right:0;margin-left:0;border-top-width:1p=
+x;border-top-style:solid;border-top-color:#9b9b9b;">
+                                    <p style=3D"margin:0;text-align:justif=
+y;">
+                                      For our April 2019 =E2=80=9CCommunit=
+y Choice=E2=80=9D Project of the Month=2C the community elected <a href=3D=
+"https://sourceforge.us15.list-manage.com/track/click?u=3Daab6529d3675bd87=
+7963a652d&id=3D8d2b91b46f&e=3D192baef745" target=3D"_blank">Asuswrt-Merli=
+n</a>=2C an alternative firmware for Asus wireless routers. Developer Eric=
+ Sauvageau shared some thoughts about the project=E2=80=99s history=2C pur=
+pose=2C and direction. Check out the whole interview on our blog
+                                      <a href=3D"https://sourceforge.us15.=
+list-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3Dd68e6f4bb7&=
+e=3D192baef745" target=3D"_blank">here.</a>
+                                    </p>
+                                  </td>
+                                </tr>
+                                <!-------------- END COMMUNITY CHOICE PROJ=
+ECT -------------->
+                                <!-------------- BEGIN PROJECT OF THE MONT=
+H VOTE -------------->
+                                <tr>
+                                  <td align=3D"left" style=3D"font-family:=
+Roboto=2C Helvetica=2C Arial=2C sans-serif;font-size:15px;line-height:23px=
+;">
+                                    <h2 style=3D"font-family:Roboto=2C Ari=
+al=2C sans-serif;padding-top:0px;padding-bottom:0;padding-right:0;padding-=
+left:0;color:#00CC00;font-size:14px;font-weight:normal;margin-top:20px;mar=
+gin-bottom:3px;margin-right:0;margin-left:0;">Vote For May's Project of th=
+e Month</h2>
+                                    <hr style=3D"border-style:none;margin-=
+top:0px;margin-bottom:5px;margin-right:0;margin-left:0;border-top-width:1p=
+x;border-top-style:solid;border-top-color:#9b9b9b;">
+                                    <p style=3D"margin:0;text-align:justif=
+y;">
+                                      The vote for the May 2019 Community=
+ Choice SourceForge Project of the Month is <a href=3D"https://sourceforge=
+=2Eus15.list-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D797a6=
+01dfc&e=3D192baef745" target=3D"_blank">now available=2C</a> and will run=
+ until April 15=2C 2019 12:00 UTC.
+                                    </p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td align=3D"left" style=3D"font-family:=
+Roboto=2C Helvetica=2C Arial=2C sans-serif;text-align:left;">
+                                    <h2 style=3D"font-family:Roboto=2C Ari=
+al=2C sans-serif;padding-top:8px;padding-bottom:8px;padding-right:0;paddin=
+g-left:10px;color:#FFFFFF;font-size:14px;font-weight:normal;margin-top:20p=
+x;margin-bottom:0;margin-right:0;margin-left:0;background-color:#999999;">=
+The candidates for SourceForge Project of the Month for May 2019 are:</h2>
+                                    <hr style=3D"border-style:none;margin-=
+top:0px;margin-bottom:0;margin-right:0;margin-left:0;border-top-width:1px;=
+border-top-style:solid;border-top-color:#9b9b9b;">
+                                  </td>
+                                </tr>
+                              </table>
+                              <table style=3D"border:1px solid #CCCCCC;bor=
+der-width:1px 1px 1px 1px;padding-left:0px;padding-right:0px;padding-botto=
+m:10px;">
+                                <tr class=3D"border_bottom">
+                                  <td>
+                                    <a href=3D"https://sourceforge.us15.li=
+st-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3Ddc9cc31bda&e=
+=3D192baef745" target=3D"_blank"><img src=3D"https://a.fsdn.com/allura/p/=
+digicamcontrol/icon?1535109106?&amp;w=3D90" alt=3D"digiCamControl" style=
+=3D"width:25px;height:25px;padding-top:10px;padding-bottom:10px;padding-ri=
+ght:15px;padding-left:15px;display: block;"></a>
+                                  </td>
+                                  <td>
+                                    <h3 style=3D"margin:0;padding:0;font-w=
+eight:normal;"><a href=3D"https://sourceforge.us15.list-manage.com/track/c=
+lick?u=3Daab6529d3675bd877963a652d&id=3D0fb540fd09&e=3D192baef745" target=
+=3D"_blank">
+                                      digiCamControl</a>
+                                    </h3>
+                                    <h6 style=3D"margin:0;padding:0;">Allo=
+ws you to transfer images directly from your camera to your computer as yo=
+u take each shot and allow to control camera shooting parameters.
+                                    </h6>
+                                  </td>
+                                </tr>
+                                <tr class=3D"border_bottom">
+                                  <td>
+                                    <a href=3D"https://sourceforge.us15.li=
+st-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D90f56590fe&e=
+=3D192baef745" target=3D"_blank"><img src=3D"https://a.fsdn.com/allura/p/=
+sacddecoder/icon?1551101016?&amp;w=3D90" alt=3D"sacddecoder" style=3D"widt=
+h:25px;height:25px;padding-top:10px;padding-bottom:10px;padding-right:15px=
+;padding-left:15px;display: block;"></a>
+                                  </td>
+                                  <td style=3D"padding-top:7px;padding-bot=
+tom:0px;padding-right:0px;padding-left:0px;">
+                                    <h3 style=3D"text-align:left;margin:0;=
+padding:0;font-weight:normal;"><a href=3D"https://sourceforge.us15.list-ma=
+nage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3Db40ec5ed4d&e=3D192baef745" target=3D"_blank">Super Audio CD Decoder</a>
+                                  </h3>
+                                  <h6>Input plugin for foobar2000</h6>
+                                </td>
+                              </tr>
+                              <tr class=3D"border_bottom">
+                                <td>
+                                  <a href=3D"https://sourceforge.us15.list=
+-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D8fa7aa6ac6&e=3D=
+192baef745" target=3D"_blank"><img src=3D"https://a.fsdn.com/allura/p/sup=
+erioros/icon?1554112272?&amp;w=3D90" alt=3D"superioros" style=3D"width:25p=
+x;height:25px;padding-top:10px;padding-bottom:10px;padding-right:15px;padd=
+ing-left:15px;display: block;"></a>
+                                </td>
+                                <td>
+                                  <h3 style=3D"text-align:left;margin:0;pa=
+dding:0;font-weight:normal;"><a href=3D"https://sourceforge.us15.list-mana=
+ge.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D9c86f105d2&e=3D192baef745" target=3D"_blank">Superior OS</a>
+                                </h3>
+                                <h6>AOSP based ROM that works on android O=
+S 92</h6>
+                              </td>
+                            </tr>
+                            <tr class=3D"border_bottom">
+                              <td>
+                                <a href=3D"https://sourceforge.us15.list-m=
+anage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D67accb809a&e=3D192baef745" target=3D"_blank"><img src=3D"https://s3.amazonaws.com/emailsd/=
+email_images/default.png" alt=3D"PROJECT 4" style=3D"width:25px;height:25p=
+x;padding-top:10px;padding-bottom:10px;padding-right:15px;padding-left:15p=
+x;display: block;"></a>
+                              </td>
+                              <td style=3D"padding-top:7px;padding-bottom:=
+0px;padding-right:0px;padding-left:0px;">
+                                <h3 style=3D"text-align:left;margin:0;padd=
+ing:0;font-weight:normal;"><a href=3D"https://sourceforge.us15.list-manage=
+=2Ecom/track/click?u=3Daab6529d3675bd877963a652d&id=3D5087943afa&e=3D192baef745" target=3D"_blank">RevolutionOS-MIUI</a>
+                              </h3>
+                              <h6>MIUI Custom ROM for Xiaomi Devices
+                              </h6>
+                            </td>
+                          </tr>
+                          <tr class=3D"border_bottom">
+                            <td>
+                              <a href=3D"https://sourceforge.us15.list-man=
+age.com/track/click?u=3Daab6529d3675bd877963a652d&id=3Dc6899336ce&e=3D192baef745" target=3D"_blank"><img src=3D"https://s3.amazonaws.com/emailsd/em=
+ail_images/default.png" alt=3D"PROJECT 5" style=3D"width:25px;height:25px;=
+padding-top:10px;padding-bottom:10px;padding-right:15px;padding-left:15px;=
+display: block;"></a>
+                            </td>
+                            <td>
+                              <h3 style=3D"text-align:left;margin:0;paddin=
+g:0;font-weight:normal;"><a href=3D"https://sourceforge.us15.list-manage.c=
+om/track/click?u=3Daab6529d3675bd877963a652d&id=3D15040e96f6&e=3D192baef745" target=3D"_blank">Win flex-bison </a>
+                            </h3>
+                            <h6>A port Flex &amp; Bison tools to the Windo=
+ws platform
+                            </h6>
+                          </td>
+                        </tr>
+                        <tr class=3D"border_bottom">
+                          <td>
+                            <a href=3D"https://sourceforge.us15.list-manag=
+e.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D57c76ec6ba&e=3D192baef745" target=3D"_blank"><img src=3D"https://a.fsdn.com/allura/p/arrow-os/=
+icon?1542795803?&amp;w=3D90" alt=3D"PROJECT 6" style=3D"width:25px;height:=
+25px;padding-top:10px;padding-bottom:10px;padding-right:15px;padding-left:=
+15px;display: block;"></a>
+                          </td>
+                          <td style=3D"padding-top:7px;padding-bottom:0px;=
+padding-right:0px;padding-left:0px;">
+                            <h3 style=3D"text-align:left;margin:0;padding:=
+0;font-weight:normal;"><a href=3D"https://sourceforge.us15.list-manage.com=
+/track/click?u=3Daab6529d3675bd877963a652d&id=3Dc910996131&e=3D192baef745=
+" target=3D"_blank">Arrow OS</a>
+                          </h3>
+                          <h6>AOSP based project with an aim of keeping th=
+ings clean</h6>
+                        </td>
+                      </tr>
+                      <tr class=3D"border_bottom">
+                        <td>
+                          <a href=3D"https://sourceforge.us15.list-manage.=
+com/track/click?u=3Daab6529d3675bd877963a652d&id=3D3b06cd43b9&e=3D192baef745" target=3D"_blank"><img src=3D"https://a.fsdn.com/allura/p/dotos-downl=
+oads/icon?1553660036?&amp;w=3D90" alt=3D"PROJECT 7" style=3D"width:25px;he=
+ight:25px;padding-top:10px;padding-bottom:10px;padding-right:15px;padding-=
+left:15px;display: block;"></a>
+                        </td>
+                        <td style=3D"padding-top:7px;padding-bottom:0px;pa=
+dding-right:0px;padding-left:0px;">
+                          <h3 style=3D"text-align:left;margin:0;padding:0;=
+font-weight:normal;"><a href=3D"https://sourceforge.us15.list-manage.com/t=
+rack/click?u=3Daab6529d3675bd877963a652d&id=3D9e692044eb&e=3D192baef745"=
+ target=3D"_blank">dotOS-downloads </a>
+                        </h3>
+                        <h6>Custom Android firmware</h6>
+                      </td>
+                    </tr>
+                    <tr class=3D"border_bottom">
+                      <td>
+                        <a href=3D"https://sourceforge.us15.list-manage.co=
+m/track/click?u=3Daab6529d3675bd877963a652d&id=3Dfc7769f5a5&e=3D192baef745" target=3D"_blank"><img src=3D"https://s3.amazonaws.com/emailsd/email_im=
+ages/default.png" alt=3D"PROJECT 8" style=3D"width:25px;height:25px;paddin=
+g-top:10px;padding-bottom:10px;padding-right:15px;padding-left:15px;displa=
+y: block;"></a>
+                      </td>
+                      <td>
+                        <h3 style=3D"text-align:left;margin:0;padding:0;fo=
+nt-weight:normal;"><a href=3D"https://sourceforge.us15.list-manage.com/tra=
+ck/click?u=3Daab6529d3675bd877963a652d&id=3D7ec2f1cec1&e=3D192baef745" ta=
+rget=3D"_blank">ArchGeoTux</a>
+                      </h3>
+                      <h6>Repository of Geospatial packages for Arch Linux=
+</h6>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href=3D"https://sourceforge.us15.list-manage.com/=
+track/click?u=3Daab6529d3675bd877963a652d&id=3D96c5c0c596&e=3D192baef745"=
+ target=3D"_blank"><img src=3D"https://a.fsdn.com/allura/p/dispcalgui/icon=
+?1519009459?&amp;w=3D90" alt=3D"PROJECT 9" style=3D"width:25px;height:25px=
+;padding-top:10px;padding-bottom:10px;padding-right:15px;padding-left:15px=
+;display: block;"></a>
+                    </td>
+                    <td style=3D"padding-top:7px;padding-bottom:0px;paddin=
+g-right:0px;padding-left:0px;">
+                      <h3 style=3D"text-align:left;margin:0;padding:0;font=
+-weight:normal;"><a target=3D"_blank">DisplayCAL</a>
+                    </h3>
+                    <h6> Display Calibration and Characterization powered=
+ by Argyll CMS =09=09=09=09=09=09=09</h6>
+                  </td>
+                </tr>
+              </table>
+              <!-------------- END PROJECT OF THE MONTH VOTE -------------=
+->
+              <!-------------- BEGIN FEATURED ARTICLE -------------->
+              <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" align=3D"left" class=3D"responsive-table1">
+                <tr>
+                  <td align=3D"left" style=3D"font-family:Roboto=2C Helvet=
+ica=2C Arial=2C sans-serif;font-size:15px;line-height:23px;">
+                    <h2 style=3D"font-family:Roboto=2C Arial=2C sans-serif=
+;padding-top:0px;padding-bottom:0;padding-right:0;padding-left:0;color:#00=
+CC00;font-size:14px;font-weight:normal;margin-top:20px;margin-bottom:3px;m=
+argin-right:0;margin-left:0;">Featured Article</h2>
+                    <hr style=3D"border-style:none;margin-top:0px;margin-b=
+ottom:5px;margin-right:0;margin-left:0;border-top-width:1px;border-top-sty=
+le:solid;border-top-color:#9b9b9b;">
+                    <p style=3D"margin:0;text-align:justify;">
+                      SourceForge recently caught up with Adi Hirschtein=
+=2C the Director of Product at Iguazio=2C to talk about the value of data=
+ science and data analytics in modern enterprises. Hirschtein also shares=
+ his expertise on how to successfully build a data pipeline and offers som=
+e insights into the future of data science and data analytics. <a href=3D"=
+https://sourceforge.us15.list-manage.com/track/click?u=3Daab6529d3675bd877=
+963a652d&id=3D8f2119ff3e&e=3D192baef745" target=3D"_blank">Check out the=
+ full article here.</a>
+                    </p>
+                  </td>
+                </tr>
+                <!-------------- END FEATURED ARTICLE -------------->
+                <!-------------- BEGIN SOURCEFORGE DEAL -------------->
+                <tr>
+                  <td align=3D"left" style=3D"font-family:Roboto=2C Helvet=
+ica=2C Arial=2C sans-serif;font-size:15px;line-height:23px;">
+                    <h2 style=3D"font-family:Roboto=2C Arial=2C sans-serif=
+;padding-top:0px;padding-bottom:0;padding-right:0;padding-left:0;color:#00=
+CC00;font-size:14px;font-weight:normal;margin-top:20px;margin-bottom:3px;m=
+argin-right:0;margin-left:0;">Featured SourceForge Deals</h2>
+                    <hr style=3D"border-style:none;margin-top:0px;margin-b=
+ottom:5px;margin-right:0;margin-left:0;border-top-width:1px;border-top-sty=
+le:solid;border-top-color:#9b9b9b;">
+                    <h3 style=3D"margin:0;padding:0;font-weight:normal;fon=
+t-size:16px;"><a href=3D"https://sourceforge.us15.list-manage.com/track/cl=
+ick?u=3Daab6529d3675bd877963a652d&id=3Db72ee1dd07&e=3D192baef745" target=
+=3D"_blank">The Essential PC Utility Bundle Feat. Defrag 22</a>
+                  </h3>
+                  <p style=3D"margin:0;text-align:justify;">Backup Your Fi=
+les=2C Optimize Your Drives=2C Protect Your Data &amp; More with 4 Essenti=
+al PC Apps. </p>
+                  <p style=3D"margin:0;text-align:justify;">=C2=A0</p>
+                  <p style=3D"margin:0;text-align:justify;">Don=E2=80=99t=
+ let a slow computer get in the way of your workflow! You can optimize you=
+r PC=E2=80=99s performance and reach speeds up to 100% faster by defragmen=
+ting your computer with O&amp;O Defrag 22. When you defragment=2C the file=
+s that Windows splits up when saving documents across the hard disk or SSD=
+ are arranged in order again=2C ultimately boosting performance. Defrag 22=
+ is capable of defragmenting hard disks and solid state drives (SSD) alike=
+ and comes with extra tools for identifying and removing unnecessary files=
+=2E</p>
+                  <br>
+                  <p style=3D"margin:0;text-align:justify;"><a href=3D"htt=
+ps://sourceforge.us15.list-manage.com/track/click?u=3Daab6529d3675bd877963=
+a652d&id=3D242cc3f56c&e=3D192baef745" target=3D"_blank">SourceForge Deals=
+</a> is an online storefront with merchandise that's chosen=2C stocked=2C=
+ and fulfilled by a third party with products that are intended to be of i=
+nterest to you. <a href=3D"https://sourceforge.us15.list-manage.com/track/=
+click?u=3Daab6529d3675bd877963a652d&id=3D49bcefab10&e=3D192baef745" targe=
+t=3D"_blank">See more deals.</a>
+                </p>
+              </td>
+            </tr>
+            <!-------------- END SOURCEFORGE DEAL -------------->
+            <!-------------- BEGIN SPONSOR AD SLOT B -------------->
+            <tr>
+              <td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=
+=2C Arial=2C sans-serif;font-size:15px;line-height:23px;">
+                <h2 style=3D"font-family:Roboto=2C Arial=2C sans-serif;pad=
+ding-top:0px;padding-bottom:0;padding-right:0;padding-left:0;color:#00CC00=
+;font-size:14px;font-weight:normal;margin-top:20px;margin-bottom:3px;margi=
+n-right:0;margin-left:0;">Featured Busienss Software Category</h2>
+                <hr style=3D"border-style:none;margin-top:0px;margin-botto=
+m:5px;margin-right:0;margin-left:0;border-top-width:1px;border-top-style:s=
+olid;border-top-color:#9b9b9b;">
+                <table align=3D"left" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" style=3D"border-collapse:collapse;border:1px solid #FFFFFF;">
+                  <tr>
+                    <td align=3D"left" style=3D"font-size:15px;line-height=
+:23px;font-family:Roboto=2C Helvetica=2C Arial=2C sans-serif;">
+                      <h2 align=3D"left" style=3D"font-size:20px;">Compare=
+ IT Management Software</h2>
+                      <div style=3D"margin:20px;">
+                        <!--[if mso]>
+                        <table align=3D"left" border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" style=3D"mso-table-rspace:7pt;border-collapse:collaps=
+e;border:1px solid #FFFFFF;">
+                          <tr>
+                            <td style=3D"padding:0 15px 0 10px;">
+                              <![endif]-->
+                        <a href=3D"https://sourceforge.us15.list-manage.co=
+m/track/click?u=3Daab6529d3675bd877963a652d&id=3D461eaf47fa&e=3D192baef745" target=3D"_blank"><img src=3D"https://s3.amazonaws.com/emailsd/email_im=
+ages/Artboard+Copy%402x.png" alt=3D"AD SLOT B ALT TEXT" align=3D"left" wid=
+th=3D"80" height=3D"80" border=3D"0" style=3D"Margin:0 20px 10px 0px;;"></=
+a>
+                        <!--[if mso]>
+                      </td>
+                    </tr>
+                  </table>
+                  <![endif]-->
+                        <p style=3D"margin:0;text-align:justify;"> Compare=
+ IT Management software  using the SourceForge software compare table. IT=
+ Management Software helps companies manage their IT infrastructure=2C uti=
+lize technology resources=2C and enforce best practices to get the most fr=
+om highly complex data centers. <a href=3D"https://sourceforge.us15.list-m=
+anage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3Dacaa1c24ed&e=3D192baef745" target=3D"_blank">Compare IT Management Software here.</a> </p>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <!-------------- END SPONSOR AD SLOT B -------------->
+            <!-------------- BEGIN CONFERENCES AND EVENTS -------------->
+            <tr>
+              <td>
+                <h2 style=3D"font-family:Roboto=2C Arial=2C sans-serif;pad=
+ding-top:0px;padding-bottom:0;padding-right:0;padding-left:0;color:#00CC00=
+;font-size:14px;font-weight:normal;margin-top:20px;margin-bottom:3px;margi=
+n-right:0;margin-left:0;">Conferences and Events</h2>
+                <hr style=3D"border-style:none;margin-top:0px;margin-botto=
+m:10px;margin-right:0;margin-left:0;border-top-width:1px;border-top-style:=
+solid;border-top-color:#9b9b9b;">
+                <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" align=3D"left" class=3D"responsive-table1">
+                  <tr>
+                    <td style=3D"float:left;">
+                      <a href=3D"https://sourceforge.us15.list-manage.com/=
+track/click?u=3Daab6529d3675bd877963a652d&id=3Dc448127165&e=3D192baef745"=
+ target=3D"_blank">
+                        MarTech
+                      </a>
+                    </td>
+                    <td style=3D"font-family:Roboto=2C Helvetica=2C Arial=
+=2C sans-serif;width:130px;float:right;">
+                      <h6 style=3D"margin:0;padding:0;text-align:right;"><=
+strong>April 3-5=2C 2019</strong>
+                    </h6>
+                  </td>
+                </tr>
+              </table>
+              <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" align=3D"left" class=3D"responsive-table1">
+                <tr>
+                  <td align=3D"left" style=3D"font-family:Roboto=2C Helvet=
+ica=2C Arial=2C sans-serif;font-size:15px;line-height:23px;">
+                    <p style=3D"margin:0;text-align:justify;">
+                      Meet the top marketing technology vendors=2C attend=
+ sessions on the Solutions Track and in the Discover MarTech Theater=2C an=
+d network with peers...
+                    </p>
+                    <br>
+                  </td>
+                </tr>
+              </table>
+              <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" align=3D"left" class=3D"responsive-table1">
+                <tr>
+                  <td style=3D"float:left;">
+                    <a href=3D"https://sourceforge.us15.list-manage.com/tr=
+ack/click?u=3Daab6529d3675bd877963a652d&id=3D54cfb76d49&e=3D192baef745" t=
+arget=3D"_blank">
+                      OpenStack Summit</a>
+                    </td>
+                    <td style=3D"font-family:Roboto=2C Helvetica=2C Arial=
+=2C sans-serif;width:140px;float:right;">
+                      <h6 style=3D"margin:0;padding:0;text-align:right;"><=
+strong>April 29-May 5=2C 2019</strong>
+                    </h6>
+                  </td>
+                </tr>
+              </table>
+              <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" align=3D"left" class=3D"responsive-table1">
+                <tr>
+                  <td align=3D"left" style=3D"font-family:Roboto=2C Helvet=
+ica=2C Arial=2C sans-serif;font-size:15px;line-height:23px;">
+                    <p style=3D"margin:0;text-align:justify;">
+                      In addition to OpenStack-related sessions=2C the eve=
+nt features Kata Containers=2C Ansible=2C Ceph=2C Kubernetes=2C ONAP=2C an=
+d more projects. Featured topics include CI/CD=2C container infrastructure=
+=2C edge computing=2C HPC/GPU/AI=2C open source community=2C private and h=
+ybrid cloud=2C public cloud=2C telecom and NFV.
+                    </p>
+                    <br>
+                  </td>
+                </tr>
+              </table>
+              <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" align=3D"left" class=3D"responsive-table1">
+                <tr>
+                  <td style=3D"float:left;">
+                    <a href=3D"https://sourceforge.us15.list-manage.com/tr=
+ack/click?u=3Daab6529d3675bd877963a652d&id=3Da3ae366485&e=3D192baef745" t=
+arget=3D"_blank">
+                      LinuxFest Northwest
+                    </a>
+                  </td>
+                  <td style=3D"font-family:Roboto=2C Helvetica=2C Arial=2C=
+ sans-serif;width:140px;float:right;">
+                    <h6 style=3D"margin:0;padding:0;text-align:right;"><st=
+rong>April 28-29=2C 2019</strong>
+                  </h6>
+                </td>
+              </tr>
+            </table>
+            <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" align=3D"left" class=3D"responsive-table1">
+              <tr>
+                <td align=3D"left" style=3D"font-family:Roboto=2C Helvetic=
+a=2C Arial=2C sans-serif;font-size:15px;line-height:23px;">
+                  <p style=3D"margin:0;text-align:justify;">
+                    LinuxFest Northwest=2C the oldest community-run open s=
+ource conference=2C turns 20 in 2019. Like SCALE=2C it has something for e=
+veryone. Last year=E2=80=99s conference=2C for instance=2C included sessio=
+ns like =E2=80=9CIntroduction to Git (even for non-developers)=2C=E2=80=9D=
+ =E2=80=9CLessons learned from civic hacking=2C=E2=80=9D and =E2=80=9CInco=
+mpossibilities: Limitations and trade-offs in technology design.=E2=80=9D
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-------------- END CONFERENCES AND EVENTS -------------->
+        <!-------------- BEGIN TODAY IN TECH -------------->
+        <tr>
+          <td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=2C A=
+rial=2C sans-serif;font-size:15px;line-height:23px;">
+            <h2 style=3D"font-family:Roboto=2C Arial=2C sans-serif;padding=
+-top:0px;padding-bottom:0;padding-right:0;padding-left:0;color:#00CC00;fon=
+t-size:14px;font-weight:normal;margin-top:20px;margin-bottom:3px;margin-ri=
+ght:0;margin-left:0;">Today in Tech</h2>
+            <hr style=3D"border-style:none;margin-top:0px;margin-bottom:5p=
+x;margin-right:0;margin-left:0;border-top-width:1px;border-top-style:solid=
+;border-top-color:#9b9b9b;">
+            <p style=3D"margin:0;text-align:justify;">On this day in 1973=
+ American engineer Martin Cooper made the first cell phone call from a New=
+ York City street. Cooper and his team had created the first handheld=2C p=
+ersonal mobile phone for Motorola a couple of months back=2C and was prese=
+nting it to the media in New York when he decided to give them a real demo=
+nstration by making a call. That first call was to Dr. Joel Engel=2C who w=
+as then running a program for their rival company AT&amp;T.
+              <a href=3D"https://sourceforge.us15.list-manage.com/track/cl=
+ick?u=3Daab6529d3675bd877963a652d&id=3D39474f4ecf&e=3D192baef745" target=
+=3D"_blank">Find out more about the first cell phone call ever made here.<=
+/a>
+            </p>
+          </td>
+        </tr>
+        <!-------------- END TODAY IN TECH -------------->
+        <!-------------- BEGIN  HELP WANTED -------------->
+        <tr>
+          <td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=2C A=
+rial=2C sans-serif;font-size:15px;line-height:23px;">
+            <h2 style=3D"font-family:Roboto=2C Arial=2C sans-serif;padding=
+-top:0px;padding-bottom:0;padding-right:0;padding-left:0;color:#00CC00;fon=
+t-size:14px;font-weight:normal;margin-top:20px;margin-bottom:3px;margin-ri=
+ght:0;margin-left:0;">Help Wanted</h2>
+            <hr style=3D"border-style:none;margin-top:0px;margin-bottom:5p=
+x;margin-right:0;margin-left:0;border-top-width:1px;border-top-style:solid=
+;border-top-color:#9b9b9b;">
+            <p style=3D"margin:0;text-align:justify;"><a href=3D"https://s=
+ourceforge.us15.list-manage.com/track/click?u=3Daab6529d3675bd877963a652d&=
+id=3D7a43a91419&e=3D192baef745" target=3D"_blank">C Programmers Wanted fo=
+r PDOS - public domain operating system
+            </a>
+            <br>
+            <br>
+            If you are looking for an Open Source project to contribute yo=
+ur time to=2C or if you are someone who wants to advertise your skills=2C=
+ check out the <a href=3D"https://sourceforge.us15.list-manage.com/track/c=
+lick?u=3Daab6529d3675bd877963a652d&id=3D94a31e46f7&e=3D192baef745" target=
+=3D"_blank">Help Wanted page</a> or <a href=3D"https://sourceforge.us15.li=
+st-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D909012cacf&e=
+=3D192baef745" target=3D"_blank">Project Wanted page.</a>
+
+
+          </p>
+        </td>
+      </tr>
+      <!-------------- END HELP WANTED -------------->
+      <!-------------- BEGIN FINAL THOUGHTS -------------->
+      <tr>
+        <td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=2C Ari=
+al=2C sans-serif;font-size:15px;line-height:23px;">
+          <h2 style=3D"font-family:Roboto=2C Arial=2C sans-serif;padding-t=
+op:0px;padding-bottom:0;padding-right:0;padding-left:0;color:#00CC00;font-=
+size:14px;font-weight:normal;margin-top:20px;margin-bottom:3px;margin-righ=
+t:0;margin-left:0;">Final Thoughts</h2>
+          <hr style=3D"border-style:none;margin-top:0px;margin-bottom:5px;=
+margin-right:0;margin-left:0;border-top-width:1px;border-top-style:solid;b=
+order-top-color:#9b9b9b;">
+          <p style=3D"margin:0;text-align:justify;">If you know someone wh=
+o is not getting this mailing=2C encourage them to <a href=3D"https://sour=
+ceforge.us15.list-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=
+=3Da32c83ab53&e=3D192baef745" target=3D"_blank">sign up</a>.</p>
+          <br>
+          <p style=3D"margin:0;text-align:justify;">If you want to change=
+ your newsletter frequency to monthly=2C <a href=3D"https://sourceforge.us=
+15.list-manage.com/profile?u=3Daab6529d3675bd877963a652d&id=3D268c4f594a&e=
+=3D192baef745" target=3D"_blank">go here</a>.</p>
+          <br>
+          <p style=3D"margin:0;text-align:justify;">Thanks for being part=
+ of the SourceForge community! And=2C if you need to get in touch directly=
+=2C feel free to send us an email at <a href=3D"mailto:CommunityTeam@sourc=
+eforge.net" target=3D"_blank">CommunityTeam@sourceforge.net</a>.</p>
+        </td>
+      </tr>
+      <!-------------- END FINAL THOUGHTS -------------->
+    </table>
+  </td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</table>
+<!-------------- BEGIN FOOTER -------------->
+</td>
+</tr>
+<tr>
+<td bgcolor=3D"#666666" align=3D"center" style=3D"font-family:Roboto=2C He=
+lvetica=2C Arial=2C sans-serif;padding:10px 15px;">
+<!--[if (gte mso 9)|(IE)]>
+<table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" w=
+idth=3D"600">
+  <tr>
+    <td align=3D"center" valign=3D"top" width=3D"600">
+      <![endif]-->
+<table bgcolor=3D"#666666" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%">
+<tr>
+<td class=3D"pattern" width=3D"600" align=3D"center">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+  <td class=3D"col col-left" width=3D"110" align=3D"left" valign=3D"top">
+    <table cellpadding=3D"0" cellspacing=3D"0">
+      <tr>
+        <td align=3D"left">
+          <table cellpadding=3D"0" cellspacing=3D"0">
+            <tr>
+              <td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=
+=2C Arial=2C sans-serif;">
+                <h5><span style=3D"color: #ffffff"><a href=3D"https://sour=
+ceforge.us15.list-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=
+=3D1c242ef74d&e=3D192baef745" target=3D"_blank" style=3D"color:#FFFFFF;te=
+xt-decoration:none;">Newsletter</a></span>
+              </h5>
+              <h5><span style=3D"color: #ffffff"><a href=3D"https://source=
+forge.us15.list-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D=
+69ad9deb72&e=3D192baef745" target=3D"_blank" style=3D"color:#FFFFFF;text-=
+decoration:none;">Resources</a></span>
+            </h5>
+            <h5><span style=3D"color: #ffffff"><a href=3D"https://sourcefo=
+rge.us15.list-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3Da8=
+93b8c601&e=3D192baef745" target=3D"_blank" style=3D"color:#FFFFFF;text-de=
+coration:none;">Blog</a></span>
+          </h5>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+</td>
+<td class=3D"col col-mid" width=3D"150" align=3D"center" valign=3D"top">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+  <td align=3D"left">
+    <table cellpadding=3D"0" cellspacing=3D"0">
+      <tr>
+        <td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=2C Ari=
+al=2C sans-serif;">
+          <h5><span style=3D"color: #ffffff"><a href=3D"https://mailchi.mp=
+/newsletters/april-2019-community-choice-project-of-the-month?e=3D192baef745=
+" target=3D"_blank" style=3D"color:#FFFFFF;text-decoration:none;">View Web=
+ Version</a></span>
+        </h5>
+        <h5><span style=3D"color: #ffffff"><a href=3D"https://sourceforge.=
+us15.list-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3Db83645=
+9041&e=3D192baef745" target=3D"_blank" style=3D"color:#FFFFFF;text-decora=
+tion:none;">Internet Speedtest</a></span>
+      </h5>
+      <h5><span style=3D"color: #ffffff"><a href=3D"https://sourceforge.us=
+15.list-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D007b4f19=
+c8&e=3D192baef745" target=3D"_blank" style=3D"color:#FFFFFF;text-decorati=
+on:none;">Slashdot</a></span>
+    </h5>
+  </td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+<td class=3D"col" width=3D"150" align=3D"center" valign=3D"top">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td align=3D"left">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+  <td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=2C Arial=2C=
+ sans-serif;">
+    <h5><span style=3D"color: #ffffff"><a href=3D"https://sourceforge.us15=
+=2Elist-manage.com/track/click?u=3Daab6529d3675bd877963a652d&id=3D4ae4c4270f=
+&e=3D192baef745" target=3D"_blank" style=3D"color:#FFFFFF;text-decoration=
+:none;">Privacy Policy</a></span>
+  </h5>
+  <h5><span style=3D"color: #ffffff"><a href=3D"https://sourceforge.us15.l=
+ist-manage.com/profile?u=3Daab6529d3675bd877963a652d&id=3D268c4f594a&e=3D192baef745" target=3D"_blank" style=3D"color:#FFFFFF;text-decoration:none;">U=
+pdate Preferences</a></span>
+</h5>
+<h5><span style=3D"color: #ffffff"><a href=3D"https://sourceforge.us15.lis=
+t-manage.com/unsubscribe?u=3Daab6529d3675bd877963a652d&id=3D268c4f594a&e=
+=3D192baef745&c=3De84a2d58f3" target=3D"_blank" style=3D"color:#FFFFFF;text-=
+decoration:none;">Unsubscribe</a></span>
+</h5>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+<td class=3D"col" width=3D"190" align=3D"center">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td align=3D"left">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td align=3D"center" style=3D"font-family:Roboto=2C Helvetica=2C Arial=2C=
+ sans-serif;">
+<h5><span style=3D"color: #ffffff">
+<a href=3D"https://sourceforge.us15.list-manage.com/track/click?u=3Daab652=
+9d3675bd877963a652d&id=3D24aeed2940&e=3D192baef745" target=3D"_blank"><im=
+g alt=3D"SourceForge" src=3D"https://s3.amazonaws.com/adops/1live/email_im=
+ages/sf-logo-orange-white.png" border=3D"0" width=3D"170" style=3D"display=
+:inline-block"></a>
+</span>
+</h5>
+<p><img alt=3D"" height=3D"1" src=3D"https://passport.bizx.info/opi/v1/con=
+tacts/put-fpe/e1c81eff8f508ac58ea6e03b0cf524e0?action=3Demail_open&amp;source=3Dsourceforg=
+e_newsletter&amp;topics=3Dinformation%20technology&amp;software&amp;open%2=
+0source" width=3D"1">
+</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+<tr>
+<td bgcolor=3D"#333333" align=3D"center" style=3D"font-family:Roboto=2C He=
+lvetica=2C Arial=2C sans-serif;padding:10px 15px;">
+<!--[if (gte mso 9)|(IE)]>
+<table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" w=
+idth=3D"600">
+  <tr>
+    <td align=3D"center" valign=3D"top" width=3D"600">
+      <![endif]-->
+<table bgcolor=3D"#333333" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%" style=3D"max-width:600px;">
+<tr>
+<td class=3D"pattern" width=3D"600" align=3D"center">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td class=3D"col col-left" width=3D"250" align=3D"left" valign=3D"top">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td align=3D"left">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=2C Arial=2C sa=
+ns-serif;">
+<h5><span style=3D"color: #ffffff">=C2=A9 2019 Slashdot Media. All Rights=
+ Reserved</span>
+</h5>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+<td class=3D"col col-mid" width=3D"350" align=3D"right" valign=3D"top">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td align=3D"right">
+<table cellpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td align=3D"left" style=3D"font-family:Roboto=2C Helvetica=2C Arial=2C sa=
+ns-serif;">
+<h5><span style=3D"color: #ffffff">SourceForge | 101 W Broadway Ste #1420=
+ | San Diego=2C CA 92101</span>
+</h5>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+<!-------------- END FOOTER -------------->
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<img src=3D"https://sourceforge.us15.list-manage.com/track/open.php?u=3Daa=
+b6529d3675bd877963a652d&id=3De84a2d58f3&e=3D192baef745" height=3D"1" widt=
+h=3D"1"></body>
+</html>
+--_----------=_MCPart_773512974--

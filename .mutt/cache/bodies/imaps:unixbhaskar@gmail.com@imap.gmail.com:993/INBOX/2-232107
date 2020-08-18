@@ -1,0 +1,426 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp1151275lfg;
+        Fri, 3 Apr 2020 14:47:31 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKdDwxlRUnFbTEXzAD0/KR0VIR0jQVh3XGYY9KBlocnl9O/ihJWWx8S0cXqUwga+p+sYwhX
+X-Received: by 2002:a9d:6ad8:: with SMTP id m24mr8329148otq.66.1585950450889;
+        Fri, 03 Apr 2020 14:47:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585950450; cv=none;
+        d=google.com; s=arc-20160816;
+        b=nB48BPeBVIr7SM/nY6HEd+ekN+B9kI+m/8x80ImhF/E9aoll+M2rVclOo/teV80U7S
+         a3eZjDs3ZQx2Q9DKw+2bnTw4FKIx0NllpHGJZX7ei17GqZFlHOGnWCcbc0RdaKcCTXuE
+         UQb4gKy6pQQXraXIQo8HTPv51Kmvkb2FLp027Cgyw4RY0GMcGu8V6O2IrWKXH1ugoC4C
+         F+7Cj0e3dbyOCM/ugX/kw1pq3ZmOilTnjf+KQEwMlL1lztj+8qWX+n8LIxO0mAZDELwF
+         Dv9UP1DuJHsscrs5LUchkLaN43pFUiuQj7lSeY2pzbWPmt8EfCcgOgSL5ojf7FIqwu2+
+         hOPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:cc:to:subject
+         :message-id:date:from:in-reply-to:references:mime-version;
+        bh=iK0HtrRBXao8unLI+PttBd9I6YG4nUWKQDKRecJH0w8=;
+        b=mW6dLEygSJEOTUMJ8kYu8qRzt5jPCE6RHqCzjjF0lUriD+jyvDYOZXGCQyld3ad96D
+         kfDgjZo8yvflZeDP0ZHiRjFsDHbVb3iNiTJFQa2SW/FEQwsqSfaOpx48kow3WNPnZuP8
+         l2yQpX17rTFluO/Gzl41MSD7fNuWYuszlElDy3Lbqxc/F0dP0FCviS+iNrEYO87HxJQJ
+         MFgsk7BkHicnccgU60cUJuR18uNRmFhiK2pXZkCAeSi4UxaE5M6bgGRpZz8WefFbVOL8
+         /pfA1VGEHEjmwHVnH9ZbECJwChClysb890qPOxCfRpDPDNgQ7Se/q9VS+z+PAt+i0ENU
+         T2zg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id f129si4170980oia.243.2020.04.03.14.47.18;
+        Fri, 03 Apr 2020 14:47:30 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728344AbgDCVqR convert rfc822-to-8bit (ORCPT
+        <rfc822;wilsonzhong8@gmail.com> + 99 others);
+        Fri, 3 Apr 2020 17:46:17 -0400
+Received: from mout.kundenserver.de ([217.72.192.75]:42385 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727924AbgDCVqR (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 3 Apr 2020 17:46:17 -0400
+Received: from mail-qk1-f179.google.com ([209.85.222.179]) by
+ mrelayeu.kundenserver.de (mreue106 [212.227.15.145]) with ESMTPSA (Nemesis)
+ id 1MkYoK-1iuRul1YPW-00m5xe for <linux-kernel@vger.kernel.org>; Fri, 03 Apr
+ 2020 23:46:13 +0200
+Received: by mail-qk1-f179.google.com with SMTP id x3so9784523qki.4
+        for <linux-kernel@vger.kernel.org>; Fri, 03 Apr 2020 14:46:13 -0700 (PDT)
+X-Gm-Message-State: AGi0PuYpY3y7HCetrbC20RCF4y5adJlErxwWY4Kxf7mxorysM5S5NLdI
+        lVcQWHKNStzilM3a8g7KCQSTz8NsGDeQgF8HRns=
+X-Received: by 2002:a37:8707:: with SMTP id j7mr11169036qkd.394.1585950372180;
+ Fri, 03 Apr 2020 14:46:12 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAK8P3a1aO+LUu6KsW+s8aZMNWt2yz7kqe=LARY=ifMKOqT9uNQ@mail.gmail.com>
+In-Reply-To: <CAK8P3a1aO+LUu6KsW+s8aZMNWt2yz7kqe=LARY=ifMKOqT9uNQ@mail.gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 3 Apr 2020 23:45:56 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3iGtudeWTwufBYYM29jL5b_FRkqzU2QZiQRu0B2NhyZg@mail.gmail.com>
+Message-ID: <CAK8P3a3iGtudeWTwufBYYM29jL5b_FRkqzU2QZiQRu0B2NhyZg@mail.gmail.com>
+Subject: [GIT PULL 4/4] ARM: devicetree updates
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     SoC Team <soc@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:dCmuulq/aQ6cSjvc4BMEw1+phRCVHM16Q0hJd7IDil04IpafzOS
+ 1bgziuk4OFoSItuST9F7pvJULTHKZHL8JDkaGLVmejOsTzq5pPFlgTFgIKh7s0TZAElFWj9
+ qaYuINbumdV34Q0g/Hvg7Ns3DhtQIfqM3FcpbyaUxm8uqkfTCGsLy5TAQzO1Kxd0nKcsim3
+ wfrDUNgim645Graww93bA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:wcJPGWgjpDU=:YO5aDB4yYBxYZ9JEpmFAFs
+ Vv09Olp4V2YxIau5sk8mqjq8ufBtApJStc54KSGmpJYya2q3aZ88q9GW0olMKwwl+F7H2A/ue
+ HTM5k9MG6lrnQdzW8q8Uio27Vg5im5Bq686AzjM9JbR39j/jKx8zA2IOGL+mhm42nOxtgBb4N
+ aZoTAu1WezOG0GSjJlmuC8lfOKXhMh64MsdasYzu9+03Zzz/atwwiSnDq6qzSipIICLfSd49a
+ 89nqUVV2kJAPEhOSZdQ4ZoIr+fXN9hHdb7NHo2Mi0E1aiTMPdw6CdN0BWF62vBb99T73D9k7N
+ b6yxgvsV7YqVW542NN/fmUUcCOJmhR7cbb9yxLPW6ZPJFiBhaNBUxi3pw5Y2G2OJVN7x/60sZ
+ BU2gpYni3JPTiZP5zX8uwfvEXprKGGwXzqn3Y9hK2Kgl1bD7vgxr/hAhT8a4MO+m7goihnpkZ
+ ZyANqxxqk5TzFCGAe4CQcFLPN0mOee7rX83F9EytyN6SGAdlR0PBFOiDi5fFUiu6o5BkqTORZ
+ 7uWjWxUOmJHl/A1OPEJrjjvTjrb3PpVcyOHuA9jSJvXfN8QugjMllg85J6I49tYutJ7At8ADp
+ fAbTnXbArlBGRxeNeZcPbTU2c/66HHeeUzgo2dIcmMw7fIGGYXf9K0rEBynDA5YIMP/RQ1zdt
+ ztQUBYH3oyNcWWDwW6dJ/hso58VTjKu9z6gVw+LOYM9rWYuxKUehl6FAjrsTDxm63xSWWLPZn
+ AwZzgLLo3jGH7rcDFB5r+tmlBXYEaoaaQRjhQJuE0bzqcxavF9xQ2oWYWvAVVrL6FwnlxkcR/
+ UgeYbkp4qzaLI3QX/EHwUNMgR4xBs2gPniLahQ56RHKp/47M6c=
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+The following changes since commit 98d54f81e36ba3bf92172791eba5ca5bd813989b:
+
+  Linux 5.6-rc4 (2020-03-01 16:38:46 -0600)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git tags/arm-dt-5.7
+
+for you to fetch changes up to 8bdbf169084ec00833bff61cda0014b7fbdf15ac:
+
+  Merge branch 'arm/late' into arm/dt (2020-04-03 22:45:37 +0200)
+
+----------------------------------------------------------------
+ARM: devicetree updates for v5.7
+
+Most of the commits are for additional hardware support and minor fixes
+for existing machines for all the usual platforms: qcom, amlogic, at91,
+gemini, mediatek, ti, socfpga, i.mx, layerscape, uniphier, rockchip,
+exynos, ux500, mvebu, tegra, stm32, renesas, sunxi, broadcom, omap,
+and versatile.
+
+The conversion of binding files to machine-readable yaml format
+continues, along with fixes found during the validation.
+Andre Przywara takes over maintainership for the old Calxeda Highbank
+platform and provides a number of updates.
+
+The OMAP2+ platforms see a continued move from platform data into
+dts files, for many devices that relied on a mix of auxiliary data
+in addition to the DT description
+
+A moderate number of new SoCs and machines are added, here is a full
+list:
+
+- Two new Qualcomm SoCs with their evaluation boards: Snapdragon 865
+  (SM8250) is the current high-end phone chip, and IPQ6018 is a new
+  WiFi-6 router chip.
+
+- Mediatek MT8516 application processor SoC for voice assistants, along
+  with the "pumpkin" development board
+
+- NXP i.MX8M Plus SoC, a variant of the popular i.MX8M, along with an
+  evaluation board.
+
+- Kontron "sl28" board family based on NXP LS1028A
+
+- Eleven variations of the new i.MX6 TechNexion Pico board, combining
+  the "dwarf", "hobbit", "nymph" and "pi" baseboards with i.MX6/i.MX7
+  SoM carriers
+
+- Three additional variants of the Toradex Colibri board family, all
+  based on versions of the NXP i.MX7.
+
+- The Pinebook Pro laptop based on Rockchip RK3399
+
+- Samsung S7710 Galaxy Xcover 2, a 2013 vintage Android phone based on
+  the ST-Ericsson u8500 platform
+
+- DH Electronics DHCOM SoM and PDK2 rev. 400 carrier based on
+  STMicroelectronics stm32mp157
+
+- Renesas M3ULCB starter kit for R-Car M3-W+
+
+- Hoperun HiHope development board with Renesas RZ/G2M
+
+- Pine64 PineTab tablet and PinePhone phone, both based on Allwinner A64
+
+- Linutronix Testbox v2 for the Lamobo R1 router, based on Allwinner A20
+
+- PocketBook Touch Lux 3 ebook reader, based on Allwinner A13
+
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+
+----------------------------------------------------------------
+To spare you the 80kb of git-request-pull output, here is a very
+abbreviated version
+
+Arnd Bergmann (38):
+      Merge tag 'renesas-arm-dt-for-v5.7-tag1' of
+git://git.kernel.org/.../geert/renesas-devel into arm/dt
+      Merge tag 'renesas-arm64-dt-for-v5.7-tag1' of
+git://git.kernel.org/.../geert/renesas-devel into arm/dt
+      Merge tag 'versatile-dts-v5.7-1' of
+git://git.kernel.org/.../linusw/linux-integrator into arm/dt
+      Merge tag 'omap-for-v5.7/dt-signed' of
+git://git.kernel.org/.../tmlind/linux-omap into arm/dt
+      Merge tag 'arm-soc/for-5.7/devicetree' of
+https://github.com/Broadcom/stblinux into arm/dt
+      Merge tag 'sunxi-dt-for-5.7' of
+git://git.kernel.org/.../sunxi/linux into arm/dt
+      Merge tag 'renesas-arm-dt-for-v5.7-tag2' of
+git://git.kernel.org/.../geert/renesas-devel into arm/dt
+      Merge tag 'renesas-arm64-dt-for-v5.7-tag2' of
+git://git.kernel.org/.../geert/renesas-devel into arm/dt
+      Merge tag 'renesas-dt-bindings-for-v5.7-tag1' of
+git://git.kernel.org/.../geert/renesas-devel into arm/dt
+      Merge tag 'stm32-dt-for-v5.7-1' of
+git://git.kernel.org/.../atorgue/stm32 into arm/dt
+      Merge tag 'tegra-for-5.7-dt-bindings' of
+git://git.kernel.org/.../tegra/linux into arm/dt
+      Merge tag 'tegra-for-5.7-arm-dt' of
+git://git.kernel.org/.../tegra/linux into arm/dt
+      Merge tag 'tegra-for-5.7-arm64-dt' of
+git://git.kernel.org/.../tegra/linux into arm/dt
+      Merge tag 'mvebu-dt64-5.7-1' of
+git://git.infradead.org/linux-mvebu into arm/dt
+      Merge tag 'ux500-dts-v5.7' of
+git://git.kernel.org/.../linusw/linux-stericsson into arm/dt
+      Merge tag 'samsung-dt-5.7' of
+git://git.kernel.org/.../krzk/linux into arm/dt
+      Merge tag 'v5.7-rockchip-dts32-1' of
+git://git.kernel.org/.../mmind/linux-rockchip into arm/dt
+      Merge tag 'v5.7-rockchip-dts64-1' of
+git://git.kernel.org/.../mmind/linux-rockchip into arm/dt
+      Merge tag 'amlogic-dt64' of
+git://git.kernel.org/.../khilman/linux-amlogic into arm/dt
+      Merge tag 'uniphier-dt-v5.7' of
+git://git.kernel.org/.../masahiroy/linux-uniphier into arm/dt
+      Merge tag 'uniphier-dt64-v5.7' of
+git://git.kernel.org/.../masahiroy/linux-uniphier into arm/dt
+      Merge tag 'imx-bindings-5.7' of
+git://git.kernel.org/.../shawnguo/linux into arm/dt
+      Merge tag 'imx-dt-5.7' of
+git://git.kernel.org/.../shawnguo/linux into arm/dt
+      Merge tag 'imx-dt64-5.7' of
+git://git.kernel.org/.../shawnguo/linux into arm/dt
+      Merge tag 'socfpga_dts_update_for_v5.7' of
+git://git.kernel.org/.../dinguyen/linux into arm/dt
+      Merge tag 'ti-k3-soc-for-v5.7' of
+git://git.kernel.org/.../kristo/linux into arm/dt
+      Merge tag 'v5.6-next-dts64' of
+git://git.kernel.org/.../matthias.bgg/linux into arm/dt
+      Merge tag 'v5.6-next-dts32' of
+git://git.kernel.org/.../matthias.bgg/linux into arm/dt
+      Merge tag 'gemini-dts-v5.7' of
+git://git.kernel.org/.../linusw/linux-nomadik into arm/dt
+      Merge tag 'at91-5.7-dt' of git://git.kernel.org/.../at91/linux into arm/dt
+      Merge tag 'amlogic-dt64-2' of
+git://git.kernel.org/.../khilman/linux-amlogic into arm/dt
+      Merge tag 'socfpga_dts_update_for_v5.7_part2' of
+git://git.kernel.org/.../dinguyen/linux into arm/dt
+      Merge tag 'qcom-dts-for-5.7' of
+git://git.kernel.org/.../qcom/linux into arm/dt
+      arm64: dts: Revert "specify console via command line"
+      Merge tag 'omap-for-v5.7/ti-sysc-drop-pdata-signed' of
+git://git.kernel.org/.../tmlind/linux-omap into arm/late
+      Merge tag 'omap-for-v5.7/ti-sysc-drop-pdata-ti81xx-signed' of
+git://git.kernel.org/.../tmlind/linux-omap into arm/late
+      Merge tag 'qcom-arm64-for-5.7' of
+git://git.kernel.org/.../qcom/linux into arm/late
+      Merge branch 'arm/late' into arm/dt
+
+      1 Aapo Vienamo
+      1 Adam Ford
+      1 Ahmad Fatoum
+      6 Alain Volmat
+      1 Alex Elder
+      2 Alexandre Belloni
+      1 Alexandre Courbot
+      2 Alexis Ballier
+      4 Alifer Moraes
+      4 Amelie Delaunay
+      4 Amit Kucheria
+      8 Andre Przywara
+      1 Andrey Lebedev
+      5 Andrey Smirnov
+      4 André Draszik
+      4 Andy Yan
+      7 Angus Ainslie (Purism)
+     30 Anson Huang
+     38 Arnd Bergmann
+      1 Balakrishna Godavarthi
+      2 Bastian Germann
+      5 Benjamin Gaignard
+      8 Bjorn Andersson
+      1 Carlos de Paula
+      1 Chris Brandt
+      7 Christian Hewitt
+      2 Christian Lamparter
+      1 Chunyan Zhang
+      2 Claudiu Manoil
+      1 Cristian Birsan
+      1 Dalon Westergreen
+      3 Dave Gerlach
+      1 David Dai
+      2 Dikshita Agarwal
+      6 Douglas Anderson
+      2 Emmanuel Vadot
+      1 Enric Balletbo i Serra
+      2 Eugen Hristev
+      2 Fabien Parent
+      7 Fabio Estevam
+      1 Fabrizio Castro
+     12 Florian Fainelli
+     11 Geert Uytterhoeven
+      2 Grygorii Strashko
+      1 Guido Günther
+      1 Harigovindan P
+      1 Heiko Stuebner
+      8 Horia Geantă
+      2 Hou Zhiqiang
+      1 Hsin-Yi Wang
+      3 Icenowy Zheng
+      3 Igor Opaniuk
+      3 JC Kuo
+      3 Jagan Teki
+      1 James Liao
+     10 Jernej Skrabec
+      4 Jerome Brunet
+      1 Jianxin Pan
+     33 Johan Jonker
+      5 Jon Hunter
+      2 Jonathan Marek
+      1 Joshua Watt
+      1 Joyce Ooi
+      3 Kamel Bouhara
+      1 Katsuhiro Suzuki
+      1 Kevin Hilman
+      1 Kieran Bingham
+      1 Konrad Dybcio
+      2 Kuldeep Singh
+      5 Kunihiko Hayashi
+      1 Ley Foon Tan
+     13 Linus Walleij
+      1 Loic Poulain
+      2 Lucas Stach
+      1 Lukasz Luba
+      1 Mans Rullgard
+      2 Marco Felsch
+      2 Marcus Cooper
+      8 Marek Szyprowski
+      7 Marek Vasut
+      2 Marian-Cristian Rotariu
+      2 Martin Kaiser
+      1 Martin Kepplinger
+      8 Masahiro Yamada
+      1 Mathieu Poirier
+      2 Matthias Brugger
+      1 Matthias Kaehlcke
+      4 Maxime Ripard
+      1 Michael Heimpold
+     10 Michael Walle
+      1 Michal Vokáč
+      1 Mohammad Rasim
+     11 Nagarjuna Kristam
+      7 Neil Armstrong
+      1 Nicolas Saenz Julienne
+      1 Odelu Kukatla
+      5 Oleksandr Suvorov
+      2 Oleksij Rempel
+      9 Ondrej Jirman
+      6 Peng Fan
+      1 Peter Chen
+      1 Philipp Zabel
+      1 Rabeeh Khoury
+      3 Rajendra Nayak
+      1 Rajeshwari
+      1 Ran Bi
+      3 Rob Herring
+      2 Robert Jones
+      1 Robin Murphy
+      1 Roger Quadros
+      4 Russell King
+      1 Sai Prakash Ranjan
+      1 Sam Shih
+      9 Samuel Holland
+      1 Sandeep Maheswaram
+      2 Sibi Sankar
+      1 Silvano di Ninno
+      1 Sivaprakash Murugesan
+      8 Sowjanya Komatineni
+      2 Sricharan R
+      7 Srinivas Kandagatla
+      1 Stanimir Varbanov
+      1 Stefan Agner
+      1 Stefan Wahren
+      1 Stephan Gerhold
+      2 Stephen Boyd
+      7 Suman Anna
+      2 Takeshi Kihara
+      1 Taniya Das
+      3 Thierry Reding
+      1 Tim Harvey
+      1 Tobias Schramm
+      3 Tomasz Maciej Nowak
+     62 Tony Lindgren
+      1 Vadym Kochan
+      3 Veerabhadrarao Badiganti
+      1 Venkata Narendra Kumar Gutta
+      2 Vidya Sagar
+      3 Vignesh Raghavendra
+      1 Vitor Massaru Iha
+      2 Vivek Unune
+      2 Vladimir Oltean
+      1 Xiaowei Bao
+      2 Yangbo Lu
+      1 Yangtao Li
+      3 Yann Gautier
+      2 Yuya Hamamachi
+      2 michael.kao
+      1 yong.liang
+
+   2.0% Documentation/devicetree/bindings/arm/bcm/
+   0.0% Documentation/devicetree/bindings/arm/sunxi/
+   3.1% Documentation/devicetree/bindings/arm/tegra/
+   5.1% Documentation/devicetree/bindings/arm/
+   0.0% Documentation/devicetree/bindings/bus/
+   0.0% Documentation/devicetree/bindings/crypto/
+   0.0% Documentation/devicetree/bindings/media/
+   0.0% Documentation/devicetree/bindings/pci/
+   0.1% Documentation/devicetree/bindings/phy/
+   0.0% Documentation/devicetree/bindings/spi/
+   0.6% Documentation/devicetree/bindings/usb/
+  31.1% arch/arm/boot/dts/
+   5.5% arch/arm/mach-omap2/
+   3.5% arch/arm64/boot/dts/allwinner/
+   0.0% arch/arm64/boot/dts/altera/
+   1.3% arch/arm64/boot/dts/amlogic/
+   0.0% arch/arm64/boot/dts/arm/
+  20.0% arch/arm64/boot/dts/freescale/
+   0.0% arch/arm64/boot/dts/intel/
+   0.1% arch/arm64/boot/dts/marvell/
+   7.1% arch/arm64/boot/dts/mediatek/
+   1.6% arch/arm64/boot/dts/nvidia/
+   8.8% arch/arm64/boot/dts/qcom/
+   1.1% arch/arm64/boot/dts/renesas/
+   4.3% arch/arm64/boot/dts/rockchip/
+   0.3% arch/arm64/boot/dts/socionext/
+   0.1% arch/arm64/boot/dts/ti/
+   2.9% drivers/bus/
+   0.0% drivers/clk/imx/
+   0.0% drivers/clk/ti/
+   0.1% drivers/gpu/drm/omapdrm/dss/
+   0.0% include/dt-bindings/bus/
+   0.1% include/dt-bindings/clock/
+   0.0% include/dt-bindings/soc/
+   0.0% include/linux/platform_data/
+ 506 files changed, 20094 insertions(+), 4929 deletions(-)

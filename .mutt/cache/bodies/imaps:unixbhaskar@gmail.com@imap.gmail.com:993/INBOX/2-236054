@@ -1,0 +1,107 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp3218034lfg;
+        Sun, 26 Apr 2020 12:59:27 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKYsBXvpBe7r/oMcdvvRkONM8BzjFcPi0pL7cj8XP9sRok0ji/dUs4tjjUBSt8IQvErINjX
+X-Received: by 2002:aa7:df8d:: with SMTP id b13mr11029318edy.145.1587931166946;
+        Sun, 26 Apr 2020 12:59:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587931166; cv=none;
+        d=google.com; s=arc-20160816;
+        b=TA0uKh9s9jCZanhi8HBqCOQXa3hdRLkDoX9Pcef9WvjGmC1I4T7KaMZzkPzLLm7aL1
+         ZAfGslbK6u/THyT6pqAvxRbGB2/cL5GC6IDN1aE19tnCP7QTKL7yfg4Mcgnzy/za1/XQ
+         /pGDNMlKgm5V6YidBzUxlB3ukIy4Q2C4gQH75zEz0qdyB8+VEVSK7nAI9yh7kOS1t0ha
+         B7mhDvW+Bsdj7/CAziNkn+LXgN1khnwnj3x0ZJAOA5/Qms/0qRtpj/i4tJL2c4s+r90k
+         IsSKNU9XnFT3SgfUghfyt9AFPVSAiKeAVFRNfeY8jjZRtpQhXW09pdy9ZysANg0ZNcuq
+         0t9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=mcfoIdcgLX5OiOfRSWVvtOiNT1KQDPBVO740EYpy9JU=;
+        b=WoE2rJyor5eEue6kwsMmSh9QkHb67F+ouET2AKNkIs1VA0/d8ToBMI5v07jShM9yS+
+         Spd2qkCEXHC6kqL5Zsu5eX8lKg3oMCvU8bnx+IXGDO73KcUDFOzoi7fHwHNSSWikApgr
+         0FmM3wgMRgFElEfDV/KnGgsZMzXqE1NdF2X589s+vhthSx9pML5A/v8fnpHRAq51s6cQ
+         oEh78WpmI2HyucsBEuG3S6HEsm4votXaetLvrQYJfM38f0LP7Yfn5m+j7tMWYzm6dUfy
+         Nsn4bCYf8LzJJRPvnILh7jPLJAz2mSkhfJnWz7Zz0lj9jIrntT4MAdd67OSH6rogcBW+
+         moyg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@zx2c4.com header.s=mail header.b=DGuTRLwA;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=zx2c4.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id y22si7177275ejw.407.2020.04.26.12.59.02;
+        Sun, 26 Apr 2020 12:59:26 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@zx2c4.com header.s=mail header.b=DGuTRLwA;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=zx2c4.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726225AbgDZT6f (ORCPT <rfc822;6b65726e656c@gmail.com>
+        + 99 others); Sun, 26 Apr 2020 15:58:35 -0400
+Received: from mail.zx2c4.com ([192.95.5.64]:36819 "EHLO mail.zx2c4.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726171AbgDZT6e (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 26 Apr 2020 15:58:34 -0400
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 2286339d;
+        Sun, 26 Apr 2020 19:47:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=mime-version
+        :references:in-reply-to:from:date:message-id:subject:to:cc
+        :content-type; s=mail; bh=Tji6nhcoiQ4mNmbOVGUplvpgPlU=; b=DGuTRL
+        wAO4D7sQUj9rbyz5PQi4REziJ46zX8MAl/xxRdTvZs2GH1bzQEziClrBWTGpuSkw
+        DPpoKoZR4iViGSmbg66NJO6XCo7IITjOxhlf7+2dmnasfxtwXGznREWzMVa1QbK+
+        Sa0fFXVJc5XAPokH8Unv4P8r9iAa2kYN4xTQOU0QC89t8QW3RYSCcI8xXRfmwqb8
+        RYK8R36Lqs8LKbUEzkbEJRrqxHIIdt+ccEchMmBIJw0bcUElJVsb1BAB/zewQuaJ
+        9yPA/s/jJdX9fjxGevj7o5Ak9Tdr1N+IpuNsChcFuo76b7u3kw4WW9nKKic99m3T
+        DRKjz9W+M5OZHF4A==
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id e650dba7 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
+        Sun, 26 Apr 2020 19:47:07 +0000 (UTC)
+Received: by mail-io1-f53.google.com with SMTP id e9so16582671iok.9;
+        Sun, 26 Apr 2020 12:58:32 -0700 (PDT)
+X-Gm-Message-State: AGi0PuZckDh7XgB7kdP5EAVLDndxt1+eDBhH863a3APzR0tnXrJXwrMf
+        b5gP1fTdUZ9baPwdhSELyA7vC+JGJzB+0ZguzpQ=
+X-Received: by 2002:a6b:7114:: with SMTP id q20mr17580244iog.79.1587931111259;
+ Sun, 26 Apr 2020 12:58:31 -0700 (PDT)
+MIME-Version: 1.0
+References: <0000000000005fd19505a4355311@google.com> <e40c443e-74aa-bad4-7be8-4cdddfdf3eaf@gmail.com>
+ <CAHmME9ov2ae08UTzwKL7enquChzDNxpg4c=ppnJqS2QF6ZAn_Q@mail.gmail.com> <CAHmME9rxYkDhH3Fj-U24Ho7oGcdABK9hXsACPDQ1rz9WUcEuSQ@mail.gmail.com>
+In-Reply-To: <CAHmME9rxYkDhH3Fj-U24Ho7oGcdABK9hXsACPDQ1rz9WUcEuSQ@mail.gmail.com>
+From:   "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date:   Sun, 26 Apr 2020 13:58:20 -0600
+X-Gmail-Original-Message-ID: <CAHmME9rzqNVf24jw8YxJfck2m=4ZUSfVx1w5LUP4qNxQv2Purw@mail.gmail.com>
+Message-ID: <CAHmME9rzqNVf24jw8YxJfck2m=4ZUSfVx1w5LUP4qNxQv2Purw@mail.gmail.com>
+Subject: Re: INFO: rcu detected stall in wg_packet_tx_worker
+To:     Eric Dumazet <eric.dumazet@gmail.com>
+Cc:     syzbot <syzbot+0251e883fe39e7a0cb0a@syzkaller.appspotmail.com>,
+        David Miller <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        jhs@mojatatu.com,
+        =?UTF-8?B?SmnFmcOtIFDDrXJrbw==?= <jiri@resnulli.us>,
+        Krzysztof Kozlowski <krzk@kernel.org>, kuba@kernel.org,
+        kvalo@codeaurora.org, leon@kernel.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-kselftest@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
+        Shuah Khan <shuah@kernel.org>, syzkaller-bugs@googlegroups.com,
+        Thomas Gleixner <tglx@linutronix.de>, vivien.didelot@gmail.com,
+        Cong Wang <xiyou.wangcong@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Sun, Apr 26, 2020 at 1:52 PM Jason A. Donenfeld <Jason@zx2c4.com> wrote:
+>
+> It looks like part of the issue might be that I call
+> udp_tunnel6_xmit_skb while holding rcu_read_lock_bh, in
+> drivers/net/wireguard/socket.c. But I think there's good reason to do
+> so, and udp_tunnel6_xmit_skb should be rcu safe. In fact,
+> every.single.other user of udp_tunnel6_xmit_skb in the kernel uses it
+> with rcu locked. So, hm...
+
+In the syzkaller log, it looks like several runs are hitting:
+
+run #0: crashed: INFO: rcu detected stall in netlink_sendmsg
+
+And other runs are hitting yet different functions. So actually, it's
+not clear that this is the fault of the call to udp_tunnel6_xmit_skb.

@@ -1,0 +1,89 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from Gentoo ([103.231.91.66])
+        by smtp.gmail.com with ESMTPSA id ce7sm185960pjb.16.2019.08.28.15.53.04
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 28 Aug 2019 15:53:08 -0700 (PDT)
+Date: Thu, 29 Aug 2019 04:22:56 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: Konstantin Ryabitsev <mricon@kernel.org>
+Cc: Greg KH <greg@kroah.com>, StableKernel <stable@vger.kernel.org>,
+	LinuxKernel <linux-kernel@vger.kernel.org>
+Subject: Re: Latest kernel version no NOT reflecting on kernel.org
+Message-ID: <20190828225253.GA30806@Gentoo>
+References: <20190828135750.GA5841@Gentoo>
+ <20190828151353.GA9673@kroah.com>
+ <20190828160156.GB26001@chatter.i7.local>
+ <20190828170547.GA11688@kroah.com>
+ <20190828193908.GC26001@chatter.i7.local>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="xHFwDpU9dbj6ez1V"
+Content-Disposition: inline
+In-Reply-To: <20190828193908.GC26001@chatter.i7.local>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+
+--xHFwDpU9dbj6ez1V
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 15:39 Wed 28 Aug 2019, Konstantin Ryabitsev wrote:
+>On Wed, Aug 28, 2019 at 07:05:47PM +0200, Greg KH wrote:
+>>> > I think there's a way to see which cdn mirror you are hitting when
+>>> > you
+>>> > ask for "www.kernel.org".  Konstantin, any hints as to see if maybe o=
+ne
+>>> > of the mirrors is out of sync?
+>>>
+>>> Looks like the Singapore mirror was feeling out-of-sorts. It'll start
+>>> feeling better shortly.
+>>
+>>Great, thanks for looking into this!
+>
+>BTW, the easiest way to figure out which frontend you're hitting is to
+>look at the output of "host www.kernel.org", e.g.:
+>
+>$=A0host www.kernel.org
+>www.kernel.org is an alias for git.kernel.org.
+>git.kernel.org is an alias for ord.git.kernel.org.
+>ord.git.kernel.org has address 147.75.58.133
+>ord.git.kernel.org has IPv6 address 2604:1380:4020:600::1
+>
+>The three-letter airport code should indicate where the frontend is
+>located (in my case, ORD =3D Chicago). There are total of 6:
+>
+>sea.git.kernel.org - Seattle
+>lax.git.kernel.org - Los Angeles
+>ord.git.kernel.org - Chicago
+>fra.git.kernel.org - Frankfurt
+>sin.git.kernel.org - Singapore
+>syd.git.kernel.org - Sydney
+>
+>Geodns magic should send you to the nearest one, and if the monitoring
+>recognizes that one of them is down, it will be automatically removed
+>from the pool until it recovers.
+>
+>Best,
+>-K
+
+Hmmm...thanks a  bunch!
+
+-Bhaskar
+
+--xHFwDpU9dbj6ez1V
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl1nBcIACgkQsjqdtxFL
+KRWi1wgAuvEXO/Ahnx4ym2L5zqYLR9yUyzXeqUorHqvw+idy/6U+blph1ziFurum
+DoxFhwbyWeMdIEFecN99GfUl/Qvvbla6JjdWE27SVDFdQjKzb/+Ias2jqPwwmulw
+lA2WAkXrbWhuLX3W3Y5VgpYrWvSVDxmmjbx+zzIQ7Iqdom3bFzvNScihrjeDHkW9
+/OMecNBD5F9lqz5OnjD/6GYPqK17hnObgej8oOq8GWsFwzjWHa4yuLCzSSPgCopc
++sezLuyiSXvCcW0fLkS/tjLU4APrtQZ21YyIv9q53GCJAcNxuBrl0ksAJBQocna5
+9phftZUy4rUrhw19lHA0mF/FS8ToTA==
+=uEaJ
+-----END PGP SIGNATURE-----
+
+--xHFwDpU9dbj6ez1V--

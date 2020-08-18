@@ -1,0 +1,120 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp6621940lfc;
+        Wed, 12 Feb 2020 12:15:12 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwcKN9AAyuLUgByWPdesAJqIM1E8WBxcRv1JZYZb1Ug+Xb5ewiNTWeNaKBh/T2Dm3iD7nKG
+X-Received: by 2002:a9d:65cf:: with SMTP id z15mr11092451oth.238.1581538512064;
+        Wed, 12 Feb 2020 12:15:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1581538512; cv=none;
+        d=google.com; s=arc-20160816;
+        b=I6PZI04Jzi050AEmsF3J12YY1me2ejdn2HyyTrVETm388otk8Lm01SYqYFJuWIBpA8
+         QpYJyh3qZUtJwcEAvkHlystXTbgyJR1wzU86vboX4SIQHLoJK6WGWfymU6AQukCs3wLU
+         DYVYqGhTk/vRCTfnr+NWqbLb10+hN6MjNSX1+mFEZsL9Xsk69iiUvxoT7CkYI5kUBY9d
+         sWmhShK/7/PqLAqCcctcuE4OlD7r6iCWVX4IzYHVbRSHt+4fn5GRWngln+hU1Rm3MWJL
+         JJmpyd1Jz8krGuaZZtfWwlSNo9ljsR29+fblW9dZYOgY7voQAazPMXVvhBmNwRpBNtr1
+         mIBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=c8rkEvPmm2/3C3lqf62Iz0nM0CBnRzi7Rqch1cLEjuM=;
+        b=amjaNd9bArH7jJMllJANgJcQxyhznXw0yleGtRTEHHoOIBKTRTm6iAj6gFDaacxati
+         AixuH48dJ6iJBWuWcidhO+naxcKEqIyCyXq+yYIw9735+qDrP/OuLdZ/io3sj9jO4pEe
+         tk/OofYOlymFFpynavBwWXcKCMc0gqQbe7Ri9ql96lFhX1WNI34H24LHg1xPQfQ+hkcw
+         YmeGc3eiFxPU8VfK5Kh4z1EjH09hXtxcLGeQgra133RmHOJvk2cRQ/c4D9JrG4yxEtKE
+         8ZbUBvG29bW6eliKmuxabB3wC2g0iJded+xY8b7up0QOz7jfR2OFHOh/abdgWeHduMpF
+         +YhQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=DIFb93kb;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id s7si704612otd.280.2020.02.12.12.14.59;
+        Wed, 12 Feb 2020 12:15:12 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=DIFb93kb;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729030AbgBLUOK (ORCPT <rfc822;l814699480@gmail.com>
+        + 99 others); Wed, 12 Feb 2020 15:14:10 -0500
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:33004 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728887AbgBLUOJ (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Wed, 12 Feb 2020 15:14:09 -0500
+Received: by mail-lj1-f193.google.com with SMTP id y6so3858693lji.0
+        for <linux-kernel@vger.kernel.org>; Wed, 12 Feb 2020 12:14:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=c8rkEvPmm2/3C3lqf62Iz0nM0CBnRzi7Rqch1cLEjuM=;
+        b=DIFb93kbDLtTa42QN6IXEtChk6umapMJ93xcDqr95+Q8R9OVe5IsvX0GevzZb1PsCM
+         WE5xAAhHVLd9OCuY2Pdtbw+SavI/FqeOMfT3g+Z5+bXNfxRoE+RmSgtRaCSpF3+56bzw
+         YbGGsgFqZHixlW2pRb2BlE5TqyH310/yLeE8s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c8rkEvPmm2/3C3lqf62Iz0nM0CBnRzi7Rqch1cLEjuM=;
+        b=NhwywRC/dVcmb28n5VMtrMQK0XIn4D4Sjn8eQFRZE7Dy2BD5PO4dbgnjx0RHRQoLKA
+         5aOIx/NmSnyCNA42/uT7+Yw6MDO1odvYYli9nRvVB2eB1ZnRGbiAuoEh3y6/XiUN0E3N
+         flYOzIHtbhUXupyW+5m08OeKuGPYpEPnMSn7nRIGTqaNzpIgpZqlOGdAHnc3iNEPl2Ji
+         ToFr/rvfyXYFtMgyhPkMnjkeXseg7Lx0flsvPFghR2wP/fx0QTnxPNrpa1wIZxk7tGXl
+         nFYfUQPWYT9hgiktRsc3rl7a7IXDTsOkQdm3wQn27ZcQK0MPrNxLPD+YyHDPaoQ3Cs0D
+         jOww==
+X-Gm-Message-State: APjAAAU74CAW8ek06oPz0ibLQhszeEbKZSWsZP0aqXZn7ZwLO57eJQ9V
+        bAjf8McXKmlxuY8zMqnMHEfEWS4Unpc=
+X-Received: by 2002:a05:651c:314:: with SMTP id a20mr8865040ljp.91.1581538447309;
+        Wed, 12 Feb 2020 12:14:07 -0800 (PST)
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com. [209.85.167.43])
+        by smtp.gmail.com with ESMTPSA id d25sm108274ljj.51.2020.02.12.12.14.06
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Feb 2020 12:14:06 -0800 (PST)
+Received: by mail-lf1-f43.google.com with SMTP id b15so2527149lfc.4
+        for <linux-kernel@vger.kernel.org>; Wed, 12 Feb 2020 12:14:06 -0800 (PST)
+X-Received: by 2002:a05:6512:78:: with SMTP id i24mr7688870lfo.10.1581538446050;
+ Wed, 12 Feb 2020 12:14:06 -0800 (PST)
+MIME-Version: 1.0
+References: <20200212164714.7733-1-pbonzini@redhat.com> <CAHk-=wh6KEgPz_7TFqSgg3T29SrCBU+h64t=BWyCKwJOrk3RLQ@mail.gmail.com>
+ <b90a886e-b320-43d3-b2b6-7032aac57abe@redhat.com> <CAHk-=wh8eYt9b8SrP0+L=obHWKU0=vXj8BxBNZ3DYd=6wZTKqw@mail.gmail.com>
+ <23585515-73a9-596e-21f1-cbbcc9d7e7f9@redhat.com>
+In-Reply-To: <23585515-73a9-596e-21f1-cbbcc9d7e7f9@redhat.com>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Wed, 12 Feb 2020 12:13:50 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wjv2V==7jGwg2OkyX4F6Cdtt4qCpdGF56rOi-kVtjGCZQ@mail.gmail.com>
+Message-ID: <CAHk-=wjv2V==7jGwg2OkyX4F6Cdtt4qCpdGF56rOi-kVtjGCZQ@mail.gmail.com>
+Subject: Re: [GIT PULL] KVM changes for Linux 5.6-rc2
+To:     Paolo Bonzini <pbonzini@redhat.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        KVM list <kvm@vger.kernel.org>,
+        Oliver Upton <oupton@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Wed, Feb 12, 2020 at 12:02 PM Paolo Bonzini <pbonzini@redhat.com> wrote:
+>
+> I know, but still I consider it.  There is no reason why the "build
+> test" should be anything more than "make && echo yes i am build-tested".
+
+It damn well should check for warnings.
+
+And if you can't bother eye-balling it or scripting it, then simply use
+
+   make KCFLAGS=-Werror
+
+but sadly I can't enforce that in general for all kernel builds simply
+because some people use compilers that cause new warnings (compiler
+updates etc commonly result in them, for example).
+
+So I can't add -Werror in general, but developers can certainly use it
+trivially.
+
+No grep or other scripting required (although the above may cause
+problems for that one sample file that does cause warnings - I didn't
+check).
+
+              Linus

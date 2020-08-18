@@ -1,0 +1,70 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from Slackware.localdomain ([103.231.90.174])
+        by smtp.gmail.com with ESMTPSA id m2sm19375055pff.154.2019.10.01.05.04.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2019 05:04:52 -0700 (PDT)
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: mchehab@kernel.org
+Cc: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Subject: [PATCH] Added Slackware support for pre check Sphinx
+Date: Tue,  1 Oct 2019 17:34:25 +0530
+Message-Id: <20191001120426.904-1-unixbhaskar@gmail.com>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <corbet@lwn.net linux-kernel@vger.kernel.org>
+References: <corbet@lwn.net linux-kernel@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+Added Slackware support for it.
+
+Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+---
+ scripts/sphinx-pre-install | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/scripts/sphinx-pre-install b/scripts/sphinx-pre-install
+index 3b638c0e1a4f..bf920fda7dbd 100755
+--- a/scripts/sphinx-pre-install
++++ b/scripts/sphinx-pre-install
+@@ -579,6 +579,28 @@ sub give_gentoo_hints()
+ 
+ }
+ 
++sub give_slackware_hints ()
++{
++	my %map = (
++		"sphinx_rtd_theme"	=> "sphinx_rtd_theme",
++		"virtualenv"		=> "virtualenv",
++		"dot"			=> "graphviz",
++		"convert"		=> "imagemagick",
++		"xelatex"		=> "texlive-xetex dejavu",
++		"rsvg-convert"		=> "librsvg",
++	);
++        
++	check_missing(\%map);
++	return if (!$need && !$optional);
++	
++
++	printf("You should run:\n\n");
++
++   printf("\tsudo pip install $install\n");	
++   printf("\t\n If the avobe not return what you want, then please use pkgs.org site to get the source pkg of the particular missing stuff and install as stated there in download page.\n")  
++}	
++
++
+ sub check_distros()
+ {
+ 	# Distro-specific hints
+@@ -627,6 +649,11 @@ sub check_distros()
+ 		return;
+ 	}
+ 
++	if ($system_release =~ /Slackware/) {
++		give_slackware_hints;
++		return;
++	}	
++
+ 	#
+ 	# Fall-back to generic hint code for other distros
+ 	# That's far from ideal, specially for LaTeX dependencies.
+

@@ -1,0 +1,66 @@
+Date: Mon, 30 Sep 2019 20:08:05 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: Jonathan Corbet <corbet@lwn.net>
+Cc: LinuxKernel <linux-kernel@vger.kernel.org>
+Subject: Re: [GIT PULL] remove dead mutt url and add active mutt url
+Message-ID: <20190930143756.GB30066@Slackware>
+References: <20190928151300.GA18122@debian>
+ <20190930081310.7e3b9c52@lwn.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="xgyAXRrhYN0wYx8y"
+Content-Disposition: inline
+In-Reply-To: <20190930081310.7e3b9c52@lwn.net>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+
+
+--xgyAXRrhYN0wYx8y
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+
+On 08:13 Mon 30 Sep 2019, Jonathan Corbet wrote:
+>On Sat, 28 Sep 2019 20:43:03 +0530
+>Bhaskar Chowdhury <unixbhaskar@gmail.com> wrote:
+>
+>> The following changes since commit 4e4327891fe2a2a4db342985bff4d4c48703c707:
+>>
+>>   replace dead mutt url with active one. (2019-09-28 20:11:00 +0530)
+>>
+>>   are available in the Git repository at:
+>
+>Bhaskar, I'm not going to take a pull request for a change like this.  If
+>you would like to make this change (and it seems like a useful change to
+>make), please send me a patch that is:
+>
+> - based on docs-next
+> - properly changelogged
+> - demonstrated to build properly with sphinx
+>
+
+Will follow your words, Jon. Hopefully ,next one will be alright.Sorry
+for the bugging.
+
+
+>Thanks,
+>
+>jon
+
+Thanks,
+Bhaskar
+
+--xgyAXRrhYN0wYx8y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl2SEz4ACgkQsjqdtxFL
+KRXp1Qf+I8whd598TaGIF5lt7Gb9g3W138oZuA4MJHb31FwC7fKpLozuuh7qtA8f
+E/pnQgKSv3UqXcw3UEfBon6J88dMkxRkxR7D5nLD0XHKvVKgDtK04JTqrfbYuSTE
+REPTvbe8hDRQsLBKF1CSgfsENb0nojAgPFwVZISf6x8lcSGHAl8NuVz0uxtRleLn
+BpFUwjCLiZ7FEwnm9srnXBBfi6VbHz69u8kSBvAql+z+iX96DrYjV9I4h7oeO7gv
+x8ah4674EwAxEcae3nJHSBJd72CiJV2FrZmSApImnc/5+z8TpljL/ZH9W02lVeCJ
+SzIHwvovBu7+3crSl1KHWzVPFPn6lg==
+=affU
+-----END PGP SIGNATURE-----
+
+--xgyAXRrhYN0wYx8y--

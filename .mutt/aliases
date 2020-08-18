@@ -1,0 +1,34 @@
+alias AndrewM Andrew Morton <akpm@linux-foundation.org>
+alias Linus   Linus Torvalds <torvalds@linux-foundation.org>
+alias James  James Bottomley <James.Bottomley@HansenPartnership.com>
+alias Greg  Greg KH <gregkh@linuxfoundation.org>
+alias StableKernel  StableKernel <stable@vger.kernel.org>
+alias LinuxKernel  LinuxKernel <linux-kernel@vger.kernel.org>
+alias David  David Miller <davem@davemloft.net>
+alias Ted  Theodore Ts'o <tytso@mit.edu>
+alias Thomas  Thomas Gleixner <tglx@linutronix.de>
+alias Paul Paul E. McKenney <paulmck@linux.ibm.com>
+alias Paul Paul E. McKenney <paulmck@kernel.org>
+alias Ingo  Ingo Molnar <mingo@kernel.org>
+alias AndyLuto Andy Lutomirski <luto@kernel.org> 
+alias PeterA  H. Peter Anvin <hpa@zytor.com>
+alias Arnd  Arnd Bergmann <arnd@arndb.de>
+alias Sasa  Sasha Levin <sashal@kernel.org>
+alias Jon  Jonathan Corbet <corbet@lwn.net>
+alias Kai  Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+alias PeterZ  Peter Zijlstra <peterz@infradead.org>
+alias Randy Randy Dunlap <rdunlap@infradead.org>
+alias Paolo  Paolo Bonzini <pbonzini@redhat.com>
+alias Stephen  Stephen Rothwell <sfr@canb.auug.org.au>
+alias Olof  Olof Johansson <olof@lixom.net>
+alias Cristoph Christoph Hellwig <hch@lst.de>
+alias Colin Colin Ian King <colin.king@canonical.com>
+alias MatthewWillcox Matthew Wilcox <willy6545@gmail.com>
+alias AlViro  Al Viro <viro@zeniv.linux.org.uk>
+alias Rafael \"Rafael J. Wysocki\" <rjw@rjwysocki.net>
+alias Takashi Takashi Iwai <tiwai@suse.de>
+alias PaulMoore Paul Moore <paul@paul-moore.com>
+alias DaveAirlie Dave Airlie <airlied@gmail.com>
+alias Bhaskar  Bhaskar Chowdhury <unixbhaskar@protonmail.com>
+alias Bhaskar  Bhaskar Chowdhury <unixbhaskar@gmail.com>
+alias Junio Junio C Hamano <gitster@pobox.com>

@@ -1,0 +1,195 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp453417lfj;
+        Tue, 11 Aug 2020 08:17:20 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy4+QR0l33iB3TBRKMAmpblNCOvIZTUdJPboB6FzeORfKU1VawQvyb8A6CnO7eQVxTeVwBC
+X-Received: by 2002:a17:906:c04d:: with SMTP id bm13mr26349323ejb.321.1597159040225;
+        Tue, 11 Aug 2020 08:17:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1597159040; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wUe+APUdok+0w4fwq+I6NVFYpxC0UTn0Qbzejtkd3dBzTRUcmWLn5qSVS+orvlbOjr
+         ZbUoBbNCoHKcHOU/PwFNgdZFYe52QDejpQRfOVSCyEa9gQOSNoBsa288eTuemfTbdy5C
+         251sCa1clG0nwqvIc17WreIpOKYgqTtMarIKkjF3N1ykCjh0AMmjoHFu7S7keryU9LXV
+         8OvFDWmzCHUTptkA6lxftGIItz/j/4e9pebaA4AfEa0A984Sn71NzqQmePOKE/XFOdOi
+         IKDKpEAbgUuB1U/ds24UjEwqUztO3gnNjKF5UCmC9JhxfoMvJe2iEWqhXm3HyorNClF2
+         fTSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:list-unsubscribe:feedback-id:precedence:subject:message-id
+         :mime-version:from:date:dkim-signature:dkim-signature;
+        bh=70CZ6q6FiW752pE85HzzQO5DDACguypMl2FaDCkAm28=;
+        b=YBFWXO/2HY41Vf5oJYCb5flieuW1ijEtnRrw6PpfD2AQhc2Za4WdZU8iW4cISoB0D8
+         C1vtrIVvI/sG9k8vEazqA8VJrdN2EkERutehhIDGZ5j2ovykbwRP9rU1fzBCf2X58a3v
+         4m5CWxE331iyAfIayrtrHfiNO9IFDaUUInhLA8jCHxoHrULJpumlaCf8nX1w5hxgboRx
+         U4yZ1mUR5ywnHnN6iPC7r2Uvyi6AqJnFZhYgFPm70g1H1lxVZ81zFg7vnxwIV2VrrjYS
+         4zdLXo6TxAhnhKDUFFFjGTutwn6AHDe528IEWqHx0MEGY8PsIG77mXLQfGLbzar0cc4U
+         6CZw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=rr7i0XsA;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=o1bDrBl0;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.31.253 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+Return-Path: <bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com>
+Received: from o17.ck.n.convertkit.com (o17.ck.n.convertkit.com. [167.89.31.253])
+        by mx.google.com with ESMTPS id k9si595714eji.564.2020.08.11.08.17.19
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Aug 2020 08:17:20 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.31.253 as permitted sender) client-ip=167.89.31.253;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@n.convertkit.com header.s=s1 header.b=rr7i0XsA;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=o1bDrBl0;
+       spf=pass (google.com: domain of bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com designates 167.89.31.253 as permitted sender) smtp.mailfrom="bounces+8751493-9c22-unixbhaskar=gmail.com@mail.n.convertkit.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=n.convertkit.com;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=s1; bh=70CZ6q6FiW752pE85HzzQO5DDACguypMl2FaDCkAm28=;
+	b=rr7i0XsAL/sqXn2WT0eLtevh7DxDqAayY3cKjzYgDXFbK1cvrZEw3JdTSwsz/0sRqrE6
+	7uMJSdtkV5P8VTCoU/HWNbiDnNxH3l1/O8JCqIgAar8hu6Ba42YpKA0z7nzjlB2sxdEOD1
+	NcVD3LUaBgbcNrkac1so3fANr5eem82d4=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:list-unsubscribe:x-feedback-id:
+	to;
+	s=smtpapi; bh=70CZ6q6FiW752pE85HzzQO5DDACguypMl2FaDCkAm28=;
+	b=o1bDrBl0wABkseIcUodfMQxy9N1EOexPQEJwBaGals9bJLAkUpnikyvXVZ85ddnOSCgb
+	wvJo7IVgEF8tVQW3FoxztbIVz3dT6JCH/F+rbmlmeJBcDp+nid8un2QaishSbLEC+hcUvg
+	VL20137dvNQjIQlJnzH52g+K0fdZEzs4E=
+Received: by filterdrecv-p3mdw1-7ff865655c-d4kqm with SMTP id filterdrecv-p3mdw1-7ff865655c-d4kqm-20-5F32B660-64
+        2020-08-11 15:16:48.439654946 +0000 UTC m=+1112426.400692240
+Received: from ODc1MTQ5Mw (unknown)
+	by ismtpd0084p1mdw1.sendgrid.net (SG)
+	with HTTP
+	id ivjC7FJGTh-VBEmnkYBzDA
+	Tue, 11 Aug 2020 15:16:48.382 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=d77aa9e1f9b206b6658353925d326f7ecfdd2816933d9c56d9df4ce47326
+Date: Tue, 11 Aug 2020 15:16:48 +0000 (UTC)
+From: Jovica <contact@jovicailic.org>
+Mime-Version: 1.0
+Message-ID: <gku9qxgz7kuwuk0462br@convertkit-mail.com>
+Subject: Mastering Vim Quickly #52
+Precedence: bulk
+Feedback-ID: 1960390:35692:emailtemplate:CK
+List-Unsubscribe: 
+ <https://unsubscribe.convertkit-mail.com/gku9qxgz7kuwuk0462br>
+X-Report-Spam: <abuse@convertkit.com>
+X-Report-Abuse: <abuse@convertkit.com>
+X-Feedback-ID: 8751493:SG
+X-SG-EID: 
+ =?us-ascii?Q?Z9YfueylEVxjF1sQk2=2Fm3hKaryiKObExs9bv2OnpmyOMnYytH=2FVZZIu+ZraDDs?=
+ =?us-ascii?Q?hn3FKIJFLMYch7V9FxPHe9XsNtai4T5yedlFcyz?=
+ =?us-ascii?Q?xDOtexyQ7H3h0rHTFsDt8=2F5ZJ8Qilvw8o+ci4ma?=
+ =?us-ascii?Q?JVYDXRu3AvhExRsdqQuTXO8IvM5toyz9tIUwZan?=
+ =?us-ascii?Q?=2FOFtze2=2Fv=2F2tER1E07F=2Fb7SMBN9138ntqgZwArY?=
+ =?us-ascii?Q?61td4MzmKhLjaKhq34t6c95hGgJLmUx6BEwGEG?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FJHjDFAea1uZocvZojyqe?=
+ =?us-ascii?Q?AD37uu2fVwm8GcvYeGVotJ0bwWw30eByP00Xj6d?=
+ =?us-ascii?Q?x=2FLXSvkDL0WTegx16XMMb7KlviMPpoOkZl+eaXl?=
+ =?us-ascii?Q?OxbpUItqTvuW3wSTZLGsz4=2FzZPCDDp6AeeWT1OZ?=
+ =?us-ascii?Q?9QG5bGiwMZmrOy9Lmvbhq7v9i4KNmgSs1VOBE5n?=
+ =?us-ascii?Q?0jgj+RXc7YS3TBo4Upq1ppgmt5zXnEwOqnRS77p?=
+ =?us-ascii?Q?PU9oLDqsJmmfxFW2aa11i2jHWGLHydSQqcvhHvb?=
+ =?us-ascii?Q?XA6FkDA4ulE1v4r4e9eIM2uxbjnk5Gcivfp44B3?=
+ =?us-ascii?Q?RfFi4NsraMS+tb3YfyQyM6hfE37c=3D?=
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+
+--d77aa9e1f9b206b6658353925d326f7ecfdd2816933d9c56d9df4ce47326
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+Hello Bhaskar Chowdhury,
+
+I'd like to ask you for a small favor. If you've read my book (
+https://el2.convertkit-mail.com/c/gku9qxgz7kuwuk0462br/dpheh0h4n44w2g/aHR0c=
+HM6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHkv
+), could you please leave an Amazon review?
+
+Even if you didn't get it in paperback, you can still give a
+review on Amazon. It takes only few minutes and it would mean a
+lot to me!
+
+Here's what to do:
+
+1. Go to Amazon.com (link to my book (
+https://el2.convertkit-mail.com/c/gku9qxgz7kuwuk0462br/e0hph7hpoppwd3/aHR0c=
+HM6Ly93d3cuYW1hem9uLmNvbS9NYXN0ZXJpbmctVmltLVF1aWNrbHktV1RGLXRpbWUvZHAvMTk4=
+MzMyNTc0MC8=3D
+))
+2. Scroll down the page to =E2=80=9CCustomer Reviews=E2=80=9D
+3. Click =E2=80=9CWrite a Customer Review=E2=80=9D button
+4. Choose a star rating
+5. Write a short review
+6. Give it a title=E2=80=A6
+7. Click SUBMIT!
+
+And, you=E2=80=99re done.
+
+In case you're buying stuff from different Amazon, like
+amazon.de, .it, .es, .fr - you might not be able to leave a
+review on amazon.com. In that case, the process is the same, just
+use your local amazon store.
+
+Lastly, a short Vim tip for today:
+
+Did you know that while in Insert mode, hitting Ctrl-w will
+delete the word before the cursor?
+Pretty handy.
+
+Cheers,
+Jovica
+
+Unsubscribe (
+https://unsubscribe.convertkit-mail.com/gku9qxgz7kuwuk0462br ) |
+Update your profile (
+https://preferences.convertkit-mail.com/gku9qxgz7kuwuk0462br ) |
+113 Cherry St #92768, Seattle, WA 98104-2205
+--d77aa9e1f9b206b6658353925d326f7ecfdd2816933d9c56d9df4ce47326
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"><d=
+iv class=3D"message-content" style=3D"max-width:600px">
+<p style=3D"margin-bottom:1em"><br>  Hello Bhaskar Chowdhury,<br></p>
+<p style=3D"margin-bottom:1em">I'd like to ask you for a small favor. If yo=
+u've read <a href=3D"https://el2.convertkit-mail.com/c/gku9qxgz7kuwuk0462br=
+/dpheh0h4n44w2g/aHR0cHM6Ly9qb3ZpY2FpbGljLm9yZy9tYXN0ZXJpbmctdmltLXF1aWNrbHk=
+v" target=3D"_blank" url-id=3D"318853385">my book</a>, could you please lea=
+ve an Amazon review?</p>
+<p style=3D"margin-bottom:1em">Even if you didn't get it in paperback, you =
+can still give a review on Amazon. It takes only few minutes and it would m=
+ean a lot to me!</p>
+<p style=3D"margin-bottom:1em">Here's what to do:<br><br>1. Go to Amazon.co=
+m (<a href=3D"https://el2.convertkit-mail.com/c/gku9qxgz7kuwuk0462br/e0hph7=
+hpoppwd3/aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9NYXN0ZXJpbmctVmltLVF1aWNrbHktV1RGLX=
+RpbWUvZHAvMTk4MzMyNTc0MC8=3D" target=3D"_blank" url-id=3D"318853386">link t=
+o my book</a>)<br>2. Scroll down the page to =E2=80=9CCustomer Reviews=E2=
+=80=9D<br>3. Click =E2=80=9CWrite a Customer Review=E2=80=9D button<br>4. C=
+hoose a star rating<br>5. Write a short review<br>6. Give it a title=E2=80=
+=A6<br>7. Click SUBMIT!<br><br>And, you=E2=80=99re done.<br></p>
+<p style=3D"margin-bottom:1em">In case you're buying stuff from different A=
+mazon, like amazon.de, .it, .es, .fr - you might not be able to leave a rev=
+iew on amazon.com. In that case, the process is the same, just use your loc=
+al amazon store.</p>
+<p style=3D"margin-bottom:1em">Lastly, a short Vim tip for today:</p>
+<p style=3D"margin-bottom:1em">Did you know that while in Insert mode, hitt=
+ing Ctrl-w will delete the word before the cursor? <br>Pretty handy.</p>
+<p style=3D"margin-bottom:1em"><span class=3D"redactor-invisible-space">Che=
+ers,<br></span>Jovica</p>
+<br>
+<br>
+<small>
+<a href=3D"https://unsubscribe.convertkit-mail.com/gku9qxgz7kuwuk0462br">Un=
+subscribe</a> | <a href=3D"https://preferences.convertkit-mail.com/gku9qxgz=
+7kuwuk0462br">Update your profile</a> | 113 Cherry St #92768, Seattle, WA 9=
+8104-2205
+<br>
+</small>
+</div>
+
+<!-- -->
+  <img src=3D"https://el2.convertkit-mail.com/o/gku9qxgz7kuwuk0462br" alt=
+=3D"">
+
+
+--d77aa9e1f9b206b6658353925d326f7ecfdd2816933d9c56d9df4ce47326--

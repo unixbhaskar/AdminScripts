@@ -1,0 +1,63 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.194.151.167 with SMTP id ur7csp250260wjb;
+        Mon, 11 Jul 2016 22:32:20 -0700 (PDT)
+X-Received: by 10.55.99.213 with SMTP id x204mr547378qkb.70.1468301540493;
+        Mon, 11 Jul 2016 22:32:20 -0700 (PDT)
+Return-Path: <info@meetup.com>
+Received: from mail0.nyi.meetup.com (mail0.nyi.meetup.com. [64.90.170.30])
+        by mx.google.com with ESMTPS id v16si3507854qkb.187.2016.07.11.22.32.20
+        for <unixbhaskar@gmail.com>
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 11 Jul 2016 22:32:20 -0700 (PDT)
+Received-SPF: pass (google.com: domain of info@meetup.com designates 64.90.170.30 as permitted sender) client-ip=64.90.170.30;
+Authentication-Results: mx.google.com;
+       dkim=pass (test mode) header.i=@meetup.com;
+       spf=pass (google.com: domain of info@meetup.com designates 64.90.170.30 as permitted sender) smtp.mailfrom=info@meetup.com;
+       dmarc=fail (p=NONE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=meetup; d=meetup.com;
+ h=From:Sender:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To:List-Id:Message-ID:Date; i=Docker-Bangalore-announce@meetup.com;
+ bh=7dJ0cAHfXCuMvCevHJqf10emaS8=;
+ b=L79iMPQNhErtheAqAzKXHOXaN1BmhToi2u8J2I6y5alogDRL5kFc89DnSvAiJikanzThoJnllY0i
+   8pvh9GkTXUzG64mV5HnnNq3X+8ZDXCLYsa94R4l5jtEZbWicxQr4j2p5XZ33sObk8rUJ16HunMoa
+   ewsvxSxCmT3kMbQeltQ=
+Received: by mail0.nyi.meetup.com id hgi0e81dqk0n for <unixbhaskar@gmail.com>; Tue, 12 Jul 2016 01:32:20 -0400 (envelope-from <info@meetup.com>)
+Received: by pmta1.phi.meetup.com id hgi0e8206m43 for <unixbhaskar@gmail.com>; Tue, 12 Jul 2016 01:32:20 -0400 (envelope-from <info@meetup.com>)
+From: Neependra Khare <neependra.khare@gmail.com>
+Sender: Docker-Bangalore-announce@meetup.com
+To: Docker-Bangalore-announce@meetup.com
+Subject: [Docker-Bangalore] Report of last meetup and Docker 1.12 Hackthon
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-MEETUP-TRACK: bc1
+Reply-To: neependra.khare@gmail.com
+Mailing-List: list Docker-Bangalore-list@meetup.com; contact postmaster@meetup.com
+List-Id: <Docker-Bangalore-list.meetup.com>
+Errors-To: info@meetup.com
+Precedence: list
+X-MEETUP-RECIP-ID: 12520198
+X-MEETUP-MESG-ID: 78833125
+Message-ID: <984566228.1468301540075.JavaMail.nobody@james2.pvt.meetup.com>
+Date: Tue, 12 Jul 2016 01:32:20 -0400
+
+<html><body><div style="color:#333;font-family:Verdana,Arial,sans-serif;font-size:12px;"><font face="verdana,arial,sans-serif"><p>Hi All,</p>
+<p>We had a great meetup at Infosys last weekend. Hussain has written excellent summary of the event :-</p>
+<p><a href="http://hussainweb.me/account-docker-meetup-21-bangalore/">http://hussainweb.me/account-docker-meetup-21-bangalore/<span> </span></a></p>
+<p><span>I also wrote a blog post about the event</span></p>
+<p><a href="http://neependra.net/?p=1815">http://neependra.net/?p=1815</a></p>
+<p>As mentioned in the meetup, Docker has announced<a href="https://blog.docker.com/2016/06/docker-1-12-hackathon/"> Docker 1.12 hackathon</a>. We would be doing hands-on on 16th July'16, only for people who are participating in hackathon. If you are interested to join then please email me at <a href="https://blog.docker.com/2016/06/docker-1-12-hackathon/">neependra@cloudyuga.guru</a>.</p>
+<p>Thanks.</p>
+<p>Neependra</p>
+<br /><br />
+<br />
+<br />
+--<br />
+This message was sent by Meetup on behalf of <a href="http://www.meetup.com/Docker-Bangalore/members/64142982/">Neependra Khare</a> from <a href="http://www.meetup.com/Docker-Bangalore/">Docker Bangalore</a>.
+<br />
+To report this message or block the sender, please <a href="http://www.meetup.com/Docker-Bangalore/abuse/64142982/?table_name=ml&table_id=78833125">click here</a><br>
+To unsubscribe from special announcements from your Organizer(s), <a href="http://www.meetup.com/Docker-Bangalore/optout/?submit=true&_ms_unsub=true&email=orgBdcst">click here</a>
+<br /><br />
+<small style="color:gray">
+		<a href="#" style="color:#ccc;text-decoration:none;cursor:default;">Meetup, POB 4668 #37895 NY NY USA 10163</a> | support@meetup.com
+</small>
+</div></body></html>

@@ -1,0 +1,78 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from Gentoo ([103.231.91.35])
+        by smtp.gmail.com with ESMTPSA id i9sm17843064pgo.46.2019.08.25.22.42.06
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 25 Aug 2019 22:42:12 -0700 (PDT)
+Date: Mon, 26 Aug 2019 11:11:58 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: Greg KH <greg@kroah.com>
+Cc: Paul Bolle <pebolle@tiscali.nl>, Sasha Levin <sashal@kernel.org>,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+	akpm@linux-foundation.org, jslaby@suse.cz,
+	Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Subject: Re: Linux 5.2.10
+Message-ID: <20190826054156.GB31983@Gentoo>
+References: <20190825144703.6518-1-sashal@kernel.org>
+ <dd3a1ec7d03888dade78db1e4c45ec1347c0815b.camel@tiscali.nl>
+ <20190826043401.GC26547@kroah.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="eAbsdosE1cNLO4uF"
+Content-Disposition: inline
+In-Reply-To: <20190826043401.GC26547@kroah.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+
+--eAbsdosE1cNLO4uF
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+
+Not sure,kerne.org not reflecting the latest number...probably timing
+difference ....looping Kai in this mail ..
+
+Thanks,
+Bhaskar
+
+On 06:34 Mon 26 Aug 2019, Greg KH wrote:
+>On Sun, Aug 25, 2019 at 07:33:36PM +0200, Paul Bolle wrote:
+>> Sasha,
+>>
+>> Sasha Levin schreef op zo 25-08-2019 om 10:47 [-0400]:
+>> > I'm announcing the release of the 5.2.10 kernel.
+>> >
+>> > All users of the 5.2 kernel series must upgrade.
+>> >
+>> > The updated 5.2.y git tree can be found at:
+>> >         git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux-5.2.y
+>> > and can be browsed at the normal kernel.org git web browser:
+>> >         https://git.kernel.org/?p=linux/kernel/git/stable/linux-stable.git;a=summary
+>>
+>> v5.2.10 was tagged by sashal@kernel.org but signed by
+>> alexander.levin@verizon.com. Perhaps you could use one of gpg2's many options
+>> to add an
+>>     aka "Sasha Levin <sashal@kernel.org>"
+>>
+>> line to that key. (I assume "--recv-key" then would have found your key.)
+>
+>It's on that key already, have you refreshed your version of it?
+>
+>thanks,
+>
+>greg k-h
+
+--eAbsdosE1cNLO4uF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl1jcSQACgkQsjqdtxFL
+KRWY3AgAkTIQxqK2dmHzB0d2R5HYXfgmmaFjLno46j1G34IRf87/hZm3MQsDq/ie
+Lza/nMQYCXlB/xfxrTcPfwrmdJk7MflwqYPhddXAVv7ieLkg1ZBqYEboQ9E80e0E
+7K6wWbkMzfFOzqed7W1dQhZ7ev5mzT/uEE0rX9On/OPuF9NXIvymqQXsftPRyYZ7
+LW5i9jahp57yYXUTfj5RBFtOAacbAQrKyBrGN6PeHQJ2ik3khJXz4fZinWIluOnW
+3UsfkjOSIOqCczqwRjjKIZwtZkboXfRrgmODjFqev9SkvMEaFAwh/b0GlJQ21qN7
+eyvhe9HzBMEz94tiPmSseP+2REK+Qg==
+=oDzp
+-----END PGP SIGNATURE-----
+
+--eAbsdosE1cNLO4uF--

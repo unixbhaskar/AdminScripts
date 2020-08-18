@@ -1,0 +1,58 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 10.80.225.206 with SMTP id m14csp2098532edl;
+        Sun, 3 Sep 2017 19:02:23 -0700 (PDT)
+X-Google-Smtp-Source: ADKCNb6cnlQH90P6Mw+/fQPIrUtoPNZHn4694tQOtQHPi1QJeaDNmDQZYMc6HkHbaqTKuu3Tsj2c
+X-Received: by 10.84.210.39 with SMTP id z36mr5603561plh.157.1504490543521;
+        Sun, 03 Sep 2017 19:02:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1504490543; cv=none;
+        d=google.com; s=arc-20160816;
+        b=QB+VjvnxhuzLZfKTw+Ex7vDENiqU2GV1FWXDlE8q6z0079ELKloUx/ZjJQuCHHVC26
+         BX7IFPkwXwNZsx3b5p1ceLHsRt715EHckcsrLbom1B0ex1XxdlLmJnmPNCP7Vov+IE5v
+         xsNcK3SMnn9pSMHKLlw8ZAJicvmwkK+QDb/yQwK15aJQMVnif62VwQiTZonKJCIr3E8/
+         ldgSnLohsz2z21SgTGBXuLdrUyVbvMLKiFS1nGD8hLVc0Sl2ez8DMj5tXqe0hMBkfL6J
+         vEveqqIJGu7YGzk5eG7ct4aoChe/4R3d18gED6omlhgTT4S3brj5xscUD2bw5c0UNwoC
+         hNdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:message-id:auto-submitted:subject:from:to
+         :content-transfer-encoding:mime-version:arc-authentication-results;
+        bh=U6sDTBAo3psUj9QOR30DzQI4wAS0B8Gb/l2ir13ninw=;
+        b=ZY3xgXd3wRmcYEQHZNcfbVrY4YZZHchy1bJahS4jI8/9o07x+avalE2mXKrR0AcNYn
+         edl3HAh76TQf5jpyPkvfb5+4CU0fJauuntg5y4OYZ85/OuTYs8hTwxg6F0HFm8lsKpQ4
+         xfTKrPZzXuQExDxZCCHhZCofjIl9TRJx2VdruHEurOe5XT7VHyh2KjhaBGK7hGxbHEkP
+         SEJ4TZlGBkc+xUq6+Y4anpHS0rGE05KdNXSzprZe6y/ECqZ9jOdpmEzEJDTB0i5RHUom
+         4lSdG7iJdPKBn4fGa0fw5nvOsfAsM12Am71p+R8LjBJDyWr10w6G+Z9vYMhIRL3FeaDS
+         NmWw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of lwn@lwn.net designates 45.79.88.28 as permitted sender) smtp.mailfrom=lwn@lwn.net
+Return-Path: <lwn@lwn.net>
+Received: from ms.lwn.net (ms.lwn.net. [45.79.88.28])
+        by mx.google.com with ESMTPS id 64si4485150ply.35.2017.09.03.19.02.23
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 03 Sep 2017 19:02:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of lwn@lwn.net designates 45.79.88.28 as permitted sender) client-ip=45.79.88.28;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of lwn@lwn.net designates 45.79.88.28 as permitted sender) smtp.mailfrom=lwn@lwn.net
+Received: from prod.lwn.net (prod.lwn.net [IPv6:2600:3c03::f03c:91ff:fe61:5c5b])
+	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by ms.lwn.net (Postfix) with ESMTPS id 08AB62FF
+	for <unixbhaskar@gmail.com>; Mon,  4 Sep 2017 02:02:23 +0000 (UTC)
+Received: by prod.lwn.net (Postfix, from userid 1013)
+	id F41C623B1; Mon,  4 Sep 2017 02:02:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+To: unixbhaskar@gmail.com
+From: LWN Password Link <lwn@lwn.net>
+Subject: A link to set your LWN.net password
+Auto-Submitted: auto-generated
+Message-Id: <20170904020221.F41C623B1@prod.lwn.net>
+Date: Mon,  4 Sep 2017 02:02:21 +0000 (UTC)
+
+V2UgcmVjZWl2ZWQgYSByZXF1ZXN0IGZyb20gMS4yMy4xNjAuODMgdG8gZ2V0IGEgbGluayB0byBz
+ZXQgeW91cgpwYXNzd29yZCBvbiBMV04ubmV0LgoKUGxlYXNlIGNsaWNrIHRoaXMgbGluazogaHR0
+cHM6Ly9sd24ubmV0L1Bhc3N3b3JkL1NldFBhc3N3b3JkL3VuaXhiaGFza2FyLzljMjJlYjEzZDNm
+ZjM4MGMKYW5kIGZvbGxvdyB0aGUgaW5zdHJ1Y3Rpb25zIHRvIHNldCB5b3VyIHBhc3N3b3JkLgoK
+VGhlIGxpbmsgaXMgYWN0aXZlIGZvciA2IGhvdXJzLCBzbyBwbGVhc2UgZG8gaXQgc29vbi4gIFdl
+IGhvcGUgdGhhdCBoZWxwcywKYW5kIHRoYW5rIHlvdSBmb3IgcmVhZGluZyBMV04ubmV0Lgo=

@@ -1,0 +1,124 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7707:0:0:0:0:0 with SMTP id s7csp4639793lfc;
+        Fri, 6 Mar 2020 11:16:05 -0800 (PST)
+X-Google-Smtp-Source: ADFU+vsX+TKkQp3dko7lP9mLybfDrFzRwYNdpA8bWC8uJFX926XiBMbM3ZB+T75HF9AuS0UvBiky
+X-Received: by 2002:aca:4ed7:: with SMTP id c206mr3566111oib.161.1583522164963;
+        Fri, 06 Mar 2020 11:16:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1583522164; cv=none;
+        d=google.com; s=arc-20160816;
+        b=aIMCOaiicwYeNKjgQOnJlSB8PSsN2xch/QbYn8wVmZVyThM7X/OWQlKcFEFVpQGRcf
+         ZNMGRHcErC0f/uIECNthXJCSH64CPv5hzhbqwgxwvAvlZUrrw5A7lt9EeXuRmQEW8GoE
+         h44lMeOJBM7pMdgmLVfvxYXsS3du3ILrmptHWs2/vL+oS77spUuYvDgDAly2rqT43GE9
+         vEkXfcL4HEdTnSBVasREaTgqbffxyShhQhRV5hHn4A/R5pi7hZ4d98SJ25p12ANWGVPd
+         mCgqeCTRdK8L+b3XWv0TwCyuOwYwA4P0k7FAqUcgKWowRC2oZtwJnYgvMmOcnWyqi3Uf
+         EHOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :references:in-reply-to:date:cc:to:from:subject:message-id
+         :dkim-signature:dkim-signature;
+        bh=0sbd7VTRhGBrhL/2jZhc/hdi1WNctk3cIJLBRVnXkRM=;
+        b=F68JMKjQGZLurEx1gyJtvsQCVb2pz1Ab5GPxEixPlqPEKt7BVNPt3mTsqk9FDTknNP
+         Z6+d/hJwk+bDjbaFBY2j+4xnEmgxmAj7wDk231vwGAFfZRcudlKvKswIjHis4iBnrXW3
+         w4MeF3FljXcmmwhHD0HMgY1QQzjXCsFo7gLRyumnQSk9HJVWS6iSXwYM9/VIV/oxOQel
+         Z+TWl8IblD0eexQXaxX2PvFRsV9tgRta3IbHDcpWg4LHLE4NCSGVOP8sAVF+lBNhgY27
+         xLG/G1TG4zbn3sgCW7Rt4+vZIYkxJnVU7nxb/A1op/SMBKHt0HY8CeVk+CgHnjnLBd46
+         1xww==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@hansenpartnership.com header.s=20151216 header.b=PU0dR+Er;
+       dkim=fail header.i=@hansenpartnership.com header.s=20151216 header.b=JUf4tVJE;
+       spf=pass (google.com: best guess record for domain of bpf-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=bpf-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=hansenpartnership.com
+Return-Path: <bpf-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id t19si166757oif.250.2020.03.06.11.15.57;
+        Fri, 06 Mar 2020 11:16:04 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of bpf-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@hansenpartnership.com header.s=20151216 header.b=PU0dR+Er;
+       dkim=fail header.i=@hansenpartnership.com header.s=20151216 header.b=JUf4tVJE;
+       spf=pass (google.com: best guess record for domain of bpf-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=bpf-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=hansenpartnership.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726171AbgCFTPz (ORCPT <rfc822;m.misono760@gmail.com>
+        + 60 others); Fri, 6 Mar 2020 14:15:55 -0500
+Received: from bedivere.hansenpartnership.com ([66.63.167.143]:57856 "EHLO
+        bedivere.hansenpartnership.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726167AbgCFTPy (ORCPT
+        <rfc822;bpf@vger.kernel.org>); Fri, 6 Mar 2020 14:15:54 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by bedivere.hansenpartnership.com (Postfix) with ESMTP id EC3F78EE11D;
+        Fri,  6 Mar 2020 11:15:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=hansenpartnership.com;
+        s=20151216; t=1583522154;
+        bh=/OfiD8pxTy0cgbbgHjCoeXz2owVNFIiY43G+wjReSfw=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=PU0dR+Erm3kVlerDUdH+FYaWPWMZ7wSzQCCUznWsyQOXnbUkE/KThxQq1+fsIspA2
+         mflun5XkW5/9ir3+HIlZEkfXk3cnNsg/eH/NFq/HDbNpcw1vhxlqfYqDGq1jPb9Fkd
+         kXh2jZeQEXAU1D9DT/CLYDD3rgTS6pEvuFqfagXU=
+Received: from bedivere.hansenpartnership.com ([127.0.0.1])
+        by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id AO-2jUBauNPH; Fri,  6 Mar 2020 11:15:53 -0800 (PST)
+Received: from [153.66.254.194] (unknown [50.35.76.230])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id 230C78EE0F8;
+        Fri,  6 Mar 2020 11:15:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=hansenpartnership.com;
+        s=20151216; t=1583522153;
+        bh=/OfiD8pxTy0cgbbgHjCoeXz2owVNFIiY43G+wjReSfw=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=JUf4tVJEbGPD8RouHJs2vAI2XwHhjBh563uBWSUYP64GyuQGyA2LvfCuzUJ7JAEsT
+         PCpGO1WVEjODSm5A03Vjrr6Y04jZl7c8HaE49oUbdWTID+1VVJfqiz1ARiOcpittO0
+         bwsOY7KVaOiyDyOGHzrPzyZX4KJKswK9B5NaS20w=
+Message-ID: <1583522151.3653.81.camel@HansenPartnership.com>
+Subject: Re: [LSFMMBPF TOPIC] Killing LSFMMBPF
+From:   James Bottomley <James.Bottomley@HansenPartnership.com>
+To:     "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Jason Gunthorpe <jgg@ziepe.ca>
+Cc:     Matthew Wilcox <willy@infradead.org>,
+        Josef Bacik <josef@toxicpanda.com>,
+        lsf-pc <lsf-pc@lists.linuxfoundation.org>,
+        Linux FS Devel <linux-fsdevel@vger.kernel.org>,
+        linux-mm@kvack.org, linux-xfs@vger.kernel.org,
+        Btrfs BTRFS <linux-btrfs@vger.kernel.org>, bpf@vger.kernel.org,
+        linux-ext4@vger.kernel.org, linux-block@vger.kernel.org
+Date:   Fri, 06 Mar 2020 11:15:51 -0800
+In-Reply-To: <yq1eeu51ev0.fsf@oracle.com>
+References: <b506a373-c127-b92e-9824-16e8267fc910@toxicpanda.com>
+         <20200306160548.GB25710@bombadil.infradead.org>
+         <1583516279.3653.71.camel@HansenPartnership.com>
+         <20200306180618.GN31668@ziepe.ca> <yq1eeu51ev0.fsf@oracle.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.26.6 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Sender: bpf-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <bpf.vger.kernel.org>
+X-Mailing-List: bpf@vger.kernel.org
+
+On Fri, 2020-03-06 at 14:07 -0500, Martin K. Petersen wrote:
+> Jason,
+> 
+> > Yes, I can confirm this from another smaller hotel-style conference
+> > I've been involved organizing on occasion. $600-$800 is required to
+> > break even without major sponsorship $$ for the ~100 people mark,
+> > and that is without the usual food and venue perks we see at
+> > plumbers/lsfmm.
+> 
+> Yep. Our actual per-person cost for LSF/MM/BPF is in excess of $1K.
+> That limits who we can invite. Personally I absolutely hate the
+> invitation aspect and process. But we are very constrained wrt. how
+> many we can actually accommodate by the amount of funding we get.
+> Things appear to be better this year, but sponsor mergers and
+> acquisitions have been a major concern the past few years.
+
+To be a bit mercenary (hey, it's my job, I'm Plumbers treasurer this
+year) our sponsors are mostly the same companies.  If we combine LSF/MM
+and Plumbers, I can't see too many of them stepping up to sponsor us
+twice, so we'll have a net loss of sponsor funding for the combined
+event as well.  This is likely another argument for doing two
+separately sponsored events.
+
+James
+

@@ -1,0 +1,77 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp466469lfg;
+        Tue, 5 May 2020 13:48:59 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKr3zPDbJgtJDE8OkC9mzDroy8El9R8O53emYIDhPu8g7C/J4OwkD8RdSwkGW4Ss3dopOR+
+X-Received: by 2002:aa7:dcd4:: with SMTP id w20mr4456309edu.282.1588711738889;
+        Tue, 05 May 2020 13:48:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1588711738; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Hycz6n0676dppfVf5MXO4vJEHwW7OWc+ZgZab/KVBjlK1JT7JH4Lva7GLOXZq69mZZ
+         u1cdAV9bvzOsh2EV6dsCuK9Hrtn7F0xLYxr9vzIRcCZe73gtf8dYLSF+YUDv/gJKnBJn
+         IK7t+tzqOt4eob+jH6AvJohP1Z4dBreH7uWLsGrjwE6k2FLtdfF3httSrHIeHAhxYOrX
+         Vjv0x7DlQnya+rs3viGUsKV+qqURP7nfAAJBJ3fjhF2Pe8bhqFUcCp5OHA79w7F6NlNI
+         LCFQUSc1IfKFiwWmv35ei/bG3d78jFwWu0wjCQBuFwByo4D9+3zThrUQRjpxVtT/wU8Y
+         aL9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date;
+        bh=HNaGUL7+8ASrBm+LBr8o4v5bCEaEuFiDVVTgdKdUSos=;
+        b=GCyB/PwWt49u9YQ6OUWTN1zt9vvM08L0Q5NDNMdzu6mluo5xuLnW0R0GZG4cTmPCg6
+         wpAotRbK83wtlxu/2ZEKVSrcfSrXKaQB+xI0wjRs3yMHqaiwJTIuKfRp4j43DMopt+5m
+         UdVYyFJPS8d27owsDG5GozjdJRxnnfFIFZTMD+2Rvn5uP36bmIQTiwRBWmf5PIT/+hxS
+         wG19vICTEiNQ3nuK1+g4snngtE9dOOcAQACvBSUYgCgtaHE/ggbNNgQQVZz/KGud/DsR
+         tcvW3a2+tt33QBQOYeBczbq84/nTgsVsns6WFlMuTO48GTW9LC5d65FbjtRT0iszOeDC
+         iNXg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id t30si1717794edt.410.2020.05.05.13.48.36;
+        Tue, 05 May 2020 13:48:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1729108AbgEEUrf (ORCPT <rfc822;beyondssmith@gmail.com>
+        + 99 others); Tue, 5 May 2020 16:47:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54074 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728135AbgEEUre (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 5 May 2020 16:47:34 -0400
+Received: from ZenIV.linux.org.uk (zeniv.linux.org.uk [IPv6:2002:c35c:fd02::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86A89C061A0F;
+        Tue,  5 May 2020 13:47:34 -0700 (PDT)
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1jW4TJ-001jb2-DG; Tue, 05 May 2020 20:47:21 +0000
+Date:   Tue, 5 May 2020 21:47:21 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Jeremy Kerr <jk@ozlabs.org>, Arnd Bergmann <arnd@arndb.de>,
+        Oleg Nesterov <oleg@redhat.com>,
+        "Eric W . Biederman" <ebiederm@xmission.com>, x86@kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-fsdevel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: remove set_fs calls from the coredump code v6
+Message-ID: <20200505204721.GA23230@ZenIV.linux.org.uk>
+References: <20200505101256.3121270-1-hch@lst.de>
+ <20200505203446.GZ23230@ZenIV.linux.org.uk>
+ <20200505204258.GA24277@lst.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200505204258.GA24277@lst.de>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, May 05, 2020 at 10:42:58PM +0200, Christoph Hellwig wrote:
+> On Tue, May 05, 2020 at 09:34:46PM +0100, Al Viro wrote:
+> > Looks good.  Want me to put it into vfs.git?  #work.set_fs-exec, perhaps?
+> 
+> Sounds good.
+
+Applied, pushed and added into #for-next

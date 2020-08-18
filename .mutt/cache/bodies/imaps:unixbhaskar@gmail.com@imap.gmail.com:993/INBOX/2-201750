@@ -1,0 +1,80 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp6449610lfj;
+        Tue, 17 Sep 2019 22:54:35 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqy6o+PQyzD9cD23F+dfn3ShOMWYh315HXeSWYI7IGmNLk64YIBHpNEWTnSZXepYYDQr56Hg
+X-Received: by 2002:a17:906:15c2:: with SMTP id l2mr7972852ejd.4.1568786075126;
+        Tue, 17 Sep 2019 22:54:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568786075; cv=none;
+        d=google.com; s=arc-20160816;
+        b=JbYscSo20FCrkXHvLPUZgvZLWpACkDDDcUqlXFrqwhAEZxV4KWjHmzmPUk2RaNUOVh
+         dYNjXB+FUwwpxd6h/2wZQaIOnY+ZF/49qQStvr03hzDH90sGC8YFvy46SmncMraFTO93
+         jj0O8SA0hA9dJXDrIq6c1sfEMLnKkk/sUHIb/Ylw2PDJrIqm+DENmTrBcj5ALGqemVy6
+         yUmnYaIXu2tzrcHTj9r5YsEU9GjbkgeDgJJSFSnVocIEyTRsUqJOmg1v+8fs0SGEFyWD
+         fDihfy/+BxdtOrJgrJ5hk4lC59Rtk+DQ0dnYD7GhNjPtHaRFBH3jZj15YrMOjUth1uuk
+         c3rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date;
+        bh=vLQRg0GrYU6vNi0tRUkQKR7Xzl94su6DLgGqTEmPiyo=;
+        b=NjlwDqm3tfkQT/D6hlQ9d+j7RJDeY5vcUq2J81/YC7c9H0cY9PcdSMkGDGlrIHl2/y
+         vO/TXQjwUdPwN0xUntKVQKpBacRDFCnjA+HgkCoxdPmF2BHYMLL6M2bLq4uoO7P5ORo5
+         qhPD77zhvLohVFur3OP7z7E0/fDTHbYQMMNdS81VsWdN777q8aJpDtezLZuMDeXw1Yw8
+         AUIub3cRzUixDpSwJJWtBUrs/CM2B6DVdepWl8gveSLv38vQ4dLXzVq6crAwcHgqKzAP
+         XctUCCtousOHzazxlmwcH/e6un3XTZNHUduMOcO/ygri0lZYndLANOHd1O1Dc7inLHfN
+         CpkQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id me23si977242ejb.344.2019.09.17.22.54.08;
+        Tue, 17 Sep 2019 22:54:35 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727534AbfIRBXN (ORCPT <rfc822;rob.e.herring@gmail.com>
+        + 99 others); Tue, 17 Sep 2019 21:23:13 -0400
+Received: from zeniv.linux.org.uk ([195.92.253.2]:51854 "EHLO
+        ZenIV.linux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725834AbfIRBXN (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 17 Sep 2019 21:23:13 -0400
+Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.2 #3 (Red Hat Linux))
+        id 1iAOgO-00039C-Vh; Wed, 18 Sep 2019 01:23:01 +0000
+Date:   Wed, 18 Sep 2019 02:23:00 +0100
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     kernel test robot <rong.a.chen@intel.com>
+Cc:     "zhengbin (A)" <zhengbin13@huawei.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>, lkp@01.org,
+        Linus Torvalds <torvalds@linux-foundation.org>
+Subject: Re: c25aa432ff:  aim9.dir_rtns_1.ops_per_sec -24.5% regression
+Message-ID: <20190918012300.GI1131@ZenIV.linux.org.uk>
+References: <20190918001736.GK15734@shao2-debian>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190918001736.GK15734@shao2-debian>
+User-Agent: Mutt/1.12.0 (2019-05-25)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Wed, Sep 18, 2019 at 08:17:36AM +0800, kernel test robot wrote:
+> Greeting,
+> 
+> FYI, we noticed a -24.5% regression of aim9.dir_rtns_1.ops_per_sec due to commit:
+> 
+> 
+> commit: c25aa432ff56e179bf5414edff3aa430d2b260c0 ("Fix the locking in dcache_readdir() and friends")
+> https://kernel.googlesource.com/pub/scm/linux/kernel/git/next/linux-next.git master
+
+... and that, folks, is ->d_lock on the parent.  I.e. the original reason for
+trying to do the damn thing lockless.
+
+I'd really like to do a lockless variant, properly.  First we'd need to sort
+the misuses of d_subdirs/d_child, though - there are several outright bugs
+in the mainline.  And right now it looks like it wants to grow a series of
+cleanups in autofs.  Oh, well...

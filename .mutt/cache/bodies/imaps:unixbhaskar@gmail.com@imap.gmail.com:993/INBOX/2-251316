@@ -1,0 +1,103 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c51:0:0:0:0:0 with SMTP id i17csp3478629lfj;
+        Fri, 31 Jul 2020 14:01:40 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxN4uvXHIOEkz3JMLa5tKdylWF87AG6yzsKxrhg+4YSBFb6GrlXcdfsI/KAaElwMFNr3bSI
+X-Received: by 2002:a50:bece:: with SMTP id e14mr5572756edk.190.1596229300669;
+        Fri, 31 Jul 2020 14:01:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596229300; cv=none;
+        d=google.com; s=arc-20160816;
+        b=y0NSCEg+BwXvwKz2FOn8d/eH7Q8HBzmFzPCYz/iDfuqqUCN9XpBjqyGeD3CJc1L44K
+         7Mf3MdO47+W1JjuaqOvsHZoflM4f9uvDoWz8JN0cRDxl0qDsB5nw5Whp+VE/x2vzN+5B
+         +MPLiqejgzALVEd2PXXbQmMVxBpF+HTMc+l1HiFYRPqERJUhSu29RqLnLylxK+LU1ydr
+         fpiqP3K0BUS3OK+B7o22LKocqXXvgZ/v7e306FEP3mai5Kp1Umjn/F9OtamgO/pmi46r
+         +BgSWAB3rHgZ9tDRWJSDHARbg+p0erRLNkCkFvR2Dp2/5l2cjJLJaG/rfzPsM+h2gxE8
+         j0jQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=Lf6Tsl2/eoEgie5skYyJMNmAvL2Bjr4XRRNee/YKgpA=;
+        b=McLHIo2uD/CVOAoHlXvqTUWvNSUFotam7HTPHf5aIqG/oDzxs5U7F48ThSRixAcxDh
+         aoecHeu5w+gy1lwgg4s00pEyH4YbGM+Z40VnhaJICBE+nGKU7RVDtv2Fu0y7APX5Ibts
+         WvSTj+Y3tWj72m7MY9KKO0FL0X/a9VPUXdSMIIbmfmmD9l4TKaItO2o8f2LCOZ98Rjp0
+         bsJfhoh7WJWQGhyCmYwmlVAeEe6nu0D0PGDBWaDEaBSA2NKBhmAcPNoMLvlnaA6F2WVF
+         g0PporH+n+Ohg69iBLz1bwwpu0L3qjjyk2XvajefghGGrQ+k6tATUvBLVgEH2nJsbzWF
+         T0xQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=casper.20170209 header.b=UMB5h2mn;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id l15si5882266edr.130.2020.07.31.14.01.29;
+        Fri, 31 Jul 2020 14:01:40 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=fail header.i=@infradead.org header.s=casper.20170209 header.b=UMB5h2mn;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728305AbgGaU7o (ORCPT <rfc822;andy1247008998@gmail.com>
+        + 47 others); Fri, 31 Jul 2020 16:59:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727053AbgGaU7o (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 31 Jul 2020 16:59:44 -0400
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C69BBC061574
+        for <linux-kernel@vger.kernel.org>; Fri, 31 Jul 2020 13:59:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=Lf6Tsl2/eoEgie5skYyJMNmAvL2Bjr4XRRNee/YKgpA=; b=UMB5h2mnjeZ1NU4HpmUnHmv/Rd
+        HlcVYUzWJqeRgQ7GmNTDwJKdfVWRmyOvoj2S2q7zuz2PR6kN+5ozMq2Qxr5jP2ervyaxpMjTbw+75
+        5kfJUxiIIuEUqDIJ6DrYn3opeyfLlOEi40gxdA5EeSnbEjiTgPESdcm7Ppgakn9OsWgXRFCCOOSac
+        dCwfMC7kRA/4TSef8vfpHayLwXM2/0VoUkRqT0y/aTraUF3glixnQNfDJCcC9YNvlAXFt08w4dPp+
+        bTGtp3vu7Y9sciW02YGMVX9zXrW21edap9a2j/v8WtT3Bj7jI+d0MpZ1GRbITZms9maEJidP5XhI5
+        qovR2ptw==;
+Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1k1c7p-0002RM-4g; Fri, 31 Jul 2020 20:59:33 +0000
+Date:   Fri, 31 Jul 2020 21:59:33 +0100
+From:   Matthew Wilcox <willy@infradead.org>
+To:     "Paul E. McKenney" <paulmck@kernel.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>, cl@linux.com,
+        penberg@kernel.org, rientjes@google.com, iamjoonsoo.kim@lge.com,
+        hannes@cmpxchg.org, urezki@gmail.com, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org
+Subject: Re: Raw spinlocks and memory allocation
+Message-ID: <20200731205933.GT23808@casper.infradead.org>
+References: <20200730231205.GA11265@paulmck-ThinkPad-P72>
+ <20200731133834.517fdfee99b7ed2239f576aa@linux-foundation.org>
+ <20200731204855.GR9247@paulmck-ThinkPad-P72>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200731204855.GR9247@paulmck-ThinkPad-P72>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Fri, Jul 31, 2020 at 01:48:55PM -0700, Paul E. McKenney wrote:
+> On Fri, Jul 31, 2020 at 01:38:34PM -0700, Andrew Morton wrote:
+> > On Thu, 30 Jul 2020 16:12:05 -0700 "Paul E. McKenney" <paulmck@kernel.org> wrote:
+> > 
+> > > So, may we add a GFP_ flag that will cause kmalloc() and friends to return
+> > > NULL when they would otherwise need to acquire their non-raw spinlock?
+> > > This avoids adding any overhead to the slab-allocator fastpaths, but
+> > > allows callback invocation to reduce cache misses without having to
+> > > restructure some existing callers of call_rcu() and potential future
+> > > callers of kfree_rcu().
+> > 
+> > We have eight free gfp_t bits so that isn't a problem.
+> 
+> Whew!!!  ;-)
+> 
+> > Adding a test-n-branch to the kmalloc() fastpath may well be a concern.
+> > 
+> > Which of mm/sl?b.c are affected?
+> 
+> None of them, it turns out.  The initial patch will instead directly
+> invoke __get_free_page().  So we could just leave sl?b.c alone.
+
+Isn't that spelled GFP_NOWAIT?

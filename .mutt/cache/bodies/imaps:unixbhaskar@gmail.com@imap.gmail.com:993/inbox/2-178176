@@ -1,0 +1,135 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp4682814lfb;
+        Tue, 30 Apr 2019 01:15:41 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyKAAuDc0+85QZBa4GJI4cHDFSs6vT3Gy028Wmxw7QnHofBFeaV6zZd6HxxKvLOGR/LLuOc
+X-Received: by 2002:a17:902:d83:: with SMTP id 3mr69946811plv.125.1556612141012;
+        Tue, 30 Apr 2019 01:15:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1556612141; cv=none;
+        d=google.com; s=arc-20160816;
+        b=TWjcR2ri/ipBIDafNtYa0y6ZCn+OfqppOwM2ufmJ9R4fEQcGVtjEQNI1Sf8x8s9l3/
+         f5cDf8a3uhZk5UQdjfjkgE2qCW71OXHmVIxFXhDMy89QWZ26TtQcmDGGToPuBZ4hKKC7
+         3LFxGQWHwwsVuO5MSbmQvcoY4D14prNxqrD5k6i0cFEH/i3+bIU+v77uC92BmhzO4JI9
+         dUzT4swWgBlDFSXIkZZdJOHSxGcKQs/ZMpeKG0NDuhYFORgSjCUo5F6dmJapGvOB50tO
+         Go5E+eRQ59Am5e3Ua+yPfjZm5G1intuaiGxKkmWKPKzbd1WiKAIOQcBrQf8yykNRyUJ+
+         a3sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:dkim-signature:dkim-signature;
+        bh=QaMnlBFGPZs+DEMS0nyUumPQ3/fOtf0Ip12DCFXxfKM=;
+        b=TH8YBczUuwmvn8gemKz4DytEoCMu4x7HZpcjIiIhZvOFZT3KQH93cAL8wfwdqvZVXC
+         /Gb5NrGHbMfgTvidi/z2fklKCB1MMrquToy16mYQ80jz1fmR2OyhfcKzP6HJPvFO9g4f
+         JgiUXGhTyjaCWAUYIWjjKegZmq8oZTi3xRSiC+DB47af6y5V68BQGOTSjRupvvX5QfQJ
+         pVQLO+JFor3n5RHb2er0m/3nDlH2b7++HsE2ZE7i3o1UWg9MuljTS0H7eolnPTaL1hDr
+         N35uNX9m5nbxBB7UQUZv2PwagUavHPJEuXJeWgO4/jYGkxRVcDY/uA2vRtKam0rBLVny
+         bF1g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kroah.com header.s=fm3 header.b=ettHd6os;
+       dkim=pass header.i=@messagingengine.com header.s=fm2 header.b="hAw+WC/2";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id i9si33499024pgq.23.2019.04.30.01.15.26;
+        Tue, 30 Apr 2019 01:15:40 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kroah.com header.s=fm3 header.b=ettHd6os;
+       dkim=pass header.i=@messagingengine.com header.s=fm2 header.b="hAw+WC/2";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726570AbfD3IOQ (ORCPT <rfc822;cafebabe4fun@gmail.com>
+        + 99 others); Tue, 30 Apr 2019 04:14:16 -0400
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:39317 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725790AbfD3IOQ (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 30 Apr 2019 04:14:16 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id C052C71E;
+        Tue, 30 Apr 2019 04:14:14 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 30 Apr 2019 04:14:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=QaMnlBFGPZs+DEMS0nyUumPQ3/f
+        Otf0Ip12DCFXxfKM=; b=ettHd6osx2iW0UtF6UIP15gDoVrZSwKKvXyyWManic5
+        c4fbeX/H5u96nd1CPeTvHaK7wqIFAzEVX9/n0JbmduAvEC8yp5v5wd2c9bS4eaBi
+        yG8gXiTI7ZqZxOkF52dkRP/EjBD6MmUZ25FBaBUcLXxLAwOxCZ8UjFuhKQvNsmp6
+        K+hmDKtxkzZmLHDbL9Ez6KzB/mp8nXdqOsHR4AF9yHS5Od+aXKLsQCx6UxI45jck
+        DVxpNpjSR/rj795NgUCeXpJsYRMlYjF2/Q3Xrr1kzw83RvTA4eaVOomVHy12xl/c
+        43h2/3O0PjxqB4dluDKnin8mPT/dWgdzVYzMjxcuDQw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=QaMnlB
+        FGPZs+DEMS0nyUumPQ3/fOtf0Ip12DCFXxfKM=; b=hAw+WC/2lxijMbOmK0FzBz
+        9zU4JGzeYtYiUbrEpBsOuUXx77j2x8vPv6GpC0EnBizC1LvwGRI78/0iWkW0CaQW
+        0Z0hWvtAE3LXxL0l+SyoI/bRR6Uoocym42wmRCMe0hxak/I23AModNPr1aBQfK+R
+        RVxeUhm4PBnkuMLe5QK3+OmJiNM7cHiSIuvW8kqgX/yhF1f50AKUy69p1dBdJKJQ
+        6ShMj9zems5cwR52oJxvvJzDKxg0M9grpksiyR6g3HRablgHIv+3UR/FlW2fs31Z
+        lykGPomgVueI0EamLgp8r6GnJ52LJ+Q+ZqDE6ArGfkUk0c0cD/p9lqD6sSimOZFw
+        ==
+X-ME-Sender: <xms:0wPIXDRZ49IfAdk99l-irItgHMakpbd3T1b-2qg0ujtK8U1PXLXG9w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddrieeggddtvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujggfsehttdertddtredvnecuhfhrohhmpefirhgvghcu
+    mffjuceoghhrvghgsehkrhhorghhrdgtohhmqeenucfkphepkeefrdekiedrkeelrddutd
+    ejnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvgheskhhrohgrhhdrtghomhenucev
+    lhhushhtvghrufhiiigvpedu
+X-ME-Proxy: <xmx:0wPIXHvR4nC5ai6CDHmXQJrfkFr3kX8ANvoImXYwxiIRaxPWGjxMRQ>
+    <xmx:0wPIXBAI9PxnJaCj0eEZmp6jDyQ2L_G5Ky4qxOBMw_03bHwBkVlYrQ>
+    <xmx:0wPIXB1z397X-cmBS4dtg4bIP_8g_IiOYEc5bn3YJMZUAZRgkSzgJA>
+    <xmx:1gPIXNF5dDQuAaGY28NzFR9jjaGCQOlybbvnl0RgvXbvl_JqTZ18Fw>
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        by mail.messagingengine.com (Postfix) with ESMTPA id C5A6EE454A;
+        Tue, 30 Apr 2019 04:14:10 -0400 (EDT)
+Date:   Tue, 30 Apr 2019 10:14:08 +0200
+From:   Greg KH <greg@kroah.com>
+To:     Stephen Rothwell <sfr@canb.auug.org.au>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Next Mailing List <linux-next@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Patrick Venture <venture@google.com>
+Subject: Re: linux-next: manual merge of the char-misc tree with the arm-soc
+ tree
+Message-ID: <20190430081408.GB8245@kroah.com>
+References: <20190430174051.038c77c8@canb.auug.org.au>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190430174051.038c77c8@canb.auug.org.au>
+User-Agent: Mutt/1.11.4 (2019-03-13)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Apr 30, 2019 at 05:40:51PM +1000, Stephen Rothwell wrote:
+> Hi all,
+> 
+> Today's linux-next merge of the char-misc tree got conflicts in:
+> 
+>   drivers/misc/Kconfig
+>   drivers/misc/Makefile
+> 
+> between commit:
+> 
+>   524feb799408 ("soc: add aspeed folder and misc drivers")
+> 
+> from the arm-soc tree and commit:
+> 
+>   01c60dcea9f7 ("drivers/misc: Add Aspeed P2A control driver")
+> 
+> from the char-misc tree.
+> 
+> I fixed it up (see below - though the additions probably want to be
+> moved as in the arm-soc commit)
+
+People are still arguing about this, so let's leave this as-is for now
+:)
+
+Thanks for the merge resolution,
+
+greg k-h

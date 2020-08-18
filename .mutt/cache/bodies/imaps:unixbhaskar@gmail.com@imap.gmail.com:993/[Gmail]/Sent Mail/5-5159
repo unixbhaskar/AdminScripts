@@ -1,0 +1,35 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from Slackware.localdomain ([103.231.91.38])
+        by smtp.gmail.com with ESMTPSA id 192sm14968661pfb.110.2019.09.30.16.27.48
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2019 16:27:50 -0700 (PDT)
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: unixbhaskar@gmail.com
+Subject: [PATCH] Remove stale mutt config url and added active urls
+Date: Tue,  1 Oct 2019 04:57:38 +0530
+Message-Id: <20190930232738.9580-1-unixbhaskar@gmail.com>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <unixbhaskar@protonmail.com>
+References: <unixbhaskar@protonmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+
+Changed the stale mutt config url and added the active urls. 
+---
+ Documentation/process/email-clients.rst | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/process/email-clients.rst b/Documentation/process/email-clients.rst
+index 5273d06c8ff6..af60de72948b 100644
+--- a/Documentation/process/email-clients.rst
++++ b/Documentation/process/email-clients.rst
+ 
+ The Mutt docs have lots more information:
+ 
++    https://gitlab.com/muttmua/mutt/wikis/UseCases/Gmail
++    
++    https://gitlab.com/muttmua/mutt/wikis/MuttGuide
+ 
+

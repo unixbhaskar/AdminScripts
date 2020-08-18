@@ -1,0 +1,89 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:ac2:5510:0:0:0:0:0 with SMTP id j16csp2439622lfk;
+        Mon, 25 May 2020 05:51:22 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxYZLg9FXrK7wn4vfehJoOTBUNstq1CHgFV/crCTjAjrURffsYrkLE8WBbIzywoMwZ7IAEi
+X-Received: by 2002:a17:906:860a:: with SMTP id o10mr17907558ejx.250.1590411081951;
+        Mon, 25 May 2020 05:51:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590411081; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WY0Cb7jdpKHHobol9Z8A4eLykcNPrzctZ+VZ1RGPeYwxDoDW73GkEDQUKlUPV3wQRL
+         60/nnDPnA9V1kPgq1Gnb1nUIANf3pWdXdeQPAmZ5FeaLYbX4qn/7SXcdPx5VqaRx924t
+         i858ZRoI3BmGOw12yRNInHHDwGctOCatKmLx6Qw/PxCC75e4KYyTl8FvCtaoNPI7VYMd
+         Y7XSjoY/eF15sVEJdWWC7mhACnJwea1n2Asxy7dzXKXVDjBubdGUUbNv1wOQr+5CARRk
+         sMX7EplUgw9PRUFt+6YVHKIEAvb5fUYvIXS6vcTabLHvMstjhQBAHFYd2Mu36fHt55PX
+         Om6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:in-reply-to:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :dkim-signature;
+        bh=F+jtavYQ8atJt2kvnYOngZxUd/qgdumO4MdF6g0/NCI=;
+        b=Tkyma1QsewTJ9qkdx5Z3FL3p/0OoZZO3oIaNGFplaW8ZSaqcdX7WbR8NvQeuRjE6aD
+         9cl+ToIhjzzi8Ozn0N8Y2n2aBHTBrp0xhiDja6xlAfAsnKkyARQVIezEIiAMnzISV2G6
+         B2q/FH4dAzm3PqUMOfM89khVMUjtOYv0P9ahpuDTXXcnR9EY6BVL3MeM/b68RJu1aRDM
+         OfTSyCdnjyZQ7LAbaAaLPAI/cxB7ZU/bI1YYwTAHAFP7aLHiRXBjtZsqyoU0HUOm0Q8j
+         16xieuTZmrMf1w3cFEvKq+qc6SGi6H4A49Sw3aoo+xAfyd/xPVDKdv2cvBSK2l27RNLm
+         9CZA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=rFRSv7N1;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id n15si9302643ejd.527.2020.05.25.05.50.58;
+        Mon, 25 May 2020 05:51:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=rFRSv7N1;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S2390567AbgEYMr4 (ORCPT <rfc822;cygantb@gmail.com> + 99 others);
+        Mon, 25 May 2020 08:47:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59676 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390488AbgEYMr4 (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Mon, 25 May 2020 08:47:56 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B46B3206D5;
+        Mon, 25 May 2020 12:47:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1590410876;
+        bh=MfX/qODPyzlpjWOLxjVwBODTLMP388rRPyp2GR9ORLA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rFRSv7N1H4jnO7kxPpM9O0b1przGuWqBu9tIJl71wz1RbU0vJPMq0tWUGL3+zo+Hb
+         2rwmw0VAx4Tpj3we68pm99VU9bUhTFOWPeYQQQI/+a8gz5n+hf4c9mMJ+q5EpSYGGB
+         DdM0KPU0lCPElUvwCuRIgam2gEEFkstOAHH9fCwg=
+Date:   Mon, 25 May 2020 14:47:53 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Maxim Uvarov <maxim.uvarov@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, tee-dev@lists.linaro.org,
+        peterhuewe@gmx.de, jarkko.sakkinen@linux.intel.com, jgg@ziepe.ca,
+        jens.wiklander@linaro.org, linux-integrity@vger.kernel.org,
+        arnd@linaro.org, sumit.garg@linaro.org
+Subject: Re: [PATCHv3 2/3] optee: use uuid for sysfs driver entry
+Message-ID: <20200525124753.GA797117@kroah.com>
+References: <20200525115235.5405-1-maxim.uvarov@linaro.org>
+ <20200525115235.5405-3-maxim.uvarov@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200525115235.5405-3-maxim.uvarov@linaro.org>
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Mon, May 25, 2020 at 02:52:34PM +0300, Maxim Uvarov wrote:
+> Optee device names for sysfs needed to be unique
+> and it's better if they will mean something. UUID for name
+> looks like good solution:
+> /sys/bus/tee/devices/optee-clnt-<uuid>
+
+Can you document that in Documentation/ABI/ ?
+
+And why UUID?  Those are usually huge, is that easier than just a unique
+number?
+
+thanks,
+
+greg k-h

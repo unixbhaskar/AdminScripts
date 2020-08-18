@@ -1,0 +1,228 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a50:baae:0:0:0:0:0 with SMTP id x43-v6csp5061958ede;
+        Tue, 11 Sep 2018 23:25:07 -0700 (PDT)
+X-Google-Smtp-Source: ANB0VdYn/0ceufogLNT5VTAtaG8EldRNjp1b5agjrh84MDGmh0GpCy6Jwa1v9UiKien6xKjj/vwx
+X-Received: by 2002:a37:4904:: with SMTP id w4-v6mr227325qka.85.1536733507817;
+        Tue, 11 Sep 2018 23:25:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1536733507; cv=none;
+        d=google.com; s=arc-20160816;
+        b=bEzz45oeyFUiLmTiVuuFMpXWA+10qvV8Gax3S3uH0zt8gUOlYKowXf17Tki12+5AoK
+         y1N6ZU8euje3cIrB7OT8xMQ+YCH2V6zkm40BwoMbwGQqiP6TzKMe/Oe49D9ke6WUAp+u
+         rj0zwKAcGz8PmpgtmBb0T3h+wD/hE4q8FXU+NGir1fiCaj7t9Q2aa8hRb1eulKkZVvru
+         ExKi4UtAzHwWtCkxzKZu10A+ZwoJJkWDYCqI3XMF/3vIP3fOxNgdtaskf9pbCKnXL1ww
+         KW7+ED+07EjB/LDSser+xat1p0bwgU0ho0ESKy40BeX4BueedpEU1pQRoAlPxxB5lWuM
+         3drQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:mime-version:subject:message-id:to:reply-to:from
+         :date:dkim-signature;
+        bh=4yrHlfaJjSL8FOYC20NDzYsBP7ShL1GmZlEhZgFfsFg=;
+        b=J9WYFVX/lnK8ax2MWAnOglAUrKAemXIeLuVfEAU36VUX72eI22gG1pU+zELUDZ9gn2
+         J3+nuj+q6n8t5v6B/+Bvi7o3SMrud1+qo3z5611TstHb/Xu0OpC1uksW90hCDcli/k6M
+         j/fIa1USe9Fa/0DdMjiBXzSTD6uBCO8b2nJwwW0IbBy66rghyYkDaBh6FxNCceakW2jF
+         C7rdB8JpzqyFlx/zUvbqQ5yXp4i+pp7M03JwxksP6psyj3ktcWpAah69UIs4Id1oY9W/
+         MqQ6elqgZEmrry4ONAPpD96Debf71K5PNQCsYS3XF6DtvQa+2lYc+IrK1eR26/YKagLJ
+         q3mw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@agents.icims.com header.s=platform header.b=uwSMtcr3;
+       spf=pass (google.com: domain of amazon+autoreply@agents.icims.com designates 162.247.160.153 as permitted sender) smtp.mailfrom=amazon+autoreply@agents.icims.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=agents.icims.com
+Return-Path: <amazon+autoreply@agents.icims.com>
+Received: from icims-talentplatform-160153.email.icims.tools (icims-talentplatform-160153.email.icims.tools. [162.247.160.153])
+        by mx.google.com with ESMTPS id 37-v6si85530qvh.7.2018.09.11.23.25.07
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 11 Sep 2018 23:25:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of amazon+autoreply@agents.icims.com designates 162.247.160.153 as permitted sender) client-ip=162.247.160.153;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@agents.icims.com header.s=platform header.b=uwSMtcr3;
+       spf=pass (google.com: domain of amazon+autoreply@agents.icims.com designates 162.247.160.153 as permitted sender) smtp.mailfrom=amazon+autoreply@agents.icims.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=agents.icims.com
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=agents.icims.com; i=@agents.icims.com; q=dns/txt;
+  s=platform; t=1536733507; x=1568269507;
+  h=date:from:reply-to:to:message-id:subject:mime-version:
+   list-unsubscribe:x-csa-complaints;
+  bh=mqPXSDouCYKbPO+sC1FxucPOlbU3UZaFtUm6E06s9Yo=;
+  b=uwSMtcr3pbhRnIO3TGdAanUvm5aC4PjrOCOF6H9RUyCSmcRSaC6icKyG
+   8RTDESPcBHY9A+zVq1ud3qKByF/NKf//JdNJNbkkdIMYS3NMoX690ucoO
+   U92TnHHEA8yrrPSNYNpXshxvmXqf0fThKhiJJqYp5elPBnB9yfp908Kqs
+   4ZVMMUHj6oj8T2Ca7/pgb/e5LHImroVVdf0uFmN4zmHlELY2g/iM7Ub+N
+   QHtbms9REqzfNuLtKJvclSVjZJ+eqAd8AFH7tmDDlfvOCVE4Yf6z2YJuV
+   ZXZ9CoEl2H3ZZhrWCvEYJp8B0mQEWbtvKZPJGYH+/xWRQyK/L3uksCio1
+   Q==;
+X-CSA-Complaints: whitelist-complaints@eco.de
+Received: from unknown (HELO ip-10-47-5-41.ec2.internal) ([10.47.168.56])
+  by icims-talentplatform-160160.email.icims.tools with ESMTP; 12 Sep 2018 02:25:07 -0400
+Date: Wed, 12 Sep 2018 02:25:07 -0400 (EDT)
+From: "Amazon @ icims" <amazon+autoreply@agents.icims.com>
+Reply-To:  <amazon+autoreply@agents.icims.com>
+To: unixbhaskar@gmail.com
+Message-ID: <441368333.623853.1536733507467@ip-10-47-5-41.ec2.internal>
+Subject: Thank you for Applying to Amazon!
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_623851_784715058.1536733507466"
+List-Unsubscribe: <mailto:amazon+autoreply+7A7B5368378@agents.icims.com?subject=unsubscribe&contactId=113201334>, <https://amazon.icims.com/icims2/?r=7A7B5368378&contactId=113201334&pid=1967&process=1>
+X-iRecruiter-Type: TX
+X-iCIMS-Type: TX
+X-iCIMS-Priority: Auto
+X-iRecruiter-Source: amazon
+X-MSYS-API: { "options" : { "transactional": true, "ip_pool": "transactional" } }
+
+------=_Part_623851_784715058.1536733507466
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=C2=A0
+=C2=A0
+=C2=A0
+=C2=A0
+
+ =20
+=20
+Thank you for Applying to Amazon!
+Hello Bhaskar
+=C2=A0
+Thank you for considering Amazon for the next step in your career. We want =
+to let you know that we have received your application for the position of=
+=C2=A0Manager, Support Engineering -=C2=A0 Job:=C2=A0698619, and that it ha=
+s=C2=A0been provided to our Recruiting team for consideration.
+=C2=A0
+What happens next?=C2=A0 We will look through the incoming resumes to see w=
+hich candidates best match our open jobs and contact the individuals that w=
+e think may be a good fit for the role. Unfortunately, we are unable to per=
+sonally speak with everyone that applies, but please don't be discouraged i=
+f you don't hear from us. You can check on your application status or updat=
+e your profile at any time by visiting your application profile dashboard.
+=C2=A0
+We appreciate your interest in Amazon.
+=C2=A0
+The Amazon Recruiting Team
+(Please do not reply to this email - we are unable to review and respond to=
+ messages at this address.)
+=20
+   =20
+=20
+
+=20
+=20
+=C2=A0
+
+
+**************************************************
+This message was sent to unixbhaskar@gmail.com. If you don't want to receiv=
+e these emails from this company in the future, please go to:
+https://amazon.icims.com/icims2/?r=3D7A7B5368378&contactId=3D113201334&pid=
+=3D1967=20
+
+------=_Part_623851_784715058.1536733507466
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"margin: 0px;">&nbsp;</p><!-- [if gte mso 9]><xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml><![endif]--><p style=3D"margin: 0px;">&nbsp;</p><!-- [if !mso]><!--><=
+p style=3D"margin: 0px;">&nbsp;</p><!--<![endif]--><p style=3D"margin: 0px;=
+">&nbsp;</p><!-- [if (gte mso 9)|(IE)]><style type=3D"text/css">table {bord=
+er-collapse: collapse;}</style><![endif]--><style type=3D"text/css"><!--
+@media screen and (max-width: 592px) {
+table#main {
+width: 100% !important;
+max-width: 592px;
+}
+#header, #copy, #footer {
+padding-left: 9.8% !important;
+}
+#copy, #footer {
+padding-right: 9.8% !important;
+}
+}
+
+@media screen and (max-width: 591px) {
+#header {
+background-image: url(http://clientfiles.tmpwebeng.com/amazon/110911/images=
+/trapezoids.png);
+background-repeat: no-repeat;
+background-size: contain;
+background-position: right center;
+height: 27.7vw;
+padding-right: 9.8% !important;
+}
+#trapezoids {
+display: none;
+}
+}
+--></style><center style=3D"width: 100%; table-layout: fixed; -webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%;"><div style=3D"max-width: 59=
+2px;"><table id=3D"main" style=3D"margin: 0 auto; width: 592px;" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center"><tbody><tr><td id=
+=3D"header" style=3D"padding: 0 0 0 59px; font-size: 0;" bgcolor=3D"#ff9900=
+"><table style=3D"width: 100%;" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0"><tbody><tr><td style=3D"font-size: 0; text-align: left;"><p style=3D=
+"margin: 16px 0;"><a href=3D"http://www.amazon.com/" target=3D"_blank"><img=
+ title=3D"Amazon.com: Online Shopping for Electronics, Apparel, Computers, =
+Books, DVDs &amp; more" src=3D"http://clientfiles.tmpwebeng.com/amazon/1109=
+11/images/amazon-logo-dark.png" alt=3D"Amazon" width=3D"107" height=3D"32" =
+border=3D"0" /></a></p></td><td id=3D"trapezoids" style=3D"font-size: 0; te=
+xt-align: right;"><img src=3D"http://clientfiles.tmpwebeng.com/amazon/11091=
+1/images/trapezoids.png" alt=3D"" width=3D"204" height=3D"164" /></td></tr>=
+</tbody></table></td></tr><tr><td id=3D"copy" style=3D"padding: 15px 59px 2=
+1px; color: #232f3e; font-family: Arial, sans-serif; font-size: 12px; line-=
+height: 22px; text-align: left;"><h1 style=3D"margin: 30px 0; font-weight: =
+bold; font-size: 18px; line-height: 24px; text-align: center;">Thank you fo=
+r Applying to Amazon!</h1><p style=3D"margin: 0px;">Hello Bhaskar</p><p sty=
+le=3D"margin: 0px;">&nbsp;</p><p style=3D"margin: 0px;">Thank you for consi=
+dering Amazon for the next step in your career. We want to let you know tha=
+t we have received your application for the position of&nbsp;Manager, Suppo=
+rt Engineering -&nbsp; Job:&nbsp;698619, and that it has&nbsp;been provided=
+ to our Recruiting team for consideration.</p><p style=3D"margin: 0px;">&nb=
+sp;</p><p style=3D"margin: 0px;">What happens next?&nbsp; We will look thro=
+ugh the incoming resumes to see which candidates best match our open jobs a=
+nd contact the individuals that we think may be a good fit for the role. Un=
+fortunately, we are unable to personally speak with everyone that applies, =
+but please don't be discouraged if you don't hear from us. You can check on=
+ your application status or update your profile at any time by <a href=3D"h=
+ttps://in-amazon.icims.com/jobs/dashboard" target=3D"_blank">visiting your =
+application profile dashboard</a>.</p><p style=3D"margin: 0px;">&nbsp;</p><=
+p style=3D"margin: 0px;">We appreciate your interest in Amazon.</p><p style=
+=3D"margin: 0px;">&nbsp;</p><p style=3D"margin: 0px;">The Amazon Recruiting=
+ Team</p><p style=3D"margin: 0px;"><span style=3D"font-size: 7pt;">(Please =
+do not reply to this email - we are unable to review and respond to message=
+s at this address.)</span></p></td></tr><tr><td id=3D"footer" style=3D"padd=
+ing: 18px 59px 17px; font-size: 0;" bgcolor=3D"#0f2b3c"><table style=3D"wid=
+th: 100%;" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"><tbody><tr><td =
+style=3D"font-size: 0; text-align: left;"><table style=3D"display: inline-t=
+able;" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"><tbody><tr><td styl=
+e=3D"padding: 0 10px 0 0; font-size: 0;"><a href=3D"https://www.facebook.co=
+m/InsideAmazon/" target=3D"_blank"><img title=3D"Inside Amazon - Home | Fac=
+ebook" src=3D"http://clientfiles.tmpwebeng.com/amazon/110911/images/faceboo=
+k.png" alt=3D"Facebook" width=3D"26" height=3D"26" border=3D"0" /></a></td>=
+<td style=3D"padding: 0 10px 0 0; font-size: 0;"><a href=3D"https://www.lin=
+kedin.com/company/1586/" target=3D"_blank"><img title=3D"Amazon | LinkedIn"=
+ src=3D"http://clientfiles.tmpwebeng.com/amazon/110911/images/linkedin.png"=
+ alt=3D"LinkedIn" width=3D"26" height=3D"26" border=3D"0" /></a></td><td st=
+yle=3D"padding: 0 9px 0 0; font-size: 0;"><a href=3D"https://www.instagram.=
+com/insideamazon/" target=3D"_blank"><img title=3D"Inside Amazon (@insideam=
+azon) &bull; Instagram photos and videos" src=3D"http://clientfiles.tmpwebe=
+ng.com/amazon/110911/images/instagram.png" alt=3D"Instagram" width=3D"26" h=
+eight=3D"26" border=3D"0" /></a></td><td style=3D"font-size: 0;"><a href=3D=
+"https://twitter.com/InsideAmazon" target=3D"_blank"><img title=3D"Inside A=
+mazon (@InsideAmazon) | Twitter" src=3D"http://clientfiles.tmpwebeng.com/am=
+azon/110911/images/twitter.png" alt=3D"Twitter" width=3D"26" height=3D"26" =
+border=3D"0" /></a></td></tr></tbody></table></td><td style=3D"font-size: 0=
+; text-align: right;"><p style=3D"margin: 1px 0 0 20px;"><a href=3D"https:/=
+/www.amazon.jobs/" target=3D"_blank"><img title=3D"Amazon.jobs: Help us bui=
+ld Earth&rsquo;s most customer-centric company." src=3D"http://clientfiles.=
+tmpwebeng.com/amazon/110911/images/amazonjobs-logo-bright.png" alt=3D"Amazo=
+n" width=3D"80" height=3D"19" border=3D"0" /></a></p></td></tr></tbody></ta=
+ble></td></tr></tbody></table></div></center><p style=3D"margin: 0px;">&nbs=
+p;</p><br><hr>This message was sent to unixbhaskar@gmail.com. If you don't =
+want to receive these emails from this company in the future, please go to:=
+<br><a data-notracking=3D"1" href=3D"https://amazon.icims.com/icims2/?r=3D7=
+A7B5368378&contactId=3D113201334&pid=3D1967">https://amazon.icims.com/icims=
+2/?r=3D7A7B5368378&contactId=3D113201334&pid=3D1967</a>
+
+------=_Part_623851_784715058.1536733507466--

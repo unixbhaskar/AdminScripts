@@ -1,0 +1,122 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a05:6512:1086:0:0:0:0 with SMTP id j6csp5407325lfg;
+        Tue, 21 Apr 2020 12:53:36 -0700 (PDT)
+X-Google-Smtp-Source: APiQypL+ONaasA53q1qtGHWu/PXLNsJwHhAjvjotC3kGtkqh+VVQaxJ8fjJhOiW+hCVyTzjFtaio
+X-Received: by 2002:aa7:cd6a:: with SMTP id ca10mr20148861edb.332.1587498816139;
+        Tue, 21 Apr 2020 12:53:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1587498816; cv=none;
+        d=google.com; s=arc-20160816;
+        b=N8T4uueYNAWreDbfbFtfs8/K9iBqBMgt+Zy5AKenZr9CUHux1+psdfB55UiFKX9eSk
+         7TJD2ioWyOK9v/6sOvalj6WbGXfv99clcqp8CkWbOO1nwrKJBw9yQ/gpJXv3afIbcDaq
+         4vkKcHAlsAW6P41BtpZ5KUkZqTht46TdZuARIiPzCiWop7HEoDOVgBfiGGJhwE6g4fIa
+         vKtzuZW90F6dFOb7Qb40LVPNLlR+WaDrjdpqEuEWhTwHMIdUK0QOT0KlIMRgI85ra37+
+         BQORWq7ykPq0xA/a/KJbh0ZfZ/lFuTUQJzZUUknD26OhsLgWChEoLBCqQk8l6zco0Hxe
+         E1IA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding
+         :content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=qGYpXz6VdCPTKs7yYyKCHLyhRb5XfP8CRNgtLy4ommU=;
+        b=R66RytpmpR7x5Gei2GoMbUAa4NCM8G0++6u9Kh/VWUWBIo2T740JzTJWc4mxCUaIvf
+         UkwDAM1svi0/xJ+ukwUvFAv6koyZAKmqCmwyy37phKx4M5cCbxSh/dxkD+1IC82sSocU
+         MSvpGa49S5fAbZlfPPoW+HXcfdn9690ComVhDUTLR3ym5LfKqRERwHfujWS4FrRJ0JCk
+         8R7kZhXoKCASrw2RctO7xNCkZUb/NILZzLZxkNMjTIzEDHRjwRfTodca0HUIM6kMkEnA
+         zNTBuh3/Dzv+WS6/ySf62x33othgnsrLNe2tNTM+QOA/MpWItsJ2gipmRh23acc98HNP
+         P7bA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=Bw7FfE6R;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id a6si2199036eju.62.2020.04.21.12.53.10;
+        Tue, 21 Apr 2020 12:53:36 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@redhat.com header.s=mimecast20190719 header.b=Bw7FfE6R;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=redhat.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726106AbgDUTvw (ORCPT <rfc822;michael.cui29@gmail.com>
+        + 99 others); Tue, 21 Apr 2020 15:51:52 -0400
+Received: from us-smtp-delivery-1.mimecast.com ([205.139.110.120]:54663 "EHLO
+        us-smtp-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725930AbgDUTvv (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 21 Apr 2020 15:51:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1587498710;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=qGYpXz6VdCPTKs7yYyKCHLyhRb5XfP8CRNgtLy4ommU=;
+        b=Bw7FfE6RTuKgjurtcFw7VywuN9Gnvcg7eDmOQZeBUseVx6kpHqoi2BgcAKbmUFwxmoc5cY
+        9fcIHB71HAcAhxKGtwTAFgeWUsnFVbYkoPbId6o79HLNQtSk66d/nbQMUQSzWjqEzkW/AJ
+        38Pf6aPXUvSSBVrR6abVQz/k2F/w2XI=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-152-77OFOxSsMqegJYPXc6u6dg-1; Tue, 21 Apr 2020 15:51:46 -0400
+X-MC-Unique: 77OFOxSsMqegJYPXc6u6dg-1
+Received: by mail-wr1-f69.google.com with SMTP id h95so8257478wrh.11
+        for <linux-kernel@vger.kernel.org>; Tue, 21 Apr 2020 12:51:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=qGYpXz6VdCPTKs7yYyKCHLyhRb5XfP8CRNgtLy4ommU=;
+        b=Gvpu1tIixNWjVT2VSY8Ce7m/ztuP7H6NlHVhKOrglFtA3Ccs5ItUKWpUuTUxHX22uW
+         f6SVNcsMPzZd9EMtBvpYCFFJB+Cyk4xHmntIPLs8cUCRixjJRghzaiW9DoPjyBAJP5aA
+         pIZAJPd/VvaTRUYhNhEYzNNV483XvF0mH5ocAjQR3MNcv1bFHOrQbah1rFUD/wtOBlvp
+         KabNg8fzy8XYWw0HZzr0v7GUrCmE+/9coSbuxZ4r43vhj5HNwBfcxNbwEaIRHoGq8I4R
+         R7wyAgcalf+BcK4/+T9eWB0Jq7INP3cCkKtcz8XhtcdftizzXMzpFg3M8ZwiR7WZvICm
+         w8KQ==
+X-Gm-Message-State: AGi0Pua4zJUNzjIjClFm1w496byHabE0/HbWP/holEeJ6nwVfVKJCWD7
+        jM4cu8m45OIgUYuxKJiwr4hLqn9DfPqxFFuA9S7UFXJsNuODYjpRUaxVD4WO4dUHUhzNWT23Oyz
+        oBGKxSbgeRMXQ7t+xI82WlhDx
+X-Received: by 2002:a1c:9dd1:: with SMTP id g200mr6999170wme.82.1587498705645;
+        Tue, 21 Apr 2020 12:51:45 -0700 (PDT)
+X-Received: by 2002:a1c:9dd1:: with SMTP id g200mr6999153wme.82.1587498705368;
+        Tue, 21 Apr 2020 12:51:45 -0700 (PDT)
+Received: from ?IPv6:2001:b07:6468:f312:f43b:97b2:4c89:7446? ([2001:b07:6468:f312:f43b:97b2:4c89:7446])
+        by smtp.gmail.com with ESMTPSA id d7sm4918133wrn.78.2020.04.21.12.51.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Apr 2020 12:51:44 -0700 (PDT)
+Subject: Re: [GIT PULL] KVM changes for Linux 5.7-rc3
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        KVM list <kvm@vger.kernel.org>
+References: <20200421160651.19274-1-pbonzini@redhat.com>
+ <CAHk-=whVo7CzzjEYp+G7+MjNSg4cURR4SeUTvQSYVBFn3o5TPw@mail.gmail.com>
+From:   Paolo Bonzini <pbonzini@redhat.com>
+Message-ID: <04150cae-6fbf-70c6-d968-b287f478a674@redhat.com>
+Date:   Tue, 21 Apr 2020 21:51:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
+MIME-Version: 1.0
+In-Reply-To: <CAHk-=whVo7CzzjEYp+G7+MjNSg4cURR4SeUTvQSYVBFn3o5TPw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 21/04/20 21:35, Linus Torvalds wrote:
+> On Tue, Apr 21, 2020 at 9:07 AM Paolo Bonzini <pbonzini@redhat.com> wrote:
+>>
+>>   https://git.kernel.org/pub/scm/virt/kvm/kvm.git tags/for-linus
+>>
+>> for you to fetch changes up to 00a6a5ef39e7db3648b35c86361058854db84c83:
+> 
+> Did you perhaps forget to force-update that tag?
+> 
+> That tree still shows the tag from April 7 (that I merged in commit
+> 0339eb95403f).
+
+Oops, yes I did.  /me goes and adds "set -e" to the script.
+
+Paolo
+

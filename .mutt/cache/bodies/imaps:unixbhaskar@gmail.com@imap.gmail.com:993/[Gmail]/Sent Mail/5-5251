@@ -1,0 +1,40 @@
+Date: Tue, 22 Oct 2019 16:22:12 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Subject: Hi two patch are waiting ,should I resend them?
+Message-ID: <20191022105212.GA10142@debian>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gBBFr7Ir9EOA20Yy"
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+
+--gBBFr7Ir9EOA20Yy
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Randy,
+
+Please guide. I have sent two patches , do I have to resend them?=20
+
+Thanks,
+Bhaskar
+
+--gBBFr7Ir9EOA20Yy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl2u31wACgkQsjqdtxFL
+KRUohAf/XYCSrTEFo2KKIVkEopW5zzzfIP9O57+OIYQLNLMqdcVTeX/MyvvfEdw6
+kD3Vntf9tfBQvF8qtT9qgv95r5bUUfSwkXD9NhT+9E8r/h+IdQT8m94AjQHj22uU
+tq8Pd1M5Pt8+J3AegzRT/RbuVhpO/ewpuBXVh8Obs1RsqvjnJTZo9Wrxdd3bgayI
+Ky65dc0QKWF3IztEusNhB2U8l0ugoP/izv6A/k94Z6YCHLjgjpnKAp1nSzStbHVz
+mO05KiymPOLjptoio42mjuKD8zKxmtK1cwkgeXYMMJel3LlRyzoyR7qUjsYd8fz7
+eZTwI6jp0WHSNyarMQsQKaWCOkrNMQ==
+=98UR
+-----END PGP SIGNATURE-----
+
+--gBBFr7Ir9EOA20Yy--

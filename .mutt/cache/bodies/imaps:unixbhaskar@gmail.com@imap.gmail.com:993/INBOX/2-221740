@@ -1,0 +1,112 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:7015:0:0:0:0:0 with SMTP id h21csp5137256lfc;
+        Tue, 4 Feb 2020 03:55:40 -0800 (PST)
+X-Google-Smtp-Source: APXvYqx0txmz0RfUKTeE3Zy+FeqMstyLevEsrxpSjNbBAlwLWN5HFcJCa3jPf6vC5f9tL+zyzuRD
+X-Received: by 2002:a9d:370:: with SMTP id 103mr16640255otv.103.1580817340118;
+        Tue, 04 Feb 2020 03:55:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1580817340; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ElKt1orbg6DhweePbJEceMf1ES/NwtmOqE/QCVLMQomRUyJh18CO7cuhuLIEE61VCQ
+         vvmt7jaIR8HCznp5IplkITPTUiTomdkqpyl/kZnKzOiCcMSVZ9MdARGM8XCew4o8vnP3
+         jkrljFJCmPC3I4QGtS/Mi7ja6BsoY5hsA763KgFJ/Hl5Ax2huixL9Kt6iRMAzHX6+ud2
+         yAMXkKRlG4pU0eoP0BrEb8huB2NXN5fof546y56BhOgBUM2SMYAjMrM19cQOB6amr4BH
+         DZDvxPyEi1NDnWijgKEpR/UZl5xSGt4X4oIrzfxGDThXIIc78mpMOuVckoy+A0sBswVO
+         Q0xQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=yX+ida8pfl0LTkmQBZ8UesmAMvaSo4x+eVGozJlhRbE=;
+        b=BJZkZyB3BcuvM6nz7Olr5KOxTlL97DP9Giz6MpiBs8rpDRdXlRwAU5+SuVXdr2uSe+
+         7byWLnqlRc8ILkw4nBLHer7fWypSiIbbv9rnCftTHHLzgtin97FXiBZZ5sTHVUP3b/gT
+         TTcW7xUsU1FsEuK4TkT7c936i40pzbnZkxC1fJj6tAf/L90W/SD5qdO7ghjV7B4wrVtC
+         CWcfkvhTjuD2cX4XEZ006QBtlJ7t1a4wo3b6Zq7APbJBlS5nvF0U9If7mj+VEizKECzB
+         on9gMGUIwMyAoT/hStq4NnToz00hKj9yGsJeD82f3iZDL7u8TnfjHlH+fGEVq4zzzOED
+         3aFA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=Msx1Lk+g;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id i15si11749453otk.120.2020.02.04.03.55.28;
+        Tue, 04 Feb 2020 03:55:40 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linux-foundation.org header.s=google header.b=Msx1Lk+g;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727168AbgBDLy3 (ORCPT <rfc822;l814699480@gmail.com>
+        + 99 others); Tue, 4 Feb 2020 06:54:29 -0500
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:44994 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727030AbgBDLy3 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Tue, 4 Feb 2020 06:54:29 -0500
+Received: by mail-lf1-f68.google.com with SMTP id v201so11942818lfa.11
+        for <linux-kernel@vger.kernel.org>; Tue, 04 Feb 2020 03:54:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linux-foundation.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yX+ida8pfl0LTkmQBZ8UesmAMvaSo4x+eVGozJlhRbE=;
+        b=Msx1Lk+gS6WK5KpsBIBXAZ6Q+BjDDE6D5RVC5kF4wW7nWes0L0h9qxiZNCWwdTt5Po
+         1uDep+XkjiT7YMZHsV3SVf/SDiOW2mDJCF9LBQDua4wQuOpK5DYKkztX0FV1VyxuNlCz
+         0nulKLN5X+CXcluOmZatBJy0rtpvm9Q2szSCs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yX+ida8pfl0LTkmQBZ8UesmAMvaSo4x+eVGozJlhRbE=;
+        b=OY82Cf1TM8cy0ztMF4/JKzMd4O9a5ik1iH53qK/7K6pHO8Yx3ehgwK+VcD3PBHXwS5
+         RSU54URv1eVcMNstSu4e0c1J/bEsHyv0fSFmGxHAPhOv1DesZxI1Q+9RB2BAbrFMihUI
+         dYfXzRsDrp2gzPFryh4WqcgCZftjtf4EKChUR2f5IliU/ytE0bcUrMUm6n0iJ86vTFkx
+         khAqR8Zm9FXDUrx3yH/w7FFF37YNZayQ7OnQo7fhibWUb4ZoYM+qquDcSZheTi3xQoR2
+         guP2xp/JIKUxnUApy5vAzLo16bK/DqFZZQxuHAGI3KtO0+1Xta7TrYCQJR+Uz1ozPupM
+         GxZA==
+X-Gm-Message-State: APjAAAV1d6X5kj35xF07wCml+0/ZUMOwubySM0dxQE2Sgf+0sSePjLz0
+        s4lMNqc2RtFx7ol65NdXmyH5uKrXt1DvUg==
+X-Received: by 2002:a19:ca59:: with SMTP id h25mr14823818lfj.27.1580817266993;
+        Tue, 04 Feb 2020 03:54:26 -0800 (PST)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
+        by smtp.gmail.com with ESMTPSA id n23sm10341234lfa.41.2020.02.04.03.54.25
+        for <linux-kernel@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Feb 2020 03:54:26 -0800 (PST)
+Received: by mail-lj1-f176.google.com with SMTP id v17so18294798ljg.4
+        for <linux-kernel@vger.kernel.org>; Tue, 04 Feb 2020 03:54:25 -0800 (PST)
+X-Received: by 2002:a2e:580c:: with SMTP id m12mr17424595ljb.150.1580817265630;
+ Tue, 04 Feb 2020 03:54:25 -0800 (PST)
+MIME-Version: 1.0
+References: <20200204053155.127c3f1e@oasis.local.home>
+In-Reply-To: <20200204053155.127c3f1e@oasis.local.home>
+From:   Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Tue, 4 Feb 2020 11:54:09 +0000
+X-Gmail-Original-Message-ID: <CAHk-=wjfjO+h6bQzrTf=YCZA53Y3EDyAs3Z4gEsT7icA3u_Psw@mail.gmail.com>
+Message-ID: <CAHk-=wjfjO+h6bQzrTf=YCZA53Y3EDyAs3Z4gEsT7icA3u_Psw@mail.gmail.com>
+Subject: Re: [GIT PULL] tracing: Changes for 5.6
+To:     Steven Rostedt <rostedt@goodmis.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Tom Zanussi <zanussi@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On Tue, Feb 4, 2020 at 10:32 AM Steven Rostedt <rostedt@goodmis.org> wrote:
+>
+>  - Added new "bootconfig".
+>    Looks for a file appended to initrd to add boot config options.
+>    This has been discussed thoroughly at Linux Plumbers.
+>    Very useful for adding kprobes at bootup.
+
+Is there a way to disable this from the "real" kernel command line?
+
+If I have problems, I want to boot with a known kernel command line
+(forcing text mode etc). If the bootconfig file always gets parsed,
+there's no way to do that from the bootloader (grub2, whatever)..
+
+              Linus

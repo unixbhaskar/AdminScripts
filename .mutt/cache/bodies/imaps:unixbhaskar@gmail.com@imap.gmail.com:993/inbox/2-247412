@@ -1,0 +1,142 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:c3c5:0:0:0:0:0 with SMTP id t188csp2097163lff;
+        Fri, 3 Jul 2020 00:45:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz3dOaXfgjUkDHmDOIqdqHzHnV5/5l8td/mjZP3u7T+6wL+cBPMvg1laQlkMQFSm+iQrT1w
+X-Received: by 2002:a17:906:7208:: with SMTP id m8mr32429329ejk.544.1593762355000;
+        Fri, 03 Jul 2020 00:45:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1593762354; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ntVdpP8fwY4/YN9t6GHG4A/0af68b0QaiwmkdhFE8D9UR2kT1LSIEM+ciTv8h8Aeu7
+         y02dnTaL7eLQ9VPAkLVbEJBStYP3e2NIEwYMZWwo5I4zLi7J+LOqjVg1laR6kHY80VRP
+         X6+cp0yObANZlbgVb8DpIpZOX9uUN6T+plcbzyPAT5hmD8cfNIsvSoueWYrwj+zaNQUA
+         MZOwEWA+YOmEgSEPuSPgM8eDYk6j9lQRRcwwh46z3v6UDWceQS9AWc2qpII1JBWeBvd5
+         PdEF9yY4PSg0jRRvziu0TvrSjbKMKk8rxDMCkqARDk3eZFP+gnqQIeRTJN6PCIWSR1rm
+         4j5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:in-reply-to
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:dkim-signature;
+        bh=YMA1iG2DR+aP68KXSdCOsvrFA0oomq7Nb72Iy6OynAc=;
+        b=UsT20tMX0Of9qVM8Lq4GURA/OvUyUvPSEAhtG62xWWOx4OxUMgQZvBbDUfFa4cP47c
+         DPyfNnjUfPZBnwYAsr+pg6vowH5aDjiLQaLuXSMAlveq8ur//aFopQxeDjoRCAwth2xL
+         Qr0wCBjDGC4oRRAz90HmEmnSK2tWsQ9lqUqCL8IMPp/sUOhfyapf5U8tGCgVjDbcE7zb
+         A7Y1OmHkj8uIpsSXeH+3jOR7uojc8wN3WQngUzGp7q38c6zNpugawvD03gbCbhtAElDK
+         m8sM3agNmpIBgU1pn9crgLkQE6VT8HPSM2sDQ3ROLf+l/uX7DRasb+VZpsdGzpdQ7EBg
+         iKAw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linaro.org header.s=google header.b=eOjpfDnU;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [23.128.96.18])
+        by mx.google.com with ESMTP id gw16si7651761ejb.274.2020.07.03.00.45.32;
+        Fri, 03 Jul 2020 00:45:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) client-ip=23.128.96.18;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linaro.org header.s=google header.b=eOjpfDnU;
+       spf=pass (google.com: domain of linux-kernel-owner@vger.kernel.org designates 23.128.96.18 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=linaro.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1726504AbgGCHn7 (ORCPT <rfc822;2014014876lha@gmail.com>
+        + 99 others); Fri, 3 Jul 2020 03:43:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37274 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726428AbgGCHn5 (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Fri, 3 Jul 2020 03:43:57 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12F37C08C5C1
+        for <linux-kernel@vger.kernel.org>; Fri,  3 Jul 2020 00:43:57 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id m22so4357537pgv.9
+        for <linux-kernel@vger.kernel.org>; Fri, 03 Jul 2020 00:43:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=YMA1iG2DR+aP68KXSdCOsvrFA0oomq7Nb72Iy6OynAc=;
+        b=eOjpfDnUhW2ER3jbX+CxmRW1kTHS4ha9+B04YjM9WkSWY+zXrVbJT2nho+GrVniC88
+         BnCjbPqTEu6VpWFtFGMj8bLBasFsETuYhAbwBNQCzQFS7/Vb+t1pLMbXFG835Zj+IsRL
+         0W4UyF6ZzUUbTTsMtdXLYyxRplXcQDfKVICAn/Few/slDEK1DkowMQLsI/xXyPvDgh5c
+         l5elsPzMyrdTcr9fRdsfHJcByOUqB70ZECB//QgmXcR/LBlYIPBy314lkiaUv/SDGmeh
+         hiuDlBOP9XLlVd7AXYw11Cei7ORRt06qDlfLL14hhhgAbJmIEOQbm9V+1tOSQeCRD51I
+         TVvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=YMA1iG2DR+aP68KXSdCOsvrFA0oomq7Nb72Iy6OynAc=;
+        b=BMpKpLoO0OaQhiAmzPMqOYwallHr/tei0YheaRcp1WZOVkHHBr2jhrMuuFGT6lLp7O
+         nLHPPm2c93E3tf3S3joYcmiNa6Md1Wk4aZgh1OUfmbRREd20J2BLlwaP7M6br61ch/rs
+         77Izi6F/3bZ0c/BSjA2lq100b05L9t4FMIJ3MgltO1395/flOyip5nqK8O+TrY7j1yzZ
+         o85mxUVcOdilksLvOXOh5aeNk5FZqgh9yPvhV7F3vxg2p6k7tvOzVWwIQHCacc/mPnZW
+         wRv1byojkzQWp2aggGC0UrN55VmgiSRTEXK///U9wblhORMkkR6HroM9ymK8HaWbeePR
+         JMmA==
+X-Gm-Message-State: AOAM5338fByE2Kba0AovQ57vLPJcAYOErRAuMCELqy+Gq0+9YG355mUQ
+        tAJjZjNcas6Ua8CxEEIAjl02aA==
+X-Received: by 2002:a65:63c4:: with SMTP id n4mr15600593pgv.230.1593762236641;
+        Fri, 03 Jul 2020 00:43:56 -0700 (PDT)
+Received: from localhost ([122.172.40.201])
+        by smtp.gmail.com with ESMTPSA id 73sm10987491pfy.24.2020.07.03.00.43.55
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 03 Jul 2020 00:43:55 -0700 (PDT)
+Date:   Fri, 3 Jul 2020 13:13:54 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     stable@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ingo Molnar <mingo@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>
+Subject: Re: [FOR-STABLE-3.9+] sched/rt: Show the 'sched_rr_timeslice'
+ SCHED_RR timeslice tuning knob in milliseconds
+Message-ID: <20200703074354.btmylgn5mxhbxywc@vireshk-i7>
+References: <ffdfb849a11b9cd66e0aded2161869e36aec7fc0.1593757471.git.viresh.kumar@linaro.org>
+ <20200703074025.GA2390868@kroah.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200703074025.GA2390868@kroah.com>
+User-Agent: NeoMutt/20180716-391-311a52
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+On 03-07-20, 09:40, Greg KH wrote:
+> On Fri, Jul 03, 2020 at 12:54:04PM +0530, Viresh Kumar wrote:
+> > From: Shile Zhang <shile.zhang@nokia.com>
+> > 
+> > We added the 'sched_rr_timeslice_ms' SCHED_RR tuning knob in this commit:
+> > 
+> >   ce0dbbbb30ae ("sched/rt: Add a tuning knob to allow changing SCHED_RR timeslice")
+> > 
+> > ... which name suggests to users that it's in milliseconds, while in reality
+> > it's being set in milliseconds but the result is shown in jiffies.
+> > 
+> > This is obviously confusing when HZ is not 1000, it makes it appear like the
+> > value set failed, such as HZ=100:
+> > 
+> >   root# echo 100 > /proc/sys/kernel/sched_rr_timeslice_ms
+> >   root# cat /proc/sys/kernel/sched_rr_timeslice_ms
+> >   10
+> > 
+> > Fix this to be milliseconds all around.
+> > 
+> > Cc: <stable@vger.kernel.org> # v3.9+
+> > Signed-off-by: Shile Zhang <shile.zhang@nokia.com>
+> > Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+> > Cc: Linus Torvalds <torvalds@linux-foundation.org>
+> > Cc: Mike Galbraith <efault@gmx.de>
+> > Cc: Peter Zijlstra <peterz@infradead.org>
+> > Cc: Thomas Gleixner <tglx@linutronix.de>
+> > Link: http://lkml.kernel.org/r/1485612049-20923-1-git-send-email-shile.zhang@nokia.com
+> > Signed-off-by: Ingo Molnar <mingo@kernel.org>
+> > Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> 
+> What is the git commit id of this patch in Linus's tree?
+
+I am really sorry for missing the only thing I was required to do :(
+
+commit 975e155ed8732cb81f55c021c441ae662dd040b5 upstream.
+
+-- 
+viresh

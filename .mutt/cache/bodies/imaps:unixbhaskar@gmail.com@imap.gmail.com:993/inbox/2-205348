@@ -1,0 +1,87 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2643706lfj;
+        Sat, 12 Oct 2019 15:57:14 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqwIjrezCIR5/0WwFBhET59bkyTKVTe3jJqxB9qUtpdeMHsBC00JplA58CvpS0dE0QV4sXY7
+X-Received: by 2002:a17:906:6011:: with SMTP id o17mr20571680ejj.172.1570921034044;
+        Sat, 12 Oct 2019 15:57:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1570921034; cv=none;
+        d=google.com; s=arc-20160816;
+        b=bDZyp36PLRoTtKsafwQHAOGZP3BkxubxXMXU8g/O1xI4y/mGDVuZKs2EgYj8BpN8AS
+         zDU4+btiAzSNWcJ9hLPYnMphYf8n4vq+IIXvF8RTuqso8seEH2CheoMeQ6ea1D4zTMol
+         nHVvDwSNuDY2jB9pusLmi/3mw4VSaAU0wAYVagxzVkdIEnlk2fasHhteezlF9QqgPceo
+         P1TI5mfeutjOlTmd7E1IGNEcDglFASprgAzfQHEw18VbdAcTNbAqzp8ZTULfHPeOZ7u3
+         jWWWkJ+8lHkqdocZ+bqa6FAvip3aJTgIS2PSnUOKVx+Hmxx+6EDF4Bb5RKWe9eI4Gu7d
+         etOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:date:message-id:references
+         :in-reply-to:from:dkim-signature:subject;
+        bh=vGH5A1uY95nI0X+wOspoCvYPyNRz64sN4+B0ZvZefWg=;
+        b=hBVXQjPlC7OnUfPczBciDV9YOoxE1kToZwO4cK8worbRy5I3Tzg1u/UQX4bbU7TRKW
+         k3Eo4ngMK2+iUe3BAyxc4s3fP2RyUl3l74CmAOCHya4KiaPfliqOUYmxMH8jUNVzjQLT
+         edntMzorCekwfWAfAsdd08H2ltYiOBJjhKVsS8QZYENekU+Izb9Sl5PTJIFI4ge0AJw4
+         nzcExOR2MBdPPPJ+6gSDLbGrr0u8Cu+34S6XmHj9SP+Shsr9fwvlQfEwecZcyhfY7Jxp
+         c2moaSJF499HIIQVRGblp782WMMfL6DJ+qzr9SwopDyTFAtNdFDKO2wAVy47843OkD4W
+         j88A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=qXbdaLC1;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id h20si8750313edb.218.2019.10.12.15.56.51;
+        Sat, 12 Oct 2019 15:57:14 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@kernel.org header.s=default header.b=qXbdaLC1;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728931AbfJLWzN (ORCPT <rfc822;freewind2017@gmail.com>
+        + 99 others); Sat, 12 Oct 2019 18:55:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47512 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727149AbfJLWzH (ORCPT <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 12 Oct 2019 18:55:07 -0400
+Subject: Re: [GIT PULL] Staging/IIO driver fixes for 5.4-rc3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1570920906;
+        bh=+kDNnono7fghKBdBViHtWpIDg48gaQ18KzFvLJjlr5M=;
+        h=From:In-Reply-To:References:Date:To:Cc:From;
+        b=qXbdaLC1DParKBYtjxovbMcRWEJRV+WS12Tb5c8brNLFnYtA2pGkKEljB/Fo6ZHNR
+         OAH8zwtOm5xDcWbdcHN37mDmcFpFy+O1rku4RHYJ14hjnZriuM/LpPvdC0RdN/WMxc
+         8gtD1Gc+vsYojHkcIa4FLlMQkxHQQwyZUak4qHEQ=
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20191012161638.GA2191707@kroah.com>
+References: <20191012161638.GA2191707@kroah.com>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20191012161638.GA2191707@kroah.com>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
+ tags/staging-5.4-rc3
+X-PR-Tracked-Commit-Id: 3f3d31622a2c18b644328965925110dd7638b376
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 9cbc63485fd5e25cef5d64c28ca3318364073773
+Message-Id: <157092090667.32460.17224656135812760716.pr-tracker-bot@kernel.org>
+Date:   Sat, 12 Oct 2019 22:55:06 +0000
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        devel@linuxdriverproject.org, linux-kernel@vger.kernel.org
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+The pull request you sent on Sat, 12 Oct 2019 18:16:38 +0200:
+
+> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git tags/staging-5.4-rc3
+
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/9cbc63485fd5e25cef5d64c28ca3318364073773
+
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/prtracker

@@ -1,0 +1,113 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:8c56:0:0:0:0:0 with SMTP id i22csp2383762lfj;
+        Sat, 31 Aug 2019 13:46:29 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyeWJD5qfMmWJ3yllOcKlQpHYxmX0yoBk0+UlLrLmmhetZn5vAiZZ4bqDJU6hb1p0HCSwUx
+X-Received: by 2002:a17:902:be12:: with SMTP id r18mr21587416pls.341.1567284389624;
+        Sat, 31 Aug 2019 13:46:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1567284389; cv=none;
+        d=google.com; s=arc-20160816;
+        b=DkFRM55M+mSrJtaiNsXRc2uV+rcgf/krgNV5tgaU11OodLz63y6aq0aTmSUidfgtft
+         qh/IDfAbEhfxoJ5EKVjHmf3rQ0LHyEdTPqhVcvMyP89uvfddobrqRwBxrcnS8zhRii6A
+         nHTqTAqDn+llqzPV/doFRMiW0xr7NjF2DmQ7e31IP58ldbcnD9v2oYVba4zdIOch+0DI
+         EwWQgtjL4h8KEMZ0ubtWQBs8FKdg2xNcvyBtNjOPj5OQG5iCmGidfe5QYUzOJr7+JDLh
+         JlX6S4PKPQO7X1KOYIsm4J1R6TQ8OgaJdzohKRRJTsCBt0WiKhYpbt1gq7aUn0PgaoXn
+         OOjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:user-agent:content-disposition
+         :mime-version:message-id:subject:cc:to:from:date;
+        bh=Y+AmtBomDnWC/ZAcDYZsWdiJ2eoR1cTsyz9phCUc0P4=;
+        b=lTMjTMpOF6nx+OtvIMcijdzfYQpMLkMldRcNBeC0qaG/vuc+9antPxubRuqwp6YD8j
+         hHCai1DF/N7raoK5Nm2wFmYm9XCguhSH8EBmyhrhtl6sdjOIml15q9bew6f7yMan+9MN
+         loQeHka0DuebK06odykQhXWtJUiJecTT22QiirShUwbgCVdyM8sIDe7Nyzx0ckPmFltN
+         mBx8z7CTC2t/HVVObFQd5OaFbehhPDMTjW1duebyr1N/OMd7dzx/N49ZJDNzUwh9YK8u
+         T3mYuIU2H8VTi7wKeYlBu9A+eSOHn7z0KqDmuUfPirDYJ9nQmQqJUsyGwWgRkx2UtHkx
+         msLw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id x26si9792986pfq.258.2019.08.31.13.46.01;
+        Sat, 31 Aug 2019 13:46:29 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728590AbfHaUpb (ORCPT <rfc822;cafebabe4fun@gmail.com>
+        + 99 others); Sat, 31 Aug 2019 16:45:31 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:46508 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728534AbfHaUpb (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sat, 31 Aug 2019 16:45:31 -0400
+Received: by mail-pg1-f195.google.com with SMTP id m3so5237148pgv.13
+        for <linux-kernel@vger.kernel.org>; Sat, 31 Aug 2019 13:45:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=Y+AmtBomDnWC/ZAcDYZsWdiJ2eoR1cTsyz9phCUc0P4=;
+        b=JgSeGcUBitfm92KGJ9u5xtRpypW+5MGZZuajaKrAkpIuNmFa8pCsIGqdhtQpnpKljf
+         TXUJm8BX81fHv3ykVhjGtu4hOwHuWRVM0ujm9PXeS3K9qlWcY0PqkmeYwTDMxJ9bx708
+         oIWpuRZSSMs6g1y99ThTwDCWV0+Nbo4+3lXiXIucIha6PfJHJ3rZVBfHsWjdycp6Vf9p
+         vYCBZvDBZM6+wBGkB0LY/EQeS6bLORjKKpX0ux4Uy//LZR/IsIB9RKlqijtGMVDulfIa
+         3gPwyNYz7ZTewIa8iEYC7PxdWSCE7BqEdhW6iWfU2OyawVksceOP2IMjZnb3k5fq3Z/R
+         ClxA==
+X-Gm-Message-State: APjAAAWusZ1KSTMnu39yfPsLnI0ZXQDJqY48bpnLajCjsElAKDgySbBS
+        aXmKXR+foTCm5Y56qREctN64CA==
+X-Received: by 2002:a63:10a:: with SMTP id 10mr18787046pgb.281.1567284330418;
+        Sat, 31 Aug 2019 13:45:30 -0700 (PDT)
+Received: from localhost ([2601:647:5b80:29f7:1bdd:d748:9a4e:8083])
+        by smtp.gmail.com with ESMTPSA id y8sm11984604pfe.146.2019.08.31.13.45.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 31 Aug 2019 13:45:29 -0700 (PDT)
+Date:   Sat, 31 Aug 2019 13:45:28 -0700
+From:   Moritz Fischer <mdf@kernel.org>
+To:     gregkh@linuxfoundation.org
+Cc:     linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org
+Subject: [GIT PULL] Please pull FPGA Manager changes for 5.4
+Message-ID: <20190831204528.GA23936@archbox>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+The following changes since commit 2949dc443116a66fd1a92d9ef107be16cdd197cd:
+
+  dt-bindings: fpga: Consolidate bridge properties (2019-07-24 14:19:15 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/mdf/linux-fpga.git/ tags/fpga-cvp-for-5.4
+
+for you to fetch changes up to e58915179f3f4a839ea3b9aeae1c1e13e98e33b1:
+
+  fpga: altera-cvp: Add Stratix10 (V2) Support (2019-08-24 11:38:29 -0700)
+
+----------------------------------------------------------------
+FPGA Manager changes for 5.4-rc1
+
+Here is the second set of changes for the 5.4 merge window.
+
+This patchset adds support for the v2 revision of Intel (Altera)'s CVP
+parts including the Stratix 10.
+
+All of this patches have been reviewed and been in the last few
+linux-next releases without issues.
+
+Signed-off-by: Moritz Fischer <mdf@kernel.org>
+
+----------------------------------------------------------------
+Thor Thayer (3):
+      fpga: altera-cvp: Discover Vendor Specific offset
+      fpga: altera-cvp: Preparation for V2 parts.
+      fpga: altera-cvp: Add Stratix10 (V2) Support
+
+ drivers/fpga/Kconfig      |   6 +-
+ drivers/fpga/altera-cvp.c | 339 ++++++++++++++++++++++++++++++++++++----------
+ 2 files changed, 271 insertions(+), 74 deletions(-)

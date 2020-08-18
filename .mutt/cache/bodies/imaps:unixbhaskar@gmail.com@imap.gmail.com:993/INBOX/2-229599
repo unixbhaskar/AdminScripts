@@ -1,0 +1,155 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:4c88:0:0:0:0:0 with SMTP id z130csp3666481lfa;
+        Sun, 22 Mar 2020 20:35:08 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vsGtb6OZHt2ZOPiGAE9eGWc3EYt0Z/YEIVxZ+SH+aEgwxt91zPmhRcsnuVU9FoTG6rdPGen
+X-Received: by 2002:aca:4fcc:: with SMTP id d195mr16477044oib.99.1584934508009;
+        Sun, 22 Mar 2020 20:35:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1584934508; cv=none;
+        d=google.com; s=arc-20160816;
+        b=J2J644+yg4N9GIj54av/vYU5RzqjaLnmyRhip4bvDTMjWU0LgbNKApu62MYyFhOe77
+         BVaRttDSjp3rv+wH36Rj2NuynHKgSncsSY0XQuZ4JrqvJ9kdhIg0xZ6rfT2DgIqjNEVg
+         tQO6/sTDQjUH9HJvwIYr0/sicdrke9nR6qK5CwskUOaCAMTFQsLO27kVG2BXSZq0hhb2
+         l3ag+czPP+dJEnFMZPLbxddmrewKmCtDo5dPUY5wWae0PXreea5yyfTq/UTv4xCSmZnQ
+         z4VRIvC3UE4kZqMtLtcEm2PX2pulC/zn3uKhzFYiUhPAFqyG9PMyoVkndhtpjBvEGC2H
+         i4qQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:cc:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=fVeSqe6WLUik8YqlISLlzVYFaPVNJoGzH5CdvUMY7Mg=;
+        b=iIUpsLvN5cJE3T4BAXBq+pc3SJka3nt2ze9p8N7NTNf3FzWiAEmiyxkLQsx7srSG9z
+         De2HEACXnJ9Sb2AnYVgtRhVYjwoVechMsMfLzrfiqweq9wMiJ1pcIHt3TAOW1Gf2IYT+
+         aDudItLYEAqWgf9BJP/jioDJSD63ZPzGg+mg/3Yl7RRpSsv8Jzu5Q5SsSUcgjz73bKyS
+         lirjG6zMzd4GC26HQXL6gzMWhGnywbiOfWjITecfj8xsRP8PRlrY2SG0rju0Jt9WdXID
+         zREV1FJH391xzpxQeP/9kR5U91Ydr6pAlhkO7rInjtV9QOkYAqQgOwT8HPdECRItX73d
+         4ang==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b="GYG5N/Fn";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id w31si6599188otb.59.2020.03.22.20.35.05;
+        Sun, 22 Mar 2020 20:35:07 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b="GYG5N/Fn";
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1727102AbgCWDeR (ORCPT <rfc822;beyondssmith@gmail.com>
+        + 20 others); Sun, 22 Mar 2020 23:34:17 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:38737 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726979AbgCWDeQ (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 22 Mar 2020 23:34:16 -0400
+Received: by mail-lj1-f195.google.com with SMTP id w1so12928507ljh.5
+        for <linux-kernel@vger.kernel.org>; Sun, 22 Mar 2020 20:34:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=fVeSqe6WLUik8YqlISLlzVYFaPVNJoGzH5CdvUMY7Mg=;
+        b=GYG5N/FnCemSWnoHlBQ/q/1hv8MVIo1L2tt3+lDvezBTJLCJBdS83ODR2HyQMD5HjQ
+         avbRqtK9J07v7f32Ri8yyxeC16hdcC2Rt8yAK8TTIIXRROparEliR3hWR4ate36dpqwy
+         kGmVKZpy/xagQNn3YJMdAtGQzh4CgVzD6Gi043z3ywLT2OVzi+G9G3OxeODtaDDS6I0L
+         q431banXrcibH7UbzFzFwURwYwxH6CpN/YUvN3p2C8Hk0KyXQ4ZBXMochDeSc8YoNCtv
+         n4wn+RSt6HH87+QKZSOXG2sDRZfyZy0HKiUc/ifrwjZXu5lKksGKgfO7FJ+6LTCXAL7V
+         I0Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=fVeSqe6WLUik8YqlISLlzVYFaPVNJoGzH5CdvUMY7Mg=;
+        b=Jdp2c4CLBMNCjNKjTYRQOUzC1G2C+QVWdDcARi6TMhQisBr3oH3jMMLw4XjsJYF82A
+         V8sxVbX9BT8zDLwcCkQzfaGxQ2SsQ8LzZskLFN9ZAMSDfKgSp14wfmPIHZjMK00eZEAR
+         37CqBo4i9iCfhW2ZO8J6vp9g779tco64p0zV4tqtP/kJxiaj//4F4KYYbhEnGnx9inlv
+         xgK3FhzN2JIXhdlBGFN/Vx5wvuHYyFtb/Pbrw8Ha8b8Aj9hBXZ/PFz6mvNtCxiyVo5O4
+         I/6ZhY/kD7RrJsq7zG6Kr68gYMmiHTdnj1nNRzdo4Xapvgv8EmzHxdtJfm7Dc+5ykVcf
+         2bZA==
+X-Gm-Message-State: ANhLgQ21r/c0kpod54IViYlpileKREdU9Pckodv0dCVsMzOPOLr1ySPh
+        Ig7MyzIYdW5j+0bYvlZT/SDSrG5Q7hBBy79OkiI2NA==
+X-Received: by 2002:a2e:9d84:: with SMTP id c4mr12648082ljj.51.1584934452677;
+ Sun, 22 Mar 2020 20:34:12 -0700 (PDT)
+MIME-Version: 1.0
+From:   Kyungtae Kim <kt0755@gmail.com>
+Date:   Sun, 22 Mar 2020 23:34:01 -0400
+Message-ID: <CAEAjamv3wT4aqF0y1_PHG_=cbzH-ATsP6TiV5Zt5Qc+ACVnOPw@mail.gmail.com>
+Subject: UBSAN: Undefined behaviour in drivers/tty/vt/keyboard.c
+To:     Greg KH <gregkh@linuxfoundation.org>, jslaby@suse.com,
+        slyfox@gentoo.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        rei4dan@gmail.com
+Cc:     Dave Tian <dave.jing.tian@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+We report a bug (in linux-5.5.11) found by FuzzUSB (modified version
+of syzkaller)
+
+Seems the variable "npadch" has a very large value (i.e., 333333333)
+as a result of multiple executions of the function "k_ascii" (keyboard.c:888)
+while the variable "base" has 10.
+So their multiplication at line 888 in "k_ascii" will become
+larger than the max of type int, causing such an integer overflow.
+
+I believe this can be solved by checking for overflow ahead of operations
+e.g., using check_mul_overflow().
+
+kernel config: https://kt0755.github.io/etc/config_v5.5.11
+
+==================================================================
+UBSAN: Undefined behaviour in drivers/tty/vt/keyboard.c:888:19
+signed integer overflow:
+10 * 333333333 cannot be represented in type 'int'
+CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.5.11 #2
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS
+1.10.2-1ubuntu1 04/01/2014
+Call Trace:
+ <IRQ>
+ __dump_stack lib/dump_stack.c:77 [inline]
+ dump_stack+0xce/0x128 lib/dump_stack.c:118
+ ubsan_epilogue+0xe/0x30 lib/ubsan.c:154
+ handle_overflow+0x141/0x150 lib/ubsan.c:184
+ __ubsan_handle_mul_overflow+0x2a/0x40 lib/ubsan.c:205
+ k_ascii+0xbf/0xd0 drivers/tty/vt/keyboard.c:888
+ kbd_keycode drivers/tty/vt/keyboard.c:1477 [inline]
+ kbd_event+0x85d/0x3b90 drivers/tty/vt/keyboard.c:1495
+ input_to_handler+0x3a9/0x4b0 drivers/input/input.c:118
+ input_pass_values.part.8+0x25e/0x690 drivers/input/input.c:145
+ input_pass_values drivers/input/input.c:181 [inline]
+ input_repeat_key+0x1fa/0x2e0 drivers/input/input.c:193
+ call_timer_fn+0x226/0x7a0 kernel/time/timer.c:1404
+ expire_timers kernel/time/timer.c:1449 [inline]
+ __run_timers kernel/time/timer.c:1773 [inline]
+ run_timer_softirq+0x661/0x13e0 kernel/time/timer.c:1786
+ __do_softirq+0x262/0xb46 kernel/softirq.c:292
+ invoke_softirq kernel/softirq.c:373 [inline]
+ irq_exit+0x161/0x1b0 kernel/softirq.c:413
+ exiting_irq arch/x86/include/asm/apic.h:546 [inline]
+ smp_apic_timer_interrupt+0x137/0x500 arch/x86/kernel/apic/apic.c:1146
+ apic_timer_interrupt+0xf/0x20 arch/x86/entry/entry_64.S:829
+ </IRQ>
+RIP: 0010:default_idle+0x2d/0x2e0 arch/x86/kernel/process.c:700
+Code: e5 41 57 41 56 65 44 8b 35 78 c6 5c 7a 41 55 41 54 53 0f 1f 44
+00 00 e8 91 dd a3 fb e9 07 00 00 00 0f 00 2d 85 48 5d 00 fb f4 <65> 44
+8b 35 53 c6 5c 7a 0f 1f 44 00 00 5b 41 5c 41 5d 41 5e 41 5f
+RSP: 0018:ffffffff87007ce8 EFLAGS: 00000292 ORIG_RAX: ffffffffffffff13
+RAX: 0000000000000007 RBX: ffffffff87032700 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: 0000000000000006 RDI: ffffffff87032f4c
+RBP: ffffffff87007d10 R08: fffffbfff0e064e1 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: ffffffff88c37a80 R14: 0000000000000000 R15: 0000000000000000
+ arch_cpu_idle+0xa/0x10 arch/x86/kernel/process.c:690
+ default_idle_call+0x50/0x70 kernel/sched/idle.c:94
+ cpuidle_idle_call kernel/sched/idle.c:154 [inline]
+ do_idle+0x345/0x550 kernel/sched/idle.c:269
+ cpu_startup_entry+0x18/0x20 kernel/sched/idle.c:361
+ rest_init+0x240/0x3d0 init/main.c:451
+ arch_call_rest_init+0xe/0x1b
+ start_kernel+0x81c/0x858 init/main.c:785
+ x86_64_start_reservations+0x2a/0x2c arch/x86/kernel/head64.c:490
+ x86_64_start_kernel+0x77/0x7a arch/x86/kernel/head64.c:471
+ secondary_startup_64+0xa4/0xb0 arch/x86/kernel/head_64.S:242
+==================================================================

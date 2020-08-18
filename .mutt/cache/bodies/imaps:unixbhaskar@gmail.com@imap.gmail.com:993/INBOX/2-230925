@@ -1,0 +1,100 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:4c88:0:0:0:0:0 with SMTP id z130csp2141802lfa;
+        Sun, 29 Mar 2020 19:38:19 -0700 (PDT)
+X-Google-Smtp-Source: ADFU+vvCaDwqL86fC4A+htcxaBE0+O17JbOaasjZKVwt3i44IRuSQSAg3IWwS6vXrdkDHVIMvCK9
+X-Received: by 2002:aca:ec16:: with SMTP id k22mr6310688oih.177.1585535899397;
+        Sun, 29 Mar 2020 19:38:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585535899; cv=none;
+        d=google.com; s=arc-20160816;
+        b=JEvgOEyI4LkIEQkFjtidzOjlxih3UaVMlEzz9UDFMYPTtO6XeGOCr74NqlOMgQZ/+g
+         Pi8KFaoiObOT1UtBP7vf8nHugzjzi/rDZIrv2QuyvZiYKcxP39KuqnCC/jYdfGUQBqmQ
+         MC2oWv8kaFqRS9b/ELf9ZH0cgSfshuXkLlhUeNcccDdfVzYYM3tnXA3Hr2OyXoC2pXBh
+         Nbhr8m2f+OnqXnqbyy5GR0X/6aCZMw+FrxtLMNUtm4pH130m/cT2D5mWImakVbFjwb4i
+         62QcMb2ebfYfO3C1wey65C/2VBwttoEcnzSAXswhcY023psumAEi6He4SX41KgZNnDE2
+         eukw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:precedence:sender:content-transfer-encoding:mime-version
+         :user-agent:date:cc:to:from:subject:message-id;
+        bh=kIzoAYFj51S7qF5IK9iaSXeAa9CyH8z+Se+AyZiPAY4=;
+        b=qgsX23zl6SFL5rQN4hdV1CWMo5nV7vlLhZvPrdr6SHkiXMETuQj/NZ+AntpATG8k0r
+         rCNUMSErfExuyGsSSC9+74AOFPfen10RYap7FKFMSzr4mdVbqbn/G7MHs2BIQHvhJwxk
+         U86SiDgyUSD5ZAqIzryR44Z3SGe0pZmmuBhyQxT3+OxS6xhsWs09jZnz63P2PXOGT/aO
+         LP2wQSnwPeYktTm6p71o84re+PNnoiQns4KJ159DmkovJltlksgo4dflw5u1mFd7Yboh
+         8/ylX0ZNME1u0YxI/A+wWH5WYFZJ0xXnstyd6eRsbkA8A7m3eCHwCdVaaZpQkbTF3MsW
+         XwrA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Return-Path: <linux-kernel-owner@vger.kernel.org>
+Received: from vger.kernel.org (vger.kernel.org. [209.132.180.67])
+        by mx.google.com with ESMTP id n4si5220771oie.121.2020.03.29.19.38.06;
+        Sun, 29 Mar 2020 19:38:19 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) client-ip=209.132.180.67;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of linux-kernel-owner@vger.kernel.org designates 209.132.180.67 as permitted sender) smtp.mailfrom=linux-kernel-owner@vger.kernel.org
+Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
+        id S1728950AbgC3ChS (ORCPT <rfc822;cafebabe4fun@gmail.com>
+        + 99 others); Sun, 29 Mar 2020 22:37:18 -0400
+Received: from smtprelay0140.hostedemail.com ([216.40.44.140]:56806 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728202AbgC3ChS (ORCPT
+        <rfc822;linux-kernel@vger.kernel.org>);
+        Sun, 29 Mar 2020 22:37:18 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay04.hostedemail.com (Postfix) with ESMTP id 7D4E8180A8CA9;
+        Mon, 30 Mar 2020 02:37:17 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 50,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:599:967:973:982:988:989:1260:1277:1311:1313:1314:1345:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2198:2199:2393:2525:2561:2564:2682:2685:2731:2828:2859:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3352:3865:3866:3867:3868:3870:3871:3872:3873:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:5007:7903:8985:9025:9121:10004:10400:11233:11658:11914:12043:12297:12555:12663:12679:12760:12986:13069:13161:13229:13311:13357:13439:13868:14096:14097:14181:14659:14721:21080:21451:21627:21740:21749:21811:21987:30054:30056:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:1,LUA_SUMMARY:none
+X-HE-Tag: event23_79c1558705c46
+X-Filterd-Recvd-Size: 1860
+Received: from XPS-9350.home (unknown [47.151.136.130])
+        (Authenticated sender: joe@perches.com)
+        by omf14.hostedemail.com (Postfix) with ESMTPA;
+        Mon, 30 Mar 2020 02:37:16 +0000 (UTC)
+Message-ID: <f53fdf2283e1c847a4c44ea7bea4cb6600c06991.camel@perches.com>
+Subject: re: commit  23cb8490c0d3 ("MAINTAINERS: fix bad file pattern")
+From:   Joe Perches <joe@perches.com>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Date:   Sun, 29 Mar 2020 19:35:22 -0700
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.34.1-2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Sender: linux-kernel-owner@vger.kernel.org
+Precedence: bulk
+List-ID: <linux-kernel.vger.kernel.org>
+X-Mailing-List: linux-kernel@vger.kernel.org
+
+   MAINTAINERS: fix bad file pattern
+    
+    Testing 'parse-maintainers' due to the previous commit shows a bad file
+    pattern for the "TI VPE/CAL DRIVERS" entry in the MAINTAINERS file.
+    
+    There's also a lot of mis-ordered entries, but I'm still a bit nervous
+    about the inevitable and annoying merge problems it would probably cause
+    to fix them up.
+    
+    The MAINTAINERS file is one of my least favorite files due to being huge
+    and centralized, but fixing it is also horribly painful for that reason.
+
+The identical commit was sent at least twice.
+Once directly to you.
+
+https://patchwork.kernel.org/patch/11361131/
+https://lore.kernel.org/linux-media/20200128145828.74161-1-andriy.shevchenko@linux.intel.com/
+
+
+About the pain associated to fixing the file:
+I think it would be minimally painful to run
+
+$ ./scripts/parse-maintainers.pl --input=MAINTAINERS --output=MAINTAINERS --order
+
+Immediately before an -rc1 is released.
+
+Relatively few of any pending patches to MAINTAINERS
+in -next would be impacted and there would be better
+consistency in the silly file.
+
+

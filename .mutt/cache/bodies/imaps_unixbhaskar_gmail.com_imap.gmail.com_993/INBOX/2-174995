@@ -1,0 +1,475 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:5211:0:0:0:0:0 with SMTP id m17csp770866lfb;
+        Wed, 3 Apr 2019 14:15:02 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx0VlzOPRGlKu6Zprka+jTAtmOEADAadD2PLyblb4rItv5MqxiVFmTOQ3B3XGvVpCebW1Ga
+X-Received: by 2002:a50:cac1:: with SMTP id f1mr1181488edi.74.1554326102821;
+        Wed, 03 Apr 2019 14:15:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1554326102; cv=none;
+        d=google.com; s=arc-20160816;
+        b=pN+zTjHLczEeFgvdPlZUF1K/MOW2GDP9sY5Ek+dTWaTOddaREoAzm2pXJmT5eTKiM1
+         57gWUHJktr9YtX/HaTsGNzxA3h7f/q8NRMoRGGgw366S/YAEgrnJfN9jaEd7mu35lch6
+         VBzsdZXDtruBPx+wGbpZokYLCdnTdKWQ/rhqxwCBUFVEDQJOtig5y1mvByjgYYDXRbYV
+         60fe5c18l3uIdCIKaXnymWS5GDRyxc4tREy4sKWuA49C1Ef1k6ydo8879ayCurmRzX8i
+         +wGoe6tiWCmORsBaCULSooTwaWzBG5127g6JyfuMlVZahRZsHAi9CTWC+ieVMrRS7aR3
+         9PnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:bounces-to:mime-version:subject:message-id:to:from
+         :dkim-signature:dkim-signature;
+        bh=pnDBHCptd6xGHoJdykgQU7+vq9vugbWmZ6aVYTMpJ/U=;
+        b=L5jHDZY9Y4Yhf0UouEovUnE462iksPcGU/ZCr5JZJIGmEAMs8FmfatWo/4NYcDTh+f
+         xIKlwkkQ89MPwL7cvwgvO4fZ/V2uSqkaQyx+EjEavKtggyqA2KSHUSNHpkHFlaTWOFjL
+         +xuTHxz8zQgDJtuB7f7vKoHBAjcigeZUqayaTq9fTiqlC6zFaCn+1t8dBb7xjm3hJU0w
+         7z7o9MMILb+6NfeNEkjLw/yGVDTO2/v1cuE1y9RxC1ntY77fJP07TC8h2fBQxE7hSjb+
+         03XegPd9gPC+pkQhVlhuCzmI+/UBlmCP/TSNGJiYJcLoIPJMa5ehUSQ9mXdg9QpREo0e
+         /1Dw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@amazon.in header.s=micqgm67cqsvdipseryzt5t5odsvewta header.b=DLbHJPoc;
+       dkim=pass header.i=@amazonses.com header.s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn header.b=I9JFxmye;
+       spf=pass (google.com: domain of 20190403211501e430a71377014027ab7ec4bbca60p0eu@bounces.amazon.in designates 54.240.1.31 as permitted sender) smtp.mailfrom=20190403211501e430a71377014027ab7ec4bbca60p0eu@bounces.amazon.in;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=amazon.in
+Return-Path: <20190403211501e430a71377014027ab7ec4bbca60p0eu@bounces.amazon.in>
+Received: from a1-31.smtp-out.eu-west-1.amazonses.com (a1-31.smtp-out.eu-west-1.amazonses.com. [54.240.1.31])
+        by mx.google.com with ESMTPS id r14si1482835eji.369.2019.04.03.14.15.02
+        for <unixbhaskar@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 03 Apr 2019 14:15:02 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 20190403211501e430a71377014027ab7ec4bbca60p0eu@bounces.amazon.in designates 54.240.1.31 as permitted sender) client-ip=54.240.1.31;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@amazon.in header.s=micqgm67cqsvdipseryzt5t5odsvewta header.b=DLbHJPoc;
+       dkim=pass header.i=@amazonses.com header.s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn header.b=I9JFxmye;
+       spf=pass (google.com: domain of 20190403211501e430a71377014027ab7ec4bbca60p0eu@bounces.amazon.in designates 54.240.1.31 as permitted sender) smtp.mailfrom=20190403211501e430a71377014027ab7ec4bbca60p0eu@bounces.amazon.in;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=amazon.in
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=micqgm67cqsvdipseryzt5t5odsvewta; d=amazon.in; t=1554326102;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date;
+	bh=gH1aTPvfuLx0nfC4shUDfmLlk0wJGDsNiKsFeJKPbbc=;
+	b=DLbHJPocU0AZ+8VqRNTdZvw7HLOWc1ccg9UQkhZ+E/dZ5bznmR+s/VNec8LduGe0
+	gVHWF095XRZzF2unrrh7+V9KFzb7u80MC8I26W4JwtRuSr/TTWfikTIfn5AiJFPszHO
+	EPIwS4GRDvgeHdHcOS970bzY8zlqpqUS0e3ASAYY=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1554326102;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date:Feedback-ID;
+	bh=gH1aTPvfuLx0nfC4shUDfmLlk0wJGDsNiKsFeJKPbbc=;
+	b=I9JFxmyeJ0wHn3/PeKinxwkmm3mAPAl/+WlZpm0UzgPmneNH7jpzzxaCCb+/iTkF
+	SWWmHFGog2m55gIP91qC8Y3r+CKgrbPZsj8GzdhyNBVIayKWEIlIRehkA1T5TeD+Mo+
+	pePpinGvzQgfn6uHgkEoZz8xZAkhuvv9LIPGqunc=
+From: "Amazon.in Marketplace" <marketplace-messages@amazon.in>
+To: unixbhaskar@gmail.com
+Message-ID: <01020169e50e219f-92c7db89-16cb-4198-82ae-717603454b45-000000@eu-west-1.amazonses.com>
+Subject: Bhaskar Chowdhury, regarding your recent order at Amazon.in.
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2585456_425238504.1554326102423"
+X-AMAZON-MAIL-RELAY-TYPE: notification
+Bounces-to: 20190403211501e430a71377014027ab7ec4bbca60p0eu@bounces.amazon.in
+X-AMAZON-METADATA: CA=C2AWGLVI3MNH68-CU=A63QZFCWPB27C
+X-Original-MessageID: <urn.rtn.msg.20190403211501e430a71377014027ab7ec4bbca60p0eu@1554326102424.rtn-svc-eu-back-m4l1c-0d69c44a.eu-west-1.amazon.com>
+Date: Wed, 3 Apr 2019 21:15:02 +0000
+X-SES-Outgoing: 2019.04.03-54.240.1.31
+Feedback-ID: 1.eu-west-1.UIAUrMfbpGrxavqnRE0yoZrAUBI9C7GRNUx/kUDo6B4=:AmazonSES
+
+------=_Part_2585456_425238504.1554326102423
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Dear Bhaskar Chowdhury,
+Will you share your experience? Help the Amazon Marketplace community by rating your transaction here:
+
+https://www.amazon.in/gp/feedback/leave-consolidated-feedback.html
+
+It's easy--just click the "Leave seller feedback" link, pick a rating, and add any helpful comments. Your input will help Amazon.in and our sellers continually improve the customer experience.
+
+Your rating will apply to this seller:
+- PERFUMES HUB
+
+If you have questions regarding a transaction, we advise you to check with your seller for details. To view your latest transactions, go to Your Account.
+www.amazon.in/your-account
+
+Thank you for purchasing from the Amazon Marketplace.
+
+-------------------------------------------------------
+Please note: This e-mail was sent from a notification-only address that cannot accept incoming e-mail. Please do not reply to this message.
+-------------------------------------------------------
+Copyright 2019 Amazon.com, Inc. All rights reserved.
+
+We hope you found this message to be useful. However, if you'd rather not receive future e-mails of this sort from Amazon.in, please visit the opt-out link below.
+https://www.amazon.in/gp/gss/o/1ShK6CKf8ysZW3-aHBp.2dlCCdd2KfYy5cBTNSOViPVE
+-------------------------------------------------------
+------=_Part_2585456_425238504.1554326102423
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html;charset=
+=3DUTF-8"></head><body bgcolor"#FFFFFF" link=3D"#0066CC"><img width=3D"1" h=
+eight=3D"1" src=3D"https://www.amazon.in/gp/r.html?C=3D35R0P1GGCWM0Y&K=3D3P=
+ZF5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&=
+R=3D3EQ6M27N68Y02&T=3DO&U=3Dhttps%3A%2F%2Fimages-eu.ssl-images-amazon.com%2=
+Fimages%2FG%2F01%2Fnav%2Ftransp.gif&H=3DFTMMZCNOV5AGCQHCUJAAIMP77BWA&ref_=
+=3Dpe_1365671_54852341_opens" />
+
+
+
+<table width=3D"650" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center">
+  <tr>
+    <td valign=3D"top" style=3D"padding-bottom:10px;"> <img width=3D'126' h=
+eight=3D'36' alt=3D'Amazon.com' src=3D'https://images-eu.ssl-images-amazon.=
+com/images/G/31/x-locale/common/amazon-logo._CB138360615_.gif' > </td>
+  </tr>
+  <tr>
+    <td valign=3D"top" style=3D"padding-bottom:10px; font-family:verdana,ar=
+ial,helvetica; font-size:16px;"> Hi Bhaskar Chowdhury, will you please take=
+ a minute to share your experience? </td>
+  </tr>
+</table>
+
+<center>
+<table width=3D"650" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcol=
+or=3D"#cccc99">
+  <tr valign=3D"top">
+  <td style=3D"border: 2px #99ccff solid;">
+      <table width=3D"646" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ bgcolor=3D"#cccc99" height=3D"100%" align=3D"center">
+  <tr bgcolor=3D"#FFFFFF" valign=3D"top">
+           <td>
+            <table width=3D"98%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" height=3D"100%" align=3D"center">
+              <tr valign=3D"top">
+                <td colspan=3D"2">
+
+
+
+   =20
+   =20
+   =20
+
+
+
+
+
+
+
+
+
+
+
+<table border=3D"0" cellpadding=3D"2" cellspacing=3D"0" width=3D"100%">
+  <tr valign=3D"top">
+    <td width=3D"100%">
+      <table border=3D"0" cellpadding=3D"2" cellspacing=3D"0" width=3D"100%=
+">
+        <tr>
+          <td colspan=3D'2' style=3D"padding-top:6px; padding-bottom:10px; =
+font-weight:bold; font-family:verdana,arial,helvetica; color:#cc6600">
+            You Ordered:
+          </td>
+        </tr>
+
+
+    <tr bgcolor=3D"#ffffff">
+      <td valign=3D'top' style=3D'width:65px;padding-right:5px;padding-bott=
+om:10px;'>
+        <a href=3D"https://www.amazon.in/gp/r.html?C=3D35R0P1GGCWM0Y&K=3D3P=
+ZF5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&=
+R=3D2KBKMO33PPEXN&T=3DC&U=3Dhttps%3A%2F%2Fwww.amazon.in%2Fdp%2FB076XWDR41%3=
+Fref_%3Dpe_1365671_54852341&H=3DRNP246TURYKARLMTM4GAPADHACMA&ref_=3Dpe_1365=
+671_54852341" target=3D"_blank"><img src=3D"https://images-eu.ssl-images-am=
+azon.com/images/I/41gxt9c3mnL._SS60_.jpg" width=3D"60" alt=3D"Product Image=
+" align=3D"top" height=3D"60" border=3D"0" /></a>
+      </td>
+      <td valign=3D"top" style=3D"font-weight:bold; margin-top:5px;margin-b=
+ottom:5px; font-family:verdana,arial,helvetica; font-size:14px;">
+        BOGART One Man Show Silver Scent Intense Silver Scent Men Deodorant=
+ Spray 600ml
+          <span style=3D"font-weight:normal">( New)</span><br/>
+      </td>
+    </tr>
+
+  <tr>
+    <td colspan=3D'2'>
+      <span style=3D"font-family:verdana,arial,helvetica; font-size:15px;">
+        From PERFUMES HUB (Fulfilled by Amazon)
+        <br/>
+        <span style=3D"font-size:12px;color:gray;font-style:italic;">
+          Estimated delivery date:
+          2 April 2019
+        </span>
+      </span>
+    </td>
+  </tr>
+</table>
+
+<table border=3D"0" cellpadding=3D"2" cellspacing=3D"0" width=3D"100%">
+  <tr>
+   <td style=3D"padding: 0px 0 6px 0; font-size:14px; font-weight:bold; fon=
+t-family:verdana,arial,helvetica;">
+      <br/>Please select a rating for the seller based on these questions
+   </td>
+  </tr>
+  <tr>
+    <td style=3D"padding: 2px 0 0 18px; font-size:15px; font-family:verdana=
+,arial,helvetica;">
+      Item arrived by 2 April 2019?
+    </td>
+  </tr>
+  <tr>
+    <td style=3D"padding: 2px 0 0 18px; font-size:15px; font-family:verdana=
+,arial,helvetica;">
+      Item as described by the seller?
+    </td>
+  </tr>
+  <tr>
+    <td style=3D"padding: 2px 0 0 18px; font-size:15px; font-family:verdana=
+,arial,helvetica;">
+      Prompt and courteous service?
+      <span style=3D"margin-left: 8px;color:gray;font-style:italic;font-siz=
+e:11px;">(If you contacted the seller)</span>
+    </td>
+  </tr>
+</table>
+
+<table border=3D"0" cellpadding=3D"2" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"margin-top: 12px;">
+  <tr>
+    <td width=3D"20%" style=3D"white-space: nowrap; font-size:14px; font-fa=
+mily:verdana,arial,helvetica; font-weight:normal; vertical-align: center; p=
+adding: 2px 0 2px 18px;">
+      <a href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF=
+5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=
+=3D1YZ619K7PZI90&T=3DC&U=3Dhttp%3A%2F%2Fwww.amazon.in%2Fgp%2Ffeedback%2Fema=
+il-excellent-fb.html%3Fie%3DUTF8%26excellent%3D2%26isCBA%3D%26marketplaceID=
+%3DA21TJRUUN4KGV%26orderID%3D406-5053304-3909937%26rating%3D5%26sellerID%3D=
+A1KANBEPNRVS3J%26token%3D6CFBBD1880384F90F4570735F5941392914BA593%26ref_%3D=
+pe_1365671_54852341&H=3DOSALESNEVT7GZH6EEDMIA3KGZC4A&ref_=3Dpe_1365671_5485=
+2341" target=3D'_blank'>5 &#40;Excellent&#41;</a>
+    </td>
+    <td style=3D"font-size:14px; font-family:verdana,arial,helvetica; font-=
+weight:bold;">
+      <img src=3D"https://images-eu.ssl-images-amazon.com/images/G/31/x-loc=
+ale/common/icons/stars-5.0._CB140234033_.gif" alt=3D""/>
+    </td>
+  </tr>
+  <tr>
+    <td width=3D"20%" style=3D"white-space: nowrap; font-size:14px; font-fa=
+mily:verdana,arial,helvetica; font-weight:normal; vertical-align: center; p=
+adding: 2px 0 2px 18px;">
+      <a href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF=
+5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=
+=3DKRXKIQM5I1FJ&T=3DC&U=3Dhttp%3A%2F%2Fwww.amazon.in%2Fgp%2Ffeedback%2Femai=
+l-excellent-fb.html%3Fie%3DUTF8%26excellent%3D2%26isCBA%3D%26marketplaceID%=
+3DA21TJRUUN4KGV%26orderID%3D406-5053304-3909937%26rating%3D4%26sellerID%3DA=
+1KANBEPNRVS3J%26token%3D6CFBBD1880384F90F4570735F5941392914BA593%26ref_%3Dp=
+e_1365671_54852341&H=3DOSZAXEN35D90LPJAJEWE6JERNGKA&ref_=3Dpe_1365671_54852=
+341" target=3D'_blank'>4 &#40;Good&#41;</a>
+    </td>
+    <td style=3D"font-size:14px; font-family:verdana,arial,helvetica; font-=
+weight:bold;">
+      <img src=3D"https://images-eu.ssl-images-amazon.com/images/G/31/x-loc=
+ale/common/icons/stars-4.0._CB140234033_.gif" alt=3D""/>
+    </td>
+  </tr>
+  <tr>
+    <td width=3D"20%" style=3D"white-space: nowrap; font-size:14px; font-fa=
+mily:verdana,arial,helvetica; font-weight:normal; vertical-align: center; p=
+adding: 2px 0 2px 18px;">
+      <a href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF=
+5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=
+=3D1ZISG1NI52IUK&T=3DC&U=3Dhttp%3A%2F%2Fwww.amazon.in%2Fgp%2Ffeedback%2Fema=
+il-excellent-fb.html%3Fie%3DUTF8%26excellent%3D2%26isCBA%3D%26marketplaceID=
+%3DA21TJRUUN4KGV%26orderID%3D406-5053304-3909937%26rating%3D3%26sellerID%3D=
+A1KANBEPNRVS3J%26token%3D6CFBBD1880384F90F4570735F5941392914BA593%26ref_%3D=
+pe_1365671_54852341&H=3DKX1NTHYLYEVVVVSY4FSAOQPTOF0A&ref_=3Dpe_1365671_5485=
+2341" target=3D'_blank'>3 &#40;Fair&#41;</a>
+    </td>
+    <td style=3D"font-size:14px; font-family:verdana,arial,helvetica; font-=
+weight:bold;">
+      <img src=3D"https://images-eu.ssl-images-amazon.com/images/G/31/x-loc=
+ale/common/icons/stars-3.0._CB140234033_.gif" alt=3D""/>
+    </td>
+  </tr>
+  <tr>
+    <td width=3D"20%" style=3D"white-space: nowrap; font-size:14px; font-fa=
+mily:verdana,arial,helvetica; font-weight:normal; vertical-align: center; p=
+adding: 2px 0 2px 18px;">
+      <a href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF=
+5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=
+=3D17P8I7WXAMEOS&T=3DC&U=3Dhttp%3A%2F%2Fwww.amazon.in%2Fgp%2Ffeedback%2Fema=
+il-excellent-fb.html%3Fie%3DUTF8%26excellent%3D2%26isCBA%3D%26marketplaceID=
+%3DA21TJRUUN4KGV%26orderID%3D406-5053304-3909937%26rating%3D2%26sellerID%3D=
+A1KANBEPNRVS3J%26token%3D6CFBBD1880384F90F4570735F5941392914BA593%26ref_%3D=
+pe_1365671_54852341&H=3DREPNUZGKTKFG5DASPSLISWIPGUCA&ref_=3Dpe_1365671_5485=
+2341" target=3D'_blank'>2 &#40;Poor&#41;</a>
+    </td>
+    <td style=3D"font-size:14px; font-family:verdana,arial,helvetica; font-=
+weight:bold;">
+      <img src=3D"https://images-eu.ssl-images-amazon.com/images/G/31/x-loc=
+ale/common/icons/stars-2.0._CB140234033_.gif" alt=3D""/>
+    </td>
+  </tr>
+  <tr>
+    <td width=3D"20%" style=3D"white-space: nowrap; font-size:14px; font-fa=
+mily:verdana,arial,helvetica; font-weight:normal; vertical-align: center; p=
+adding: 2px 0 2px 18px;">
+      <a href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF=
+5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=
+=3D24QJU92V5GPUM&T=3DC&U=3Dhttp%3A%2F%2Fwww.amazon.in%2Fgp%2Ffeedback%2Fema=
+il-excellent-fb.html%3Fie%3DUTF8%26excellent%3D2%26isCBA%3D%26marketplaceID=
+%3DA21TJRUUN4KGV%26orderID%3D406-5053304-3909937%26rating%3D1%26sellerID%3D=
+A1KANBEPNRVS3J%26token%3D6CFBBD1880384F90F4570735F5941392914BA593%26ref_%3D=
+pe_1365671_54852341&H=3DQG21J2VWFMIP1MY1578AAPWJNMEA&ref_=3Dpe_1365671_5485=
+2341" target=3D'_blank'>1 &#40;Awful&#41;</a>
+    </td>
+    <td style=3D"font-size:14px; font-family:verdana,arial,helvetica; font-=
+weight:bold;">
+      <img src=3D"https://images-eu.ssl-images-amazon.com/images/G/31/x-loc=
+ale/common/icons/stars-1.0._CB140234033_.gif" alt=3D""/>
+    </td>
+  </tr>
+</table>
+
+<table border=3D"0" cellpadding=3D"2" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"margin-top: 6px;">
+  <tr>
+    <td colspan=3D"2" style=3D"padding-top:24px; font-weight:bold; font-siz=
+e:14px; font-family:verdana,arial,helvetica;">
+      Does the product meet your expectations?
+    </td>
+  </tr>
+  <tr>
+    <td colspan=3D"2" style=3D"font-family:verdana,arial,helvetica; font-si=
+ze:13px;">
+      <a href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF=
+5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=
+=3D2C44JL1788WJ3&T=3DC&U=3Dhttp%3A%2F%2Fwww.amazon.in%2Freview%2Freview-you=
+r-purchases%3F_encoding%3DUTF8%26asins%3DB076XWDR41%26channel%3Dec_sf%26ref=
+_%3Dpe_1365671_54852341_cm_cr_ec_sf_remail_rat&H=3D1GVSYVH5AZLO3K0PMIOD7ALW=
+XMAA&ref_=3Dpe_1365671_54852341_cm_cr_ec_sf_remail_rat">Rate and Review Pur=
+chases</a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan=3D"2" style=3D"padding-top:24px; font-weight:bold; font-siz=
+e:14px; font-family:verdana,arial,helvetica;">
+      Helpful Links
+    </td>
+  </tr>
+  <tr>
+    <td colspan =3D "2" style=3D"font-size:13px; font-family:verdana,arial,=
+helvetica;">
+      <a href=3D"https://www.amazon.in/gp/r.html?C=3D35R0P1GGCWM0Y&K=3D3PZF=
+5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=
+=3D2QFL8D46CJBCV&T=3DC&U=3Dhttps%3A%2F%2Fwww.amazon.in%2Fgp%2Fcss%2Fsummary=
+%2Fedit.html%3Fie%3DUTF8%26orderID%3D406-5053304-3909937%26ref_%3Dpe_136567=
+1_54852341&H=3D8TN1GD0LINIFZWED77PP2D4RQLKA&ref_=3Dpe_1365671_54852341" tar=
+get=3D'_blank'>View Order Details</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=3D"ht=
+tps://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF5AV5RYIE4&M=3Durn:r=
+tn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=3D1PXONGFIOBMWC&T=
+=3DC&U=3Dhttp%3A%2F%2Fwww.amazon.in%2Fgp%2Fhelp%2Fcontact-us%2Fgeneral-ques=
+tions.html%3Fie%3DUTF8%26orderId%3D406-5053304-3909937%26ref_%3Dpe_1365671_=
+54852341&H=3DHBD4OJP0CQR3OGXLGX2UPFLARDGA&ref_=3Dpe_1365671_54852341" targe=
+t=3D"_blank">Contact Amazon Customer Service</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a=
+ href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF5AV5RYIE=
+4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=3D34FAF6=
+V11QTA4&T=3DC&U=3Dhttp%3A%2F%2Fwww.amazon.in%2Fgp%2Fhelp%2Fseller%2Fat-a-gl=
+ance.html%3Fie%3DUTF8%26isAmazonFulfilled%3D1%26isCBA%3D%26marketplaceID%3D=
+A21TJRUUN4KGV%26orderID%3D406-5053304-3909937%26seller%3DA1KANBEPNRVS3J%26r=
+ef_%3Dpe_1365671_54852341&H=3D7F7ZUCZA0GNHQZGLE96GRUA8GG0A&ref_=3Dpe_136567=
+1_54852341"  target=3D'_blank' >View Seller Profile</a>&nbsp;&nbsp;|&nbsp;&=
+nbsp;<a href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF5=
+AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=
+=3D1MYOERX2PY3WP&T=3DC&U=3Dhttp%3A%2F%2Fwww.amazon.in%2Fgp%2Fhelp%2Fcustome=
+r%2Fdisplay.html%3Fie%3DUTF8%26nodeId%3D200691510%26ref_%3Dpe_1365671_54852=
+341&H=3DVPPBOEBBE2KINVNEPSKC3VR7XXQA&ref_=3Dpe_1365671_54852341" target=3D"=
+_blank">Feedback Help</a>
+      <br/><br/>
+    </td>
+  </tr>
+</table>
+    </td>
+  </tr>
+</table>
+
+
+
+</td></tr></table></td></tr></table></td></tr></table></td></tr></table>
+<br/>
+<table width=3D"650" cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
+  <tr>
+    <td>
+      <a href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF=
+5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=
+=3DBTZ22V2M69AL&T=3DC&U=3Dhttp%3A%2F%2Fwww.amazon.in%2Fgp%2Ffeedback%2Fleav=
+e-consolidated-feedback.html%3Fref_%3Dpe_1365671_54852341&H=3D8OOMBKV01QJEC=
+CJFRKRFAKTJQGEA&ref_=3Dpe_1365671_54852341">
+        <span style=3D"font-family:verdana,arial,helvetica; font-size:13px;=
+">
+          <b>See all orders awaiting your feedback</b>
+        </span>
+      </a>
+
+
+      <br/><br/>
+      <span style=3D"font-weight:bold; font-family:verdana,arial,helvetica;=
+ font-size:13px;">
+        Having trouble?
+            </span>
+      <br/>
+      <span style=3D"font-family:verdana,arial,helvetica; font-size:13px;">
+        If you have trouble with the links above, you can leave feedback by=
+ completing these steps:
+        <ol>
+          <li>Go to <a href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GG=
+CWM0Y&K=3D3PZF5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec=
+4bbca60p0eu&R=3D12AQMEKMDZFDB&T=3DC&U=3Dhttps%3A%2F%2Fwww.amazon.in%2Ffeedb=
+ack%3Fref_%3Dpe_1365671_54852341&H=3DWLQHU4YZ33Y4V2LLWTIJHY4TRSSA&ref_=3Dpe=
+_1365671_54852341">www.amazon.in/feedback</a></A>.</li>
+          <li>You'll be prompted for a log-in.</li>
+          <li>After logging in, you'll see a list of all the orders that ne=
+ed feedback.</li>
+          <li>Find the order on the list and leave feedback.</li>
+        </ol>
+
+
+        If you have questions regarding a transaction, we advise you to che=
+ck with your seller for details.
+        To view your latest transactions, go to <a href=3D"https://www.amaz=
+on.in/gp/r.html?C=3D35R0P1GGCWM0Y&K=3D3PZF5AV5RYIE4&M=3Durn:rtn:msg:2019040=
+3211501e430a71377014027ab7ec4bbca60p0eu&R=3D3SK70PBEMP6I6&T=3DC&U=3Dhttps%3=
+A%2F%2Fwww.amazon.in%2Fgp%2Fcss%2Fhomepage.html%3Fref_%3Dpe_1365671_5485234=
+1&H=3DUQ1MA1SKUBHGNPIWSRZHZ3ZLE8UA&ref_=3Dpe_1365671_54852341">Your Account=
+</a>.
+      </span>
+    </td>
+  </tr>
+</table>
+<br/>
+<table width=3D"650" style=3D"border:2px #666666 solid;" bgcolor=3D"#cccccc=
+">
+  <tr>
+    <td style=3D"text-align:center; font-family:verdana,arial,helvetica; fo=
+nt-size:13px;">
+      Copyright 2019 Amazon.com, Inc. All rights reserved.
+      <p>
+      We hope you found this message to be useful. However, if you'd rather=
+ not receive future e-mails of this sort from Amazon.in, please visit the o=
+pt-out link below.
+      <br/>
+      <a href=3D"https://www.amazon.in/gp/f.html?C=3D35R0P1GGCWM0Y&K=3D3PZF=
+5AV5RYIE4&M=3Durn:rtn:msg:20190403211501e430a71377014027ab7ec4bbca60p0eu&R=
+=3D348DE9T9L1FGY&T=3DC&U=3Dhttps%3A%2F%2Fwww.amazon.in%2Fgp%2Fgss%2Fo%2F1Sh=
+K6CKf8ysZW3-aHBp.2dlCCdd2KfYy5cBTNSOViPVE%3Fref_%3Dpe_1365671_54852341&H=3D=
+UAZ3DPSCOAZ0PJYZJJGRVOB4M4KA&ref_=3Dpe_1365671_54852341">https://www.amazon=
+.in/gp/gss/o/1ShK6CKf8ysZW3-aHBp.2dlCCdd2KfYy5cBTNSOViPVE</a>
+      </p>
+    </td>
+  </tr>
+</table>
+</center>
+<img alt=3D"-" width=3D"1" height=3D"1" src=3D"http://www.amazon.in/gp/feed=
+back/web-bug.html"/><img width=3D"1" height=3D"1" src=3D"https://www.amazon=
+.in/gp/r.html?C=3D35R0P1GGCWM0Y&K=3D3PZF5AV5RYIE4&M=3Durn:rtn:msg:201904032=
+11501e430a71377014027ab7ec4bbca60p0eu&R=3D2FJEFFN8G4WIM&T=3DE&U=3Dhttps%3A%=
+2F%2Fimages-eu.ssl-images-amazon.com%2Fimages%2FG%2F01%2Fnav%2Ftransp.gif&H=
+=3D9HHC5E3D7Z4SUVOKOIBRX98AQL0A&ref_=3Dpe_1365671_54852341_open" /></body><=
+/html>
+------=_Part_2585456_425238504.1554326102423--

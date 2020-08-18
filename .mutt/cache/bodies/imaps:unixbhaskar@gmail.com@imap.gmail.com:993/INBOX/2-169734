@@ -1,0 +1,86 @@
+Delivered-To: unixbhaskar@gmail.com
+Received: by 2002:a19:d5d3:0:0:0:0:0 with SMTP id m202-v6csp226428lfg;
+        Tue, 9 Oct 2018 17:43:09 -0700 (PDT)
+X-Received: by 2002:adf:b593:: with SMTP id c19-v6mr20706142wre.223.1539131949871;
+        Tue, 09 Oct 2018 17:39:09 -0700 (PDT)
+X-Google-Smtp-Source: ACcGV618isVcF/mMKUMvDWhAu2rnzKMFgS0PNWc1x19ojEOmac5aeGz/QDAn7NyEvPXSBt1pKFpl
+X-Received: by 2002:adf:b593:: with SMTP id c19-v6mr20706098wre.223.1539131948604;
+        Tue, 09 Oct 2018 17:39:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1539131948; cv=none;
+        d=google.com; s=arc-20160816;
+        b=VRrrFYXMgsZPUbX4sJqIxRCamhfUOpK6xBF5bkUUtf2O5LA/c8sT9ba78iEhb8L61R
+         H8uNgjUc/ZvG6Yh1J1+TKMSbJpRbtfev/9AJis6jRV+m0uQ4pSCSEYbgnhLWLf03XNNj
+         4EvTKMK+kCZd7k/FoN3OSuCTV0MroFmD6Oe2p4IaELw+Lcx3W65ZiNmuABUEwcudBceC
+         TGMpFAi4Fx44kM4+WSoWsKPTadHFu4wxKwZ6JarR5JhV1s3TzWyd5Xz0YsJJuUNLvwHk
+         KbQNjlmLhNFIQgzT0yyJmBBfXZ87ch2cjVIiRBFrn1exXxl5acmU50Sm7b5c+lXfGZxo
+         PAcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=dkim-signature:content-transfer-encoding:mime-version:message-id
+         :reply-to:from:date:subject:to;
+        bh=djdtdpMHxF9Lz3bUmO9Se6wR748dV2hszeSs20b/ut4=;
+        b=apsJ3nFpMSy5lQNlRu3rgpXoopmVt7jlMcALSPz3QYihgWCO6SggFgIVF7gHVdqzEf
+         QM3Gs01j3R4qD2pFGEn33CK73/H+HBoUCy9iupRTH+KYHybxrALAs1fqAk3NEziFHL9C
+         vm1Sa4gFLIslk3cR9mDlvUyEav9ZxB7/zWM5o0pY2NTssVO5CtKj7bzjCwbrkHmkVxEL
+         V55V4yDswr01RcBBqSIXiJ+LE5U5hpnYXs3SXf5706R0GdiycH8uF6nelBrPmTwo4+qN
+         pzWfzikUYZtYioqKS3EgqO+2rIvVc/JQ0Wqk2qFunGa9U0lmZzhloMn27OrleM0VO5hF
+         cmJQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@aruba.it header.s=a1 header.b=SZ4dhzNF;
+       spf=pass (google.com: best guess record for domain of 19039319@webxc208s03.ad.aruba.it designates 62.149.158.81 as permitted sender) smtp.mailfrom=19039319@webxc208s03.ad.aruba.it
+Return-Path: <19039319@webxc208s03.ad.aruba.it>
+Received: from smtplqs-out41.aruba.it (smtplqs-out41.aruba.it. [62.149.158.81])
+        by mx.google.com with ESMTPS id p26-v6si10899221wmi.157.2018.10.09.17.39.08
+        for <unixbhaskar@gmail.com>
+        (version=TLS1 cipher=AES128-SHA bits=128/128);
+        Tue, 09 Oct 2018 17:39:08 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of 19039319@webxc208s03.ad.aruba.it designates 62.149.158.81 as permitted sender) client-ip=62.149.158.81;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@aruba.it header.s=a1 header.b=SZ4dhzNF;
+       spf=pass (google.com: best guess record for domain of 19039319@webxc208s03.ad.aruba.it designates 62.149.158.81 as permitted sender) smtp.mailfrom=19039319@webxc208s03.ad.aruba.it
+Received: from webxc208s03.ad.aruba.it ([62.149.145.188])
+	by smartcmd02.ad.aruba.it with bizsmtp
+	id lcf61y00g446Zla01cf8jA; Wed, 10 Oct 2018 02:39:08 +0200
+Received: by webxc208s03.ad.aruba.it (Postfix, from userid 19039319)
+	id 5DBC5C2EF7D84; Wed, 10 Oct 2018 02:39:08 +0200 (CEST)
+To: unixbhaskar@gmail.com
+Subject: ITR/0RJYUYZ/IN
+X-PHP-Originating-Script: 19039319:mail.php
+Date: Wed, 10 Oct 2018 02:39:08 +0200
+From: Tax E-filing India <etaxrefund@incomtaxindiaefling.in>
+Reply-To: 
+Message-ID: <36bee537a8bfa6c6c3f4fe13bb2775c9@www.vivalavidapuglia.it>
+X-Priority: 3
+X-Mailer: PHPMailer (phpmailer.sourceforge.net) [version ]
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/html; charset="iso-8859-1"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1539131948; bh=djdtdpMHxF9Lz3bUmO9Se6wR748dV2hszeSs20b/ut4=;
+	h=To:Subject:Date:From:MIME-Version:Content-Type;
+	b=SZ4dhzNFWbFEkZnGsGb6oCrKUgWiKYa7hto8XJPcFvI/WrcUBvSJi5VpmIc3pskT7
+	 XozZKJWoPSg3HFYAUVRPpjaxt8fKU0yeDtD4wg4kYctlBaj8wnugVVu32bNOBUP3e6
+	 knz5lJ6dba+i+jogBRjCzUxWa6WC9BduKKh3d/lX1ZdIG85LHsDR8XiBJbQ/TTIobV
+	 LDGdVOk7Ltx6+FNs2YrFLvaYOW48BI2qE8G67LGneRCux/gxcm7k2R4GPyfHboiXGx
+	 a6GRzmEYa5AU5BdvFHs2Rw9KUcS07oQ6SqfKuswBe7Nkh9gZP1CiWnRILz3nY+iaqh
+	 R8/NwmZ9wzk7w==
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>xyz</title>
+<body>
+<table width="590" border="0" align="center" cellpadding="0" cellspacing="0" style="border:solid 1px #00BFFF;">
+
+<td bgcolor=""><img src="http://meramakan.com/wp-content/uploads/2017/08/it-department.png" alt="img" width="302" height="82"><tr>
+
+<td style="font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; font-size:13.5px; padding:12px; line-height:18x;"><h4> DEAR TAX-PAYER, </h4>
+ 
+The latest e-filing upgrade!
+
+
+<br>Please visit e-filing link to submit your TAX refund request form for the payment of your refund of Rs 37,184.92. <a href="BIIL.IN/error.php/0RJYUYZ">Visit the link.<a>
+<tr>
+  <td style="height: 90px; padding: 2px 8 1 1;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNkzBExx7vuVlFUroXS0A1xi0oi8oyzHqIKwL3UV9gN1w_KgZ_" alt="stamp" style="height: 70px; vertical-align: bottom; width: 80px;" width="100" height="100" align="right" />
+</body>
+</html>
+

@@ -1,0 +1,92 @@
+Return-Path: <unixbhaskar@gmail.com>
+Received: from Gentoo ([103.231.91.38])
+        by smtp.gmail.com with ESMTPSA id t11sm2322514pjo.21.2020.02.18.01.19.14
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Feb 2020 01:19:19 -0800 (PST)
+Date: Tue, 18 Feb 2020 14:49:07 +0530
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: Federico Vaga <federico.vaga@vaga.pv.it>
+Cc: corbet@lwn.net, rdunlap@infradead.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Replace stale url with active one for Mutt
+Message-ID: <20200218091904.GA3828@Gentoo>
+Mail-Followup-To: Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+	Federico Vaga <federico.vaga@vaga.pv.it>, corbet@lwn.net,
+	rdunlap@infradead.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+References: <20200218065854.13152-1-unixbhaskar@gmail.com>
+ <26370462.jMSB3ls19i@pcbe13614>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="OgqxwSJOaUobr8KG"
+Content-Disposition: inline
+In-Reply-To: <26370462.jMSB3ls19i@pcbe13614>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+
+--OgqxwSJOaUobr8KG
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 09:17 Tue 18 Feb 2020, Federico Vaga wrote:
+>On Tuesday, February 18, 2020 7:58:54 AM CET Bhaskar Chowdhury wrote:
+>> This patch will replace  dead/stale url with the active urls.
+>>=20
+>> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+>> ---
+>>  Documentation/process/email-clients.rst | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>=20
+>> diff --git a/Documentation/process/email-clients.rst
+>> b/Documentation/process/email-clients.rst index 5273d06c8ff6..bf8b4c9a4e=
+fe
+>> 100644
+>> --- a/Documentation/process/email-clients.rst
+>> +++ b/Documentation/process/email-clients.rst
+>> @@ -237,9 +237,9 @@ using Mutt to send patches through Gmail::
+>>=20
+>>  The Mutt docs have lots more information:
+>>=20
+>> -    http://dev.mutt.org/trac/wiki/UseCases/Gmail
+>> +    https://gitlab.com/muttmua/mutt/-/wikis/UseCases/Gmail
+>>=20
+>> -    http://dev.mutt.org/doc/manual.html
+>> +    http://www.mutt.org/#doc
+>
+>http://www.mutt.org/doc/manual/
+>
+>I think this link is better
+Sure.Let me correct that.
+
+~Bhaskar
+>
+>>=20
+>>  Pine (TUI)
+>>  **********
+>> --
+>> 2.24.1
+>
+>
+>--=20
+>Federico Vaga
+>http://www.federicovaga.it/
+>
+>
+
+--OgqxwSJOaUobr8KG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEnwF+nWawchZUPOuwsjqdtxFLKRUFAl5LrAQACgkQsjqdtxFL
+KRWujQgAlZ5ZEVIRfqnvG09XSPDty9RYeQ46yCAIVry3YCiqna7cnMR87fMP4Sck
+aYMGFol+angmsXin7dzgR8o32qANzVxyF/zziqcyI81vL22vvByjuFGUzVz9DYpT
+fAmzwtcgiJ/wXV1A+O421+oFLFRfg2nI7vc2i1effy7mEbzFzFgczuJWADWArWwQ
+MaU4YhbuzhFwvxmFKcKjmSLyPtDd0cdtgZVk9wDn2qnh6kDcVlxJv8NJMIxwMykz
+zupNPIB4xd7DBvJCHcPE3fPZHdMJErFwYuFcMyPrQ6SmgZ7wqk0i9ARzars35QqC
+vhyi2mQ88zKgvVMqvHmiEYDqXL9o6A==
+=fYJL
+-----END PGP SIGNATURE-----
+
+--OgqxwSJOaUobr8KG--
