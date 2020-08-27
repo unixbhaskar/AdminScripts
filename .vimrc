@@ -6,7 +6,7 @@ syntax on
 "set background=light
 highlight Comment    ctermfg=119
 highlight clear SpellBad 
-highlight SpellBad  cterm=bold ctermbg=9 gui=undercurl guisp=Red
+highlight SpellBad  cterm=bold ctermbg=9 gui=undercurl guisp=Yellow
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -25,6 +25,8 @@ Plugin  'jamessan/vim-gnupg'
 Plugin 'AutoComplPop'
 Plugin 'majutsushi/tagbar'
 Plugin 'gregsexton/gitv'
+Plugin 'vim-latex/vim-latex'
+Plugin 'ying17zi/vim-live-latex-preview'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -130,3 +132,8 @@ map <C-n> :NERDTreeToggle<CR>
 nmap ob <Plug>(openbrowser-open)
 "Open selected URI.
 vmap os <Plug>(openbrowser-open) 
+
+"Comment out the shell script with a key stroke , which is forward slash c
+"like this \c
+:autocmd FileType sh  nnoremap <buffer> <localleader>c I#<esc>
+
