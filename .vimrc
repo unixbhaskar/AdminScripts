@@ -27,6 +27,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'gregsexton/gitv'
 Plugin 'vim-latex/vim-latex'
 Plugin 'ying17zi/vim-live-latex-preview'
+Plugin 'itchyny/calendar.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -135,5 +136,27 @@ vmap os <Plug>(openbrowser-open)
 
 "Comment out the shell script with a key stroke , which is forward slash c
 "like this \c
-:autocmd FileType sh  nnoremap <buffer> <localleader>c I#<esc>
+:autocmd FileType *  nnoremap <buffer> <localleader>c I#<esc>
 
+"Spell checking mapped with key F6
+map <F6> :setlocal spell! <CR>
+
+"Google calendar process 
+
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+let g:calendar_google_event = 1
+let g:calendar_event_start_time= 1
+"let g:calendar_frame = 'default'
+source ~/.cache/calendar.vim/credentials.vim
+
+"Auto command for configuration file modification/change notification
+
+"augroup configfilealert
+"au!
+"au FileWritePre,FileWritePost   .vimrc  %!notify_config_file_updates
+"au FileWritePre,FileWritePost .bashrc  %!notify_config_file_updates
+"au FileWritePre,FileWritePost .muttrc  %!notify_config_file_updates
+"au FileWritePre,FileWritePost .gitconfig  %!notify_config_file_updates
+"au FileWritePre,FileWritePost .profile  %!notify_config_file_updates
+"augroup END
