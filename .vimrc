@@ -151,12 +151,11 @@ let g:calendar_event_start_time= 1
 source ~/.cache/calendar.vim/credentials.vim
 
 "Auto command for configuration file modification/change notification
-
-"augroup configfilealert
+augroup configfilealert
 "au!
-"au FileWritePre,FileWritePost   .vimrc  %!notify_config_file_updates
-"au FileWritePre,FileWritePost .bashrc  %!notify_config_file_updates
-"au FileWritePre,FileWritePost .muttrc  %!notify_config_file_updates
-"au FileWritePre,FileWritePost .gitconfig  %!notify_config_file_updates
-"au FileWritePre,FileWritePost .profile  %!notify_config_file_updates
-"augroup END
+autocmd BufWritePost .bashrc !notify_config_file_updates
+autocmd BufWritePost .vimrc !notify_config_file_updates
+autocmd BufWritePost .gitconfig !notify_config_file_updates
+autocmd BufWritePost .muttrc !notify_config_file_updates
+autocmd BufWritePost .profile !notify_config_file_updates
+augroup END
