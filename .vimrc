@@ -35,7 +35,7 @@ Plugin  'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin  'git://git.wincent.com/command-t.git'
+"Plugin  'git://git.wincent.com/command-t.git'
 Plugin  'tyru/open-browser.vim'
 " git repos on your local machine (i.e. when working on your own plugin)
 " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -71,6 +71,7 @@ set binary
 set noeol
 set ttyfast
 set wildmenu
+set wildmode=longest,full
 "set noautoindent 
 set spell spelllang=en
 "nnoremap \\ :noh<return>
@@ -158,4 +159,25 @@ autocmd BufWritePost .vimrc !notify_config_file_updates
 autocmd BufWritePost .gitconfig !notify_config_file_updates
 autocmd BufWritePost .muttrc !notify_config_file_updates
 autocmd BufWritePost .profile !notify_config_file_updates
+autocmd BufWritePost .i3config !notify_config_file_updates
 augroup END
+
+" move between splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+
+"Open this file in vertical split for quick reference
+
+nnoremap <leader>vr :vsplit ~/.vimrc<cr>
+
+"After editing this file must be sourced ,so the changes take effect on
+"current session
+
+nnoremap <leader>sv :source ~/.vimrc<cr>
+
+"To insert email address with a shortcut @@ ,and then need to press space after that
+
+iabbrev @@    unixbhaskar@gmail.com
+
