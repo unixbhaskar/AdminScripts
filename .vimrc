@@ -181,3 +181,36 @@ nnoremap <leader>sv :source ~/.vimrc<cr>
 
 iabbrev @@    unixbhaskar@gmail.com
 
+" Auto loading .vimrc once saved 
+
+if has('autocmd') 
+    augroup reload_vimrc
+        autocmd!
+        autocmd! BufWritePost ~/.vimrc nested source %
+    augroup END
+endif
+
+"conditionally auto creating directory if it is not exists.
+
+augroup AutoMkdir
+    autocmd!
+    autocmd  BufNewFile  *  :call EnsureDirExists()
+augroup END
+function! EnsureDirExists ()
+    let required_dir = expand("%:h")
+    if !isdirectory(required_dir)
+        call AskQuit("Directory '" . required_dir . "' doesn't exist.", "&Create it?")
+
+        try
+            call mkdir( required_dir, 'p' )
+        catch
+            call AskQuit("Can't create '" . required_dir . "'", "&Continue anyway?")
+        endtry
+    endif
+endfunction
+
+function! AskQuit (msg, proposed_action)
+    if confirm(a:msg, "&Quit?\n" . a:proposed_action) == 1
+        exit
+    endif
+endfunction
