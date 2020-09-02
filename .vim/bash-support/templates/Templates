@@ -1,0 +1,43 @@
+§ =============================================================
+§  User Macros
+§ =============================================================
+
+SetMacro( 'AUTHOR',      'Bhaskar Chowdhury' )
+SetMacro( 'AUTHORREF',   'https://about.me/unixbhaskar' )
+SetMacro( 'COMPANY',     'Individual' )
+SetMacro( 'COPYRIGHT',   'GPLv2' )
+SetMacro( 'EMAIL',       'unixbhaskar@gmail.com' )
+SetMacro( 'LICENSE',     'GPLv2' )
+SetMacro( 'ORGANIZATION','Independent' )
+
+SetFormat( 'DATE', '%x' )
+SetFormat( 'TIME', '%H:%M' )
+SetFormat( 'YEAR', '%Y' )
+
+SetStyle( 'default' )
+
+§ =============================================================
+§  File Includes and Shortcuts
+§ =============================================================
+
+§ :TODO:14.07.13 12:50:WM: files "paramsub.templates" and "io-redirection.templates": maps, shortcuts? sort alphabetically?
+
+MenuShortcut( 'Comments',        'c' )
+MenuShortcut( 'Statements',      's' )
+MenuShortcut( 'Tests',           't' )
+MenuShortcut( 'ParamSub',        'p' )
+MenuShortcut( 'PatternMatching', 'p' )
+MenuShortcut( 'IO-Redir',        'i' )
+
+IncludeFile( 'comments.templates'        )
+IncludeFile( 'statements.templates'      )
+IncludeFile( 'tests.templates'           )
+IncludeFile( 'paramsub.templates'        )
+IncludeFile( 'specialparams.templates'   )
+IncludeFile( 'environment.templates'     )
+IncludeFile( 'builtins.templates'        )
+IncludeFile( 'set.templates'             )
+IncludeFile( 'shelloptions.templates'    )
+IncludeFile( 'io-redirection.templates'  )
+IncludeFile( 'patternmatching.templates' )
+
