@@ -68,6 +68,8 @@ filetype plugin on
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+"Default bindings
+
 set laststatus=2
 set showcmd
 set binary
@@ -98,15 +100,15 @@ hi VimwikiHeader5 guifg=#00FFFF
 hi VimwikiHeader6 guifg=#FFFF00
 
 "Sourcing for shortcuts to work in vim 
-source /home/bhaskar/.vim/bundle/vim-shortcut/plugin/shortcut.vim
+"source /home/bhaskar/.vim/bundle/vim-shortcut/plugin/shortcut.vim
 
 "Show paste mode on off for text/code pasting from clipboard
-Shortcut! paste mode on or off 
-			\ nnoremap <F2> :set invpaste paste?<CR>
-			 set pastetoggle=<F2>
+"Shortcut! paste mode on or off 
+ nnoremap <F2> :set invpaste paste?<CR>
+ set pastetoggle=<F2>
 
-Shortcut! Git commit popup messages of the specific line of code
-			\ nmap <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
+"Shortcut! Git commit popup messages of the specific line of code
+ nmap <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
 
 "Make leading and trailing space visible
 
@@ -127,32 +129,40 @@ set tabstop=8                           " tabstops of 8
 set shiftwidth=8                        " indents of 8
 set textwidth=78                        " screen in 80 columns wide, wrap at 78
 
+"Tabs manipulation 
+set switchbuf=usetab
+nnoremap <F7> :sbnext<CR>
+nnoremap <S-F7> :sbprevious<CR>
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+
+
 "Tagbar to work 
-Shortcut! Tagbar to work
-			\ nmap <F8> :TagbarToggle<CR>
+"Shortcut! Tagbar to work
+nmap <F8> :TagbarToggle<CR>
 
 "NerdTree open CTRL+n
-Shortcut! NerdTree to open 
-			\ map <C-n> :NERDTreeToggle<CR>
+"Shortcut! NerdTree to open 
+ noremap <C-n> :NERDTreeToggle<CR>
 
  
 "Open URI under cursor.
-Shortcut! Browser open for under cursor url
-			\ nmap ob <Plug>(openbrowser-open)
+"Shortcut! Browser open for under cursor url
+ nmap ob <Plug>(openbrowser-open)
 "Open selected URI.
-Shortcut! Open the browser for selected url 
-			\ vmap os <Plug>(openbrowser-open) 
+"Shortcut! Open the browser for selected url 
+ vmap os <Plug>(openbrowser-open) 
 
 "Comment out the shell script with a key stroke , which is forward slash c
 "like this \c
 
-Shortcut! Comment out the line in any file with hash
-			\ autocmd FileType *  nnoremap <buffer> <localleader>c I#<esc>
+"Shortcut! Comment out the line in any file with hash
+ autocmd FileType *  nnoremap <buffer> <localleader>c I#<esc>
 
 "Spell checking mapped with key F6
 
-Shortcut! Spell Checking toggle
-			\ map <F6> :setlocal spell! <CR>
+"Shortcut! Spell Checking toggle
+map <F6> :setlocal spell! spelllang=en_us<CR>
 
 "Google calendar process 
 
@@ -175,24 +185,24 @@ autocmd BufWritePost .i3config !notify_config_file_updates
 augroup END
 
 " move between splits
-Shortcut! split window btwn move 
-			\ nnoremap <C-h> <C-w><C-h>
-			\ nnoremap <C-l> <C-w><C-l>
-			\ nnoremap <C-k> <C-w><C-k>
-			\ nnoremap <C-j> <C-w><C-j>
+"Shortcut! split window btwn move 
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-j> <C-w><C-j>
 
 "Open this file in vertical split for quick reference
-Shortcut! vimrc open in vertical split window 
-			\ nnoremap <leader>vr :vsplit ~/.vimrc<cr>
+"Shortcut! vimrc open in vertical split window 
+nnoremap <leader>vr :vsplit ~/.vimrc<cr>
 
 "After editing this file must be sourced ,so the changes take effect on
 "current session
-Shortcut! ReloadVimrc after modification 
-			\ nnoremap <leader>sv :source ~/.vimrc<cr>
+"Shortcut! ReloadVimrc after modification 
+nnoremap <leader>sv :source ~/.vimrc<cr>
 
-"To insert email address with a shortcut @@ ,and then need to press space after thatt
-Shortcut! email insert in file 
-			\ iabbrev @@    unixbhaskar@gmail.com
+"To insert email address with a shortcut @@ ,and then need to press space after that
+"Shortcut! email insert in file 
+iabbrev @@    unixbhaskar@gmail.com
 
 " Auto loading .vimrc once saved 
 
@@ -232,10 +242,10 @@ endfunction
 
 let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
-Shortcut :Files bring up the fuzzy finder 
-			\ map <C-f> <Esc><Esc>:Files!<CR>
-Shortcut :Blines  in file and go to chosen line
-			\ inoremap <C-f> <Esc><Esc>:Blines!<CR>
+"Shortcut :Files bring up the fuzzy finder 
+ map <C-f> <Esc><Esc>:Files!<CR>
+"Shortcut :Blines  in file and go to chosen line
+inoremap <C-f> <Esc><Esc>:Blines!<CR>
 
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
@@ -265,8 +275,8 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'hei
 " This is for Shortcut to enable pop  up to remember the key combination in vim
 
 
-Shortcut show shortcut menu and run chosen shortcut
-			\ noremap <silent> <Leader><Leader> :Shortcuts<Return>
+"Shortcut show shortcut menu and run chosen shortcut
+"			\ noremap <silent> <Leader><Leader> :Shortcuts<Return>
 
-Shortcut fallback to shortcut menu on partial entry
-			\ noremap <silent> <Leader> :Shortcuts<Return>
+"Shortcut fallback to shortcut menu on partial entry
+"			\ noremap <silent> <LocalLeader> :Shortcuts<Return>

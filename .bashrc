@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 # There are 3 different types of shells in bash: the login shell, normal shell
 # and interactive shell. Login shells read ~/.profile and interactive shells
 # read ~/.bashrc; in our setup, /etc/profile sources ~/.bashrc - thus all
@@ -51,7 +51,7 @@ alias movies='cd ~/Movies'
 alias githome='cd ~/git-linux'
 alias boot='cd /boot'
 alias movies2='cd /data/Movies2'
-alias v='cd ~/Videos'
+alias videos='cd ~/Videos'
 alias music='cd ~/Music'
 alias admscripts='cd ~/Adm_scripts'
 alias docu='cd ~/Documents'
@@ -73,7 +73,7 @@ alias week='date +%V'
 alias filepath='ls | sed "s:^:`pwd`/:"'
 alias abspath='find $PWD -maxdepth 1 | xargs ls -ld'
 alias i3config="cd ~/.config/i3"
-alias vim="vim -u ~/.vimrc"
+alias v="vim -u ~/.vimrc"
 alias unbuffer='unbuffer '
 alias sshot="cd ~/Pictures/Screenshots"
 alias github_repo='/home/bhaskar/bin/github_repo'
@@ -84,9 +84,9 @@ alias dmesg_err='sudo dmesg -H -T -l err'
 alias ip='ip --color=auto'
 alias journal_clear="sudo journalctl --vacuum-size=50000"
 alias shortcut_pages="cd $HOME/shortcut/pages && ls | basename -s .md * | less"
-alias githublinux="cd $HOME/linux/linux_github_fork"
+alias githublinux="cd $HOME/git-linux/linux_github_fork"
 alias githubgit="cd $HOME/git-linux/git_github_fork"
-alias gcl="cd $HOME/git-linux/ && git clone $1"
+alias gcl=gclone 
 alias linuxpull="cd /data/linux && git pull && cd ~"
 alias githubi3="cd $HOME/git-linux/i3"
 alias update_buildroot="cd $HOME/git-linux/buildroot && git pull && cd ~"
@@ -107,6 +107,16 @@ alias linuxnet_source="cd $HOME/git-linux/linux-net && tig"
 alias wiki="vim $HOME/vimwiki/index.wiki"
 alias notification="$HOME/bin/notification > /dev/null 2>&1"
 alias gitconfig="git config --global --edit"
+alias vimrc="vim ~/.vimrc"
+alias muttrc="vim ~/.muttrc"
+alias reload_bashrc="source ~/.bashrc"
+alias bashrc="vim ~/.bashrc"
+alias cat="ccat"
+alias videodl="$HOME/bin/youtube-dl -f 18 $1"
+alias mp3dl="$HOME/bin/youtube_video_to_mp3_conv.sh $1"
+alias i3config="vim ~/.config/i3/config"
+alias linux-next="cd $HOME/git-linux/linux-next"
+alias profile="vim ~/.profile"
 unset SSH_ASKPASS
 
 
@@ -122,7 +132,11 @@ gitlog() {
   fi
  }
 
+#git clone and get into the cloned directory
 
+gclone() {
+	 cd $HOME/git-linux && git clone "$1" &&  cd "$(basename $1 .git)" 
+}
 
 GPG_TTY=$(tty)
 export GPG_TTY
@@ -134,7 +148,7 @@ export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
 
 #create directory and enter into it
-function mkd() {
+mkd() {
 	mkdir -p "$@" && cd "$_";
 }
 
@@ -163,3 +177,13 @@ function apt-history(){
 
 export TERM=screen-256color
 export EDITOR=vim
+
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#Open files with the help fzf and vim
+
+of() { find  ~/git-linux/AdminScripts/ -type f | fzf | xargs -r $EDITOR ;}
+copy_dot() { cp -v "$1" "$(find /data/dotfiles/ -type f | fzf)" ; }
+git_move() { cp -v "$1" "$(find ~/git-linux/AdminScripts/  -type f | fzf)" ;}
