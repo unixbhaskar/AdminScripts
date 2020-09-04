@@ -67,7 +67,8 @@ filetype plugin on
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
+source ~/.vim/bundle/vim-shortcut/plugin/shortcut.vim
+source ~/.vim/bundle/vim-user-menu.vim 
 "Default bindings
 
 set laststatus=2
@@ -99,8 +100,6 @@ hi VimwikiHeader4 guifg=#FF00FF
 hi VimwikiHeader5 guifg=#00FFFF
 hi VimwikiHeader6 guifg=#FFFF00
 
-"Sourcing for shortcuts to work in vim 
-"source /home/bhaskar/.vim/bundle/vim-shortcut/plugin/shortcut.vim
 
 "Show paste mode on off for text/code pasting from clipboard
 "Shortcut! paste mode on or off 
@@ -139,7 +138,7 @@ nnoremap <C-Right> :tabnext<CR>
 
 "Tagbar to work 
 "Shortcut! Tagbar to work
-nmap <F8> :TagbarToggle<CR>
+ nmap <F8> :TagbarToggle<CR>
 
 "NerdTree open CTRL+n
 "Shortcut! NerdTree to open 
@@ -156,7 +155,6 @@ nmap <F8> :TagbarToggle<CR>
 "Comment out the shell script with a key stroke , which is forward slash c
 "like this \c
 
-"Shortcut! Comment out the line in any file with hash
  autocmd FileType *  nnoremap <buffer> <localleader>c I#<esc>
 
 "Spell checking mapped with key F6
@@ -205,7 +203,6 @@ nnoremap <leader>sv :source ~/.vimrc<cr>
 iabbrev @@    unixbhaskar@gmail.com
 
 " Auto loading .vimrc once saved 
-
 if has('autocmd') 
     augroup reload_vimrc
         autocmd!
@@ -273,10 +270,41 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
 
 " This is for Shortcut to enable pop  up to remember the key combination in vim
-
+let mapleader=";"
 
 "Shortcut show shortcut menu and run chosen shortcut
-"			\ noremap <silent> <Leader><Leader> :Shortcuts<Return>
+Shortcut for shortcuts to work in vim 
+       \ noremap <silent> <Leader><Leader> :Shortcuts<Return>
 
-"Shortcut fallback to shortcut menu on partial entry
-"			\ noremap <silent> <LocalLeader> :Shortcuts<Return>
+Shortcut fallback to shortcut menu on partial entry
+                         \ noremap <silent> <Leader> :Shortcuts<Return>
+
+Shortcut! paste mode toggle by pressing F2
+
+Shortcut! Git commit popup messages of the specific line of code by pressing  \g
+
+Shortcut! Tagbar to toggle by  F8  
+
+Shortcut! NerdTree to open by pressing C-n
+
+Shortcut! Browser open for under cursor url by pressing "ob"
+
+Shortcut! UrlSelect under the cursorr open by pressing "os" 
+
+Shortcut! Spell Checking toggle by pressing F6 
+
+Shortcut! split window btwn move C-h C-j C-K C-l
+
+Shortcut! :Files bring up the fuzzy finder and aslo possible by  C-f
+
+Shortcut! :Blines bring up the fuzzy finder 
+
+Shortcut! Tabs managed by F7 and Shift-F7 and CTRL-> CTRL-<
+
+Shortcut! Calendar to show by write Calendar at : prompt 
+
+Shortcut! PopUpMenu to show by pressing F12 
+
+Shortcut! Atuocomplete suggestions select by pressing CTRL+Shift+n 		
+
+Shortcut! Comment line of code by pressing \c 
