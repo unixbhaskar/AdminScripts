@@ -31,6 +31,7 @@ Plugin 'itchyny/calendar.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'sunaku/vim-shortcut' 
+Plugin 'TaDaa/vimade'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -69,6 +70,8 @@ filetype plugin on
 " Put your non-Plugin stuff after this line
 source ~/.vim/bundle/vim-shortcut/plugin/shortcut.vim
 source ~/.vim/bundle/vim-user-menu.vim 
+
+
 "Default bindings
 
 set laststatus=2
@@ -170,6 +173,15 @@ let g:calendar_google_event = 1
 let g:calendar_event_start_time= 1
 "let g:calendar_frame = 'default'
 source ~/.cache/calendar.vim/credentials.vim
+
+
+"Vimade settings
+
+let g:vimade = {}
+let g:vimade.fadelevel = 0.7
+let g:vimade.enablesigns = 1
+
+
 
 "Auto command for configuration file modification/change notification
 augroup configfilealert
