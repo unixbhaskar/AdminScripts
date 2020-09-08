@@ -182,8 +182,9 @@ export EDITOR=vim
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-#Open files with the help fzf and vim
+#Open/copy/to_gitrepo files with the help fzf and vim
 
-of() { find  ~/git-linux/AdminScripts/ -type f | fzf | xargs -r $EDITOR ;}
-copy_dot() { cp -v "$1" "$(find /data/dotfiles/ -type f | fzf)" ; }
-git_move() { cp -v "$1" "$(find ~/git-linux/AdminScripts/  -type f | fzf)" ;}
+of() { vim "$(find  $(pwd) -type f | fzf)"  ;}
+backup_dot_files() { cp -v "$1" "$(find /data/dotfiles -name '*' -type f | fzf)" ;}
+copy_to_gitrepo() { cp -v "$1" "$(find ~/git-linux/AdminScripts -name '*'  -type f | fzf)" ;}
+
