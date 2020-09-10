@@ -9,7 +9,7 @@
 # other than the index.
 #
 source "gpg2 -dq $HOME/.mail.cred.gpg |"
-set imap_user = "unixbhaskar@gmail.com"
+set imap_user = "your_mail_addtess"
 set imap_pass =$my_pass 
 set pager_context=1
 set pager_index_lines=6 #show a mini-index in pager
@@ -36,8 +36,8 @@ unignore ^from: ^date: ^subject: ^to: ^cc:
 #
 # #set sendmail="/usr/bin/nbsmtp -d isp.net -h smtp.isp.net -f yourname@isp.net"
 #
-set from="unixbhaskar@gmail.com" #set to your from address
-set realname="Bhaskar Chowdhury"
+set from="your_mail_address" #set to your from address
+set realname="Your_real_name"
 #
 # set record="$home/sent" #sent mail is saved here
 set delete=yes #delete without prompting
@@ -55,7 +55,7 @@ set record ="+[Gmail]/Sent Mail"
 set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies
 #gpg
-set pgp_sign_as="9F017E9D66B07216543CEBB0B23A9DB7114B2915"
+set pgp_sign_as="your_pgp_key"
 set crypt_use_gpgme=yes
 set crypt_replysign=yes
 set crypt_replysignencrypted=yes
@@ -81,22 +81,13 @@ set pgp_timeout=3600
 #set pgp_list_secring_command="gpg2 --no-verbose --batch --quiet --with-colons --list-secret-keys %r" 
 #set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
  mailboxes =inbox
-# mailboxes =Airtel_Mobile_Bill
 # mailboxes =Blackberry_Travel
- #mailboxes =inbox/LWN 
  mailboxes =sent
- #mailboxes =Credit_Card
  mailboxes =Documents
  mailboxes =Geek_Stuff
  mailboxes =linux-kernel
  mailboxes =unix_tips
-# mailboxes =Visa
- #mailboxes =Electricity_Bills
- #mailboxes =Income_Tax
- #mailboxes =PrivateInternetAAccess
  mailboxes ="[Gmail]/Sent Mail"
- #mailboxes =Amazon_store
- #mailboxes =Amazon_Web_Services
  mailboxes =kernelci_bot
  mailboxes =kbuild_test_robot
  mailboxes =inbox/Google_Alert
@@ -105,7 +96,7 @@ set pgp_timeout=3600
 
 auto_view text/html
 set mailcap_path=~/.mutt/mailcap
-set smtp_url="smtp://unixbhaskar@smtp.gmail.com:587/"
+set smtp_url="smtp://your_username@smtp.gmail.com:587/"
 set smtp_pass=$my_pass
 #save-hook .*=keep #default mbox to (s)ave mail is =keep
 # subscribe gentoo-user gentoo-dev #subscribed to these lists
@@ -249,7 +240,7 @@ color sidebar_new green black
 #
 #Open attachment with program
 #
-set new_mail_command="notify-send --icon='/home/bhaskar/Pictures/neomutt.png' \
+set new_mail_command="notify-send --icon='/home/your_username/Pictures/neomutt.png' \
 'New Emails' '%n new messages, %u unread.' &"
 
 macro attach O \
@@ -259,6 +250,11 @@ macro attach O \
 <save-entry><kill-line>/tmp/mutt-attach<enter>\
 <shell-escape> /tmp/mutt-attach &^A\
 "
+#Mail attachement save to a specific directory
+
+macro attach W <save-entry><kill-line>/home/your_username/attachments/
+macro attach E <save-entry><kill-line>/home/your_username/attachments/<enter>
+
 
 set editor="vim -c 'set spell spelllang=en'" 
 
