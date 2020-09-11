@@ -32,6 +32,8 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'sunaku/vim-shortcut' 
 Plugin 'TaDaa/vimade'
+Plugin 'junegunn/gv.vim'
+Plugin 'tpope/vim-rhubarb'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -69,8 +71,6 @@ filetype plugin on
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 source ~/.vim/bundle/vim-shortcut/plugin/shortcut.vim
-source ~/.vim/bundle/vim-user-menu.vim 
-
 
 "Default bindings
 
@@ -104,7 +104,6 @@ hi VimwikiHeader5 guifg=#00FFFF
 hi VimwikiHeader6 guifg=#FFFF00
 
 
-"Show paste mode on off for text/code pasting from clipboard
 "Shortcut! paste mode on or off 
  nnoremap <F2> :set invpaste paste?<CR>
  set pastetoggle=<F2>
@@ -281,7 +280,8 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " Word completion with custom spec with popup layout option
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
 
-" This is for Shortcut to enable pop  up to remember the key combination in vim
+
+" This is for Short:c:ce>t  showmap#helper("<Space>t","n")ut to enable pop  up to remember the key combination in vim
 let mapleader=";"
 
 "Shortcut show shortcut menu and run chosen shortcut
@@ -291,32 +291,48 @@ Shortcut for shortcuts to work in vim
 Shortcut fallback to shortcut menu on partial entry
                          \ noremap <silent> <Leader> :Shortcuts<Return>
 
-Shortcut! paste mode toggle by pressing F2
+Shortcut! Paste mode toggle by pressing F2
 
-Shortcut! Git commit popup messages of the specific line of code by pressing  \g
+Shortcut! GitCommit popup messages of the specific line of code by pressing  \g
 
 Shortcut! Tagbar to toggle by  F8  
 
 Shortcut! NerdTree to open by pressing C-n
 
-Shortcut! Browser open for under cursor url by pressing "ob"
+Shortcut! BrowserOpen for under cursor url by pressing "ob" in normal mode 
 
-Shortcut! UrlSelect under the cursorr open by pressing "os" 
+Shortcut! UrlSelect  open the url by pressing quickly "os" in normal mode  
 
-Shortcut! Spell Checking toggle by pressing F6 
+Shortcut! SpellChecking toggle by pressing F6 
 
-Shortcut! split window btwn move C-h C-j C-K C-l
+Shortcut! SplitWindow move between by pressing  C-h C-j C-K C-l
 
 Shortcut! :Files bring up the fuzzy finder and aslo possible by  C-f
 
 Shortcut! :Blines bring up the fuzzy finder 
 
-Shortcut! Tabs managed by F7 and Shift-F7 and CTRL-> CTRL-<
+Shortcut! TabsManaged by F7 and Shift-F7 and CTRL-> CTRL<-
 
 Shortcut! Calendar to show by write Calendar at : prompt 
 
-Shortcut! PopUpMenu to show by pressing F12 
+Shortcut! Autocomplete suggestions select by pressing CTRL+Shift+n 		
 
-Shortcut! Atuocomplete suggestions select by pressing CTRL+Shift+n 		
+Shortcut! Comment line of code by pressing \c
 
-Shortcut! Comment line of code by pressing \c 
+Shortcut! GitHubBrowse if you run "!hub browse" from : this promt inside git repo,it will open the repo page in GitHub 
+
+Shortcut! LaTexOpenPDF for live review by pressing \p in normal mode 
+
+Shortcut! LaTexCompile just press \ll  might not get feedback of this command,bacasue it worked in the background 
+
+Shortcut! LaTexPrevOnOff  toggle by pressing \o in normal mode 
+
+Shortcut! MovingAroundLongSentences  () search end of statement i.e for period and then w and b to move forward and backword fast
+
+Shortcut! LongSentenceManeuver  gj and gk are for moving up and down in long sentences breaks up several lines long 
+
+Shortcut! ParagraphMovement   { this and this } jump between paragraphs 
+
+Shortcut! InsertEmail  in the insert mode type "@@" without quote 
+
+Shortcut! SelectVisually  Capital V will select entire line 
