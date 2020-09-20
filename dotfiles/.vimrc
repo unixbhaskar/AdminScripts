@@ -5,8 +5,13 @@ filetype plugin indent on     "Make indent code based on the file type
 syntax on
 "set background=light
 highlight Comment    ctermfg=119
-highlight clear SpellBad 
+highlight clear SpellBad
 highlight SpellBad  cterm=bold ctermbg=9 gui=undercurl guisp=Yellow
+
+"Make the visual selection more prominent
+
+highlight Visual term=bold cterm=bold ctermbg=7 ctermfg=2 guifg=Red guibg=LightBlue
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -30,10 +35,12 @@ Plugin 'ying17zi/vim-live-latex-preview'
 Plugin 'itchyny/calendar.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plugin 'sunaku/vim-shortcut' 
+Plugin 'sunaku/vim-shortcut'
 Plugin 'TaDaa/vimade'
 Plugin 'junegunn/gv.vim'
 Plugin 'tpope/vim-rhubarb'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'mbbill/undotree'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -81,7 +88,8 @@ set noeol
 set ttyfast
 set wildmenu
 set wildmode=longest,full
-"set noautoindent 
+set showbreak=...
+"set noautoindent
 set spell spelllang=en
 "nnoremap \\ :noh<return>
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
@@ -104,7 +112,7 @@ hi VimwikiHeader5 guifg=#00FFFF
 hi VimwikiHeader6 guifg=#FFFF00
 
 
-"Shortcut! paste mode on or off 
+"Shortcut! paste mode on or off
  nnoremap <F2> :set invpaste paste?<CR>
  set pastetoggle=<F2>
 
@@ -123,36 +131,49 @@ set autoindent smartindent              " turn on auto/smart indenting
 set smarttab                            " make <tab> and <backspace> smarter
 set backspace=eol,start,indent          " allow backspacing over indent, eol, & start
 
-"All about Tabs and Spaces 
+"All about Tabs and Spaces
 
 set noexpandtab                         " use tabs, not spaces
 set tabstop=8                           " tabstops of 8
+set softtabstop=8
 set shiftwidth=8                        " indents of 8
 set textwidth=78                        " screen in 80 columns wide, wrap at 78
 
-"Tabs manipulation 
+"Tabs manipulation
 set switchbuf=usetab
 nnoremap <F7> :sbnext<CR>
 nnoremap <S-F7> :sbprevious<CR>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 
+"Showing non visible character by toggle
+nmap <F4> :set list!<CR>
 
-"Tagbar to work 
+"Removing trailing whitespace
+nnoremap <F5> :%s/\s\+$//e<CR>
+
+"Tagbar to work
 "Shortcut! Tagbar to work
  nmap <F8> :TagbarToggle<CR>
 
 "NerdTree open CTRL+n
-"Shortcut! NerdTree to open 
+"Shortcut! NerdTree to open
  noremap <C-n> :NERDTreeToggle<CR>
 
- 
+"History of changes showing by undotree plugin
+nnoremap <F3> :UndotreeToggle<CR>
+
+"Search replaces n number of times
+
+nnoremap Q :normal n.<CR>
+
 "Open URI under cursor.
 "Shortcut! Browser open for under cursor url
  nmap ob <Plug>(openbrowser-open)
+
 "Open selected URI.
-"Shortcut! Open the browser for selected url 
- vmap os <Plug>(openbrowser-open) 
+"Shortcut! Open the browser for selected url
+ vmap os <Plug>(openbrowser-open)
 
 "Comment out the shell script with a key stroke , which is forward slash c
 "like this \c
@@ -162,9 +183,9 @@ nnoremap <C-Right> :tabnext<CR>
 "Spell checking mapped with key F6
 
 "Shortcut! Spell Checking toggle
-map <F6> :setlocal spell! spelllang=en_us<CR>
+map <silent><F6> :setlocal spell! spelllang=en_us<CR>
 
-"Google calendar process 
+"Google calendar process
 
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
@@ -193,28 +214,27 @@ autocmd BufWritePost .profile !notify_config_file_updates
 autocmd BufWritePost .i3config !notify_config_file_updates
 augroup END
 
-" move between splits
-"Shortcut! split window btwn move 
+"Move between splits
 nnoremap <C-h> <C-w><C-h>
-nnoremap <C-l> <C-w><C-l>
-nnoremap <C-k> <C-w><C-k>
 nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
 
 "Open this file in vertical split for quick reference
-"Shortcut! vimrc open in vertical split window 
+"Shortcut! vimrc open in vertical split window
 nnoremap <leader>vr :vsplit ~/.vimrc<cr>
 
 "After editing this file must be sourced ,so the changes take effect on
 "current session
-"Shortcut! ReloadVimrc after modification 
+"Shortcut! ReloadVimrc after modification
 nnoremap <leader>sv :source ~/.vimrc<cr>
 
 "To insert email address with a shortcut @@ ,and then need to press space after that
-"Shortcut! email insert in file 
+"Shortcut! email insert in file
 iabbrev @@    unixbhaskar@gmail.com
 
-" Auto loading .vimrc once saved 
-if has('autocmd') 
+" Auto loading .vimrc once saved
+if has('autocmd')
     augroup reload_vimrc
         autocmd!
         autocmd! BufWritePost ~/.vimrc nested source %
@@ -250,7 +270,7 @@ endfunction
 
 let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
-"Shortcut :Files bring up the fuzzy finder 
+"Shortcut :Files bring up the fuzzy finder
  map <C-f> <Esc><Esc>:Files!<CR>
 "Shortcut :Blines  in file and go to chosen line
 inoremap <C-f> <Esc><Esc>:Blines!<CR>
@@ -285,7 +305,7 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'hei
 let mapleader=";"
 
 "Shortcut show shortcut menu and run chosen shortcut
-Shortcut for shortcuts to work in vim 
+Shortcut for shortcuts to work in vim
        \ noremap <silent> <Leader><Leader> :Shortcuts<Return>
 
 Shortcut fallback to shortcut menu on partial entry
@@ -295,44 +315,56 @@ Shortcut! Paste mode toggle by pressing F2
 
 Shortcut! GitCommit popup messages of the specific line of code by pressing  \g
 
-Shortcut! Tagbar to toggle by  F8  
+Shortcut! Tagbar to toggle by  F8
 
 Shortcut! NerdTree to open by pressing C-n
 
-Shortcut! BrowserOpen for under cursor url by pressing "ob" in normal mode 
+Shortcut! BrowserOpen for under cursor url by pressing "ob" in normal mode
 
-Shortcut! UrlSelect  open the url by pressing quickly "os" in normal mode  
+Shortcut! UrlSelect  open the url by pressing quickly "os" in normal mode
 
-Shortcut! SpellChecking toggle by pressing F6 
+Shortcut! SpellChecking toggle by pressing F6
 
 Shortcut! SplitWindow move between by pressing  C-h C-j C-K C-l
 
 Shortcut! :Files bring up the fuzzy finder and aslo possible by  C-f
 
-Shortcut! :Blines bring up the fuzzy finder 
+Shortcut! :Blines bring up the fuzzy finder
 
 Shortcut! TabsManaged by F7 and Shift-F7 and CTRL-> CTRL<-
 
-Shortcut! Calendar to show by write Calendar at : prompt 
+Shortcut! Calendar to show by write Calendar at : prompt
 
-Shortcut! Autocomplete suggestions select by pressing CTRL+Shift+n 		
+Shortcut! Autocomplete suggestions select by pressing CTRL+Shift+n
 
 Shortcut! Comment line of code by pressing \c
 
-Shortcut! GitHubBrowse if you run "!hub browse" from : this promt inside git repo,it will open the repo page in GitHub 
+Shortcut! GitHubBrowse if you run "!hub browse" from : this promt inside git repo,it will open the repo page in GitHub
 
-Shortcut! LaTexOpenPDF for live review by pressing \p in normal mode 
+Shortcut! LaTexOpenPDF for live review by pressing \p in normal mode
 
-Shortcut! LaTexCompile just press \ll  might not get feedback of this command,bacasue it worked in the background 
+Shortcut! LaTexCompile just press \ll  might not get feedback of this command,bacasue it worked in the background
 
-Shortcut! LaTexPrevOnOff  toggle by pressing \o in normal mode 
+Shortcut! LaTexPrevOnOff  toggle by pressing \o in normal mode
 
 Shortcut! MovingAroundLongSentences  () search end of statement i.e for period and then w and b to move forward and backword fast
 
-Shortcut! LongSentenceManeuver  gj and gk are for moving up and down in long sentences breaks up several lines long 
+Shortcut! LongSentenceManeuver  gj and gk are for moving up and down in long sentences breaks up several lines long
 
-Shortcut! ParagraphMovement   { this and this } jump between paragraphs 
+Shortcut! ParagraphMovement   { this and this } jump between paragraphs
 
-Shortcut! InsertEmail  in the insert mode type "@@" without quote 
+Shortcut! InsertEmail  in the insert mode type "@@" without quote
 
-Shortcut! SelectVisually  Capital V will select entire line 
+Shortcut! SelectVisually  Capital V will select entire line
+
+Shortcut! ShowInVisibleChar by pressing <F4>
+
+Shortcut! RemoveTrailingWhiteSpace by pressing <F5>
+
+Shortcut! UndoLiveUpdateWindow by pressing <F3> in normal mode
+
+Shortcut! FoldBehavior by using zi and za and zM and zv
+
+Shortcut! ToCopyLine use :<lineno>t<dot> for current cursor position
+
+Shortcut! RepeatReplaceNtimes by preseeing Q in normal mode
