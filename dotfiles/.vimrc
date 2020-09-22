@@ -112,10 +112,6 @@ hi VimwikiHeader5 guifg=#00FFFF
 hi VimwikiHeader6 guifg=#FFFF00
 
 
-"Shortcut! paste mode on or off
- nnoremap <F2> :set invpaste paste?<CR>
- set pastetoggle=<F2>
-
 "Shortcut! Git commit popup messages of the specific line of code
  nmap <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
 
@@ -139,6 +135,38 @@ set softtabstop=8
 set shiftwidth=8                        " indents of 8
 set textwidth=78                        " screen in 80 columns wide, wrap at 78
 
+
+"Shortcut! paste mode on or off
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+
+
+"History of changes showing by undotree plugin
+nnoremap <F3> :UndotreeToggle<CR>
+
+"Showing non visible character by toggle
+nmap <F4> :set list!<CR>
+
+"Removing trailing whitespace
+nnoremap <F5> :call <SID>StripTrailingWhitespaces()<CR>
+
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+"Shortcut! Spell Checking toggle
+map <silent><F6> :setlocal spell! spelllang=en_us<CR>
+
 "Tabs manipulation
 set switchbuf=usetab
 nnoremap <F7> :sbnext<CR>
@@ -146,33 +174,20 @@ nnoremap <S-F7> :sbprevious<CR>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 
-"Showing non visible character by toggle
-nmap <F4> :set list!<CR>
-
-"Removing trailing whitespace
-nnoremap <F5> :%s/\s\+$//e<CR>
 
 "Tagbar to work
-"Shortcut! Tagbar to work
  nmap <F8> :TagbarToggle<CR>
 
 "NerdTree open CTRL+n
-"Shortcut! NerdTree to open
  noremap <C-n> :NERDTreeToggle<CR>
 
-"History of changes showing by undotree plugin
-nnoremap <F3> :UndotreeToggle<CR>
-
 "Search replaces n number of times
-
 nnoremap Q :normal n.<CR>
 
 "Open URI under cursor.
-"Shortcut! Browser open for under cursor url
  nmap ob <Plug>(openbrowser-open)
 
 "Open selected URI.
-"Shortcut! Open the browser for selected url
  vmap os <Plug>(openbrowser-open)
 
 "Comment out the shell script with a key stroke , which is forward slash c
@@ -180,10 +195,6 @@ nnoremap Q :normal n.<CR>
 
  autocmd FileType *  nnoremap <buffer> <localleader>c I#<esc>
 
-"Spell checking mapped with key F6
-
-"Shortcut! Spell Checking toggle
-map <silent><F6> :setlocal spell! spelllang=en_us<CR>
 
 "Google calendar process
 
@@ -221,16 +232,13 @@ nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 
 "Open this file in vertical split for quick reference
-"Shortcut! vimrc open in vertical split window
 nnoremap <leader>vr :vsplit ~/.vimrc<cr>
 
 "After editing this file must be sourced ,so the changes take effect on
 "current session
-"Shortcut! ReloadVimrc after modification
 nnoremap <leader>sv :source ~/.vimrc<cr>
 
 "To insert email address with a shortcut @@ ,and then need to press space after that
-"Shortcut! email insert in file
 iabbrev @@    unixbhaskar@gmail.com
 
 " Auto loading .vimrc once saved
