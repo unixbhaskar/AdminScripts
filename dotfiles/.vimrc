@@ -45,6 +45,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'codepad'
 Plugin 'tpope/vim-surround'
 Plugin 'christoomey/vim-titlecase'
+Plugin 'svermeulen/vim-macrobatics'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -171,7 +172,7 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 "Shortcut! Spell Checking toggle
 map <silent><F6> :setlocal spell! spelllang=en_us<CR>
 
-"Tabs manipulation
+"Tabs manipulation vim -p filename1 filename2... from cli
 set switchbuf=usetab
 nnoremap <F7> :sbnext<CR>
 nnoremap <S-F7> :sbprevious<CR>
@@ -325,6 +326,67 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
 
 
+"All about macros ..vim-microbastic plugin
+
+let g:Mac_NamedMacroFileExtension = '.vimmacro'
+let g:Mac_NamedMacrosDirectory = "~/.vim/macrobatics"
+
+
+" Use <nowait> to override the default bindings which wait for another key press
+nmap <nowait> q <plug>(Mac_Play)
+nmap <nowait> gq <plug>(Mac_RecordNew)
+
+"Navigating macros history
+
+nmap <leader>mh :DisplayMacroHistory<cr>
+
+nmap [m <plug>(Mac_RotateBack)
+nmap ]m <plug>(Mac_RotateForward)
+
+
+"Macro append and macro prepend
+
+nmap <leader>ma <plug>(Mac_Append)
+nmap <leader>mp <plug>(Mac_Prepend)
+
+"Named macros
+
+nmap <leader>mn <plug>(Mac_NameCurrentMacro)
+
+"Macro execute
+
+nmap <leader>me <plug>(Mac_SearchForNamedMacroAndPlay)
+
+"Macro select
+
+nmap <leader>ms <plug>(Mac_SearchForNamedMacroAndSelect)
+
+"Macro overwrite
+
+nmap <leader>mo <plug>(Mac_SearchForNamedMacroAndOverwrite)
+
+"Delete a macro
+
+nmap <leader>md <plug>(Mac_SearchForNamedMacroAndDelete)
+
+"Rename a macro
+
+nmap <leader>mr <plug>(Mac_SearchForNamedMacroAndRename)
+
+"Name macro for global use
+
+nmap <leader>mng <plug>(Mac_NameCurrentMacro)
+
+"Name macro for file type
+
+nmap <leader>mnf <plug>(Mac_NameCurrentMacroForFileType)
+
+"Macro copy
+
+nmap <leader>mc <plug>(Mac_CopyCurrentMacroToRegister)
+
+
+
 " This is for Short:c:ce>t  showmap#helper("<Space>t","n")ut to enable pop  up to remember the key combination in vim
 let mapleader=";"
 
@@ -412,4 +474,6 @@ Shortcut! HelpFind  helpgrep <anyterm> then use cn,cp,cl
 
 Shortcut! Surround  cs(existing)(replace) ,full word cst(delimit) ,ysiw,yssb
 
-Shortcut! TitileCase  tc in normal and visual mode and tT for All The Words Inline
+Shortcut! TitleCase  tc in normal and visual mode and tT for All The Words Inline
+
+Shortcut! Macros  gq to start , q to play, mh to history,ma to append, mp to prepend, me to execute, ms to select, mo to overwrite,md to delete,mr to rename, mng to global,mnf for filetype,mc to copy, to stop gq
