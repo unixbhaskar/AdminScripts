@@ -41,6 +41,10 @@ Plugin 'junegunn/gv.vim'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'mbbill/undotree'
+Plugin 'tpope/vim-commentary'
+Plugin 'codepad'
+Plugin 'tpope/vim-surround'
+Plugin 'christoomey/vim-titlecase'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -100,7 +104,7 @@ let g:startuptime_sort = 0
 let g:startuptime_tries = 5
 let g:startuptime_exe_args = ['-u', '~/.vimrc']
 "let loaded_vifm=1
-"map<Leader>vv :vifm<CR>
+map<Leader>vv :Vifm<CR>
 let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\)\='
 
 "vimwiki header colors
@@ -190,11 +194,23 @@ nnoremap Q :normal n.<CR>
 "Open selected URI.
  vmap os <Plug>(openbrowser-open)
 
+
+"Titlecase plugins
+
+nmap <leader>tc <Plug>Titlecase
+vmap <leader>tc <Plug>Titlecase
+nmap <leader>tT <Plug>TitlecaseLine
+
+
+
 "Comment out the shell script with a key stroke , which is forward slash c
 "like this \c
 
- autocmd FileType *  nnoremap <buffer> <localleader>c I#<esc>
+" autocmd FileType *  nnoremap <buffer> <localleader>c I#<esc>
 
+"Tim pope commentrary plugins for comment in file
+autocmd FileType sh setlocal commentstring=#\ %s
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 "Google calendar process
 
@@ -345,7 +361,6 @@ Shortcut! Calendar to show by write Calendar at : prompt
 
 Shortcut! Autocomplete suggestions select by pressing CTRL+Shift+n
 
-Shortcut! Comment line of code by pressing \c
 
 Shortcut! GitHubBrowse if you run "!hub browse" from : this promt inside git repo,it will open the repo page in GitHub
 
@@ -376,3 +391,25 @@ Shortcut! FoldBehavior by using zi and za and zM and zv
 Shortcut! ToCopyLine use :<lineno>t<dot> for current cursor position
 
 Shortcut! RepeatReplaceNtimes by preseeing Q in normal mode
+
+Shortcut! CommentOut   gcc =for singleline gc =for bunch of lines gcap =for paragraph range(7,17)gc
+
+Shortcut! LineMoveUpDown   [e =  move up ]e =move down [p =put above [p =put down
+
+Shortcut! VifmFileManager  ;vv to open in place
+
+Shortcut! UPPERCASELINE  gUU and guu for lowercase
+
+Shortcut! ValueOfChar   ga : display hex, ascii value of character under cursor
+
+Shortcut! HexValueUTF-8  g8 : display hex value of utf-8 character under cursor
+
+Shortcut! RemoveBlankLines use this :g/^$/d  or this :v/./d
+
+Shortcut! PrintCurrentFileName  In the insert mode " C-R %
+
+Shortcut! HelpFind  helpgrep <anyterm> then use cn,cp,cl
+
+Shortcut! Surround  cs(existing)(replace) ,full word cst(delimit) ,ysiw,yssb
+
+Shortcut! TitileCase  tc in normal and visual mode and tT for All The Words Inline
