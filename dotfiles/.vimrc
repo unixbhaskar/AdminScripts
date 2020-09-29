@@ -18,7 +18,7 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
+" PlugIns let Vundle manage Vundle, required
 Plugin  'VundleVim/Vundle.vim'
 Plugin  'vim-airline/vim-airline'
 Plugin  'vim-airline/vim-airline-themes'
@@ -81,6 +81,8 @@ filetype plugin on
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
+
+
 " Put your non-Plugin stuff after this line
 source ~/.vim/bundle/vim-shortcut/plugin/shortcut.vim
 
@@ -104,20 +106,21 @@ let python_highlight_all=1
 let g:startuptime_sort = 0
 let g:startuptime_tries = 5
 let g:startuptime_exe_args = ['-u', '~/.vimrc']
+
+"vifm
 "let loaded_vifm=1
 map<Leader>vv :Vifm<CR>
-let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\)\='
 
-"vimwiki header colors
+"vimwiki header colors and file extensions
 hi VimwikiHeader1 guifg=#FF0000
 hi VimwikiHeader2 guifg=#00FF00
 hi VimwikiHeader3 guifg=#0000FF
 hi VimwikiHeader4 guifg=#FF00FF
 hi VimwikiHeader5 guifg=#00FFFF
 hi VimwikiHeader6 guifg=#FFFF00
+let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\)\='
 
-
-"Shortcut! Git commit popup messages of the specific line of code
+"Shortcut! Git commit popup messages of the specific line of code by pressing"\g
  nmap <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
 
 "Make leading and trailing space visible
@@ -140,6 +143,9 @@ set softtabstop=8
 set shiftwidth=8                        " indents of 8
 set textwidth=78                        " screen in 80 columns wide, wrap at 78
 
+" To make folding work automatically
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 
 "Shortcut! paste mode on or off
 nnoremap <F2> :set invpaste paste?<CR>
@@ -211,7 +217,8 @@ nmap <leader>tT <Plug>TitlecaseLine
 
 "Tim pope commentrary plugins for comment in file
 autocmd FileType sh setlocal commentstring=#\ %s
-autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+autocmd FileType cpp,cs,java setlocal commentstring=//\ %s
+autocmd FileType c setlocal commentstring=/*\ %s
 
 "Google calendar process
 
@@ -448,7 +455,7 @@ Shortcut! RemoveTrailingWhiteSpace by pressing <F5>
 
 Shortcut! UndoLiveUpdateWindow by pressing <F3> in normal mode
 
-Shortcut! FoldBehavior by using zi and za and zM and zv
+Shortcut! FoldBehavior by using zf=create  zi=open and za and zM and zv
 
 Shortcut! ToCopyLine use :<lineno>t<dot> for current cursor position
 
