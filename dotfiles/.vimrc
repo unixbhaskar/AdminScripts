@@ -209,8 +209,10 @@ vmap <leader>tc <Plug>Titlecase
 nmap <leader>tT <Plug>TitlecaseLine
 
 
+"Open a terminal inside vim
 
-"Comment out the shell script with a key stroke , which is forward slash c
+noremap <leader>te :botright vertical terminal<CR>
+
 "like this \c
 
 " autocmd FileType *  nnoremap <buffer> <localleader>c I#<esc>
