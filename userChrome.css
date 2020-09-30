@@ -1,0 +1,16 @@
+#TabsToolbar { visibility: collapse !important; }
+
+browser vbox#appcontent tabbrowser, #content, #tabbrowser-tabpanels, 
+browser[type=content-primary],browser[type=content] > html {
+	    background: #1D1B19 !important
+    }
+
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* only needed once */
+
+#content browser {
+	 margin-right: -14px !important;
+	  overflow-y: hidden;
+	  margin-bottom: -14px !important;
+	   overflow-x: scroll;
+   }

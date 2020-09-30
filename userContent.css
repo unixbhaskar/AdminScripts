@@ -1,0 +1,16 @@
+@-moz-document url-prefix(about:home) {
+
+body {background: #424246 !important;}
+
+
+}
+
+@-moz-document url(about:newtab) {
+    body {
+        background-color: #000000 !important;
+        background-image: url("/home/bhaskar/cover_small.jpg") !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+    }
+}
+
