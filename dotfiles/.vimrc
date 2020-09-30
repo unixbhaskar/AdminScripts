@@ -486,3 +486,5 @@ Shortcut! Surround  cs(existing)(replace) ,full word cst(delimit) ,ysiw,yssb
 Shortcut! TitleCase  tc in normal and visual mode and tT for All The Words Inline
 
 Shortcut! Macros  gq to start , q to play, mh to history,ma to append, mp to prepend, me to execute, ms to select, mo to overwrite,md to delete,mr to rename, mng to global,mnf for filetype,mc to copy, to stop gq
+
+Shortcut! TerminalOpen To open up a terminal inside it press \te
