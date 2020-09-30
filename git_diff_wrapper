@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dfi=$(command -v vimdiff)
+
+$dfi "$1" "$2"
