@@ -96,8 +96,18 @@ set ttyfast
 set wildmenu
 set wildmode=longest,full
 set showbreak=...
+" Highlight the line with a cursor
+set cursorline
+" Disable cursor line highlighting in Insert mode
+augroup aug_cursor_line
+  au!
+  au InsertEnter * setlocal nocursorline
+  au InsertLeave * setlocal cursorline
+augroup END
+
 "set noautoindent
 set spell spelllang=en
+
 "nnoremap \\ :noh<return>
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 "au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -211,19 +221,16 @@ nmap <leader>tT <Plug>TitlecaseLine
 
 "Open a terminal inside vim
 
-noremap <leader>te :botright vertical terminal<CR>
+noremap <silent><leader>te :botright vertical terminal<CR>
 
-"like this \c
-
-" autocmd FileType *  nnoremap <buffer> <localleader>c I#<esc>
 
 "Tim pope commentrary plugins for comment in file
 autocmd FileType sh setlocal commentstring=#\ %s
 autocmd FileType cpp,cs,java setlocal commentstring=//\ %s
 autocmd FileType c setlocal commentstring=/*\ %s
+autocmd FileType vim setlocal commentstring=\"\ %s
 
 "Google calendar process
-
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 let g:calendar_google_event = 1
@@ -334,6 +341,14 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " Word completion with custom spec with popup layout option
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
 
+"Visual mode selection move up and down my unimpaired
+vmap <C-k> [egv
+vmap <C-j> ]egv
+
+"Convert `` to $() in code
+" vmap <leader>cq  :%s/`\([^`]*\)`/$(\1)/g<CR>
+" imap <leader>cq  :%s/`\([^`]*\)`/$(\1)/g<CR>
+
 
 "All about macros ..vim-microbastic plugin
 
@@ -396,7 +411,7 @@ nmap <leader>mc <plug>(Mac_CopyCurrentMacroToRegister)
 
 
 
-" This is for Short:c:ce>t  showmap#helper("<Space>t","n")ut to enable pop  up to remember the key combination in vim
+" This is for Shortcut showmap#helper("<Space>t","n")ut to enable pop  up to remember the key combination in vim
 let mapleader=";"
 
 "Shortcut show shortcut menu and run chosen shortcut
@@ -488,3 +503,7 @@ Shortcut! TitleCase  tc in normal and visual mode and tT for All The Words Inlin
 Shortcut! Macros  gq to start , q to play, mh to history,ma to append, mp to prepend, me to execute, ms to select, mo to overwrite,md to delete,mr to rename, mng to global,mnf for filetype,mc to copy, to stop gq
 
 Shortcut! TerminalOpen To open up a terminal inside it press \te
+
+Shortcut! ReplaceBacktickTO$()   Run this varbetim on ex prompt %s/`\([^`]*\)`/$(\1)/g
+
+Shortcut! MoveSelectInVisualMode  use CTRL-j and CTRL-k  in visual mode
