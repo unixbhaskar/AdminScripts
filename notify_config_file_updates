@@ -1,0 +1,26 @@
+#!/bin/bash
+
+declare -a configfiles=(.bashrc .vimrc .muttrc .profile .gitconfig .ithreeconfig
+.ithreeblocksconfig)
+filechange=$(find $(cat configfiles) -type f  -printf '%TY-%Tm-%Td %TT %p\n' |
+	sort -r | head -1)
+
+#echo ${configfiles[@]}
+##data_modification=$(stat -c "%y %n" ${configfiles[@]})
+
+#echo "Data Modification of these files .. $data_modification"
+
+#while true;
+#do
+   #ls  .bashrc .muttrc .gitconfig .vimrc .profile > /dev/null
+
+	/usr/bin/notify-send "Config file Updated!" "ConfigFile:$filechange"
+#done
+#while true;do echo ~/.vimrc | entr -p notify-send "Vimrc Updated!";done
+#while true;do echo ~/.gitconfig | entr -p notify-send "Gitconfig Updated!";done
+
+#while inotifywait -e modify --fromfile /home/bhaskar/configfiles; do
+    #/usr/bin/ notify-send "Config file updated!"
+ #done
+
+
