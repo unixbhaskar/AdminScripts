@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+printf "XFS stats... \n\n"
+
+sudo cat /proc/fs/xfs/stat
