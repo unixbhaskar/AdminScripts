@@ -1,0 +1,35 @@
+#!/bin/bash
+#Build linux-next tree automatically and boot with qemu
+linux_next_home="/home/bhaskar/git-linux"
+bzimage="$linux_next_home/linux-next/arch/x86_64/boot/bzImage"
+qemu=$(command -v qemu-system-x86_64)
+rootfs="/home/bhaskar/git-linux/buildroot/output/images/rootfs.ext4"
+
+
+cd $linux_next_home
+
+git clone --depth 1 https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git linux-next
+#git clone --depth 1   git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git linux-next
+cd linux-next
+
+#git remote add linux-next git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+#git fetch linux-next
+#git fetch --tags linux-next
+#git remote update
+	if [[ "$(uname -n)" == "ArchLinux" ]];then
+
+	        echo "Build now..."
+		sudo zcat /proc/config.gz > .config
+		make localmodconfig
+		make V=1  ARCH=x86_64 -j$(getconf _NPROCESSORS_ONLN) LOCALVERSION=-linux-next-$(date +'%F')
+		make modules
+	else
+	        echo "This is $(hostname)...build now..."
+                cp  /boot/config-$(uname -r | tr -d - | tr -d [:alpha:]) .config
+                make localmodconfig
+                make V=1 ARCH=x86_64 -j$(getconf _NPROCESSORS_ONLN) LOCALVERSION=-linux-next-$(date +'%F')
+                make modules
+	fi
+
+
+	$qemu -boot c -m 2049M -kernel $bzimage  -hda $rootfs -nographic -append "root=/dev/sda rw console=ttyS0"
