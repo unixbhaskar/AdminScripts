@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+servers="x-hkp://pool.sks-keyservers.net  wwwkeys.ch.pgp.net"
+for server in $servers; do
+	gpg2 --keyserver $server --send-key "your_pgp_or_gpg_key_here"
+	done
