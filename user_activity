@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+username="$1"
+DIR="$2"
+
+if test $# -ne 2; then
+printf "Please provide the name of the user and specific dir for activity. \n
+       Usage : ./user_activity \"username\" /etc \n\n"
+       exit 1
+fi
+
+lsof -u $username -a +D $DIR
+       
