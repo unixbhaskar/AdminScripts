@@ -1,0 +1,13 @@
+#!/bin/bash
+
+filename=$1
+filename2=$2
+awkpat=$(command -v gawk)
+
+if [[ $# -eq 0 ]];then
+    echo "You need to specify the file name"
+    exit 1
+else
+
+$awkapt '{gsub(/[ \t]*$/, "");print}' $filename 
+fi
