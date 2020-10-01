@@ -3,7 +3,12 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype plugin indent on     "Make indent code based on the file type
 syntax on
-"set background=light
+source ~/.vim/colors/desert.vim
+
+"Fold color preference
+"highlight Folded guibg=black guifg=yellow
+"highlight FoldColumn guibg=black guifg=orange
+"Different highlights set background=light
 highlight Comment    ctermfg=119
 highlight clear SpellBad
 highlight SpellBad  cterm=bold ctermbg=9 gui=undercurl guisp=Yellow
@@ -15,8 +20,6 @@ highlight Visual term=bold cterm=bold ctermbg=7 ctermfg=2 guifg=Red guibg=LightB
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " PlugIns let Vundle manage Vundle, required
 Plugin  'VundleVim/Vundle.vim'
@@ -80,10 +83,8 @@ filetype plugin on
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
-" see :h vundle for more details or wiki for FAQ
 
-
-" Put your non-Plugin stuff after this line
+"Support vim plugin sourced
 source ~/.vim/bundle/vim-shortcut/plugin/shortcut.vim
 
 "Default bindings
@@ -199,6 +200,13 @@ nnoremap <C-Right> :tabnext<CR>
 "Tagbar to work
  nmap <F8> :TagbarToggle<CR>
 
+"Fold toggle by F9
+
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+
 "NerdTree open CTRL+n
  noremap <C-n> :NERDTreeToggle<CR>
 
@@ -255,7 +263,8 @@ autocmd BufWritePost .vimrc !notify_config_file_updates
 autocmd BufWritePost .gitconfig !notify_config_file_updates
 autocmd BufWritePost .muttrc !notify_config_file_updates
 autocmd BufWritePost .profile !notify_config_file_updates
-autocmd BufWritePost .i3config !notify_config_file_updates
+autocmd BufWritePost .ithreeconfig !notify_config_file_updates
+autocmd BufWritePost .ithreeblocksconfig !notify_config_file_updates
 augroup END
 
 "Move between splits
@@ -409,8 +418,6 @@ nmap <leader>mnf <plug>(Mac_NameCurrentMacroForFileType)
 
 nmap <leader>mc <plug>(Mac_CopyCurrentMacroToRegister)
 
-
-
 " This is for Shortcut showmap#helper("<Space>t","n")ut to enable pop  up to remember the key combination in vim
 let mapleader=";"
 
@@ -507,3 +514,5 @@ Shortcut! TerminalOpen To open up a terminal inside it press \te
 Shortcut! ReplaceBacktickTO$()   Run this varbetim on ex prompt %s/`\([^`]*\)`/$(\1)/g
 
 Shortcut! MoveSelectInVisualMode  use CTRL-j and CTRL-k  in visual mode
+
+Shortcut! FoldToggle   F9
