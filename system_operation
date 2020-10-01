@@ -27,12 +27,24 @@
        echo "3. System Update"
         
 	tput cup 10 15
-	echo "4. Exit"
+	echo "4. System State"
+	
+	tput cup 11 15
+	echo "5. System Security Check"
+
+	tput cup 12 15
+	echo "6. Wireless Network Info"
+
+	tput cup 13 15
+	echo "7. VPN Connect"
+
+	tput cup 14 15
+	echo "8. Exit"
 	 
 	 # Set bold mode
 	 tput bold
-	 tput cup 12 15
-	 read -p "Enter your choice [1-4] " choice
+	 tput cup 15 16
+	 read -p "Enter your choice [1-8] " choice
 	  
 	  tput clear
 	  tput sgr0
@@ -40,13 +52,13 @@
 
 if [[ $choice -eq 1 ]]; then
  
-sh /usr/local/bin/ArchLinux_custom_kernel_build.sh
+sudo su - bhaskar  sh /usr/local/bin/ArchLinux_custom_kernel_build.sh
 
 
 elif [[ $choice -eq 2 ]];then
 
 
-sh /usr/local/bin/mainline_Arch_build.sh
+sudo su - bhaskar sh /usr/local/bin/mainline_Arch_build.sh
 
 
 elif [[ $choice -eq 3 ]]; then
@@ -55,10 +67,31 @@ sh /usr/local/bin/update_system
 
 
 elif [[ $choice -eq 4 ]]; then
+state=dstat
+args=" -afv"
 
+$state $args
 
-exit 1
- 
+elif [[ $choice -eq 5 ]]; then
+
+rootkit=rkhunter
+args=" --check"
+
+$rootkit $args
+
+elif [[ $choice -eq 6 ]]; then
+
+sh /home/bhaskar/Adm_scripts/wireless_info.sh
+
+elif [[ $choice -eq 7 ]]; then
+sh /home/bhaskar/vpn_connect
+
+elif [[ $choice -eq 8 ]]; then
+exit 1	
+
+else
+  printf "Press CTRL-C to get back to previous menu \n\n"
+  trap EXIT  
 fi
 
 
