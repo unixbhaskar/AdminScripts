@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+run_lvl=$(runlevel | gawk '{ print $2 }')
+if [[ $run_lvl -eq 6 ]]; then
+  printf "Cleaning firefox log file...\n"
+  rm -f /data/firefox_log/firefox.log-main.*
+  fi
