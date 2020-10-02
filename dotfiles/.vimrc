@@ -1,10 +1,12 @@
+"Default values
+"Author : Bhaskar Chowdhury
+
 scriptencoding utf-8
 set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype plugin indent on     "Make indent code based on the file type
 syntax on
 source ~/.vim/colors/desert.vim
-
 "Fold color preference
 "highlight Folded guibg=black guifg=yellow
 "highlight FoldColumn guibg=black guifg=orange
@@ -16,11 +18,9 @@ highlight SpellBad  cterm=bold ctermbg=9 gui=undercurl guisp=Yellow
 "Make the visual selection more prominent
 
 highlight Visual term=bold cterm=bold ctermbg=7 ctermfg=2 guifg=Red guibg=LightBlue
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 " PlugIns let Vundle manage Vundle, required
 Plugin  'VundleVim/Vundle.vim'
 Plugin  'vim-airline/vim-airline'
@@ -83,10 +83,8 @@ filetype plugin on
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
-
 "Support vim plugin sourced
 source ~/.vim/bundle/vim-shortcut/plugin/shortcut.vim
-
 "Default bindings
 
 set laststatus=2
@@ -117,11 +115,9 @@ let python_highlight_all=1
 let g:startuptime_sort = 0
 let g:startuptime_tries = 5
 let g:startuptime_exe_args = ['-u', '~/.vimrc']
-
 "vifm
 "let loaded_vifm=1
 map<Leader>vv :Vifm<CR>
-
 "vimwiki header colors and file extensions
 hi VimwikiHeader1 guifg=#FF0000
 hi VimwikiHeader2 guifg=#00FF00
@@ -130,22 +126,18 @@ hi VimwikiHeader4 guifg=#FF00FF
 hi VimwikiHeader5 guifg=#00FFFF
 hi VimwikiHeader6 guifg=#FFFF00
 let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\)\='
-
 "Shortcut! Git commit popup messages of the specific line of code by pressing"\g
  nmap <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
-
 "Make leading and trailing space visible
 
 syn match ErrorLeadSpace /^ \+/         " highlight any leading spaces
 syn match ErrorTailSpace / \+$/         " highlight any trailing spaces
 "match Error80            /\%>80v.\+/    " highlight anything past 80 in red
-
 "All about indenting
 
 set autoindent smartindent              " turn on auto/smart indenting
 set smarttab                            " make <tab> and <backspace> smarter
 set backspace=eol,start,indent          " allow backspacing over indent, eol, & start
-
 "All about Tabs and Spaces
 
 set noexpandtab                         " use tabs, not spaces
@@ -153,22 +145,16 @@ set tabstop=8                           " tabstops of 8
 set softtabstop=8
 set shiftwidth=8                        " indents of 8
 set textwidth=78                        " screen in 80 columns wide, wrap at 78
-
 " To make folding work automatically
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-
+"autocmd BufWinLeave *.* mkview
+"autocmd BufWinEnter *.* silent loadview
 "Shortcut! paste mode on or off
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
-
-
 "History of changes showing by undotree plugin
 nnoremap <F3> :UndotreeToggle<CR>
-
 "Showing non visible character by toggle
 nmap <F4> :set list!<CR>
-
 "Removing trailing whitespace
 nnoremap <F5> :call <SID>StripTrailingWhitespaces()<CR>
 
@@ -185,59 +171,43 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
 "Shortcut! Spell Checking toggle
 map <silent><F6> :setlocal spell! spelllang=en_us<CR>
-
 "Tabs manipulation vim -p filename1 filename2... from cli
 set switchbuf=usetab
 nnoremap <F7> :sbnext<CR>
 nnoremap <S-F7> :sbprevious<CR>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
-
-
 "Tagbar to work
  nmap <F8> :TagbarToggle<CR>
-
 "Fold toggle by F9
 
 inoremap <F9> <C-O>za
 nnoremap <F9> za
 onoremap <F9> <C-C>za
 vnoremap <F9> zf
-
 "NerdTree open CTRL+n
  noremap <C-n> :NERDTreeToggle<CR>
-
 "Search replaces n number of times
 nnoremap Q :normal n.<CR>
-
 "Open URI under cursor.
  nmap ob <Plug>(openbrowser-open)
-
 "Open selected URI.
  vmap os <Plug>(openbrowser-open)
-
-
 "Titlecase plugins
 
 nmap <leader>tc <Plug>Titlecase
 vmap <leader>tc <Plug>Titlecase
 nmap <leader>tT <Plug>TitlecaseLine
-
-
 "Open a terminal inside vim
 
 noremap <silent><leader>te :botright vertical terminal<CR>
-
-
 "Tim pope commentrary plugins for comment in file
 autocmd FileType sh setlocal commentstring=#\ %s
 autocmd FileType cpp,cs,java setlocal commentstring=//\ %s
 autocmd FileType c setlocal commentstring=/*\ %s
 autocmd FileType vim setlocal commentstring=\"\ %s
-
 "Google calendar process
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
@@ -245,16 +215,11 @@ let g:calendar_google_event = 1
 let g:calendar_event_start_time= 1
 "let g:calendar_frame = 'default'
 source ~/.cache/calendar.vim/credentials.vim
-
-
 "Vimade settings
 
 let g:vimade = {}
 let g:vimade.fadelevel = 0.7
 let g:vimade.enablesigns = 1
-
-
-
 "Auto command for configuration file modification/change notification
 augroup configfilealert
 "au!
@@ -266,23 +231,18 @@ autocmd BufWritePost .profile !notify_config_file_updates
 autocmd BufWritePost .ithreeconfig !notify_config_file_updates
 autocmd BufWritePost .ithreeblocksconfig !notify_config_file_updates
 augroup END
-
 "Move between splits
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
-
 "Open this file in vertical split for quick reference
 nnoremap <leader>vr :vsplit ~/.vimrc<cr>
-
 "After editing this file must be sourced ,so the changes take effect on
 "current session
 nnoremap <leader>sv :source ~/.vimrc<cr>
-
 "To insert email address with a shortcut @@ ,and then need to press space after that
 iabbrev @@    unixbhaskar@gmail.com
-
 " Auto loading .vimrc once saved
 if has('autocmd')
     augroup reload_vimrc
@@ -290,7 +250,6 @@ if has('autocmd')
         autocmd! BufWritePost ~/.vimrc nested source %
     augroup END
 endif
-
 "conditionally auto creating directory if it is not exists.
 
 augroup AutoMkdir
@@ -315,7 +274,6 @@ function! AskQuit (msg, proposed_action)
         exit
     endif
 endfunction
-
 "fzf related customization
 
 let $FZF_DEFAULT_OPTS .= ' --inline-info'
@@ -349,21 +307,17 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Word completion with custom spec with popup layout option
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
-
 "Visual mode selection move up and down my unimpaired
+autocmd VimEnter * vunmap <C-j>
 vmap <C-k> [egv
 vmap <C-j> ]egv
-
 "Convert `` to $() in code
 " vmap <leader>cq  :%s/`\([^`]*\)`/$(\1)/g<CR>
 " imap <leader>cq  :%s/`\([^`]*\)`/$(\1)/g<CR>
-
-
 "All about macros ..vim-microbastic plugin
 
 let g:Mac_NamedMacroFileExtension = '.vimmacro'
 let g:Mac_NamedMacrosDirectory = "~/.vim/macrobatics"
-
 
 " Use <nowait> to override the default bindings which wait for another key press
 nmap <nowait> q <plug>(Mac_Play)
@@ -375,7 +329,6 @@ nmap <leader>mh :DisplayMacroHistory<cr>
 
 nmap [m <plug>(Mac_RotateBack)
 nmap ]m <plug>(Mac_RotateForward)
-
 
 "Macro append and macro prepend
 
@@ -417,8 +370,7 @@ nmap <leader>mnf <plug>(Mac_NameCurrentMacroForFileType)
 "Macro copy
 
 nmap <leader>mc <plug>(Mac_CopyCurrentMacroToRegister)
-
-" This is for Shortcut showmap#helper("<Space>t","n")ut to enable pop  up to remember the key combination in vim
+" This is for Shortcut window entries for hints
 let mapleader=";"
 
 "Shortcut show shortcut menu and run chosen shortcut
@@ -453,7 +405,6 @@ Shortcut! TabsManaged by F7 and Shift-F7 and CTRL-> CTRL<-
 Shortcut! Calendar to show by write Calendar at : prompt
 
 Shortcut! Autocomplete suggestions select by pressing CTRL+Shift+n
-
 
 Shortcut! GitHubBrowse if you run "!hub browse" from : this promt inside git repo,it will open the repo page in GitHub
 
@@ -516,3 +467,11 @@ Shortcut! ReplaceBacktickTO$()   Run this varbetim on ex prompt %s/`\([^`]*\)`/$
 Shortcut! MoveSelectInVisualMode  use CTRL-j and CTRL-k  in visual mode
 
 Shortcut! FoldToggle   F9
+
+Shortcut! ColorSchemeToggle  F10
+"View save and restore plugin
+set viewoptions=cursor,folds,slash,unix
+
+Plugin 'restore_view.vim'
+"Alternative colors scheme by pressing F10 next scheme,shift+F10 previous scheme, Alt+F10 is random scheme
+source  ~/.vim/bundle/setcolors.vim
