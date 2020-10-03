@@ -308,7 +308,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " Word completion with custom spec with popup layout option
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
 "Visual mode selection move up and down my unimpaired
-autocmd VimEnter * vunmap <C-j>
+"autocmd VimEnter * vunmap <C-j>
 vmap <C-k> [egv
 vmap <C-j> ]egv
 "Convert `` to $() in code
