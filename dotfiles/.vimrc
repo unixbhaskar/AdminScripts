@@ -126,7 +126,7 @@ hi VimwikiHeader4 guifg=#FF00FF
 hi VimwikiHeader5 guifg=#00FFFF
 hi VimwikiHeader6 guifg=#FFFF00
 let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\)\='
-"Shortcut! Git commit popup messages of the specific line of code by pressing"\g
+Shortcut! Git commit popup messages of the specific line of code by pressing"\g
  nmap <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
 "Make leading and trailing space visible
 
@@ -148,12 +148,12 @@ set textwidth=78                        " screen in 80 columns wide, wrap at 78
 " To make folding work automatically
 "autocmd BufWinLeave *.* mkview
 "autocmd BufWinEnter *.* silent loadview
-"Shortcut! paste mode on or off
+Shortcut! paste mode on or off
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 "History of changes showing by undotree plugin
 nnoremap <F3> :UndotreeToggle<CR>
-"Showing non visible character by toggle
+Shortcut! showing non visible character by toggle
 nmap <F4> :set list!<CR>
 "Removing trailing whitespace
 nnoremap <F5> :call <SID>StripTrailingWhitespaces()<CR>
@@ -171,7 +171,7 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-"Shortcut! Spell Checking toggle
+Shortcut! Spell Checking toggle
 map <silent><F6> :setlocal spell! spelllang=en_us<CR>
 "Tabs manipulation vim -p filename1 filename2... from cli
 set switchbuf=usetab
@@ -278,9 +278,9 @@ endfunction
 
 let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
-"Shortcut :Files bring up the fuzzy finder
+Shortcut! :Files bring up the fuzzy finder
  map <C-f> <Esc><Esc>:Files!<CR>
-"Shortcut :Blines  in file and go to chosen line
+ Shortcut! :Blines  in file and go to chosen line
 inoremap <C-f> <Esc><Esc>:Blines!<CR>
 
 " Always enable preview window on the right with 60% width
@@ -469,9 +469,68 @@ Shortcut! MoveSelectInVisualMode  use CTRL-j and CTRL-k  in visual mode
 Shortcut! FoldToggle   F9
 
 Shortcut! ColorSchemeToggle  F10
+
+Shortcut! WindowManipulationKeys   2-> 3-> exchange buffer with directionkey ,5 & 6 -> with direction key, 4 plus arrow key target tab,;z maximise window,\B detach all
+
+Shortcut! AckSearch     ;a will promp ,t to open in tab ,o to open , go to preview file,T open in tab but no move there
+
+Shortcut! BashSupportCaseEsac    \sc
+Shortcut! BashSupportElifThen    \sl
+Shortcut! BashSupportForInDoDoneLoop \sf
+Shortcut! BashSupportFor((..))DoDone  \sfo
+Shortcut! BashSupportIfFi             \si
+Shortcut! BashSupportIfThenElseIf     \sie
+Shortcut! BashSupportSelectInDoDone    \ss
+Shortcut! BashSupportUntilDoDone       \st
+Shortcut! BashSupportWhileDoDone       \sw
+Shortcut! BashSupportFunction          \sfu
+Shortcut! BashSupportEcho              \se
+Shortcut! BashSupportPrintf            \sp
+Shortcut! BashSupportFunctionHeder     \cfu
+Shortcut! BashSupportKeyboardBUG        \ckb
+Shortcut! BashSupportKeyBoardTODO      \ckt
 "View save and restore plugin
 set viewoptions=cursor,folds,slash,unix
 
 Plugin 'restore_view.vim'
 "Alternative colors scheme by pressing F10 next scheme,shift+F10 previous scheme, Alt+F10 is random scheme
 source  ~/.vim/bundle/setcolors.vim
+" vim window manipulation plugin
+Plugin 'yaronkh/vim-winmanip'
+
+"nmap <silent> 1<Right> <Plug>(JumpRight)"
+"nmap 1<Left> <Plug>(JumpLeft)"
+"nmap 1<Down> <Plug>(JumpDown)"
+"nmap 1<Up> <Plug>(JumpUp)"
+
+"nmap 2<Right> <Plug>(MoveBufRight)"
+"nmap 2<Left> <Plug>(MoveBufLeft)"
+"nmap 2<Down> <Plug>(MoveBufDown)"
+"nmap 2<Up> <Plug>(MoveBufUp)"
+
+"nmap 3<Right> <Plug>(MoveJumpBufRight)"
+"nmap 3<Left> <Plug>(MoveJumpBufLeft)"
+"nmap 3<Down> <Plug>(MoveJumpBufDown)"
+"nmap 3<Up> <Plug>(MoveJumpBufUp)"
+
+"nmap 4<Right> <Plug>(MoveWinToNextTab)"
+"nmap 4<Left> <Plug>(MoveWinToPrevTab)"
+
+"nmap 5<Right> <Plug>(CopyBufRight)"
+"nmap 5<Left> <Plug>(CopyBufLeft)"
+"nmap 5<Down> <Plug>(CopyBufDown)"
+"nmap 5<Up> <Plug>(CopyBufUp)"
+
+"nmap 6<Right> <Plug>(CopyJumpBufRight)"
+"nmap 6<Left> <Plug>(CopyJumpBufLeft)"
+"nmap 6<Down> <Plug>(CopyJumpBufDown)"
+"nmap 6<Up> <Plug>(CopyJumpBufUp)"
+
+nmap <leader>z <Plug>(MaximizeWin)"
+
+"nmap <silent> <Leader>B <Plug>(ClearAllW"indows)
+"nmap <silent> <Leader>b <Plug>(ClearBuff"erList)
+"Ack search plugin
+Plugin 'mileszs/ack.vim'
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
