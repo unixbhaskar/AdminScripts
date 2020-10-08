@@ -1,15 +1,15 @@
-"Default values
 "Author : Bhaskar Chowdhury
 
+"Default values
 scriptencoding utf-8
 set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype plugin indent on     "Make indent code based on the file type
 syntax on
-source ~/.vim/colors/desert.vim
-"Fold color preference
-"highlight Folded guibg=black guifg=yellow
-"highlight FoldColumn guibg=black guifg=orange
+"source ~/.vim/colors/torte.vim
+"syntax enable
+"set background=dark
+colorscheme desert
 "Different highlights set background=light
 highlight Comment    ctermfg=119
 highlight clear SpellBad
@@ -45,7 +45,6 @@ Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-commentary'
-Plugin 'codepad'
 Plugin 'tpope/vim-surround'
 Plugin 'christoomey/vim-titlecase'
 Plugin 'svermeulen/vim-macrobatics'
@@ -454,7 +453,7 @@ Shortcut! PrintCurrentFileName  In the insert mode " C-R %
 
 Shortcut! HelpFind  helpgrep <anyterm> then use cn,cp,cl
 
-Shortcut! Surround  cs(existing)(replace) ,full word cst(delimit) ,ysiw,yssb
+Shortcut! Surround  cs(existing)(replace) ,full word cst(delimit) ,yss("') to quote sentence,ysiw,yssb ds=to delete
 
 Shortcut! TitleCase  tc in normal and visual mode and tT for All The Words Inline
 
@@ -489,6 +488,10 @@ Shortcut! BashSupportPrintf            \sp
 Shortcut! BashSupportFunctionHeder     \cfu
 Shortcut! BashSupportKeyboardBUG        \ckb
 Shortcut! BashSupportKeyBoardTODO      \ckt
+
+Shortcut! MoveToLastChangeSpot         g; = forward move and g,= backward move to last changes
+
+Shortcut! ChnagesAndJumps              :changes = show the chnage made ;  :Jump = show where we jump to made changes; CTRL-o jump on the changes backward; CTRL-i frwd
 "View save and restore plugin
 set viewoptions=cursor,folds,slash,unix
 
