@@ -370,6 +370,8 @@ nmap <leader>mnf <plug>(Mac_NameCurrentMacroForFileType)
 
 nmap <leader>mc <plug>(Mac_CopyCurrentMacroToRegister)
 "Shortcut show shortcut menu and run chosen shortcut
+let mapleader=";"
+
 Shortcut for shortcuts to work in vim
        \ noremap <silent> <Leader><Leader> :Shortcuts<Return>
 
