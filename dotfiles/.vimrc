@@ -369,9 +369,6 @@ nmap <leader>mnf <plug>(Mac_NameCurrentMacroForFileType)
 "Macro copy
 
 nmap <leader>mc <plug>(Mac_CopyCurrentMacroToRegister)
-" This is for Shortcut window entries for hints
-let mapleader=";"
-
 "Shortcut show shortcut menu and run chosen shortcut
 Shortcut for shortcuts to work in vim
        \ noremap <silent> <Leader><Leader> :Shortcuts<Return>
@@ -492,6 +489,8 @@ Shortcut! BashSupportKeyBoardTODO      \ckt
 Shortcut! MoveToLastChangeSpot         g; = forward move and g,= backward move to last changes
 
 Shortcut! ChnagesAndJumps              :changes = show the chnage made ;  :Jump = show where we jump to made changes; CTRL-o jump on the changes backward; CTRL-i frwd
+
+Shortcut! WordsLinesRegionExchange      cx is default prefix , cxx for current line , X in visual mode , cxc clear out the mark
 "View save and restore plugin
 set viewoptions=cursor,folds,slash,unix
 
@@ -537,3 +536,5 @@ nmap <leader>z <Plug>(MaximizeWin)"
 Plugin 'mileszs/ack.vim'
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
+" Vim exchange plugin to help exchnage words and regions
+Plugin 'tommcdo/vim-exchange'
