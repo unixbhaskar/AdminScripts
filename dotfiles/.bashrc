@@ -86,7 +86,7 @@ alias journal_clear="sudo journalctl --vacuum-size=50000"
 alias shortcut_pages="cd $HOME/shortcut/pages && ls | basename -s .md * | less"
 alias githublinux="cd $HOME/git-linux/linux_github_fork"
 alias githubgit="cd $HOME/git-linux/git_github_fork"
-alias gcl=gclone 
+alias gcl=gclone
 alias linuxpull="cd /data/linux && git pull && cd ~"
 alias githubi3="cd $HOME/git-linux/i3"
 alias update_buildroot="cd $HOME/git-linux/buildroot && git pull && cd ~"
@@ -110,13 +110,26 @@ alias gitconfig="git config --global --edit"
 alias vimrc="vim ~/.vimrc"
 alias muttrc="vim ~/.muttrc"
 alias reload_bashrc="source ~/.bashrc"
-alias bashrc="vim ~/.bashrc"
+alias bashrc="vim ~/.bashrc && source ~/.bashrc"
 alias cat="ccat"
 alias videodl="$HOME/bin/youtube-dl -f 18 $1"
 alias mp3dl="$HOME/bin/youtube_video_to_mp3_conv.sh $1"
-alias i3config="vim ~/.config/i3/config"
+alias i3config="vim ~/.ithreeconfig"
 alias linux-next="cd $HOME/git-linux/linux-next"
 alias profile="vim ~/.profile"
+alias i3blocks="vim ~/.ithreeblocksconfig"
+alias i3scripts="cd ~/.config/i3/ && ls"
+alias scriptsgit="cd ~/git-linux/AdminScripts"
+alias lt="cd ~/LaTeX_Workouts"
+alias vimplugin=vimplugin
+alias archlinux_update="cd $HOME/git-linux/ArchLinux_Kernel && git pull && cd ~"
+alias gentoo_update="cd $HOME/git-linux/gentoo && git pull && cd ~"
+alias slackware_update="cd ~/git-linux/SlackBuilds && git pull && cd ~"
+alias debian_update="cd ~/git-linux/debian_linux && git pull && cd ~"
+alias gdb="gdb --tui --quiet --statistics $1"
+alias photo="sxiv -t $1"
+alias vimpull="cd ~/git-linux/vim && git pull && cd ~"
+alias screen_config="vim $HOME/screenrc"
 unset SSH_ASKPASS
 
 
@@ -132,11 +145,29 @@ gitlog() {
   fi
  }
 
+#Git grep as search in repo
+
+search() {
+	if [ $# -ne 1 ]; then
+		echo "You need to pass the search string"
+	else
+
+		git grep "$1" "$(pwd)"
+	fi
+}
+
+
 #git clone and get into the cloned directory
 
 gclone() {
-	 cd $HOME/git-linux && git clone "$1" &&  cd "$(basename $1 .git)" 
+
+	 cd $HOME/git-linux && git clone "$1" &&  cd "$(basename $1 .git)"
 }
+
+# To clone vim plugin ~/.vim/bundle  dir
+vimplugin() {
+	 cd $HOME/.vim/bundle && git clone "$1" &&  cd "$(basename $1 .git)"
+ }
 
 GPG_TTY=$(tty)
 export GPG_TTY
@@ -177,7 +208,7 @@ function apt-history(){
 
 export TERM=screen-256color
 export EDITOR=vim
-
+BROWSER="$(which firefox)"
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -187,4 +218,14 @@ export EDITOR=vim
 of() { vim "$(find  $(pwd) -type f | fzf)"  ;}
 backup_dot_files() { cp -v "$1" "$(find /data/dotfiles -name '*' -type f | fzf)" ;}
 copy_to_gitrepo() { cp -v "$1" "$(find ~/git-linux/AdminScripts -name '*'  -type f | fzf)" ;}
+
+#Powerline shell prompt
+
+#function _update_ps1() {
+#     PS1=$(powerline-shell $?)
+# }
+
+# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# fi
 
