@@ -130,6 +130,8 @@ alias gdb="gdb --tui --quiet --statistics $1"
 alias photo="sxiv -t $1"
 alias vimpull="cd ~/git-linux/vim && git pull && cd ~"
 alias screen_config="vim $HOME/screenrc"
+alias vimb_config="vim ~/.config/vimb/config"
+alias newsboat_config="vim ~/.newsboat/config"
 unset SSH_ASKPASS
 
 
@@ -208,7 +210,7 @@ function apt-history(){
 
 export TERM=screen-256color
 export EDITOR=vim
-BROWSER="$(which firefox)"
+BROWSER="$(which vimb)"
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
