@@ -1,0 +1,61 @@
+https://www.kernel.org/feeds/kdist.xml   Upstream_Kernel_Release_News
+https://www.archlinux.org/feeds/news/  Arch_Linux_News
+https://www.archlinux.org/feeds/packages/x86_64/ Arch_Linux_Packages
+https://mirrors.slackware.com/feeds/slackware64-current.rss  Slackware-current
+http://feeds2.feedburner.com/webupd8 "Linux"
+http://selinuxnews.org/wp/index.php/feed/
+http://opensource.org/blog/feed
+http://linuxtoday.com/backend/biglt.rss
+http://www.debian-administration.org/articles.rdf
+http://feeds.feedburner.com/Insidehpc
+http://lxer.com/module/newswire/headlines.rss
+http://google-opensource.blogspot.com/atom.xml
+http://kernelnewbies.org/RecentChanges?action=rss_rc&ddiffs=1&unique=1
+http://feeds2.feedburner.com/Command-line-fu
+http://feeds.feedburner.com/Go2linux
+http://feeds.feedburner.com/unixmenhowtos
+http://www.kroah.com/log/index.rss
+http://www.unix.com/external.php?type=RSS2
+http://feeds.feedburner.com/Phoronix
+http://www.linuxhpc.org/backend/linuxhpc.rdf
+http://www.pixelbeat.org/feed/rss2.xml
+http://blog.ivanristic.com/atom.xml
+http://www.linuxtopia.org/linuxtopia.rss
+http://administratosphere.wordpress.com/feed/
+http://feeds.feedburner.com/susegeek
+http://superuser.com/feeds/tag/linux
+http://unixbhaskar.wordpress.com/feed/
+http://www.reddit.com/r/linux/.rss
+http://feeds.feedburner.com/linuxweblog
+http://www.ducea.com/feed/
+http://feeds.feedburner.com/linuxscrew
+http://feeds.feedburner.com/Shell-fu
+http://linux.byexamples.com/feed/
+http://unixbhaskar.blogspot.com/feeds/posts/default
+http://www.linuxsecurity.com/static-content/linuxsecurity_advisories.rss
+http://www.ibm.com/developerworks/views/linux/rss/libraryview.jsp
+http://jakarta.apache.org/site/rss.xml
+http://feeds.cyberciti.biz/Nixcraft-LinuxFreebsdSolarisTipsTricks
+http://www.clustermonkey.net/component/option,com_rss/feed,RSS2.0/no_html,1/
+http://www.fsf.org/news/RSS
+http://nagios.org/backend/feeds/frontpage/
+http://feeds.feedburner.com/UbuntuGeek
+http://www.linuxhaxor.net/feed/
+http://mysqlha.blogspot.com/feeds/posts/default
+http://feeds.feedburner.com/MozillaLinks
+http://feeds.feedburner.com/linuxtutorial
+http://www.linuxquestions.org/syndicate/lqlatest.xml
+http://www.linuxfromscratch.org/lfs/feed.rss
+http://mysqldba.blogspot.com/atom.xml
+http://www.howtoforge.com/node/feed
+http://www.linuxjournal.com/node/feed
+http://feeds.feedburner.com/TheGeekStuff
+http://lkml.org/rss.php
+http://serverfault.com/feeds/tag/linux
+http://www.osnews.com/files/recent.xml
+http://feeds.feedburner.com/TechCrunch/
+http://www.eweek.com/servers/rss/
+http://www.nagios.org/backend/feeds/frontpage/
+http://www.nagios.org/backend/feeds/uber/
+http://www.linuxformat.com/rss.xml
+http://www.tuxmachines.org/node/feed
