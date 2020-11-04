@@ -94,6 +94,7 @@ set ttyfast
 set wildmenu
 set wildmode=longest,full
 set showbreak=...
+set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ ,nbsp:^
 " Highlight the line with a cursor
 set cursorline
 " Disable cursor line highlighting in Insert mode
@@ -229,6 +230,7 @@ autocmd BufWritePost .muttrc !notify_config_file_updates
 autocmd BufWritePost .profile !notify_config_file_updates
 autocmd BufWritePost .ithreeconfig !notify_config_file_updates
 autocmd BufWritePost .ithreeblocksconfig !notify_config_file_updates
+autocmd BufWritePost  screenrc !notify_config_file_updates
 augroup END
 "Move between splits
 nnoremap <C-h> <C-w><C-h>
