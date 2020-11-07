@@ -129,9 +129,11 @@ alias debian_update="cd ~/git-linux/debian_linux && git pull && cd ~"
 alias gdb="gdb --tui --quiet --statistics $1"
 alias photo="sxiv -t $1"
 alias vimpull="cd ~/git-linux/vim && git pull && cd ~"
-alias screen_config="vim $HOME/screenrc"
+alias screenrc="vim $HOME/screenrc"
 alias vimb_config="vim ~/.config/vimb/config"
 alias newsboat_config="vim ~/.newsboat/config"
+alias style_vimb="vim ~/.config/vimb/style.css"
+alias vim_plugin_list="grep  Plugin ~/.vimrc | grep -v '^\"'"
 unset SSH_ASKPASS
 
 
