@@ -134,6 +134,7 @@ alias vimb_config="vim ~/.config/vimb/config"
 alias newsboat_config="vim ~/.newsboat/config"
 alias style_vimb="vim ~/.config/vimb/style.css"
 alias vim_plugin_list="grep  Plugin ~/.vimrc | grep -v '^\"'"
+alias keybinds_i3="grep bindsym .config/i3/config | grep -v ^# | less"
 unset SSH_ASKPASS
 
 
