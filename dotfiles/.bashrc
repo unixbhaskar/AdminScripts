@@ -135,6 +135,9 @@ alias newsboat_config="vim ~/.newsboat/config"
 alias style_vimb="vim ~/.config/vimb/style.css"
 alias vim_plugin_list="grep  Plugin ~/.vimrc | grep -v '^\"'"
 alias keybinds_i3="grep bindsym .config/i3/config | grep -v ^# | less"
+alias mpv="mpv --no-audio-display"
+alias menu="dmenufm -d -f -D -F -r $1"
+alias vim_plugins_update="v +PluginUpdate +qa"
 unset SSH_ASKPASS
 
 
