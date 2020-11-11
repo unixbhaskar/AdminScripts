@@ -16,6 +16,9 @@ font pango:monospace 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
 
+#This is for the icons rendering
+font pango:fontawesome 8
+
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -33,7 +36,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#EEEEEE' -fn 'monospace-10' -p 'search command item >'"  
+bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#EEEEEE' -fn 'monospace-10' -p 'search command item >'"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -91,16 +94,16 @@ bindsym $mod+a focus parent
 #background
 #
 exec_always --no-startup-id feh --bg-scale /home/bhaskar/Pictures/LKM3_1024.png
-##Autostart 
+##Autostart
 #exec xfce4-terminal --hide-menubar --hide-scrollbar --command screen -c "$HOME/screenrc"
 exec $HOME/bin/st -e screen -c $HOME/screenrc
 
-exec $HOME/bin/firefox
+#exec $HOME/bin/firefox
 
- 
+
 set $workspace1 "1   "
-set $workspace2 "2   "
-set $workspace3 "3  "
+set $workspace2 "2  "
+set $workspace3 "3   "
 set $workspace4 "4   "
 set $workspace5 "5   "
 set $workspace6 "6   "
@@ -109,9 +112,9 @@ set $workspace8 "8 kodi"
 
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1 
-bindsym $mod+w workspace $workspace2 ; exec "$HOME/bin/firefox";
-bindsym $mod+3 workspace $workspace3 ; exec vlc;
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+b workspace $workspace2 ; exec "$HOME/bin/vimb";
+bindsym $mod+w workspace $workspace3 ; exec "$HOME/bin/firefox_open";
 bindsym $mod+4 workspace $workspace4 ; exec nautilus | thunar;
 bindsym $mod+5 workspace $workspace5 ; exec "$HOME/bin/chromium";
 #bindsym $mod+t workspace $workspace6 ; exec thunderbird;
@@ -124,14 +127,14 @@ bindsym $mod+9 workspace $workspace9 ;
 #assign [class="(?i)firefox"] 2
 #assign [class="(?i)nautilus"] 3
 #assign [class="(?i)vlc"] 4
-#assign [class="(?i)chromium"] 5 
+#assign [class="(?i)chromium"] 5
 #Alternate assignment
 #
 #ASSIGN PROGRAMS TO WORKSPACES
 #
 assign [class="^st-256color"] → $workspace1
-assign [class="^Firefox$"] → $workspace2
-assign [class="^Vlc" ] → $workspace3
+assign [class="^Vimb$"]  → $workspace2
+assign [class="^Firefox$"] → $workspace3
 assign [class="^Nautilus$"] → $workspace4
 assign [class="^Chromium$"] → $workspace5
 assign [class="^Thunderbird$"] → $workspace6
@@ -190,49 +193,34 @@ bindsym $mod+r mode "resize"
 bar {
      position top
      output primary
-colors {
-        #separator #666666 #background #222222 #statusline #dddddd
-#	focused_workspace #0088CC #0088CC #ffffff
-#	active_workspace #333333 #333333 #ffffff
-#	inactive_workspace #333333 #333333 #888888
-#	urgent_workspace #2f343a #900000 #ffffff
-	
-	
-#separator #268bd2
-#background #002b36
-#statusline #839496	
-	background #000000 
-	
-	statusline #dddddd 
+     tray_output primary
 
+colors {
+	background #000000
+	statusline #dddddd
 	separator #666666
         focused_workspace  #4c7899 #285577 #ffffff
         active_workspace   #333333 #5f676a #ffffff
         inactive_workspace #333333 #222222 #888888
         urgent_workspace   #2f343a #900000 #ffffff
 }
-        status_command i3blocks -c  $HOME/.config/i3/i3blocks.conf
-        #status_command $HOME/.config/i3/polybar
-	workspace_buttons yes	
-	tray_output eDP-1
-        strip_workspace_numbers yes
+     status_command i3blocks -c  $HOME/.config/i3/i3blocks.conf
+     workspace_buttons yes
+     tray_output eDP-1
+     strip_workspace_numbers yes
 }
 
-bar {
-   position top
-   output DP2
-   status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
-   }
-
-# show tray icons on the primary monitor
+#This bar will appear on second monitor ,if uncommented below lines
 # bar {
-#       tray_output primary
-#}
-#
+#    position bottom
+#    output DP2
+#    status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
+#    }
+
 #
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +10% && killall -SIGUSR1 i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -10% && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +10% && killall -SIGUSR1 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -10% && killall -SIGUSR1 i3blocks
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 #bindsym XF86AudioRaiseVolume exec alsamixer sset Master 10%+ unmute
 #bindsym XF86AudioLowerVolume exec alsamixer sset Master 10%- unmute
@@ -241,7 +229,8 @@ bindsym $mod+F3 exec amixer set Master 10%+ unmute
 bindsym $mod+F2 exec amixer set Master 10%- unmute
 #
 #local
-#
+
+#lock
 bindsym $mod+shift+x exec i3lock -i ~/Pictures/i3lock.png
 
  hide_edge_borders both
@@ -252,7 +241,7 @@ bindsym $mod+Tab workspace back_and_forth
 for_window [class="^.*"] border pixel 1
 
 # Take a screenshot upon pressing $mod+x (select an area)
-bindsym $mod+x exec scrot -e 'mv $f ~/Pictures/Screenshots' 
+bindsym $mod+x exec scrot  -e 'mv $f ~/Pictures/Screenshots'
 
 # Press $mod+o followed by either f, t, Escape or Return to launch firefox,
 # thunderbird or return to the default mode, respectively.
@@ -280,16 +269,21 @@ bindsym $mod+minus scratchpad show
  #for_window [class="(?i)firefox"] title_format "<span foreground='magenta'>%title</span>"
  #
  # Toggle between hide state and show state
-  bindsym $mod+m bar hidden_state toggle
- 
+ # bindsym $mod+m bar hidden_state toggle
+  #dmenufm shortcut
+  bindsym $mod+m exec dmenufminvoke
+
  # Toggle between dock mode and hide mode
   bindsym $mod+n bar mode toggle
   #
 #start Kodi with this key combination
 
 bindsym $mod+g exec kodi-standalone
- 
+
  #make kodi open in specific workspace
  #
  for_window [class="^Kodi$"] floating enable, move container to workspace 8
+
+# Start Vivaldi browser
+ bindsym $mod+Shift+v exec valdi
 
