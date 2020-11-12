@@ -1,6 +1,6 @@
 # Homepage that vimb opens if started without a URI.
 #set home-page=about:blank
-set home-page=www.duckduckgo.com
+set home-page=www.lkml.org
 
 # Path to the default download directory. If no download directory is set,
 # download will be written into current directory. The following pattern will
@@ -12,6 +12,7 @@ set download-path=~/Downloads/
 # editor, it's necessary to call it with `-f' to run it in the foreground.
 set editor-command="vim %s"
 
+
 # If enabled the inputbox will be hidden whenever it contains no text.
 set input-autohide=true
 
@@ -20,7 +21,7 @@ set spell-checking=true
 
 # Set comma separated list of spell checking languages to be used for
 # spell checking.
-set spell-checking-languages=en
+set spell-checking-languages=en_US
 
 # Enable or disable support for WebGL on pages.
 set webgl=true
@@ -53,9 +54,9 @@ set default-zoom=120
 # Shortcuts allow the opening of an URI built up from a named template with
 # additional parameters.
 shortcut-add duck=https://duckduckgo.com/?q=$0
-shortcut-add d=http://dict.cc/?s=$0
+shortcut-add d=http://dictionary.com/?s=$0
 shortcut-add g=https://encrypted.google.com/search?q=$0
-shortcut-add y=http://www.youtube.com/results?search_query=$0
+shortcut-add yt=http://www.youtube.com/results?search_query=$0
 shortcut-add k=https://www.kernel.org?search_query=$0
 shortcut-add t=https://www.twitter.com/unixbhaskar?search_query=$0
 # Set the shortcut as the default, that is the shortcut to be used if no
@@ -67,6 +68,10 @@ shortcut-default duck
 nmap + zI
 nmap - zO
 nmap = zz
+
+#simple read format
+
+nnoremap <C-R> :e! simplyread();<CR>
 
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
