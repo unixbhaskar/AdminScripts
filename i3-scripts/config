@@ -97,8 +97,7 @@ exec_always --no-startup-id feh --bg-scale /home/bhaskar/Pictures/LKM3_1024.png
 ##Autostart
 #exec xfce4-terminal --hide-menubar --hide-scrollbar --command screen -c "$HOME/screenrc"
 exec $HOME/bin/st -e screen -c $HOME/screenrc
-
-#exec $HOME/bin/firefox
+#exec $HOME/bin/clipmenud
 
 
 set $workspace1 "1   "
@@ -287,3 +286,5 @@ bindsym $mod+g exec kodi-standalone
 # Start Vivaldi browser
  bindsym $mod+Shift+v exec valdi
 
+# clipmenu show the selection in dmenu
+bindsym $mod+z exec "clipmenu  -p 'clipboard items listed:'"
