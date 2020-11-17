@@ -1,2 +1,2 @@
 strings /sbin/init |
-  awk 'match($0, /(upstart|systemd|sysvinit)/) { print toupper(substr($0, RSTART, RLENGTH));exit; }'
+  awk 'match($0, /(systemd|sysvinit)/) { print toupper(substr($0, RSTART, RLENGTH));exit; }'
