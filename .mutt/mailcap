@@ -5,6 +5,15 @@ text/htm        ; lynx -dump -force_html %s ; copiousoutput
 message/html    ; lynx -dump -force_html %s ; copiousoutput
 message/htm     ; lynx -dump -force_html %s ; copiousoutput
 text/*;                           LESSQUIET=1 lesspipe.sh '%s'; copiousoutput
-application/*;                    LESSQUIET=1 lesspipe.sh '%s'; copiousoutput
-image/*;                          LESSQUIET=1 lesspipe.sh '%s'; copiousoutput
-audio/*;                          LESSQUIET=1 lesspipe.sh '%s'; copiousoutput
+#application/*;                    LESSQUIET=1 lesspipe.sh '%s'; copiousoutput
+image/*;                           sxiv %s; description="Images";
+#image/*;                          LESSQUIET=1 lesspipe.sh '%s'; copiousoutput
+audio/*;                           mpv %s; description="Audio";
+#audio/*;                          LESSQUIET=1 lesspipe.sh '%s'; copiousoutput
+video/*;                           mpv %s; description="Video";
+application/pdf;                  "${PDFVIEWER:-zathura}" %s; test=test -n "$DISPLAY"; nametemplate=%s.pdf; description="PDF Document"
+#Alternative from ArchWiki mutt page
+
+#text/html; xdg-open %s &> /dev/null &; nametemplate=%s.html
+#application/*; xdg-open %s &> /dev/null &;
+#image/*; xdg-open %s &> /dev/null &;
