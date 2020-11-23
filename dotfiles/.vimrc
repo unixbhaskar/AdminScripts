@@ -6,6 +6,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype plugin indent on     "Make indent code based on the file type
 syntax on
+set path+=**
 "source ~/.vim/colors/torte.vim
 "syntax enable
 "set background=dark
@@ -48,6 +49,9 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'christoomey/vim-titlecase'
 Plugin 'svermeulen/vim-macrobatics'
+Plugin 'mhinz/vim-startify'
+Plugin 'strboul/urlview.vim'
+Plugin 'mtth/scratch.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -542,3 +546,9 @@ cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 " Vim exchange plugin to help exchnage words and regions
 Plugin 'tommcdo/vim-exchange'
+" Urlview key binding /u
+ nnoremap <silent> <leader>u :Urlview<CR>
+ "Scratch window configurations
+ let  g:scratch_autohide = &hidden
+ let  g:scratch_insert_autohide = 1
+ let g:scratch_persistence_file = '.scratchpad.vim'
