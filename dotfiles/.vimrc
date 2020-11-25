@@ -495,14 +495,11 @@ Shortcut! BashSupportPrintf            \sp
 Shortcut! BashSupportFunctionHeder     \cfu
 Shortcut! BashSupportKeyboardBUG        \ckb
 Shortcut! BashSupportKeyBoardTODO      \ckt
-
 Shortcut! MoveToLastChangeSpot         g; = forward move and g,= backward move to last changes
-
 Shortcut! ChnagesAndJumps              :changes = show the chnage made ;  :Jump = show where we jump to made changes; CTRL-o jump on the changes backward; CTRL-i frwd
-
 Shortcut! WordsLinesRegionExchange      cx is default prefix , cxx for current line , X in visual mode , cxc clear out the mark
 Shortcut! Scratchpad                    gs in normal mode and insert mode and gS in visual mode
-
+Shortcut! WindowManagementKeys          whs=for horizontal split wvs=for vertical split wc=for window close
 "View save and restore plugin
 "All restore folder view
 set viewoptions=cursor,folds,slash,unix
