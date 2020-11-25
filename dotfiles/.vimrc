@@ -99,6 +99,8 @@ set wildmenu
 set wildmode=longest,full
 set showbreak=...
 set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ ,nbsp:^
+set number
+set relativenumber
 " Highlight the line with a cursor
 set cursorline
 " Disable cursor line highlighting in Insert mode
@@ -499,10 +501,13 @@ Shortcut! MoveToLastChangeSpot         g; = forward move and g,= backward move t
 Shortcut! ChnagesAndJumps              :changes = show the chnage made ;  :Jump = show where we jump to made changes; CTRL-o jump on the changes backward; CTRL-i frwd
 
 Shortcut! WordsLinesRegionExchange      cx is default prefix , cxx for current line , X in visual mode , cxc clear out the mark
-"View save and restore plugin
-set viewoptions=cursor,folds,slash,unix
+Shortcut! Scratchpad                    gs in normal mode and insert mode and gS in visual mode
 
+"View save and restore plugin
+"All restore folder view
+set viewoptions=cursor,folds,slash,unix
 Plugin 'restore_view.vim'
+
 "Alternative colors scheme by pressing F10 next scheme,shift+F10 previous scheme, Alt+F10 is random scheme
 source  ~/.vim/bundle/setcolors.vim
 " vim window manipulation plugin
@@ -552,3 +557,10 @@ Plugin 'tommcdo/vim-exchange'
  let  g:scratch_autohide = &hidden
  let  g:scratch_insert_autohide = 1
  let g:scratch_persistence_file = '.scratchpad.vim'
+ "window control vertical and horizontal split and close
+
+if has('windows')
+	noremap <silent> <leader>whs :split<CR>
+	noremap <silent> <leader>wvs :vsplit<CR>
+	noremap <silent> <leader>wc :close<CR>
+endif
