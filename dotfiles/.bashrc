@@ -91,7 +91,7 @@ alias linuxpull="cd /data/linux && git pull && cd ~"
 alias githubi3="cd $HOME/git-linux/i3"
 alias update_buildroot="cd $HOME/git-linux/buildroot && git pull && cd ~"
 alias docs-next-update="cd $HOME/git-linux/docs-next && git pull && cd ~"
-alias schedule="calcurse -C $HOME/.calcurse"
+alias schedule="$HOME/bin/calcurse -C $HOME/.calcurse"
 alias ulb="ls /usr/local/bin"
 alias lbin="ls $HOME/bin"
 alias h="history"
@@ -138,8 +138,17 @@ alias keybinds_i3="grep bindsym .config/i3/config | grep -v ^# | less"
 alias mpv="mpv --no-audio-display"
 alias menu="dmenufm -d -f -D -F -r $1"
 alias vim_plugins_update="v +PluginUpdate +qa"
+alias list_dir="ls -d $1"
+alias systemd_running_services="command systemctl --no-page --no-legend --plain -t service --state=running"
+alias which_arch="getconf LONG_BIT"
+alias check_bad_sector="sudo badblocks -n -s -b 2048 $1"
+alias aspell="aspell -d \"en_US.multi\" -c $1"
+#alias color_values="for i in {0..255}; do echo -e \"\e[38;05;${i}m${i}\"; done | column -c 80 -s \' \'; echo -e \"\e[m"
+alias pdf_open="$(command -v zathura) $1"
 unset SSH_ASKPASS
 
+#man page color
+#export LESS_TERMCAP_mb=$'\E[01;31m'
 
 #Gitlog
 
@@ -176,6 +185,7 @@ gclone() {
 vimplugin() {
 	 cd $HOME/.vim/bundle && git clone "$1" &&  cd "$(basename $1 .git)"
  }
+
 
 GPG_TTY=$(tty)
 export GPG_TTY
@@ -216,7 +226,7 @@ function apt-history(){
 
 export TERM=screen-256color
 export EDITOR=vim
-BROWSER="$(which vimb)"
+BROWSER="$HOME/bin/vimb"
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
