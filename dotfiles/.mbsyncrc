@@ -2,10 +2,12 @@ IMAPAccount      gmail
 Host             imap.gmail.com
 User             unixbhaskar@gmail.com
 Pass             xxxxxxxxxxxxxxxxxx
-UseIMAPS         yes
+#UseIMAPS         yes
 CertificateFile  ~/gmail-backup/gmail.crt
 CertificateFile  ~/gmail-backup/google.crt
 #CertificateFile  /usr/share/ca-certificates/mozilla/Equifax_Secure_CA.crt
+SSLType IMAPS
+SSLVersion TLSv1.2
 
 IMAPStore  gmail-remote
 Account    gmail
@@ -19,6 +21,8 @@ Master    :gmail-remote:
 Slave     :gmail-backup:
 Create    Slave
 Expunge   Slave
-Sync      Pull
+SyncState *
+Sync All
+#Sync      Pull
 # Exclude everything under the internal [Gmail] folder, except archived mails
 Patterns  * ![Gmail]*  INBOX ARCHIVED
