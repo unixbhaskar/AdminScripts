@@ -91,7 +91,7 @@ alias linuxpull="cd /data/linux && git pull && cd ~"
 alias githubi3="cd $HOME/git-linux/i3"
 alias update_buildroot="cd $HOME/git-linux/buildroot && git pull && cd ~"
 alias docs-next-update="cd $HOME/git-linux/docs-next && git pull && cd ~"
-alias calendar="$(command -v calcurse) -C $HOME/.calcurse"
+alias calendar="/usr/local/bin/calcurse -C $HOME/.calcurse"
 alias ulb="ls /usr/local/bin"
 alias lbin="ls $HOME/bin"
 alias h="history"
@@ -146,6 +146,17 @@ alias check_bad_sector="sudo badblocks -n -s -b 2048 $1"
 alias aspell="aspell -d \"en_US.multi\" -c $1"
 #alias color_values="for i in {0..255}; do echo -e \"\e[38;05;${i}m${i}\"; done | column -c 80 -s \' \'; echo -e \"\e[m"
 alias pdf_open="$(command -v zathura) $1"
+alias mycalstart=mycalservice
+alias mycalstatus="systemctl --user status mycal"
+alias mycalrestart="systemctl --user restart mycal.timer && systemctl --user restart mycal.service"
+alias user_daemon_reload="systemctl --user daemon-reload"
+alias daemon_reload="sudo systemctl daemon-reload"
+alias user_systemd_dir="cd ~/.local/share/systemd/user/"
+alias mailsyncstart=mailsynclocally
+alias mailsyncstatus="systemctl --user status mailsync"
+alias mailsyncrestart="systemctl --user restart mailsync.timer && systemctl --user restart mailsync.service"
+alias list_user_timers="systemctl --user list-timers --all"
+alias list_system_timers="systemctl  list-timers --all"
 unset SSH_ASKPASS
 
 #man page color
@@ -182,15 +193,41 @@ gclone() {
 	 cd $HOME/git-linux && git clone "$1" &&  cd "$(basename $1 .git)"
 }
 
+
 # To clone vim plugin ~/.vim/bundle  dir
+
 vimplugin() {
 	 cd $HOME/.vim/bundle && git clone "$1" &&  cd "$(basename $1 .git)"
  }
 
 
+# To kick of my calendar notification in systemd driven os
+
+mycalservice() {
+	init_system=$(/home/bhaskar/bin/find_init)
+	if [[ $init_system  == "SYSTEMD" ]] && [[ $(pgrep X) != "" ]];then
+	systemctl --user mycal.timer
+	systemctl --user mycal.service
+fi
+}
+
+# To start mail sync program aka mbsync
+
+mailsynclocally() {
+	init_system=$(/home/bhaskar/bin/find_init)
+	if [[ $init_system  == "SYSTEMD" ]] && [[ $(pgrep X) != "" ]];then
+	systemctl --user mailsync.timer
+	systemctl --user mailsync.service
+fi
+}
+
+#Intialize the terminal for gpg
+
 GPG_TTY=$(tty)
 export GPG_TTY
 export PINENTRY_USER_DATA=USE_CURSES=1
+
+# Change the terminal prompt to git mode, very show but useful
 
 GIT_PROMPT_ONLY_IN_REPO=1
 source ~/.bash-git-prompt/gitprompt.sh
@@ -198,6 +235,7 @@ export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
 
 #create directory and enter into it
+
 mkd() {
 	mkdir -p "$@" && cd "$_";
 }
