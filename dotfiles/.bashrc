@@ -206,8 +206,8 @@ vimplugin() {
 mycalservice() {
 	init_system=$(/home/bhaskar/bin/find_init)
 	if [[ $init_system  == "SYSTEMD" ]] && [[ $(pgrep X) != "" ]];then
-	systemctl --user mycal.timer
-	systemctl --user mycal.service
+	systemctl --user start mycal.timer
+	systemctl --user start mycal.service
 fi
 }
 
@@ -216,8 +216,8 @@ fi
 mailsynclocally() {
 	init_system=$(/home/bhaskar/bin/find_init)
 	if [[ $init_system  == "SYSTEMD" ]] && [[ $(pgrep X) != "" ]];then
-	systemctl --user mailsync.timer
-	systemctl --user mailsync.service
+	systemctl --user start  mailsync.timer
+	systemctl --user start  mailsync.service
 fi
 }
 
