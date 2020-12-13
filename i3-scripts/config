@@ -97,8 +97,7 @@ exec_always --no-startup-id feh --bg-scale /home/bhaskar/Pictures/LKM3_1024.png
 ##Autostart
 #exec xfce4-terminal --hide-menubar --hide-scrollbar --command screen -c "$HOME/screenrc"
 exec $HOME/bin/st -e screen -c $HOME/screenrc
-#exec $HOME/bin/clipmenud
-
+exec $HOME/bin/telegram
 
 set $workspace1 "1   "
 set $workspace2 "2  "
@@ -288,3 +287,13 @@ bindsym $mod+g exec kodi-standalone
 
 # clipmenu show the selection in dmenu
 bindsym $mod+z exec "clipmenu  -p 'clipboard items listed:'"
+
+# i3dropdown setting
+#exec --no-startup-id i3 --get-socketpath > /tmp/i3wm-socket-path
+#for_window [instance="st-256color"] floating enable;
+# bindsym $mod+p exec --no-startup-id i3dropdown st
+
+#Movie selection and play
+
+bindsym $mod+p exec movie_watch
+
