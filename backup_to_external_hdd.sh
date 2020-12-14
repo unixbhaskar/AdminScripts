@@ -1,16 +1,16 @@
-#!/bin/bash - 
+#!/bin/bash -
 #===============================================================================
 #
 #          FILE: backup_to_external_hdd.sh
-# 
-#         USAGE: backup_to_external_hdd.sh 
-# 
+#
+#         USAGE: backup_to_external_hdd.sh
+#
 #   DESCRIPTION: This script will perform an backup to certain directory ,tar zipped to external HDD.
-# 
+#
 #       OPTIONS: ---
 #  REQUIREMENTS: cryptsetup tar mount
 #          BUGS: ---
-#         NOTES: Static variable values for few variables 
+#         NOTES: Static variable values for few variables
 #        AUTHOR: Bhaskar Chowdhury (https://about.me/unixbhaskar), unixbhaskar@gmail.com
 #  ORGANIZATION: Independent
 #       CREATED: 05/08/2020 13:13
@@ -36,11 +36,11 @@ default_backup_lvm="/dev/mapper/backup2"
 #Actaual meat of the script , which might be converted to a function ,later task.
 
 if [[ $external_drive != "" ]];then
-        mkdir -p $bkup2
+       mkdir -p $bkup2
 	$crypt luksOpen $external_drive $bkup2
 	#need to put your passphrase on the stdin
 	mount $default_backup_lvm $bkup2
-	
+
         printf "Check status and dump of the luks device.....\n\n"
 	$crypt luksDump $external_drive
 	sleep 2
@@ -50,18 +50,16 @@ if [[ $external_drive != "" ]];then
 
 	cd $bkup2
 
-	#printf "Checking that we are in correct dir : $(pwd) \n\n"
+printf "Checking that we are in correct dir : $(pwd) \n\n"
 
-	printf "Executing this : tar -czfv --exclude=Movies --exclude=git-linux --exclude=Pictures --exclude=Music --exclude=Videos home-backup-$(date +'%F').tar.gz /home/bhaskar \n\n"
-
-	home_backup=$($tar --exclude="/home/bhaskar/Movies" --exclude="/home/bhaskar/git-linux" --exclude="/home/bhaskar/Pictures" --exclude="/home/bhaskar/Music" --exclude="/home/bhaskar/Videos" -cvzf $home_backupfile /home/bhaskar)
+	home_backup=$($tar --exclude="/home/bhaskar/git-linux" --exclude="/home/bhaskar/Pictures" --exclude="/home/bhaskar/Music"  -cvzf $home_backupfile /home/bhaskar)
 
 
 	eval $home_backup
 
 	printf "\n Executing this : tar -czf $data_backupfile /data \n\n"
 
-	data_backup=$($tar cvzf $data_backupfile /data)
+	data_backup=$($tar  --exclude="/data/linux" --exclude="/data/asp" --exclude="/data/firefox_log" -cvzf $data_backupfile /data)
 	eval $data_backup
 
 	printf "\n\n Checkout their existence ...\n\n"
@@ -69,20 +67,20 @@ if [[ $external_drive != "" ]];then
 	find . -name "home-backup-*" -type f -print0 -exec ls -al {} \;
 	find . -name "data-backup-*" -type f -print0 -exec ls -al {} \;
 
-         printf "\n\nShould I close this connection[Y/N]:" %s
+         printf "\n\nShould I close this connection[Y/N]: %s"
 	 read_response
 
 	 if [[ $read_response == "Y" ]];then
 
 	  umount /backup2
-	  $crypt luksClose $bkup2 
+	  $crypt luksClose $bkup2
 
-	else 
+	else
 
 	 continue
 fi
 
-else 
+else
 	printf "Device not mounted"
 	exit 1
 fi
