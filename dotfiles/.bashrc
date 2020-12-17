@@ -134,7 +134,7 @@ alias vimb_config="vim ~/.config/vimb/config"
 alias newsboat_config="vim ~/.newsboat/config"
 alias style_vimb="vim ~/.config/vimb/style.css"
 alias vim_plugin_list="grep  Plugin ~/.vimrc | grep -v '^\"'"
-alias keybinds_i3="grep bindsym .config/i3/config | grep -v ^# | less"
+alias keybinds_i3="grep bindsym ~/.config/i3/config | grep -v ^# | less"
 alias mpv="mpv --no-audio-display"
 alias menu="dmenufm -d -f -D -F -r $1"
 alias vim_plugins_update="v +PluginUpdate +qa"
@@ -220,6 +220,14 @@ mailsynclocally() {
 	systemctl --user start  mailsync.service
 fi
 }
+
+
+# Wrap the following commands for interactive use to avoid accidental file overwrites.
+rm() { command rm -i "${@}"; }
+cp() { command cp -i "${@}"; }
+mv() { command mv -i "${@}"; }
+
+
 
 #Intialize the terminal for gpg
 
