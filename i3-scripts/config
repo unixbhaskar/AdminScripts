@@ -46,7 +46,7 @@ bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#E
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+# bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -91,13 +91,16 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
 #background
-#
+
 exec_always --no-startup-id feh --bg-scale /home/bhaskar/Pictures/LKM3_1024.png
+
 ##Autostart
 #exec xfce4-terminal --hide-menubar --hide-scrollbar --command screen -c "$HOME/screenrc"
 exec $HOME/bin/st -e screen -c $HOME/screenrc
 exec $HOME/bin/telegram
+exec $HOME/bin/clipmenud
 
 set $workspace1 "1   "
 set $workspace2 "2  "
@@ -282,8 +285,8 @@ bindsym $mod+g exec kodi-standalone
  #
  for_window [class="^Kodi$"] floating enable, move container to workspace 8
 
-# Start Vivaldi browser
- bindsym $mod+Shift+v exec valdi
+# Linux and opensource videos
+ bindsym $mod+Shift+v exec linux_videos
 
 # clipmenu show the selection in dmenu
 bindsym $mod+z exec "clipmenu  -p 'clipboard items listed:'"
@@ -297,3 +300,10 @@ bindsym $mod+z exec "clipmenu  -p 'clipboard items listed:'"
 
 bindsym $mod+p exec movie_watch
 
+# Play songs from artist directory
+
+bindsym $mod+semicolon exec songs_play
+
+# Open selected pdf from list
+
+bindsym $mod+o exec enlist_pdf_open
