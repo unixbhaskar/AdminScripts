@@ -280,17 +280,8 @@ BROWSER="$HOME/bin/vimb"
 
 #Open/copy/to_gitrepo files with the help fzf and vim
 
-of() { vim "$(find  $(pwd) -type f | fzf)"  ;}
+file_open() { vim "$(find  $(pwd) -type f | fzf)"  ;}
 backup_dot_files() { cp -v "$1" "$(find /data/dotfiles -name '*' -type f | fzf)" ;}
 copy_to_gitrepo() { cp -v "$1" "$(find ~/git-linux/AdminScripts -name '*'  -type f | fzf)" ;}
 
-#Powerline shell prompt
-
-#function _update_ps1() {
-#     PS1=$(powerline-shell $?)
-# }
-
-# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-# fi
 
