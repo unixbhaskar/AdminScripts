@@ -269,14 +269,16 @@ bindsym $mod+minus scratchpad show
  for_window [class=".*"] title_format "<b>%title</b>"
  #for_window [class="(?i)firefox"] title_format "<span foreground='magenta'>%title</span>"
  #
+
  # Toggle between hide state and show state
  # bindsym $mod+m bar hidden_state toggle
-  #dmenufm shortcut
+
+ #dmenufm shortcut
   bindsym $mod+m exec dmenufminvoke
 
  # Toggle between dock mode and hide mode
   bindsym $mod+n bar mode toggle
-  #
+
 #start Kodi with this key combination
 
 bindsym $mod+g exec kodi-standalone
@@ -307,3 +309,11 @@ bindsym $mod+semicolon exec songs_play
 # Open selected pdf from list
 
 bindsym $mod+o exec enlist_pdf_open
+
+# Surf browser open
+
+bindsym $mod+slash exec surf
+
+# Photo albaum to open sxiv
+
+bindsym $mod+comma exec photo_albaum
