@@ -1,6 +1,5 @@
 *,div,pre,textarea,body,input,td,tr,p {
-    background-color: #002b36 !important;
-/*    background-color: #303030 !important;*/
+    background-color: #303030 !important;
     background-image: none !important;
     color: #bbbbbb !important;
 }

@@ -2,7 +2,9 @@
 #set home-page=about:blank
 set home-page=www.lkml.org
 
-# Path to the default download directory. If no download directory is set,
+#user agent to goole
+# set user-agent=googlebot
+# # Path to the default download directory. If no download directory is set,
 # download will be written into current directory. The following pattern will
 # be expanded if the download is started '~/', '~user', '$VAR' and '${VAR}'.
 set download-path=~/Downloads/
@@ -73,13 +75,35 @@ nmap = zz
 
 nnoremap <C-R> :e! simplyread();<CR>
 
+#Open the latest pdf from downloads folder,catchy
+#
+au DownloadFinished *.pdf shellcmd! open-download-pdf
+#
+#
+set dark-mode=on
+#set stylesheet=on
+
+# Take screenshot
+
+nmap <C-p> :shellcmd! scrot<CR>
+
+
+
+
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
-# set completion-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
-# set completion-hover-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
-# set completion-selected-css=color:#d3d0c8;background-color:#515151;font:12pt DejaVu Sans Mono;
-# set input-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
-# set input-error-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
-# set status-css=color:#ffcc66;background-color:#393939;font:12pt DejaVu Sans Mono;
-# set status-ssl-css=color:#99cc99;background-color:#393939;font:12pt DejaVu Sans Mono;
-# set status-ssl-invalid-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
+set completion-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
+set completion-hover-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
+set completion-selected-css=color:#d3d0c8;background-color:#515151;font:12pt DejaVu Sans Mono;
+set input-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
+set input-error-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
+set status-css=color:#ffcc66;background-color:#393939;font:12pt DejaVu Sans Mono;
+set status-ssl-css=color:#99cc99;background-color:#393939;font:12pt DejaVu Sans Mono;
+set status-ssl-invalid-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
+#
+# Images loading
+set images=true
+
+set html5-database=true
+set html5-local-storage=true
+set hardware-acceleration-policy=ondemand
