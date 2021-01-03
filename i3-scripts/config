@@ -114,7 +114,7 @@ set $workspace8 "8 kodi"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
-bindsym $mod+b workspace $workspace2 ; exec "$HOME/bin/vimb";
+bindsym $mod+b workspace $workspace2 ; exec "vimb";
 bindsym $mod+w workspace $workspace3 ; exec "$HOME/bin/firefox_open";
 bindsym $mod+4 workspace $workspace4 ; exec nautilus | thunar;
 bindsym $mod+5 workspace $workspace5 ; exec "$HOME/bin/chromium";
@@ -274,18 +274,19 @@ bindsym $mod+minus scratchpad show
  # bindsym $mod+m bar hidden_state toggle
 
  #dmenufm shortcut
-  bindsym $mod+m exec dmenufminvoke
+  bindsym $mod+p exec dmenufminvoke
 
  # Toggle between dock mode and hide mode
   bindsym $mod+n bar mode toggle
 
-#start Kodi with this key combination
+# My abroad tour videos
 
-bindsym $mod+g exec kodi-standalone
+bindsym $mod+g exec tour_videos
 
- #make kodi open in specific workspace
- #
- for_window [class="^Kodi$"] floating enable, move container to workspace 8
+ # Cmus floating to play music
+
+ bindsym $mod+u exec st -e cmus
+ for_window [class="^Cmus$"] floating enable
 
 # Linux and opensource videos
  bindsym $mod+Shift+v exec linux_videos
@@ -300,7 +301,7 @@ bindsym $mod+z exec "clipmenu  -p 'clipboard items listed:'"
 
 #Movie selection and play
 
-bindsym $mod+p exec movie_watch
+bindsym $mod+m exec movie_watch
 
 # Play songs from artist directory
 
