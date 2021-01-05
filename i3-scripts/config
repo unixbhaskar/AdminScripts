@@ -318,3 +318,21 @@ bindsym $mod+slash exec surf
 # Photo albaum to open sxiv
 
 bindsym $mod+comma exec photo_albaum
+
+# Open the calendar
+
+bindsym $mod+apostrophe exec st -e calcurse
+
+for_window [class="^Calcurse$"] floating enable
+
+# Open kernel monitoring screen
+
+bindsym $mod+Shift+question exec st -e kmon --color cyan
+
+for_window [class="^Kmon$"] floating enable
+
+# Feeds are running by newsboat
+
+bindsym $mod+Shift+Return exec st -e newsboat
+
+for_window [class="^Newsboat$"] floating enable
