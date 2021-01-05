@@ -1,0 +1,15 @@
+#!/bin/bash
+
+mpv_pid=$(pgrep mpv)
+
+playing=$( ps -ef | grep mpv | sort -r | gawk '{ print $10 }')
+
+songs=$(basename $playing)
+
+if [[ $mpv_pid != "" ]];then
+
+    echo "$songs"
+else
+	echo " Not playing"
+
+fi
