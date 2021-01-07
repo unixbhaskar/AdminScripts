@@ -28,6 +28,7 @@
         gitlog = log --all --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
         st = status -sb  # You have to run this command inside your git repo dir i.e git st
 	tags = tag -l    #You have to run this command inside your git repo dir i.e git tags
+	sane = "!git reset --hard origin/master" # Discard the local commits and sync with remote master
 	curtag = "!git describe --abbrev=0"  # You have to run this command inside the git repo i.e git curtag
 	ci = "!git commit -s -m"  # You have to run this command inside the git repo dir i.e git ci "write the msg"
 	tagsfromallbranches = "!git describe --tags $(git rev-list --tags --max-count=1)" # same as above i.e git tagsfromallbranches
