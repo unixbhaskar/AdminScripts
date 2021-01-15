@@ -106,10 +106,10 @@ set $workspace1 "1   "
 set $workspace2 "2  "
 set $workspace3 "3   "
 set $workspace4 "4   "
-set $workspace5 "5   "
-set $workspace6 "6   "
-set $workspace7 "7   "
-set $workspace8 "8 kodi"
+#set $workspace5 "5   "
+#set $workspace6 "6   "
+#set $workspace7 "7   "
+#set $workspace8 "8 kodi"
 
 
 # switch to workspace
@@ -117,11 +117,11 @@ bindsym $mod+1 workspace $workspace1
 bindsym $mod+b workspace $workspace2 ; exec "vimb";
 bindsym $mod+w workspace $workspace3 ; exec "$HOME/bin/firefox_open";
 bindsym $mod+4 workspace $workspace4 ; exec nautilus | thunar;
-bindsym $mod+5 workspace $workspace5 ; exec "$HOME/bin/chromium";
+#bindsym $mod+5 workspace $workspace5 ; exec "$HOME/bin/chromium";
 #bindsym $mod+t workspace $workspace6 ; exec thunderbird;
-bindsym $mod+7 workspace $workspace7 ; exec libreoffice;
-bindsym $mod+8 workspace $workspace8 ; exec "kodi-standalone";
-bindsym $mod+9 workspace $workspace9 ;
+#bindsym $mod+7 workspace $workspace7 ; exec libreoffice;
+#bindsym $mod+8 workspace $workspace8 ; exec "kodi-standalone";
+#bindsym $mod+9 workspace $workspace9 ;
 
 #Workspace assignment
 #assign [class="(?i)xfce4-terminal"] 1
@@ -137,10 +137,10 @@ assign [class="^st-256color"] → $workspace1
 assign [class="^Vimb$"]  → $workspace2
 assign [class="^Firefox$"] → $workspace3
 assign [class="^Nautilus$"] → $workspace4
-assign [class="^Chromium$"] → $workspace5
-assign [class="^Thunderbird$"] → $workspace6
-assign [class="^libreoffice-startcenter$"] $workspace7
-assign [class="^Kodi$"] $workspace8
+#assign [class="^Chromium$"] → $workspace5
+#assign [class="^Thunderbird$"] → $workspace6
+#assign [class="^libreoffice-startcenter$"] $workspace7
+#assign [class="^Kodi$"] $workspace8
 
 
 
@@ -336,3 +336,6 @@ for_window [class="^Kmon$"] floating enable
 bindsym $mod+Shift+Return exec st -e newsboat
 
 for_window [class="^Newsboat$"] floating enable
+
+# Launch integrated webcam
+ bindsym $mod+backslash exec ffplay /dev/video0
