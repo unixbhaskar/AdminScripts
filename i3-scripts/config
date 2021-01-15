@@ -339,3 +339,6 @@ for_window [class="^Newsboat$"] floating enable
 
 # Launch integrated webcam
  bindsym $mod+backslash exec ffplay /dev/video0
+
+# Start video recording with ffmpeg
+bindsym $mod+BackSpace exec video_by_ffmpeg
