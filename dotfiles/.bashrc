@@ -50,8 +50,6 @@ alias p='cd ~/Pictures'
 alias movies='cd ~/Movies'
 alias githome='cd ~/git-linux'
 alias boot='cd /boot'
-alias movies2='cd /data/Movies2'
-alias videos='cd ~/Videos'
 alias music='cd ~/Music'
 alias admscripts='cd ~/Adm_scripts'
 alias docu='cd ~/Documents'
@@ -65,7 +63,6 @@ alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
 alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
 alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
 alias vpn_start='sudo /home/bhaskar/vpn_connect'
-alias check_vpn='$HOME/bin/check_vpn_conn.sh'
 alias dmesg='sudo dmesg -H -T'
 alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 alias copy_to='sudo cp -v'
@@ -74,12 +71,10 @@ alias filepath='ls | sed "s:^:`pwd`/:"'
 alias abspath='find $PWD -maxdepth 1 | xargs ls -ld'
 alias i3config="cd ~/.config/i3"
 alias v="vim -u ~/.vimrc"
-alias unbuffer='unbuffer '
 alias sshot="cd ~/Pictures/Screenshots"
 alias github_repo='/home/bhaskar/bin/github_repo'
 alias see_log='sudo tail -f /var/log/messages || journalctl -f '
 alias gitlog=gitlog
-alias firefox_log='less /data/firefox_log/firefox.log-main.*'
 alias dmesg_err='sudo dmesg -H -T -l err'
 alias ip='ip --color=auto'
 alias journal_clear="sudo journalctl --vacuum-size=50000"
@@ -87,7 +82,7 @@ alias shortcut_pages="cd $HOME/shortcut/pages && ls | basename -s .md * | less"
 alias githublinux="cd $HOME/git-linux/linux_github_fork"
 alias githubgit="cd $HOME/git-linux/git_github_fork"
 alias gcl=gclone
-alias linuxpull="cd /data/linux && git pull && cd ~"
+alias linuxpull="cd ~/git-linux/linux && git pull && cd ~"
 alias githubi3="cd $HOME/git-linux/i3"
 alias update_buildroot="cd $HOME/git-linux/buildroot && git pull && cd ~"
 alias docs-next-update="cd $HOME/git-linux/docs-next && git pull && cd ~"
@@ -97,12 +92,10 @@ alias lbin="ls $HOME/bin"
 alias h="history"
 alias fastping="ping -c 10 -i.2 google.com"
 alias kbuild_update="cd $HOME/git-linux/linux-kbuild && git pull && cd ~"
-alias b4="$HOME/git-linux/b4/b4.sh"
-alias update_linuxnet="cd $HOME/git-linux/linux-net && git pull && cd ~"
 alias kbuild_source="cd $HOME/git-linux/linux-kbuild && tig"
 alias docsnext_source="cd $HOME/git-linux/docs-next && tig"
 alias buildroot_source="cd $HOME/git-linux/buildroot && tig"
-alias linux_source="cd /data/linux && tig"
+alias linux_source="cd ~/git-linux/linux && tig"
 alias linuxnet_source="cd $HOME/git-linux/linux-net && tig"
 alias wiki="vim $HOME/vimwiki/index.wiki"
 alias notification="$HOME/bin/notification > /dev/null 2>&1"
@@ -132,6 +125,7 @@ alias vimpull="cd ~/git-linux/vim && git pull && cd ~"
 alias screenrc="vim $HOME/screenrc"
 alias vimb_config="vim ~/.config/vimb/config"
 alias newsboat_config="vim ~/.newsboat/config"
+alias feeds="$(command -v newsboat)"
 alias style_vimb="vim ~/.config/vimb/style.css"
 alias vim_plugin_list="grep  Plugin ~/.vimrc | grep -v '^\"'"
 alias keybinds_i3="grep bindsym ~/.config/i3/config | grep -v ^# | less"
@@ -157,6 +151,9 @@ alias mailsyncstatus="systemctl --user status mailsync"
 alias mailsyncrestart="systemctl --user restart mailsync.timer && systemctl --user restart mailsync.service"
 alias list_user_timers="systemctl --user list-timers --all"
 alias list_system_timers="systemctl  list-timers --all"
+alias keyboard_key_values="xmodmap -pke | less"
+alias fix_spell="$HOME/git-linux/linux/scripts/checkpatch.pl -f --terse --nosummary --types=typo_spelling $1"
+alias build=build
 unset SSH_ASKPASS
 
 #man page color
@@ -173,6 +170,29 @@ gitlog() {
     git log --pretty=format:"%h%x09 %C(cyan)%an%x09 %Creset%ad%x09 %Cgreen%s" --date-order
   fi
  }
+
+# configure,make and make install combine in build call
+
+build() {
+
+	echo "Start the building ...."
+        echo
+
+	./configure
+
+	if [ $? == 0 ]; then
+
+		make -j4
+
+	elif [ $? == 0 ]; then
+
+		make install
+	fi
+}
+
+
+
+
 
 #Git grep as search in repo
 
@@ -273,10 +293,10 @@ function apt-history(){
 
 export TERM=screen-256color
 export EDITOR=vim
-BROWSER="$HOME/bin/vimb"
+BROWSER="vimb"
 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 #Open/copy/to_gitrepo files with the help fzf and vim
 
