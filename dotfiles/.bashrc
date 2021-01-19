@@ -175,19 +175,31 @@ gitlog() {
 
 build() {
 
-	echo "Start the building ...."
+	tm="/usr/bin/time -f"
+
+
+	echo "Start the building .... $(date +'%T') on host $(uname -n)"
         echo
 
-	./configure
+	if [  -f configure ]  && [  -x configure ]; then
+
+            ${tm} "\n\n\tElapsed Time : %E \n\n" $PWD/configure
+
+	fi
 
 	if [ $? == 0 ]; then
 
-		make -j4
+             ${tm} "\n\n\tElapsed Time : %E \n\n" make -j4
 
-	elif [ $? == 0 ]; then
-
-		make install
 	fi
+
+	if [ $? == 0 ]; then
+
+           ${tm} "\n\n\tElapsed Time : %E \n\n" sudo make install
+
+
+     fi
+
 }
 
 
