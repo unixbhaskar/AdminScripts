@@ -81,25 +81,66 @@ au DownloadFinished *.pdf shellcmd! open-download-pdf
 #
 #
 set dark-mode=on
-#set stylesheet=on
+set stylesheet=on
 
 # Take screenshot
 
-nmap <C-p> :shellcmd! scrot<CR>
+nmap <C-s> :shellcmd! capture_screen<CR>
 
+# Open up main kernel documentation page
 
+nmap <C-k> :shellcmd! kerneldoc<CR>
 
+# Open local weather page
+
+nmap <C-w> :shellcmd! weather<CR>
+
+# open up Tweetdeck
+
+nmap <C-t> :shellcmd! tweetdeck<CR>
+
+# Open LWN site
+
+nmap <C-l> :shellcmd! lwn<CR>
+
+# Open LinkedIN
+
+nmap <C-l> :shellcmd! linkedin<CR>
+
+# Open mail
+
+nmap <C-m> :shellcmd! show_mail<CR>
+
+# Open Youtube
+
+nmap <C-y> :shellcmd! open_youtube<CR>
+
+# Open Wikipedia
+
+nmap <C-i> :shellcmd! wikipedia<CR>
+
+# Open GitHub
+
+nmap <C-g> :shellcmd! github<CR>
+
+# Open Arch git to check latest version
+
+nmap <C-a> :shellcmd! archgit<CR>
+
+# Open Pocket for save references
+
+nmap <C-n> :shellcmd! getpocket<CR>
 
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
-set completion-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
-set completion-hover-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
-set completion-selected-css=color:#d3d0c8;background-color:#515151;font:12pt DejaVu Sans Mono;
-set input-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
-set input-error-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
-set status-css=color:#ffcc66;background-color:#393939;font:12pt DejaVu Sans Mono;
-set status-ssl-css=color:#99cc99;background-color:#393939;font:12pt DejaVu Sans Mono;
-set status-ssl-invalid-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
+# set completion-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
+# set completion-hover-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
+# set completion-selected-css=color:#d3d0c8;background-color:#515151;font:12pt DejaVu Sans Mono;
+# set input-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
+# set input-error-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
+# set status-css=color:#ffcc66;background-color:#393939;font:12pt DejaVu Sans Mono;
+# set status-ssl-css=color:#99cc99;background-color:#393939;font:12pt DejaVu Sans Mono;
+# set status-ssl-invalid-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
 #
 # Images loading
 set images=true
