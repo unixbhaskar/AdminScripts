@@ -129,7 +129,7 @@ nmap <C-a> :shellcmd! archgit<CR>
 
 # Open Pocket for save references
 
-nmap <C-n> :shellcmd! getpocket<CR>
+nmap <C-p> :shellcmd! getpocket<CR>
 
 # Open Mutt email wiki config page
 
@@ -138,6 +138,13 @@ nmap <C-j> :shellcmd! mutt_config_tips_page<CR>
 # Show keybinds help
 
 nmap <C-h> :shellcmd! vimb_keymap_help<CR>
+
+# Open Reddit
+
+nmap <C-x> :shellcmd! reddit<CR>
+
+
+
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
 # set completion-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
