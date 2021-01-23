@@ -1,0 +1,65 @@
+#!/bin/bash
+
+get_it=$HOME/Adm_scripts/secure_kernel_tarball
+get_make=$(command -v make)
+get_elapsed_time="/usr/bin/time -f"
+untar_it="tar -xJvf"
+existing_config_file="/boot/config-$(uname -r)"
+download_dir=$HOME/Downloads
+
+
+#Get the stable kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 5.10)
+
+#Download the kernel
+$get_it $kernel
+
+cd $download_dir
+
+#Untar it
+$untar_it linux-$kernel.tar.xz
+
+#Get into the kernel direcory
+cd linux-$kernel
+
+#Check for required tools to build kernel
+scripts/ver_linux
+
+#Copying the existing system running kernel config
+cp $existing_config_file .config
+
+# Take away the DEBUG options for faster compile
+scripts/config --disable DEBUG_KERNEL
+grep DEBUG_KERNEL .config
+
+#Similar vein like above, for faster compile time
+scripts/config --disable DEBUG_INFO
+grep DEBUG_INFO .config
+
+#Make old kernel config set as well
+$get_make olddefconfig
+
+
+#Keep reminding us about how much time spend ,time to time during compile phase
+
+while :
+do
+if [[ $(ps -ef | grep make) != "" ]];then
+
+ 	 (kern_com_noti&)
+
+#Start building it
+$get_elapsed_time "\n\t Elapsed Time: %E \n\n" make ARCH=x86_64 V=1 -j`getconf _NPROCESSORS_ONLN`
+
+#Clearing the docs for shorter compile time
+make cleandocs
+
+# Install the above compiled kernel modules
+make modules_install
+fi
+done
+
+
+
+#Need to be root/superuser to install it, in the system
+#make install
