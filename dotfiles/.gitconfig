@@ -27,6 +27,7 @@
 
         gitlog = log --all --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
         st = status -sb  # You have to run this command inside your git repo dir i.e git st
+	notifyheader = "--add-header="X-Patchwork-Bot: notify"" #add email notify header to get reply from lkml when patch applied
 	tags = tag -l    #You have to run this command inside your git repo dir i.e git tags
 	sane = "!git reset --hard origin/master" # Discard the local commits and sync with remote master
 	curtag = "!git describe --abbrev=0"  # You have to run this command inside the git repo i.e git curtag
