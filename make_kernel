@@ -1,6 +1,8 @@
 #!/bin/bash
 
 get_it=$HOME/Adm_scripts/secure_kernel_tarball
+# Get the script https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/tree/get-verified-tarball
+
 get_make=$(command -v make)
 get_elapsed_time="/usr/bin/time -f"
 untar_it="tar -xJvf"
