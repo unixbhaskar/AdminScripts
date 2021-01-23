@@ -41,27 +41,14 @@ grep DEBUG_INFO .config
 #Make old kernel config set as well
 $get_make olddefconfig
 
-
-#Keep reminding us about how much time spend ,time to time during compile phase
-
-while :
-do
-if [[ $(ps -ef | grep make) != "" ]];then
-
- 	 (kern_com_noti&)
-
 #Start building it
 $get_elapsed_time "\n\t Elapsed Time: %E \n\n" make ARCH=x86_64 V=1 -j`getconf _NPROCESSORS_ONLN`
 
-#Clearing the docs for shorter compile time
+#Clearing the docs for reduces size
 make cleandocs
 
 # Install the above compiled kernel modules
 make modules_install
-fi
-done
-
-
 
 #Need to be root/superuser to install it, in the system
-#make install
+make install
