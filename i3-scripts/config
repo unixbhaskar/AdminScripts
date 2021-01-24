@@ -342,3 +342,9 @@ for_window [class="^Newsboat$"] floating enable
 
 # Start video recording with ffmpeg
 bindsym $mod+BackSpace exec video_by_ffmpeg
+
+# Keybinds pop up for reminder
+bindsym $mod+grave exec i3_keybinds_help
+
+# Open youtube videos
+bindsym $mod+y exec search_youtube_videos
