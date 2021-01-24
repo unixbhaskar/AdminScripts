@@ -52,6 +52,8 @@ set monospace-font-size=13
 
 # Default Full-Content zoom level in percent. Default is 100.
 set default-zoom=120
+set dark-mode=on
+set stylesheet=on
 
 # Shortcuts allow the opening of an URI built up from a named template with
 # additional parameters.
@@ -80,8 +82,6 @@ nnoremap <C-R> :e! simplyread();<CR>
 au DownloadFinished *.pdf shellcmd! open-download-pdf
 #
 #
-set dark-mode=on
-set stylesheet=on
 
 # Take screenshot
 
@@ -143,7 +143,9 @@ nmap <C-h> :shellcmd! vimb_keymap_help<CR>
 
 nmap <C-x> :shellcmd! reddit<CR>
 
+# Open Goodreads
 
+nmap <C-n> :shellcmd! goodreads<CR>
 
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
