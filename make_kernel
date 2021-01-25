@@ -1,17 +1,23 @@
 #!/bin/bash
 
 get_it=$HOME/Adm_scripts/secure_kernel_tarball
-# Get the script https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/tree/get-verified-tarball
-
 get_make=$(command -v make)
 get_elapsed_time="/usr/bin/time -f"
 untar_it="tar -xJvf"
 existing_config_file="/boot/config-$(uname -r)"
 download_dir=$HOME/Downloads
 
+printf "\n\n Which kernel do you want to build Stable or Mainline? [S/M]: %s"
+read response
 
+if [[ $response == "S" ]];then
 #Get the stable kernel from kernel.org
 kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 5.10)
+fi
+if [[ $response == "M" ]];then
+#Get the mainline kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
+fi
 
 #Download the kernel
 $get_it $kernel
@@ -41,10 +47,13 @@ grep DEBUG_INFO .config
 #Make old kernel config set as well
 $get_make olddefconfig
 
+#Keep reminds us about time spent
+(source $HOME/bin/kern_com_noti&)
+
 #Start building it
 $get_elapsed_time "\n\t Elapsed Time: %E \n\n" make ARCH=x86_64 V=1 -j`getconf _NPROCESSORS_ONLN`
 
-#Clearing the docs for reduces size
+#Clearing the docs for shorter size
 make cleandocs
 
 # Install the above compiled kernel modules
