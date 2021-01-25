@@ -13,8 +13,7 @@ read response
 if [[ $response == "S" ]];then
 #Get the stable kernel from kernel.org
 kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 5.10)
-fi
-if [[ $response == "M" ]];then
+elif [[ $response == "M" ]];then
 #Get the mainline kernel from kernel.org
 kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
 fi
