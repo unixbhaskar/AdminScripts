@@ -7,7 +7,7 @@ untar_it="tar -xJvf"
 existing_config_file="/boot/config-$(uname -r)"
 download_dir=$HOME/Downloads
 
-printf "\n\n Which kernel do you want to build Stable or Mainline? [S/M]: %s"
+printf "\n\n Which kernel do you want to build Stable or Mainline? [S/M/L]: %s"
 read response
 
 if [[ $response == "S" ]];then
@@ -18,6 +18,10 @@ elif [[ $response == "M" ]];then
 kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
 fi
 
+if [[ $response == "L" ]];then
+#Get the longterm kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'longterm:' | grep -oP '(?<=strong>).*(?=</strong.*)')
+fi
 #Download the kernel
 $get_it $kernel
 
