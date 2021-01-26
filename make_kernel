@@ -9,6 +9,7 @@ EFIMENUENTRY="/boot/efi/loader/entries"
 EFIBOOT_DIR="/boot/efi/EFI/"
 NOTIFY=$(command -v notify-send)
 NOCOLOR="\033[0m"
+LOCAL_BIN="/usr/local/bin"
 source /home/bhaskar/colors.sh
 source /home/bhaskar/spinner.sh
 
@@ -16,9 +17,9 @@ mkdir -p $build_dir
 
 if [[ $get_it == "" ]];then
 	curl  -o $HOME/secure_kernel_tarball https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/plain/get-verified-tarball
-	chmod +x $HOME/secure_kernel_tarball
-	sed -i '16d'  $HOME/secure_kernel_tarball
-	sed -i "16i TARGETDIR=$build_dir" $HOME/secure_kernel_tarball
+	chmod +x $LOCAL_BIN/secure_kernel_tarball
+	sed -i '16d'  $LOCAL_BIN/secure_kernel_tarball
+	sed -i "16i TARGETDIR=$build_dir" $LOCAL_BIN/secure_kernel_tarball
 fi
 
 gentoo_kernel_build() {
@@ -185,8 +186,7 @@ cat $EFIMENUENTRY
 
 printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script ... ${NOCOLOR} \n\n"
 
-echo " \EFI\debian\vmlinuz-$kernel root=PARTUUID=ad5ef658-ccc9-46a5-8363-107a8e5e7d15  loglevel=3  systemd.show_status=true rw initrd=\EFI\debian\initrd.img-$kernel" >
-$EFIBOOTDIR/debian.nsh
+echo " \EFI\debian\vmlinuz-$kernel root=PARTUUID=ad5ef658-ccc9-46a5-8363-107a8e5e7d15  loglevel=3  systemd.show_status=true rw initrd=\EFI\debian\initrd.img-$kernel" > $EFIBOOTDIR/debian.nsh
 
 cat /boot/efi/EFI/debian.nsh
 
@@ -586,9 +586,7 @@ kernel=$(curl -s https://www.kernel.org/ | grep -A1 'longterm:' | grep -oP '(?<=
 fi
 
 
-printf "Do you want to build kernel on specific distribution? Which
-one? Gentoo,Debian,ArchLinux,Opensuse,Slackware? Give your choice [G/D/A/O/S]:
-%s"
+printf "Do you want to build kernel on specific distribution? Which one? Gentoo,Debian,ArchLinux,Opensuse,Slackware? Give your choice [G/D/A/O/S]: %s"
 read distro_choice
 
 if [[ "$distro_choice" == "G" ]];then
