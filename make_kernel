@@ -16,7 +16,7 @@ source /home/bhaskar/spinner.sh
 mkdir -p $build_dir
 
 if [[ $get_it == "" ]];then
-	curl  -o $HOME/secure_kernel_tarball https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/plain/get-verified-tarball
+	curl  -o $LOCAL_BIN/secure_kernel_tarball https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/plain/get-verified-tarball
 	chmod +x $LOCAL_BIN/secure_kernel_tarball
 	sed -i '16d'  $LOCAL_BIN/secure_kernel_tarball
 	sed -i "16i TARGETDIR=$build_dir" $LOCAL_BIN/secure_kernel_tarball
@@ -225,8 +225,7 @@ pkgver=$(grep "pkgver" PKGBUILD | head -1)
 sed -i "s/$(echo $pkgver)/pkgver=$(echo $kernel) /" PKGBUILD
 
 sed -i '6d' PKGBUILD
-ed -i '6i _srcver=${pkgver%%%.*}-arch1 '  PKGBUILD
-#cn=$(echo $kernel | cut -d"." -f1-2)
+sed -i '6i _srcver=${pkgver%%%.*}-arch1 '  PKGBUILD
 sed -i '17d' PKGBUILD
 sed -i '17i _srcname=${pkgver%%%.*}-arch1'  PKGBUILD
 
@@ -578,9 +577,7 @@ kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=st
 elif [[ $response == "M" ]];then
 #Get the mainline kernel from kernel.org
 kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
-fi
-
-if [[ $response == "L" ]];then
+elif [[ $response == "L" ]];then
 #Get the longterm kernel from kernel.org
 kernel=$(curl -s https://www.kernel.org/ | grep -A1 'longterm:' | grep -oP '(?<=strong>).*(?=</strong.*)')
 fi
