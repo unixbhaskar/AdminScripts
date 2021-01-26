@@ -1,4 +1,5 @@
 #!/bin/bash
+
 get_it=$(command -v secure_kernel_tarball)
 get_make=$(command -v make)
 get_elapsed_time="/usr/bin/time -f"
@@ -434,12 +435,12 @@ fi
 printf "${Bright}${PowderBlue}Installing the modules${NOCOLOR} ..\n\n"
 
 $get_make modules_install
-$NOTIFY -u=critical 'Modules install done'
+$NOTIFY --urgency=critical 'Modules install done'
 
 printf "\n\n ${Bright}${Magenta}Copying the build kernel to boot directory${NOCOLOR}\n\n"
 
 cp arch/x86/boot/bzImage /boot/vmlinuz-$kernel
-$NOTIFY -u=critical 'Kernel install to local boot dir'
+$NOTIFY --urgency=critical 'Kernel install to local boot dir'
 
 
 printf "${Bright}${Cyan} Cross check the item${NOCOLOR} ...\n\n"
@@ -486,7 +487,7 @@ cp -v /boot/vmlinuz-$kernel-$(hostname) $EFIBOOTDIR/slackware/
 
 ls -al /boot/efi/EFI/slackware/*
 
-$NOTIFY -u=critical 'Copied kernel to UEFI boot dir'
+$NOTIFY --urgency=critical 'Copied kernel to UEFI boot dir'
 printf "\n\n ${Bright}${PowderBlue} Fixing the menu entry of the loader ${NOCOLOR}....\n\n\n"
 
 >$EFIMENUENTRY/Slackware.conf
@@ -500,7 +501,7 @@ printf "${Bright}${LimeYellow} Let see the entry to confirmation ${NOCOLOR}...\n
 
 cat $EFIMENUENTRY/Slackware.conf
 
-$NOTIFY -u=critical 'Modified boot entry with latest kernel'
+$NOTIFY --urgency=critical 'Modified boot entry with latest kernel'
 
 printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script... ${NOCOLOR}..\n\n\n"
 
@@ -515,7 +516,7 @@ printf " ${Bright}${Magenta} Cleaning up the build directory ${NOCOLOR} .....\n\
 
 spinner "$!" "Cleaning up...wait"
 
-$NOTIFY -u=critical 'Kernel Update finished'
+$NOTIFY --urgency=critical 'Kernel Update finished'
 
 
 }
@@ -555,7 +556,7 @@ $get_make olddefconfig
 
 
 #Start building it
-$get_elapsed_time "\n\t Elapsed Time: %E \n\n" $get_make ARCH=x86_64 V=1 -j`getconf _NPROCESSORS_ONLN`
+$get_elapsed_time "\n\t Elapsed Time: %E \n\n" $get_make ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN)
 
 #Clearing the docs for shorter size
 $get_make cleandocs
