@@ -7,7 +7,7 @@ untar_it="tar -xJvf"
 existing_config_file="/boot/config-$(uname -r)"
 download_dir=$HOME/Downloads
 
-printf "\n\n Which kernel do you want to build Stable or Mainline? [S/M/L]: %s"
+printf "\n\n Which kernel do you want to build Stable or Mainline or Longterm? [S/M/L]: %s"
 read response
 
 if [[ $response == "S" ]];then
