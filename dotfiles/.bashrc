@@ -47,7 +47,6 @@ alias rsync='rsync --progress --stats -ravz'
 alias c="clear"
 alias d='cd ~/Downloads'
 alias p='cd ~/Pictures'
-alias movies='cd ~/Movies'
 alias githome='cd ~/git-linux'
 alias boot='cd /boot'
 alias music='cd ~/Music'
@@ -154,6 +153,7 @@ alias list_system_timers="systemctl  list-timers --all"
 alias keyboard_key_values="xmodmap -pke | less"
 alias fix_spell="$HOME/git-linux/linux/scripts/checkpatch.pl -f --terse --nosummary --types=typo_spelling $1"
 alias build=build
+alias see_portage_log="$(command -v elogv)"
 unset SSH_ASKPASS
 
 #man page color
@@ -315,5 +315,22 @@ BROWSER="vimb"
 file_open() { vim "$(find  $(pwd) -type f | fzf)"  ;}
 backup_dot_files() { cp -v "$1" "$(find /data/dotfiles -name '*' -type f | fzf)" ;}
 copy_to_gitrepo() { cp -v "$1" "$(find ~/git-linux/AdminScripts -name '*'  -type f | fzf)" ;}
+
+#Gentoo specific stuff
+
+alias eqf='equery f' #list all files installed by PKG
+alias equ='equery u' #display USE flags for PKG
+alias eqh='equery h' #list all packages that have USE flag
+alias eqa='equery a' #list all packages for matching ENVIRONMENT data stored in /var/db/pkg
+alias eqb='equery b' #list what package FILES belong to
+alias eql='equery l' #list package matching PKG
+alias eqd='equery d' #list all packages directly depending on ATOM
+alias eqg='equery g' #display a tree of all dependencies for PKG
+alias eqc='equery c' #list changelog entries for ATOM
+alias eqk='equery k' #verify checksums and timestamps for PKG
+alias eqm='equery m' #display metadata about PKG
+alias eqy='equery y' #display keywords for specified PKG
+alias eqs='equery s' #display total size of all files owned by PKG
+alias eqw='equery w' #print full path to ebuild for PKG
 
 
