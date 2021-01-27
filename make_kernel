@@ -1,34 +1,39 @@
 #!/bin/bash
 
-get_it=$(command -v secure_kernel_tarball)
 get_make=$(command -v make)
 get_elapsed_time="/usr/bin/time -f"
 untar_it="tar -xJvf"
 existing_config_file="/boot/config-$(uname -r)"
-build_dir=$HOME/Downloads/latest_kernel_build_$(hostname)_$(date +'%F_%T')
+build_dir=/var/tmp/kernel/latest_kernel_build
+get_it=$(command -v secure_kernel_tarball)
 EFIMENUENTRY="/boot/efi/loader/entries"
-EFIBOOT_DIR="/boot/efi/EFI/"
+EFIBOOTDIR="/boot/efi/EFI/"
 NOTIFY=$(command -v notify-send)
 NOCOLOR="\033[0m"
 LOCAL_BIN="/usr/local/bin"
 source /home/bhaskar/colors.sh
 source /home/bhaskar/spinner.sh
 
-mkdir -p $build_dir
-
-if [[ $get_it == "" ]];then
-	curl  -o $LOCAL_BIN/secure_kernel_tarball https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/plain/get-verified-tarball
-	chmod +x $LOCAL_BIN/secure_kernel_tarball
-	sed -i '16d'  $LOCAL_BIN/secure_kernel_tarball
-	sed -i "16i TARGETDIR=$build_dir" $LOCAL_BIN/secure_kernel_tarball
+if [[ ! -d $build_dir ]];then
+	mkdir -p $build_dir
 fi
+
+cd $build_dir
+
+#if [[ $get_it == "" ]];then
+#	curl  -o $LOCAL_BIN/secure_kernel_tarball https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/plain/get-verified-tarball
+#	chmod +x $LOCAL_BIN/secure_kernel_tarball
+#	sed -i '16d'  $LOCAL_BIN/secure_kernel_tarball
+#	sed -i "16i TARGETDIR=$build_dir" $LOCAL_BIN/secure_kernel_tarball
+#fi
 
 gentoo_kernel_build() {
 
 #Download the kernel and get into the download dir
 
-cd $build_dir
-$get_it $kernel
+which_kernel
+
+eval ${get_it} ${kernel}
 
 #Untar it
 $untar_it linux-$kernel.tar.xz
@@ -62,11 +67,13 @@ $get_elapsed_time "\t\n\n Elapsed Time : %E \n\n"  $get_make ARCH=x86_64 V=1 -j$
 if [ $? == 0 ]
 then
 
-printf "${Bright}${Green}Done${NOCOLOR} \n\n"
+$NOTIFY --urgency=critical "Kernel build done"
+#printf "${Bright}${Green}Done${NOCOLOR} \n\n"
 
 else
 
-printf "${right}${Red}Error encountered${NOCOLOR} \n\n"
+$NOTIFY --urgency=critical "Kernel build failed"
+#printf "${right}${Red}Error encountergced${NOCOLOR} \n\n"
 
 fi
 
@@ -96,12 +103,11 @@ cp /boot/initramfs-$kernel-$(hostname).img $EFIBOOTDIR/$(hostname)/
 echo "title Gentoo" > $EFIMENUENTRY/$(hostname).conf
 echo "linux /EFI/$(hostname)/vmlinuz-$kernel-$(hostname)" >> $EFIMENUENtRY/$(hostname).conf
 echo "initrd /EFI/$(hostname)/initramfs-$kernel-$(hostname).img" >> $EFIMENUENTRY/$(hostname).conf
-echo "options root=PARTUUID=f61e6cec-134e-5e4d-8486-08c4bd235fd3 net.ifnames=0
-rw" >> $EFIMENUENTRY/$(hostname).conf
-
-cat $EFIMENUENTRYH/$(hostname).conf
+echo "options root=PARTUUID=f61e6cec-134e-5e4d-8486-08c4bd235fd3 net.ifnames=0 rw" >> $EFIMENUENTRY/$(hostname).conf
 
 $NOTIFY --expire-time=2000 --urgency=critical "Modified the boot entry"
+cat $EFIMENUENTRYH/$(hostname).conf
+
 
 printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script... ${NOCOLOR} \n\n"
 
@@ -119,14 +125,15 @@ cd ..
 
 spinner "$!" "Cleaning...wait.."
 
+$NOTIFY --expire-time=5000 "Kernel update process done"
 }
+
 
 debian_kernel_build() {
 
 #Download the kernel and get into the download dir
 
-cd $build_dir
-$get_it $kernel
+eval ${get_it} ${kernel}
 
 #Untar it
 $untar_it linux-$kernel.tar.xz
@@ -191,14 +198,19 @@ echo " \EFI\debian\vmlinuz-$kernel root=PARTUUID=ad5ef658-ccc9-46a5-8363-107a8e5
 
 cat /boot/efi/EFI/debian.nsh
 
-$NOTIFY "Kernel build done"
+$NOTIFY "Kernel update process done"
 
 }
 
 archlinux_kernel_build() {
-cd $build_dir
 
-printf "Checking out latest linux from ${Blue}kernel.org${NOCOLOR} \n\n\n\n"
+if [[ $UID == 0 ]];then
+	printf "You are not suppose to run it as root."
+	exit 1
+else
+	printf "We are fine ,can proceed to build."
+fi
+
 asp update linux
 asp checkout linux
 
@@ -282,16 +294,16 @@ printf "\n\n\n ${Bright}${Green} Modified the UEFI script... ${NOCOLOR} \n\n"
 echo "\EFI\ArchLinux\vmlinuz-$(hostname)-$kernel root=PARTUUID=9e3d2f9a-4846-3049-97fc-b5e5c61820ae  loglevel=3  systemd.show_status=true rw initrd=\EFI\ArchLinux\initramfs-$(hostname)-$kernel.img" | sudo tee  /boot/efi/EFI/archlinux.nsh
 
 
-$NOTIFY "Kernel build done"
+$NOTIFY "Kernel update process done"
 
 }
+
 
 opensuse_kernel_build() {
 
 #Download the kernel and get into the download dir
 
-cd $build_dir
-$get_it $kernel
+eval ${get_it} ${kernel}
 
 #Untar it
 $untar_it linux-$kernel.tar.xz
@@ -390,8 +402,7 @@ slackware_kernel_build() {
 
 #Download the kernel
 
-cd $build_dir
-$get_it $kernel
+eval ${get_it} ${kernel}
 
 #Untar it
 $untar_it linux-$kernel.tar.xz
@@ -526,10 +537,7 @@ generic_kernel_build() {
 
 #Download the kernel
 
-cd $download_dir
-
-$get_it $kernel
-
+eval ${get_it} ${kernel}
 
 #Untar it
 $untar_it linux-$kernel.tar.xz
@@ -568,7 +576,7 @@ $get_make modules_install
 $get_make install
 }
 
-
+which_kernel() {
 printf "\n\n Which kernel would be your base? Stable or Mainline or Longterm? [S/M/L]: %s"
 read response
 
@@ -582,27 +590,25 @@ elif [[ $response == "L" ]];then
 #Get the longterm kernel from kernel.org
 kernel=$(curl -s https://www.kernel.org/ | grep -A1 'longterm:' | grep -oP '(?<=strong>).*(?=</strong.*)')
 fi
+}
 
-
-printf "Do you want to build kernel on specific distribution? Which one? Gentoo,Debian,ArchLinux,Opensuse,Slackware? Give your choice [G/D/A/O/S]: %s"
+printf "Do you want to build kernel on specific distribution? Which one? Gentoo,Debian,Arch,Opensuse,Slackware? Give your choice [G/D/A/O/S]: %s"
 read distro_choice
 
 if [[ "$distro_choice" == "G" ]];then
-	printf "Okay, You have selected to build Gentoo kernel"
+	printf "Okay, You have selected to build kernel on Gentoo"
 	gentoo_kernel_build
-
 elif [[ "$distro_choice" == "D" ]];then
-	printf "Okay, You have selected to build Debian kernel"
+	printf "Okay, You have selected to build kernel on Debian"
 	debian_kernel_build
-
 elif  [[ "$distro_kernel" == "A" ]];then
-	printf "Okay, you have selected to build Arch  kernel"
+	printf "Okay, you have selected to build kernel on Arch"
 	archlinux_kernel_build
 elif [[ "$distro_kernel" == "O" ]];then
-	printf "Okay, you have selected to build Opensuse kernel"
+	printf "Okay, you have selected to build kernel on Opensuse"
 	opensuse_kernel_build
 elif [[ "$distro_kernel" == "S" ]];then
-	printf "Okay, you have selected to build Slackware kernel"
+	printf "Okay, you have selected to build kernel on Slackware"
 else
       printf "You haven't choose one ,it seems you want to build generic kernel"
       generic_kernel_build
