@@ -7,10 +7,11 @@ existing_config_file="/boot/config-$(uname -r)"
 build_dir=/var/tmp/kernel/latest_kernel_build
 get_it=$(command -v secure_kernel_tarball)
 EFIMENUENTRY="/boot/efi/loader/entries"
-EFIBOOTDIR="/boot/efi/EFI/"
+EFIBOOTDIR="/boot/efi/EFI"
 NOTIFY=$(command -v notify-send)
 NOCOLOR="\033[0m"
 LOCAL_BIN="/usr/local/bin"
+dracut=$(command -v dracut)
 source /home/bhaskar/colors.sh
 source /home/bhaskar/spinner.sh
 
@@ -88,20 +89,21 @@ printf "${Bright}${LimeYEllow} Copying the build kernel to boot directory${NOCOL
 
 $get_make install
 
-$NOTIFY --expire-time=2000 --urgency=critical "Copied linux and initrd in EFI directory"
-
+$dracut --hostonly --kver $kernel-Gentoo
 
 printf "\n\n ${Bright}${Yellow} Fixing the EFI boot entry by copying the kernel to ESP place ${NOCOLOR}...\n\n"
 
 cp /boot/vmlinuz-$kernel-$(hostname) $EFIBOOTDIR/$(hostname)/
 cp /boot/initramfs-$kernel-$(hostname).img $EFIBOOTDIR/$(hostname)/
 
+$NOTIFY --expire-time=2000 --urgency=critical "Copied linux and initrd in EFI directory"
+
 #Clean the existing boot conf file
 >$EFIMENUENTRY/$(hostname).conf
 
 #Flushing with new entry , could have been done much better way
 echo "title Gentoo" > $EFIMENUENTRY/$(hostname).conf
-echo "linux /EFI/$(hostname)/vmlinuz-$kernel-$(hostname)" >> $EFIMENUENtRY/$(hostname).conf
+echo "linux /EFI/$(hostname)/vmlinuz-$kernel-$(hostname)" >> $EFIMENUENTRY/$(hostname).conf
 echo "initrd /EFI/$(hostname)/initramfs-$kernel-$(hostname).img" >> $EFIMENUENTRY/$(hostname).conf
 echo "options root=PARTUUID=f61e6cec-134e-5e4d-8486-08c4bd235fd3 net.ifnames=0 rw" >> $EFIMENUENTRY/$(hostname).conf
 
@@ -132,6 +134,7 @@ $NOTIFY --expire-time=5000 "Kernel update process done"
 debian_kernel_build() {
 
 #Download the kernel and get into the download dir
+which_kernel
 
 eval ${get_it} ${kernel}
 
@@ -177,16 +180,16 @@ printf "${Bright}${Cyan}Copy kernel,initrd to EFI directory ${NOCOLOR}.....\n\n\
 
 cd /boot
 
-cp -v /boot/vmlinuz-$kernel $EFIBOOTDIR
-cp -v /boot/initrd.img-$kernel $EFIBOOTDIR
+cp -v /boot/vmlinuz-$kernel $EFIBOOTDIR/debian/
+cp -v /boot/initrd.img-$kernel $EFIBOOTDIR/debian/
 
 
 printf "\n\n\n${Bright}${PowderBlue} Fix the boot entry ${NOCOLOR}...\n\n\n"
 
-echo "title Debian" > $EFIMENUENTRY
-echo "linux /EFI/debian/vmlinuz-$kernel" >> $EFIMENUENTRY
-echo "initrd /EFI/debian/initrd.img-$kernel" >> $EFIMENUENTRY
-echo "options root=PARTUUID=ad5ef658-ccc9-46a5-8363-107a8e5e7d15  loglevel=3  systemd.show_status=true ifname.net=0 rw" >> $EFIMENUENTRY
+echo "title Debian" > $EFIMENUENTRY/Debian.conf
+echo "linux /EFI/debian/vmlinuz-$kernel" >> $EFIMENUENTRY/Debian.conf
+echo "initrd /EFI/debian/initrd.img-$kernel" >> $EFIMENUENTRY/Debian.conf
+echo "options root=PARTUUID=ad5ef658-ccc9-46a5-8363-107a8e5e7d15  loglevel=3 systemd.show_status=true ifname.net=0 rw" >> $EFIMENUENTRY/Debian.conf
 
 printf "\n\n${Bright}${Green}Take a look at it ${NOCOLOR}...\n\n\n"
 
@@ -205,11 +208,15 @@ $NOTIFY "Kernel update process done"
 archlinux_kernel_build() {
 
 if [[ $UID == 0 ]];then
-	printf "You are not suppose to run it as root."
+	printf "\n\nYou are not suppose to run it as root."
 	exit 1
 else
-	printf "We are fine ,can proceed to build."
+	printf "\n\nWe are fine ,can proceed to build."
 fi
+
+which_kernel
+
+printf "\n\n"
 
 asp update linux
 asp checkout linux
@@ -278,8 +285,8 @@ sudo pacman -U --noconfirm $(hostname)-$kernel-headers-$kernel-1-x86_64.pkg.tar.
 
 printf "\n\n\n Done..now copy over the image to ${Yellow}EFI dir..${NOCOLOR} \n\n\n\n"
 
-sudo cp -v /boot/vmlinuz-$(hostname)-$kernel $EFIBOOTDIR
-sudo cp -v /boot/initramfs-$(hostname)-$kernel.img $EFIBOOTDIR
+sudo cp -v /boot/vmlinuz-$(hostname)-$kernel $EFIBOOTDIR/$(hostname)/
+sudo cp -v /boot/initramfs-$(hostname)-$kernel.img $EFIBOOTDIR/$(hostname)/
 
 
 printf "${Bright}${Blue}Fixed the boot entry now ${NOCOLOR}...\n\n\n\n"
@@ -302,6 +309,8 @@ $NOTIFY "Kernel update process done"
 opensuse_kernel_build() {
 
 #Download the kernel and get into the download dir
+
+which_kernel
 
 eval ${get_it} ${kernel}
 
@@ -349,6 +358,7 @@ printf "Installing the packages.....\n\n\n"
 
 zypper remove -y kernel-headers
 
+pkg_dir=/usr/src/packages/RPMS/x86_64
 cd $pkg_dir
 
 rpm --addsign *.rpm
@@ -402,6 +412,8 @@ slackware_kernel_build() {
 
 #Download the kernel
 
+which_kernel
+
 eval ${get_it} ${kernel}
 
 #Untar it
@@ -433,10 +445,12 @@ printf "${Bright}${Green}Then make it${NOCOLOR} ...\n\n"
 $get_elapsed_time "\t\n\n Elapsed time: %E\n\n" $get_make V=1 ARCH=x86_64 -j$(getconf _NPROCESSORS_ONLN) LOCALVERSION=-$(hostname)
 
 
+$NOTIFY --urgency=critical 'Kernel compilation done'
+
 if [[ $? == 0 ]];then
 
 printf "${Bright}${Green}Done${NOCOLOR}\n\n"
-$NOTIFY -u=critical 'Kernel compilation done'
+
 else
 
 printf "${Bright}${Red}Error encountered${NOCOLOR}\n\n"
@@ -446,6 +460,7 @@ fi
 printf "${Bright}${PowderBlue}Installing the modules${NOCOLOR} ..\n\n"
 
 $get_make modules_install
+
 $NOTIFY --urgency=critical 'Modules install done'
 
 printf "\n\n ${Bright}${Magenta}Copying the build kernel to boot directory${NOCOLOR}\n\n"
@@ -464,7 +479,7 @@ cp System.map /boot/System.map-$kernel
 
 printf "${Bright}${LimeYellow} Copying the .config file to /boot dir${NOCOLOR} \n\n"
 
-cp .config /boot/config-$kernel
+cp .config /boot/config-$kernel-$(hostname)
 
 printf "${Bright}${Yellow} Make sure we are in right directory ${NOCOLOR} ..\n\n"
 cd /boot
@@ -499,6 +514,7 @@ cp -v /boot/vmlinuz-$kernel-$(hostname) $EFIBOOTDIR/slackware/
 ls -al /boot/efi/EFI/slackware/*
 
 $NOTIFY --urgency=critical 'Copied kernel to UEFI boot dir'
+
 printf "\n\n ${Bright}${PowderBlue} Fixing the menu entry of the loader ${NOCOLOR}....\n\n\n"
 
 >$EFIMENUENTRY/Slackware.conf
@@ -536,6 +552,8 @@ $NOTIFY --urgency=critical 'Kernel Update finished'
 generic_kernel_build() {
 
 #Download the kernel
+
+which_kernel
 
 eval ${get_it} ${kernel}
 
@@ -601,16 +619,17 @@ if [[ "$distro_choice" == "G" ]];then
 elif [[ "$distro_choice" == "D" ]];then
 	printf "Okay, You have selected to build kernel on Debian"
 	debian_kernel_build
-elif  [[ "$distro_kernel" == "A" ]];then
+elif  [[ "$distro_choice" == "A" ]];then
 	printf "Okay, you have selected to build kernel on Arch"
 	archlinux_kernel_build
-elif [[ "$distro_kernel" == "O" ]];then
+elif [[ "$distro_choice" == "O" ]];then
 	printf "Okay, you have selected to build kernel on Opensuse"
 	opensuse_kernel_build
-elif [[ "$distro_kernel" == "S" ]];then
-	printf "Okay, you have selected to build kernel on Slackware"
+elif [[ "$distro_choice" == "S" ]];then
+	printf "\n\nOkay, you have selected to build kernel on Slackware"
+	slackware_kernel_build
 else
-      printf "You haven't choose one ,it seems you want to build generic kernel"
+      printf "\n\nYou haven't choose one ,it seems you want to build generic kernel"
       generic_kernel_build
 fi
 
