@@ -197,7 +197,7 @@ build() {
 
            ${tm} "\n\n\tElapsed Time : %E \n\n" sudo make install
 
-
+          echo "Done"
      fi
 
 }
@@ -210,10 +210,14 @@ build() {
 
 search() {
 	if [ $# -ne 1 ]; then
-		echo "You need to pass the search string"
-	else
 
-		git grep "$1" "$(pwd)"
+		echo "You need to pass the search string"
+
+	elif [ ! -e .git ];then
+
+		find $PWD -maxdepth 1 -name "$1" -ls
+	else
+		git grep "$1"
 	fi
 }
 
