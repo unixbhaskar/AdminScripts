@@ -21,12 +21,13 @@ fi
 
 cd $build_dir
 
-#if [[ $get_it == "" ]];then
-#	curl  -o $LOCAL_BIN/secure_kernel_tarball https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/plain/get-verified-tarball
-#	chmod +x $LOCAL_BIN/secure_kernel_tarball
-#	sed -i '16d'  $LOCAL_BIN/secure_kernel_tarball
-#	sed -i "16i TARGETDIR=$build_dir" $LOCAL_BIN/secure_kernel_tarball
-#fi
+# This is "Assuming" that you already don't have the script in your system
+if [[ $get_it == "" ]];then
+	curl  -o $LOCAL_BIN/secure_kernel_tarball https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/plain/get-verified-tarball
+	chmod +x $LOCAL_BIN/secure_kernel_tarball
+	sed -i '16d'  $LOCAL_BIN/secure_kernel_tarball
+	sed -i "16i TARGETDIR=$build_dir" $LOCAL_BIN/secure_kernel_tarball
+fi
 
 gentoo_kernel_build() {
 
