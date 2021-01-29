@@ -207,7 +207,7 @@ $NOTIFY "Kernel update process done"
 
 archlinux_kernel_build() {
 
-if [[ $UID == 0 ]];then
+if [[ "$UID" -eq 0 ]];then
 	printf "\n\nYou are not suppose to run it as root."
 	exit 1
 else
@@ -548,7 +548,6 @@ $NOTIFY --urgency=critical 'Kernel Update finished'
 
 }
 
-#Normal kernel build steps
 
 generic_kernel_build() {
 
