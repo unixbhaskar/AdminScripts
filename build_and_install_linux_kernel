@@ -108,7 +108,7 @@ echo "initrd /EFI/$(hostname)/initramfs-$kernel-$(hostname).img" >> $EFIMENUENTR
 echo "options root=PARTUUID=f61e6cec-134e-5e4d-8486-08c4bd235fd3 net.ifnames=0 rw" >> $EFIMENUENTRY/$(hostname).conf
 
 $NOTIFY --expire-time=2000 --urgency=critical "Modified the boot entry"
-cat $EFIMENUENTRYH/$(hostname).conf
+cat $EFIMENUENTRY/$(hostname).conf
 
 
 printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script... ${NOCOLOR} \n\n"
@@ -193,7 +193,7 @@ echo "options root=PARTUUID=ad5ef658-ccc9-46a5-8363-107a8e5e7d15  loglevel=3 sys
 
 printf "\n\n${Bright}${Green}Take a look at it ${NOCOLOR}...\n\n\n"
 
-cat $EFIMENUENTRY
+cat $EFIMENUENTRY/Debian.conf
 
 printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script ... ${NOCOLOR} \n\n"
 
@@ -367,10 +367,9 @@ rpm --checksig *.rpm
 
 printf "\n\n ${Bright}${Yellow} Fixing the EFI boot entry by copying the kernel to ESP place ${NOCOLOR}...\n\n"
 
-cd $boot_dir
-cp vmlinuz-$kernel-1-default-$(hostname) $EFIBOOTDIR/Opensuse/
+cp /boot/vmlinuz-$kernel-1-default-$(hostname) $EFIBOOTDIR/Opensuse/
 
-cp initrd-$kernel-1-default-$(hostname) $EFIBOOTDIR/Opensuse/
+cp /boot/initrd-$kernel-1-default-$(hostname) $EFIBOOTDIR/Opensuse/
 
 $NOTIFY --expire-time=2000 --urgency=critical "Copied linux and initrd
 in EFI directory"
