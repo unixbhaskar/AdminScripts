@@ -249,7 +249,7 @@ bindsym $mod+minus scratchpad show
  #for_window [class="(?i)firefox"] title_format "<span foreground='magenta'>%title</span>"
 
  #dmenufm shortcut
-  bindsym $mod+p exec dmenufminvoke
+ # bindsym $mod+p exec dmenufminvoke
 
  # Toggle between dock mode and hide mode
   bindsym $mod+n bar mode toggle
@@ -279,7 +279,7 @@ bindsym $mod+semicolon exec songs_play
 
 # Open selected pdf from list
 
-bindsym $mod+o exec enlist_pdf_open
+bindsym $mod+p exec enlist_pdf_open
 
 # Surf browser open
 
