@@ -307,9 +307,9 @@ function apt-history(){
 
 
 
-export TERM=screen-256color
+export TERM=st-256color
 export EDITOR=vim
-BROWSER="vimb"
+export BROWSER="vimb"
 
 
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
