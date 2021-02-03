@@ -66,40 +66,19 @@ grep DEBUG_INFO .config
 
 which_compiler
 
-
-#Make sure the flags symbols are set correctly with an updated value
-
-#$get_make  ARCH=x86_64 olddefconfig
-
-
-#Now lets build it..
-
-#$get_elapsed_time "\t\n\n Elapsed Time : %E \n\n"  $get_make  ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN) LOCALVERSION=-$(hostname)
-
-
 if [ $? == 0 ]
 then
 
 $NOTIFY --urgency=critical "Kernel build done"
-#printf "${Bright}${Green}Done${NOCOLOR} \n\n"
 
 else
 
 $NOTIFY --urgency=critical "Kernel build failed"
-#printf "${right}${Red}Error encountergced${NOCOLOR} \n\n"
 
 fi
 
-printf "${Bright}${Yellow} Installing the modules${NOCOLOR} ...\n\n"
-
-#$get_make  modules_install
-
 $NOTIFY --expire-time=2000 --urgency=critical "Modules install done"
 
-printf "${Bright}${LimeYEllow} Copying the build kernel to boot directory${NOCOLOR}
-\n\n"
-
-$get_make install
 
 $dracut --hostonly --kver $kernel-Gentoo
 
@@ -109,19 +88,6 @@ cp /boot/vmlinuz-$kernel-$(hostname) $EFIBOOTDIR/$(hostname)/
 cp /boot/initramfs-$kernel-$(hostname).img $EFIBOOTDIR/$(hostname)/
 
 $NOTIFY --expire-time=2000 --urgency=critical "Copied linux and initrd in EFI directory"
-
-#Clean the existing boot conf file
->$EFIMENUENTRY/$(hostname).conf
-
-#Flushing with new entry , could have been done much better way
-echo "title Gentoo" > $EFIMENUENTRY/$(hostname).conf
-echo "linux /EFI/$(hostname)/vmlinuz-$kernel-$(hostname)" >> $EFIMENUENTRY/$(hostname).conf
-echo "initrd /EFI/$(hostname)/initramfs-$kernel-$(hostname).img" >> $EFIMENUENTRY/$(hostname).conf
-echo "options root=PARTUUID=f61e6cec-134e-5e4d-8486-08c4bd235fd3 net.ifnames=0 rw" >> $EFIMENUENTRY/$(hostname).conf
-
-$NOTIFY --expire-time=2000 --urgency=critical "Modified the boot entry"
-cat $EFIMENUENTRY/$(hostname).conf
-
 
 printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script... ${NOCOLOR} \n\n"
 
@@ -175,14 +141,6 @@ grep DEBUG_INFO .config
 #Choose a compiler to build the kernel clang or gcc
 which_compiler
 
-#Make old kernel config set as well
-#$get_make olddefconfig
-
-
-#printf "${Bright}${Green}Then make it${NOCOLOR} ...\n\n"
-
-#$get_elapsed_time "\t\n\n Elapsed time: %E\n\n" $get_make V=1 ARCH=x86_64 -j$(getconf _NPROCESSORS_ONLN) LOCALVERSION=-$(hostname)
-
 
 $NOTIFY --urgency=critical 'Kernel compilation done'
 
@@ -195,10 +153,6 @@ else
 printf "${Bright}${Red}Error encountered${NOCOLOR}\n\n"
 
 fi
-
-printf "${Bright}${PowderBlue}Installing the modules${NOCOLOR} ..\n\n"
-
-#$get_make modules_install
 
 $NOTIFY --urgency=critical 'Modules installed done'
 
@@ -254,21 +208,6 @@ ls -al /boot/efi/EFI/slackware/*
 
 $NOTIFY --urgency=critical 'Copied kernel to UEFI boot dir'
 
-printf "\n\n ${Bright}${PowderBlue} Fixing the menu entry of the loader ${NOCOLOR}....\n\n\n"
-
->$EFIMENUENTRY/Slackware.conf
-
-echo "title Slackware" > $EFIMENUENTRY/Slackware.conf
-echo "linux /EFI/slackware/vmlinuz-$kernel-$(hostname)" >> $EFIMENUENTRY/Slackware.conf
-echo "options root=PARTUUID=d3fe6218-506b-4ed1-ac14-97adb053baff rw" >> $EFIMENUENTRY/Slackware.conf
-
-
-printf "${Bright}${LimeYellow} Let see the entry to confirmation ${NOCOLOR}...\n\n\n"
-
-cat $EFIMENUENTRY/Slackware.conf
-
-$NOTIFY --urgency=critical 'Modified boot entry with latest kernel'
-
 printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script... ${NOCOLOR}..\n\n\n"
 
 echo "\EFI\slackware\vmlinuz-$kernel-$(hostname) root=PARTUUID=d3fe6218-506b-4ed1-ac14-97adb053baff rw" > /boot/efi/EFI/slackware.nsh
@@ -319,21 +258,6 @@ grep DEBUG_INFO .config
 #Choose a compiler to build
 which_compiler
 
-#Make old kernel config set as well
-#$get_make  olddefconfig
-
-#Start building it
-
-#$get_elapsed_time "\n\t Elapsed Time: %E \n\n" $get_make $clang $llvm_make $llvm_assm  ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN)
-
-#Clearing the docs for shorter size
-#$get_make cleandocs
-
-# Install the above compiled kernel modules
-#$get_make modules_install
-
-#Need to be root/superuser to install it, in the system
-#$get_make install
 }
 
 
@@ -354,6 +278,8 @@ if [[ $compiler_chosen == "G" ]];then
 
 		$get_make modules_install
 
+		$get_make install
+
 
 elif [[ $compiler_chosen == "C" ]];then
 		printf "\n\t You have chosen to use ${Bright}${Magenta}CLANG${NOCOLOR} as the compiler to build.\n\n"
@@ -365,6 +291,8 @@ elif [[ $compiler_chosen == "C" ]];then
 		$get_make cleandocs
 
 		$get_make $clang $llvm_make $llvm_assm modules_install
+
+		$get_make install
 
 else
                 printf "\n\n ${BRIGHT}${Red}You have to choose a compiler to build.${NOCOLOR}\n"
