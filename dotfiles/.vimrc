@@ -7,10 +7,11 @@ filetype off                  " required
 filetype plugin indent on     "Make indent code based on the file type
 syntax on
 set path+=**
-"source ~/.vim/colors/torte.vim
 "syntax enable
 "set background=dark
-colorscheme desert
+let g:CommandTMaxFiles=200000
+nnoremap <Leader>n :set invnumber number?<CR>
+colorscheme molokai_dark
 "Different highlights set background=light
 highlight Comment    ctermfg=119
 highlight clear SpellBad
@@ -40,7 +41,6 @@ Plugin 'itchyny/calendar.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'sunaku/vim-shortcut'
-Plugin 'TaDaa/vimade'
 Plugin 'junegunn/gv.vim'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-unimpaired'
@@ -52,23 +52,10 @@ Plugin 'svermeulen/vim-macrobatics'
 Plugin 'mhinz/vim-startify'
 Plugin 'strboul/urlview.vim'
 Plugin 'mtth/scratch.vim'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
 Plugin  'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin  'git://git.wincent.com/command-t.git'
 Plugin  'tyru/open-browser.vim'
-" git repos on your local machine (i.e. when working on your own plugin)
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
 Plugin  'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-"Plugin  'scrooloose/nerdtree'
+Plugin 'wincent/command-t'
 Plugin 'preservim/nerdtree'
 Plugin  'Xuyuanp/nerdtree-git-plugin'
 Plugin  'bash-support.vim'
@@ -223,9 +210,6 @@ let g:calendar_event_start_time= 1
 source ~/.cache/calendar.vim/credentials.vim
 "Vimade settings
 
-let g:vimade = {}
-let g:vimade.fadelevel = 0.7
-let g:vimade.enablesigns = 1
 "Auto command for configuration file modification/change notification
 augroup configfilealert
 "au!
@@ -237,7 +221,10 @@ autocmd BufWritePost .profile !notify_config_file_updates
 autocmd BufWritePost .ithreeconfig !notify_config_file_updates
 autocmd BufWritePost .ithreeblocksconfig !notify_config_file_updates
 autocmd BufWritePost  screenrc !notify_config_file_updates
+autocmd BufWritePost  .config/vimb/config !copy_vimb_config
 augroup END
+
+
 "Move between splits
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
