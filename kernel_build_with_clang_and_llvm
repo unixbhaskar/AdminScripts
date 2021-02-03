@@ -1,0 +1,698 @@
+#!/bin/bash
+get_make=$(command -v make)
+get_elapsed_time="/usr/bin/time -f"
+untar_it="tar -xJvf"
+existing_config_file="/boot/config-$(uname -r)"
+build_dir=/var/tmp/kernel/latest_kernel_build
+get_it=$(command -v secure_kernel_tarball)
+EFIMENUENTRY="/boot/efi/loader/entries"
+EFIBOOTDIR="/boot/efi/EFI"
+NOTIFY=$(command -v notify-send)
+NOCOLOR="\033[0m"
+LOCAL_BIN="/usr/local/bin"
+dracut=$(command -v dracut)
+clang="CC=clang"
+host_cc_clang="HOSTCC=clang"
+make_llvm="LLVM=1"
+llvm_assm="LLVM_IAS=1"
+tools_version_check="scripts/ver_linux"
+config_change="scripts/config"
+source /home/bhaskar/colors.sh
+source /home/bhaskar/spinner.sh
+
+if [[ ! -d $build_dir ]];then
+	mkdir -p $build_dir
+fi
+
+cd $build_dir
+
+#if [[ $get_it == "" ]];then
+#	curl  -o $LOCAL_BIN/secure_kernel_tarball https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/plain/get-verified-tarball
+#	chmod +x $LOCAL_BIN/secure_kernel_tarball
+#	sed -i '16d'  $LOCAL_BIN/secure_kernel_tarball
+#	sed -i "16i TARGETDIR=$build_dir" $LOCAL_BIN/secure_kernel_tarball
+#fi
+
+gentoo_kernel_build() {
+
+#Download the kernel and get into the download dir
+
+which_kernel
+
+eval ${get_it} ${kernel}
+
+#Untar it
+$untar_it linux-$kernel.tar.xz
+
+#Get into the kernel direcory
+cd linux-$kernel
+$tools_version_check
+
+#Clean the dir
+$get_make clean && $get_make mrproper
+
+#Copying existing/running kernel config
+cp $existing_config_file .config
+
+#Disable this option to shorten the compile time
+$config_change --disable DEBUG_KERNEL
+grep DEBUG_KERNEL .config
+
+#Disable this option to shorten the compile time
+$config_change --disable DEBUG_INFO
+grep DEBUG_INFO .config
+
+#Choose a compiler to build the kernel , clang or gcc
+
+which_compiler
+
+
+#Make sure the flags symbols are set correctly with an updated value
+
+#$get_make  ARCH=x86_64 olddefconfig
+
+
+#Now lets build it..
+
+#$get_elapsed_time "\t\n\n Elapsed Time : %E \n\n"  $get_make  ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN) LOCALVERSION=-$(hostname)
+
+
+if [ $? == 0 ]
+then
+
+$NOTIFY --urgency=critical "Kernel build done"
+#printf "${Bright}${Green}Done${NOCOLOR} \n\n"
+
+else
+
+$NOTIFY --urgency=critical "Kernel build failed"
+#printf "${right}${Red}Error encountergced${NOCOLOR} \n\n"
+
+fi
+
+printf "${Bright}${Yellow} Installing the modules${NOCOLOR} ...\n\n"
+
+#$get_make  modules_install
+
+$NOTIFY --expire-time=2000 --urgency=critical "Modules install done"
+
+printf "${Bright}${LimeYEllow} Copying the build kernel to boot directory${NOCOLOR}
+\n\n"
+
+$get_make install
+
+$dracut --hostonly --kver $kernel-Gentoo
+
+printf "\n\n ${Bright}${Yellow} Fixing the EFI boot entry by copying the kernel to ESP place ${NOCOLOR}...\n\n"
+
+cp /boot/vmlinuz-$kernel-$(hostname) $EFIBOOTDIR/$(hostname)/
+cp /boot/initramfs-$kernel-$(hostname).img $EFIBOOTDIR/$(hostname)/
+
+$NOTIFY --expire-time=2000 --urgency=critical "Copied linux and initrd in EFI directory"
+
+#Clean the existing boot conf file
+>$EFIMENUENTRY/$(hostname).conf
+
+#Flushing with new entry , could have been done much better way
+echo "title Gentoo" > $EFIMENUENTRY/$(hostname).conf
+echo "linux /EFI/$(hostname)/vmlinuz-$kernel-$(hostname)" >> $EFIMENUENTRY/$(hostname).conf
+echo "initrd /EFI/$(hostname)/initramfs-$kernel-$(hostname).img" >> $EFIMENUENTRY/$(hostname).conf
+echo "options root=PARTUUID=f61e6cec-134e-5e4d-8486-08c4bd235fd3 net.ifnames=0 rw" >> $EFIMENUENTRY/$(hostname).conf
+
+$NOTIFY --expire-time=2000 --urgency=critical "Modified the boot entry"
+cat $EFIMENUENTRY/$(hostname).conf
+
+
+printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script... ${NOCOLOR} \n\n"
+
+echo "\EFI\$(hostname)\vmlinuz-$kernel-Gentoo --initrd \EFI/$(hostname)\initramfs-$kernel-$(hostname).img root=PARTUUID=f61e6cec-134e-5e4d-8486-08c4bd235fd3 rw" > $EFIBOOTDIR/gentoo.nsh
+
+
+cat $EFIBOOTDIR/gentoo.nsh
+$NOTIFY --expire-time=2000 --urgency=critical "Fix the nsh script too"
+
+printf "\n\n ${Bright}${Cyan}Lets clean up the build directory ${NOCOLOR} .....\n\n\n"
+
+cd ..
+
+(rm -rf $build_dir) &
+
+spinner "$!" "Cleaning...wait.."
+
+$NOTIFY --expire-time=5000 "Kernel update process done"
+}
+
+
+debian_kernel_build() {
+
+#Download the kernel and get into the download dir
+which_kernel
+
+eval ${get_it} ${kernel}
+
+#Untar it
+$untar_it linux-$kernel.tar.xz
+
+#Get into the kernel direcory
+cd linux-$kernel
+$tools_version_check
+
+#Clean the dir
+$get_make clean && $get_make mrproper
+
+#Copying existing/running kernel config
+cp $existing_config_file .config
+
+#Disable this option to shorten the compile time
+$config_change --disable DEBUG_KERNEL
+grep DEBUG_KERNEL .config
+
+#Disable this option to shorten the compile time
+$config_change --disable DEBUG_INFO
+grep DEBUG_INFO .config
+
+#This is needed ,otherwise it won't allow you to build
+$config_change --disable system_trusted_keys
+grep CONFIG_SYSTEM_TRUSTED_KEYS .config
+
+#Make sure the flags symbols are set correctly with an updated value
+$get_make  ARCH=x86_64 olddefconfig
+
+# Now build it
+$get_elapsed_time "\n\n\tTime Elapsed: %E\n\n" $get_make ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN) deb-pkg
+
+
+printf "\n\n\n ${Bright}${Green}Install the generated packages aka kernel,headers,modules et al ${NOCOLOR}\n\n\n"
+
+cd ..
+
+dpkg -i *.deb
+
+
+printf "${Bright}${Cyan}Copy kernel,initrd to EFI directory ${NOCOLOR}.....\n\n\n"
+
+cd /boot
+
+cp -v /boot/vmlinuz-$kernel $EFIBOOTDIR/debian/
+cp -v /boot/initrd.img-$kernel $EFIBOOTDIR/debian/
+
+
+printf "\n\n\n${Bright}${PowderBlue} Fix the boot entry ${NOCOLOR}...\n\n\n"
+
+echo "title Debian" > $EFIMENUENTRY/Debian.conf
+echo "linux /EFI/debian/vmlinuz-$kernel" >> $EFIMENUENTRY/Debian.conf
+echo "initrd /EFI/debian/initrd.img-$kernel" >> $EFIMENUENTRY/Debian.conf
+echo "options root=PARTUUID=ad5ef658-ccc9-46a5-8363-107a8e5e7d15  loglevel=3 systemd.show_status=true ifname.net=0 rw" >> $EFIMENUENTRY/Debian.conf
+
+printf "\n\n${Bright}${Green}Take a look at it ${NOCOLOR}...\n\n\n"
+
+cat $EFIMENUENTRY/Debian.conf
+
+printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script ... ${NOCOLOR} \n\n"
+
+echo " \EFI\debian\vmlinuz-$kernel root=PARTUUID=ad5ef658-ccc9-46a5-8363-107a8e5e7d15  loglevel=3  systemd.show_status=true rw initrd=\EFI\debian\initrd.img-$kernel" > $EFIBOOTDIR/debian.nsh
+
+cat /boot/efi/EFI/debian.nsh
+
+$NOTIFY "Kernel update process done"
+
+}
+
+archlinux_kernel_build() {
+
+if [[ "$UID" -eq 0 ]];then
+	printf "\n\nYou are not suppose to run it as root."
+	exit 1
+else
+	printf "\n\nWe are fine ,can proceed to build."
+fi
+
+which_kernel
+
+$tools_version_check
+
+printf "\n\n"
+
+asp update linux
+asp checkout linux
+
+if [[ $? == 0 ]];then
+   printf "${GREEN}Alright.. continue...${NOCOLOR}\n\n\n"
+else
+  printf "${RED}Nope abort!${NOCOLOR}\n\n\n"
+   exit 1
+fi
+
+printf "*********${Bright}${Cyan}Configuring PKGBUILD${NOCOLOR}********** \n\n\n\n"
+
+printf "${LimeYellow}Customizing few varibles in the PKGBUILD file...${NOCOLOR}\n\n\n\n"
+
+cd linux/repos/core-x86_64/
+
+sudo zcat /proc/config.gz > config
+sed -i "s/"CONFIG_DEBUG_KERNEL=y"/"CONFIG_DEBUG_KERNEL=n"/" config
+grep DEBUG_KERNEL config
+sed -i "s/"CONFIG_DEBUG_INFO=y"/"CONFIG_DEBUG_INFO=n"/" config
+grep DEBUG_INFO config
+
+sed -i "s/pkgbase=linux/pkgbase=$(hostname)-$(echo $kernel) /"  PKGBUILD
+pkgver=$(grep "pkgver" PKGBUILD | head -1)
+sed -i "s/$(echo $pkgver)/pkgver=$(echo $kernel) /" PKGBUILD
+
+sed -i '6d' PKGBUILD
+sed -i '6i _srcver=${pkgver%%%.*}-arch1 '  PKGBUILD
+sed -i '17d' PKGBUILD
+sed -i '17i _srcname=${pkgver%%%.*}-arch1'  PKGBUILD
+
+sed -i '19d' PKGBUILD
+sed -i '19i \"$_srcname::https://git.archlinux.org/linux.git/snapshot/\$_srcver.tar.gz\"' PKGBUILD
+sed -i '30d' PKGBUILD
+sed -i '30i export KBUILD_BUILD_HOST=Bhaskar_ThinkPad_x250' PKGBUILD
+sed -i '31d' PKGBUILD
+sed -i '31i export KBUILD_BUILD_USER=Bhaskar' PKGBUILD
+
+sed -i 's/#make oldconfig/make olddefconfig/' PKGBUILD
+sed -i '61d' PKGBUILD
+sed -i '61i make V=1 ARCH=x86_64 -j4  bzImage modules' PKGBUILD
+sed -i '62d' PKGBUILD
+sed -i '169,186 s/^/#/' PKGBUILD
+sed -i '187i pkgname=("$pkgbase" "$pkgbase-headers")' PKGBUILD
+sed -i '189d' PKGBUILD
+printf "As we have change the PKGBUILD file ,we need to generate the new ${Magenta}CHECKSUM the file .... ${NOCOLOR} \n\n\n"
+
+#makepkg -g
+
+updpkgsums
+
+printf "\n\n\n Lets do the ${Bright}${Green}compiling now ${NOCOLOR} ....\n\n\n"
+
+$get_elapsed_time "\t\n\n Elapsed Time : %E \n\n" makepkg -s
+
+$NOTIFY --urgency=critical "Kernel building done"
+
+printf "Install the generated ${PowderBlue}headers,${PowderBlue}kernel and ${PowderBlue}doc packages with pacman .. ${NOCOLOR} \n\n\n"
+
+
+sudo pacman -U  --noconfirm $(hostname)-$kernel-$kernel-1-x86_64.pkg.tar.zst
+
+sudo pacman -U --noconfirm $(hostname)-$kernel-headers-$kernel-1-x86_64.pkg.tar.zst
+
+
+printf "\n\n\n Done..now copy over the image to ${Yellow}EFI dir..${NOCOLOR} \n\n\n\n"
+
+sudo cp -v /boot/vmlinuz-$(hostname)-$kernel $EFIBOOTDIR/$(hostname)/
+sudo cp -v /boot/initramfs-$(hostname)-$kernel.img $EFIBOOTDIR/$(hostname)/
+
+
+printf "${Bright}${Blue}Fixed the boot entry now ${NOCOLOR}...\n\n\n\n"
+
+echo "title ArchLinux" | sudo tee  $EFIMENUENTRY/ArchLinux.conf
+echo "linux /EFI/ArchLinux/vmlinuz-$(hostname)-$kernel" | sudo tee -a $EFIMENUENTRY/ArchLinux.conf
+echo "initrd /EFI/ArchLinux/initramfs-$(hostname)-$kernel.img" | sudo tee -a $EFIMENUENTRY/ArchLinux.conf
+echo "options root=PARTUUID=9e3d2f9a-4846-3049-97fc-b5e5c61820ae  loglevel=3  systemd.show_status=true rw" | sudo tee -a $EFIMENUENTRY/ArchLinux.conf
+
+printf "\n\n\n ${Bright}${Green} Modified the UEFI script... ${NOCOLOR} \n\n"
+
+echo "\EFI\ArchLinux\vmlinuz-$(hostname)-$kernel root=PARTUUID=9e3d2f9a-4846-3049-97fc-b5e5c61820ae  loglevel=3  systemd.show_status=true rw initrd=\EFI\ArchLinux\initramfs-$(hostname)-$kernel.img" | sudo tee  /boot/efi/EFI/archlinux.nsh
+
+
+$NOTIFY "Kernel update process done"
+
+}
+
+
+opensuse_kernel_build() {
+
+#Download the kernel and get into the download dir
+
+which_kernel
+
+eval ${get_it} ${kernel}
+
+#Untar it
+$untar_it linux-$kernel.tar.xz
+
+#Get into the kernel direcory
+cd linux-$kernel
+
+$tools_version_check
+
+#Clean the dir
+$get_make clean && $get_make mrproper
+
+#Copying existing/running kernel config
+
+cp $existing_config_file .config
+
+#Disable this option to shorten the compile time
+$config_change --disable DEBUG_KERNEL
+grep DEBUG_KERNEL .config
+
+#Disable this option to shorten the compile time
+$config_change --disable DEBUG_INFO
+grep DEBUG_INFO .config
+
+#Make sure the flags symbols are set correctly with an updated value
+$get_make  ARCH=x86_64 olddefconfig
+
+
+$get_elapsed_time "\t\n\n Elapsed Time : %E \n\n"  $get_make ARCH=x86_64 V=1 -j $(getconf _NPROCESSORS_ONLN) LOCALVERSION=-$(hostname) rpm-pkg
+
+
+if [ $? == 0 ]
+then
+
+printf "${Bright}${Green}Done${NOCOLOR} \n\n"
+
+else
+
+printf "${right}${Red}Error encountered${NOCOLOR} \n\n"
+
+fi
+
+
+printf "Installing the packages.....\n\n\n"
+
+zypper remove -y kernel-headers
+
+pkg_dir=/usr/src/packages/RPMS/x86_64
+cd $pkg_dir
+
+rpm --addsign *.rpm
+rpm -ivh --force *.rpm
+rpm --checksig *.rpm
+
+printf "\n\n ${Bright}${Yellow} Fixing the EFI boot entry by copying the kernel to ESP place ${NOCOLOR}...\n\n"
+
+cp /boot/vmlinuz-$kernel-1-default-$(hostname) $EFIBOOTDIR/Opensuse/
+
+cp /boot/initrd-$kernel-1-default-$(hostname) $EFIBOOTDIR/Opensuse/
+
+$NOTIFY --expire-time=2000 --urgency=critical "Copied linux and initrd
+in EFI directory"
+
+>$EFIMENUENTRY/Opensuse.conf
+
+echo "title Opensuse-Tumbleweed" > $EFIMENUENTRY/Opensuse.conf
+echo "linux /EFI/Opensuse/vmlinuz-$kernel-1-default-$(hostname)" >> $EFIMENUENTRY/Opensuse.conf
+echo " initrd /EFI/Opensuse/initrd-$kernel-1-default-$(hostname)" >> $EFIMENUENTRY/Opensuse.conf
+echo "options root=PARTUUID=d00ebebc-78a0-4400-bbf7-415692185e5b loglevel=3  systemd.show_status=true rw" >> $EFIMENUENTRY/Opensuse.conf
+
+cat $EFIMENUENTRY/Opensuse.conf
+
+$NOTIFY --expire-time=2000 --urgency=critical "Modified the boot entry"
+
+printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script... ${NOCOLOR} \n\n"
+
+echo "\EFI\Opensuse\-$kernel-1-default-$(hostname) --initrd \EFI/Opensuse\initrd-$kernel-1-default-$(hostname) root=PARTUUID=d00ebebc-78a0-4400-bbf7-415692185e5b rw" > $EFIBOOTDIR/Opensuse.nsh
+
+
+cat $EFIBOOTDIR/Opensuse.nsh
+$NOTIFY --expire-time=2000 --urgency=critical "Fix the nsh script too"
+
+printf "\n\n ${Bright}${Cyan}Lets clean up the build directory ${NOCOLOR} .....\n\n\n"
+
+#cd ..
+
+(rm -rf $build_dir) &
+
+spinner "$!" "Cleaning...wait.."
+
+
+$NOTIFY "Kernel build and install done"
+
+
+}
+
+slackware_kernel_build() {
+
+#Download the kernel
+
+which_kernel
+
+eval ${get_it} ${kernel}
+
+
+#Untar it
+$untar_it linux-$kernel.tar.xz
+
+#Get into the kernel direcory
+cd linux-$kernel
+
+#Check for required tools to build kernel
+$tools_version_check
+
+#Copying the existing system running kernel config
+cp $existing_config_file .config
+
+# Take away the DEBUG options for faster compile
+$config_change --disable DEBUG_KERNEL
+grep DEBUG_KERNEL .config
+
+#Similar vein like above, for faster compile time
+$config_change --disable DEBUG_INFO
+grep DEBUG_INFO .config
+
+#Choose a compiler to build the kernel clang or gcc
+which_compiler
+
+#Make old kernel config set as well
+#$get_make olddefconfig
+
+
+#printf "${Bright}${Green}Then make it${NOCOLOR} ...\n\n"
+
+#$get_elapsed_time "\t\n\n Elapsed time: %E\n\n" $get_make V=1 ARCH=x86_64 -j$(getconf _NPROCESSORS_ONLN) LOCALVERSION=-$(hostname)
+
+
+$NOTIFY --urgency=critical 'Kernel compilation done'
+
+if [[ $? == 0 ]];then
+
+printf "${Bright}${Green}Done${NOCOLOR}\n\n"
+
+else
+
+printf "${Bright}${Red}Error encountered${NOCOLOR}\n\n"
+
+fi
+
+printf "${Bright}${PowderBlue}Installing the modules${NOCOLOR} ..\n\n"
+
+#$get_make modules_install
+
+$NOTIFY --urgency=critical 'Modules installed done'
+
+printf "\n\n ${Bright}${Magenta}Copying the build kernel to boot directory${NOCOLOR}\n\n"
+
+cp arch/x86/boot/bzImage /boot/vmlinuz-$kernel
+$NOTIFY --urgency=critical 'Kernel install to local boot dir'
+
+
+printf "${Bright}${Cyan} Cross check the item${NOCOLOR} ...\n\n"
+
+ls -al /boot/vmlinuz-*
+
+printf "\n\n ${Bright}${Yellow}Copy the System.map file to /boot dir${NOCOLOR}\n\n"
+
+cp System.map /boot/System.map-$kernel
+
+printf "${Bright}${LimeYellow} Copying the .config file to /boot dir${NOCOLOR} \n\n"
+
+cp .config /boot/config-$kernel-$(hostname)
+
+printf "${Bright}${Yellow} Make sure we are in right directory ${NOCOLOR} ..\n\n"
+cd /boot
+pwd
+
+printf "${Bright}${Cyan} Lets relink System.map,config,huge,generic and normal against the new kernel! ${NOCOLOR}... \n\n"
+unlink System.map
+ln -s Systeme.map-$kernel  System.map
+
+unlink config
+ln -s config-$kernel config
+
+unlink vmlinuz
+ln -s vmlinuz-$kernel vmlinuz
+
+unlink vmlinuz-huge
+ln -s vmlinuz-$kernel vmlinuz-huge
+
+unlink vmlinuz-generic
+ln -s vmlinuz-$kernel vmlinuz-generic
+
+find . -maxdepth 1 -type l -ls
+
+printf "${Bright}${Green}Done and looks good! ${NOCOLOR} \n\n"
+
+printf "${Bright}${Yellow} Copying the image to EFI directory${NOCOLOR} ....\n\n"
+
+ln -s /boot/vmlinuz-$kernel /boot/vmlinuz-$kernel-$(hostname)
+
+cp -v /boot/vmlinuz-$kernel-$(hostname) $EFIBOOTDIR/slackware/
+
+ls -al /boot/efi/EFI/slackware/*
+
+$NOTIFY --urgency=critical 'Copied kernel to UEFI boot dir'
+
+printf "\n\n ${Bright}${PowderBlue} Fixing the menu entry of the loader ${NOCOLOR}....\n\n\n"
+
+>$EFIMENUENTRY/Slackware.conf
+
+echo "title Slackware" > $EFIMENUENTRY/Slackware.conf
+echo "linux /EFI/slackware/vmlinuz-$kernel-$(hostname)" >> $EFIMENUENTRY/Slackware.conf
+echo "options root=PARTUUID=d3fe6218-506b-4ed1-ac14-97adb053baff rw" >> $EFIMENUENTRY/Slackware.conf
+
+
+printf "${Bright}${LimeYellow} Let see the entry to confirmation ${NOCOLOR}...\n\n\n"
+
+cat $EFIMENUENTRY/Slackware.conf
+
+$NOTIFY --urgency=critical 'Modified boot entry with latest kernel'
+
+printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script... ${NOCOLOR}..\n\n\n"
+
+echo "\EFI\slackware\vmlinuz-$kernel-$(hostname) root=PARTUUID=d3fe6218-506b-4ed1-ac14-97adb053baff rw" > /boot/efi/EFI/slackware.nsh
+
+cat $EFIBOOTDIR/slackware.nsh
+
+
+printf " ${Bright}${Magenta} Cleaning up the build directory ${NOCOLOR} .....\n\n"
+
+(rm -rf $build_dir) &
+
+spinner "$!" "Cleaning up...wait"
+
+$NOTIFY --urgency=critical 'Kernel Update finished'
+
+
+}
+
+
+generic_kernel_build() {
+
+#Download the kernel
+
+which_kernel
+
+eval ${get_it} ${kernel}
+
+#Untar it
+$untar_it linux-$kernel.tar.xz
+
+#Get into the kernel direcory
+cd linux-$kernel
+
+#Check for required tools to build kernel
+$tools_version_check
+
+#Copying the existing system running kernel config
+cp $existing_config_file .config
+
+# Take away the DEBUG options for faster compile
+$config_change --disable DEBUG_KERNEL
+grep DEBUG_KERNEL .config
+
+#Similar vein like above, for faster compile time
+$config_change --disable DEBUG_INFO
+grep DEBUG_INFO .config
+
+#Choose a compiler to build
+which_compiler
+
+#Make old kernel config set as well
+#$get_make  olddefconfig
+
+#Start building it
+
+#$get_elapsed_time "\n\t Elapsed Time: %E \n\n" $get_make $clang $llvm_make $llvm_assm  ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN)
+
+#Clearing the docs for shorter size
+#$get_make cleandocs
+
+# Install the above compiled kernel modules
+#$get_make modules_install
+
+#Need to be root/superuser to install it, in the system
+#$get_make install
+}
+
+
+#This is assuming that you have already installed "clang" and "llvm" in the system
+
+which_compiler() {
+printf "\n\t Which compiler do you want to use for build ,Clang OR Gcc? [C/G] : %s"
+read compiler_chosen
+
+if [[ $compiler_chosen == "G" ]];then
+		printf "\n You have chosen to use ${Bright}${Green}GCC${NOCOLOR} as the compiler to build.\n\n"
+
+		$get_make  ARCH=x86_64 olddefconfig
+
+		$get_elapsed_time "\t\n\n Elapsed Time : %E \n\n"  $get_make ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN) LOCALVERSION=-$(hostname)
+
+		$get_make cleandocs
+
+		$get_make modules_install
+
+
+elif [[ $compiler_chosen == "C" ]];then
+		printf "\n\t You have chosen to use ${Bright}${Magenta}CLANG${NOCOLOR} as the compiler to build.\n\n"
+
+		$get_make $clang $host_clang_cc $llvm_make $llvm_assm  ARCH=x86_64 olddefconfig
+
+	        $get_elapsed_time "\n\t Elapsed Time: %E \n\n" $get_make $clang $host_clang_cc $llvm_make $llvm_assm  ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN)
+
+		$get_make cleandocs
+
+		$get_make $clang $llvm_make $llvm_assm modules_install
+
+else
+                printf "\n\n ${BRIGHT}${Red}You have to choose a compiler to build.${NOCOLOR}\n"
+	        exit 1
+
+fi
+}
+
+which_kernel() {
+printf "\n\n Which kernel would be your base? Stable or Mainline or Longterm? [S/M/L]: %s"
+read response
+
+if [[ $response == "S" ]];then
+#Get the stable kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 5.10)
+elif [[ $response == "M" ]];then
+#Get the mainline kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
+elif [[ $response == "L" ]];then
+#Get the longterm kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'longterm:' | grep -oP '(?<=strong>).*(?=</strong.*)' | head -1)
+fi
+}
+
+printf "Do you want to build kernel on specific distribution? Which one? Gentoo,Debian,Arch,Opensuse,Slackware? Give your choice [G/D/A/O/S]: %s"
+read distro_choice
+
+if [[ "$distro_choice" == "G" ]];then
+	printf "Okay, You have selected to build kernel on Gentoo"
+	gentoo_kernel_build
+elif [[ "$distro_choice" == "D" ]];then
+	printf "Okay, You have selected to build kernel on Debian"
+	debian_kernel_build
+elif  [[ "$distro_choice" == "A" ]];then
+	printf "Okay, you have selected to build kernel on Arch"
+	archlinux_kernel_build
+elif [[ "$distro_choice" == "O" ]];then
+	printf "Okay, you have selected to build kernel on Opensuse"
+	opensuse_kernel_build
+elif [[ "$distro_choice" == "S" ]];then
+	printf "\n\nOkay, you have selected to build kernel on Slackware"
+	slackware_kernel_build
+else
+      printf "\n\nYou haven't choose one ,it seems you want to build generic kernel"
+      generic_kernel_build
+fi
+
+
+
+
