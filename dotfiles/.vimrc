@@ -10,6 +10,7 @@ set path+=**
 "syntax enable
 "set background=dark
 let g:CommandTMaxFiles=200000
+set culopt=both
 nnoremap <Leader>n :set invnumber number?<CR>
 colorscheme molokai_dark
 "Different highlights set background=light
@@ -63,16 +64,9 @@ Plugin  'sudo.vim'
 Plugin 'vim-scripts/indentpython.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
+filetype plugin indent on    " required
 filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
 "Support vim plugin sourced
 source ~/.vim/bundle/vim-shortcut/plugin/shortcut.vim
 "Default bindings
@@ -121,7 +115,7 @@ hi VimwikiHeader6 guifg=#FFFF00
 let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\)\='
 Shortcut! Git commit popup messages of the specific line of code by pressing"\g
  nmap <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
-"Make leading and trailing space visible
+ "Make leading and trailing space visible
 
 syn match ErrorLeadSpace /^ \+/         " highlight any leading spaces
 syn match ErrorTailSpace / \+$/         " highlight any trailing spaces
@@ -174,7 +168,7 @@ nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 "Tagbar to work
  nmap <F8> :TagbarToggle<CR>
-"Fold toggle by F9
+ "Fold toggle by F9
 
 inoremap <F9> <C-O>za
 nnoremap <F9> za
@@ -182,13 +176,13 @@ onoremap <F9> <C-C>za
 vnoremap <F9> zf
 "NerdTree open CTRL+n
  noremap <C-n> :NERDTreeToggle<CR>
-"Search replaces n number of times
+ "Search replaces n number of times
 nnoremap Q :normal n.<CR>
 "Open URI under cursor.
  nmap ob <Plug>(openbrowser-open)
-"Open selected URI.
+ "Open selected URI.
  vmap os <Plug>(openbrowser-open)
-"Titlecase plugins
+ "Titlecase plugins
 
 nmap <leader>tc <Plug>Titlecase
 vmap <leader>tc <Plug>Titlecase
@@ -208,8 +202,6 @@ let g:calendar_google_event = 1
 let g:calendar_event_start_time= 1
 "let g:calendar_frame = 'default'
 source ~/.cache/calendar.vim/credentials.vim
-"Vimade settings
-
 "Auto command for configuration file modification/change notification
 augroup configfilealert
 "au!
@@ -223,8 +215,6 @@ autocmd BufWritePost .ithreeblocksconfig !notify_config_file_updates
 autocmd BufWritePost  screenrc !notify_config_file_updates
 autocmd BufWritePost  .config/vimb/config !copy_vimb_config
 augroup END
-
-
 "Move between splits
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
@@ -298,7 +288,6 @@ omap <leader><tab> <plug>(fzf-maps-o)
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-
 " Word completion with custom spec with popup layout option
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
 "Visual mode selection move up and down my unimpaired
@@ -312,11 +301,9 @@ vmap <C-j> ]egv
 
 let g:Mac_NamedMacroFileExtension = '.vimmacro'
 let g:Mac_NamedMacrosDirectory = "~/.vim/macrobatics"
-
 " Use <nowait> to override the default bindings which wait for another key press
 nmap <nowait> q <plug>(Mac_Play)
 nmap <nowait> gq <plug>(Mac_RecordNew)
-
 "Navigating macros history
 
 nmap <leader>mh :DisplayMacroHistory<cr>
@@ -491,7 +478,6 @@ Shortcut! WindowManagementKeys          whs=for horizontal split wvs=for vertica
 "All restore folder view
 set viewoptions=cursor,folds,slash,unix
 Plugin 'restore_view.vim'
-
 "Alternative colors scheme by pressing F10 next scheme,shift+F10 previous scheme, Alt+F10 is random scheme
 source  ~/.vim/bundle/setcolors.vim
 " vim window manipulation plugin
