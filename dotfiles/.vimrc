@@ -17,9 +17,7 @@ colorscheme molokai_dark
 highlight Comment    ctermfg=119
 highlight clear SpellBad
 highlight SpellBad  cterm=bold ctermbg=9 gui=undercurl guisp=Yellow
-
 "Make the visual selection more prominent
-
 highlight Visual term=bold cterm=bold ctermbg=7 ctermfg=2 guifg=Red guibg=LightBlue
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
