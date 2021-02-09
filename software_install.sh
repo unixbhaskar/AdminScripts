@@ -22,7 +22,8 @@ OS=$(uname -n)
 pkgs="i3 i3block i3lock vim scrot vimb zathura screen git neofetch newsboat
 calcurse htop lsof feh st dmenu mutt postfix lynx w3m pass gpg gpg2 curl wget
 syslog-ng iptraf-ng moreutils findutils dhcp dhcpcd wpa_supplicant sudo vifm
-surf mpv ffmpeg isync cmus cronie imgmagick zip xz psutils"
+surf mpv ffmpeg isync cmus cronie imgmagick zip xz psutils xclip xsel xdotool
+clipmenu clipmenud telegram tcpdump ipcalc sysstats etckeeper"
 
 if [[ $UID != 0 ]];then
     echo "You have to be superuser to run this script."
