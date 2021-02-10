@@ -341,5 +341,5 @@ alias eqw='equery w' #print full path to ebuild for PKG
 
 alias owner="scripts/get_maintainer.pl $1"
 alias checkpatch="scripts/checkpatch.pl -g $1"
-alias config_enable="scripts/config --enable $1"
-alias config_disable="scripts/config --disable $1"
+alias enable_config="scripts/config --enable $1"
+alias disable_config="scripts/config --disable $1"
