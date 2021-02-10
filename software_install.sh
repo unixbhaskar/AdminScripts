@@ -5,10 +5,12 @@
 #
 #         USAGE: ./software_install_.sh
 #
-#   DESCRIPTION:
+#   DESCRIPTION: A simple script to build productive environment on different
+#                linux distribution.
 #
 #       OPTIONS: ---
-#  REQUIREMENTS: ---
+#  REQUIREMENTS: Have to have one of the mentioned Linux distribution
+#                installed.
 #          BUGS: ---
 #         NOTES: Set up for minimal productivity environment
 #        AUTHOR: Bhaskar Chowdhury (https://about.me/unixbhaskar), unixbhaskar@gmail.com
