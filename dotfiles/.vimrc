@@ -10,7 +10,6 @@ set path+=**
 "syntax enable
 "set background=dark
 let g:CommandTMaxFiles=200000
-set culopt=both
 nnoremap <Leader>n :set invnumber number?<CR>
 colorscheme molokai_dark
 "Different highlights set background=light
@@ -205,7 +204,7 @@ augroup configfilealert
 "au!
 autocmd BufWritePost .bashrc !notify_config_file_updates
 autocmd BufWritePost .vimrc !notify_config_file_updates
-autocmd BufWritePost .gitconfig !notify_config_file_updates
+"autocmd BufWritePost .gitconfig !notify_config_file_updates
 autocmd BufWritePost .muttrc !notify_config_file_updates
 autocmd BufWritePost .profile !notify_config_file_updates
 autocmd BufWritePost .ithreeconfig !notify_config_file_updates
