@@ -215,7 +215,7 @@ search() {
 
 	elif [ ! -e .git ];then
 
-		find $PWD -maxdepth 1 -name "$1" -ls
+		sudo find / -name "$1" -ls  2> /dev/null
 	else
 		git grep "$1"
 	fi
