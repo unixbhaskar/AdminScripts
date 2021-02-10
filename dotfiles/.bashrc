@@ -337,4 +337,7 @@ alias eqy='equery y' #display keywords for specified PKG
 alias eqs='equery s' #display total size of all files owned by PKG
 alias eqw='equery w' #print full path to ebuild for PKG
 
+#Shortcut to common kernel tool
 
+alias owner="scripts/get_maintainer.pl $1"
+alias checkpatch="scripts/checkpatch.pl -g $1"
