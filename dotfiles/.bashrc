@@ -217,7 +217,7 @@ search() {
 
 		sudo find / -name "$1" -ls  2> /dev/null
 	else
-		git grep "$1"
+		git grep -n "$1"
 	fi
 }
 
