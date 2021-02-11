@@ -9,8 +9,8 @@
 # other than the index.
 #
 source "gpg2 -dq $HOME/.mail.cred.gpg |"
-set imap_user = "your_mail_addtess"
-set imap_pass =$my_pass 
+set imap_user = "unixbhaskar@gmail.com"
+set imap_pass =$my_pass
 set pager_context=1
 set pager_index_lines=6 #show a mini-index in pager
 set menu_scroll
@@ -27,8 +27,8 @@ set text_flowed=yes
 set mbox_type=Maildir
 set charset=UTF-8
 set maildir_header_cache_verify=no
-set arrow_cursor = yes 
-set alias_file=~/.mutt/aliases 
+set arrow_cursor = yes
+set alias_file=~/.mutt/aliases
 set check_new=yes
 source $alias_file
 ignore *
@@ -36,8 +36,8 @@ unignore ^from: ^date: ^subject: ^to: ^cc:
 #
 # #set sendmail="/usr/bin/nbsmtp -d isp.net -h smtp.isp.net -f yourname@isp.net"
 #
-set from="your_mail_address" #set to your from address
-set realname="Your_real_name"
+set from="unixbhaskar@gmail.com" #set to your from address
+set realname="Bhaskar Chowdhury"
 #
 # set record="$home/sent" #sent mail is saved here
 set delete=yes #delete without prompting
@@ -54,8 +54,9 @@ set spoolfile="+INBOX"
 set record ="+[Gmail]/Sent Mail"
 set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies
+#set mbox=$HOME/mail/received-`date +"%y%m"`
 #gpg
-set pgp_sign_as="your_pgp_key"
+set pgp_sign_as="9F017E9D66B07216543CEBB0B23A9DB7114B2915"
 set crypt_use_gpgme=yes
 set crypt_replysign=yes
 set crypt_replysignencrypted=yes
@@ -77,17 +78,26 @@ set pgp_timeout=3600
 #set pgp_import_command="gpg2 --no-verbose --import %f"
 #set pgp_export_command="gpg2 --no-verbose --export --armor %r"
 #set pgp_verify_key_command="gpg2 --verbose --batch --fingerprint --check-sigs %r"
-#set pgp_list_pubring_command="gpg2 --no-verbose --batch --quiet --with-colons --list-keys %r" 
-#set pgp_list_secring_command="gpg2 --no-verbose --batch --quiet --with-colons --list-secret-keys %r" 
+#set pgp_list_pubring_command="gpg2 --no-verbose --batch --quiet --with-colons --list-keys %r"
+#set pgp_list_secring_command="gpg2 --no-verbose --batch --quiet --with-colons --list-secret-keys %r"
 #set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
  mailboxes =inbox
+# mailboxes =Airtel_Mobile_Bill
 # mailboxes =Blackberry_Travel
+ #mailboxes =inbox/LWN
  mailboxes =sent
+ #mailboxes =Credit_Card
  mailboxes =Documents
  mailboxes =Geek_Stuff
  mailboxes =linux-kernel
  mailboxes =unix_tips
+# mailboxes =Visa
+ #mailboxes =Electricity_Bills
+ #mailboxes =Income_Tax
+ #mailboxes =PrivateInternetAAccess
  mailboxes ="[Gmail]/Sent Mail"
+ #mailboxes =Amazon_store
+ #mailboxes =Amazon_Web_Services
  mailboxes =kernelci_bot
  mailboxes =kbuild_test_robot
  mailboxes =inbox/Google_Alert
@@ -96,7 +106,7 @@ set pgp_timeout=3600
 
 auto_view text/html
 set mailcap_path=~/.mutt/mailcap
-set smtp_url="smtp://your_username@smtp.gmail.com:587/"
+set smtp_url="smtp://unixbhaskar@smtp.gmail.com:587/"
 set smtp_pass=$my_pass
 #save-hook .*=keep #default mbox to (s)ave mail is =keep
 # subscribe gentoo-user gentoo-dev #subscribed to these lists
@@ -124,9 +134,9 @@ hdr_order Date From To Subject X-Mailer User-Agent Organization
 # ##your Mutt has to have some colors
 # ##these are for four levels of quoted text
 # ##they override the system settings in /etc/mutt/Muttrc
-#
-# #color quoted green default
-color quoted1 magenta blue
+# source /home/bhaskar/.mutt/colors/mutt-colors-solarized-dark-256.muttrc
+# # #color quoted green default
+color quoted1 magenta black
 # #color quoted2 yellow default
 # #color quoted3 red default
 # #color signature cyan cyan
@@ -154,7 +164,7 @@ color index brightwhite default '~f corbet@lwn.net'
 
 color index brightblue default '~f peterz@infradead.org'
 
-color index brightmagenta default '~f mingo@kernel.org' 
+color index brightmagenta default '~f mingo@kernel.org'
 
 color index magenta default '~f tytso@mit.edu'
 
@@ -164,36 +174,32 @@ color index brightblue default '~f gitster@pobox.com'
 
 color index brightcyan default '~f unixbhaskar@gmail.com'
 
+color index brightred  default '~f rdunlap@infradead.org'
+
 # #this color setup is copied from /etc/mutt/Muttrc.color
 # #comment it out if you want the default colors in /etc/mutt/Muttrc
-# # Je vois la vie en rose :-)
-color hdrdefault brightcyan blue
-color header brightwhite blue "^from:"
-color header brightwhite blue "^subject:"
-#color index red default ~P
-#
-color quoted brightgreen blue
-color signature brightwhite blue
-#
+
+color hdrdefault brightcyan black
+color header brightwhite black "^from:"
+color header brightwhite black "^subject:"
+color quoted brightgreen black
+color signature brightwhite black
 color indicator blue green
-#
 color error red black
 mono error bold
-color status brightgreen black 
+color status brightgreen black
 mono status bold
-color tree yellow blue
-#
-color tilde brightmagenta blue
-color body brightwhite blue "[-a-z_0-9.]+@[-a-z_0-9.]+"
+color tree yellow black
+color tilde brightmagenta black
+color body brightwhite black  "[-a-z_0-9.]+@[-a-z_0-9.]+"
 mono body bold "[-a-z_0-9.]+@[-a-z_0-9.]+"
 color body brightyellow black "^Good signature"
 mono body bold "^Good signature"
 color body brightwhite red "^Bad signature from.*"
 mono body bold "^Bad signature from.*"
-color normal white blue
+color normal white black
 color message green black
-color attachment brightgreen blue
-#
+color attachment brightgreen black
 
 
 set sidebar_visible
@@ -231,7 +237,7 @@ color indicator cyan black
 # Color of the divider separating the Sidebar from NeoMutt panels
 #color sidebar_divider color8 black
 # Color to give mailboxes containing flagged mail
-#color sidebar_flagged red black
+color sidebar_flagged red black
 # Color to give mailboxes containing new mail
 color sidebar_new green black
 # Color to give mailboxes containing no new/flagged mail, etc.
@@ -240,7 +246,7 @@ color sidebar_new green black
 #
 #Open attachment with program
 #
-set new_mail_command="notify-send --icon='/home/your_username/Pictures/neomutt.png' \
+set new_mail_command="notify-send --icon='/home/bhaskar/Pictures/neomutt.png' \
 'New Emails' '%n new messages, %u unread.' &"
 
 macro attach O \
@@ -250,26 +256,26 @@ macro attach O \
 <save-entry><kill-line>/tmp/mutt-attach<enter>\
 <shell-escape> /tmp/mutt-attach &^A\
 "
+
 #Mail attachement save to a specific directory
 
-macro attach W <save-entry><kill-line>/home/your_username/attachments/
-macro attach E <save-entry><kill-line>/home/your_username/attachments/<enter>
+macro attach W <save-entry><kill-line>/home/bhaskar/attachments/
+macro attach E <save-entry><kill-line>/home/bhaskar/attachments/<enter>
 
-
-set editor="vim -c 'set spell spelllang=en'" 
+set editor="vim -c 'set spell spelllang=en'"
 
 
 folder-hook linux-kernel             'push <delete-pattern>~r>1w!~F<enter><sync>'
 
-folder-hook inbox/Google_Alert       'push <delete-pattern>~r>1w!~F<enter><sync>' 
+folder-hook inbox/Google_Alert       'push <delete-pattern>~r>1w!~F<enter><sync>'
 
-folder-hook tip-bot2                 'push <delete-pattern>~r>1w!~F<enter><sync>' 
+folder-hook tip-bot2                 'push <delete-pattern>~r>1w!~F<enter><sync>'
 
-folder-hook kbuild_test_robot        'push <delete-pattern>~r>1w!~F<enter><sync>' 
+folder-hook kbuild_test_robot        'push <delete-pattern>~r>1w!~F<enter><sync>'
 
-folder-hook kernelci_bot             'push <delete-pattern>~r>1w!~F<enter><sync>' 
+folder-hook kernelci_bot             'push <delete-pattern>~r>1w!~F<enter><sync>'
 
-folder-hook kernel_test_robot        'push <delete-pattern>~r>1w!~F<enter><sync>' 
+folder-hook kernel_test_robot        'push <delete-pattern>~r>1w!~F<enter><sync>'
 
 
 
@@ -282,9 +288,3 @@ subscribe [0-9]+.*@vger.kernel.org
 set status_chars  = " *%A"
 set status_format = "[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?"
 
-
-
-
-
-
-      
