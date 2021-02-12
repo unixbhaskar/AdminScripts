@@ -72,7 +72,7 @@ pull_down_my_settings_from_github() {
 
 	echo Getting the ${Bright}${Blue}dotfiles${Normal} from ${Bright}${Magenta}GitHub${Normal}....
 
-	git pull https://github.com/unixbhaskar/dotfiles.git
+	git clone https://github.com/unixbhaskar/dotfiles.git
 	cd dotfiles
 	cp -v * ../
 }
