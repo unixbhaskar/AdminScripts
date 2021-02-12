@@ -283,6 +283,8 @@ auto_view text/* application/* image/* audio/*
 
 lists linux-kernel@vger.kernel.org
 subscribe [0-9]+.*@vger.kernel.org
+lists mutt-users@mutt.org
+subscribe [0-9]+.*@mutt.org
 
 #Status Bar
 set status_chars  = " *%A"
