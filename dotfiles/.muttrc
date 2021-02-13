@@ -176,6 +176,8 @@ color index brightcyan default '~f unixbhaskar@gmail.com'
 
 color index brightred  default '~f rdunlap@infradead.org'
 
+color index brightmagenta default '~f kevin@8t8.us'
+
 # #this color setup is copied from /etc/mutt/Muttrc.color
 # #comment it out if you want the default colors in /etc/mutt/Muttrc
 
