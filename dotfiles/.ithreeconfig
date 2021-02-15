@@ -321,3 +321,5 @@ bindsym $mod+y exec search_youtube_videos
 
 # Seach query from dmenu prompt and open it on chosen browser
  bindsym $mod+q exec search_on_the_internet
+# Open the sports site for score
+bindsym $mod+c exec sports_scores
