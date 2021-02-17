@@ -357,3 +357,9 @@ checkpatch() {
 }
 alias enable_config="scripts/config --enable $1"
 alias disable_config="scripts/config --disable $1"
+
+filehash() {
+
+	git ls-files -z  | GIT_PAGER= xargs -0 -L1 -I '{}' git log -n 1 --format="%h {}" -- '{}'
+
+}
