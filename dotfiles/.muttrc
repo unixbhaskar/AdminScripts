@@ -118,11 +118,11 @@ set smtp_pass=$my_pass
 #
 # # simulate the old url menu
 macro index \cb |urlview\n 'call urlview to extract URLs out of a message'
-macro pager \cb |urlview\n 'call urlview to extract URLs out of a message'
+#macro pager \cb |urlview\n 'call urlview to extract URLs out of a message'
 #
 # #run fetchmail by hitting key of G
 macro index G "!fetchmail -a -m 'procmail -d %T'\r"
-macro pager G "!fetchmail -a -m 'procmail -d %T'\r"
+#macro pager G "!fetchmail -a -m 'procmail -d %T'\r"
 #
 # #use to edit .muttrc and then source it...no restart necessary
 # macro generic ,sm ":source $HOME/.muttrc\r"
