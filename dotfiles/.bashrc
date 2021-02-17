@@ -341,12 +341,19 @@ alias eqw='equery w' #print full path to ebuild for PKG
 
 alias owner="scripts/get_maintainer.pl $1"
 
-alias latest_hashval="gitlog | gawk '{ print $1 }' | head -1"
-
 last_commited_hash() {
 
-	echo This is the last committed hash : $latest_hashval
+      latest_hashval="$(gitlog | gawk '{ print $1 }' | head -1)"
+
+      echo This is the last committed hash : $latest_hashval
 }
-alias checkpatch="scripts/checkpatch.pl -g $latest_hashval"
+
+
+checkpatch() {
+
+	patch_check="scripts/checkpatch.pl -g $(gitlog | gawk '{ print $1 }' | head -1)"
+
+	$patch_check
+}
 alias enable_config="scripts/config --enable $1"
 alias disable_config="scripts/config --disable $1"
