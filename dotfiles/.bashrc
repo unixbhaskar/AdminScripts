@@ -154,6 +154,7 @@ alias keyboard_key_values="xmodmap -pke | less"
 alias fix_spell="$HOME/git-linux/linux/scripts/checkpatch.pl -f --terse --nosummary --types=typo_spelling $1"
 alias build=build
 alias see_portage_log="$(command -v elogv)"
+
 unset SSH_ASKPASS
 
 #man page color
@@ -363,3 +364,18 @@ filehash() {
 	git ls-files -z  | GIT_PAGER= xargs -0 -L1 -I '{}' git log -n 1 --format="%h {}" -- '{}'
 
 }
+
+#Sane way to do sed
+
+sedwise() {
+
+        if [[ $# -ne 2 ]];then
+
+		echo Use like this: sedwise regexex filename
+	else
+
+		sed -i.$(date +'%F') $1 $2
+
+		echo The original file is stored as $1.$(date +'%F')
+	fi
+	}
