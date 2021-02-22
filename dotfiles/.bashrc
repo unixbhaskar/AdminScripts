@@ -346,7 +346,9 @@ last_commited_hash() {
 
       latest_hashval="$(gitlog | gawk '{ print $1 }' | head -1)"
 
-      echo This is the last committed hash : $latest_hashval
+      # echo This is the last committed hash : $latest_hashval
+
+      git show $latest_hashval
 }
 
 
