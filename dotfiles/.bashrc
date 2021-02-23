@@ -154,7 +154,7 @@ alias keyboard_key_values="xmodmap -pke | less"
 alias fix_spell="$HOME/git-linux/linux/scripts/checkpatch.pl -f --terse --nosummary --types=typo_spelling $1"
 alias build=build
 alias see_portage_log="$(command -v elogv)"
-
+alias localmail="mutt -F $HOME/.muttrc.local"
 unset SSH_ASKPASS
 
 #man page color
