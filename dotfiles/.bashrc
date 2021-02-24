@@ -381,3 +381,13 @@ sedwise() {
 		echo The original file is stored as $1.$(date +'%F')
 	fi
 	}
+
+# Compare two files side by side
+
+changes() {
+	if [ $# -ne 2 ];then
+		printf "You need to provide both the file names \n"
+	else
+		$(command -v vimdiff) $1 $2
+	fi
+}
