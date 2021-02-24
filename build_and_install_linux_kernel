@@ -1,5 +1,4 @@
 #!/bin/bash
-
 get_make=$(command -v make)
 get_elapsed_time="/usr/bin/time -f"
 untar_it="tar -xJvf"
@@ -12,6 +11,9 @@ NOTIFY=$(command -v notify-send)
 NOCOLOR="\033[0m"
 LOCAL_BIN="/usr/local/bin"
 dracut=$(command -v dracut)
+clang="CC=clang"
+make_llvm="LLVM=1"
+llvm_assm="LLVM_IAS=1"
 source /home/bhaskar/colors.sh
 source /home/bhaskar/spinner.sh
 
@@ -251,19 +253,19 @@ sed -i '17i _srcname=${pkgver%%%.*}-arch1'  PKGBUILD
 
 sed -i '19d' PKGBUILD
 sed -i '19i \"$_srcname::https://git.archlinux.org/linux.git/snapshot/\$_srcver.tar.gz\"' PKGBUILD
-sed -i '30d' PKGBUILD
-sed -i '30i export KBUILD_BUILD_HOST=Bhaskar_ThinkPad_x250' PKGBUILD
-sed -i '31d' PKGBUILD
-sed -i '31i export KBUILD_BUILD_USER=Bhaskar' PKGBUILD
+sed -i '32d' PKGBUILD
+sed -i '32i export KBUILD_BUILD_HOST=Bhaskar_ThinkPad_x250' PKGBUILD
+sed -i '33d' PKGBUILD
+sed -i '33i export KBUILD_BUILD_USER=Bhaskar' PKGBUILD
 
 sed -i 's/#make oldconfig/make olddefconfig/' PKGBUILD
-sed -i '61d' PKGBUILD
-sed -i '61i make V=1 ARCH=x86_64 -j4  bzImage modules' PKGBUILD
-sed -i '62d' PKGBUILD
-sed -i '169,186 s/^/#/' PKGBUILD
-sed -i '187i pkgname=("$pkgbase" "$pkgbase-headers")' PKGBUILD
-sed -i '189d' PKGBUILD
-printf "As we have change the PKGBUILD file ,we need to generate the new ${Magenta}CHECKSUM the file .... ${NOCOLOR} \n\n\n"
+sed -i '63d' PKGBUILD
+sed -i '63i make V=1 ARCH=x86_64 -j4  bzImage modules' PKGBUILD
+sed -i '64d' PKGBUILD
+sed -i '172,189 s/^/#/' PKGBUILD
+sed -i '191i pkgname=("$pkgbase" "$pkgbase-headers")' PKGBUILD
+
+printf "\n\nAs we have change the PKGBUILD file ,we need to generate the new ${Magenta}CHECKSUM the file .... ${NOCOLOR} \n\n\n"
 
 #makepkg -g
 
@@ -361,15 +363,14 @@ zypper remove -y kernel-headers
 pkg_dir=/usr/src/packages/RPMS/x86_64
 cd $pkg_dir
 
-rpm --addsign *.rpm
 rpm -ivh --force *.rpm
 rpm --checksig *.rpm
 
 printf "\n\n ${Bright}${Yellow} Fixing the EFI boot entry by copying the kernel to ESP place ${NOCOLOR}...\n\n"
-
-cp /boot/vmlinuz-$kernel-1-default-$(hostname) $EFIBOOTDIR/Opensuse/
-
-cp /boot/initrd-$kernel-1-default-$(hostname) $EFIBOOTDIR/Opensuse/
+ln -s /boot/vmlinuz-$kernel-1.g*-default-$(hostname)  /boot/vmlinuz-$kernel-$(hostname)
+cp /boot/vmlinuz-$kernel-$(hostname) $EFIBOOTDIR/Opensuse/
+ln -s /boot/initrd-5.11.1-1.g*-default-OpenSuse  /boot/initrd-$kernel-$(hostname)
+cp /boot/initrd-$kernel-$(hostname) $EFIBOOTDIR/Opensuse/
 
 $NOTIFY --expire-time=2000 --urgency=critical "Copied linux and initrd
 in EFI directory"
@@ -377,8 +378,8 @@ in EFI directory"
 >$EFIMENUENTRY/Opensuse.conf
 
 echo "title Opensuse-Tumbleweed" > $EFIMENUENTRY/Opensuse.conf
-echo "linux /EFI/Opensuse/vmlinuz-$kernel-1-default-$(hostname)" >> $EFIMENUENTRY/Opensuse.conf
-echo " initrd /EFI/Opensuse/initrd-$kernel-1-default-$(hostname)" >> $EFIMENUENTRY/Opensuse.conf
+echo "linux /EFI/Opensuse/vmlinuz-$kernel-$(hostname)" >> $EFIMENUENTRY/Opensuse.conf
+echo " initrd /EFI/Opensuse/initrd-$kernel-$(hostname)" >> $EFIMENUENTRY/Opensuse.conf
 echo "options root=PARTUUID=d00ebebc-78a0-4400-bbf7-415692185e5b loglevel=3  systemd.show_status=true rw" >> $EFIMENUENTRY/Opensuse.conf
 
 cat $EFIMENUENTRY/Opensuse.conf
@@ -387,10 +388,10 @@ $NOTIFY --expire-time=2000 --urgency=critical "Modified the boot entry"
 
 printf "\n\n ${Bright}${Cyan} Fix the UEFI boot shell script... ${NOCOLOR} \n\n"
 
-echo "\EFI\Opensuse\-$kernel-1-default-$(hostname) --initrd \EFI/Opensuse\initrd-$kernel-1-default-$(hostname) root=PARTUUID=d00ebebc-78a0-4400-bbf7-415692185e5b rw" > $EFIBOOTDIR/Opensuse.nsh
+echo "\EFI\Opensuse\vmlinuz-$kernel-$(hostname) --initrd \EFI/Opensuse\initrd-$kernel-$(hostname) root=PARTUUID=d00ebebc-78a0-4400-bbf7-415692185e5b rw" > $EFIBOOTDIR/opensuse.nsh
 
 
-cat $EFIBOOTDIR/Opensuse.nsh
+cat $EFIBOOTDIR/opensuse.nsh
 $NOTIFY --expire-time=2000 --urgency=critical "Fix the nsh script too"
 
 printf "\n\n ${Bright}${Cyan}Lets clean up the build directory ${NOCOLOR} .....\n\n\n"
@@ -464,7 +465,7 @@ $NOTIFY --urgency=critical 'Modules install done'
 
 printf "\n\n ${Bright}${Magenta}Copying the build kernel to boot directory${NOCOLOR}\n\n"
 
-cp arch/x86/boot/bzImage /boot/vmlinuz-$kernel
+cp arch/x86/boot/bzImage /boot/vmlinuz-$kernel-$(hostname)
 $NOTIFY --urgency=critical 'Kernel install to local boot dir'
 
 
@@ -474,7 +475,7 @@ ls -al /boot/vmlinuz-*
 
 printf "\n\n ${Bright}${Yellow}Copy the System.map file to /boot dir${NOCOLOR}\n\n"
 
-cp System.map /boot/System.map-$kernel
+cp System.map /boot/System.map-$kernel-$(hostname)
 
 printf "${Bright}${LimeYellow} Copying the .config file to /boot dir${NOCOLOR} \n\n"
 
@@ -486,27 +487,25 @@ pwd
 
 printf "${Bright}${Cyan} Lets relink System.map,config,huge,generic and normal against the new kernel! ${NOCOLOR}... \n\n"
 unlink System.map
-ln -s Systeme.map-$kernel  System.map
+ln -s Systeme.map-$kernel-$(hostname)  System.map
 
 unlink config
-ln -s config-$kernel config
+ln -s config-$kernel-$(hostname) config
 
 unlink vmlinuz
-ln -s vmlinuz-$kernel vmlinuz
+ln -s vmlinuz-$kernel-$(hostname) vmlinuz
 
 unlink vmlinuz-huge
-ln -s vmlinuz-$kernel vmlinuz-huge
+ln -s vmlinuz-$kernel-$(hostname) vmlinuz-huge
 
 unlink vmlinuz-generic
-ln -s vmlinuz-$kernel vmlinuz-generic
+ln -s vmlinuz-$kernel-$(hostname) vmlinuz-generic
 
 find . -maxdepth 1 -type l -ls
 
 printf "${Bright}${Green}Done and looks good! ${NOCOLOR} \n\n"
 
 printf "${Bright}${Yellow} Copying the image to EFI directory${NOCOLOR} ....\n\n"
-
-ln -s /boot/vmlinuz-$kernel /boot/vmlinuz-$kernel-$(hostname)
 
 cp -v /boot/vmlinuz-$kernel-$(hostname) $EFIBOOTDIR/slackware/
 
@@ -599,7 +598,7 @@ read response
 
 if [[ $response == "S" ]];then
 #Get the stable kernel from kernel.org
-kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 5.10)
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 5.11)
 elif [[ $response == "M" ]];then
 #Get the mainline kernel from kernel.org
 kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
