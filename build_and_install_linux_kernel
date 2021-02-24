@@ -263,6 +263,7 @@ sed -i '63d' PKGBUILD
 sed -i '63i make V=1 ARCH=x86_64 -j4  bzImage modules' PKGBUILD
 sed -i '64d' PKGBUILD
 sed -i '172,189 s/^/#/' PKGBUILD
+sed -i '191d' PKGBUILD
 sed -i '191i pkgname=("$pkgbase" "$pkgbase-headers")' PKGBUILD
 
 printf "\n\nAs we have change the PKGBUILD file ,we need to generate the new ${Magenta}CHECKSUM the file .... ${NOCOLOR} \n\n\n"
