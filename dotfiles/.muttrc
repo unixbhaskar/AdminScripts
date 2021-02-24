@@ -267,6 +267,8 @@ macro attach O \
 
 macro attach W <save-entry><kill-line>/home/bhaskar/attachments/
 macro attach E <save-entry><kill-line>/home/bhaskar/attachments/<enter>
+macro index \Ci  "<change-folder> =INBOX<enter>"
+macro index \Cl  "<change-folder> =linux-kernel<enter>"
 
 set editor="vim -c 'set spell spelllang=en'"
 
