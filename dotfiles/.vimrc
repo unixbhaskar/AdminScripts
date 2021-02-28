@@ -25,21 +25,17 @@ call vundle#begin()
 Plugin  'VundleVim/Vundle.vim'
 Plugin  'vim-airline/vim-airline'
 Plugin  'vim-airline/vim-airline-themes'
-Plugin  'airblade/vim-gitgutter'
-"Plugin  'vimwiki/vimwiki'
 Plugin 'dstein64/vim-startuptime'
 Plugin  'vifm/vifm.vim'
 Plugin  'jamessan/vim-gnupg'
 Plugin 'AutoComplPop'
 Plugin 'majutsushi/tagbar'
-Plugin 'gregsexton/gitv'
 Plugin 'vim-latex/vim-latex'
 Plugin 'ying17zi/vim-live-latex-preview'
 Plugin 'itchyny/calendar.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'sunaku/vim-shortcut'
-Plugin 'junegunn/gv.vim'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'mbbill/undotree'
@@ -58,7 +54,6 @@ Plugin 'preservim/nerdtree'
 Plugin  'Xuyuanp/nerdtree-git-plugin'
 Plugin  'bash-support.vim'
 Plugin  'sudo.vim'
-Plugin 'vim-scripts/indentpython.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " To ignore plugin indent changes, instead use:
@@ -211,6 +206,7 @@ autocmd BufWritePost .ithreeconfig !notify_config_file_updates
 autocmd BufWritePost .ithreeblocksconfig !notify_config_file_updates
 autocmd BufWritePost  screenrc !notify_config_file_updates
 autocmd BufWritePost  .config/vimb/config !copy_vimb_config
+autocmd BufWritePost  .emacs !notify_config_file_updates
 augroup END
 "Move between splits
 nnoremap <C-h> <C-w><C-h>
