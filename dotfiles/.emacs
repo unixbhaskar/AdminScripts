@@ -11,9 +11,9 @@
  '(global-display-line-numbers-mode t)
  '(package-selected-packages '(command-log-mode use-package))
  '(scroll-bar-mode nil)
+ '(send-mail-function 'mailclient-send-it)
  '(show-paren-mode t)
- '(tooltip-mode nil)
-)
+ '(tooltip-mode nil))
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (menu-bar-mode -1)
@@ -74,6 +74,43 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(require 'org-mu4e)
+(require 'mu4e-contrib)
+(require 'smtpmail)
+(auth-source-pass-enable)
+(setq auth-source-debug t)
+(setq auth-source-do-cache nil)
+(setq auth-sources '(password-store))
+(setq message-kill-buffer-on-exit t)
+(setq message-send-mail-function 'smtpmail-send-it)
+(setq mu4e-attachment-dir "~/attachments")
+(setq mu4e-compose-complete-addresses t)
+(setq mu4e-compose-context-policy nil)
+(setq mu4e-context-policy 'pick-first)
+(setq mu4e-view-show-addresses t)
+(setq mu4e-view-show-images t)
+(setq smtpmail-debug-info t)
+(setq smtpmail-stream-type 'starttls)
+(setq mm-sign-option 'guided)
+
+(when (fboundp 'imagemagick-register-types)
+    (imagemagick-register-types))
+
+(defun sign-or-encrypt-message ()
+    (let ((answer (read-from-minibuffer "Sign or encrypt?\nEmpty to do nothing.\n[s/e]: ")))
+      (cond
+       ((string-equal answer "s") (progn
+                                    (message "Signing message.")
+                                    (mml-secure-message-sign-pgpmime)))
+       ((string-equal answer "e") (progn
+                                    (message "Encrypt and signing message.")
+                                    (mml-secure-message-encrypt-pgpmime)))
+       (t (progn
+            (message "Dont signing or encrypting message.")
+            nil)))))
+
+  (add-hook 'message-send-hook 'sign-or-encrypt-message)
+
 
 
 (use-package mu4e
@@ -96,3 +133,5 @@
 (setq browse-url-generic-program
     (executable-find (getenv "BROWSER"))
      browse-url-browser-function 'browse-url-generic)
+
+(setq x-super-keysym 'meta)
