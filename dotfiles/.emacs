@@ -9,7 +9,7 @@
  '(display-time-mode t)
  '(epa-global-mail-mode t)
  '(global-display-line-numbers-mode t)
- '(package-selected-packages '(command-log-mode use-package))
+ '(package-selected-packages '(counsel ivy-rich which-key command-log-mode use-package))
  '(scroll-bar-mode nil)
  '(send-mail-function 'mailclient-send-it)
  '(show-paren-mode t)
@@ -150,3 +150,22 @@
      browse-url-browser-function 'browse-url-generic)
 
 (setq x-super-keysym 'meta)
+
+(use-package which-key
+    :init (which-key-mode)
+    :diminish which-key-mode
+    :config
+    (setq which-key-idle-delay 0.3))
+
+(use-package ivy-rich
+	     :init
+	     (ivy-rich-mode 1))
+
+(use-package mu4e-alert
+    :after mu4e
+    :hook ((after-init . mu4e-alert-enable-mode-line-display)
+           (after-init . mu4e-alert-enable-notifications))
+    :config (mu4e-alert-set-default-style 'libnotify))
+
+(add-hook 'mu4e-view-mode-hook #'visual-line-mode)
+(add-hook 'mu4e-compose-mode-hook 'flyspell-mode)
