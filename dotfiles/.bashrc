@@ -353,7 +353,7 @@ last_commited_hash() {
 
       # echo This is the last committed hash : $latest_hashval
 
-      git show $latest_hashval
+      echo $latest_hashval
 }
 
 
