@@ -9,7 +9,7 @@
 # other than the index.
 #
 source "gpg2 -dq $HOME/.mail.cred.gpg |"
-set imap_user = "xxxxxxxxxx@gmail.com"
+set imap_user = "unixbhaskar@gmail.com"
 set imap_pass =$my_pass
 set pager_context=1
 set pager_index_lines=6 #show a mini-index in pager
@@ -36,7 +36,7 @@ unignore ^from: ^date: ^subject: ^to: ^cc:
 #
 # #set sendmail="/usr/bin/nbsmtp -d isp.net -h smtp.isp.net -f yourname@isp.net"
 #
-set from="xxxxxxxxxx@gmail.com" #set to your from address
+set from="unixbhaskar@gmail.com" #set to your from address
 set realname="Bhaskar Chowdhury"
 #
 # set record="$home/sent" #sent mail is saved here
@@ -56,7 +56,7 @@ set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies
 #set mbox=$HOME/mail/received-`date +"%y%m"`
 #gpg
-set pgp_sign_as=""
+set pgp_sign_as="9F017E9D66B07216543CEBB0B23A9DB7114B2915"
 set crypt_use_gpgme=yes
 set crypt_replysign=yes
 set crypt_replysignencrypted=yes
@@ -110,7 +110,7 @@ mailboxes =Al_Viro
 
 auto_view text/html
 set mailcap_path=~/.mutt/mailcap
-set smtp_url="smtp://xxxxxxxxxx@smtp.gmail.com:587/"
+set smtp_url="smtp://unixbhaskar@smtp.gmail.com:587/"
 set smtp_pass=$my_pass
 #save-hook .*=keep #default mbox to (s)ave mail is =keep
 # subscribe gentoo-user gentoo-dev #subscribed to these lists
@@ -267,11 +267,19 @@ macro attach O \
 
 #macro attach W <save-entry><kill-line>/home/bhaskar/attachments/
 macro attach E <save-entry><kill-line>/home/bhaskar/attachments/<enter>
-macro index \Ci  "<change-folder> =INBOX<enter><bottom>"
-macro index \Ck  "<change-folder> =linux-kernel<enter><bottom-page>"
+macro index \Ci  "<change-folder> =INBOX<enter>"
+macro index \Ck  "<change-folder> =linux-kernel<enter>"
+macro index \gk  "<change-folder> =Greg(GKH)<enter>"
+macro index \al  "<change-folder> =Al_Viro<enter>"
+macro index \li  "<change-folder> =Linus<enter>"
+macro index \an  "<change-folder> =Andrew_Morton<enter>"
 macro index,pager \Cf  "<search> ~p ~P <enter>"
 macro index \Cl  "<limit>Bhaskar<enter>"
 macro index \Ca  "<limit>all<enter>"
+macro index,browser \Cr "<enter-command>source ~/.muttrc<enter>"
+macro index \sn "l ^a^k~N\n" #Shows only new messages
+macro index \mu "<shell-escape>mu find  --clearlinks --format=links --linksdir=~/.maildir/search  f:greg --fields=\" n l \""
+macro index \mr "<change-folder-readonly>~/.maildir/search" "mu find results"
 
 set editor="vim -c 'set spell spelllang=en'"
 
