@@ -221,6 +221,7 @@ search() {
 	elif [ ! -e .git ];then
 
 		sudo find / -name "$1" -ls  2> /dev/null
+
 	else
 		git grep -n "$1"
 	fi
@@ -404,9 +405,18 @@ discard_changes() {
         if [[ $# -ne 1 ]];then
 
 		printf "You need to provide the file name \n"
+
 	else
 
 		git checkout -- $1
 
 	fi
+}
+
+get_email_addresses() {
+
+        filename=$1
+	scripts/get_maintainer.pl  $filename | tee $filename.$(date +'%T') 1> /dev/null
+	extract_email_address $filename.*
+	rm -f $filename.$(date +'%T')
 }
