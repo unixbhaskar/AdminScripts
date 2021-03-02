@@ -9,7 +9,9 @@
  '(display-time-mode t)
  '(epa-global-mail-mode t)
  '(global-display-line-numbers-mode t)
- '(package-selected-packages '(counsel ivy-rich which-key command-log-mode use-package))
+ '(mu4e-mu-binary "/usr/local/bin/emacs-mu")
+ '(package-selected-packages
+   '(mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
  '(scroll-bar-mode nil)
  '(send-mail-function 'mailclient-send-it)
  '(show-paren-mode t)
@@ -56,6 +58,8 @@
 (setq mu4e-get-mail-command "getmail"
       mu4e-update-interval 300
       mu4e-attachment-dir "~/attachments")
+
+(setq mu4e-mu-binary "/usr/local/bin/mu")
 
 (require 'mml2015)
 (require 'epa-file)
@@ -137,6 +141,7 @@
      (setq mu4e-getmail-command "mbsync gmail")
      (setq mu4e-maildir "~/gmail-backup")
      (setq mu4e-sent-folder "/sent")
+
      (setq mu4e-maildir-shortcuts
 	   '(("/Inbox"        .?i)
 	     ("/sent"         .?s))))
@@ -169,3 +174,5 @@
 
 (add-hook 'mu4e-view-mode-hook #'visual-line-mode)
 (add-hook 'mu4e-compose-mode-hook 'flyspell-mode)
+;;(setq mu4e-compose-in-new-frame t)
+(setq mu4e-compose-format-flowed t)
