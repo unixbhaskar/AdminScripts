@@ -418,5 +418,5 @@ get_email_addresses() {
         filename=$1
 	scripts/get_maintainer.pl  $filename | tee $filename.$(date +'%T') 1> /dev/null
 	extract_email_address $filename.*
-	rm -f $filename.$(date +'%T')
+	rm -f $filename.*
 }
