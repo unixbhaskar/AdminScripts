@@ -229,6 +229,7 @@ bindsym $mod+x exec scrot  -e 'mv $f ~/Pictures/Screenshots'
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
+    bindsym l exec i3_open_mode_keys
     bindsym b exec bash_supported_keywords
     bindsym f exec firefox_shortcut_keys
 
