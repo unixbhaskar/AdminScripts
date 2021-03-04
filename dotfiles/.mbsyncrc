@@ -1,7 +1,7 @@
 IMAPAccount      gmail
 Host             imap.gmail.com
 User             unixbhaskar@gmail.com
-Pass             xxxxxxxxxxxxxxxxxx
+Pass             PassCmd "gpg2 --quiet --for-your-eyes-only --no-tty --decrypt ~/.password-store/mbsynccred.gpg"
 #UseIMAPS         yes
 CertificateFile  ~/gmail-backup/gmail.crt
 CertificateFile  ~/gmail-backup/google.crt
