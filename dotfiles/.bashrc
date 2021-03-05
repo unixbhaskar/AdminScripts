@@ -428,17 +428,15 @@ send_patch() {
 	cc="--cc=rdunlap@infradead.org"
 	an="--annotate"
 
-          if [ -e .git ];then
+	      printf "Checking values before sending the patch ....\n"
+	      printf "\n ${patchfile}  ${to}  ${cc}\n"
 
-		  printf "Checking values before sending the patch ....\n\n"
+	      printf "Is it look alright?? [Y/N] : %s"
+	      read consent
 
-		  echo $patchfile and ${to} and ${cc}
-
-	  elif [ ${to}  != "" ];then
-
+         if [[ "$consent" == "N" ]];then
+	      printf "\n\n  Patchfile,TO and CC field must be filled, it seems values are missing..so,aborting.\n"
+         else
 	      git send-email $patchfile ${to} ${cc} ${an}
-
-          else
-	      printf "\n\n TO and CC field must be filled,it is empty..so,aborting.\n"
 	  fi
   }
