@@ -417,6 +417,28 @@ get_email_addresses() {
 
         filename=$1
 	scripts/get_maintainer.pl  $filename | tee $filename.$(date +'%T') 1> /dev/null
-	extract_email_address $filename.*
+	extract_email_address $filename.* | paste -s -d, - > email_list
 	rm -f $filename.*
 }
+
+
+send_patch() {
+	patchfile=$1
+	to="--to=$(cat email_list)"
+	cc="--cc=rdunlap@infradead.org"
+	an="--annotate"
+
+          if [ -e .git ];then
+
+		  printf "Checking values before sending the patch ....\n\n"
+
+		  echo $patchfile and ${to} and ${cc}
+
+	  elif [ ${to}  != "" ];then
+
+	      git send-email $patchfile ${to} ${cc} ${an}
+
+          else
+	      printf "\n\n TO and CC field must be filled,it is empty..so,aborting.\n"
+	  fi
+  }
