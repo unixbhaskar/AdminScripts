@@ -423,7 +423,7 @@ get_email_addresses() {
 
 
 send_patch() {
-	patchfile=$1
+	patchfile=$(basename *.patch)
 	to="--to=$(cat email_list)"
 	cc="--cc=rdunlap@infradead.org"
 	an="--annotate"
