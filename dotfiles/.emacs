@@ -1,21 +1,54 @@
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(add-log-mailing-address "unixbhaskar@gmail.com")
- '(custom-enabled-themes '(tango-dark))
+ '(ansi-color-names-vector
+   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
+ '(company-quickhelp-color-background "#4F4F4F")
+ '(company-quickhelp-color-foreground "#DCDCCC")
+ '(custom-enabled-themes '(molokai))
+ '(custom-safe-themes
+   '("8f567db503a0d27202804f2ee51b4cd409eab5c4374f57640317b8fcbbd3e466" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
  '(display-line-numbers-type 'relative)
  '(display-time-mode t)
  '(epa-global-mail-mode t)
+ '(fci-rule-color "#383838")
  '(global-display-line-numbers-mode t)
- '(mu4e-mu-binary "/usr/local/bin/emacs-mu")
+
+ '(mu4e-mu-binary "/usr/local/bin/mu")
+ '(nrepl-message-colors
+   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(package-selected-packages
-   '(mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
+   '(molokai-theme magit zenburn-theme ## mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
+ '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(scroll-bar-mode nil)
  '(send-mail-function 'mailclient-send-it)
  '(show-paren-mode t)
- '(tooltip-mode nil))
+ '(tooltip-mode nil)
+ '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-color-map
+   '((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3")))
+ '(vc-annotate-very-old-color "#DC8CC3"))
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (menu-bar-mode -1)
@@ -138,13 +171,21 @@
 
      (setq mu4e-change-filenames-when-moving t)
      (setq mu4e-update-interval (* 10 60))
-     (setq mu4e-getmail-command "mbsync gmail")
-     (setq mu4e-maildir "~/gmail-backup")
+     (setq mu4e-getmail-command "getmail")
+     (setq mu4e-maildir "~/.maildir")
      (setq mu4e-sent-folder "/sent")
 
      (setq mu4e-maildir-shortcuts
-	   '(("/Inbox"        .?i)
-	     ("/sent"         .?s))))
+	   '(("Inbox"        .?i)
+	     ("Greg(GKH)"    .?g)
+	     ("Linus"        .?l)
+	     ("Al_Viro"      .?a)
+	     ("Andrew_Morton"  .?n)
+	     ("Thomas_Gleixner"  .?t)
+	     ("unix_tips"       .?u)
+	     ("David_Miller"    .?d)
+	     ("Jonathan_Corbet"  .?j)
+	     ("sent"         .?s))))
 
 
 (put 'upcase-region 'disabled nil)
@@ -176,3 +217,6 @@
 (add-hook 'mu4e-compose-mode-hook 'flyspell-mode)
 ;;(setq mu4e-compose-in-new-frame t)
 (setq mu4e-compose-format-flowed t)
+
+(setq epg-gpg-program "gpg2")
+(setenv "GPG_AGENT_INFO" nil)
