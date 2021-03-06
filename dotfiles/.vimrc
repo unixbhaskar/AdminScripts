@@ -12,6 +12,7 @@ set path+=**
 let g:CommandTMaxFiles=200000
 nnoremap <Leader>n :set invnumber number?<CR>
 colorscheme molokai_dark
+let g:airline_theme='base16_gruvbox_dark_hard'
 "Different highlights set background=light
 highlight Comment    ctermfg=119
 highlight clear SpellBad
