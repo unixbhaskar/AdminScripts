@@ -232,7 +232,7 @@ mode "$mode_launcher" {
     bindsym l exec i3_open_mode_keys
     bindsym b exec bash_supported_keywords
     bindsym f exec firefox_shortcut_keys
-
+    bindsym c exec take_photo_by_webcam
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -329,3 +329,4 @@ bindsym $mod+c exec sports_scores
 
 # Open Emacs
 bindsym $mod+Home exec emacs -fs
+
