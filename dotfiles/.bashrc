@@ -438,5 +438,9 @@ send_patch() {
 	      printf "\n\n  Patchfile,TO and CC field must be filled, it seems values are missing..so,aborting.\n"
          else
 	      git send-email $patchfile ${to} ${cc} ${an}
+
+	      printf "\nGetting rid of temp files....\n"
+	      rm -f email_list
+	      rm -f *.patch
 	  fi
   }
