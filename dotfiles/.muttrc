@@ -278,9 +278,9 @@ macro index \el  "<limit>Bhaskar<enter>"
 macro index \ea  "<limit>all<enter>"
 macro index,browser \Cr "<enter-command>source ~/.muttrc<enter>"
 macro index \sn "l ^a^k~N\n" #Shows only new messages
-macro index \emu "<shell-escape>mu find  --clearlinks --format=links --linksdir=~/.maildir/search  f:greg --fields=\" n l \""
+macro index \emu "<shell-escape>/usr/bin/mu find  --clearlinks --format=links --linksdir=~/.maildir/search  date:today.. --fields=\" n l \""
 macro index \emr "<change-folder-readonly>~/.maildir/search" "mu find results"
-macro pager \Cb <pipe-entry>'urlview'<enter> #'Follow links with urlview'
+macro pager \Cb <pipe-entry>'urlview'<enter> #"Follow links with urlview"
 set editor="vim -c 'set spell spelllang=en'"
 
 
