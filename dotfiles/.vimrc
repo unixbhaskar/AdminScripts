@@ -55,6 +55,7 @@ Plugin 'preservim/nerdtree'
 Plugin  'Xuyuanp/nerdtree-git-plugin'
 Plugin  'bash-support.vim'
 Plugin  'sudo.vim'
+Plugin  'erietz/vim-terminator'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " To ignore plugin indent changes, instead use:
@@ -468,6 +469,14 @@ Shortcut! ChnagesAndJumps              :changes = show the chnage made ;  :Jump 
 Shortcut! WordsLinesRegionExchange      cx is default prefix , cxx for current line , X in visual mode , cxc clear out the mark
 Shortcut! Scratchpad                    gs in normal mode and insert mode and gS in visual mode
 Shortcut! WindowManagementKeys          whs=for horizontal split wvs=for vertical split wc=for window close
+Shortcut! OpenTerminal                  ;ot
+Shortcut! OpenARepl                     ;or
+Shortcut! RunsCurrentFile               ;rf
+Shortcut! RunsSelectionOnTerminal       ;rt
+Shortcut! StopRunningJobs               ;rs
+Shortcut! SendVisualSelectionToTerm     ;ss
+Shortcut! SendTextInDelimiterToTerm     ;sd
+
 "View save and restore plugin
 "All restore folder view
 set viewoptions=cursor,folds,slash,unix
