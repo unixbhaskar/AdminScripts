@@ -426,7 +426,7 @@ send_patch() {
 	git format-patch -1
 	patchfile=$(basename *.patch)
 	to="--to=$(cat email_list)"
-	cc="--cc=rdunlap@infradead.org"
+	cc="--cc=rdunlap@infradead.org,linux-kernel@vger.kernel.org"
 	an="--annotate"
 
 	      printf "Checking values before sending the patch ....\n"
