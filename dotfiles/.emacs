@@ -17,16 +17,17 @@
  '(epa-global-mail-mode t)
  '(fci-rule-color "#383838")
  '(global-display-line-numbers-mode t)
-
  '(mu4e-mu-binary "/usr/local/bin/mu")
  '(nrepl-message-colors
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(package-selected-packages
-   '(molokai-theme magit zenburn-theme ## mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
+   '(vterm dashboard pass molokai-theme magit zenburn-theme ## mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(scroll-bar-mode nil)
  '(send-mail-function 'mailclient-send-it)
  '(show-paren-mode t)
+ '(smtpmail-smtp-server "smtp.google.com")
+ '(smtpmail-smtp-service 25)
  '(tooltip-mode nil)
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
@@ -172,7 +173,7 @@
      (setq mu4e-change-filenames-when-moving t)
      (setq mu4e-update-interval (* 10 60))
      (setq mu4e-getmail-command "getmail")
-     (setq mu4e-maildir "~/.maildir")
+     (setq mu4e-maildir "~/gmail-backup")
      (setq mu4e-sent-folder "/sent")
 
      (setq mu4e-maildir-shortcuts
@@ -220,3 +221,16 @@
 
 (setq epg-gpg-program "gpg2")
 (setenv "GPG_AGENT_INFO" nil)
+
+(use-package pass
+  :pin melpa
+  :config
+  (setf epa-pinentry-mode 'loopback))
+
+;;vterm
+
+(use-package vterm
+	         :ensure t)
+(add-to-list 'load-path "~/.emacs.d/emacs-libvterm/")
+(require 'vterm)
+
