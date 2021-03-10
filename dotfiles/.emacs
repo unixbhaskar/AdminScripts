@@ -9,6 +9,7 @@
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
+ '(compose-mail-user-agent-warnings nil)
  '(custom-enabled-themes '(molokai))
  '(custom-safe-themes
    '("8f567db503a0d27202804f2ee51b4cd409eab5c4374f57640317b8fcbbd3e466" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
@@ -26,8 +27,12 @@
  '(scroll-bar-mode nil)
  '(send-mail-function 'mailclient-send-it)
  '(show-paren-mode t)
+ '(smtpmail-debug-info t)
+ '(smtpmail-default-smtp-server "smtp.google.com")
  '(smtpmail-smtp-server "smtp.google.com")
- '(smtpmail-smtp-service 25)
+ '(smtpmail-smtp-service 587)
+ '(smtpmail-smtp-user "unixbhaskar")
+ '(smtpmail-stream-type 'starttls)
  '(tooltip-mode nil)
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
@@ -115,8 +120,14 @@
 (dolist (mode '(org-mode-hook
 		term-mode-hook
 		shell-mode-hook
-		mu4e-mode-hook
-		eshell-mode-hook))
+		mu4e-main-mode-hook
+		mu4e-view-mode-hook
+		mu4e-compose-mode-hook
+		mu4e-headers-mode-hook
+		mu4e-org-mode-hook
+		eshell-mode-hook
+		eww-buffers-mode-hook
+		vterm-mode-hook))
 (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 
