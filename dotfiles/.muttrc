@@ -266,7 +266,7 @@ macro attach O \
 #Mail attachement save to a specific directory
 
 #macro attach W <save-entry><kill-line>/home/bhaskar/attachments/
-macro attach E <save-entry><kill-line>/home/bhaskar/attachments/<enter>
+macro attach E "<save-entry><kill-line>/home/bhaskar/attachments/<enter>"
 macro index \Ci  "<change-folder> =INBOX<enter>"
 macro index \Ck  "<change-folder> =linux-kernel<enter>"
 macro index  G  "<change-folder> =Greg(GKH)<enter>"
@@ -277,10 +277,12 @@ macro index,pager \Cf  "<search> ~p ~P <enter>"
 macro index \el  "<limit>Bhaskar<enter>"
 macro index \ea  "<limit>all<enter>"
 macro index,browser \Cr "<enter-command>source ~/.muttrc<enter>"
-macro index \sn "l ^a^k~N\n" #Shows only new messages
+macro index \sn "l ^a^k~N\n"
 macro index \emu "<shell-escape>/usr/bin/mu find  --clearlinks --format=links --linksdir=~/.maildir/search  date:today.. --fields=\" n l \""
-macro index \emr "<change-folder-readonly>~/.maildir/search" "mu find results"
-macro pager \Cb <pipe-entry>'urlview'<enter> #"Follow links with urlview"
+macro index \emr "<change-folder-readonly>~/.maildir/search"
+macro pager \Cb "<pipe-entry>'urlview'<enter>"
+
+
 set editor="vim -c 'set spell spelllang=en'"
 
 
