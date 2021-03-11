@@ -190,16 +190,16 @@
      (setq mu4e-sent-folder "/sent")
 
      (setq mu4e-maildir-shortcuts
-	   '(("Inbox"        .?i)
-	     ("Greg(GKH)"    .?g)
-	     ("Linus"        .?l)
-	     ("Al_Viro"      .?a)
-	     ("Andrew_Morton"  .?n)
-	     ("Thomas_Gleixner"  .?t)
-	     ("unix_tips"       .?u)
-	     ("David_Miller"    .?d)
-	     ("Jonathan_Corbet"  .?j)
-	     ("sent"         .?s))))
+	   '(("/Inbox"        .?i)
+	     ("/Greg(GKH)"    .?g)
+	     ("/Linus"        .?l)
+	     ("/Al_Viro"      .?a)
+	     ("/Andrew_Morton"  .?n)
+	     ("/Thomas_Gleixner"  .?t)
+	     ("/unix_tips"       .?u)
+	     ("/David_Miller"    .?d)
+	     ("/Jonathan_Corbet"  .?j)
+	     ("/sent"         .?s))))
 
 
 (put 'upcase-region 'disabled nil)
@@ -252,3 +252,6 @@
 (setq auth-sources
           '((:source "~/.emacs.d/secrets/.authinfo.gpg")))
 
+
+;; don't keep message buffers around
+(setq message-kill-buffer-on-exit t)
