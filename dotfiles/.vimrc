@@ -222,6 +222,7 @@ nnoremap <leader>vr :vsplit ~/.vimrc<cr>
 nnoremap <leader>sv :source ~/.vimrc<cr>
 "To insert email address with a shortcut @@ ,and then need to press space after that
 iabbrev @@    unixbhaskar@gmail.com
+
 " Auto loading .vimrc once saved
 if has('autocmd')
     augroup reload_vimrc
@@ -229,6 +230,7 @@ if has('autocmd')
         autocmd! BufWritePost ~/.vimrc nested source %
     augroup END
 endif
+
 "conditionally auto creating directory if it is not exists.
 
 augroup AutoMkdir
@@ -469,6 +471,7 @@ Shortcut! ChnagesAndJumps              :changes = show the chnage made ;  :Jump 
 Shortcut! WordsLinesRegionExchange      cx is default prefix , cxx for current line , X in visual mode , cxc clear out the mark
 Shortcut! Scratchpad                    gs in normal mode and insert mode and gS in visual mode
 Shortcut! WindowManagementKeys          whs=for horizontal split wvs=for vertical split wc=for window close
+"Vim-terminator plugins keybindings
 Shortcut! OpenTerminal                  ;ot
 Shortcut! OpenARepl                     ;or
 Shortcut! RunsCurrentFile               ;rf
@@ -476,7 +479,6 @@ Shortcut! RunsSelectionOnTerminal       ;rt
 Shortcut! StopRunningJobs               ;rs
 Shortcut! SendVisualSelectionToTerm     ;ss
 Shortcut! SendTextInDelimiterToTerm     ;sd
-
 "View save and restore plugin
 "All restore folder view
 set viewoptions=cursor,folds,slash,unix
@@ -526,14 +528,3 @@ nnoremap <Leader>a :Ack!<Space>
 Plugin 'tommcdo/vim-exchange'
 " Urlview key binding /u
  nnoremap <silent> <leader>u :Urlview<CR>
- "Scratch window configurations
- let  g:scratch_autohide = &hidden
- let  g:scratch_insert_autohide = 1
- let g:scratch_persistence_file = '.scratchpad.vim'
- "window control vertical and horizontal split and close
-
-if has('windows')
-	noremap <silent> <leader>whs :split<CR>
-	noremap <silent> <leader>wvs :vsplit<CR>
-	noremap <silent> <leader>wc :close<CR>
-endif
