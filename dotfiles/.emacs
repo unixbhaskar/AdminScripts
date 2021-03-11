@@ -22,7 +22,7 @@
  '(nrepl-message-colors
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(package-selected-packages
-   '(vterm dashboard pass molokai-theme magit zenburn-theme ## mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
+   '(elfeed vterm dashboard pass molokai-theme magit zenburn-theme ## mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(scroll-bar-mode nil)
  '(send-mail-function 'mailclient-send-it)
@@ -190,7 +190,7 @@
      (setq mu4e-sent-folder "/sent")
 
      (setq mu4e-maildir-shortcuts
-	   '(("/Inbox"        .?i)
+	    '(("/Inbox"        .?i)
 	     ("/Greg(GKH)"    .?g)
 	     ("/Linus"        .?l)
 	     ("/Al_Viro"      .?a)
@@ -255,3 +255,7 @@
 
 ;; don't keep message buffers around
 (setq message-kill-buffer-on-exit t)
+
+;;elfeed
+
+(global-set-key (kbd "C-x w") 'elfeed)
