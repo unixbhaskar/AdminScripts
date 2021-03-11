@@ -28,12 +28,14 @@
  '(send-mail-function 'mailclient-send-it)
  '(show-paren-mode t)
  '(smtpmail-debug-info t)
- '(smtpmail-default-smtp-server "smtp.google.com")
- '(smtpmail-smtp-server "smtp.google.com")
+ '(smtpmail-default-smtp-server "smtp.gmail.com")
+ '(smtpmail-local-domain "gmail.com")
+ '(smtpmail-smtp-server "smtp.gmail.com")
  '(smtpmail-smtp-service 587)
  '(smtpmail-smtp-user "unixbhaskar")
  '(smtpmail-stream-type 'starttls)
  '(tooltip-mode nil)
+ '(user-mail-address "unixbhaskar@gmail.com")
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
    '((20 . "#BC8383")
@@ -244,4 +246,9 @@
 	         :ensure t)
 (add-to-list 'load-path "~/.emacs.d/emacs-libvterm/")
 (require 'vterm)
+
+(setq auth-source-debug t)
+
+(setq auth-sources
+          '((:source "~/.emacs.d/secrets/.authinfo.gpg")))
 
