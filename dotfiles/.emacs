@@ -142,7 +142,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(require 'org-mu4e)
+;;(require 'org-mu4e)
 (require 'mu4e-contrib)
 (require 'smtpmail)
 (auth-source-pass-enable)
