@@ -292,3 +292,45 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
+;;Refiling folders
+
+(setq mu4e-refile-folder
+  (lambda (msg)
+    (cond
+      ;; messages from Linus go to the /Linus folder
+      ((mu4e-message-contact-field-matches msg :from
+	 "torvalds@linux-foundation.org")
+	"/Linus")
+      ((mu4e-message-contact-field-matches msg :from
+	 "viro@zeniv.linux.org.uk")
+	"/Al_Viro")
+      ((mu4e-message-contact-field-matches msg :from
+	 "gregkh@linuxfoundation.org")
+	"/Greg(GKH)")
+      ((mu4e-message-contact-field-matches msg :from
+	 "akpm@linux-foundation.org")
+	"/Andrew_Morton")
+      ((mu4e-message-contact-field-matches msg :from
+	 "corbet@lwn.net")
+	"/Jonathan_Corbet")
+      ((mu4e-message-contact-field-matches msg :from
+	 "paulmck@kernel.org")
+	"/Paul_E_Mackenney")
+      ;; messages sent directly to me go to /archive
+      ;; also `mu4e-user-mail-address-p' can be used
+      ;;((mu4e-message-contact-field-matches msg :to "me@example.com")
+	;;"/private")
+      ;; messages with football or soccer in the subject go to /football
+      ;;((string-match "football\\|soccer"
+	;; (mu4e-message-field msg :subject))
+	;;"/football")
+      ;; messages sent by me go to the sent folder
+      ;;((find-if
+	;; (lambda (addr)
+	  ;; (mu4e-message-contact-field-matches msg :from addr))
+	 ;;(mu4e-personal-addresses))
+	;;mu4e-sent-folder)
+      ;; everything else goes to /archive
+      ;; important to have a catch-all at the end!
+      ;;(t  "/archive")
+)))
