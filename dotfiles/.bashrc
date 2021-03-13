@@ -137,7 +137,6 @@ alias systemd_running_services="command systemctl --no-page --no-legend --plain 
 alias which_arch="getconf LONG_BIT"
 alias check_bad_sector="sudo badblocks -n -s -b 2048 $1"
 alias aspell="aspell -d \"en_US.multi\" -c $1"
-#alias color_values="for i in {0..255}; do echo -e \"\e[38;05;${i}m${i}\"; done | column -c 80 -s \' \'; echo -e \"\e[m"
 alias pdf_open="$(command -v zathura) $1"
 alias mycalstart=mycalservice
 alias mycalstatus="systemctl --user status mycal"
@@ -160,6 +159,8 @@ alias disable_config="scripts/config --disable $1"
 alias who="git blame $1"
 
 unset SSH_ASKPASS
+#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+#gpgconf --launch gpg-agent
 
 #man page color
 #export LESS_TERMCAP_mb=$'\E[01;31m'
