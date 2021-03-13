@@ -13,6 +13,7 @@
  '(custom-enabled-themes '(molokai))
  '(custom-safe-themes
    '("8f567db503a0d27202804f2ee51b4cd409eab5c4374f57640317b8fcbbd3e466" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
+ '(delete-selection-mode nil)
  '(display-line-numbers-type 'relative)
  '(display-time-mode t)
  '(elfeed-feeds
@@ -24,7 +25,7 @@
  '(nrepl-message-colors
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(package-selected-packages
-   '(auto-complete elfeed vterm dashboard pass molokai-theme magit zenburn-theme ## mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
+   '(ivy-posframe pdf-tools elfeed-goodies auto-complete elfeed vterm dashboard pass molokai-theme magit zenburn-theme ## mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(scroll-bar-mode nil)
  '(send-mail-function 'mailclient-send-it)
@@ -264,13 +265,30 @@
 
 ;;Auto Complete
 
-(require 'auto-complete)
-(global-auto-complete-mode t)
+;;(global-auto-complete-mode t)
 
 ;; dirty fix for having AC everywhere
+(require 'auto-complete)
 (define-globalized-minor-mode real-global-auto-complete-mode
   auto-complete-mode (lambda ()
                        (if (not (minibufferp (current-buffer)))
                          (auto-complete-mode 1))
                        ))
 (real-global-auto-complete-mode t)
+
+;;Color settings
+
+;;(set-foreground-color "white")
+;;(set-background-color "blue")
+
+;; make {copy, cut, paste, undo} have {C-c, C-x, C-v, C-z} keys
+(cua-mode 1)
+
+(progn
+;; New Window. was nil
+(global-set-key (kbd "C-S-n") 'make-frame-command)
+)
+;; UTF-8 as default encoding
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+
