@@ -106,20 +106,19 @@ exec $HOME/bin/pia-client
 set $workspace1 "1   "
 set $workspace2 "2  "
 set $workspace3 "3   "
-set $workspace4 "4   "
+set $workspace4 "4  ℰ "
 
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+b workspace $workspace2 ; exec "vimb";
 bindsym $mod+Shift+b workspace $workspace3 ; exec "$HOME/bin/firefox_open";
-bindsym $mod+4 workspace $workspace4 ; exec nautilus | thunar;
-
+bindsym $mod+Home workspace $workspace4 ; exec "emacs -fs";
 #ASSIGN PROGRAMS TO WORKSPACES
 assign [class="^st-256color"] → $workspace1
 assign [class="^Vimb$"]  → $workspace2
 assign [class="^Firefox$"] → $workspace3
-assign [class="^Nautilus$"] → $workspace4
+assign [class="^Emacs$"] → $workspace4
 
 
 
@@ -328,5 +327,5 @@ bindsym $mod+y exec search_youtube_videos
 bindsym $mod+c exec sports_scores
 
 # Open Emacs
-bindsym $mod+Home exec emacs -fs
+#bindsym $mod+Home exec emacs -fs
 
