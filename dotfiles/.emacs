@@ -12,7 +12,7 @@
  '(compose-mail-user-agent-warnings nil)
  '(custom-enabled-themes '(molokai))
  '(custom-safe-themes
-   '("8f567db503a0d27202804f2ee51b4cd409eab5c4374f57640317b8fcbbd3e466" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
+   '("6daa09c8c2c68de3ff1b83694115231faa7e650fdbb668bc76275f0f2ce2a437" "fede08d0f23fc0612a8354e0cf800c9ecae47ec8f32c5f29da841fe090dfc450" "8f567db503a0d27202804f2ee51b4cd409eab5c4374f57640317b8fcbbd3e466" "e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
  '(delete-selection-mode nil)
  '(display-line-numbers-type 'relative)
  '(display-time-mode t)
@@ -21,11 +21,18 @@
  '(epa-global-mail-mode t)
  '(fci-rule-color "#383838")
  '(global-display-line-numbers-mode t)
+ '(gnus-add-timestamp-to-message t)
+ '(gnus-expert-user t)
+ '(mu4e-maildir-shortcuts
+   '((:maildir "/Inbox" :key 105)
+     (:maildir "/Greg(GKH)" :key 103)
+     (:maildir "/Linus" :key 108)
+     (:maildir "/Andrew_Morton" :key 97)))
  '(mu4e-mu-binary "/usr/local/bin/mu")
  '(nrepl-message-colors
    '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(package-selected-packages
-   '(ivy-posframe pdf-tools elfeed-goodies auto-complete elfeed vterm dashboard pass molokai-theme magit zenburn-theme ## mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
+   '(base16-theme ivy-posframe pdf-tools elfeed-goodies auto-complete elfeed vterm dashboard pass molokai-theme magit zenburn-theme ## mu4e-views mu4e-alert counsel ivy-rich which-key command-log-mode use-package))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(scroll-bar-mode nil)
  '(send-mail-function 'mailclient-send-it)
@@ -193,16 +200,17 @@
      (setq mu4e-sent-folder "/sent")
 
      (setq mu4e-maildir-shortcuts
-	    '(("/Inbox"        .?i)
-	     ("/Greg(GKH)"    .?g)
-	     ("/Linus"        .?l)
-	     ("/Al_Viro"      .?a)
-	     ("/Andrew_Morton"  .?n)
-	     ("/Thomas_Gleixner"  .?t)
-	     ("/unix_tips"       .?u)
-	     ("/David_Miller"    .?d)
-	     ("/Jonathan_Corbet"  .?j)
-	     ("/sent"         .?s))))
+       '( (:maildir "/Inbox"              :key ?i)
+       (:maildir "/Greg(GKH)"             :key ?g)
+       (:maildir "/Linus"                 :key ?l)
+       (:maildir "/Andrew_Morton"         :key ?a)
+       (:maildir "/Al_Viro"               :key ?v)
+       (:maildir "/Jonathan_Corbet"       :key ?j)
+       (:maildir "/Paul_E_McKenney"       :key ?p)
+       (:maildir "/Thomas_Gleixner"       :key ?t)
+       (:maildir "/David_Miller"          :key ?d))))
+       
+	     
 
 
 (put 'upcase-region 'disabled nil)
@@ -294,28 +302,28 @@
 
 ;;Refiling folders
 
-(setq mu4e-refile-folder
-  (lambda (msg)
-    (cond
+;;(setq mu4e-refile-folder
+  ;;(lambda (msg)
+    ;;(cond
       ;; messages from Linus go to the /Linus folder
-      ((mu4e-message-contact-field-matches msg :from
-	 "torvalds@linux-foundation.org")
-	"/Linus")
-      ((mu4e-message-contact-field-matches msg :from
-	 "viro@zeniv.linux.org.uk")
-	"/Al_Viro")
-      ((mu4e-message-contact-field-matches msg :from
-	 "gregkh@linuxfoundation.org")
-	"/Greg(GKH)")
-      ((mu4e-message-contact-field-matches msg :from
-	 "akpm@linux-foundation.org")
-	"/Andrew_Morton")
-      ((mu4e-message-contact-field-matches msg :from
-	 "corbet@lwn.net")
-	"/Jonathan_Corbet")
-      ((mu4e-message-contact-field-matches msg :from
-	 "paulmck@kernel.org")
-	"/Paul_E_Mackenney")
+      ;;((mu4e-message-contact-field-matches msg :from
+	;; "torvalds@linux-foundation.org")
+	;;"/Linus")
+      ;;((mu4e-message-contact-field-matches msg :from
+	;; "viro@zeniv.linux.org.uk")
+	;;"/Al_Viro")
+      ;;((mu4e-message-contact-field-matches msg :from
+	;; "gregkh@linuxfoundation.org")
+	;;"/Greg(GKH)")
+      ;;((mu4e-message-contact-field-matches msg :from
+	;; "akpm@linux-foundation.org")
+	;;"/Andrew_Morton")
+      ;;((mu4e-message-contact-field-matches msg :from
+	;; "corbet@lwn.net")
+	;;"/Jonathan_Corbet")
+      ;;((mu4e-message-contact-field-matches msg :from
+	;; "paulmck@kernel.org")
+	;;"/Paul_E_Mckenney")
       ;; messages sent directly to me go to /archive
       ;; also `mu4e-user-mail-address-p' can be used
       ;;((mu4e-message-contact-field-matches msg :to "me@example.com")
@@ -333,4 +341,20 @@
       ;; everything else goes to /archive
       ;; important to have a catch-all at the end!
       ;;(t  "/archive")
-)))
+;;)))
+
+(setq gnus-secondary-select-methods
+      '(
+    (nnimap "gmail"
+           (nnimap-address "imap.gmail.com")
+           (nnimap-server-port 993)
+           (nnimap-stream ssl)
+           (nnir-search-engine imap)
+           (nnimap-authinfo-file "~/.emacs.d/secrets/authinfo.gpg")
+           )
+    (nntp "news.gmane.org")
+    (nnfolder "archive"
+      ;;(nnfolder-directory   "~/Documents/Text/Gnus/Mail/archive")
+      ;;(nnfolder-active-file "~/Documents/Text/Gnus/Mail/archive/active")
+      (nnfolder-get-new-mail nil)
+      (nnfolder-inhibit-expiry t))))
