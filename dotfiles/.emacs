@@ -374,7 +374,7 @@
 (setq-default indent-tabs-mode nil)
 ;; Remove trailing whitespace on each save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-; Autocompletion: Company mode is better thought out than auto-complete.
+;; Autocompletion: Company mode is better thought out than auto-complete.
 (use-package company
   :defer 2
   :config
