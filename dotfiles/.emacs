@@ -360,6 +360,7 @@
       ;;(nnfolder-active-file "~/Documents/Text/Gnus/Mail/archive/active")
       (nnfolder-get-new-mail nil)
       (nnfolder-inhibit-expiry t))))
+
 ;; Spell-check
 (require 'flyspell)
 (setq flyspell-issue-message-flag nil
@@ -372,19 +373,23 @@
 
 ;; Never use tabs - always spaces
 (setq-default indent-tabs-mode nil)
+
 ;; Remove trailing whitespace on each save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; Autocompletion: Company mode is better thought out than auto-complete.
 (use-package company
   :defer 2
   :config
-  (global-company-mode)
+  (global-company-mode))
 
- ;; SPELL CHECKING
+;; SPELL CHECKING
 ;; Spell checking requires an external command to be available. Install =aspell= on your Mac, then make it the default checker for Emacs' =ispell=. Note that personal dictionary is located at =~/.aspell.LANG.pws= by default.
+
 (setq ispell-program-name "aspell")
 
 ;; Enable spellcheck on the fly for all text modes. This includes org, latex and LaTeX. Spellcheck current word.
+
 (add-hook 'text-mode-hook 'flyspell-mode)
 (global-set-key (kbd "s-\\") 'ispell-word)
 (global-set-key (kbd "C-s-\\") 'flyspell-auto-correct-word)
