@@ -211,8 +211,8 @@
        (:maildir "/Thomas_Gleixner"       :key ?t)
        (:maildir "/linux-kernel"          :key ?k)
        (:maildir "/David_Miller"          :key ?d))))
-       
-	     
+
+
 
 
 (put 'upcase-region 'disabled nil)
@@ -369,3 +369,14 @@
 
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+;; Never use tabs - always spaces
+(setq-default indent-tabs-mode nil)
+;; Remove trailing whitespace on each save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+; Autocompletion: Company mode is better thought out than auto-complete.
+(use-package company
+  :defer 2
+  :config
+  (global-company-mode)
+
