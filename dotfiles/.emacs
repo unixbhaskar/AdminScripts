@@ -380,3 +380,31 @@
   :config
   (global-company-mode)
 
+ ;; SPELL CHECKING
+;; Spell checking requires an external command to be available. Install =aspell= on your Mac, then make it the default checker for Emacs' =ispell=. Note that personal dictionary is located at =~/.aspell.LANG.pws= by default.
+(setq ispell-program-name "aspell")
+
+;; Enable spellcheck on the fly for all text modes. This includes org, latex and LaTeX. Spellcheck current word.
+(add-hook 'text-mode-hook 'flyspell-mode)
+(global-set-key (kbd "s-\\") 'ispell-word)
+(global-set-key (kbd "C-s-\\") 'flyspell-auto-correct-word)
+
+;; ---------
+;; THESAURUS
+
+;; Spellcheck was =Cmd+\=, synonym search is =Cmd+Shift+\=. It requires =wordnet= to be installed locally.
+;; (use-package powerthesaurus
+;;   :config
+;;   (global-set-key (kbd "s-|") 'powerthesaurus-lookup-word-dwim)
+;;   )
+
+;; Alternative, local thesaurus
+(use-package synosaurus
+  :config
+  (global-set-key (kbd "s-|") 'synosaurus-choose-and-replace))
+
+;; Word definition search.
+(use-package define-word
+  :config
+  (global-set-key (kbd "M-\\") 'define-word-at-point))
+
