@@ -414,4 +414,3 @@
 
 ;;Org mode stuff
 (define-key mu4e-headers-mode-map (kbd "C-c c") 'org-mu4e-store-and-capture)
-(define-key mu4e-view-mode-map    (kbd "C-c c") 'org-mu4e-store-and-capture)
