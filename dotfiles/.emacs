@@ -209,6 +209,7 @@
        (:maildir "/Jonathan_Corbet"       :key ?j)
        (:maildir "/Paul_E_McKenney"       :key ?p)
        (:maildir "/Thomas_Gleixner"       :key ?t)
+       (:maildir "/linux-kernel"          :key ?k)
        (:maildir "/David_Miller"          :key ?d))))
        
 	     
