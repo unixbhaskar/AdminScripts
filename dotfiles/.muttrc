@@ -273,7 +273,7 @@ macro index \sn "l ^a^k~N\n"
 macro index \emu "<shell-escape>/usr/bin/mu find  --clearlinks --format=links --linksdir=~/.maildir/search  date:today.. --fields=\" n l \""
 macro index \emr "<change-folder-readonly>~/.maildir/search"
 macro pager \Cb "<pipe-entry>'urlview'<enter>"
-
+#macro index,pager A "<save-message>=Archive<enter>" "Archive Message"
 
 set editor="vim -c 'set spell spelllang=en'"
 
