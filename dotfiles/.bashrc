@@ -437,7 +437,7 @@ send_patch() {
 	      read consent
 
          if [[ "$consent" == "N" ]];then
-	      printf "\n\n  Patchfile,TO and CC field must be filled, it seems values are missing..so,aborting.\n"
+	      printf "\n\n  Patchfile and TO fields must be filled, it seems values are missing..so,aborting.\n"
          else
 	      git send-email $patchfile ${to} ${cc} ${an}
 
