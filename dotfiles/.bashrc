@@ -414,6 +414,17 @@ discard_changes() {
 	fi
 }
 
+addcom() {
+
+	git add .
+
+	git ci "$@"  2> /dev/null
+
+	if [[ "$@" == "" ]];then
+		echo Not allowed empty commit...aborting
+	fi
+}
+
 get_email_addresses() {
 
         filename=$1
