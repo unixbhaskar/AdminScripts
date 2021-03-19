@@ -465,7 +465,7 @@ send_patch() {
 	cc="--cc=rdunlap@infradead.org,linux-kernel@vger.kernel.org"
 	an="--annotate"
 
-	      printf "Checking values before sending the patch ....\n"
+	      printf "\n Checking values before sending the patch ....\n"
 	      printf "\n ${patchfile}  ${to}  ${cc}\n"
 
 	      printf "Is it look alright?? [Y/N] : %s"
