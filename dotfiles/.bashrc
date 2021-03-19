@@ -427,7 +427,7 @@ addcom() {
 
 get_email_addresses() {
 
-        filename=$1
+	filename=$(git log -1 --name-only --oneline | grep /)
 	scripts/get_maintainer.pl  $filename | tee $filename.$(date +'%T') 1> /dev/null
 	extract_email_address $filename.* | paste -s -d, - > email_list
 	rm -f $filename.*
@@ -457,3 +457,9 @@ send_patch() {
 	      rm -f *.patch
 	  fi
   }
+
+subject_pat() {
+
+	filename=$1
+	git log --oneline $filename | gawk '{ print $2 $3 }'
+}
