@@ -421,7 +421,7 @@ addcom() {
 	git ci "$@"  2> /dev/null
 
 	if [[ "$@" == "" ]];then
-		echo Not allowed empty commit...aborting
+		echo Not allowed empty commit msg...aborting
 	fi
 }
 
@@ -433,6 +433,30 @@ get_email_addresses() {
 	rm -f $filename.*
 }
 
+subject_pattern() {
+
+	filename=$(git log -1 --name-only --oneline | grep /)
+
+	git log --oneline $filename | gawk '{ print $2" "$3 }' | head -5
+}
+
+patch_preflight_check() {
+
+	# printf "\n Preparing the patch ....enter a sensible/relevant commit message...\n\n"
+
+	# addcom
+
+	printf "\n Acquire those mail address attached with this file.....\n"
+
+	get_email_addresses
+
+	printf "\n Check how the commit subject look like....\n"
+
+	subject_pattern
+
+	printf "\n  Okay got it! Here are the mails attached to this file...\n"
+	cat email_list
+}
 
 send_patch() {
 	git format-patch -1
@@ -458,8 +482,3 @@ send_patch() {
 	  fi
   }
 
-subject_pat() {
-
-	filename=$1
-	git log --oneline $filename | gawk '{ print $2 $3 }'
-}
