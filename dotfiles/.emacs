@@ -434,3 +434,7 @@
 
 (setq emms-info-asynchronously nil)
 (setq emms-playlist-buffer-name "*Music*")
+
+;;Mpv integration
+
+(load "emms-player-mpv.el")
