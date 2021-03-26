@@ -484,3 +484,14 @@ send_patch() {
 	  fi
   }
 
+patch_series() {
+	patch_dir="/home/bhaskar/git-linux/linux/batch"
+
+printf "Creating and sending a patch series.....\n\n"
+
+git format-patch -n -o $patch_dir --cover-letter
+
+printf "\n Actually sending the patches ....\n\n"
+
+git send-email --to-cover --cc-cover $patch_dir/*.patch
+}
