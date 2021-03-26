@@ -484,6 +484,10 @@ send_patch() {
 	  fi
   }
 
+
+#Ref: https://kernelnewbies.org/PatchSeries
+#Ref2: https://kernelnewbies.org/PatchTipsAndTricks
+
 patch_series() {
 	patch_dir="/home/bhaskar/git-linux/linux/batch"
 
