@@ -454,25 +454,11 @@ subject_pattern() {
 	git log --oneline $filename | gawk '{ print $2" "$3 }' | head -5
 }
 
-patch_preflight_check() {
-
-	# printf "\n Preparing the patch ....enter a sensible/relevant commit message...\n\n"
-
-	# addcom
-
-	printf "\n Acquire those mail address attached with this file.....\n"
-
-	get_email_addresses
-
-	# printf "\n Check how the commit subject look like....\n"
-
-	# subject_pattern
-
-}
-
 send_patch() {
 
-	patch_preflight_check
+	printf "\n Acquire those mail address attached with this file.....\n\n"
+
+	get_email_addresses
 
 	git format-patch -1
 	patchfile=$(basename *.patch)
@@ -493,7 +479,7 @@ send_patch() {
 
 	      printf "\nGetting rid of temp files....\n"
 	      rm -f email_list
-	      mv -v *.patch ~/patches_sent/
+	      mv -v *.patch  ~/patches_sent/
 
 	  fi
   }
