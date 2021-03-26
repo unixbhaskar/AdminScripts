@@ -268,7 +268,7 @@ fi
 # Wrap the following commands for interactive use to avoid accidental file overwrites.
 rm() { command rm -i "${@}"; }
 cp() { command cp -i "${@}"; }
-mv() { command mv -i "${@}"; }
+# mv() { command mv -i "${@}"; }
 
 
 
@@ -414,6 +414,20 @@ discard_changes() {
 	fi
 }
 
+prev_commits_msgs() {
+
+	if [[ $# -eq "" ]];then
+		echo Please provide a filename to show previous commit messages.
+	else
+
+	filename=$1
+
+	git log --oneline $filename | head -5
+
+	fi
+}
+
+
 addcom() {
 
 	git add .
@@ -450,15 +464,16 @@ patch_preflight_check() {
 
 	get_email_addresses
 
-	printf "\n Check how the commit subject look like....\n"
+	# printf "\n Check how the commit subject look like....\n"
 
-	subject_pattern
+	# subject_pattern
 
-	printf "\n  Okay got it! Here are the mails attached to this file...\n"
-	cat email_list
 }
 
 send_patch() {
+
+	patch_preflight_check
+
 	git format-patch -1
 	patchfile=$(basename *.patch)
 	to="--to=$(cat email_list)"
@@ -478,7 +493,8 @@ send_patch() {
 
 	      printf "\nGetting rid of temp files....\n"
 	      rm -f email_list
-	      rm -f *.patch
+	      mv -v *.patch ~/patches_sent/
+
 	  fi
   }
 
