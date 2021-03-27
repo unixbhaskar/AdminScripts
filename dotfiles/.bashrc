@@ -501,7 +501,11 @@ patch_series() {
 	cc="--cc=rdunlap@infradead.org,linux-kernel@vger.kernel.org"
 	an="--annotate"
 
-        git format-patch -o ${patch_dir} --cover-letter -n --thread=shallow ${to} ${cc}
+	printf "\n Pick the starting and ending commit for patch series range..\n"
+
+	 commit_hashes=$(git log --pretty=oneline --abbrev-committed | head -10 | gawk '{ print $1 }' | paste -s -d, -)
+
+        git format-patch -o ${patch_dir} --cover-letter -n --thread=shallow ${to} ${cc} ${commit_hashes}
 
 	printf "\n\n Check the patch has been created properly or not....\n"
 
