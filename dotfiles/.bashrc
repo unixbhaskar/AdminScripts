@@ -489,13 +489,17 @@ send_patch() {
 #Ref2: https://kernelnewbies.org/PatchTipsAndTricks
 
 patch_series() {
-	patch_dir="/home/bhaskar/git-linux/linux/batch"
+	patch_dir="/home/bhaskar/git-linux/linux/batch/"
+
+	to="--to=$(cat email_list)"
+	cc="--cc=rdunlap@infradead.org,linux-kernel@vger.kernel.org"
+	an="--annotate"
 
 printf "Creating and sending a patch series.....\n\n"
 
-git format-patch -n -o $patch_dir --cover-letter
+git format-patch -o ${patch_dir} --cover-letter -n --thread=shallow ${to} ${cc}
 
 printf "\n Actually sending the patches ....\n\n"
 
-git send-email --to-cover --cc-cover $patch_dir/*.patch
+git send-email --to-cover --cc-cover $patch_dir/*.patch ${an}
 }
