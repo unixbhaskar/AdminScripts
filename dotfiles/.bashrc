@@ -505,7 +505,15 @@ patch_series() {
 
 	 commit_hashes=$(git log --pretty=oneline --abbrev-committed | head -10 | gawk '{ print $1 }' | paste -s -d, -)
 
-        git format-patch -o ${patch_dir} --cover-letter -n --thread=shallow ${to} ${cc} ${commit_hashes}
+	 echo $commit_hashes
+
+	 printf "\n Select the first commit of the series : %s"
+	 read start_commit
+
+	 printf "\n Now Select the end commit for the range : %s"
+	 read end_commit
+
+        git format-patch -o ${patch_dir} --cover-letter -n --thread=shallow ${to} ${cc} ${start_commit}^..${end_commit}
 
 	printf "\n\n Check the patch has been created properly or not....\n"
 
