@@ -505,7 +505,7 @@ patch_series() {
 
 	printf "\n Pick the starting and ending commit for patch series range..\n"
 
-	 commit_hashes=$(git log --pretty=oneline --abbrev=committed | head -10 | gawk '{ print $1 }' | paste -s -d, -)
+	 commit_hashes=$(git log --pretty=oneline --abbrev=committed | head -15 )
 
 	 echo $commit_hashes
 
@@ -521,7 +521,16 @@ patch_series() {
 
              find $patch_dir -type f -ls
 
-           printf "\n Actually sending the patches ....\n\n"
+	     printf "\n Is it looks alright?[Y/N]: %s"
+	     read res
 
-       git send-email --to-cover --cc-cover $patch_dir/*.patch ${an}
+             if [[ $res == "N" ]];then
+
+		     printf "\n Nope, it doesn't look good..aborting\n"
+	     else
+
+                    printf "\n Actually sending the patches ....\n\n"
+
+                   git send-email --to-cover --cc-cover $patch_dir/*.patch ${an}
+	     fi
 }
