@@ -460,6 +460,8 @@ send_patch() {
 
 	get_email_addresses
 
+	printf "\n\n THE PATCH FLE IS BELOW \n\n"
+
 	git format-patch -1
 	patchfile=$(basename *.patch)
 	to="--to=$(cat email_list)"
@@ -494,16 +496,16 @@ patch_series() {
 
 	printf "\n\t Creating a patch series.....pls get the relevant email from MAINTAINERS file\n\n"
 
-               printf "\n Get maintainers email .... : %s"
+               printf "\n Mention comma separated maintainers email .... : %s"
                read man_email
 
-        to="--to=$(cat $man_email)"
-	cc="--cc=rdunlap@infradead.org,linux-kernel@vger.kernel.org"
-	an="--annotate"
+	       to="--to=$(echo ${man_email} | paste -s -d, -)"
+	       cc="--cc=rdunlap@infradead.org,linux-kernel@vger.kernel.org"
+	       an="--annotate"
 
 	printf "\n Pick the starting and ending commit for patch series range..\n"
 
-	 commit_hashes=$(git log --pretty=oneline --abbrev-committed | head -10 | gawk '{ print $1 }' | paste -s -d, -)
+	 commit_hashes=$(git log --pretty=oneline --abbrev=committed | head -10 | gawk '{ print $1 }' | paste -s -d, -)
 
 	 echo $commit_hashes
 
