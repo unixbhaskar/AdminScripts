@@ -158,10 +158,6 @@ color index brightgreen default '~f paulmck@kernel.org'
 
 color index brightwhite default '~f corbet@lwn.net'
 
-color index brightblue default '~f peterz@infradead.org'
-
-color index brightmagenta default '~f mingo@kernel.org'
-
 color index blue default  '~f tglx@linutronix.de'
 
 color index magenta default '~f tytso@mit.edu'
