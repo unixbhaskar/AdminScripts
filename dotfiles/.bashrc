@@ -533,3 +533,8 @@ patch_series() {
                    git send-email --to-cover --cc-cover $patch_dir/*.patch ${an}
 	     fi
 }
+
+
+backup() {
+	cp -v "$1"{,.$(date +'%F')}
+}
