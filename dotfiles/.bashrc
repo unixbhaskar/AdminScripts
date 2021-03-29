@@ -505,9 +505,8 @@ patch_series() {
 
 	printf "\n Pick the starting and ending commit for patch series range..\n"
 
-	 commit_hashes=$(git log --pretty=oneline --abbrev=committed | head -50 )
+	          git log --pretty=oneline --abbrev=committed | head -50
 
-	 echo $commit_hashes
 
 	 printf "\n Select the first commit of the series : %s"
 	 read start_commit
