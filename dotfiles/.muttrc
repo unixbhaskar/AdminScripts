@@ -138,13 +138,10 @@ color quoted1 magenta black
 # #color signature cyan cyan
 #
 #How to color individual mail id on index page
-color index yellow default '~f gregkh@linuxfoundation.org'
 
 color index brightcyan default '~f torvalds@linux-foundation.org'
 
 color index green default '~f akpm@linux-foundation.org'
-
-color index red default '~f konstantin@linuxfoundation.org'
 
 color index cyan default '~f viro@zeniv.linux.org.uk'
 
@@ -168,9 +165,9 @@ color index brightblue default '~f gitster@pobox.com'
 
 color index brightcyan default '~f unixbhaskar@gmail.com'
 
-color index brightred  default '~f rdunlap@infradead.org'
-
 color index brightmagenta default '~f kevin@8t8.us'
+
+color index yellow default '~f gregkh@linuxfoundation.org'
 
 # #this color setup is copied from /etc/mutt/Muttrc.color
 # #comment it out if you want the default colors in /etc/mutt/Muttrc
