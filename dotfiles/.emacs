@@ -438,3 +438,8 @@
 ;;Mpv integration
 
 (load "emms-player-mpv.el")
+
+;;Org mode files
+
+(setq org-agenda-files
+      '("~/.emacs.d/OrgFiles/"))
