@@ -442,4 +442,4 @@
 ;;Org mode files
 
 (setq org-agenda-files
-      '("~/.emacs.d/OrgFiles/"))
+      '("~/.emacs.d/OrgFiles/task.org"))
