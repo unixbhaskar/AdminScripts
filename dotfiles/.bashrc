@@ -465,7 +465,7 @@ send_patch() {
 	git format-patch -1
 	patchfile=$(basename *.patch)
 	to="--to=$(cat email_list)"
-	cc="--cc=rdunlap@infradead.org,linux-kernel@vger.kernel.org"
+	cc="--cc=linux-kernel@vger.kernel.org"
 	an="--annotate"
 
 	      printf "\n Checking values before sending the patch ....\n"
@@ -500,7 +500,7 @@ patch_series() {
                read man_email
 
 	       to="--to=$(echo ${man_email} | paste -s -d, -)"
-	       cc="--cc=rdunlap@infradead.org,linux-kernel@vger.kernel.org"
+	       cc="--cc=linux-kernel@vger.kernel.org"
 	       an="--annotate"
 
 	printf "\n Pick the starting and ending commit for patch series range..\n"
