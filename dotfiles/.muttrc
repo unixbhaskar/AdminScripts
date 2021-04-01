@@ -238,12 +238,15 @@ color sidebar_new green black
 #
 #color index blue black ~N      # New mail
 #color index brightwhite black ~O           # Old mail
-#
-#Open attachment with program
-#
+#color index red black ~F    # Forwared mail
+color index brightwhite black ~T   # Mail sent to me
+color index red black ~D   # Mail is marked as deleted
+
+# New mail arrival notification pop up
 set new_mail_command="notify-send --icon='/home/bhaskar/Pictures/neomutt.png' \
 'New Emails' '%n new messages, %u unread.' &"
 
+# Attachement related stuff
 macro attach O \
 "\
 <enter-command>unset wait_key<enter>\
