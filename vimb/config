@@ -158,6 +158,9 @@ nmap <C-n> :shellcmd! goodreads<CR>
 # set status-ssl-css=color:#99cc99;background-color:#393939;font:12pt DejaVu Sans Mono;
 # set status-ssl-invalid-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
 #
+set status-css=color:#00BCE3;background-color:#000000; height:50px;font:12pt DejaVu Sans Mono;
+set status-ssl-css=color:#FE5000;background-color:#000000;height:50px;font:12pt DejaVu Sans Mono;
+set status-ssl-invalid-css=color:#f2777a;background-color:#000000;height:50px;font:12pt DejaVu Sans Mono;
 # Images loading
 set images=true
 

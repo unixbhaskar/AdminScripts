@@ -52,6 +52,8 @@ set monospace-font-size=13
 
 # Default Full-Content zoom level in percent. Default is 100.
 set default-zoom=120
+set dark-mode=on
+set stylesheet=on
 
 # Shortcuts allow the opening of an URI built up from a named template with
 # additional parameters.
@@ -80,14 +82,70 @@ nnoremap <C-R> :e! simplyread();<CR>
 au DownloadFinished *.pdf shellcmd! open-download-pdf
 #
 #
-set dark-mode=on
 
 # Take screenshot
 
-nmap <C-p> :shellcmd! scrot<CR>
+nmap <C-s> :shellcmd! capture_screen<CR>
 
+# Open up main kernel documentation page
 
+nmap <C-k> :shellcmd! kerneldoc<CR>
 
+# Open local weather page
+
+nmap <C-w> :shellcmd! weather<CR>
+
+# open up Tweetdeck
+
+nmap <C-t> :shellcmd! tweetdeck<CR>
+
+# Open LWN site
+
+nmap <C-z> :shellcmd! lwn<CR>
+
+# Open LinkedIN
+
+nmap <C-l> :shellcmd! linkedin<CR>
+
+# Open mail
+
+nmap <C-m> :shellcmd! show_mail<CR>
+
+# Open Youtube
+
+nmap <C-y> :shellcmd! open_youtube<CR>
+
+# Open Wikipedia
+
+nmap <C-i> :shellcmd! wikipedia<CR>
+
+# Open GitHub
+
+nmap <C-g> :shellcmd! github<CR>
+
+# Open Arch git to check latest version
+
+nmap <C-a> :shellcmd! archgit<CR>
+
+# Open Pocket for save references
+
+nmap <C-p> :shellcmd! getpocket<CR>
+
+# Open Mutt email wiki config page
+
+nmap <C-j> :shellcmd! mutt_config_tips_page<CR>
+
+# Show keybinds help
+
+nmap <C-h> :shellcmd! vimb_keymap_help<CR>
+
+# Open Reddit
+
+nmap <C-x> :shellcmd! reddit<CR>
+
+# Open Goodreads
+
+nmap <C-n> :shellcmd! goodreads<CR>
 
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
@@ -100,6 +158,9 @@ nmap <C-p> :shellcmd! scrot<CR>
 # set status-ssl-css=color:#99cc99;background-color:#393939;font:12pt DejaVu Sans Mono;
 # set status-ssl-invalid-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
 #
+set status-css=color:#00BCE3;background-color:#000000; height:50px;font:12pt DejaVu Sans Mono;
+set status-ssl-css=color:#FE5000;background-color:#000000;height:50px;font:12pt DejaVu Sans Mono;
+set status-ssl-invalid-css=color:#f2777a;background-color:#000000;height:50px;font:12pt DejaVu Sans Mono;
 # Images loading
 set images=true
 
