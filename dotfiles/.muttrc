@@ -236,7 +236,7 @@ color sidebar_new green black
 # Color to give mailboxes containing no new/flagged mail, etc.
 #color sidebar_ordinary color245 default
 #
-color index blue black ~N      # New mail
+#color index blue black ~N      # New mail
 #color index brightwhite black ~O           # Old mail
 #
 #Open attachment with program
