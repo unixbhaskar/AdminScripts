@@ -145,7 +145,7 @@ color index green default '~f akpm@linux-foundation.org'
 
 color index cyan default '~f viro@zeniv.linux.org.uk'
 
-color index brightred default '~f sfr@canb.auug.org.au'
+color index red default '~f sfr@canb.auug.org.au'
 
 color index brightyellow default '~f davem@davemloft.net'
 
@@ -153,15 +153,15 @@ color index brightgreen default '~f paulmck@linux.ibm.com'
 
 color index brightgreen default '~f paulmck@kernel.org'
 
-color index brightwhite default '~f corbet@lwn.net'
+color index brightred default '~f corbet@lwn.net'
 
-color index blue default  '~f tglx@linutronix.de'
+color index brightblue default  '~f tglx@linutronix.de'
 
 color index magenta default '~f tytso@mit.edu'
 
 color index blue default '~f hpa@zytor.com'
 
-color index brightblue default '~f gitster@pobox.com'
+color index blue default '~f gitster@pobox.com'
 
 color index brightcyan default '~f unixbhaskar@gmail.com'
 
@@ -236,6 +236,8 @@ color sidebar_new green black
 # Color to give mailboxes containing no new/flagged mail, etc.
 #color sidebar_ordinary color245 default
 #
+color index blue black ~N      # New mail
+#color index brightwhite black ~O           # Old mail
 #
 #Open attachment with program
 #
@@ -251,7 +253,7 @@ macro attach O \
 "
 
 #Mail attachement save to a specific directory
-
+#bind editor <space> noop
 #macro attach W <save-entry><kill-line>/home/bhaskar/attachments/
 macro attach E "<save-entry><kill-line>/home/bhaskar/attachments/<enter>"
 macro index \Ci  "<change-folder> =INBOX<enter>"
