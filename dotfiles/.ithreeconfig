@@ -260,7 +260,7 @@ bindsym $mod+minus scratchpad show
  # bindsym $mod+p exec dmenufminvoke
 
  # Toggle between dock mode and hide mode
-  bindsym $mod+n bar mode toggle
+  # bindsym $mod+n bar mode toggle
 
 # My abroad tour videos
 
@@ -291,7 +291,7 @@ bindsym $mod+p exec enlist_pdf_open
 
 # Surf browser open
 
-bindsym $mod+slash exec surf
+bindsym $mod+slash exec tabbed surf -pe
 
 # Photo albaum to open sxiv
 
@@ -311,7 +311,7 @@ for_window [class="^Kmon$"] floating enable
 
 # Feeds are running by newsboat
 
-bindsym $mod+Shift+Return exec st -e newsboat
+bindsym $mod+n exec st -e newsboat
 
 for_window [class="^Newsboat$"] floating enable
 
@@ -331,8 +331,10 @@ bindsym $mod+y exec search_youtube_videos
  bindsym $mod+q exec search_on_the_internet
 
 # Open the sports site for score
-bindsym $mod+c exec sports_scores
+bindsym $mod+c exec live_sports_scores
 
 # Open Emacs
 #bindsym $mod+Home exec emacs -fs
 
+# Open the sport site
+bindsym $mod+Shift+s exec sports_site
