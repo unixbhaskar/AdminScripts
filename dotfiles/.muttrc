@@ -145,8 +145,6 @@ color index green default '~f akpm@linux-foundation.org'
 
 color index cyan default '~f viro@zeniv.linux.org.uk'
 
-color index red default '~f sfr@canb.auug.org.au'
-
 color index brightyellow default '~f davem@davemloft.net'
 
 color index brightgreen default '~f paulmck@linux.ibm.com'
@@ -238,8 +236,8 @@ color sidebar_new green black
 #
 #color index blue black ~N      # New mail
 #color index brightwhite black ~O           # Old mail
-#color index red black ~F    # Forwared mail
-color index brightwhite black ~T   # Mail sent to me
+color index red black ~F    # Forwared mail
+color index brightwhite black ~p   # Mail sent to me
 color index red black ~D   # Mail is marked as deleted
 
 # New mail arrival notification pop up
