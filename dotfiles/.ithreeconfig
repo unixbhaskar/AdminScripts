@@ -271,9 +271,6 @@ bindsym $mod+g exec tour_videos
  bindsym $mod+u exec st -e cmus
  for_window [class="^Cmus$"] floating enable
 
-# Linux and opensource videos
- bindsym $mod+Shift+v exec linux_videos
-
 # clipmenu show the selection in dmenu
 bindsym $mod+z exec "clipmenu  -p 'clipboard items listed:'"
 
