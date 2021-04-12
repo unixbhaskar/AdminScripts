@@ -72,7 +72,9 @@ shortcut-default duck
 nmap + zI
 nmap - zO
 nmap = zz
-nmap bb :shellcmd! bookmark<CR>
+nmap bl :shellcmd! bookmarklist<CR>
+nmap bm :shellcmd! addbookmark<CR>
+
 
 #simple read format
 
