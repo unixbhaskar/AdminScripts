@@ -112,7 +112,7 @@ set $workspace4 "4  ℰ "
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+b workspace $workspace2 ; exec "vimb";
-bindsym $mod+Shift+b workspace $workspace3 ; exec "$HOME/bin/firefox_open";
+bindsym $mod+Shift+f workspace $workspace3 ; exec "$HOME/bin/firefox_open";
 bindsym $mod+Home workspace $workspace4 ; exec "emacs -fs";
 #ASSIGN PROGRAMS TO WORKSPACES
 assign [class="^st-256color"] → $workspace1
@@ -330,8 +330,8 @@ bindsym $mod+y exec search_youtube_videos
 # Open the sports site for score
 bindsym $mod+c exec live_sports_scores
 
-# Open Emacs
-#bindsym $mod+Home exec emacs -fs
-
 # Open the sport site
 bindsym $mod+Shift+s exec sports_site
+
+# Open bookmarked site on browser
+bindsym $mod+Shift+b exec bookmark2
