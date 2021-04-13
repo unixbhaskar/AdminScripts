@@ -73,7 +73,11 @@ nmap + zI
 nmap - zO
 nmap = zz
 nmap bl :shellcmd! bookmarklist<CR>
-nmap bm :shellcmd! addbookmark<CR>
+nmap bm :shellcmd addbookmark<CR>
+nmap tw :shellcmd! travelwiki<CR>
+nmap gr :shellcmd! goodreads<CR>
+nmap lw :shellcmd! lwn<CR>
+nmap mc :shellcmd! mutt_config_tips_page<CR>
 
 
 #simple read format
@@ -81,10 +85,8 @@ nmap bm :shellcmd! addbookmark<CR>
 nnoremap <C-R> :e! simplyread();<CR>
 
 #Open the latest pdf from downloads folder,catchy
-#
+
 au DownloadFinished *.pdf shellcmd! open-download-pdf
-#
-#
 
 # Take screenshot
 
@@ -94,25 +96,13 @@ nmap <C-s> :shellcmd! capture_screen<CR>
 
 nmap <C-k> :shellcmd! kerneldoc<CR>
 
-# Open local weather page
-
-#nmap <C-w> :shellcmd! weather<CR>
-
 # open up Tweetdeck
 
 nmap <C-t> :shellcmd! tweetdeck<CR>
 
-# Open LWN site
-
-nmap <C-z> :shellcmd! lwn<CR>
-
 # Open LinkedIN
 
 nmap <C-l> :shellcmd! linkedin<CR>
-
-# Open mail
-
-nmap <C-m> :shellcmd! show_mail<CR>
 
 # Open Youtube
 
@@ -134,10 +124,6 @@ nmap <C-a> :shellcmd! amazonin<CR>
 
 nmap <C-p> :shellcmd! getpocket<CR>
 
-# Open Mutt email wiki config page
-
-nmap <C-j> :shellcmd! mutt_config_tips_page<CR>
-
 # Show keybinds help
 
 nmap <C-h> :shellcmd! vimb_keymap_help<CR>
@@ -145,10 +131,6 @@ nmap <C-h> :shellcmd! vimb_keymap_help<CR>
 # Open Reddit
 
 nmap <C-x> :shellcmd! reddit<CR>
-
-# Open Goodreads
-
-nmap <C-n> :shellcmd! goodreads<CR>
 
 # Open Sport website
 
