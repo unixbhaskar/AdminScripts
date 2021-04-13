@@ -335,3 +335,4 @@ bindsym $mod+Shift+s exec sports_site
 
 # Open bookmarked site on browser
 bindsym $mod+Shift+b exec bookmark2
+
