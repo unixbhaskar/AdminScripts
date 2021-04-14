@@ -531,3 +531,10 @@ Plugin 'tommcdo/vim-exchange'
 
  " Automated log for file modification with the user who did it
  autocmd BufWritePost  *  !echo "$USER modified the file '%:t' at '$(date)'" >> /tmp/vimlog
+
+ " Vimgrep/lvimgrep search quickfix window open
+ augroup quickfixwindow
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l*    lwindow
+augroup END
