@@ -84,14 +84,10 @@ augroup aug_cursor_line
   au InsertEnter * setlocal nocursorline
   au InsertLeave * setlocal cursorline
 augroup END
-
-"set noautoindent
+"set spelling
 set spell spelllang=en
-
-"nnoremap \\ :noh<return>
+" Write file with sudo permission with capital W
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
-"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-let python_highlight_all=1
 "vim startup time measure
 let g:startuptime_sort = 0
 let g:startuptime_tries = 5
@@ -106,6 +102,8 @@ hi VimwikiHeader3 guifg=#0000FF
 hi VimwikiHeader4 guifg=#FF00FF
 hi VimwikiHeader5 guifg=#00FFFF
 hi VimwikiHeader6 guifg=#FFFF00
+" Pop up git commit info box by pressing \g
+
 let g:GPGFilePattern = '*.\(gpg\|asc\|pgp\)\(.wiki\)\='
 Shortcut! Git commit popup messages of the specific line of code by pressing"\g
  nmap <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(split(system("git log -n 1 -L " . line(".") . ",+1:" . expand("%:p")), "\n"), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
@@ -129,13 +127,16 @@ set textwidth=78                        " screen in 80 columns wide, wrap at 78
 " To make folding work automatically
 "autocmd BufWinLeave *.* mkview
 "autocmd BufWinEnter *.* silent loadview
+" Paste mode toggle by F2
 Shortcut! paste mode on or off
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 "History of changes showing by undotree plugin
 nnoremap <F3> :UndotreeToggle<CR>
+" Non visible character showing by pressing F4
 Shortcut! showing non visible character by toggle
 nmap <F4> :set list!<CR>
+
 "Removing trailing whitespace
 nnoremap <F5> :call <SID>StripTrailingWhitespaces()<CR>
 
@@ -152,6 +153,7 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+" Spelling check toggle by pressing F6
 Shortcut! Spell Checking toggle
 map <silent><F6> :setlocal spell! spelllang=en_us<CR>
 "Tabs manipulation vim -p filename1 filename2... from cli
@@ -162,7 +164,7 @@ nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 "Tagbar to work
  nmap <F8> :TagbarToggle<CR>
- "Fold toggle by F9
+"Fold toggle by F9
 
 inoremap <F9> <C-O>za
 nnoremap <F9> za
@@ -172,7 +174,7 @@ vnoremap <F9> zf
  noremap <C-n> :NERDTreeToggle<CR>
  "Search replaces n number of times
 nnoremap Q :normal n.<CR>
-"Open URI under cursor.
+"Open URI under cursor by pressing ob and os
  nmap ob <Plug>(openbrowser-open)
  "Open selected URI.
  vmap os <Plug>(openbrowser-open)
@@ -182,7 +184,6 @@ nmap <leader>tc <Plug>Titlecase
 vmap <leader>tc <Plug>Titlecase
 nmap <leader>tT <Plug>TitlecaseLine
 "Open a terminal inside vim
-
 noremap <silent><leader>te :botright vertical terminal<CR>
 "Tim pope commentrary plugins for comment in file
 autocmd FileType sh setlocal commentstring=#\ %s
@@ -222,7 +223,6 @@ nnoremap <leader>vr :vsplit ~/.vimrc<cr>
 nnoremap <leader>sv :source ~/.vimrc<cr>
 "To insert email address with a shortcut @@ ,and then need to press space after that
 iabbrev @@    unixbhaskar@gmail.com
-
 " Auto loading .vimrc once saved
 if has('autocmd')
     augroup reload_vimrc
@@ -230,7 +230,6 @@ if has('autocmd')
         autocmd! BufWritePost ~/.vimrc nested source %
     augroup END
 endif
-
 "conditionally auto creating directory if it is not exists.
 
 augroup AutoMkdir
@@ -298,7 +297,7 @@ vmap <C-j> ]egv
 
 let g:Mac_NamedMacroFileExtension = '.vimmacro'
 let g:Mac_NamedMacrosDirectory = "~/.vim/macrobatics"
-" Use <nowait> to override the default bindings which wait for another key press
+" Start the macro by pressing q and end with pressing gq
 nmap <nowait> q <plug>(Mac_Play)
 nmap <nowait> gq <plug>(Mac_RecordNew)
 "Navigating macros history
@@ -307,44 +306,34 @@ nmap <leader>mh :DisplayMacroHistory<cr>
 
 nmap [m <plug>(Mac_RotateBack)
 nmap ]m <plug>(Mac_RotateForward)
-
 "Macro append and macro prepend
 
 nmap <leader>ma <plug>(Mac_Append)
 nmap <leader>mp <plug>(Mac_Prepend)
-
 "Named macros
 
 nmap <leader>mn <plug>(Mac_NameCurrentMacro)
-
 "Macro execute
 
 nmap <leader>me <plug>(Mac_SearchForNamedMacroAndPlay)
-
 "Macro select
 
 nmap <leader>ms <plug>(Mac_SearchForNamedMacroAndSelect)
-
 "Macro overwrite
 
 nmap <leader>mo <plug>(Mac_SearchForNamedMacroAndOverwrite)
-
 "Delete a macro
 
 nmap <leader>md <plug>(Mac_SearchForNamedMacroAndDelete)
-
 "Rename a macro
 
 nmap <leader>mr <plug>(Mac_SearchForNamedMacroAndRename)
-
 "Name macro for global use
 
 nmap <leader>mng <plug>(Mac_NameCurrentMacro)
-
 "Name macro for file type
 
 nmap <leader>mnf <plug>(Mac_NameCurrentMacroForFileType)
-
 "Macro copy
 
 nmap <leader>mc <plug>(Mac_CopyCurrentMacroToRegister)
@@ -480,7 +469,6 @@ Shortcut! StopRunningJobs               ;rs
 Shortcut! SendVisualSelectionToTerm     ;ss
 Shortcut! SendTextInDelimiterToTerm     ;sd
 "View save and restore plugin
-"All restore folder view
 set viewoptions=cursor,folds,slash,unix
 Plugin 'restore_view.vim'
 "Alternative colors scheme by pressing F10 next scheme,shift+F10 previous scheme, Alt+F10 is random scheme
@@ -528,10 +516,8 @@ nnoremap <Leader>a :Ack!<Space>
 Plugin 'tommcdo/vim-exchange'
 " Urlview key binding /u
  nnoremap <silent> <leader>u :Urlview<CR>
-
  " Automated log for file modification with the user who did it
  autocmd BufWritePost  *  !echo "$USER modified the file '%:t' at '$(date)'" >> /tmp/vimlog
-
  " Vimgrep/lvimgrep search quickfix window open
  augroup quickfixwindow
     autocmd!
