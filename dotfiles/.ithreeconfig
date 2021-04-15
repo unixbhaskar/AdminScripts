@@ -44,7 +44,7 @@ bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#E
 
 # change focus
 bindsym $mod+j focus left
-bindsym $mod+k focus down
+#bindsym $mod+k focus down
 bindsym $mod+l focus up
 # bindsym $mod+semicolon focus right
 
@@ -330,9 +330,8 @@ bindsym $mod+y exec search_youtube_videos
 # Open the sports site for score
 bindsym $mod+c exec live_sports_scores
 
-# Open the sport site
-bindsym $mod+Shift+s exec sports_site
-
 # Open bookmarked site on browser
 bindsym $mod+Shift+b exec bookmark2
 
+# Kill all ffmpeg stuff
+bindsym $mod+k exec pkill ffmpeg
