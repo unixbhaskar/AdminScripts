@@ -159,8 +159,9 @@ alias disable_config="scripts/config --disable $1"
 alias who="git blame $1"
 export MANPAGER="vim -M +MANPAGER -"
 unset SSH_ASKPASS
-#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-#gpgconf --launch gpg-agent
+
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 #man page color
 #export LESS_TERMCAP_mb=$'\E[01;31m'

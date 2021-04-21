@@ -79,6 +79,8 @@ nmap gr :shellcmd! goodreads<CR>
 nmap lw :shellcmd! lwn<CR>
 nmap mc :shellcmd! mutt_config_tips_page<CR>
 nmap cg :shellcmd! check_gr<CR>
+nmap fk :shellcmd! flickr<CR>
+
 
 #simple read format
 
