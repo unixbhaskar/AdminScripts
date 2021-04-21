@@ -59,6 +59,7 @@ set stylesheet=on
 # additional parameters.
 shortcut-add duck=https://duckduckgo.com/?q=$0
 shortcut-add d=http://dictionary.com/?s=$0
+shortcut-add g=https://encrypted.google.com/search?q=$0
 shortcut-add yt=http://www.youtube.com/results?search_query=$0
 shortcut-add k=https://www.kernel.org?search_query=$0
 shortcut-add t=https://www.twitter.com/unixbhaskar?search_query=$0
@@ -79,7 +80,7 @@ nmap lw :shellcmd! lwn<CR>
 nmap mc :shellcmd! mutt_config_tips_page<CR>
 nmap cg :shellcmd! check_gr<CR>
 nmap fk :shellcmd! flickr<CR>
-
+nmap gl :shellcmd! gitlab<CR>
 
 #simple read format
 
