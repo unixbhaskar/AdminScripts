@@ -7,6 +7,8 @@
  '(add-log-mailing-address "unixbhaskar@gmail.com")
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
+ '(calendar-mark-diary-entries-flag t)
+ '(calendar-mark-holidays-flag t)
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(compose-mail-user-agent-warnings nil)
@@ -477,3 +479,7 @@
 		 (t . ivy-posframe-display-at-frame-center)))
 	     :config
 	     (ivy-posframe-mode 1))
+
+;; Open calendar
+
+(global-set-key (kbd "C-x c") 'calendar)
