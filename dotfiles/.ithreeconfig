@@ -335,3 +335,9 @@ bindsym $mod+Shift+b exec bookmark2
 
 # Kill all ffmpeg stuff
 bindsym $mod+k exec pkill ffmpeg
+
+# Mpv pause
+bindsym $mod+Shift+s exec mpv_stop
+
+# Mpv continue
+bindsym $mod+shift+p exec mpv_cont
