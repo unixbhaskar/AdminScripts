@@ -160,11 +160,28 @@ alias who="git blame $1"
 export MANPAGER="vim -M +MANPAGER -"
 unset SSH_ASKPASS
 
+
+# Check if the ssh-agent is already running
+if [[ "$(ps -u $USER | grep ssh-agent | wc -l)" -lt "1" ]]; then
+    #echo "$(date +%F@%T) - SSH-AGENT: Agent will be started"
+	# Start the ssh-agent and redirect the environment variables into a file
+    ssh-agent -s >~/.ssh/ssh-agent
+    # Load the environment variables from the file
+    . ~/.ssh/ssh-agent >/dev/null
+    # Add the default key to the ssh-agent
+    ssh-add ~/.ssh/id_rsa
+else
+    #echo "$(date +%F@%T) - SSH-AGENT: Agent already running"
+    . ~/.ssh/ssh-agent >/dev/null
+fi
+
+
+
+
+
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
-#man page color
-#export LESS_TERMCAP_mb=$'\E[01;31m'
 
 #Gitlog
 
