@@ -521,7 +521,7 @@ patch_series() {
 
 	printf "\n Pick the starting and ending commit for patch series range..\n"
 
-	          git log --pretty=oneline --abbrev=committed | head -50
+	          git log --pretty=oneline --abbrev=committed | head -20
 
 
 	 printf "\n Select the first commit of the series : %s"
@@ -529,6 +529,10 @@ patch_series() {
 
 	 printf "\n Now Select the end commit for the range : %s"
 	 read end_commit
+
+	 if [[ ! -d ${patch_dir} ]];then
+		 mkdir -p ${patch_dir}
+	 fi
 
         git format-patch -o ${patch_dir} --cover-letter -n --thread=shallow ${to} ${cc} ${start_commit}^..${end_commit}
 
