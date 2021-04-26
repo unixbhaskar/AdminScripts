@@ -72,7 +72,7 @@ alias i3config="cd ~/.config/i3"
 alias v="vim -u ~/.vimrc"
 alias sshot="cd ~/Pictures/Screenshots"
 alias github_repo='/home/bhaskar/bin/github_repo'
-alias see_log='sudo tail -f /var/log/messages || journalctl -f '
+alias see_log='sudo tail -f /var/log/messages || journalctl -f -q 2>/dev/null'
 alias gitlog=gitlog
 alias dmesg_err='sudo dmesg -H -T -l err'
 alias ip='ip --color=auto'
@@ -216,7 +216,7 @@ build() {
 
 	if [ $? == 0 ]; then
 
-             ${tm} "\n\n\tElapsed Time : %E \n\n" make -j4
+		${tm} "\n\n\tElapsed Time : %E \n\n" make -j$(nproc)
 
 	fi
 
