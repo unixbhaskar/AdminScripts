@@ -81,7 +81,6 @@ alias shortcut_pages="cd $HOME/shortcut/pages && ls | basename -s .md * | less"
 alias githublinux="cd $HOME/git-linux/linux_github_fork"
 alias githubgit="cd $HOME/git-linux/git_github_fork"
 alias gcl=gclone
-alias linuxpull="cd ~/git-linux/linux && git switch master && git pull && cd ~"
 alias githubi3="cd $HOME/git-linux/i3"
 alias update_buildroot="cd $HOME/git-linux/buildroot && git pull && cd ~"
 alias docs-next-update="cd $HOME/git-linux/docs-next && git pull && cd ~"
@@ -557,4 +556,10 @@ patch_series() {
 
 backup() {
 	cp -v "$1"{,.$(date +'%F')}
+}
+
+sync_upstream_linux() {
+	kern_source="/home/bhaskar/git-linux/linux"
+	cd $kern_source  && git switch master && git pull && cd ~
+	$HOME/bin/sync_upstream_linux
 }
