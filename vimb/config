@@ -73,8 +73,7 @@ nmap + zI
 nmap - zO
 nmap = zz
 nmap bl :shellcmd! bookmarklist<CR>
-#nmap bm :shellcmd! addbookmark<CR>
-nmap tw :shellcmd! travelwiki<CR>
+nmap wt :shellcmd! wikitravel<CR>
 nmap gr :shellcmd! goodreads<CR>
 nmap lw :shellcmd! lwn<CR>
 nmap mc :shellcmd! mutt_config_tips_page<CR>
@@ -137,6 +136,7 @@ nmap <C-x> :shellcmd! reddit<CR>
 # Open Sport website
 
 nmap <C-e> :shellcmd! opensportsite<CR>
+
 
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
