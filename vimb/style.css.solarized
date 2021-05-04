@@ -2,18 +2,21 @@
 {
 	  background-color: #002b36 !important;
 	    background-image: none !important;
-	      color: #657b83 !important;
+	      /*color: #657b83 !important;*/
+	      color: #bbbbbb !important;
       }
 
       h1,h2,h3,h4
       {
 	        background-color: #002b36 !important;
-		  color: #5f676a !important;
+		  /* color: #5f676a !important;*/
+                     color: #b8ddea !important;
 	  }
 
 	  a
 	  {
-		    color: #859900 !important;
+		    /*color: #859900 !important;*/
+                     color: #70e070 !important;
 	    }
 
 	    a:hover,a:focus
@@ -28,7 +31,7 @@
 
 		img
 		{
-			  opacity: .5;
+			  opacity: 1;
 		  }
 
 		  img:hover
@@ -36,24 +39,28 @@
 			    opacity: 1;
 		    }
 
-		    ._hintLabel
-		    {
-			      text-transform: uppercase !important;
-			        background-color: #cb4b16 !important;
-				  font-size: 1.0em !important;
-				    color: #000 !important;
-				      opacity: 1.0 !important;
-			      }
 
-			      ._hintElem._hintFocus
-			      {
-				        color: #f0f070 !important;
-				}
+span[vimbhint^='label'] {
+     background-color: #f2f0ec !important;
+     border: 1px solid #2d2d2d !important;
+     color: #2d2d2d !important;
+     font: bold 10pt monospace !important;
+     opacity: 1 !important;
+     padding: .1em .4em !important;
+     text-transform: uppercase !important;
+}
+span[vimbhint='label focus'] {
+    font: bold 13pt monospace !important;
+}
+*[vimbhint^='hint'] {
+    background-color: #ffcc66 !important;
+    color: #2d2d2d !important;
+}
+*[vimbhint='hint focus'] {
+      background-color: #6699cc !important;
+      color: #2d2d2d !important;
+}
 
-				._hintElem._hintFocus img
-				{
-					  opacity: 1;
-				  }
 div
   {
             font-weight: bolder;

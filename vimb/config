@@ -72,6 +72,7 @@ shortcut-default duck
 nmap + zI
 nmap - zO
 nmap = zz
+nnoremap bm :bma
 nmap bl :shellcmd! bookmarklist<CR>
 nmap wt :shellcmd! wikitravel<CR>
 nmap gr :shellcmd! goodreads<CR>
@@ -80,6 +81,7 @@ nmap mc :shellcmd! mutt_config_tips_page<CR>
 nmap cg :shellcmd! check_gr<CR>
 nmap fk :shellcmd! flickr<CR>
 nmap gl :shellcmd! gitlab<CR>
+nmap sc :source ~/.config/vimb/config<CR>
 
 #simple read format
 
@@ -136,7 +138,6 @@ nmap <C-x> :shellcmd! reddit<CR>
 # Open Sport website
 
 nmap <C-e> :shellcmd! opensportsite<CR>
-
 
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
