@@ -1,23 +1,56 @@
 https://blog.jeaye.com/2015/08/23/vimb/	Vimb on Slackware | Jeaye’s Blog	Slackware_vimb
 https://toroid.org/unix-pipe-implementation	How are Unix pipes implemented?	Unix_pipe_implementation
-https://fanglingsu.github.io/vimb/	Vimb - The Vim like Browser	
-https://www.goodreads.com/	Recent updates | Goodreads	goodreads
-https://www.amazon.in/	Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in	amazon
-https://www.linkedin.com/feed/	LinkedIn	linkedin
-https://tweetdeck.twitter.com/	TweetDeck	tweetdeck
-https://www.reddit.com/	reddit: the front page of the internet	reddit
-https://lwn.net/	Welcome to LWN.net [LWN.net]	lwn
-https://tweetdeck.twitter.com/	TweetDeck	tdeck
-https://tweetdeck.twitter.com/	TweetDeck	tdeck
-https://en.wikipedia.org/wiki/Main_Page	Wikipedia, the free encyclopedia	wikipedia
+https://fanglingsu.github.io/vimb/	Vimb - The Vim like Browser
 https://git.archlinux.org/linux.git/	linux.git - Arch Linux kernel sources, with patches	archlinuxgit
 https://sentencechecker.com/	Sentence Checker	sentencechecker
 https://www.swiggy.com/restaurants	Order food online from India's best food delivery service. Order from restaurants near you	swiggy
-https://www.kernel.org/doc/html/latest/admin-guide/index.html	The Linux kernel user’s and administrator’s guide — The Linux Kernel documentation	kerneldoc
 https://vimawesome.com/	Vim Awesome	vimawesome
-https://www.amazon.in/	Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in	amazon
-https://www.goodreads.com/	Recent updates | Goodreads	goodreads
-https://www.w3schools.com/csSref/pr_font_weight.asp	CSS font-weight property	ui
 https://patchwork.kernel.org/	Project List - Patchwork	patchwork
 https://alien.slackbook.org/blog/build-box-step-1-install-slackware/	Build box: step 1, install Slackware | Alien Pastures	slackware_chroot
 https://slackware.nl/slackware-live/latest/	https://slackware.nl/slackware-live/latest/	slackware-latest
+https://www.suse.com/c/compiling-de-linux-kernel-suse-way/	Compiling the Linux Kernel, the SUSE way | SUSE Communities	suse-kernel-build
+https://www.kernel.org/doc/html/v5.7/kbuild/llvm.html	Building Linux with Clang/LLVM — The Linux Kernel documentation	clang-steps
+http://mywiki.wooledge.org/BashFAQ/006	BashFAQ/006 - Greg's Wiki	bash_wiki
+https://robotmoon.com/ssh-tunnels/	Visual guide to SSH tunnels	ssh
+https://blog.plover.com/prog/git-prompt-hook-hack.html	The Universe of Discourse : Hacking the git shell prompt	gitbash
+https://quickref.me/vim	Vim - Quick Reference Cheat Sheet	vim-cheatsheet
+https://www.toolchains.net/	Toolchains.net - Toolchain resources	toolchain
+https://www.grymoire.com/Unix/Sed.html#uh-0	Sed - An Introduction and Tutorial	sedpattern
+https://mitsloan.mit.edu/ideas-made-to-matter/steve-jobs-talks-consultants-hiring-and-leaving-apple-unearthed-1992-talk?utm_source=mitsloanlinkedin&utm_medium=social&utm_campaign=stevejobs	Steve Jobs talks consultants, hiring, and leaving Apple in unearthed 1992 talk | MIT Sloan	stevejobmit
+https://ss64.com/bash/syntax-keyboard.html	bash keyboard shortcuts - Linux - SS64.com	bash-shortcuts
+https://cfajohnson.com/shell/StevenBourne-shell.html	An Introduction to the Unix Shell	steveborneshell
+https://cfajohnson.com/shell/?2004-05-22_shell_websites	Links to shell websites by Chris F.A. Johnson	chrisjshell
+http://www.shelldorado.com/	Heiner's SHELLdorado	shelldorado
+http://mywiki.wooledge.org/BashGuide	BashGuide - Greg's Wiki	gregshellwiki
+https://i3wm.org/docs/refcard.html	i3 - Reference Card	i3ref
+http://cse.unl.edu/~choueiry/S08-476-876/Documents/emacs_ref.html	Emacs Commands List	emacs-keys
+https://www.djcbsoftware.nl/code/mu/mu4e/Keybindings.html	Keybindings (Mu4e 1.4.12 user manual)	mu4e-keybinds
+https://aws.amazon.com/blogs/aws/troubleshoot-boot-and-networking-issues-with-new-ec2-serial-console/	Troubleshoot Boot and Networking Issues with New EC2 Serial Console | AWS News Blog	amzon-serial-console
+https://0xax.gitbooks.io/linux-insides/content/	Introduction · Linux Inside	linux-insides
+https://fanglingsu.github.io/vimb/man.html	Vimb - manual page	vimb-manual
+https://patchwork.kernel.org/	Project List - Patchwork	patchwork
+https://download.opensuse.org/repositories/Kernel:/stable/standard/x86_64/	/repositories/Kernel:/stable/standard/x86_64/ - openSUSE Download	suselatestkernel
+http://10.254.254.64/0/up/	IPACCT | User information portal	netup
+https://multicians.org/shell.html	The Origin of the Shell	shell_history
+https://www.marksandspencer.in/	Welcome to Marks and Spencer India	marksandspencer
+https://vim.rtorr.com/	Vim Cheat Sheet	vim_cheatsheet
+https://www.moritz.systems/blog/mastering-unix-pipes-part-1/	Mastering UNIX pipes, Part 1 | Moritz Systems	pipe_explained
+https://www.ibm.com/developerworks/library/os-createcompilerllvm1/index.html	Create a working compiler with the LLVM framework, Part 1	LLMV-part1
+https://www.ibm.com/developerworks/linux/library/os-createcompilerllvm2/index.html?ca=drs-	Create a working compiler with the LLVM framework, Part 2	LLVM-part2
+https://kevin.deldycke.com/2012/08/gmail-backup-mbsync/	Keep a Local Backup of Gmail Thanks to Mbsync | Kevin Deldycke	isyncgmail
+https://www.commandlinux.com/man-page/man7/daemon.7.html	daemon linux command man page	linuxdaemons
+http://shellhaters.org/	POSIX Shell and Utilities Quick Reference	posix-shell
+https://jonathanh.co.uk/blog/mutt-setup.html	My Email Setup using Mutt and Vim	devmail
+https://blog.packagecloud.io/eng/2016/03/08/how-to-extract-and-disassmble-a-linux-kernel-image-vmlinuz/	How to extract and disassemble a Linux kernel image (vmlinuz) - Packagecloud Blog	kernel-disassemble
+https://eklitzke.org/how-tcp-sockets-work	How TCP Sockets Work	How TCP Socket Works
+https://vim.fandom.com/wiki/Best_Vim_Tips	Best Vim Tips | Vim Tips Wiki | Fandom	Best_Vim_Tips
+https://www.bitinvert.com/dotfiles/git/	Git customization: .gitconfig and the Function Command Extension Trick - bitinvert.com	git_customization
+https://people.kernel.org/monsieuricon/introducing-b4-and-patch-attestation	Introducing b4 and patch attestation — Konstantin Ryabitsev	b4
+https://blog.vmsplice.net/2020/04/how-linux-vfs-block-layer-and-device.html	Stefan Hajnoczi: How the Linux VFS, block layer, and device drivers fit together	VFS_Layer
+https://ahelpme.com/category/linux/	Linux | Any IT here? Help Me!	Linux_troubleshoots
+https://blog.tinned-software.net/spf-and-multiple-domain-mailserver/	SPF and multiple domain mailserver - Experiencing Technology	tinned-linux-blogs
+https://www.grymoire.com/Unix/	Welcome to The UNIX Grymoire!	unix-tutorials
+http://www.jfsowa.com/logic/math.htm	Mathematical Background	computer_math
+https://vim.fandom.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)	Mapping keys in Vim - Tutorial (Part 1) | Vim Tips Wiki | Fandom	vim_key_map
+https://edersoncorbari.github.io/tutorials/freebsd-performance-tuning/	FreeBSD Performance Tunning Ederson Corbari	BSD_tuning
+https://hea-www.harvard.edu/~fine/Tech/vi.html	vi Complete Key Binding List	vim_default_keymaps
