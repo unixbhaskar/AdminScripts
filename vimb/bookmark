@@ -54,3 +54,26 @@ http://www.jfsowa.com/logic/math.htm	Mathematical Background	computer_math
 https://vim.fandom.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)	Mapping keys in Vim - Tutorial (Part 1) | Vim Tips Wiki | Fandom	vim_key_map
 https://edersoncorbari.github.io/tutorials/freebsd-performance-tuning/	FreeBSD Performance Tunning Ederson Corbari	BSD_tuning
 https://hea-www.harvard.edu/~fine/Tech/vi.html	vi Complete Key Binding List	vim_default_keymaps
+https://www.increasinglyadequate.com/cmus.html	cmus, a really quick guide	cmu-quick-ref
+https://lucidmanager.org/tags/emacs/	More Productive with Emacs	Emacs-blogs
+http://www.vimregex.com/	Vim Regular Expressions 101	vim-regex
+https://linux-commits-search.typesense.org/	Linux Kernel Commit History Search with Typesense	linux-commit-messages
+https://protesilaos.com/codelog/	Coding blog | Protesilaos Stavrou	Emacs-Resources
+https://castel.dev/post/lecture-notes-1/	How I'm able to take notes in mathematics lectures using LaTeX and Vim | Gilles Castel	Vim_Latex_Note_Taking
+https://thewanderingcoder.com/2015/02/beginning-emacs-org-mode-i/	Emacs Org-mode: Tasks, Todos and Timings | Sean Miller: The Wandering Coder	org-mode-ttt
+https://offlinemark.com/2021/05/12/an-obscure-quirk-of-proc/	Linux Internals: How /proc/self/mem writes to unwritable memory - offlinemark	unwritable_memory_writable
+https://www.man7.org/linux/man-pages/man7/signal.7.html	signal(7) - Linux manual page	Linux_Signals
+https://github.com/emacs-tw/awesome-emacs	emacs-tw/awesome-emacs: A community driven list of useful Emacs packages, libraries and others.	emacs-awesome
+https://orgmode.org/worg/org-faq.html	Org-mode Frequently Asked Questions	Org-mode-FAQ
+https://zzamboni.org/post/my-emacs-configuration-with-commentary/	zzamboni.org | My Emacs Configuration, With Commentary	org-commentry
+https://notmuchmail.org/howto/#index6h2	howto	Notmuch-howto
+https://notmuchmail.org/emacstips/	emacstips	notmuch-tricks
+https://notmuchmail.org/frontends/	frontends	notmuch-tools
+https://trac.clfs.org/	CLFS Trac	Cross_Linux_from_Scratch
+https://kitchingroup.cheme.cmu.edu/blog/2016/10/29/Sending-html-emails-from-org-mode-with-org-mime/	Sending html emails from org-mode with org-mime	org-mode-html-email
+https://vimcolors.com/	Newest - Vim Colors	vim-colors
+https://programmersought.com/article/94017148456/	Vim installation and configuration - Programmer Sought	vim-configuration
+https://cli-ck.io/transmission-cli-user-guide/	Transmission CLI User Guide | cli-ck	transmission-cli
+https://git.wiki.kernel.org/index.php/Git_FAQ	Git FAQ - Git SCM Wiki	git-faq
+https://taskwarrior.org/docs/examples.html	Taskwarrior - Usage Examples	Task-Worriror-Examples
+https://www.cs.colostate.edu/helpdocs/emacs-bindings	https://www.cs.colostate.edu/helpdocs/emacs.html	emacs-keybinds
