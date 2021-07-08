@@ -17,6 +17,20 @@ llvm_assm="LLVM_IAS=1"
 source /home/bhaskar/colors.sh
 source /home/bhaskar/spinner.sh
 
+clear
+cat << "EOF"
+  _  __                    _
+ | |/ /___ _ __ _ __   ___| |
+ | ' // _ \ '__| '_ \ / _ \ |
+ | . \  __/ |  | | | |  __/ |
+ |_|\_\___|_|  |_| |_|\___|_|_ _       _   _
+  / ___|___  _ __ ___  _ __ (_) | __ _| |_(_) ___  _ __
+ | |   / _ \| '_ ` _ \| '_ \| | |/ _` | __| |/ _ \| '_ \
+ | |__| (_) | | | | | | |_) | | | (_| | |_| | (_) | | | |
+  \____\___/|_| |_| |_| .__/|_|_|\__,_|\__|_|\___/|_| |_|
+                      |_|
+EOF
+
 if [[ ! -d $build_dir ]];then
 	mkdir -p $build_dir
 fi
@@ -252,20 +266,19 @@ sed -i '17d' PKGBUILD
 sed -i '17i _srcname=${pkgver%%%.*}-arch1'  PKGBUILD
 
 sed -i '19d' PKGBUILD
-sed -i '19i \"$_srcname::https://git.archlinux.org/linux.git/snapshot/\$_srcver.tar.gz\"' PKGBUILD
+sed -i '19i \"$_srcname::https://github.com/archlinux/linux/archive/refs/tags/v$_srcname.tar.gz\"' PKGBUILD
 sed -i '32d' PKGBUILD
 sed -i '32i export KBUILD_BUILD_HOST=Bhaskar_ThinkPad_x250' PKGBUILD
 sed -i '33d' PKGBUILD
 sed -i '33i export KBUILD_BUILD_USER=Bhaskar' PKGBUILD
 
 sed -i 's/#make oldconfig/make olddefconfig/' PKGBUILD
-sed -i '63d' PKGBUILD
-sed -i '63i make V=1 ARCH=x86_64 -j4  bzImage modules' PKGBUILD
-sed -i '64d' PKGBUILD
-sed -i '172,189 s/^/#/' PKGBUILD
-sed -i '191d' PKGBUILD
-sed -i '191i pkgname=("$pkgbase" "$pkgbase-headers")' PKGBUILD
-
+sed -i '61d' PKGBUILD
+sed -i '61i make V=1 ARCH=x86_64 -j4  bzImage modules' PKGBUILD
+sed -i '62d' PKGBUILD
+sed -i '173,190 s/^/#/' PKGBUILD
+sed -i '192d' PKGBUILD
+sed -i '192i pkgname=("$pkgbase" "$pkgbase-headers")' PKGBUILD
 printf "\n\nAs we have change the PKGBUILD file ,we need to generate the new ${Magenta}CHECKSUM the file .... ${NOCOLOR} \n\n\n"
 
 #makepkg -g
@@ -280,6 +293,9 @@ $NOTIFY --urgency=critical "Kernel building done"
 
 printf "Install the generated ${PowderBlue}headers,${PowderBlue}kernel and ${PowderBlue}doc packages with pacman .. ${NOCOLOR} \n\n\n"
 
+kernel_build_dir="/var/tmp/kernel/latest_kernel_build/linux/repos/core-x86_64/"
+
+cd $kernel_build_dir
 
 sudo pacman -U  --noconfirm $(hostname)-$kernel-$kernel-1-x86_64.pkg.tar.zst
 
@@ -370,7 +386,7 @@ rpm --checksig *.rpm
 printf "\n\n ${Bright}${Yellow} Fixing the EFI boot entry by copying the kernel to ESP place ${NOCOLOR}...\n\n"
 ln -s /boot/vmlinuz-$kernel-1.g*-default-$(hostname)  /boot/vmlinuz-$kernel-$(hostname)
 cp /boot/vmlinuz-$kernel-$(hostname) $EFIBOOTDIR/Opensuse/
-ln -s /boot/initrd-5.11.1-1.g*-default-OpenSuse  /boot/initrd-$kernel-$(hostname)
+ln -s /boot/initrd-$kernel-1.g*-default-OpenSuse  /boot/initrd-$kernel-$(hostname)
 cp /boot/initrd-$kernel-$(hostname) $EFIBOOTDIR/Opensuse/
 
 $NOTIFY --expire-time=2000 --urgency=critical "Copied linux and initrd
@@ -599,7 +615,7 @@ read response
 
 if [[ $response == "S" ]];then
 #Get the stable kernel from kernel.org
-kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 5.11)
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 5.13)
 elif [[ $response == "M" ]];then
 #Get the mainline kernel from kernel.org
 kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
