@@ -84,7 +84,9 @@ nmap gl :shellcmd! gitlab<CR>
 nmap sr :source ~/.config/vimb/config<CR>
 nmap hn :shellcmd! hackernews<CR>
 nmap so :shellcmd! stackoverflow<CR>
-nmap sc :shellcmd! select_capture<CR>
+nmap lo :shellcmd! lore<CR>
+nmap pr :shellcmd! incognito<CR>
+
 #simple read format
 
 nnoremap <C-R> :e! simplyread();<CR>
@@ -92,10 +94,6 @@ nnoremap <C-R> :e! simplyread();<CR>
 #Open the latest pdf from downloads folder,catchy
 
 au DownloadFinished *.pdf shellcmd! open-download-pdf
-
-# Take screenshot
-
-nmap <C-s> :shellcmd! capture_screen<CR>
 
 # Open up main kernel documentation page
 
@@ -109,10 +107,6 @@ nmap <C-t> :shellcmd! tweetdeck<CR>
 
 nmap <C-l> :shellcmd! linkedin<CR>
 
-# Open Youtube
-
-nmap <C-y> :shellcmd! open_youtube<CR>
-
 # Open Wikipedia
 
 nmap <C-w> :shellcmd! wikipedia<CR>
@@ -121,7 +115,7 @@ nmap <C-w> :shellcmd! wikipedia<CR>
 
 nmap <C-g> :shellcmd! github<CR>
 
-# Open Arch git to check latest version
+# Open Aamazon India site
 
 nmap <C-a> :shellcmd! amazonin<CR>
 
