@@ -1,0 +1,61 @@
+#!/bin/bash
+
+maxlen=41
+ICON_PLAY="➤"
+ICON_PAUSE="Ⅱ"
+ICON_STOP="≠"
+CUR_ICON=""
+
+if [ ! -x /usr/bin/cmus-remote ];
+then
+  echo "cmus is not installed."
+  exit
+fi
+PLAYER_STATUS=$(cmus-remote -Q | grep 'status' | cut -d ' ' -f2-)
+result=$( cmus-remote -Q 2> /dev/null )
+artist=$( echo "$result" | grep "tag artist " | cut -d " " -f 3- )
+# the following line uses album artist tag instead of artist i bet you didn't
+# know that
+# artist=$( echo $result | grep "tag albumartist " | cut -d " " -f 3- )
+title=$( echo "$result" | grep "tag title " | cut -d " " -f 3- )
+#filename=$( echo "$result" | grep "file " | cut -d " " -f 1- | tr -d [:digit:])
+filename1=$( echo "$result" | grep "file ")
+filename2=${filename1%.*}
+filename=$(echo $filename2)
+vol=$( echo "$result" | grep "set vol_left " | cut -d " " -f 3- )
+#icon showing methods
+
+if [[ "${PLAYER_STATUS}" = "paused" ]]; then
+          CUR_ICON="${ICON_PAUSE}"
+  elif [[ "${PLAYER_STATUS}" = "playing" ]]; then
+            CUR_ICON="${ICON_PLAY}"
+else
+              CUR_ICON="${ICON_STOP}"
+fi
+
+
+# Generate output string
+if [ -n "$title" ];
+then
+  #output="\"$title\" by $artist"
+  output="\"$title\""
+elif [ -n "$filename" ];
+then
+  output="${filename##*/}"
+else
+  output=""
+fi
+
+# Splice output if it is too long
+if [ ${#output} -ge ${maxlen} ]
+then
+  output="$( echo $output | colrm ${maxlen} )…"
+fi
+
+# Echo the crap of out it
+if [ -n "$output" ]; then
+  #echo "${CUR_ICON} ${output}"
+  #echo "${CUR_ICON} ${output}"
+echo -e "<span color='black' bgcolor='#F08080'>${CUR_ICON} ${output}</span>\n"
+# echo -e "<span color='black' bgcolor='#F08080'>${CUR_ICON} ${output}</span>\n"
+ fi
