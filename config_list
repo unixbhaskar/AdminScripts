@@ -1,0 +1,10 @@
+#!/bin/bash
+
+declare -a dotfiles=( .vimrc .bashrc .muttrc .ithreeconfig .ithreeblocksconfig
+.gitconfig .emacs .profile .vimb_config .newsboat_config)
+
+choice=$( printf '%s\n' "${dotfiles[@]}" | dmenu -i -l 20 -p "Edit Config:")
+
+if [ "$choice" ]; then
+	cfg=$(printf '%s\n' "${choice}" | xargs -I {} st -e vim {})
+fi
