@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -vx
+if [[ -z "$1" ]]; then
+  printf "Enter URL: ";
+  url=$( echo | dmenu -p "Enter URL:" )
+else
+	url="$1"
+fi
+
+#query="${query// /+}"
+#echo "$query"
+
+if [[ "$url" == "" ]];then
+	exit 1
+else
+
+$(command -v emacsclient) -n "org-protocol:///capture?url=$url"
+fi
