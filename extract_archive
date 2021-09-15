@@ -1,0 +1,40 @@
+#!/bin/bash
+
+latest_file=$(find $HOME/Downloads/ \( -iname \*.zip -o -iname \*.tar.gz -o -iname \*.tgz -o -iname \*.xz -o -iname \*.tar.bz2 \) -type f -newermt $(date '+%F') -ls | gawk '{ print $11}' | sort -f -i -r | head -1 )
+
+extension="${latest_file##*.}"
+
+#filename="${latest_file%.*}"
+#filename=$(basename -- "$latest_file")
+
+if [[ "$extension" == "zip" ]];then
+    $(command -v unzip) "$latest_file" >/dev/null 2>&1
+
+elif [[ "$extension" == "gz" ]];then
+	$(command -v tar) -xvzf "$latest_file" >/dev/null 2>&1
+
+
+elif [[ "$extension" == "bz2" ]];then
+	$(command -v tar) -xvjf "$latest_file" >/dev/null 2>&1
+
+
+elif [[ "$extension" == "xz" ]];then
+	$(command -v unxz) "$latest_file" >/dev/null 2>&1
+
+else
+
+
+      if [[ $? -eq 0 ]];then
+	      echo Extracted acrchive file..take a peek..$latest_file
+      else
+	      echo It has failed
+      fi
+fi
+#URL=$VIMB_URI
+#URL="$@"
+#exit
+#logger "$URL : $VIMB_TITLE"
+#if [ -n "$URL" ] ; then
+#URL=${URL//*\//}
+     #exec xdg-open "$HOME/Downloads/$URL" >/dev/null 2>&1
+#fi
