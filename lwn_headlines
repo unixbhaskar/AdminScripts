@@ -1,0 +1,8 @@
+#/bin/bash
+file=/home/bhaskar/headline.lwn
+
+>$file
+
+curl --silent https://lwn.net/headlines/newrss | xmlstarlet select -N it="http://purl.org/rss/1.0/"  -N dc="http://purl.org/dc/elements/1.1/" --text --noblanks --template --match "//rdf:RDF/it:item[position() <= 10]"  -v it:title -o '<===>'  -v dc:date -o '\\n' | tr -d "'" | xargs  echo -e > $file
+
+cat $file | dmenu -l 10 | lwn_urls
