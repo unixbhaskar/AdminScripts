@@ -1,0 +1,32 @@
+#!/bin/bash
+
+declare -a wiki_list=( arch gentoo slackware opensuse debian vim emacs )
+
+wiki=$( printf '%s\n' "${wiki_list[@]}" | dmenu -i -l 10 -p "Search Which Wiki:")
+if [[ $wiki == "vim" ]];then
+setsid -f $(command -v vimb) https://vim.fandom.com/wiki/Vim_Tips_Wiki &>/dev/null
+
+elif [[ $wiki == "emacs" ]];then
+        setsid -f $(command -v vimb) https://www.emacswiki.org/ &>/dev/null
+else
+
+query=$( echo | dmenu -p "$wiki Linux Wiki Search:" )
+
+if [[ $wiki == "arch" ]]; then
+	setsid -f $(command -v vimb) https://wiki.archlinux.org/title/$query
+elif [[ $wiki == "gentoo" ]];then
+        setsid -f $(command -v vimb) https://wiki.gentoo.org/wiki/$query
+elif [[ $wiki == "slackware" ]];then
+        setsid -f $(command -v vimb) https://docs.slackware.com/start
+elif [[ $wiki == "opensuse" ]];then
+        setsid -f $(command -v vimb) https://en.opensuse.org/$query
+elif [[ $wiki == "debian" ]];then
+        setsid -f $(command -v vimb) https://wiki.debian.org/$query
+# elif [[ $wiki == "vim" ]];then
+#         setsid -f $(command -v vimb) https://vim.fandom.com/wiki/Vim_Tips_Wiki
+# elif [[ $wiki == "emacs" ]];then
+#         setsid -f $(command -v vimb) https://www.emacswiki.org/
+else
+	notify-send  "you haven't select any wiki"
+fi
+fi
