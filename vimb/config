@@ -54,15 +54,23 @@ set monospace-font-size=13
 set default-zoom=120
 set dark-mode=on
 set stylesheet=on
+#Fix for video thumnails
+augroup RemoveCustomizeStyleSheets
+  autocmd!
+   autocmd LoadStarted https://odysee.com/* set stylesheet=off | set dark-mode=on
+   autocmd LoadStarted https://youtube.com/* set stylesheet=off | set dark-mode=on
+   autocmd LoadStarted https://twitter.com/* set stylesheet=off | set dark-mode=on
+   autocmd LoadStarted https://tweetdeck.twitter.com/* set stylesheet=off | set dark-mode=on
+augroup END
 
 # Shortcuts allow the opening of an URI built up from a named template with
 # additional parameters.
 shortcut-add duck=https://duckduckgo.com/?q=$0
 shortcut-add d=http://dictionary.com/?s=$0
 shortcut-add g=https://encrypted.google.com/search?q=$0
-shortcut-add yt=http://www.youtube.com/results?search_query=$0
+#shortcut-add yt=http://www.youtube.com/results?search_query=$0
 shortcut-add k=https://www.kernel.org?search_query=$0
-shortcut-add t=https://www.twitter.com/unixbhaskar?search_query=$0
+shortcut-add t=https://www.twitter.com
 # Set the shortcut as the default, that is the shortcut to be used if no
 # shortcut is given and the string to open is not an URI.
 shortcut-default duck
@@ -86,6 +94,8 @@ nmap hn :shellcmd! hackernews<CR>
 nmap so :shellcmd! stackoverflow<CR>
 nmap lo :shellcmd! lore<CR>
 nmap pr :shellcmd! incognito<CR>
+nmap sb :shellcmd! onlinesb<CR>
+nmap yt :shellcmd! openyoutube<CR>
 
 #simple read format
 
@@ -133,7 +143,8 @@ nmap <C-x> :shellcmd! reddit<CR>
 
 # Open Sport website
 
-nmap <C-e> :shellcmd! opensportsite<CR>
+nmap <C-e> :shellcmd! evernote<CR>
+
 
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
