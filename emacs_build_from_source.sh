@@ -23,7 +23,7 @@ basepath=/home/bhaskar/git-linux/
 cd $basepath
 
 if [ ! -d emacs ];then
-	git clone git@git://git.savannah.gnu.git
+	git clone git@git://git.savannah.gnu.org/emacs.git
 	cd emacs
 
 elif [ -d emacs ];then
