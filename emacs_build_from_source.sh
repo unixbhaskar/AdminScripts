@@ -10,7 +10,7 @@
 #       OPTIONS:
 #  REQUIREMENTS:
 #          BUGS: ---
-#         NOTES: Clone this repo git://git.savannah.gnu.oit
+#         NOTES: Clone this repo git://git.savannah.gnu.org/emacs.git
 #        AUTHOR: Bhaskar Chowdhury (https://about.me/unixbhaskar), unixbhaskar@gmail.com
 #  ORGANIZATION: Independent
 #       CREATED: 09/24/2021 17:37
