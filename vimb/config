@@ -55,13 +55,13 @@ set default-zoom=120
 set dark-mode=on
 set stylesheet=on
 #Fix for video thumnails
-augroup RemoveCustomizeStyleSheets
-  autocmd!
-   autocmd LoadStarted https://odysee.com/* set stylesheet=off | set dark-mode=on
-   autocmd LoadStarted https://youtube.com/* set stylesheet=off | set dark-mode=on
-   autocmd LoadStarted https://twitter.com/* set stylesheet=off | set dark-mode=on
-   autocmd LoadStarted https://tweetdeck.twitter.com/* set stylesheet=off | set dark-mode=on
-augroup END
+# augroup RemoveCustomizeStyleSheets
+#   autocmd!
+#    autocmd LoadStarted https://odysee.com/* set stylesheet=off | set dark-mode=on
+#    autocmd LoadStarted https://youtube.com/* set stylesheet=off | set dark-mode=on
+#    autocmd LoadStarted https://twitter.com/* set stylesheet=off | set dark-mode=on
+#    autocmd LoadStarted https://tweetdeck.twitter.com/* set stylesheet=off | set dark-mode=on
+# augroup END
 
 # Shortcuts allow the opening of an URI built up from a named template with
 # additional parameters.
