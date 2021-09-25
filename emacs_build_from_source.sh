@@ -31,7 +31,7 @@ elif [ -d emacs ];then
        git pull
 
 else
-	printf "The Vim directory already exists....not cloning \n"
+	printf "The Emacs directory already exists....not cloning \n"
 	exit 1
 fi
 
