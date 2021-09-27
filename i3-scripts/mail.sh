@@ -1,5 +1,5 @@
 USER="unixbhaskar@gmail.com"
-PASS="evkolvsfbybakbat"
+PASS=""
 
 COUNT=`curl -su $USER:$PASS https://mail.google.com/mail/feed/atom || echo "<fullcount>Not fetching mail</fullcount>"`
 COUNT=`echo "$COUNT" | grep -oPm1 "(?<=<fullcount>)[^<]+" `
