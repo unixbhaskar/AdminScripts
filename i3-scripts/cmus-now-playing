@@ -35,11 +35,11 @@ fi
 
 
 # Generate output string
-if [ -n "$title" ];
-then
+#if [ -n "$title" ];
+#then
   #output="\"$title\" by $artist"
-  output="\"$title\""
-elif [ -n "$filename" ];
+#  output="\"$title\""
+if [ -n "$filename" ];
 then
   output="${filename##*/}"
 else

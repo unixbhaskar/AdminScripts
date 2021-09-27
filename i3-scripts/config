@@ -44,9 +44,9 @@ bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#E
 
 # change focus
 bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-# bindsym $mod+semicolon focus right
+#bindsym $mod+k focus down
+# bindsym $mod+l focus up
+# # bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -92,56 +92,120 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+
 #background
 
 exec_always --no-startup-id feh --bg-scale /home/bhaskar/Pictures/LKM3_1024.png
 
 ##Autostart
 #exec xfce4-terminal --hide-menubar --hide-scrollbar --command screen -c "$HOME/screenrc"
-exec $HOME/bin/st -e screen -c $HOME/screenrc
-exec $HOME/bin/telegram
+exec $HOME/bin/st
+#exec $HOME/bin/telegram
 exec $HOME/bin/clipmenud
+exec $HOME/bin/pia-client
+exec $HOME/bin/noti_active
+#exec emacs --bg-daemon=emacs-daemon
 
 set $workspace1 "1   "
-set $workspace2 "2  "
-set $workspace3 "3   "
-set $workspace4 "4   "
-#set $workspace5 "5   "
-#set $workspace6 "6   "
-#set $workspace7 "7   "
-#set $workspace8 "8 kodi"
-
+set $workspace2 "2  "
+#set $workspace3 "3   "
+set $workspace3  "3 "
+set $workspace4 "4  ℰ"
+#set $workspace5 "5  "
+set $workspace5 "5  "
+set $workspace6 "6  "
+set $workspace7 "7  "
+set $workspace8 "8  "
+set $workspace9 "9 "
+set $workspace10 "10  "
+set $workspace11 "11 "
+set $workspace12 "12 "
+set $workspace13 "13 "
+set $workspace14 "14 "
+set $workspace15 "15 "
+set $workspace16 "16 "
 
 # switch to workspace
+bindsym $mod+Control+Right workspace next
+bindsym $mod+Control+Left workspace prev
+
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+b workspace $workspace2 ; exec "vimb";
-bindsym $mod+w workspace $workspace3 ; exec "$HOME/bin/firefox_open";
-bindsym $mod+4 workspace $workspace4 ; exec nautilus | thunar;
-#bindsym $mod+5 workspace $workspace5 ; exec "$HOME/bin/chromium";
-#bindsym $mod+t workspace $workspace6 ; exec thunderbird;
-#bindsym $mod+7 workspace $workspace7 ; exec libreoffice;
-#bindsym $mod+8 workspace $workspace8 ; exec "kodi-standalone";
-#bindsym $mod+9 workspace $workspace9 ;
+bindsym $mod+Shift+f workspace $workspace3 ; exec open_spotify;
+bindsym $mod+Home workspace $workspace4 ; exec "emacs -fs";
+bindsym $mod+o workspace $workspace5 ; exec "st -n System_Operations -e system_operation";
+bindsym $mod+n workspace $workspace6 ; exec "st -n Newsboat -e newsboat";
+bindsym $mod+c  workspace $workspace7 ; exec "st -n Calcurse -e calcurse";
+bindsym $mod+u  workspace $workspace8 ; exec --no-startup-id "st -n Cmus -e cmus";
+bindsym $mod+Shift+m  workspace $workspace9 ; exec "st -n Mutt -e mail_open";
+bindsym $mod+g  workspace $workspace10 ; exec "st -n Tig -e tig_open";
+bindsym $mod+braceleft workspace $workspace11 ; exec  strail;
+bindsym $mod+braceright workspace $workspace12 ; exec "st -n Screencast -e screencast";
+bindsym $mod+m workspace $workspace13 ; exec  movie_watch;
+bindsym $mod+comma workspace $workspace14 ; exec photo_albaum;
+bindsym $mod+p workspace $workspace15 ; exec enlist_pdf_open;
+bindsym $mod+F11 workspace $workspace16 ; exec sys_monitor;
 
-#Workspace assignment
-#assign [class="(?i)xfce4-terminal"] 1
-#assign [class="(?i)firefox"] 2
-#assign [class="(?i)nautilus"] 3
-#assign [class="(?i)vlc"] 4
-#assign [class="(?i)chromium"] 5
-#Alternate assignment
-#
 #ASSIGN PROGRAMS TO WORKSPACES
-#
-assign [class="^st-256color"] → $workspace1
+assign [class="^st-256color" instance="^st-256color$"] → $workspace1
 assign [class="^Vimb$"]  → $workspace2
 assign [class="^Firefox$"] → $workspace3
-assign [class="^Nautilus$"] → $workspace4
-#assign [class="^Chromium$"] → $workspace5
-#assign [class="^Thunderbird$"] → $workspace6
-#assign [class="^libreoffice-startcenter$"] $workspace7
-#assign [class="^Kodi$"] $workspace8
+assign [class="^Emacs$"] → $workspace4
+assign [class="^st-256color$" instance="^System_Operations$"] → $workspace5
+assign [class="^st-256color$" instance="^Newsboat$"] →  $workspace6
+assign [class="^st-256color$" instance="^Calcurse$"] → $workspace7
+assign [class="^st-256color$" window_role="cmus" instance="^Cmus$"] → $workspace8
+assign [class="^st-256color$" instance="^Mutt$"] → $workspace9
+assign [class="^st-256color$" instance="^Tig$"] → $workspace10
+assign [class="^st-256color$" instance="^Sourcetrail$"] → $workspace11
+assign [class="^st-256color$" instance="^Screencast$"] → $workspace12
+assign [class="^st-256color$" instance="^Movies$"] → $workspace13
+assign [class="^st-256color$" instance="^Photos$"] → $workspace14
+assign [class="^st-256color$" instance="^Zathura$"] → $workspace15
+assign [class="^st-256color$" instance="^sys_monitor$"] → $workspace16
 
+# For_window versions
+
+# for_window  [instance="^st-256color$"] move container to workspace $workspace1
+#
+# for_window  [instance="^Vimb$"] move container to workspace $workspace2
+#
+# for_window  [instance="^Firefox$"] move container to workspace $workspace3
+#
+# for_window  [instance="^Emacs$"] move container to workspace $workspace4
+#
+ # for_window [class="st-256color" instance="^System_Operations$"] move container to workspace $workspace5
+
+# for_window  [instance="^Newsboat$"] move container to workspace $workspace6
+#
+# for_window [instance="^Calcurse$"] move container to workspace $workspace7
+#
+# for_window [instance="^Cmus$"] move container to workspace $workspace8
+#
+# for_window [instance="^Mutt$"] move container to workspace $workspace9
+#
+# for_window [instance="^Tig$"] move container to workspace $workspace10
+
+
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+bindsym $mod+Ctrl+braceleft workspace number 11
+bindsym $mod+Ctrl+braceright workspace number 12
+bindsym $mod+Ctrl+m workspace number 13
+bindsym $mod+Ctrl+comma workspace number 14
+bindsym $mod+Ctrl+p workspace number 15
+bindsym $mod+Ctrl+o workspace number 16
+# bindsym $mod+Ctrl+b workspace number 16
+
+# Prompt for workspace switch
+#bindsym $mod+w exec i3-input -F 'workspace number %s' -P 'go to workspace: '
 
 
 # move focused container to workspace
@@ -155,11 +219,17 @@ bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+braceleft move container to workspace $workspace11
+bindsym $mod+Shift+braceright move container to workspace $workspace12
+#bindsym $mod+Shift+backslash move container to workspace $workspace13
+#bindsym $mod+Shift+comma move container to workspace $workspace14
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -189,6 +259,13 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# class                  bground text    indicator
+# client.focused           #285577 #FFFFFF #2E9EF4
+# client.focused_inactive  #5F676A #FFFFFF #484E50
+# client.unfocused         #222222 #888888 #292D2E
+# client.urgent            #900000 #FFFFFF #900000
+# client.placeholder       #0C0C0C #FFFFFF #000000
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -201,7 +278,7 @@ colors {
 	statusline #dddddd
 	separator #666666
         focused_workspace  #4c7899 #285577 #ffffff
-        active_workspace   #333333 #5f676a #ffffff
+        active_workspace   #333333 #ac4fc6 #ffffff
         inactive_workspace #333333 #222222 #888888
         urgent_workspace   #2f343a #900000 #ffffff
 }
@@ -232,7 +309,7 @@ bindsym $mod+F2 exec amixer set Master 10%- unmute
 #local
 
 #lock
-bindsym $mod+shift+x exec i3lock -i ~/Pictures/i3lock.png
+bindsym $mod+shift+x exec i3lock -i ~/Pictures/LKM3_1024.png
 
  hide_edge_borders both
 workspace_auto_back_and_forth yes
@@ -241,21 +318,24 @@ bindsym $mod+Tab workspace back_and_forth
 
 for_window [class="^.*"] border pixel 1
 
-# Take a screenshot upon pressing $mod+x (select an area)
+# Take a screenshot of the entire desktop upon pressing $mod+x
 bindsym $mod+x exec scrot  -e 'mv $f ~/Pictures/Screenshots'
 
 # Press $mod+o followed by either f, t, Escape or Return to launch firefox,
 # thunderbird or return to the default mode, respectively.
-#set $mode_launcher Launch: [f]irefox [t]hunderbird
-#bindsym $mod+o mode "$mode_launcher"
+# set $mode_launcher Launch: [b]ash_keywords [f]irefox_keywords
 
-#mode "$mode_launcher" {
-#    bindsym f exec firefox
-#    bindsym t exec thunderbird
+# bindsym $mod+o mode "Shortcut_keys"
 
-#    bindsym Escape mode "default"
-#    bindsym Return mode "default"
-#}
+# mode "Shortcut_keys" {
+#     bindsym l exec i3_open_mode_keys
+#     bindsym b exec bash_supported_keywords
+#     bindsym f exec firefox_shortcut_keys
+#     bindsym Escape mode "default"
+#     bindsym Return mode "default"
+# }
+
+
 #bindsym --release button2 exec --no-startup-id import /tmp/latest-screenshot.png
 
 # Make the currently focused window a scratchpad
@@ -268,77 +348,27 @@ bindsym $mod+minus scratchpad show
 # print all window titles bold
  for_window [class=".*"] title_format "<b>%title</b>"
  #for_window [class="(?i)firefox"] title_format "<span foreground='magenta'>%title</span>"
- #
 
- # Toggle between hide state and show state
- # bindsym $mod+m bar hidden_state toggle
+# Focus on window activation
+focus_on_window_activation smart
 
- #dmenufm shortcut
-  bindsym $mod+p exec dmenufminvoke
-
- # Toggle between dock mode and hide mode
-  bindsym $mod+n bar mode toggle
-
-# My abroad tour videos
-
-bindsym $mod+g exec tour_videos
-
- # Cmus floating to play music
-
- bindsym $mod+u exec st -e cmus
- for_window [class="^Cmus$"] floating enable
-
-# Linux and opensource videos
- bindsym $mod+Shift+v exec linux_videos
+# Dotfiles config enlsit
+bindcode --release $mod+62 exec config_list
 
 # clipmenu show the selection in dmenu
+
 bindsym $mod+z exec "clipmenu  -p 'clipboard items listed:'"
-
-# i3dropdown setting
-#exec --no-startup-id i3 --get-socketpath > /tmp/i3wm-socket-path
-#for_window [instance="st-256color"] floating enable;
-# bindsym $mod+p exec --no-startup-id i3dropdown st
-
-#Movie selection and play
-
-bindsym $mod+m exec movie_watch
 
 # Play songs from artist directory
 
 bindsym $mod+semicolon exec songs_play
 
-# Open selected pdf from list
-
-bindsym $mod+o exec enlist_pdf_open
-
 # Surf browser open
 
-bindsym $mod+slash exec surf
+bindsym $mod+slash exec tabbed surf -pe
 
-# Photo albaum to open sxiv
-
-bindsym $mod+comma exec photo_albaum
-
-# Open the calendar
-
-bindsym $mod+apostrophe exec st -e calcurse
-
-for_window [class="^Calcurse$"] floating enable
-
-# Open kernel monitoring screen
-
-bindsym $mod+Shift+question exec st -e kmon --color cyan
-
-for_window [class="^Kmon$"] floating enable
-
-# Feeds are running by newsboat
-
-bindsym $mod+Shift+Return exec st -e newsboat
-
-for_window [class="^Newsboat$"] floating enable
-
-# Launch integrated webcam
- bindsym $mod+backslash exec ffplay /dev/video0
+# Close screencast
+bindsym $mod+Shift+bar exec kill_ffmpeg
 
 # Start video recording with ffmpeg
 bindsym $mod+BackSpace exec video_by_ffmpeg
@@ -348,3 +378,99 @@ bindsym $mod+grave exec i3_keybinds_help
 
 # Open youtube videos
 bindsym $mod+y exec search_youtube_videos
+
+# Seach query from dmenu prompt and open it on chosen browser
+ bindsym $mod+q exec search_on_the_internet
+
+# Open bookmarked site on browser
+bindsym $mod+Shift+b exec bookmark2
+
+# Mpv pause
+bindsym $mod+Shift+s exec mpv_stop
+
+# Mpv continue
+bindsym $mod+Shift+p exec mpv_cont
+
+# Cmus next song play
+bindsym $mod+Ctrl+n exec cmus-remote --next
+
+# Cmus prev song play
+bindsym $mod+Ctrl+r exec cmus-remote --prev
+
+# Cmus playback toggle
+bindsym $mod+Ctrl+t exec cmus-remote --pause
+
+# Cmus Stop Play
+bindsym $mod+Ctrl+v exec cmus-remote --stop
+
+# Cmus Start Play
+bindsym $mod+Ctrl+s exec cmus-remote --play
+
+# Kill/Stop Mpv
+bindsym $mod+Ctrl+k exec kill_mpv
+
+# Emacs pop up buffer anywhere
+for_window [title="^emacs-everywhere$"] move to scratchpad
+bindsym $mod+End exec  emacsclient --eval "(emacs-everywhere)" show scratchpad
+
+# Vim pop up buffer anywhere
+for_window [instance="^vim-everywhere$"] move to scratchpad
+bindsym $mod+Ctrl+Return exec "st -n vim-everywhere -e vim" scratchpad show
+
+# Emacs org-capture protocol
+bindsym $mod+Shift+o  exec org-capture
+
+# Search words in dictionary.com
+bindsym $mod+Shift+d exec search_dict
+
+# Linux/Vim/Emacs WIKI search
+bindsym $mod+w exec linux_wikis_search
+
+# search specific subreddit and get the urls of the topic
+bindsym $mod+Shift+t exec reddit_info
+
+# LWN headlines
+bindsym $mod+l exec lwn_headlines
+
+# Wikipedia search
+bindsym $mod+Shift+w exec wikipedia_search
+
+# Telegram desktop client
+bindsym $mod+plus exec toggle_telegram toggle
+
+# Mail subjectline top 20(Sys_Reg == PrtSc)
+bindsym $mod+Sys_Req exec check_mail2
+
+# Photo by webcam
+bindsym $mod+Delete exec take_photo_by_webcam
+
+# Hacker News top 10 headlines with dmenu
+bindsym $mod+Shift+h exec hn_headlines
+
+# List scripts and pressing enter open it in vim(105 == RightCtrl)
+bindcode --release $mod+105  exec admin_scripts
+
+# Select particular area of the screen and capture(108 == RightAlt)
+bindcode --release $mod+108 exec select_capture
+
+# Open Tour videos
+bindsym $mod+apostrophe exec tour_videos
+
+# Open i3 related scripts
+bindsym $mod+F12 exec i3scripts
+
+# Open firefox in safe mode
+bindsym $mod+Ctrl+f exec ff_safe_mode
+
+# Open manual page as pdf(press F1)
+bindcode --release 67 exec manual_view_in_pdf
+
+# Linux kernel released numbers from kernel.org (press Home)
+bindcode --release 110 exec kernel_feed.sh
+
+# htop scratchpad
+for_window [instance="^htop_scratchpad$"] move to scratchpad
+bindsym $mod+Ctrl+h exec "st -n htop_scratchpad -e htop" scratchpad show
+
+
+# vim:filetype=i3config

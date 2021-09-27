@@ -77,9 +77,9 @@ color=#00FFFF
 #command=~/.config/i3/vpn.sh
 #interval=100
 
-# [kernel]
-# command=~/.config/i3/latest_kernel_version.sh;echo
-# interval=3000
+#[kernel]
+#command=~/.config/i3/latest_kernel_version.sh;echo
+#interval=3000
 # color=#C8F49D
 
 #[browser]

@@ -5,5 +5,5 @@ case $BLOCK_BUTTON in
 	$(ps axch -o cmd:15,%mem --sort=-%mem | head)";;
 esac
 mem=$(free -h | awk '/^Mem:/ {print $3 "/" $2}')
-echo -e "<span color='black' bgcolor='#01A252'> : $mem</span>\n"
+echo -e "<span color='black' bgcolor='#FFD700'> : $mem</span>\n"
 #echo "Mem:$mem"

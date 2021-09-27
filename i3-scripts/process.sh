@@ -18,5 +18,5 @@
 
 proc_stat=$(top -bn1 | head -2 | grep running | gawk '{ print $2";"$5":"$4 }' | tr -d ',')
 
-echo -e "<span color='black' bgcolor='#7FFF00'>Process:$proc_stat</span>\n"
+echo -e "<span color='black' bgcolor='#1E90FF'>Process:$proc_stat</span>\n"
 #echo "Process:${proc_stat}"
