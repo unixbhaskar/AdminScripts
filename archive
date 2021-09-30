@@ -1,0 +1,45 @@
+#!/bin/bash
+
+filename=$1
+
+folder=$2
+
+usage() {
+
+	echo "$(basename $0) filename > filename.gz ---> Zip"
+	echo "$(basename $0) filename  directory_name ---> Tar Gz"
+	echo "$(basename $0) filename OR  directory_name ---> Bunzip2"
+	echo "$(basename $0)  directory_name ---> XZ"
+}
+
+if [[ "$filename" == ""  ]]; then
+	echo You are suppose provide filename or directory
+	usage
+	exit 1
+fi
+
+
+#filenameext="${filename##*.}"
+
+declare -a compress=(zip gz bz2 xz)
+echo ${compress[@]}
+
+
+printf "Which compression method : %s"
+read -r com
+
+if  [[ $com == "zip" ]];then
+		echo You want a zip archive
+              $(command -v gzip) -9  "$filename"
+elif [[ $com  == "gz" ]];then
+		echo You want a tar gz archive
+	      $(command -v tar) -cvzf "$filename" "$folder"
+elif [[ $com == "bz2" ]];then
+		echo You want a bunzip archive
+	      $(command -v bunzip2)  -z "$filename"
+elif [[ $com  == "xz" ]];then
+		echo You want a xz archive
+	      $(command -v xz) "$filename"
+else
+		echo It seems you are not sure what archive is needed.
+fi
