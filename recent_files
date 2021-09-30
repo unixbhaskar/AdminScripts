@@ -1,0 +1,11 @@
+#!/bin/bash
+
+dir=$1
+days=$2
+
+if [[ $1 == "" ]] || [[ $2 == "" ]];then
+	echo You are suppose to provide directory to search and number of days
+	exit 1
+fi
+
+find $dir -type f -regex ".*\.\(md\|txt\|sh\)" -mtime $days -exec vim "{}" \+
