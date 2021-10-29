@@ -58,7 +58,6 @@ set stylesheet=on
 augroup RemoveCustomizeStyleSheets
   autocmd!
    autocmd LoadStarted https://odysee.com/* set stylesheet=off | set dark-mode=on
-   autocmd LoadStarted https://youtube.com/* set stylesheet=off | set dark-mode=on
    autocmd LoadStarted https://twitter.com/* set stylesheet=off | set dark-mode=on
    autocmd LoadStarted https://tweetdeck.twitter.com/* set stylesheet=off | set dark-mode=on
 augroup END
@@ -89,7 +88,7 @@ nmap mc :shellcmd! mutt_config_tips_page<CR>
 nmap cg :shellcmd! check_gr<CR>
 nmap fk :shellcmd! flickr<CR>
 nmap gl :shellcmd! gitlab<CR>
-nmap sr :source ~/.config/vimb/config<CR>
+nmap sr :shellcmd! reload_vimb_config<CR>
 nmap hn :shellcmd! hackernews<CR>
 nmap so :shellcmd! stackoverflow<CR>
 nmap lo :shellcmd! lore<CR>
