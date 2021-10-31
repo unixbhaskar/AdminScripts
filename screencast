@@ -7,5 +7,5 @@
 #fi
 
 #ffmpeg -f x11grab  -r 25   -i :0  -vcodec libx264 -ac 2 -acodec libmp3lame screencast_$(date +'%F_%T').mkv
-ffmpeg -f alsa -ac 2 -i pulse  -f x11grab  -r 25   -i :0  -vcodec libx264 -acodec pcm_s16le screencast_$(date +'%F_%T').mkv
+ffmpeg -f alsa -ac 2 -i pulse  -f x11grab  -r 25   -i :0  -vcodec libx264 -acodec pcm_s16le ~/Videos/screencast_$(date +'%F_%T').mkv
 
