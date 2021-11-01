@@ -1,0 +1,98 @@
+#!/bin/bash
+
+source ~/.bashrc
+
+cat << "EOF"
+             a8888b.
+             d888888b.
+             8P"YP"Y88
+             8|o||o|88
+             8'    .88
+             8`._.' Y8.
+            d/      `8b.
+          .dP   .     Y8b.
+         d8:'   "   `::88b.
+        d8"           `Y88b
+       :8P     '       :888
+        8a.    :      _a88P
+      ._/"Yaa_ :    .| 88P|
+ jgs  \    YP"      `| 8P  `.
+ a:f  /     \._____.d|    .'
+      `--..__)888888P`._.'
+EOF
+
+kern_source="/home/bhaskar/git-linux/linux"
+cd $kern_source  && git switch master && git pull && cd $HOME
+
+noti_running=$(ps -ef | grep notifi | head -1 | gawk '{print $2}')
+
+if [[ "$noti_running" != "" ]];then
+          notify-send --expire-time=10000 --urgency=normal "It is pulling from the remote...wait"
+else
+        echo "Notification daemon is turned off :("
+fi
+
+
+repo="/home/bhaskar/git-linux/linux_github_fork"
+#githome="/home/bhaskar/git-linux"
+
+#echo -e "\n Cloning a HUGE repo , so it will take hell lot of time ..have patience..\n"
+
+#cd $githome
+
+#time git clone https://github.com/unixbhaskar/linux.git linux_github_fork
+
+cd $repo
+
+#echo -e "\n Adding upstream to be in sync with my github fork....\n"
+
+#git remote add upstream https://github.com/torvalds/linux.git
+
+echo -e "\n Fetching upstream ... \n"
+
+git fetch upstream
+
+if [[ $? -eq 0 ]];then
+
+   echo -e "\n Looks alright..proceed \n"
+else
+   echo -e "Something went wrong..check manually \n"
+fi
+
+
+echo -e "\n Checking out the local master ....\n"
+
+git checkout master
+
+
+echo -e "\n Go ahead and merge upstream/master to local/master ...\n"
+
+git merge upstream/master
+
+echo -e "\n Pushing the latest tags to the remote too...\n"
+
+find_latest_tag=$(git describe --abbrev=0 --tags)
+
+if [[ "$find_latest_tag" != "" ]];then
+#	git push origin $find_latest_tag
+        git pushlatestlinuxtag
+else
+	echo "Nothing new"
+fi
+echo -e "\n Checking out the final state of repo..\n"
+
+single_repo_status
+
+#if this branch is ahead of the remote branach push it
+
+forwd=$(git branches | grep "ahead")
+
+if [[ "$forwd" != "" ]];then
+
+	echo -e "\n Please push to remote,becasue local branch is ahead of remote branch."
+           git updatelinux && git gitlablinux
+	    $(command -v vimb) https://github.com/unixbhaskar/linux.git
+   else
+	   echo -e "\n It seems local and remote branches have similar commits."
+fi
+
