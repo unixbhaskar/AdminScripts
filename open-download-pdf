@@ -1,0 +1,15 @@
+#!/bin/bash -xv
+
+#URL=$VIMB_URI
+#URL="$@"
+latest_file=$(find $HOME/Downloads/ -iname "*.pdf" -type f -newermt $(date '+%F') -ls | gawk '{ print $11}' | sort -f -i -r | head -1)
+
+# XXX
+#logger "$URL : $VIMB_TITLE"
+#exit
+      $(command -v zathura) "$latest_file" >/dev/null 2>&1
+
+#if [ -n "$URL" ] ; then
+#URL=${URL//*\//}
+     #exec xdg-open "$HOME/Downloads/$URL" >/dev/null 2>&1
+#fi
