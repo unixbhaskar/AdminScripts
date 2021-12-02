@@ -1,37 +1,67 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 source /home/bhaskar/colors.sh
 NOCOLOR="\033[0m"
-slice=$1
-chroot_dir=$2
-BASH=$(which bash)
-MUNT=$(which mount)
-copy=$(which cp)
-change_root=$(which chroot)
-change_systemd_root=$(which systemd-nspawn)
-change_prompt="export PS1=\"(chroot) $PS1\"" 
-sys_init=`strings /sbin/init | gawk 'match($0, /(upstart|systemd|sysvinit)/) { print toupper(substr($0, RSTART, RLENGTH));exit; }'`
+BASH=$(command -v bash)
+MUNT=$(command -v mount)
+copy=$(command -v cp)
+change_root=$(command -v chroot)
+change_systemd_root=$(command -v systemd-nspawn)
+change_prompt="export PS1=\"(chroot) $PS1\""
+sys_init=$(strings /sbin/init | gawk 'match($0, /(upstart|systemd|sysvinit)/) { print toupper(substr($0, RSTART, RLENGTH));exit; }')
 
-#One should have superuser privilege to work with this script.\
+#One should have superuser privilege to work with this script.
 
 if [[ $UID != "0" ]];then
 
   printf "${Bright}${Red} You don't have enough privilege to utilise this tool.Use it with sudo or root :(  ${NOCOLOR} \n\n"
   exit 1
-fi  
+fi
 
+#Usage help
+usage() {
 
-#Checking system INIT type and taking appropriate action to respective to that system.
+   printf "${Bright}${Red} You forgot to mention either the target directory name or the partiton or both ...aborting.${NOCOLOR} \
 
-if [[ "$sys_init" == "SYSTEMD" ]] && [[ $@ -ne "0" ]] ;then
-        	
+       ${Reverse}Usage : change_os_root partition_number target_dir ${NOCOLOR}
+                              (sd[abc][123]) (/mnt or /whereever you like)
+
+\n\n"
+exit 1
+}
+
+#enlist all the partitions
+cat $HOME/part_stat
+
+printf "\n\n${Bright}${Green} Which partition or OS root you want to access: %s"
+read -r slice
+
+printf "\n Well, you want to access $slice \n\n"
+
+ls /
+
+printf "\n${Bright}${Yellow} Under which directory you want to mount the partition? : %s"
+
+read -r chroot_dir
+
+printf "\n You wanted to mount it on $chroot_dir \n"
+
+if [  -z "$slice" ] || [ -z "$chroot_dir" ];then
+
+    usage
+
+#Checkin system INIT type and taking appropriate action to respective to that system.
+
+elif [[ "$sys_init" == "SYSTEMD" ]];then
+
         printf "${Bright}${Green} Chrooting to other OS .... ${NOCOLOR}  \n\n\n"
 
 	printf "${Bright}${LimeYellow} This is a ${Reverse}SYSTEMD ${NOCOLOR} system, taking appropriate actions... \n\n"
-	
+
 	$MUNT /dev/$slice $chroot_dir
 	$change_systemd_root -bD $chroot_dir
 
-elif [[ "$sys_init" == "SYSVINIT" ]] && [[ $@ -ne "0" ]]; then
+elif [[ "$sys_init" == "SYSVINIT" ]];then
 
      printf "${Bright}${Green} Chrooting to other OS .... ${NOCOLOR}  \n\n\n"
 
@@ -50,30 +80,24 @@ elif [[ "$sys_init" == "SYSVINIT" ]] && [[ $@ -ne "0" ]]; then
      $copy  /etc/resolv.conf $chroot_dir/etc/
 
 
-printf "${Bright}${LimeYellow} Getting into the chroot environment and change the prompt for recognization ,please run at shell. ${NOCOLOR}  
+printf "${Bright}${LimeYellow} Getting into the chroot environment and change the prompt for recognization ,please run at shell. ${NOCOLOR}
 
-                           export PS1=\"(chroot) \$PS1\" 
+                           export PS1=\"(chroot) \$PS1\"
 
  \n\n"
 
   $change_root $chroot_dir $BASH
 
-
 else
-   printf "${Bright}${Red} You forgot to mention either the target directory name or the partiton or both ...aborting.${NOCOLOR} \
-
-       ${Reverse}Usage : change_os_root partition_number target_dir ${NOCOLOR}
-                              (sd[abc][123]) (/mnt or /whereever you like)
-
-\n\n"
-exit 1
+   printf "${Bright}${Red} Error encounter...inspect manually.${NOCOLOR}"
+          usage
 
 fi
 
 
 printf "${Bright}${PowderBlue} Well, leaving the chroot shell and unmounting the slice from mounted dir ... ${NOCOLOR} \n\n"
 
-trap EXIT 
+trap EXIT
 
 umount -l $chroot_dir
 
