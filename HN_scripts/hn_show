@@ -1,0 +1,11 @@
+#!/bin/bash
+
+declare -A hn_show_headlines
+
+
+title=$(printf '%s\n' "${!hn_show_headlines[@]}" | dmenu -l 10 -p "HN_Headlines: ")
+
+if [ "$title" ]; then
+	url=$(printf '%s\n' "${hn_show_headlines["${title}"]}" )
+	$BROWSER $url
+fi

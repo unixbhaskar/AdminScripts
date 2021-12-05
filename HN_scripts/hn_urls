@@ -1,0 +1,4 @@
+#!/bin/bash
+
+extract_url_by_awk ~/.hn_headlines.output |  tr -d ">" > ~/hnurls
+cat ~/hnurls | dmenu -l 10 | xargs -I {} setsid -f vimb {}

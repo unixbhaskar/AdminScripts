@@ -1,0 +1,7 @@
+#!/bin/bash
+/home/bhaskar/bin/hn_headlines
+
+cat $HOME/.hn_headlines.output | hn_url_content
+
+vim -c "4,13 normal Ihn_show_headlines[" -c "%s/ <https/]=\"https/g" -c "%s#>#\"#g" -c "%s/</]=\"/g" -c "%s#’##g"   /home/bhaskar/.hn_headlines -c wq
+~/.hn_headlines

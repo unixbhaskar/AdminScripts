@@ -1,0 +1,11 @@
+#!/bin/bash
+
+filename=$1
+
+if [[ $1 == "" ]];then
+	echo you need to provide the filename.
+	exit 1
+	fi
+
+
+ sed -e 's!http[s]\?://\S*!!g'  < $filename

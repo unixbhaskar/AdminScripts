@@ -1,0 +1,2 @@
+vim -c "%s#'##g" /home/bhaskar/.hn_headlines.output -c wq
+gawk -v x="$(cat "/home/bhaskar/.hn_headlines.output")" '{print} /declare/{print x }' ~/bin/hn_show  > ~/.hn_headlines
