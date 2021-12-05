@@ -1,6 +1,6 @@
 # Homepage that vimb opens if started without a URI.
 #set home-page=about:blank
-set home-page=www.lkml.org
+set home-page=https://github.com/unixbhaskar
 
 #user agent to goole
 # set user-agent=googlebot
@@ -95,6 +95,7 @@ nmap lo :shellcmd! lore<CR>
 nmap pr :shellcmd! incognito<CR>
 nmap sb :shellcmd! onlinesb<CR>
 nmap yt :shellcmd! openyoutube<CR>
+nmap ch :shellcmd! yt_channel<CR>
 
 #simple read format
 
