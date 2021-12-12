@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#Syncing with remote repo
+eix-sync
+
+#Update the local repo
+eix-update
+
+#Actually update the system with fetched in packges
+emerge  --verbose --update --deep --newuse --with-bdeps=y --keep-going @world
+
+if [[ $? -eq 0 ]];then 
+	notify-send "System has Updated successfully!"
+else
+	notify-send "Nope, Update is having trouble, please fix"
+	exit 1
+fi
+#Showing what are the packages merge in local system today
+genlop --list --date today
+
+#Clean the stale log of previous merge
+find /var/log/portage -maxdepth 1 -type f -ls -delete
+
+#Clean the distribution directory to gain disk space
+eclean-dist --deep
+
+# It is a custom to rip away the stale stuff from the system after world merge.
+emerge --ask --depclean
+
+#Check for security vulnerability by scanning local installed packages.
+glsa-check -f --verbose all  && glsa-check -l --verbose all
+
+
