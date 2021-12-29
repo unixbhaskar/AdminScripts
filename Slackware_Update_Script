@@ -1,0 +1,31 @@
+#!/bin/bash
+source /home/bhaskar/colors.sh
+NOCOLOR="\033[0m"
+TM="/usr/bin/time -f"
+printf "${Bright}${Yellow}${Reverse}Updating and Upgrading the system,please wait${NOCOLOR} ....\n\n\n"
+
+printf "Hostname: %s\nDate    : %s\nUptime  :%s\n\n"  "$(hostname -s)" "$(date)" "$(uptime)"
+
+printf "\n\n\n ${Bright}${Yellow}Checking the system capacity${NOCOLOR} ...\n\n"
+
+
+maxpoint="90"
+per=`df / | awk 'END{print $5}' | tr -d %`
+if  [ "$per" -le  "$maxpoint" ]; then
+
+	printf "${Bright}${Green}Ok...looks good...procced${NOCOLOR}\n\n\n"
+
+elif [ "$per" -gt "$maxpoint" ]; then
+
+	printf "${Bright}${Red}Not enough space...aborting!${NOCOLOR}"
+	exit 1
+fi
+
+
+$TM "\t\n\n Elapsed time: %E \n\n" slackpkg update  && slackpkg upgrade-all  
+
+if [[ $? -eq 0 ]];then 
+	notify-send "Update and Upgrade process done!"
+else 
+	notify-send "Update process failed..pls check manually"
+fi
