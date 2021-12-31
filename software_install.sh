@@ -20,10 +20,10 @@
 #set -o nounset                              # Treat unset variables as an error
 OS=$(uname -n)
 pkgs="i3 i3block i3lock vim scrot vimb zathura screen git neofetch newsboat
-calcurse htop lsof feh st dmenu mutt postfix lynx w3m pass gpg gpg2 curl wget
+calcurse htop lsof feh st dmenu mutt postfix lynx w3m pass  gpg2 curl wget
 syslog-ng iptraf-ng moreutils findutils dhcp dhcpcd wpa_supplicant sudo vifm
 surf mpv ffmpeg isync cmus cronie imgmagick zip xz psutils xclip xsel xdotool
-clipmenu clipmenud telegram tcpdump ipcalc sysstats etckeeper aspell"
+clipmenu clipmenud telegram tcpdump ipcalc sysstats etckeeper aspell emacs"
 
 source /home/bhaskar/colors.sh
 
@@ -36,7 +36,7 @@ printf "\n\n\t Installing minimal environment for the productivity on ${Bright}$
 
 software_install() {
 	printf "Which distro [G/D/S/O/A] : %s"
-	read distro
+	read -r distro
 	if [[ $distro == "G" ]];then
 		gentoo_soft_install
 		pull_down_my_settings_from_github
@@ -52,6 +52,9 @@ software_install() {
 	elif [[ $distro == "A" ]];then
 		arch_soft_install
 		pull_down_my_settings_from_github
+	else
+		echo Nothing Chosen..aborting!
+		exit 1
 	fi
 }
 # declare -A osInfo;
@@ -70,11 +73,12 @@ software_install() {
 
 pull_down_my_settings_from_github() {
 
-	echo Getting the ${Bright}${Blue}dotfiles${Normal} from ${Bright}${Magenta}GitHub${Normal}....
+printf "Getting the ${Bright}${Blue}dotfiles${Normal} from ${Bright}${Magenta}GitHub${Normal}....\n"
 
-	git clone https://github.com/unixbhaskar/dotfiles.git
-	cd dotfiles
-	cp -v * ../
+git clone --recurse-submodules --remote-submodules git@github.com:unixbhaskar/dotfiles.git
+cd dotfiles
+cp -v * $HOME/
+
 }
 
 gentoo_soft_install() {
