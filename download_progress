@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#download_url=$1
+# grab_url=$(ps -ef | grep wget | head -1 | gawk ' { print $10 }')
+
+download_url=$( echo | dmenu -p "Give Download Url:" )
+
+nourl() {
+if [[ "$down_url" == "" ]];then
+     notify-send "It seems, you forgot to provide the URL .."
+    exit 1
+fi
+}
+
+download() {
+
+	 wget $download_url 2>&1 | sed -u 's/.* \([0-9]\+%\)\ \+\([0-9.]\+.\) \(.*\)/\1\n# Downloading at \2\/s, ETA \3/'
+        notify-send "Downloading this: $download_url"
+}
+
+main() {
+
+if [[ "$download_url" != "" ]];then
+
+      download
+else
+	nourl
+fi
+
+}
+
+main
+
