@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#download_url=$1
+# grab_url=$(ps -ef | grep (wget\|curl\|git) | head -1 | gawk ' { print $10 }')
+
+clone_url=$( echo | dmenu -p "Give Git Clone Url:" )
+
+nourl() {
+if [[ "$clone_url" == "" ]];then
+     notify-send "It seems, you forgot to provide the URL .."
+    exit 1
+fi
+}
+
+cloning_git_repo() {
+         cd $HOME/git-linux && git clone "$clone_url"
+	# wget $download_url 2>&1 | sed -u 's/.* \([0-9]\+%\)\ \+\([0-9.]\+.\) \(.*\)/\1\n# Downloading at \2\/s, ETA \3/'
+        notify-send "Cloning this: $clone_url"
+}
+
+cloning() {
+
+if [[ "$clone_url" != "" ]];then
+
+    cloning_git_repo
+  cd "$(basename $clone_url .git)" && bash -
+else
+	nourl
+fi
+
+}
+
+cloning
+
