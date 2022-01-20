@@ -2,13 +2,21 @@
 
 mpv_pid=$(pgrep mpv)
 
-playing=$( ps -ef | grep mpv | sort -r | gawk '{ print $10 }')
+not_playing_in_loop=$( ps -ef | grep mpv | sort -r | gawk '{ print $10 }')
+playing_in_loop=$( ps -ef | grep mpv | sort -r | gawk '{ print $11 }' | grep -v mpv)
 
-songs=$(basename $playing)
-songs2=${songs%.*}
+single_song=$(basename $not_playing_in_loop)
+single_songs2=${single_song%.*}
 
-if [[ $mpv_pid != "" ]];then
+loop_song=$(basename $playing_in_loop)
+loop_songs2=${loop_song%.*}
 
-    #echo "$songs2"
-    echo -e "<span color='black' bgcolor='#FF1493'>$songs2</span>\n"
+if [[ "$single_song" != "" ]];then
+
+    echo -e "<span color='black' bgcolor='#FF1493'>$single_songs2</span>\n"
+
+elif [[ "$loop_song" != "" ]];then
+
+    echo -e "<span color='black' bgcolor='#FF1493'>$loop_songs2</span>\n"
+
 fi
