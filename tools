@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# This script helps you chose program to run in shell . If you failed to give
+# any argument to the command you chose ,it will simply show you the help
+# listing . And if you pass any argument to the specific command you select,it
+# will simply run the command with that argument.
+
+# The below array can be expanded as per your requirement.
+declare -a tools=( namei hostid findfs lsof pgrep pwdx pmap nm objdump objcopy readelf gdb )
+
+# Select the tool from the prompt showing at the top of the screen.
+tool_choice=$(printf '%s\n' "${tools[@]}" | dmenu -l 10 -i -p "Tools:")
+
+# If you decide not to use it ,then simply exit
+[[ ! $tool_choice ]] && notify-send "You haven't select any tool" && exit 1
+
+# specify the argument you need to pass on along with the tool you have chosen
+# last step
+args=$(echo | dmenu -i -p "What arguments:")
+
+# Testing the condition to see ,if no argument given ,it will simply show the
+# help output
+if test "$args" == "";then
+	   $tool_choice --help && bash -
+
+# And when you provide specific argument ,it will go ahead and show output of
+# the command i.e whatever tool you have chosen
+elif test "$args" != "";then
+        $tool_choice $args && bash -
+else
+	:
+fi
+
