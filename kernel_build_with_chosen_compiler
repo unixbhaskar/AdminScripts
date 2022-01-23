@@ -1,0 +1,148 @@
+#!/bin/bash
+
+# Check out: https://www.kernel.org/doc/html/latest/kbuild/index.html
+# For kernel download helper script: https://git.kernel.org/pub/scm/linux/kernel/git/mricon/korg-helpers.git/tree/get-verified-tarball
+
+
+get_make=$(command -v make)
+get_elapsed_time="/usr/bin/time -f"
+untar_it="tar -xJvf"
+existing_config_file="/boot/config-$(uname -r)"
+build_dir=/var/tmp/kernel/latest_kernel_build
+get_it=$(command -v secure_kernel_tarball)
+NOTIFY=$(command -v notify-send)
+clang="CC=clang"
+host_cc_clang="HOSTCC=clang"
+make_llvm="LLVM=1"
+llvm_assm="LLVM_IAS=1"
+tools_version_check="scripts/ver_linux"
+config_change="scripts/config"
+
+if [[ ! -d $build_dir ]];then
+	mkdir -p $build_dir
+fi
+
+cd $build_dir
+
+generic_kernel_build() {
+
+#Download the kernel
+
+which_kernel
+
+eval ${get_it} ${kernel}
+
+#Untar it
+$untar_it linux-$kernel.tar.xz
+
+#Get into the kernel direcory
+cd linux-$kernel
+
+#Check for required tools to build kernel
+$tools_version_check
+
+#Copying the existing system running kernel config
+cp $existing_config_file .config
+
+# Take away the DEBUG options for faster compile
+$config_change --disable DEBUG_KERNEL
+grep DEBUG_KERNEL .config
+
+#Similar vein like above, for faster compile time
+$config_change --disable DEBUG_INFO
+grep DEBUG_INFO .config
+
+#Choose a compiler to build
+which_compiler
+
+}
+
+
+#This is assuming that you have already installed "clang" and "llvm" in the system
+
+which_compiler() {
+printf "\n\t Which compiler do you want to use for build ,CLANG or GCC? [C/G] : %s"
+read compiler_chosen
+
+if [[ $compiler_chosen == "G" ]];then
+
+       gcc_compile
+
+elif [[ $compiler_chosen == "C" ]];then
+
+       clang_llvm_compile
+else
+                printf "\n\n You have to choose a compiler to build.\n"
+	        exit 1
+
+fi
+}
+
+which_kernel() {
+printf "\n\n Which kernel would be your base? Stable or Mainline or Longterm? [S/M/L]: %s"
+read response
+
+if [[ $response == "S" ]];then
+#Get the stable kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 5.16)
+elif [[ $response == "M" ]];then
+#Get the mainline kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
+elif [[ $response == "L" ]];then
+#Get the longterm kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'longterm:' | grep -oP '(?<=strong>).*(?=</strong.*)' | head -1)
+fi
+}
+
+
+
+gcc_compile() {
+
+                printf "\n You have chosen to use GCC as the compiler to build.\n\n"
+
+		$get_make  ARCH=x86_64 olddefconfig
+
+		$get_elapsed_time "\t\n\n Elapsed Time : %E \n\n"  $get_make ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN) LOCALVERSION=-$(hostname)
+
+		$get_make cleandocs
+
+		$get_make modules_install
+
+		printf "\n\n Do you want to install it system wide?? [Y/N] : %s"
+		read choice
+
+		if $choice == Y; then
+
+			$get_make install
+
+	        else
+			printf "\n Nope , you declined to install the build kernel system wide. \n"
+
+		fi
+}
+
+clang_llvm_compile() {
+		printf "\n\t You have chosen to use CLANG as the compiler to build.\n\n"
+
+		$get_make $clang $host_clang_cc $llvm_make $llvm_assm  ARCH=x86_64 olddefconfig
+
+	        $get_elapsed_time "\n\t Elapsed Time: %E \n\n" $get_make $clang $host_clang_cc $llvm_make $llvm_assm  ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN)
+
+		$get_make cleandocs
+
+		$get_make $clang $llvm_make $llvm_assm modules_install
+
+		printf "\n\n Do you want to install it system wide?? [Y/N] : %s"
+		read choice
+
+		if $choice == Y; then
+
+			$get_make install
+
+	        else
+		        printf "\n Nope , you declined to install the build kernel system wide. \n"
+
+		fi
+}
+
+generic_kernel_build
