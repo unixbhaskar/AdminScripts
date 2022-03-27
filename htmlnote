@@ -1,0 +1,5 @@
+#!/bin/bash
+
+NOTES=/home/bhaskar/Notes/html/
+
+find $NOTES -iname "*.html" -type f -newermt $(date '+%F') -ls | gawk '{ print $11}' | sort -f -i | head -1 |  xargs -I {} firefox {} >/dev/null 2>&1
