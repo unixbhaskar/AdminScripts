@@ -1,0 +1,10 @@
+#!/bin/bash
+NOTES=/home/bhaskar/Notes/
+cd $NOTES
+
+filename=$1
+outputfile="$(basename "$filename" .md).pdf"
+
+pandoc $filename -o "$outputfile" &
+sleep 30
+mv "$outputfile" pdfs/
