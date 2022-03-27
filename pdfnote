@@ -1,0 +1,5 @@
+#!/bin/bash
+
+NOTES=/home/bhaskar/Notes/pdfs/
+
+find $NOTES -iname "*.pdf" -type f -newermt $(date '+%F') -ls | gawk '{ print $11}' | sort -f -i -r | head -1 |  xargs -I {} zathura {}
