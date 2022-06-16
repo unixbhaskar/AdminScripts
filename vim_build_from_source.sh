@@ -20,6 +20,19 @@
 set -o nounset                              # Treat unset variables as an error
 basepath=/home/bhaskar/git-linux/
 
+printf "Hang on! Lets take a backup of existing files and folders first
+.....\n"
+
+sudo mv /usr/bin/vim{,.$(date +'%F_%T')}
+#sudo mv /usr/share/vim{,.$(date +'%F_%T')}
+
+if [[ $? -eq 0 ]];then
+	echo Done!
+else
+	echo Not backed up properly...so aborting
+	exit 1
+fi
+
 cd $basepath
 
 if [ ! -d vim ];then
@@ -37,8 +50,9 @@ fi
 
 printf "Lets build it on.....$(hostname)"
 
+make clean
 
-./configure --with-features=huge --enable-rubyinterp --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7/config-i386-linux-gnu/ --enable-perlinterp --enable-gui=gtk2 --enable-cscope --enable-luainterp --enable-perlinterp --enable-multibyte --prefix=/usr
+./configure  --with-features=huge --enable-rubyinterp ---enable-pythoninterp --with-python-config-dir=$(python3-config --configdir) --enable-perlinterp --enable-gui=gtk2 --enable-cscope --enable-luainter  --enable-multibyte --prefix=/usr
 
 make
 
