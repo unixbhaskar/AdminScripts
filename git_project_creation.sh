@@ -2,11 +2,6 @@
 # This script will crate git project in specified location,only need to pass the name of the porject.
 
 
-#if [ $(id -u) -ne 0 ] ; then
-#  echo "Please run script as root user"
-#  exit 1
-#fi
-
 if [ $# -ne 1 ] ; then
   echo "Usage : $0 <project name>"
   exit 2
@@ -14,17 +9,14 @@ fi
 
 ProjectName=$1
 
-cd /home/$USER/git-linux/
+basedir="/home/$USER/git-linux/"
 
-mkdir -p  ${ProjectName}.git
+mkdir -p  $basedir/${ProjectName}
 
-cd ${ProjectName}.git/
+chown -R $USER:$USER $basedir/${ProjectName}
 
-git init --bare
+cd $basedir/${ProjectName}
+git init  --bare && git init
 
-cd ..
-
-chown -R $USER:$USER ${ProjectName}.git
-
+git add . && git commit -s  -m "intial commit"
 exit 0
-
