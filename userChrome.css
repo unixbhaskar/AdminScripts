@@ -2,7 +2,8 @@
 
 browser vbox#appcontent tabbrowser, #content, #tabbrowser-tabpanels,
 browser[type=content-primary],browser[type=content] > html {
-	    background: #1D1B19 !important
+	    /* background: #1D1B19!important */
+	    background: #002b36 !important
     }
 
 
@@ -35,3 +36,7 @@ browser[type=content-primary],browser[type=content] > html {
   opacity: 1;
 }
 
+#bookmarks-view, #historyTree {
+  /* background-color: #CFB53B !important; */
+  background-color: #002b36 !important;
+}
