@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+#===============================================================================
+#
+#          FILE: ffmpeg_buid_from_upstream_on_slackware.sh
+#
+#         USAGE: ./ffmpeg_buid_from_upstream_on_slackware.sh
+#
+#   DESCRIPTION: This script will build ffmpeg from upstream source
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: rsync x264(this has to be installed beforehand)
+#          BUGS: ---
+#         NOTES: Shipped package with Slackware might not have all
+#        AUTHOR: Bhaskar Chowdhury (https://about.me/unixbhaskar), unixbhaskar@gmail.com
+#  ORGANIZATION: Independent
+#       CREATED: 08/28/2022 04:17
+#      REVISION:  ---
+#===============================================================================
+
+set -o nounset                              # Treat unset variables as an error
+
+set -vx
+# Get the latest version from upstream
+rsync -avz rsync://mirrors.kernel.org/slackware/slackware-current/source/l/ffmpeg .
+
+ffmpegdir="/root/ffmpeg"
+
+cd "$ffmpegdir" || echo "Nope,not get into it ...aborting"
+
+# Extract out the version numeric from the package name
+version=$(find . -name "*.xz" -type f -print | sed -e 's#ffmpeg# #' | sed -e 's#tar.xz# #' | sed -e 's#.$# #'  | sed -e 's#^./-# #')
+
+# Change the permission of the package build script,give exec bit
+chmod +x ffmpeg.SlackBuild
+
+echo Building it ....
+
+# This directing the build script to use x264 video codecs
+sh -c "X264=yes ./ffmpeg.SlackBuild"
+
+# Checking if the build went alright or not and take decision based on it
+if [[ $? -eq 0 ]];then
+	echo installing the package.
+
+	sh -c "installpkg  /tmp/ffmpeg-$version-x86_64-1.txz"
+
+else
+	echo Build is not ok.cross check it...
+fi
