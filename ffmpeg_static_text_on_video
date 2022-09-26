@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+video_file=$1
+text_content=$2
+
+if [[ $# -ne 2 ]];then
+   echo You are suppose to provide the source video file and text to display.
+   exit 1
+fi
+
+ffmpeg -i "$video_file" -vf drawtext="fontfile=/home/bhaskar/.fonts/ttf/DejaVuSansMono.ttf: text='${text_content}':x=(w-text_w)/2:y=(h-text_h)/2 : fontcolor=yellow: fontsize=80: enable='between(t,00,1*60)'" modified.mp4
+
+mv -v "modified.mp4" "$video_file"
