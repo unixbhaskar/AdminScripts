@@ -1,10 +1,18 @@
-#!/bin/bash
-CURL="/usr/bin/curl"
-GAWK="/usr/bin/gawk"
-echo -n "Please pass the url you want to measure:  " 
-read url 
+#!/usr/bin/env bash
+
+# This script appeared in IBM Linux Technical Journal many moons ago. I have
+# modified it to suit my convenience. Probably one written by M.Tim.Jones or
+# Ian Shield ,not sure who it was, because I can't remember it.
+
+
+CURL=$(command -v curl)
+GAWK=$(command -v gawk)
+
+echo -n "Please pass the url you want to measure:  "
+read url
 URL="$url"
+
 result=`$CURL -o /dev/null -s -w %{time_connect}:%{time_starttransfer}:%{time_total} $URL`
-echo " Time_Connect     Time_startTransfer   Time_total "
-echo $result | $GAWK -F: '{ print    $1"               "$2"                   "$3}'
-  
+echo " Time_Connect     Time_startTransfer             Time_total "
+echo $result | $GAWK -F: '{ print      $1"               "$2"                   "$3}'
+
