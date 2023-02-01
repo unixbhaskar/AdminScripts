@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
-# This script appeared in IBM Linux Technical Journal many moons ago. I have
-# modified it to suit my convenience. Probably one written by M.Tim.Jones or
-# Ian Shield ,not sure who it was, because I can't remember it.
+# This script appeared in IBM Linux Technical Library many moons ago,around
+# 2009-2010. I have modified it to suit my convenience.
+# Original one was written by either M.Tim.Jones or Ian Shield,
+# not sure who it was,because I can't remember it.
 
+# Quick and dirty way to measure website response.
 
 CURL=$(command -v curl)
 GAWK=$(command -v gawk)
 
 echo -n "Please pass the url you want to measure:  "
-read url
+read -r url
 URL="$url"
 
-result=`$CURL -o /dev/null -s -w %{time_connect}:%{time_starttransfer}:%{time_total} $URL`
+result=$($CURL -o /dev/null -s -w %{time_connect}:%{time_starttransfer}:%{time_total} $URL)
 echo " Time_Connect     Time_startTransfer             Time_total "
 echo $result | $GAWK -F: '{ print      $1"               "$2"                   "$3}'
 

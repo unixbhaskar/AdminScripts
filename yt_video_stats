@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# This script is to fetch youtube video title and view count and show it on the
+# terminal. Presently, only showing latest five videos title and count, but
+# that could be change to any number. You need to change the file name to the
+# paste command to reflect the change in output.
+
+TIMESTAMP=$(date +%s)
+URL="https://youtube.com/c/BhaskarChowdhury/videos"
+TITLES="youtube-dl --skip-download --get-title --no-warnings $URL >"$HOME/yt_video_headings""
+VIEWS="wget -q -O- ${URL} | grep -oP \"[0-9,]+(?=\sviews)\" | uniq >"$HOME/yt_video_views""
+
+
+# Checking the timestamp to see when was the last time it was updated. If that
+# passed 10 mins then fetch agian otherwise show the last fetched results.
+
+check_youtube_stats () {
+# Timestamp
+  # {
+  #    echo "$TIMESTAMP"
+  #  } >"$HOME/.youtube_fetch_timestamp.last"
+
+        echo Hang on! It might take some times to get it...
+	echo
+            eval "$TITLES"
+            eval "$VIEWS"
+
+# if [[ -t 1 ]]
+#    then
+#      if [[ -f "$HOME/.youtube_fetch_timestamp.last" ]]
+#      then
+#          LAST=$(cat "$HOME/.youtube_fetch_timestamp.last")
+# 	 DIFFERENCE=$((("$TIMESTAMP" - "$LAST")))
+#          if [[ $DIFFERENCE -gt 200 ]]
+#            then
+          head -n5 "$HOME/yt_video_headings" >"$HOME/latest5_yt_video_title"
+
+          head -n5 "$HOME/yt_video_views" >"$HOME/latest5_yt_video_views"
+        # else
+        #     echo Too soon to update..
+        # fi
+# fi
+# fi
+
+
+echo "Views     Title" >"$HOME/yt_video_stats"
+paste -d '    ' "$HOME/latest5_yt_video_views" "$HOME/latest5_yt_video_title" >>"$HOME/yt_video_stats"
+
+
+cat "$HOME/yt_video_stats"
+}
+
+check_youtube_stats
