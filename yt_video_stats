@@ -5,6 +5,7 @@
 # that could be change to any number. You need to change the file name to the
 # paste command to reflect the change in output.
 
+
 TIMESTAMP=$(date +%s)
 URL="https://youtube.com/c/BhaskarChowdhury/videos"
 TITLES="youtube-dl --skip-download --get-title --no-warnings $URL >"$HOME/yt_video_headings""
