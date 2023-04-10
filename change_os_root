@@ -10,14 +10,6 @@ change_systemd_root=$(command -v systemd-nspawn)
 change_prompt="export PS1=\"(chroot) $PS1\""
 sys_init=$(strings /sbin/init | gawk 'match($0, /(upstart|systemd|sysvinit)/) { print toupper(substr($0, RSTART, RLENGTH));exit; }')
 
-#One should have superuser privilege to work with this script.
-
-if [[ $UID != "0" ]];then
-
-  printf "${Bright}${Red} You don't have enough privilege to utilise this tool.Use it with sudo or root :(  ${NOCOLOR} \n\n"
-  exit 1
-fi
-
 #Usage help
 usage() {
 
@@ -29,6 +21,15 @@ usage() {
 \n\n"
 exit 1
 }
+
+#One should have superuser privilege to work with this script.
+
+if [[ $UID != "0" ]];then
+
+  printf "${Bright}${Red} You don't have enough privilege to utilise this tool.Use it with sudo or root :(  ${NOCOLOR} \n\n"
+  usage
+  exit 1
+fi
 
 #enlist all the partitions
 cat $HOME/part_stat
@@ -87,7 +88,6 @@ printf "${Bright}${LimeYellow} Getting into the chroot environment and change th
  \n\n"
 
   $change_root $chroot_dir $BASH
-
 else
    printf "${Bright}${Red} Error encounter...inspect manually.${NOCOLOR}"
           usage
