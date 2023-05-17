@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+
+# Author : Bhaskar Chowdhury
+# Email  : unixbhaskar@gmail.com
+# Website: https://unixbhaskar.wordpress.com
+
+
+# Update portage tree and eix, then bring all packages in @world up-to-date.
+# Clean up at the end, ensuring changes to files in /etc are processed.
+# Will offer to update the kernel, if a new version has become available.
+
+# License (GPL v2.0)
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+
+set -e
+set -u
+shopt -s nullglob
+
+printf "Hostname: %s\nDate    : %s\nUptime  :%s\n\n"  "$(hostname -s)" "$(date)" "$(uptime)"
+
+# Last repository sync time
+echo Last sync to remote repository made on:
+echo 
+qlop -s | tail -n1 | tr -d "***"
+
+# Syncing with remote repo
+ eix-sync
+
+# Update the local repo
+ eix-update
+
+# Updating the packager manager itself first, if the update available
+
+emerge --oneshot --update portage
+
+# See if there is any significant news in the in gentoo channel
+NEWS=$(eselect news count)
+if [ $NEWS -ne 0 ]; then
+     eselect news read
+else
+    notify-send "No news is good news"
+fi
+
+
+# Actually update the system with fetched in packages
+emerge  --verbose --update --deep --newuse --with-bdeps=y --exclude net-libs/webkit-gtk --exclude dev-libs/libffi --keep-going @world
+
+if [ $? -eq 0 ];then
+	notify-send "System has Updated successfully!"
+else
+	notify-send "Nope, Update is having trouble, please fix"
+	exit 1
+fi
+
+
+# If some of the library needs to be rebuild, then do it
+# notify-send "Rebuilding the preserved libraries..."
+
+# emerge @preserved-rebuild
+
+# if [ $? -ne 0 ];then
+# 	notify-send "Trouble rebuilding preserve libraries."
+# else
+# 	:
+# fi
+
+
+# Showing what are the packages merge in local system today
+genlop --list --date today
+
+# Clean the stale log of previous merge
+find /var/log/portage -maxdepth 1 -type f -ls -delete
+
+# Clean the distribution directory to gain disk space
+eclean-dist --deep
+
+# It is a custom to rip away the stale stuff from the system after world merge.
+notify-send "Running depclean, please be attentive..."
+emerge --ask --depclean
+
+# Check for security vulnerability by scanning local installed packages.
+glsa-check -f --verbose all  &&  glsa-check -l --verbose all
+
+# System checks for sanity
+
+echo ":: Checking file system root size"
+df -h | grep "/$"
+echo ":: Checking package file size too"
+du -shc "/var/cache/distfiles" | head -1
+echo ":: Checking the world file..."
+emaint world
