@@ -33,27 +33,27 @@
 	repoclean = "!git clean -d -f -x"
 	remotes = remote -v
 	delfiles = "!git ls-files --deleted | xargs git rm"
-        sdiff = "!git diff && git submodule foreach 'git diff'"	
+        sdiff = "!git diff && git submodule foreach 'git diff'"
 	spush = "!git push --recurse-submodules=on-demand"
 	supdate = "!git submodule update --remote --merge"
 	localcommit = "!git cherry -v"
-	updatelinux = "!git push https://unixbhaskar:sunsolaris13@github.com/unixbhaskar/linux.git master"
-	updategit = "!git push https://unixbhaskar:sunsolaris13@github.com/unixbhaskar/git.git master"
+	updatelinux = "!git push https://unixbhaskar:@github.com/unixbhaskar/linux.git master"
+	updategit = "!git push https://unixbhaskar:@github.com/unixbhaskar/git.git master"
 	muttupdate = "!git push https://unixbhaskar:sunsolaris19@gitlab.com/unixbhaskar/mutt.git master"
-        updatei3 = "!git push https://unixbhaskar:sunsolaris13@github.com/unixbhaskar/i3.git next"
-        updatebcc = "!git push https://unixbhaskar:sunsolaris13@github.com/unixbhaskar/bcc.git master"
-	pushlatestlinuxtag = "!git push https://unixbhaskar:sunsolaris13@github.com/unixbhaskar/linux.git --tags"
-        pushlatestgittag = "!git push https://unixbhaskar:sunsolaris13@github.com/unixbhaskar/git.git --tags"
+        updatei3 = "!git push https://unixbhaskar:@github.com/unixbhaskar/i3.git next"
+        updatebcc = "!git push https://unixbhaskar:@github.com/unixbhaskar/bcc.git master"
+	pushlatestlinuxtag = "!git push https://unixbhaskar:@github.com/unixbhaskar/linux.git --tags"
+        pushlatestgittag = "!git push https://unixbhaskar:@github.com/unixbhaskar/git.git --tags"
 # Show the diff between the latest commit and the current state
         currentstate = "!git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 #show aliases
       aliases = config --get-regexp alias
-#interactive rebase 
+#interactive rebase
      reb = "!r() { git rebase -i HEAD~$1; }; r"
 # List contributors with number of commits
      contributors = shortlog --summary --numbered
-# remove bunch of files at once 
-     remove = rm $(git ls-files -d)          
+# remove bunch of files at once
+     remove = rm $(git ls-files -d)
 #Gobal pull request fetcher
 #git config --global --add remote.origin.fetch "+refs/pull/*/head:refs/remotes/origin/pr/*"
 
@@ -75,14 +75,14 @@ unfreeze = update-index --no-assume-unchanged
          smtpserver = smtp.gmail.com
          smtpencryption = tls
          smtpserverport = 587
-	 smtppass = jfvqpuyqfnhkjeop
+	 smtppass =
 	 confirm = auto
 	 chainreplyto = false
 
-  
+
 [github]
 	user = unixbhaskar
-	token = 8bf10db8584efc1a78f25c1f8e4d68690b909ad2
+	token =
 [rerere]
 	enabled = true
 [gc]
