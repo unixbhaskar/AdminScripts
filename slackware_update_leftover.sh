@@ -8,7 +8,7 @@
 #   DESCRIPTION: Clean things up after the update by putting files in  places
 #
 #       OPTIONS: ---
-#  REQUIREMENTS: --- GNU coreutils 
+#  REQUIREMENTS: --- GNU coreutils
 #          BUGS: ---
 #         NOTES: --- Cleanliness of the /etc directory
 #        AUTHOR: Bhaskar Chowdhury (https://about.me/unixbhaskar), unixbhaskar@gmail.com
@@ -48,8 +48,13 @@ fi
 
 backup_dir_with_new_extension="/etc/backup_new_config_$(date +'%F_%T')"
 backup_dir_with_orig_extension="/etc/backup_orig_config_$(date +'%F_%T')"
-search_dir=/etc 
-TAR="$(command -v tar)" 
+search_dir=/etc
+TAR="$(command -v tar)"
+old_backup_dir1=$(find . -name "backup_new_config_*" -type d | tr -d "./")
+old_backup_dir2=$(find . -name "backup_orig_config_*" -type d | tr -d "./")
+
+
+cd "$search_dir" || exit 1
 
 # Function to make a tarball of the existing directory filled with dot new
 # extensions files and create a new directory to hold new files left the by
@@ -57,9 +62,9 @@ TAR="$(command -v tar)"
 
 config_backedup_with_new(){
 
-	files=$(find "${search_dir}" -name "*.new" -type f -print)
+	 files=$(find "${search_dir}" -name "*.new" -type f -print)
 
-        sh -c "\"${TAR}\" -czf \"new_config_$(date +'%F_%T').tar.gz\" \"${backup_dir_with_new_extension}\""
+	sh -c "\"${TAR}\" -czf previous_new_config.tar.gz \"${old_backup_dir1}\""
 	mkdir -p "${backup_dir_with_new_extension}"
 
 	for i in $files
@@ -72,13 +77,13 @@ done
 
 # Function to make a tarball of the existing directory filled with dot orig
 # file extensions and create new directory to hold new dot orig files left by
-# the update 
+# the update
 
 config_backedup_with_orig(){
 
-       files=$(find "${search_dir}" -name "*.orig" -type f -print)
+        files=$(find "${search_dir}" -name "*.orig" -type f -print)
 
-	 sh -c "\"${TAR}\" -czf  \"orig_config_$(date +'%F_%T').tar.gz\" \"${backup_dir_with_orig_extension}\""
+       sh -c "\"${TAR}\" -czf  previous_orig_config.tar.gz \"${old_backup_dir2}\""
 	mkdir -p "${backup_dir_with_orig_extension}"
 
        for i in $files
