@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+video_file=$1
+
+
+if [[ $# -ne 1 ]];then
+   echo You are suppose to provide the source video file.
+   exit 1
+fi
+
+ffmpeg -i "$video_file" -af "highpass=200,lowpass=3000,afftdn" -c:v copy myvideo_clean.mkv
+
+
+if test $? -eq 0;then
+	notify-send "Done,clearing the backgrund noise on video"
+        mv -v "myvideo_clean.mkv" "$video_file"
+else
+	notify-send "Failed..check manually"
+fi
