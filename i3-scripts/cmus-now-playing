@@ -51,11 +51,12 @@ if [ ${#output} -ge ${maxlen} ]
 then
   output="$( echo $output | colrm ${maxlen} )…"
 fi
+time_total=$(mp3info -p "%m:%02s\n" "$(cmus-remote -Q | grep file | sed 's/file//' | tr -d "^ ")")
 
 # Echo the crap of out it
 if [ -n "$output" ]; then
   #echo "${CUR_ICON} ${output}"
   #echo "${CUR_ICON} ${output}"
-echo -e "<span color='black' bgcolor='#F08080'>${CUR_ICON} ${output}</span>\n"
+echo -e "<span color='black' bgcolor='#FF8C00'> ${CUR_ICON} ${output} $time_total</span>\n"
 # echo -e "<span color='black' bgcolor='#F08080'>${CUR_ICON} ${output}</span>\n"
  fi

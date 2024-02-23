@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 
 not_playing_in_loop=$(ps -ef | grep mpv | grep -v grep | sort -r | gawk '{ print $10 }' | head -1)
@@ -10,12 +10,16 @@ single_song2=${single_song%.*}
 loop_song=$(basename $playing_in_loop)
 loop_song2=${loop_song%.*}
 
+
+time_total_single=$(mp3info -p "%m:%02s\n" "$HOME/Music/$not_playing_in_loop")
+time_total_loop=$(mp3info -p "%m:%02s\n" "$HOME/Music/$playing_in_loop")
+
 if [[ "$single_song" != "" ]];then
 
-    echo -e "<span color='black' bgcolor='#FF1493'>$single_song2</span>\n"
+    echo -e "<span color='black' bgcolor='#FF1493'> $single_song2 $time_total_single</span>\n"
 
 elif [[ "$loop_song" != "" ]];then
 
-    echo -e "<span color='black' bgcolor='#FF1493'>$loop_song2</span>\n"
+    echo -e "<span color='black' bgcolor='#FF4500'>  $loop_song2 $time_total_loop</span>\n"
 
 fi
