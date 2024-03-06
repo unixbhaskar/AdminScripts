@@ -1,103 +1,49 @@
-#!/bin/bash
-/bin/date >>segmenter.log
+#!/usr/bin/env bash
 
-function segment (){
-while true; do
-    echo "Would you like to cut out a segment ?"
-    echo -e "1) Yes\n2) No\n3) Quit"
-    read CHOICE
-    if [ "$CHOICE" == "3" ]; then
-        exit
-    elif [ "$CHOICE" == "2" ]; then
-        clear
-        break
-    elif [ "$CHOICE" == "1" ]; then
-        clear
-        ((segments++))
-        echo "What time does segment $segments start ?"
-        read SEGSTART
-        clear
-        echo -e "Segment $segments start set to $SEGSTART\n"
-        echo "What time does segment $segments end ?"
-        read SEGEND
-        clear
-        echo -e "Segment $segments end set to $SEGEND\n"
-        break
-    else
-        clear
-        echo -e "Bad option"
-        segment "$segments"
-    fi
-done
-if [ "$CHOICE" == "1" ]; then
-    echo "Cutting file $file video segment $segments starting at $SEGSTART and ending at $SEGEND"
-    ffmpeg -i "$file" -ss $SEGSTART -to  $SEGEND -map 0:0 -map 0:1 -c:a copy -c:v copy  "$filename-part$segments.$extension"  >> segmenter.log 2>&1
-    clear
-    echo -e "Cut file $filename-part$segments.$extension starting at $SEGSTART and ending at $SEGEND\n"
-    segment "$segments"
-fi
-}
+# Provide time in seconds
 
-file="$1"
-filename="${file%.*}"
-extension="${file##*.}"
-clear
-segments=0
-segment "$segments"
-clear
-if (("$segments"==1)); then
-mv $filename"-part1."$extension "$filename-segmented.$extension"
-elif (("$segments">1)); then
-echo "Would you like to join the segments into one file ?"
-       OPTIONS="Yes No Quit"
-       select opt in $OPTIONS; do
-       clear
-        if [ "$opt" == "Quit" ]; then
-            exit
-        elif [ "$opt" == "Yes" ]; then
-            clear
-            echo "Joining segments"
-            ffmpeg -f concat -i <(for f in $filename"-part"*$extension; do echo "file '$(pwd)/$f'"; done) -c:a copy -c:v copy "$filename-segmented.$extension" >>  segmenter.log 2>&1
-            clear
-            echo "Would you like to delete the part files ?"
-            select opt in $OPTIONS; do
-            clear
-            if [ "$opt" == "Quit" ]; then
-                exit
-            elif [ "$opt" == "Yes" ]; then
-                for f in $filename"-part"*$extension; do rm $f; done
-                break
-            elif [ "$opt" == "No" ]; then
-                break
-            else
-                clear
-                echo -e "Bad option\n"
-            fi
-            done
-            break
-        clear
-        elif [ "$opt" == "No" ]; then
-            exit
-        else
-            clear
-            echo -e "Bad option\n"
-        fi
-    done
+
+# if [[ $# -lt 4 ]];then
+
+# 	echo You are suppose to provide two parameters to this script
+# 	echo Times should be given in hh:mm:ss format
+# 	echo $(basename $0) -ss start_sec -i source_file end_sec modifed_file
+# 	exit 1
+# fi
+
+printf "Give the start time in HH:MM:SS format: %s"
+read -r start_time
+
+start_sec=$(echo "$start_time" | gawk -F: '{ print ($1 * 60) + ($2 * 60) + $3 }')
+
+echo $start_sec
+
+printf "Give the Souce file: %s"
+
+read -r source_file
+
+printf "Give the end time in HH:SS:MM format:  %s"
+read -r end_time
+
+
+end_sec=$(echo "$end_time" | gawk -F: '{ print ($1 * 60) + ($2 * 60) + $3 }')
+
+echo $end_sec
+
+printf "Give the modified file name: %s"
+read -r modi_file
+
+echo "ffmpeg -ss ${start_sec} -i ${source_file} -to ${end_sec} -c:a copy -c:v copy ${modi_file}.mp3"
+
+printf "Is it look alright?[Y/N]: %s"
+read -r res
+
+if test "$res" == "Y";then
+
+       sh -c "ffmpeg -ss ${start_sec} -i ${source_file} -to ${end_sec} -c:a copy -c:v copy ${modi_file}.mp3"
+
+else
+	printf "Something doesn't look right, fix it"
+
 fi
-echo "Would you like to replace the original file with the result of your changes ?"
-OPTIONS="Yes No Quit"
-select opt in $OPTIONS; do
-    clear
-    if [ "$opt" == "Quit" ]; then
-        exit
-    elif [ "$opt" == "Yes" ]; then
-        rm $file
-        mv "$filename-segmented.$extension" $file
-        break
-    elif [ "$opt" == "No" ]; then
-        break
-    else
-        clear
-        echo -e "Bad option\n"
-    fi
-done
+
