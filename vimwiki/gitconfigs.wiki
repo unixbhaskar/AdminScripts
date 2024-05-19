@@ -39,7 +39,7 @@
 	localcommit = "!git cherry -v"
 	updatelinux = "!git push https://unixbhaskar:@github.com/unixbhaskar/linux.git master"
 	updategit = "!git push https://unixbhaskar:@github.com/unixbhaskar/git.git master"
-	muttupdate = "!git push https://unixbhaskar:sunsolaris19@gitlab.com/unixbhaskar/mutt.git master"
+	muttupdate = "!git push https://unixbhaskar:@gitlab.com/unixbhaskar/mutt.git master"
         updatei3 = "!git push https://unixbhaskar:@github.com/unixbhaskar/i3.git next"
         updatebcc = "!git push https://unixbhaskar:@github.com/unixbhaskar/bcc.git master"
 	pushlatestlinuxtag = "!git push https://unixbhaskar:@github.com/unixbhaskar/linux.git --tags"
