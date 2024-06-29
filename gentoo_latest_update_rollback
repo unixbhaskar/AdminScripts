@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+#===============================================================================
+#
+#          FILE: gentoo_latest_update_rollback.sh
+#
+#         USAGE: ./gentoo_latest_update_rollback.sh
+#
+#   DESCRIPTION: This is an effort to seamlessly rolling back the latest update.
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: genlop
+#          BUGS: ---
+#         NOTES: The ask option to Unmerge is intentional to prevent
+#                accidental removal
+#        AUTHOR: Bhaskar Chowdhury (https://about.me/unixbhaskar), unixbhaskar@gmail.com
+#  ORGANIZATION: Independent
+#       CREATED: 06/30/24 02:36
+#      REVISION:  ---
+#===============================================================================
+
+# License (GPL v2.0)
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+
+
+set -o nounset                              # Treat unset variables as an error
+
+
+
+echo Enlisting the latest updated packages......
+echo
+
+genlop --list --date today
+
+printf "\n\n"
+printf "Do you really want to rever?[Y/N]: %s"
+read response
+
+if test $response == "Y";then
+	echo Alright!
+else
+	echo Nope, we are bailing out.
+	exit 1
+fi
+
+echo Okay! Now let us do the actual revert!
+echo
+
+
+emerge --ask --unmerge $(genlop --list --date today | gawk '{print $8 }')
