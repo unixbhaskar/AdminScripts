@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# This is create quick rootfs filesystem for kernel testing
+
+basepath=/home/bhaskar/git-linux/
+
+cd $basepath  || exit 1
+
+ git clone --depth=1 https://github.com/mirror/busybox.git && cd "$(basename busybox .git)"
+# git clone git://busybox.net/busybox.git && cd "$(basename busybox .git)"
+
+make defconfig # if you need to add more specific option then run menuconfig
+
+# Checking out wheather the static is set or not , we don't need dynamic stuff
+
+grep CONFIG_STATIC .config
+
+echo Setting the static stuff
+echo
+
+# echo "CONFIG_STATIC=y" >> .config
+
+
+sed -i 's/# CONFIG_STATIC is not set/CONFIG_STATIC=y/' .config
+sed -i 's/CONFIG_TC=y/# CONFIG_TC is not set/' .config
+
+grep CONFIG_STATIC .config
+
+# Lets build it with the option set
+
+make -j$(nproc)
+
+# Install binaries in specific directory, so, it wont mess up system
+
+make CONFIG_PREFIX=$PWD/BUSYBOX install
+
+# Finding those damn installed binaries
+
+sh -c "find BUSYBOX -type d -exec ls -al {} \;"
