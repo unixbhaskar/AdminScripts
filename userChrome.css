@@ -18,8 +18,7 @@ browser[type=content-primary],browser[type=content] > html {
 
    #nav-bar {
   /* customize this value. */
-  /* --navbar-margin: -38px; */
-  --navbar-margin: -100px;
+  --navbar-margin: -38px;
 
   margin-top: var(--navbar-margin);
   margin-bottom: 0;
@@ -41,5 +40,3 @@ browser[type=content-primary],browser[type=content] > html {
   /* background-color: #CFB53B !important; */
   background-color: #002b36 !important;
 }
-
-
