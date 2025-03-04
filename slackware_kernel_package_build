@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+# This script build the slackware kernel package from upstream kernel source.
+
+
+# License (GPL v2.0)
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+basedir=/home/bhaskar/k
+kern_version=$(uname -r | tr -d "\-Slackware")
+source_tarball_download=/home/bhaskar/Adm_scripts/secure_kernel_tarball
+
+# Change all "defconfig" to "localmodconfig" in generic-kernel script, which will speed up the build process
+
+if test ! -d $basedir;then 
+
+# Download the kernel source tree from mirror 
+#
+sh -c "lftp https://mirrors.slackware.com -e "mirror -v -X *xz -X *sign  /slackware/slackware64-current/source/k""
+
+sh -c "chmod +x $basedir/build-all-kernels.sh"
+
+sh -c "chmod +x $basedir/kernel-generic.SlackBuild"
+
+sh -c "chmod +x $basedit/kernel-headers.SlackBuild"
+
+sh -c "chmod +x $basedit/kernel-source.SlackBuild"
+
+fi 
+
+which_kernel() {
+ printf "\n\n Which kernel would be your base? Stable or Mainline or Longterm? [S/M/L]: %s"
+ read response
+
+ if [[ $response == "S" ]];then
+ #Get the stable kernel from kernel.org
+ kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 6.13)
+ elif [[ $response == "M" ]];then
+ #Get the mainline kernel from kernel.org
+ kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
+ elif [[ $response == "L" ]];then
+ #Get the longterm kernel from kernel.org
+ kernel=$(curl -s https://www.kernel.org/ | grep -A1 'longterm:' | grep -oP '(?<=strong>).*(?=</strong.*)')
+ fi
+ }
+
+
+pushd $basedir 
+
+# Downlod the kernel source tarball and verify 
+
+which_kernel 
+
+$source_tarball_download $kernel 
+
+# Untaring the kernel source 
+
+tar -xJvf linux-$kernel.tar.xz 
+
+ln -s linux-$kernel linux 
+
+# Copying the existing config to the package build directory
+
+cp /boot/config-${kern_version}.x64 /home/bhaskar/k/kernel-configs/config-${kern_version}.x64 
+cp /boot/config-${kern_version}.x64 /home/bhaskar/k/config-${kern_version}.x64 
+
+# Get it rolling to build the package.
+
+./build-all-kernels.sh 
+
+if test $? -eq 0;then
+
+popd 
+
+fi 
+
