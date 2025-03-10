@@ -3,9 +3,9 @@
 # This script is to build custom arch linux kernel from upstream linux kernel
 # source
 
-Author: Bhaskar Chowdhury
-Date: Tue 11 Mar 2025 03:47:05 AM IST
-Email: unixbhaskar@gmail.com
+# Author: Bhaskar Chowdhury
+# Date: Tue 11 Mar 2025 03:47:05 AM IST
+# Email: unixbhaskar@gmail.com
 
 # License (GPL v2.0)
 
