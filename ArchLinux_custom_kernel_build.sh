@@ -25,7 +25,6 @@ get_elapsed_time="/usr/bin/time -f"
 untar_it="tar -xJvf"
 get_it=$(command -v secure_kernel_tarball)
 NOTIFY=$(command -v notify-send)
-NOCOLOR="\033[0m"
 DT=$(date '+%d%m%Y')
 build_dir="/home/bhaskar/custom_kernel_$(hostname)_$DT"
 
