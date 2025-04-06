@@ -1,0 +1,47 @@
+#!/bin/bash -
+#===============================================================================
+#
+#          FILE: clean_old_backup.sh
+#
+#         USAGE: ./clean_old_backup.sh
+#
+#   DESCRIPTION: Cleaning old backup files to gain some disk space
+#
+#       OPTIONS: ---
+#  REQUIREMENTS:
+#          BUGS: ---
+#         NOTES: Clearing out the old backup to gain disk space
+#        AUTHOR: Bhaskar Chowdhury (https://about.me/unixbhaskar), unixbhaskar@gmail.com
+#  ORGANIZATION: Independent
+#       CREATED: 03/14/25 17:00
+#      REVISION:  ---
+#===============================================================================
+
+#set -o nounset                              # Treat unset variables as an error
+
+backup_dir=/data
+date_and_time=$(date +'%F')
+
+
+if test $UID -ne 0;then
+	echo You are not permitted to do this. Run with sudo.
+	exit 1
+fi
+
+
+if test "$(find ${backup_dir} -name "home-backup-*" -type f | wc -l)" -ge 3;then
+
+	find ${backup_dir} -name "home-backup-*" -type f -not \( -path "${backup_dir}/home-backup-$date_and_time.tar.gz" -prune \) -print
+
+	printf "\n Really want to delete all these old files? [YN]: %s"
+	read -r response
+
+   if test "$response" == "Y";then
+	find ${backup_dir} -maxdepth 1 -name "home-backup-*" -type f -not \( -path "${backup_dir}/home-backup-$date_and_time.tar.gz" -prune \) -exec rm -f {} \;
+else
+	echo You decided not to delete those files.
+   fi
+fi
+
+
+
