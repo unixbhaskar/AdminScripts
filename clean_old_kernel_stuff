@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+printf "Cleaning the old cruft related to kernel in the system .....\n"
+
+sel=$(find /boot/ -maxdepth 1 -type f  | fzf --multi --prompt "Select the files:")
+
+
+for files in "${sel[0]}";do
+	 sudo rm -f $(echo $files)
+done
+
+printf "\n Alright, clean the moduels directory too...\n"
+
+mod=$(find /lib/modules/ -maxdepth 1 -type d  | fzf --multi --prompt "Select the directories:")
+
+for dir in "${mod[0]}";do
+	sudo rm -rf "$(echo $dir)"
+done
