@@ -16,7 +16,7 @@
 # GNU General Public License for more details.
 
 basedir=/home/bhaskar/k
-kern_version=$(uname -r | tr -d "\-Slackware")
+kern_version=$(uname -r)
 source_tarball_download=/home/bhaskar/Adm_scripts/secure_kernel_tarball
 
 # Change all "defconfig" to "localmodconfig" in generic-kernel script, which will speed up the build process
@@ -43,7 +43,7 @@ which_kernel() {
 
  if [[ $response == "S" ]];then
  #Get the stable kernel from kernel.org
- kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 6.13)
+ kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 6.14)
  elif [[ $response == "M" ]];then
  #Get the mainline kernel from kernel.org
  kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
@@ -78,8 +78,26 @@ cp /boot/config-${kern_version}.x64 /home/bhaskar/k/config-${kern_version}.x64
 ./build-all-kernels.sh 
 
 if test $? -eq 0;then
-
 popd 
 
 fi 
+
+# Clean up and reinstate new stuff 
+
+find /boot/efi/ -maxdepth 1 -name "*-Slackware" -type f -exec rm -f {} \; 
+
+find /boot -maxdepth 1 -type f -name "vmlinuz-${kernel}" -exec cp {} "/boot/efi/vmlinuz-${kernel}-Slackware" \; 	
+
+printf "\n\n Want to clean leftover stuffs?[YN]: %s"
+
+read -r res 
+
+if test "$res" == "Y";then 
+	rm -f "$basedir/linux-${kernel}.tar.xz"
+	unlink "$basedir/linux"
+	rm -rf "$basedir/linux-${kernel}"
+	rm -f "$basedir/config-${kern_version}.x64"
+	rm -f "$basedir/kernel-configs/config-${kern_version}.x64"
+fi
+
 
