@@ -1,0 +1,161 @@
+#!/usr/bin/env bash
+
+# Author: Bhaskar Chowdhury
+
+# License (GPL v2.0)
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+
+# Build a Gentoo kernel from the source code get_make
+
+get_make=$(command -v make)
+get_elapsed_time="/usr/bin/time -f"
+untar_it="tar -xJvf"
+existing_config_file="/boot/config-$(uname -r)"
+build_dir="/home/bhaskar/latest_kernel_build_$(hostname)_$(date '+%F')"
+get_it=$(command -v secure_kernel_tarball)
+NOTIFY=$(command -v notify-send)
+NOCOLOR="\033[0m"
+LOCAL_BIN="/usr/local/bin"
+dracut=$(command -v dracut)
+clang="CC=clang"
+make_llvm="LLVM=1"
+llvm_assm="LLVM_IAS=1"
+
+clear
+
+if [[ ! -d $build_dir ]];then
+	mkdir -p $build_dir
+fi
+
+cd $build_dir || exit 1
+
+gentoo_kernel_build() {
+
+#Download the kernel and get into the download dir
+
+which_kernel
+
+eval ${get_it} ${kernel}
+
+#Untar it
+$untar_it linux-$kernel.tar.xz
+
+#Get into the kernel direcory
+cd linux-$kernel || exit 1
+
+#Clean the dir
+$get_make clean && $get_make mrproper
+
+#Copying existing/running kernel config
+#cp $existing_config_file .config
+
+zcat /proc/config.gz > .config
+
+#Disable this option to shorten the compile time
+scripts/config --disable DEBUG_KERNEL
+grep DEBUG_KERNEL .config
+
+#Disable this option to shorten the compile time
+scripts/config --disable DEBUG_INFO
+grep DEBUG_INFO .config
+
+# Enable USB storage for external drive detection
+scripts/config --enable USB_STORAGE
+
+# Bunch of Bluetooth modules have to be enable for it to work
+scripts/config --enable BT_RFCOMM
+scripts/config --enable BT_HIDP 
+scripts/config --enable BT_HCIBTUSB
+scripts/config --enable BT_HCIUART 
+
+# Added the local hostname as appended to the built kernel 
+scripts/config --set-str LOCALVERSION "-Gentoo"
+
+#Make sure the flags symbols are set correctly with an updated value
+#$get_make  ARCH=x86_64 olddefconfig
+yes '' | make localmodconfig
+
+#Now lets build it..
+
+$get_elapsed_time "\t\n\n Elapsed Time : %E \n\n"  $get_make ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN) 
+
+
+if [ $? == 0 ]
+then
+
+$NOTIFY --urgency=critical "Kernel build done"
+
+else
+
+$NOTIFY --urgency=critical "Kernel build failed"
+ exit 1
+fi
+
+printf "Installing the modules ...\n\n"
+
+$get_make  modules_install
+
+$NOTIFY --expire-time=2000 --urgency=critical "Modules install done"
+
+printf "Copying the build kernel to boot directory \n\n"
+
+$get_make install
+
+$dracut --hostonly --kver $kernel-Gentoo
+
+
+printf "\n\n Lets clean up the build directory  .....\n\n\n"
+
+cd ..
+
+(rm -rf $build_dir) &
+
+spinner "$!" "Cleaning...wait.."
+
+$NOTIFY --expire-time=5000 "Kernel update process done"
+
+printf "\n Reinstating the new kernel to efi directory.....\n"
+
+find /boot/efi -maxdepth 1 -name "*Gentoo*" -type f -exec rm -f {} \;
+
+cp -v /boot/vmlinuz-${kernel}-Gentoo /boot/efi/ 
+cp -v /boot/initramfs-${kernel}-Gentoo.img /boot/efi/  
+
+printf "\n Changing the boot loader config file.....\n"
+sed -i '3d' /boot/efi/loader/entries/Gentoo.conf 
+sed -i '3i  linux   /vmlinuz-"${kernel}"-Gentoo' /boot/efi/loader/entries/Gentoo.conf 
+sed -i '4d' /boot/efi/loader/entries/Gentoo.conf 
+sed -i '4i  initrd  /initramfs-"${kernel}"-Gentoo.img' /boot/efi/loader/entries/Gentoo.conf 
+
+printf "\n Checking the entry......\n"
+cat "/boot/efi/loader/entries/Gentoo.conf" 
+}
+
+
+which_kernel() {
+printf "\n\n Which kernel would be your base? Stable or Mainline or Longterm? [S/M/L]: %s"
+read response
+
+if [[ $response == "S" ]];then
+#Get the stable kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 6.14)
+elif [[ $response == "M" ]];then
+#Get the mainline kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
+elif [[ $response == "L" ]];then
+#Get the longterm kernel from kernel.org
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'longterm:' | grep -oP '(?<=strong>).*(?=</strong.*)')
+fi
+}
+
+gentoo_kernel_build
