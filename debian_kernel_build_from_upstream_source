@@ -4,6 +4,9 @@
 get_elapsed_time="/usr/bin/time -f"
 build_dir=/home/bhaskar/git-linux/debian_kernel_build
 existing_config_file="/boot/config-$(uname -r)"
+custom_kernel_package_holder=/home/bhaskar/git-linux/
+
+
 
 
 debian_kernel_build() {
@@ -13,21 +16,62 @@ debian_kernel_build() {
 if [ ! -d "$build_dir" ];then
 	echo Gosh! It will take hell lot of time to clone the repo ...take a break ...
 	echo
-	$get_elapsed_time "\n\n\tTime Elapsed: %E\n\n" git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git $HOME/git-linux/debian_kernel_build
-
+	$get_elapsed_time "\n\n\tTime Elapsed: %E\n\n" git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git "$build_dir"
  else
 	 echo Dir exists!! Getting into the git repo ...
 
          cd $build_dir || exit 1
 fi
 
+
 echo Cleaning previous stale stuff and pull new stuffs in
+
+ cd "$build_dir" || exit 1
+
+ git switch master
 
  git reset --hard
 
  git clean -dfx
 
  git pull
+
+ sed -i '136d' $build_dir/scripts/package/mkdebian
+ sed -i '136i  name=\"Bhaskar Chowdhury\"' $build_dir/scripts/package/mkdebian
+ sed -i '138d' $build_dir/scripts/package/mkdebian
+ sed -i '138i email=\"unixbhaskar@gmail.com\"' $build_dir/scripts/package/mkdebian
+ sed -i '249,260 s/^/#/' $build_dir/scripts/package/mkdebian
+ sed -i '32 s/^/#/' $build_dir/scripts/package/debian/rules
+
+ git add $build_dir/scripts/package/mkdebian
+ git commit -s -m "Modified the mkdebian script"
+ git add $build_dir/scripts/package/debian/rules
+ git commit -s -m "Commeted out the dbg package build in the rules file"
+
+ printf "\n Want to build Mainline or Stable kernel?[MS] %s"
+ read -r res
+
+if test $res == "S";then
+
+  git branch -D stable
+
+  git checkout -b stable $(git tag -l | grep v6.14 | grep -v v*-rc* | sort -nr | head -1)
+
+ sed -i '136d' $build_dir/scripts/package/mkdebian
+ sed -i '136i  name=\"Bhaskar Chowdhury\"' $build_dir/scripts/package/mkdebian
+ sed -i '138d' $build_dir/scripts/package/mkdebian
+ sed -i '138i email=\"unixbhaskar@gmail.com\"' $build_dir/scripts/package/mkdebian
+ sed -i '249,260 s/^/#/' $build_dir/scripts/package/mkdebian
+ sed -i '32 s/^/#/' $build_dir/scripts/package/debian/rules
+
+ git add $build_dir/scripts/package/mkdebian
+ git commit -s -m "Modified the mkdebian script"
+ git add $build_dir/scripts/package/debian/rules
+ git commit -s -m "Commented out the dbg package build in the rules file"
+
+else
+	printf "\nYou are opting to build Mainline kernel\n"
+fi
 
 # echo Getting the build dependencies for kernel build :
 # echo
@@ -50,31 +94,79 @@ grep DEBUG_KERNEL .config
 scripts/config --disable DEBUG_INFO
 grep DEBUG_INFO .config
 
+# Enable USB storage for external HDD
+scripts/config --enable USB_STORAGE
+
+# Set local hostname added to the kernel name
+scripts/config --set-str LOCALVERSION "-$(hostname)"
+
 #This is needed ,otherwise it won't allow you to build
 scripts/config --disable system_trusted_keys
 grep CONFIG_SYSTEM_TRUSTED_KEYS .config
 
+# Make config with all the currently loaded modules
+ yes '' | make localmodconfig
+
 #Make sure the flags symbols are set correctly with an updated value
-make  ARCH=x86_64 olddefconfig
+# make  ARCH=x86_64 olddefconfig
 
 # Now build it
 $get_elapsed_time "\n\n\tTime Elapsed: %E\n\n" make ARCH=x86_64 V=1 -j$(getconf _NPROCESSORS_ONLN) deb-pkg
 
 
- printf "\n\n\n ${Bright}${Green}Install the generated packages aka kernel,headers,modules et al ${NOCOLOR}\n\n\n"
+ printf "\n\n\n Install the generated packages aka kernel,headers,modules et al \n\n\n"
 
  cd ..
 
- dpkg -i *.deb
+sudo dpkg -i *.deb
 
-if [ $? -eq 0 ];then
+# Scanning the freshly created packages
 
-     find /boot -maxdepth 1 -name "vmlinuz-*" -type f -ls
+printf "\n\n\n\n Now collecting the packages in a file to feed the package management system\n\n\n"
 
-      notify-send "Kernel update process done"
-else
-	notify-send "Nope, the package install have trouble."
-fi
+>Debian_Custom_Kernel_Packages
+
+sudo dpkg-scanpackages "$custom_kernel_package_holder" > Debian_Custom_Kernel_Packages
+
+# Make the package management system aware of the packages
+
+printf "\n\n\n Merging with the local package management system \n\n\n"
+sudo dpkg --merge-avail Debian_Custom_Kernel_Packages
+
+printf "\n Getting rid of the old kernel and initramfs and reinstating the new ones.....\n"
+
+sudo find /boot/efi -maxdepth 1 -type f \( -name "*-debian" -o -name "*-debian+" \) -exec rm -f {} \;
+
+sudo find /boot  -maxdepth 1 -type f \( -name "vmlinuz-${kernel}-debian" -o -name "vmlinuz-${kernel}-debian+" \)  -exec cp {} /boot/efi/ \;
+sudo find /boot  -maxdepth 1 -type f  \( -name "initrd.img-${kernel}-debian" -o -name "initrd.img-${kernel}-debian+" \) -exec cp {}  /boot/efi/ \;
+
+printf "\n Fixing the boot entry file.....\n"
+
+sudo sed -i '2d' /boot/efi/loader/entries/Debian.conf
+sudo sed -i '2i  version    ${kernel}' /boot/efi/loader/entries/Debian.conf
+sudo sed -i '6d' /boot/efi/loader/entries/Debian.conf
+sudo sed -i '6i  linux     /vmlinuz-${kernel}-debian' /boot/efi/loader/entries/Debian.conf
+sudo sed -i '7d' /boot/efi/loader/entries/Debian.conf
+sudo sed -i '7i  initrd    /initrd.img-${kernel}-debian' /boot/efi/loader/entries/Debian.conf
+
+printf "\n Check the entry file for correct lines....\n"
+
+sudo cat "/boot/efi/loader/entries/Debian.conf"
+
+
+# if [ $? -eq 0 ];then
+
+#      find /boot -maxdepth 1 -name "vmlinuz-*" -type f -ls
+
+#      printf "\nGive the kernel number for initramfs generation: %s"
+#      read -r ramfs
+
+#      /usr/bin/dracut --hostonly --kver "$ramfs"
+
+#     echo "Kernel update process done"
+# else
+# 	echo "Nope, the package install have trouble."
+# fi
 
 
 }
