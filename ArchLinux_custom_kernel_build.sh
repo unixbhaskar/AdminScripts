@@ -1,30 +1,10 @@
 #!/usr/bin/env bash
-
-# This script is to build custom arch linux kernel from upstream linux kernel
-# source
-
-# Author: Bhaskar Chowdhury
-# Date: Tue 11 Mar 2025 03:47:05 AM IST
-# Email: unixbhaskar@gmail.com
-
-# License (GPL v2.0)
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-
-
 get_make=$(command -v make)
 get_elapsed_time="/usr/bin/time -f"
 untar_it="tar -xJvf"
 get_it=$(command -v secure_kernel_tarball)
 NOTIFY=$(command -v notify-send)
+NOCOLOR="\033[0m"
 DT=$(date '+%d%m%Y')
 build_dir="/home/bhaskar/custom_kernel_$(hostname)_$DT"
 
@@ -64,7 +44,7 @@ cd linux-$kernel
 
 sed -i '8d' scripts/package/PKGBUILD
 sed -i '8i  _extrapackages=${PACMAN_EXTRAPACKAGES-headers api-headers}' scripts/package/PKGBUILD
-sed -i '114,125 s/^/#/' scripts/package/PKGBUILD
+sed -i '113,125 s/^/#/' scripts/package/PKGBUILD
 
 # Creating a new checksum, because we have modified the PKGBUILD file
 
@@ -87,8 +67,12 @@ grep DEBUG_INFO .config
 # Enable USB storage module for external HDD
 scripts/config --enable USB_STORAGE
 
+# Enable crypto_lz4
+scripts/config --enable CRYPTO_LZ4
+
 # Set the local version of the operating system name
 scripts/config --set-str LOCALVERSION "-Archlinux"
+
 
 #Make sure the flags symbols are set correctly with an updated value
 #$get_make  ARCH=x86_64 olddefconfig
@@ -121,12 +105,13 @@ then
 
      printf "\n Now install the generated headers,kernel and doc packages with pacman .. \n\n\n"
 
+     find . -name "linux-upstream*" -a ! -name "*.sig" -type f -exec sudo pacman -U --noconfirm {} \;
 
-     sudo pacman -U  --noconfirm linux-upstream-$kernel_Archlinux-1-x86_64.pkg.tar.zst
+     # sudo pacman -U  --noconfirm linux-upstream-${kernel}_Archlinux-1-x86_64.pkg.tar.zst
 
-     sudo pacman -U --noconfirm linux-upstream-headers-$kernel_Archinux-1-x86_64.pkg.tar.zst
+     # sudo pacman -U --noconfirm linux-upstream-headers-${kernel}_Archlinux-1-x86_64.pkg.tar.zst
 
-     sudo pacman -U --noconfirm linux-upstream-api-headers-$kernel_Archlinux-1-x86_64.pkg.tar.zst
+     # sudo pacman -U --noconfirm linux-upstream-api-headers-${kernel}_Archlinux-1-x86_64.pkg.tar.zst
 
 else
 	echo Something went wrong, manually check.
@@ -140,7 +125,7 @@ read response
 
 if [[ $response == "S" ]];then
 #Get the stable kernel from kernel.org
-kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 6.13)
+kernel=$(curl -s https://www.kernel.org/ | grep -A1 'stable:' | grep -oP '(?<=strong>).*(?=</strong.*)' | grep 6.14)
 elif [[ $response == "M" ]];then
 #Get the mainline kernel from kernel.org
 kernel=$(curl -s https://www.kernel.org/ | grep -A1 'mainline:' | grep -oP '(?<=strong>).*(?=</strong.*)')
