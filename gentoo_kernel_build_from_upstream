@@ -126,10 +126,10 @@ $NOTIFY --expire-time=5000 "Kernel update process done"
 
 printf "\n Reinstating the new kernel to efi directory.....\n"
 
-find /boot/efi -maxdepth 1 -name "*Gentoo*" -type f -exec rm -f {} \;
+find /boot/efi/ -maxdepth 1 -name "*Gentoo*" -type f -exec rm -f {} \;
 
-cp -v /boot/vmlinuz-${kernel}-Gentoo /boot/efi/ 
-cp -v /boot/initramfs-${kernel}-Gentoo.img /boot/efi/  
+find /boot/ -maxdepth 1 -type f -name "vmlinuz-${kernel}-Gentoo" -exec cp {}  /boot/efi/ \;
+find /boot/ -maxdepth 1 -type f -name "initramfs-${kernel}-Gentoo.img" -exec cp {} /boot/efi/ \;  
 
 printf "\n Changing the boot loader config file.....\n"
 sed -i '3d' /boot/efi/loader/entries/Gentoo.conf 
