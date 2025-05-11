@@ -1,6 +1,12 @@
-@-moz-document url-prefix(about:home) {
+@-moz-document url(about:home) {
 
-/* body {background: #424246 !important;} */
+body {background: #002b36 !important;}
+
+
+}
+
+@-moz-document  url(about:blank) {
+
 body {background: #002b36 !important;}
 
 
@@ -18,7 +24,7 @@ body {background: #002b36 !important;}
 
 
 /* AGENT_SHEET */
-@-moz-document url-prefix(http://), url-prefix(https://), url-prefix(ftp://), url-prefix(file://), url(about:blank),
+@-moz-document url-prefix(http://), url-prefix(https://), url-prefix(ftp://), url-prefix(file://), url-prefix(about:blank),
 
 /* Best effort to exclude about pages that conflict with Australis-native styling   */
 regexp("about:(?!addons|app-manager|config|customizing|stylish-edit|downloads|permissions|preferences|sync-tabs|webrtc).*")
