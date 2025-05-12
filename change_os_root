@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-source /home/bhaskar/colors.sh
 NOCOLOR="\033[0m"
 BASH=$(command -v bash)
 MUNT=$(command -v mount)
@@ -10,38 +9,36 @@ change_systemd_root=$(command -v systemd-nspawn)
 change_prompt="export PS1=\"(chroot) $PS1\""
 sys_init=$(strings /sbin/init | gawk 'match($0, /(upstart|systemd|sysvinit)/) { print toupper(substr($0, RSTART, RLENGTH));exit; }')
 
+#One should have superuser privilege to work with this script.
+
+if [[ $UID != "0" ]];then
+
+  printf "You don't have enough privilege to utilise this tool.Use it with sudo or root :(  \n\n"
+  exit 1
+fi
+
 #Usage help
 usage() {
 
-   printf "${Bright}${Red} You forgot to mention either the target directory name or the partiton or both ...aborting.${NOCOLOR} \
+   printf "You forgot to mention either the target directory name or the partiton or both ...aborting. \
 
-       ${Reverse}Usage : change_os_root partition_number target_dir ${NOCOLOR}
+       Usage : change_os_root partition_number target_dir 
                               (sd[abc][123]) (/mnt or /whereever you like)
 
 \n\n"
 exit 1
 }
 
-#One should have superuser privilege to work with this script.
+blkid | gawk '{ print $1 $5 }' | grep -v /dev/mapper | grep PARTLABEL | sed 's/PARTLABEL=//'
 
-if [[ $UID != "0" ]];then
-
-  printf "${Bright}${Red} You don't have enough privilege to utilise this tool.Use it with sudo or root :(  ${NOCOLOR} \n\n"
-  usage
-  exit 1
-fi
-
-#enlist all the partitions
-cat $HOME/part_stat
-
-printf "\n\n${Bright}${Green} Which partition or OS root you want to access: %s"
+printf "\n\n Which partition or OS root you want to access: %s"
 read -r slice
 
 printf "\n Well, you want to access $slice \n\n"
 
 ls /
 
-printf "\n${Bright}${Yellow} Under which directory you want to mount the partition? : %s"
+printf "\n Under which directory you want to mount the partition? : %s"
 
 read -r chroot_dir
 
@@ -55,21 +52,21 @@ if [  -z "$slice" ] || [ -z "$chroot_dir" ];then
 
 elif [[ "$sys_init" == "SYSTEMD" ]];then
 
-        printf "${Bright}${Green} Chrooting to other OS .... ${NOCOLOR}  \n\n\n"
+        printf "Chrooting to other OS ....  \n\n\n"
 
-	printf "${Bright}${LimeYellow} This is a ${Reverse}SYSTEMD ${NOCOLOR} system, taking appropriate actions... \n\n"
+	printf "This is a SYSTEMD system, taking appropriate actions... \n\n"
 
 	$MUNT /dev/$slice $chroot_dir
 	$change_systemd_root -bD $chroot_dir
 
 elif [[ "$sys_init" == "SYSVINIT" ]];then
 
-     printf "${Bright}${Green} Chrooting to other OS .... ${NOCOLOR}  \n\n\n"
+     printf "Chrooting to other OS ....   \n\n\n"
 
-     printf "${Bright}${PowderBlue} This is a ${Reverse}SYSVINIT ${NOCOLOR} system,taking appropriate actions... \n\n"
+     printf "This is a SYSVINIT system,taking appropriate actions... \n\n"
 
 
-   printf "${Bright}${Cyan} Doing other related stuff...wait ${NOCOLOR} \n\n"
+   printf "Doing other related stuff...wait \n\n"
 
      $MUNT /dev/$slice $chroot_dir
      $MUNT --rbind /dev $chroot_dir/dev
@@ -81,21 +78,22 @@ elif [[ "$sys_init" == "SYSVINIT" ]];then
      $copy  /etc/resolv.conf $chroot_dir/etc/
 
 
-printf "${Bright}${LimeYellow} Getting into the chroot environment and change the prompt for recognization ,please run at shell. ${NOCOLOR}
+printf "Getting into the chroot environment and change the prompt for recognization ,please run at shell. 
 
                            export PS1=\"(chroot) \$PS1\"
 
  \n\n"
 
   $change_root $chroot_dir $BASH
+
 else
-   printf "${Bright}${Red} Error encounter...inspect manually.${NOCOLOR}"
+   printf "Error encounter...inspect manually."
           usage
 
 fi
 
 
-printf "${Bright}${PowderBlue} Well, leaving the chroot shell and unmounting the slice from mounted dir ... ${NOCOLOR} \n\n"
+printf "Well, leaving the chroot shell and unmounting the slice from mounted dir ... \n\n"
 
 trap EXIT
 
