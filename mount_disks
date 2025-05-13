@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+find_disk=$(command -v blkid)
+
+# Get the damn partitions shown
+get_disks=$($find_disk | gawk '{ print $1 $5  }' | grep -v /dev/mapper | grep PARTLABEL | sed 's/PARTLABEL=//')
+
+show_disks=$(printf "%s${get_disks[0]}" | dmenu -p "Disks available for mount,Press Escape:")
+
+# Actual disk to grab for mount
+actual_disks=$($find_disk | gawk '{ print $1 }' | tr -d : | grep -v /dev/mapper)
+
+mount_disk=$(printf "%s${actual_disks[0]}" | dmenu -i -p "Which one to mount:")
+
+# Target space, where the grabbed disk captured in previous step should be mounted
+where_to_mount=$(find / -maxdepth 1 -type d)
+
+target_mount_space=$(printf "%s${where_to_mount[0]}" | dmenu -i -p "Where to mount:")
+
+# Actual command to mount the damn disk to a targeted fs via sudo
+SUDO_ASKPASS=/home/bhaskar/bin/dpass sudo -A /bin/mount $mount_disk $target_mount_space
+
+# Showing how the damn targeted, where things get mounted looks like
+mounted_path=$(find $target_mount_space -maxdepth 1 -type d )
+
+show_mounted=$(printf "%s${mounted_path[0]}" | dmenu -p "This is how mounted path looks:")
