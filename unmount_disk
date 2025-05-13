@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# This is just for the information
+mounted_disk=$(df -h | grep nvme | gawk '{ print $1" " $6  }' | dmenu -p "Mounted partition,just press escapes:")
+
+# This is how the actual disk are
+disks=$(df -h | grep nvme | gawk '{ print $1 }')
+
+# Select the damn partition to unmount
+actual_disk_to_unmount=$(printf "%s${disks[0]}" | dmenu -i -p "Which One you want to unmount:")
+
+# This is actually prompting for sudo password to impact the unmount command
+SUDO_ASKPASS=/home/bhaskar/bin/dpass sudo -A umount $actual_disk_to_unmount  && notify-send "Done!"
