@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Change this to match your correct profile
+PROFILE="18q9dvrr.default-release"
+
+cd "${HOME}/.mozilla/firefox" || exit 1
+
+# if test -z "$(/bin/mount | grep -F "${HOME}/.mozilla/firefox/${PROFILE}" )"
+# then
+#     # sh -c "sudo /bin/mount "${HOME}/.mozilla/firefox/${PROFILE}" tmpfs  size=2G,user,exec,uid=1000,gid=1000"
+#     sh -c "sudo /bin/mount -a"
+# fi
+
+if test -f "${PROFILE}/.unpacked"
+then
+    rsync -av --delete --exclude .unpacked ./"$PROFILE"/ ./profile/
+else
+    notify-send "Firefox Profile started syncing to RAM ...wait.."
+     rsync -av ./profile/ ./"$PROFILE"/
+    touch "${PROFILE}/.unpacked"
+fi
+
+if test "$(pgrep rsync)" == "" ; then
+
+	notify-send  "Sync Done! Clearing the startup cache..."
+
+        find ~/.cache/mozilla/firefox/18q9dvrr.default-release/ -type d -name startupCache | xargs rm -rf
+fi
+
+exit
