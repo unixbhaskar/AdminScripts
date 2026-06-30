@@ -2,9 +2,9 @@
 
 # Check if Bluetooth service is up or not
 
-if test $(find_init) == "SYSVINIT" && $(pidof bluetoothd) -eq 0;then
+if test $(find_init) == "SYSVINIT" -a $(pidof bluetoothd) -ne 0;then
 	sudo /etc/init.d/bluetooth start
-elif test $(find_init) == "SYSTEMD" && $(pidof bluetoothd) -eq 0;then
+elif test $(find_init) == "SYSTEMD" -a $(pidof bluetoothd) -ne 0;then
 	sudo systemctl start bluetooth.service
 fi
 
@@ -12,6 +12,6 @@ fi
 device="79:99:CA:0C:C3:44"
 
 # Start the process
-echo -e "power on\nagent on\ndefault-agent\npair $device\nconnect $device\nquit" | bluetoothctl
+sh -c "echo -e \"power on\nagent on\ndefault-agent\npair $device\nconnect $device\nquit\" | bluetoothctl"
 
 notify-send "Connected To : $(bluetoothctl devices Connected)"
