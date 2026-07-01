@@ -2,9 +2,9 @@
 
 # Check if Bluetooth service is up or not
 
-if test $(find_init) == "SYSVINIT" -a $(pidof bluetoothd) -ne 0;then
+if test $(find_init) == "SYSVINIT" -a $(pidof bluetoothd) -eq 0;then
 	sudo /etc/init.d/bluetooth start
-elif test $(find_init) == "SYSTEMD" -a $(pidof bluetoothd) -ne 0;then
+elif test $(find_init) == "SYSTEMD" -a $(pidof bluetoothd) -eq 0;then
 	sudo systemctl start bluetooth.service
 fi
 
