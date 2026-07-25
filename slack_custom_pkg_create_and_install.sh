@@ -16,7 +16,6 @@
 #       CREATED: 05/13/2022 10:27
 #      REVISION:  1.0
 #===============================================================================\
-set -vx
 url=$1
 basepath=$HOME/slackware_custom_package
 pkg_name=$2
@@ -28,9 +27,6 @@ instpkg="/sbin/installpkg"
 slpkg="/usr/sbin/slackpkg"
 
 # File system to hold the new package stuff
-
-echo Build basic file stucture for the new package creation
-echo
 
 mkdir -p "$basepath"/{build,install}
 touch "$basepath/install/slack-desc"
@@ -58,21 +54,6 @@ usage(){
 	echo
 	echo $(basename $0) \"url\" \"name\" \"version\"
         echo
-	echo Also, do not forget to enter some metadata about the package
-	echo In the $basepath/install/slack-desc file\;like below
-	echo
-	echo app: Application Name \(Short/Brief description\)
-	echo app:
-	echo app: Enter a description of the package you are building.
-	echo app: All 11 "app:" lines must be present
-	echo app: "app" needs to be your application name.
-	echo app: The handy-ruler is there to help you, these lines should not exceed
-	echo app: 79 characters.
-	echo app:
-	echo app:
-	echo app:
-	echo app:
-	echo This script will prompt you to enter these details,essentially open an editor
 }
 
 
@@ -147,13 +128,13 @@ echo Hang on! We are building it .........
 
 	make
 
-       make install DESTDIR="$build_dir/build"
+        make install DESTDIR=$basepath/build
 
       elif test -f "meson.build";then
 	 meson setup build
 	 ninja -C build
 	 ninja -C build install
-         make install DESTDIR="$build_dir/build"
+         make install DESTDIT=$basepath/build
 
 
       else
@@ -164,12 +145,12 @@ echo Hang on! We are building it .........
 
 # strip off unnecessary things
 
-       # strip -s  $basepath/build/usr/bin/*
-       # strip -s $basepath/build/usr/lib/* $basepath/build/usr/libexec/* $basepath/build/usr/bin/*
+        strip -s  $basepath/build/usr/bin/*
+        strip -s $basepath/build/usr/lib/* $basepath/build/usr/libexec/*
 
 # Gizzped the man pages
 
-      # gzip -9 $basepath/build/usr/man/man?/*.?
+        gzip -9 $basepath/build/usr/man/man?/*.?
 }
 
 # Before making the actual package, put some metadata in designated file
@@ -187,12 +168,12 @@ package()
 {
         echo Making package of the built software......
 
-        sh -c "/sbin/makepkg -l y -c n "$pkg_name"_"$pkg_ver"_$arch.tgz"
+        sh -c "/sbin/makepkg -l y -c n $basepath/"$pkg_name"_"$pkg_ver"_$arch.tgz"
 
 
         echo Installing........
 
-              sudo  sh -c ""$instpkg" "$pkg_name"_"$pkg_ver"_$arch.tgz"
+              sudo  sh -c ""$instpkg" $basepath/"$pkg_name"_"$pkg_ver"_$arch.tgz"
 
 	echo Show installed package info......
 
